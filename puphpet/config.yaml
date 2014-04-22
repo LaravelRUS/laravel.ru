@@ -115,7 +115,6 @@ php:
             - curl
             - gd
             - geoip
-            - mbstring
             - memcache
             - imagick
             - mysql

@@ -1,0 +1,4 @@
+.vagrant
+.idea
+puphpet/files/dot/ssh/id_rsa
+puphpet/files/dot/ssh/id_rsa.pub
