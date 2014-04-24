@@ -1,117 +1,274 @@
-require 'yaml'
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
-dir = File.dirname(File.expand_path(__FILE__))
+# Config Github Settings
+github_username = "fideloper"
+github_repo     = "Vaprobash"
+github_branch   = "master"
 
-configValues = YAML.load_file("#{dir}/puphpet/config.yaml")
-data = configValues['vagrantfile-local']
+# Server Configuration
 
-if !data['vm']['provider']['virtualbox'].empty?
-  ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
-end
+# Set a local private network IP address.
+# See http://en.wikipedia.org/wiki/Private_network for explanation
+# You can use the following IP ranges:
+#   10.0.0.1    - 10.255.255.254
+#   172.16.0.1  - 172.31.255.254
+#   192.168.0.1 - 192.168.255.254
+server_ip             = "192.168.56.102"
+server_memory         = "512" # MB
+server_timezone       = "Europe/Moscow"
+
+# Database Configuration
+mysql_root_password   = "123"   # We'll assume user "root"
+mysql_version         = "5.5"    # Options: 5.5 | 5.6
+mysql_enable_remote   = "true"  # remote access enabled when true
+pgsql_root_password   = "123"   # We'll assume user "root"
+mariadb_version       = "5.5"   # Options: 5.5 | 10.0
+mariadb_root_password = "123"   # We'll assume user "root"
+
+# Languages and Packages
+ruby_version          = "latest" # Choose what ruby version should be installed (will also be the default version)
+ruby_gems             = [        # List any Ruby Gems that you want to install
+  #"jekyll",
+  #"sass",
+  #"compass",
+]
+
+# HHVM Options
+hhvm_use_fastcgi      = "false"  # Use HHVM as FastCGI (over php-fpm)
+hhvm_over_php         = "false"  # Symlink HHVM to PHP, so calls to PHP run via HHVM
+
+# PHP Options
+php_version           = "latest" # Options: latest|previous|distributed   For 12.04. latest=5.5, previous=5.4, distributed=5.3
+composer_packages     = [        # List any global Composer packages that you want to install
+  #"phpunit/phpunit:4.0.*",
+  #"codeception/codeception=*",
+  #"phpspec/phpspec:2.0.*@dev",
+  #"squizlabs/php_codesniffer:1.5.*",
+]
+public_folder         = "/var/www/laravel-su.dev/public" # If installing Symfony or Laravel, leave this blank to default to the framework public directory
+laravel_root_folder   = "/vagrant/laravel" # Where to install Laravel. Will `composer install` if a composer.json file exists
+symfony_root_folder   = "/vagrant/symfony" # Where to install Symfony.
+nodejs_version        = "latest"   # By default "latest" will equal the latest stable version
+nodejs_packages       = [          # List any global NodeJS packages that you want to install
+  #"grunt-cli",
+  "gulp",
+  #"bower",
+  #"yo",
+]
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "#{data['vm']['box']}"
-  config.vm.box_url = "#{data['vm']['box_url']}"
 
-  if data['vm']['hostname'].to_s != ''
-    config.vm.hostname = "#{data['vm']['hostname']}"
+  # Set server to Ubuntu 12.04
+  config.vm.box = "precise32"
+
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+
+  # Create a hostname, don't forget to put it to the `hosts` file
+  # This will point to the server's default virtual host
+  # TO DO: Make this work with virtualhost along-side xip.io URL
+  config.vm.hostname = "laravel-su.dev"
+
+  # Create a static IP
+  config.vm.network :private_network, ip: server_ip
+
+  # Use NFS for the shared folder
+#  config.vm.synced_folder ".", "/var/www/laravel-su.dev",
+#           id: "core",
+#            :nfs => true,
+#            :mount_options => ['nolock,vers=3,udp,noatime']
+
+  config.vm.synced_folder ".", "/var/www/laravel-su.dev"
+
+  # If using VirtualBox
+  config.vm.provider :virtualbox do |vb|
+
+    # Set server memory
+    vb.customize ["modifyvm", :id, "--memory", server_memory]
+
+    # Set the timesync threshold to 10 seconds, instead of the default 20 minutes.
+    # If the clock gets more than 15 minutes out of sync (due to your laptop going
+    # to sleep for instance, then some 3rd party services will reject requests.
+    vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
+
+    # Prevent VMs running on Ubuntu to lose internet connection
+    # vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    # vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+
   end
 
-  if data['vm']['network']['private_network'].to_s != ''
-    config.vm.network "private_network", ip: "#{data['vm']['network']['private_network']}"
+  # If using VMWare Fusion
+  config.vm.provider "vmware_fusion" do |vb, override|
+    override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+    
+    # Set server memory
+    vb.vmx["memsize"] = server_memory
+
   end
 
-  data['vm']['network']['forwarded_port'].each do |i, port|
-    if port['guest'] != '' && port['host'] != ''
-      config.vm.network :forwarded_port, guest: port['guest'].to_i, host: port['host'].to_i
-    end
-  end
+  # If using Vagrant-Cachier
+  # http://fgrehm.viewdocs.io/vagrant-cachier
+  if Vagrant.has_plugin?("vagrant-cachier")
+    # Configure cached packages to be shared between instances of the same base box.
+    # Usage docs: http://fgrehm.viewdocs.io/vagrant-cachier/usage
+    config.cache.scope = :box
 
-  data['vm']['synced_folder'].each do |i, folder|
-    if folder['source'] != '' && folder['target'] != '' && folder['id'] != ''
-      nfs = (folder['nfs'] == "true") ? "nfs" : nil
-      config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{folder['id']}", type: nfs
-    end
-  end
-
-  config.vm.usable_port_range = (10200..10500)
-
-  if !data['vm']['provider']['virtualbox'].empty?
-    config.vm.provider :virtualbox do |virtualbox|
-      data['vm']['provider']['virtualbox']['modifyvm'].each do |key, value|
-        if key == "natdnshostresolver1"
-          value = value ? "on" : "off"
-        end
-        virtualbox.customize ["modifyvm", :id, "--#{key}", "#{value}"]
-      end
-    end
-  end
-
-  config.vm.provision "shell" do |s|
-    s.path = "puphpet/shell/initial-setup.sh"
-    s.args = "/vagrant/puphpet"
-  end
-  config.vm.provision :shell, :path => "puphpet/shell/update-puppet.sh"
-  config.vm.provision :shell, :path => "puphpet/shell/r10k.sh"
-
-  config.vm.provision :puppet do |puppet|
-    ssh_username = !data['ssh']['username'].nil? ? data['ssh']['username'] : "vagrant"
-    puppet.facter = {
-      "ssh_username"     => "#{ssh_username}",
-      "provisioner_type" => ENV['VAGRANT_DEFAULT_PROVIDER'],
+    config.cache.synced_folder_opts = {
+        type: :nfs,
+        mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
     }
-    puppet.manifests_path = "#{data['vm']['provision']['puppet']['manifests_path']}"
-    puppet.manifest_file = "#{data['vm']['provision']['puppet']['manifest_file']}"
-
-    if !data['vm']['provision']['puppet']['options'].empty?
-      puppet.options = data['vm']['provision']['puppet']['options']
-    end
   end
 
-  if File.file?("#{dir}/puphpet/files/dot/ssh/id_rsa")
-    config.ssh.private_key_path = [
-      "#{dir}/puphpet/files/dot/ssh/id_rsa",
-      "#{dir}/puphpet/files/dot/ssh/insecure_private_key"
-    ]
-  end
+  ####
+  # Base Items
+  ##########
 
-  ssh_username = !data['ssh']['username'].nil? ? data['ssh']['username'] : "vagrant"
+  # Provision Base Packages
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/base.sh"
 
-  config.vm.provision "shell" do |kg|
-    kg.path = "puphpet/shell/ssh-keygen.sh"
-    kg.args = "#{ssh_username}"
-  end
+  # Provision PHP
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/php.sh", args: [php_version, server_timezone]
 
-  config.vm.provision :shell, :path => "puphpet/shell/execute-files.sh"
+  # Enable MSSQL for PHP
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/mssql.sh"
 
-  if !data['ssh']['host'].nil?
-    config.ssh.host = "#{data['ssh']['host']}"
-  end
-  if !data['ssh']['port'].nil?
-    config.ssh.port = "#{data['ssh']['port']}"
-  end
-  if !data['ssh']['username'].nil?
-    config.ssh.username = "#{data['ssh']['username']}"
-  end
-  if !data['ssh']['guest_port'].nil?
-    config.ssh.guest_port = data['ssh']['guest_port']
-  end
-  if !data['ssh']['shell'].nil?
-    config.ssh.shell = "#{data['ssh']['shell']}"
-  end
-  if !data['ssh']['keep_alive'].nil?
-    config.ssh.keep_alive = data['ssh']['keep_alive']
-  end
-  if !data['ssh']['forward_agent'].nil?
-    config.ssh.forward_agent = data['ssh']['forward_agent']
-  end
-  if !data['ssh']['forward_x11'].nil?
-    config.ssh.forward_x11 = data['ssh']['forward_x11']
-  end
-  if !data['vagrant']['host'].nil?
-    config.vagrant.host = data['vagrant']['host'].gsub(":", "").intern
-  end
+  # Provision Oh-My-Zsh
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/zsh.sh"
+
+  # Provision Vim
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/vim.sh"
+
+
+  ####
+  # Web Servers
+  ##########
+
+  # Provision Apache Base
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/apache.sh", args: [server_ip, public_folder]
+
+  # Provision Nginx Base
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/nginx.sh", args: [server_ip, public_folder]
+
+  # Provision HHVM & HHVM-FastCGI
+  # Note: Should be installed after either Apache or Nginx, incase one of these are installed.
+  #       It's suggested that you do NOT install php if you are using HHVM. HHVM is meant to be used as a replacement.
+  #       Installing HHVM and PHP will install PHP-FPM ~AND~ HHVM, both of which may vie for Nginx's Apache's attention
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/hhvm.sh", args: [hhvm_use_fastcgi, hhvm_over_php]
+
+
+  ####
+  # Databases
+  ##########
+
+  # Provision MySQL
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/mysql.sh", args: [mysql_root_password, mysql_version, mysql_enable_remote]
+
+  # Provision PostgreSQL
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/pgsql.sh", args: pgsql_root_password
+
+  # Provision SQLite
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/sqlite.sh"
+
+  # Provision RethinkDB
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/rethinkdb.sh", args: pgsql_root_password
+
+  # Provision Couchbase
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/couchbase.sh"
+
+  # Provision CouchDB
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/couchdb.sh"
+
+  # Provision MongoDB
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/mongodb.sh"
+
+  # Provision MariaDB
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/mariadb.sh", args: [mariadb_root_password, mariadb_version]
+
+  ####
+  # Search Servers
+  ##########
+
+  # Install Elasticsearch
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/elasticsearch.sh"
+
+  # Install SphinxSearch
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/sphinxsearch.sh"
+
+  ####
+  # Search Server Administration (web-based)
+  ##########
+
+  # Install ElasticHQ
+  # Admin for: Elasticsearch
+  # Works on: Apache2, Nginx
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/elastichq.sh"
+
+
+  ####
+  # In-Memory Stores
+  ##########
+
+  # Install Memcached
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/memcached.sh"
+
+  # Provision Redis (without journaling and persistence)
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/redis.sh"
+
+  # Provision Redis (with journaling and persistence)
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/redis.sh", args: "persistent"
+  # NOTE: It is safe to run this to add persistence even if originally provisioned without persistence
+
+
+  ####
+  # Utility (queue)
+  ##########
+
+  # Install Beanstalkd
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/beanstalkd.sh"
+
+  # Install Heroku Toolbelt
+  # config.vm.provision "shell", path: "https://toolbelt.heroku.com/install-ubuntu.sh"
+
+  # Install Supervisord
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/supervisord.sh"
+
+  ####
+  # Additional Languages
+  ##########
+
+  # Install Nodejs
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/nodejs.sh", privileged: false, args: nodejs_packages.unshift(nodejs_version)
+
+  # Install Ruby Version Manager (RVM)
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/rvm.sh", privileged: false, args: ruby_gems.unshift(ruby_version)
+
+  ####
+  # Frameworks and Tooling
+  ##########
+
+  # Provision Composer
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/composer.sh", privileged: false, args: composer_packages.join(" ")
+
+  # Provision Laravel
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/laravel.sh", args: [server_ip, laravel_root_folder, public_folder]
+
+  # Provision Symfony
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/symfony.sh", args: [server_ip, symfony_root_folder, public_folder]
+
+  # Install Screen
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/screen.sh"
+
+  # Install Mailcatcher
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/mailcatcher.sh"
+
+  # Install git-ftp
+  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/git-ftp.sh", privileged: false
+
+  ####
+  # Local Scripts
+  # Any local scripts you may want to run post-provisioning.
+  # Add these to the same directory as the Vagrantfile.
+  ##########
+  config.vm.provision "shell", path: "./post-install.sh"
 
 end
-
-
