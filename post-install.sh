@@ -1,3 +1,3 @@
 #!/bin/sh
 
-composer update 
+cd /var/www/laravel-su.dev && composer update 
