@@ -13,3 +13,6 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# Environment
+# SetEnv APP_ENV local

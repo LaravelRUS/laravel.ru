@@ -8,4 +8,5 @@ composer.lock
 Thumbs.db
 /.vagrant
 .gitconfig
+.idea
 

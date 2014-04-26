@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('precise32'),
+	'local' => array('laravel-su'),
 
 ));
 
