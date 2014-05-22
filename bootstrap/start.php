@@ -24,11 +24,12 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
+$env = $app->detectEnvironment(function () {
 
-	'local' => array('laravel-su'),
+	if($_SERVER['HTTP_HOST']=="laravel.su") return "production";
+	else return getenv("APP_ENV");
 
-));
+});
 
 /*
 |--------------------------------------------------------------------------

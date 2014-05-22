@@ -15,4 +15,4 @@
 </IfModule>
 
 # Environment
-# SetEnv APP_ENV local
+SetEnv APP_ENV local
