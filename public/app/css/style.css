@@ -105,3 +105,21 @@ footer{
 	padding: 30px 0 5px 0px;
 	border-top: 1px solid #cb4536;
 }
+
+h1, h2, h3{
+	color: #f0523f;
+}
+
+h2 {
+	margin: 32px 0 15px 0;
+}
+
+h4 {
+	margin: 25px 0 15px 0;
+	font-size: 19px;
+}
+
+code {
+	background: #eeeeee;
+	color: #f0523f;
+}

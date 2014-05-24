@@ -51,10 +51,16 @@ class UpdateDocsCommand extends Command {
 		$github = new Client();
 		$http = new \Guzzle\Http\Client();
 
+		$forceupdate = $this->argument("force");
 		foreach(\Config::get("laravel.versions") as $version){
+
+			if($forceupdate){
+				Docs::version($version)->delete();
+			}
 
 			$content = $this->githubTranslated->getFile($version, "menu.md");
 			$lines = explode("\n", $content);
+			$lines[] = "[Menu](/docs/menu)";
 			$matches = array();
 			foreach($lines as $line){
 				preg_match("/\(\/docs\/(.*?)\)/im", $line, $matches);
@@ -66,25 +72,29 @@ class UpdateDocsCommand extends Command {
 					if($content != null) {
 						preg_match("/git (.*?)$/m", $content, $matches);
 						$last_original_commit = array_get($matches, '1');
-						if(!$last_original_commit) {
+						if(!$last_original_commit AND $name!="menu") {
 							$this->error("Not found git signature in $filename");
 						}
 						else {
 							$content = preg_replace("/git(.*?)(\n*?)---(\n*?)/", "", $content);
+							preg_match("/#(.*?)$/m", $content, $matches);
+							$title = trim(array_get($matches, '1'));
 							$page = Docs::version($version)->name($name)->first();
 							if($page) {
 								if($last_commit != $page->last_commit) {
 									$page->last_commit = $last_commit;
 									$page->last_original_commit = $last_original_commit;
+									$page->title = $title;
 									$page->text = $content;
 									$page->save();
 									$this->info("$filename updated. Commit $last_commit. Last original commit $last_original_commit.");
 								}
 							}
 							else {
-								$page = Docs::create([
+								Docs::create([
 										'framework_version' => $version,
 										'name' => $name,
+										'title' => $title,
 										'last_commit' => $last_commit,
 										'last_original_commit' => $last_original_commit,
 										'text' =>$content]);
@@ -98,6 +108,18 @@ class UpdateDocsCommand extends Command {
 			}
 
 		}
+	}
+
+	/**
+	 * Get the console command arguments.
+	 *
+	 * @return array
+	 */
+	protected function getArguments()
+	{
+		return array(
+				array('force', InputArgument::OPTIONAL, 'Delete all docs and replace by github data.'),
+		);
 	}
 
 }

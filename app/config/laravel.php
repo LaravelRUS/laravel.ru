@@ -7,6 +7,8 @@ return array(
 		//"4.2"
 	],
 
+	'default_version' => "4.1",
+
 	'original_docs' =>[
 		'user'=>"laravel",
 		'repository'=>"docs"

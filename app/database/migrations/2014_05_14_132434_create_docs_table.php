@@ -18,12 +18,13 @@ class CreateDocsTable extends Migration {
 			$table->string("framework_version", 10);
 			$table->string("name", 20);
 			$table->string("last_commit");
-			$table->string("last_original_commit");
+			$table->string("last_original_commit")->nullable();
+			$table->string("title")->nullable();
 			$table->longText("text");
 			$table->integer("updater_id");
 			$table->timestamps();
 
-			$table->index(array('framework_version', 'name'), "page");
+			$table->unique(array('framework_version', 'name'), "page");
 		});
 	}
 
