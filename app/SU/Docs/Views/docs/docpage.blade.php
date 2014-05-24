@@ -6,12 +6,16 @@
 
 @section('sidebar')
 
+<div class="sidebar">
 <?= $sidebar ?>
+</div>
 
 @stop
 
 @section('content')
 
+<div class="docs">
 <?= $html ?>
+</div>
 
 @stop

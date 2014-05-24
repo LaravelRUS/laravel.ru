@@ -103,15 +103,23 @@
 footer{
 	margin-top: 100px;
 	padding: 30px 0 5px 0px;
-	border-top: 1px solid #cb4536;
+	border-top: 1px solid #7d7c7e;
 }
 
-h1, h2, h3{
+h1, h2{
 	color: #f0523f;
+	margin: 0px 0 15px 0;
 }
 
 h2 {
 	margin: 32px 0 15px 0;
+	font-size: 28px;
+	color: #f0523f;
+}
+
+h3 {
+	margin: 32px 0 15px 0;
+	font-size: 23px;
 }
 
 h4 {
@@ -119,7 +127,44 @@ h4 {
 	font-size: 19px;
 }
 
+a {
+	color: #2788e1;
+}
+a:hover {
+	color: #277ed3;
+}
+
+
 code {
-	background: #eeeeee;
+	background: #f6f6f6;
+	color: #d34830;
+}
+
+.sidebar > ul > li {
+	margin-bottom: 20px;
+	list-style: none;
 	color: #f0523f;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.sidebar > ul > li > ul {
+	padding-left: 20px;
+}
+
+.sidebar > ul > li > ul > li {
+	list-style: none;
+	font-weight: normal;
+}
+
+.docs ul {
+	padding-left: 0px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #eee;
+}
+
+.docs ul li {
+	list-style: none;
+	font-size: 16px;
+	font-weight: normal;
 }

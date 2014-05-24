@@ -68,7 +68,7 @@
 
 <div class="container">
 	<footer>
-		<p>&copy; laravel.su 2014</p>
+		<p>&copy; Laravel.su 2014</p>
 	</footer>
 </div>
 
@@ -76,6 +76,6 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/vendor/jquery/jquery-1.11.1.min.js"></script>
-<script src="/bootstrap-todc/js/bootstrap.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
