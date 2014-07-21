@@ -10,7 +10,7 @@ class DocsVersion {
 
 	public function get()
 	{
-		\Session::get("framework_version", \Config::get("laravel.defaulr_version"));
+		\Session::get("framework_version", \Config::get("laravel.default_version"));
 	}
 
 } 

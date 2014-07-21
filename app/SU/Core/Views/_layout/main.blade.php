@@ -6,9 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="shortcut icon" href="../../../../../public/favicon.ico">
 
-	<title>@yield('title', "Laravel.su")</title>
+	<title>@yield('title', "LaravelRUS")</title>
 
 	<!-- Bootstrap core CSS -->
 <!--	<link href="/bootstrap-todc/css/bootstrap.css" rel="stylesheet">-->
@@ -40,26 +40,20 @@
 				<span class="icon-bar"></span>
 			</button>
 			<div class="brand-area">
-				<a class="navbar-brand" href="#">Русское Laravel сообщество</a>
+				<a class="navbar-brand" href="/">Русское Laravel сообщество</a>
 			</div>
 		</div>
-		<div class="collapse navbar-collapse" id="laravel-navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Link</a></li>
-				<li><a href="#">Link</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul>
-				</li>
-			</ul>
+
+		@include("_layout/_topmenu")
+
+	</div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			@include("_layout/partials/flash")
 		</div>
 	</div>
 </div>
@@ -68,7 +62,7 @@
 
 <div class="container">
 	<footer>
-		<p>&copy; Laravel.su 2014</p>
+		<p>&copy; Русское Laravel сообщество <?= date('Y') ?></p>
 	</footer>
 </div>
 

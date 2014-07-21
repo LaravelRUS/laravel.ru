@@ -16,11 +16,13 @@ class DocsServiceProvider extends ServiceProvider{
 		$viewPaths[] = __DIR__ . '/Views';
 		\Config::set('view.paths', $viewPaths);
 
-		$this->app['command.su.update_docs'] = $this->app->share(function($app)
-		{
-			return new UpdateDocsCommand;
-		});
-		$this->commands('command.su.update_docs');
+//		$this->app['command.su.update_docs'] = $this->app->share(function($app)
+//		{
+//			return new UpdateDocsCommand;
+//		});
+//		$this->commands('command.su.update_docs');
+
+		$this->commands('SU\Docs\Commands\UpdateDocsCommand');
 
 	}
 
@@ -38,6 +40,6 @@ class DocsServiceProvider extends ServiceProvider{
 
 	public function provides()
 	{
-		return array("command.su.update_docs");
+		//return array("command.su.update_docs");
 	}
 }

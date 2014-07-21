@@ -15,4 +15,6 @@ return array(
 
 	'debug' => true,
 
+	'url' => 'http://sharedstation.net',
+
 );

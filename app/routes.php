@@ -1,7 +1,7 @@
 <?php
 
-Route::get("/", "HomeController@getIndex");
-
-Route::controller('test', 'TestController');
+/**
+ * See SU\Core\core_routes.php
+ */
 
 

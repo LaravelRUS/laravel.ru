@@ -1,6 +1,6 @@
 .navbar-laravel {
 	min-height:80px;
-	background: url("../img/map.png") no-repeat;
+	/*background: url("../img/map.png") no-repeat;*/
 	background-position: left top -28px;
 	background-color: #444;
 	/*border-color: #f0523f;*/
@@ -14,6 +14,8 @@
 }
 .navbar-laravel .navbar-brand {
 	color: #FAFAFA;
+	/*font-weight: bold;*/
+	/*font-size: 16px;*/
 	opacity: 1;
 }
 .navbar-laravel .navbar-brand:hover,

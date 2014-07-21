@@ -122,8 +122,13 @@ return array(
 
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+		'Indatus\Dispatcher\ServiceProvider',
+		'Slider23\LaravelModulator\LaravelModulatorServiceProvider',
+		'Laracasts\Validation\ValidationServiceProvider',
+		'Laracasts\Flash\FlashServiceProvider',
 
-		'SU\Docs\DocsServiceProvider'
+		// Главный сервис-провайдер приложения
+		'SU\Core\CoreServiceProvider'
 
 	),
 
@@ -190,6 +195,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+
+		'Flash'           => 'Laracasts\Flash\Flash'
 
 	),
 

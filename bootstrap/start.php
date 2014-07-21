@@ -27,9 +27,9 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(function () {
 
 	if($_SERVER['HTTP_HOST']=="laravel.su") return "production";
-	elseif($_SERVER['HTTP_HOST']=="sharedstation.net") return "staging";
-	else return getenv("APP_ENV");
-
+	if($_SERVER['HTTP_HOST']=="sharedstation.net") return "staging";
+	if(getenv("APP_ENV")!="") return getenv("APP_ENV");
+	return "local";
 });
 
 /*
