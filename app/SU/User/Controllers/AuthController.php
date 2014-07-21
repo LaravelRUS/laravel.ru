@@ -45,7 +45,7 @@ class AuthController extends \BaseController {
 	}
 	public function getConfirmation()
 	{
-		\View::make("auth/confirmation");
+		return \View::make("auth/confirmation");
 	}
 
 	public function getLogin()
