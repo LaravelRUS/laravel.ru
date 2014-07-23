@@ -4,7 +4,7 @@ abstract class BaseRepository
 {
 	protected $model;
 
-	public function __construct($model = null)
+	public function __construct(\Eloquent $model = null)
 	{
 		$this->model = $model;
 	}

@@ -8,6 +8,8 @@
 	</div>
 	<div class="row">
 		<div class="col-md-4">
+			<h1>Сайдбар</h1>
+			<div class="well">Виджет</div>
 			@yield('sidebar')
 		</div>
 	</div>

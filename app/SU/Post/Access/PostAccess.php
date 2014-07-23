@@ -23,4 +23,11 @@ class PostAccess extends BaseAccess{
 		}
 	}
 
+	public function checkEditPostBySlug($slug)
+	{
+		if(\Auth::id() != $this->postRepo->getAuthorIdBySlug($slug)){
+			throw new AccessDeniedException;
+		}
+	}
+
 } 

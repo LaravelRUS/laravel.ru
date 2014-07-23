@@ -11,6 +11,7 @@ class CoreServiceProvider extends ServiceProvider{
 		$this->app->register('SU\User\UserServiceProvider');
 		$this->app->register('SU\Post\PostServiceProvider');
 		$this->app->register('SU\Blog\BlogServiceProvider');
+		$this->app->register('SU\Sidebar\SidebarServiceProvider');
 
 		// регистрация папки Views
 		$viewPaths = \Config::get('view.paths');

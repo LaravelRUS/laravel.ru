@@ -98,6 +98,6 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
 	public function posts()
 	{
-		return $this->hasMany('SU\Post\Models\Post', "author_id");
+		return $this->hasMany('SU\Post\Models\Post', "author_id")->orderBy('published_at','DESC');
 	}
 };

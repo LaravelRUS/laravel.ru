@@ -10,11 +10,24 @@
 
 <div class="well">Карма, статистика и прочие плюшки.</div>
 
-<?foreach($posts as $post){?>
+@if ($is_author)
+	<div class="user_controls">
+		<a href="<?= route('post.create') ?>" class="btn btn-default">Написать пост</a>
+	</div>
+@endif
 
-	@include("user/partials/short_blog_post")
+@if (count($posts)==0)
 
-<?}?>
+	<p>У пользователя пока нет постов.</p>
 
+@else
+
+	@foreach ($posts as $post)
+
+		@include("blog/partials/short_blog_post")
+
+	@endforeach
+
+@endif
 
 @stop

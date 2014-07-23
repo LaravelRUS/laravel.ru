@@ -5,7 +5,7 @@ use Laracasts\Validation\FormValidator;
 class RegistrationForm extends FormValidator{
 
 	protected $rules = [
-		'name'          => 'required|min:4|max:23|unique:users,name|regex:[a-zA-Z0-9]+',
+		'name'          => 'required|min:4|max:23|unique:users,name|regex:/^[A-Za-z0-9]+$/',
 		'email'         => 'required|email|unique:users,email',
 		'password'      => 'required|min:6',
 		'i_agree'       => 'required'

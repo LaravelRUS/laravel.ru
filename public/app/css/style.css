@@ -159,6 +159,8 @@ code {
 	font-weight: normal;
 }
 
+/* Документация */
+
 .docs ul {
 	padding-left: 0px;
 	padding-bottom: 30px;
@@ -169,4 +171,28 @@ code {
 	list-style: none;
 	font-size: 16px;
 	font-weight: normal;
+}
+
+
+/* Блог */
+
+.post_short{
+	margin-bottom: 50px;
+}
+
+/* Пост */
+
+.user_controls{
+	padding: 10px;
+	background-color: #fdffd8;
+	border: 1px solid #fff2c3;
+	margin: 10px 0 20px 0;
+}
+
+.post_short_link{
+	font-size: 24px;
+
+}
+.post_short_link:hover{
+	text-decoration: none;
 }

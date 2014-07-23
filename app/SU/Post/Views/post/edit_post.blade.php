@@ -12,8 +12,11 @@
 	<h1>Создание поста в блоге</h1>
 <?}?>
 
+<? if(Session::has("success")){?>
+	<div class="alert alert-success"><?= Session::get("success")  ?></div>
+<?}?>
+
 <?= Form::open(['route'=>'post.store']) ?>
-<?= Form::token() ?>
 
 	<?= Form::hidden("id", $post->id) ?>
 
@@ -27,7 +30,7 @@
 	<div class="form-group">
 		<label>Slug</label>
 		<?= Form::text("slug", $post->slug, ['class'=>'form-control']); ?>
-		<span class="text-muted">Строка в урле, с которо будет идентифицирован этот материал.</span>
+		<div class="text-muted">Строка в урле, с которой будет идентифицирован этот материал.</div>
 		@include('field-error', ['field'=>'slug'])
 	</div>
 
@@ -35,7 +38,7 @@
 		<label>Парсер</label>
 		<?= Form::select("parser_type", ['markdown'=>'Markdown', 'uversewiki'=>'Uversewiki'], $post->parset_type, ['class'=>'form-control']); ?>
 		<span class="text-muted">Формат текста поста.</span>
-		@include('field-error', ['field'=>'slug'])
+		@include('field-error', ['field'=>'parser_type'])
 	</div>
 
 	<div class="form-group">
@@ -45,7 +48,7 @@
 	</div>
 
 	<div class="form-group">
-		<?= Form::checkbox("is_draft", 1, $post->is_draft); ?> <label>Черновик</label>
+		<?= Form::check("is_draft", 1, $post->is_draft); ?> <label>Черновик</label>
 		<br><span class="text-muted">Черновики видны только вам.</span>
 		@include('field-error', ['field'=>'is_draft'])
 	</div>

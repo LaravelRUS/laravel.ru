@@ -10,11 +10,11 @@ class Post extends \Eloquent {
 	public      $timestamps =   true;
 
 	protected   $fillable =     [];
-    protected   $guarded =      [];
+    protected   $guarded =      ['id','author_id'];
     protected   $hidden =       [];
 
 	use         SoftDeletingTrait;
-	protected   $dates =        ['deleted_at'];
+	protected   $dates =        ['deleted_at', 'published_at'];
 
 	use         PresentableTrait;
 	protected   $presenter =    'SU\Post\Presenters\PostPresenter';
@@ -24,5 +24,18 @@ class Post extends \Eloquent {
 		parent::boot();
 		// Setup event bindings...
 	}
+
+	public function author()
+	{
+		return $this->belongsTo('SU\User\Models\User', "author_id");
+	}
+
+	// ===== Scopes =====
+
+	public function scopeNotDraft($query)
+	{
+		return $query->where("is_draft", 0);
+	}
+
 
 };

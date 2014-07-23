@@ -5,6 +5,7 @@
  */
 
 use Laracasts\Validation\FormValidationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 // Ошибка валидации формы
@@ -27,6 +28,18 @@ App::error(function(AccessDeniedException $e){
 		return null;
 	}else{
 		return \Response::view('errors.403', array(), 403);
+	}
+
+});
+
+// 404
+App::error(function(NotFoundHttpException $e){
+
+	if(\Request::ajax()){
+		// TODO json вывод для 404
+		return null;
+	}else{
+		return \Response::view('errors.404', array(), 404);
 	}
 
 });

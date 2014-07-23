@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Генерация блока breadcrubs
  * Использование: $items = ['Текст ссылки'=>'урл ссылки', ...]
@@ -24,10 +25,3 @@ function breadcrumbs($items)
 	$output .= "</ol>";
 	return $output;
 }
-
-/**
- * Макрос Form::check - чекбокс, который возвращает 0 в неустановленном состоянии
- */
-//Form::macro("check", function($name, $value = 1, $checked = null, $options = array()){
-//	return Form::hidden($name, 0).Form::checkbox($name, $value, $checked, $options);
-//});

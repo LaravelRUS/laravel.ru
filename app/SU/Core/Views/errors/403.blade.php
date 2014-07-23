@@ -4,6 +4,8 @@
 	Доступ запрещен
 @stop
 
+@section('content')
 <h3>Ошибка доступа</h3>
 
-<div class="alert alert-danger" style="padding: 100px 0 300px 0">У вас нет прав для совершения этого действия.</div>
+<div class="alert alert-danger" style="margin: 50px 0 400px 0">У вас нет прав для совершения этого действия.</div>
+@stop
