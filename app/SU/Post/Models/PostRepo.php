@@ -42,7 +42,7 @@ class PostRepo extends BaseRepository {
 
 	public function getAllLastPosts($num = 10)
 	{
-		return $this->model->notDraft()->orderBy("published_at", "DESC")->get();
+		return $this->model->notDraft()->with("author")->orderBy("published_at", "DESC")->get();
 	}
 
 }
