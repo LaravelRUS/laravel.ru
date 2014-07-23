@@ -5,7 +5,7 @@ use Laracasts\Presenter\PresentableTrait; // https://github.com/laracasts/Presen
 
 class Post extends \Eloquent {
 
-	protected   $table =        'post';
+	protected   $table =        'posts';
 	protected   $primaryKey =   'id';
 	public      $timestamps =   true;
 

@@ -9,18 +9,12 @@ class DocsServiceProvider extends ServiceProvider{
 	public function register()
 	{
 		// Module routes
-		require __DIR__ . '/routes.php';
+		require __DIR__.DIRECTORY_SEPARATOR.'docs_routes.php';
 
 		// Module views
 		$viewPaths = \Config::get('view.paths');
 		$viewPaths[] = __DIR__ . '/Views';
 		\Config::set('view.paths', $viewPaths);
-
-//		$this->app['command.su.update_docs'] = $this->app->share(function($app)
-//		{
-//			return new UpdateDocsCommand;
-//		});
-//		$this->commands('command.su.update_docs');
 
 		$this->commands('SU\Docs\Commands\UpdateDocsCommand');
 

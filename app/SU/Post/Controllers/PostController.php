@@ -1,33 +1,48 @@
 <?php namespace SU\Post\Controllers;
 
+use SU\Post\Access\PostAccess;
 use SU\Post\Forms\PostForm;
 use Laracasts\Validation\FormValidationException;
+use SU\Post\Models\PostRepo;
 
 class PostController extends \BaseController {
 
 	private $postForm;
+	/**
+	 * @var PostAccess
+	 */
+	private $access;
+	/**
+	 * @var PostRepo
+	 */
+	private $postRepo;
 
-	public function __construct(PostForm $postForm)
+	public function __construct(PostAccess $access, PostForm $postForm, PostRepo $postRepo)
 	{
 		$this->postForm = $postForm;
+		$this->access = $access;
+		$this->postRepo = $postRepo;
 	}
 
-	public function getExample()
+	public function create()
 	{
-		return \View::make("post::post/example");
+		$post = $this->postRepo->create(['is_draft'=>'1']);
+		return \View::make("post/edit_post", compact("post"));
 	}
 
-	public function postExample()
+	public function edit($id)
 	{
-		$input = \Input::only('field1', 'field2');
-		try{
-			$this->postForm->valdate($input);
-		}
-		catch (FormValidationException $e)
-        {
-            return \Redirect::back()->withInput()->withErrors($e->getErrors());
-        }
+		$this->access->checkEditPost($id);
 
-		return \Redirect::back()->withSuccess(true);
+		$post = $this->postRepo->find($id);
+
+		return \View::make("post/edit_post", compact("post"));
 	}
+
+	public function store()
+	{
+		$id = \Input::get("post_id");
+		$this->access->checkEditPost($id);
+	}
+
 }

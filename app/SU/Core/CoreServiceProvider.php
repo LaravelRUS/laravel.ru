@@ -9,6 +9,8 @@ class CoreServiceProvider extends ServiceProvider{
 		// Регистрация сервис-провайдеров приложения
 		$this->app->register('SU\Docs\DocsServiceProvider');
 		$this->app->register('SU\User\UserServiceProvider');
+		$this->app->register('SU\Post\PostServiceProvider');
+		$this->app->register('SU\Blog\BlogServiceProvider');
 
 		// регистрация папки Views
 		$viewPaths = \Config::get('view.paths');
@@ -17,6 +19,7 @@ class CoreServiceProvider extends ServiceProvider{
 
 		include __DIR__.'/core_exceptions.php';
 		include __DIR__.'/core_routes.php';
+		include __DIR__.'/core_helpers.php';
 
 	}
 

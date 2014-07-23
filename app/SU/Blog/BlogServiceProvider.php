@@ -1,8 +1,8 @@
-<?php namespace SU\Post;
+<?php namespace SU\Blog;
 
 use Illuminate\Support\ServiceProvider;
 
-class PostServiceProvider extends ServiceProvider {
+class BlogServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -18,19 +18,20 @@ class PostServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		// Add folder Views in global views path. Use subfolder 'post' for place module views.
+
+		// Add folder Views in global views path. Use subfolder 'blog' for place module views.
         $viewPaths = \Config::get('view.paths');
-        $viewPaths[] = __DIR__ . '/Views';
+        $viewPaths[] = __DIR__.DIRECTORY_SEPARATOR.'Views';
         \Config::set('view.paths', $viewPaths);
 
 		// Register Artisan command (if needed)
-		$this->commands('SU\Post\Commands\PostCommand');
+		// $this->commands('SU\Blog\Commands\BlogCommand');
 
 		// Including module-related routes etc
-		include __DIR__.DIRECTORY_SEPARATOR.'post_routes.php';
-		include __DIR__.DIRECTORY_SEPARATOR.'post_helpers.php';
-		include __DIR__.DIRECTORY_SEPARATOR.'post_events.php';
-		include __DIR__.DIRECTORY_SEPARATOR.'post_filters.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'blog_routes.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'blog_helpers.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'blog_events.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'blog_filters.php';
 
 		// ...
 	}

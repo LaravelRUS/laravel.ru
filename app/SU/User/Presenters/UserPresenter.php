@@ -4,9 +4,9 @@ use Laracasts\Presenter\Presenter;
 
 class UserPresenter extends Presenter{
 
-	public function displayField1()
+	public function name()
 	{
-        return $this->field1;
+        return "<a class='user' href='".route("user.blog")."'>$this->name</a>";
 	}
 
 }

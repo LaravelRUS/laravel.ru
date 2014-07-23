@@ -3,7 +3,6 @@
 use Hash;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\UserInterface;
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Laracasts\Presenter\PresentableTrait; // https://github.com/laracasts/Presenter
 
 class User extends \Eloquent implements UserInterface, RemindableInterface {
@@ -16,8 +15,8 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
     protected   $guarded =      [];
     protected   $hidden =       ['password'];
 
-	use         SoftDeletingTrait;
-	protected   $dates =        ['deleted_at'];
+//	use         SoftDeletingTrait;
+//	protected   $dates =        ['deleted_at'];
 
 	use         PresentableTrait;
 	protected   $presenter =    '\SU\User\Presenters\UserPresenter';
@@ -93,5 +92,12 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	public function getReminderEmail()
 	{
 		return $this->email;
+	}
+
+	// ===========================================================================================
+
+	public function posts()
+	{
+		return $this->hasMany('SU\Post\Models\Post', "author_id");
 	}
 };

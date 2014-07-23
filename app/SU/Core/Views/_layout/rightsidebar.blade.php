@@ -3,11 +3,11 @@
 @section('container')
 
 <div class="container">
-	<div class="col-md-9">
+	<div class="col-md-8">
 		@yield('content')
 	</div>
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-4">
 			@yield('sidebar')
 		</div>
 	</div>
