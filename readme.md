@@ -1,12 +1,8 @@
-## Laravel.su
+## Сайт русскоязычного сообщества Laravel. 
 
-Сайт русскоязычного сообщества Laravel.
+Laravel.su или laravel.ru
 
 ### Инсталляция
 
-1. [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-2. [Vagrant](http://downloads.vagrantup.com/)
-3. `vagrant up`
-4. Если вы на linux или mac os - `chmod -R 777 app/storage`
-
-Сервер доступен по ip `10.10.10.20`, сайт - `http://10.10.10.20.xip.io`
+1. Установить переменную окружения APP_ENV равную local (SetEnv в .htaccess или fastcgi_param в конфиге nginx).
+2. Скопировать env.example.php в .env.local.php и указать там данные доступа до mysql.
