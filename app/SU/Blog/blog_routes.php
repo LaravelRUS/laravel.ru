@@ -6,4 +6,4 @@
 
 */
 
-Route::get( 'user/{string}',   ['uses'=>'SU\Blog\Controllers\BlogController@blog',      'as'=>'user.blog']);
+

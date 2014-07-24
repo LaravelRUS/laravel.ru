@@ -6,7 +6,7 @@
 
 @section('content')
 
-@include('_layout/partials/ace-editor')
+
 
 <?if($post->id){?>
 	<h1>Редактирование поста</h1>
