@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="shortcut icon" href="../../../../../public/favicon.ico">
+	<link rel="shortcut icon" href="favicon.ico">
 
 	<title>@yield('title', "LaravelRUS")</title>
 
@@ -26,6 +26,15 @@
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
+
+
+	<!-- Bootstrap core JavaScript
+================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/vendor/jquery/jquery-1.11.1.min.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+
 </head>
 
 <body>
@@ -65,12 +74,6 @@
 		<p>&copy; Русское Laravel сообщество <?= date('Y') ?></p>
 	</footer>
 </div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="/vendor/jquery/jquery-1.11.1.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">

@@ -10,10 +10,10 @@
 		<div style="margin: 100px 0 300px 0">
 			<h1>Логин</h1>
 
-			<form method="POST" action="<?= route("auth.login.post") ?>">
+			<?= Form::open(['route'=>'auth.login.post']) ?>
 				<div class="form-group">
 					<label>Email</label>
-					<input type="text" class="form-control" name="email" value="<?= Input::old('email') ?>">
+					<?= Form::text("email", "", ['class'=>'form-control']); ?>
 					@include('field-error', ['field'=>'email'])
 				</div>
 				<div class="form-group">

@@ -9,7 +9,7 @@
 		<div class="col-md-6 col-md-offset-3">
 			<h1>Регистрация</h1>
 
-			<form method="POST" action="<?= route("auth.registration.post") ?>">
+			<?= Form::open(['route'=>'auth.registration.post']) ?>
 				<div class="form-group">
 					<label>Никнейм</label>
 					<input type="text" class="form-control" name="name" value="<?= Input::old('name') ?>">

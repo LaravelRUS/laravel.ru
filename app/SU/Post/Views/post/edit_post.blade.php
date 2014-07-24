@@ -6,6 +6,8 @@
 
 @section('content')
 
+@include('_layout/partials/ace-editor')
+
 <?if($post->id){?>
 	<h1>Редактирование поста</h1>
 <?}else{?>
@@ -22,7 +24,6 @@
 
 	<div class="form-group">
 		<label>Заголовок</label>
-<!--		<input type="text" class="form-control" name="title" value="--><?//= Input::old('title') ?><!--">-->
 		<?= Form::text("title", $post->title, ['class'=>'form-control']); ?>
 		@include('field-error', ['field'=>'title'])
 	</div>
@@ -43,7 +44,7 @@
 
 	<div class="form-group">
 		<label>Текст</label>
-		<?= Form::textarea("text", $post->text, ['class'=>'form-control']) ?>
+		<?= Form::textarea("text", $post->text, ['class'=>'form-control', 'id'=>'ace-editor']) ?>
 		@include('field-error', ['field'=>'text'])
 	</div>
 

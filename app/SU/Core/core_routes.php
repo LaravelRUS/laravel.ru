@@ -10,6 +10,10 @@ Route::pattern('uuid',   '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-
 Route::pattern('string', '[a-zA-Z0-9]+');
 Route::pattern('slug',   '[a-z0-9-]+'); // TODO решить, делаем ли кирилические урлы
 
+// CSRF Filter on all POST routes
+// You MUST use Form::open for forms
+Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
+
 Route::get( '/',        ['uses' => 'SU\Core\Controllers\HomeController@home',     'as' => 'home']);
 
 
