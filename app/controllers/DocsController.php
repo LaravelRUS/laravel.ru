@@ -1,6 +1,5 @@
 <?php
 
-use Docs;
 use LaravelRU\Docs\DocsUtil;
 
 class DocsController extends BaseController {

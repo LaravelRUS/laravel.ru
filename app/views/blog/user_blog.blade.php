@@ -24,7 +24,7 @@
 
 	@foreach ($posts as $post)
 
-		@include("partials.short_blog_post")
+		@include("blog.partials.short_blog_post")
 
 	@endforeach
 

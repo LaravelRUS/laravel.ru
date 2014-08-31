@@ -1,4 +1,4 @@
-@extends('main')
+@extends('_layout.main')
 
 @section('container')
 
