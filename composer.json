@@ -7,6 +7,7 @@
 		"laravel/framework": "4.2.*",
 		"barryvdh/laravel-debugbar": "1.*",
 		"barryvdh/laravel-ide-helper": "1.*",
+		"doctrine/dbal": "~2.3",
 		"knplabs/github-api": "*",
 		"erusev/parsedown": "dev-master",
 		"indatus/dispatcher": "dev-master",
@@ -25,7 +26,7 @@
 			"app/tests/TestCase.php"
 		],
 		"psr-0": {
-			"SU": "app/"
+			"LaravelRU": "app/"
 		}
 	},
 	"scripts": {

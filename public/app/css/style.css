@@ -136,6 +136,15 @@ a:hover {
 	color: #277ed3;
 }
 
+/**
+ * iOS 6 style switch checkboxes
+ * by Lea Verou http://lea.verou.me
+ */
+
+
+
+/* end ios switch */
+
 
 code {
 	background: #f6f6f6;

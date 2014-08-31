@@ -1,28 +1,26 @@
 <?php
 
-class HomeController extends \BaseController {
+use LaravelRU\Sidebar\Sidebar;
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
+class HomeController extends BaseController{
 
-	public function getIndex()
+	/**
+	 * @var Sidebar
+	 */
+	private $sidebar;
+
+	public function __construct(Sidebar $sidebar)
 	{
-		return View::make('home');
+		$this->sidebar = $sidebar;
 	}
 
-	public function getGit()
+	public function home()
 	{
-		return "home_git";
+		$last_posts = $this->sidebar->renderLastPosts();
+
+		return View::make("home", compact("last_posts"));
 	}
 
-}
+
+
+} 

@@ -128,7 +128,7 @@ return array(
 		'Laracasts\Flash\FlashServiceProvider',
 
 		// Главный сервис-провайдер приложения
-		'SU\Core\CoreServiceProvider'
+		'LaravelRU\Core\CoreServiceProvider'
 
 	),
 
