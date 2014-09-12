@@ -30,7 +30,7 @@ Route::get( 'logout',                   ['uses'=>'AuthController@getLogout',    
 
 // ===== Документация
 
-Route::get("docs/{string?}",              ['uses'=>'DocsController@getPage',              'as'=>'doc']);
+Route::get("docs/{string?}",            ['uses'=>'DocsController@getPage',              'as'=>'doc']);
 
 // ===== Блог пользователя
 
