@@ -30,7 +30,12 @@ Route::get( 'logout',                   ['uses'=>'AuthController@getLogout',    
 
 // ===== Документация
 
-Route::get("{version}/docs/{string?}",            ['uses'=>'DocsController@getPage',              'as'=>'doc']);
+Route::get( 'docs/{string?}',                    ['uses'=>'DocsController@defaultDocs',             'as'=>'documentation']);
+Route::get("{version}/docs/{string?}",            ['uses'=>'DocsController@docs',              'as'=>'docs']);
+Route::group(['before'=>'documentation'], function() {
+    Route::get( 'docs/terms',                    ['uses'=>'TermController@listTerms',             'as'=>'docs.terms']);
+});
+Route::get( 'docs/term/{id}',                    ['uses'=>'TermController@popup',             'as'=>'term.popup']);
 
 // ===== Блог пользователя
 

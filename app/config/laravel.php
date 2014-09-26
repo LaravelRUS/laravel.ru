@@ -7,7 +7,7 @@ return array(
 		"5.0"
 	],
 
-	'default_version' => "4.1",
+	'default_version' => "5.0",
 
 	'original_docs' =>[
 		'user'=>"laravel",

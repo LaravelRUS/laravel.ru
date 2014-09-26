@@ -9,17 +9,17 @@ class DocsController extends BaseController {
 		
 	}
 
-	public function getIndex()
+	public function defaultDocs($name = "installation")
 	{
-		return View::make("docs/index");
+        $default_version = Config::get("laravel.default_version");
+        return Redirect::route("docs", [$default_version, $name]);
 	}
 
-	public function getPage($version, $name = "installation")
+	public function docs($version, $name = "installation")
 	{
-		//$version = DocsUtil::getVersion();
 		$page = Docs::version($version)->name($name)->first();
 
-		$parsedown = new \Parsedown();
+		$parsedown = new Parsedown();
 		$html = $parsedown->text($page->text);
 
 		$menu = Docs::version($version)->name("menu")->first();

@@ -1,12 +1,10 @@
-@extends('..._layout.rightsidebar')
+@extends('_layout.rightsidebar')
 
 @section('title')
 	Создание поста
 @stop
 
 @section('content')
-
-
 
 <?if($post->id){?>
 	<h1>Редактирование поста</h1>

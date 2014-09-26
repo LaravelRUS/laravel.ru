@@ -1,4 +1,4 @@
-@extends('..._layout.rightsidebar')
+@extends('_layout.rightsidebar')
 
 @section('title')
 	<?= e($post->title) ?>
