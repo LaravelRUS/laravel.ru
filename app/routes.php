@@ -30,7 +30,7 @@ Route::get( 'logout',                   ['uses'=>'AuthController@getLogout',    
 
 // ===== Документация
 
-Route::get("docs/{string?}",            ['uses'=>'DocsController@getPage',              'as'=>'doc']);
+Route::get("{version}/docs/{string?}",            ['uses'=>'DocsController@getPage',              'as'=>'doc']);
 
 // ===== Блог пользователя
 
@@ -43,9 +43,9 @@ Route::get( 'post/{slug}',              ['uses' => 'PostController@show',       
 Route::group(['before'=>'auth'], function() {
 
 	// Создание/редактирование постов
-	Route::get( 'post/create',          ['uses' => 'PostController@create',             'as' => 'post.create']);
 	Route::get( 'post/{slug}/edit/',    ['uses' => 'PostController@edit',               'as' => 'post.edit']);
-	Route::post('post/store',           ['uses' => 'PostController@store',              'as' => 'post.store']);
+	Route::get( 'posts/create',          ['uses' => 'PostController@create',             'as' => 'post.create']);
+	Route::post('posts/store',           ['uses' => 'PostController@store',              'as' => 'post.store']);
 
 	// Внутренний профайл пользователя (настройки, смена пароля и т.п.)
 	Route::get('profile',               ['uses' => 'UserController@profile',            'as' => 'user.profile']);

@@ -14,9 +14,9 @@ class DocsController extends BaseController {
 		return View::make("docs/index");
 	}
 
-	public function getPage($name = "installation")
+	public function getPage($version, $name = "installation")
 	{
-		$version = DocsUtil::getVersion();
+		//$version = DocsUtil::getVersion();
 		$page = Docs::version($version)->name($name)->first();
 
 		$parsedown = new \Parsedown();

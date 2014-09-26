@@ -4,7 +4,7 @@ return array(
 
 	'versions' => [
 		"4.1",
-		//"4.2"
+		"5.0"
 	],
 
 	'default_version' => "4.1",
