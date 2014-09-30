@@ -6,20 +6,23 @@
 
 @section('content')
 
-<? if(count($terms)>0){ ?>
+<? if(count($termtexts)>0){ ?>
 
-<? foreach($terms as $term){ ?>
+<? foreach($termtexts as $termtext){ ?>
 <table class="table table-bordered">
-<tr>
-<td rowspan="<?= count($term->names) ?>">
-    
-</td>
-<td>
-
-</td>
-</tr>
+	<tr>
+		<td rowspan="<?= count($termtext->names) ?>">
+			<ul class="list-group">
+			<?foreach($termtext->names as $term){?>
+				<li class="list-group-item"><?= $term->displayName() ?></li>
+			<?}?>
+			</ul>
+		</td>
+		<td>
+			<?= $termtext->displayText() ?>
+		</td>
+	</tr>
 </table>
-
 
 <? } ?>
 

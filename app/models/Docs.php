@@ -45,5 +45,18 @@ class Docs extends Eloquent {
 	{
 		return $query->where('name', '=', $name);
 	}
+
+	public function displayTitle()
+	{
+		return e($this->title);
+	}
+
+	public function displayText()
+	{
+		$parsedown = new Parsedown();
+		$text = $this->text;
+		$html = $parsedown->text($text);
+		return $html;
+	}
 	
 }

@@ -26,8 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(function () {
 
-	if(gethostname() == "laravelsu") return "production";
-	if(gethostname() == "aiur") return "staging";
+	if(gethostname() == "kasteellaan") return "staging";
 	if(getenv("APP_ENV")!="") return getenv("APP_ENV");
 	return "local";
 });

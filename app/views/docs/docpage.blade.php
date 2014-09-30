@@ -1,13 +1,13 @@
 @extends('..._layout.leftsidebar')
 
 @section('title')
-<?= $title ?>
+<?= $page->displayTitle() ?>
 @stop
 
 @section('sidebar')
 
 <div class="sidebar">
-<?= $sidebar ?>
+<?= $menu->displayText() ?>
 </div>
 
 @stop
@@ -15,7 +15,7 @@
 @section('content')
 
 <div class="docs">
-<?= $html ?>
+<?= $page->displayText() ?>
 </div>
 
 @stop

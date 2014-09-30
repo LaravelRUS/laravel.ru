@@ -15,17 +15,18 @@ class DocsController extends BaseController {
         return Redirect::route("docs", [$default_version, $name]);
 	}
 
-	public function docs($version, $name = "installation")
+	public function docs($version = "", $name = "installation")
 	{
+		if( ! in_array($version, Config::get("laravel.versions"))){
+			// Запрошен универсальный урл типа /docs/installation - средиректить на /docs/5.0/installation
+			$default_version = Config::get("laravel.default_version");
+			return Redirect::route("docs", [$default_version, $name]);
+		}
+
 		$page = Docs::version($version)->name($name)->first();
-
-		$parsedown = new Parsedown();
-		$html = $parsedown->text($page->text);
-
 		$menu = Docs::version($version)->name("menu")->first();
-		$sidebar =  $parsedown->text($menu->text);
 
-		return View::make("docs/docpage", ['html'=>$html, 'title'=>$page->title, 'sidebar'=>$sidebar]);
+		return View::make("docs/docpage", ['page'=>$page, 'menu'=>$menu]);
 	}
 
 	

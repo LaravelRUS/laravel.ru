@@ -17,6 +17,10 @@ class Term extends Eloquent {
     {
         return $this->text->displayText();
     }
+    public function displayName()
+    {
+        return e($this->name);
+    }
 
 
 

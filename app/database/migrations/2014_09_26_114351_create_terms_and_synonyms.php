@@ -17,7 +17,7 @@ class CreateTermsAndSynonyms extends Migration {
             $table->string("name");
             $table->integer("termtext_id");
 
-            $table->index("title");
+            $table->index("name");
         });
 
         Schema::create("term_texts", function(Blueprint $table){
