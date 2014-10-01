@@ -20,7 +20,7 @@ class Access extends BaseAccess{
 
 	public function checkEditTerms()
 	{
-
+		$this->disableGuests();
 	}
 
 

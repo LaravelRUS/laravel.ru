@@ -7,10 +7,11 @@ class Term extends Eloquent {
 	protected   $softDelete =  false;
 	protected   $guarded =     [];
 	protected   $hidden =      [];
+    protected   $fillable =     ['name'];
 
     public function text()
     {
-        return $this->hasOne("Termtext");
+        return $this->belongsTo("Termtext");
     }
 
     public function displayText()

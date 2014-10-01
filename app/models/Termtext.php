@@ -10,11 +10,11 @@ class Termtext extends \Eloquent {
 	
 	public function names()
     {
-        return $this->belongsToMany("Term");
+        return $this->hasMany("Term");
     }
     public function terms()
     {
-        return $this->belongsToMany("Term");
+        return $this->hasMany("Term");
     }
 
     public function displayText()

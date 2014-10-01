@@ -31,10 +31,10 @@ Route::get( 'logout',                   ['uses'=>'AuthController@getLogout',    
 // ===== Документация
 
 Route::group(['before'=>'documentation'], function() {
-	Route::get( 'admin/docs/terms',                    ['uses'=>'TermController@listTerms',             'as'=>'docs.terms']);
+	Route::get( 'admin/docs/terms',                    ['uses'=>'TermController@listTerms',             'as'=>'terms']);
 	Route::get( 'admin/docs/term/create',                    ['uses'=>'TermController@create',             'as'=>'term.create']);
 	Route::get( 'admin/docs/term/{id}/edit',                    ['uses'=>'TermController@edit',             'as'=>'term.edit']);
-	Route::get( 'admin/docs/term/store',                    ['uses'=>'TermController@store',             'as'=>'term.store']);
+	Route::post('admin/docs/term/store',                    ['uses'=>'TermController@store',             'as'=>'term.store']);
 });
 Route::get( 'docs/term/{id}',                    ['uses'=>'TermController@popup',             'as'=>'term.popup']);
 
