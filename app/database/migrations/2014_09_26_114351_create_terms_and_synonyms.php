@@ -20,7 +20,7 @@ class CreateTermsAndSynonyms extends Migration {
             $table->index("name");
         });
 
-        Schema::create("term_texts", function(Blueprint $table){
+        Schema::create("termtexts", function(Blueprint $table){
             $table->increments("id");
             $table->text("text");
         });
@@ -34,7 +34,7 @@ class CreateTermsAndSynonyms extends Migration {
 	public function down()
 	{
         Schema::dropIfExists("terms");
-        Schema::dropIfExists("term_texts");
+        Schema::dropIfExists("termtexts");
 	}
 
 }

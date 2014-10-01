@@ -1,7 +1,7 @@
 <?php
 class Termtext extends \Eloquent {
 
-	protected   $table =       'term_texts';
+	protected   $table =       'termtexts';
 	protected   $primaryKey =  'id';
 	public      $timestamps =  false;
 	protected   $softDelete =  false;
@@ -9,6 +9,10 @@ class Termtext extends \Eloquent {
 	protected   $hidden =      [];
 	
 	public function names()
+    {
+        return $this->belongsToMany("Term");
+    }
+    public function terms()
     {
         return $this->belongsToMany("Term");
     }
