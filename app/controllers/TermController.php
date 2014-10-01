@@ -67,7 +67,7 @@ class TermController extends BaseController {
     public function listTerms()
     {
         $this->access->checkEditTerms();
-        
+
         $termtexts = TermText::with("terms")->orderBy("id", "ASC")->paginate(20);
         return View::make("terms/list_terms", compact("termtexts"));
     }

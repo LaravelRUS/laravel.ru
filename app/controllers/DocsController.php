@@ -20,7 +20,7 @@ class DocsController extends BaseController {
 		if( ! in_array($version, Config::get("laravel.versions"))){
 			// Запрошен универсальный урл типа /docs/installation - средиректить на /docs/5.0/installation
 			$default_version = Config::get("laravel.default_version");
-			return Redirect::route("docs", [$default_version, $name]);
+			return Redirect::route("docs", [$default_version, $version]);
 		}
 
 		$page = Docs::version($version)->name($name)->first();
