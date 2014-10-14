@@ -15,6 +15,7 @@ Route::pattern('slug',   '[a-z0-9-]+'); // TODO решить, делаем ли 
 Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 
 Route::get( '/',                        ['uses' => 'HomeController@home',               'as' => 'home']);
+Route::get( 'test',                     ['uses' => 'TestController@index',               'as' => 'test']);
 
 // ===== Авторизация =====
 
@@ -30,11 +31,13 @@ Route::get( 'logout',                   ['uses'=>'AuthController@getLogout',    
 
 // ===== Документация
 
-Route::group(['before'=>'documentation'], function() {
+Route::group(['before'=>'librarians'], function() {
 	Route::get( 'admin/docs/terms',                    ['uses'=>'TermController@listTerms',             'as'=>'terms']);
 	Route::get( 'admin/docs/term/create',                    ['uses'=>'TermController@create',             'as'=>'term.create']);
 	Route::get( 'admin/docs/term/{id}/edit',                    ['uses'=>'TermController@edit',             'as'=>'term.edit']);
 	Route::post('admin/docs/term/store',                    ['uses'=>'TermController@store',             'as'=>'term.store']);
+
+	Route::get( 'admin/docs/updates',                    ['uses'=>'DocsController@updates',             'as'=>'docs.updates']);
 });
 Route::get( 'docs/term/{id}',                    ['uses'=>'TermController@popup',             'as'=>'term.popup']);
 
@@ -61,7 +64,7 @@ Route::group(['before'=>'auth'], function() {
 
 });
 
-Route::get("{any}", 'HomeController@home');
+//Route::get("{any}", 'HomeController@home');
 
 
 

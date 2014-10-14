@@ -116,6 +116,13 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
 	// ===========================================================================================
 
+	public function roles()
+	{
+		return $this->belongsToMany("Role","user_role_pivot","user_id","role_id");
+	}
+
+	// ===========================================================================================
+
 	public function posts()
 	{
 		return $this->hasMany('Post', "author_id")->orderBy('published_at','DESC');

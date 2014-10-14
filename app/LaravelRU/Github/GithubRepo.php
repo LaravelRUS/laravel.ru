@@ -33,6 +33,33 @@ class GithubRepo {
 		}
 	}
 
+	public function getLastCommit($branch, $filename)
+	{
+		$response = $this->githubClient->api('repo')->commits()->all($this->github_user, $this->github_repository, array('sha' => $branch, 'path' => $filename));
+		if(count($response)!=0){
+			return $response[0];
+		}else{
+			return null;
+		}
+	}
+
+	public function getCommit($commit_id)
+	{
+		$response = $this->githubClient->api('repo')->commits()->show($this->github_user, $this->github_repository, $commit_id);
+		if(count($response)!=0){
+			return $response;
+		}else{
+			return null;
+		}
+	}
+
+	public function getCommits($branch, $filename, $since)
+	{
+		$since = date("c", strtotime($since));
+		$response = $this->githubClient->api('repo')->commits()->all($this->github_user, $this->github_repository, array('sha' => $branch, 'path' => $filename, 'since'=>$since));
+		return $response;
+	}
+
 	public function getFile($branch, $filename, $commit_id="")
 	{
 		if( ! $commit_id){

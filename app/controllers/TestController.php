@@ -1,10 +1,21 @@
-<?php 
+<?php
 
-class TestController extends \BaseController {
+use LaravelRU\Github\GithubRepo;
 
-	public function getIndex()
+class TestController extends BaseController {
+
+	public function __construct()
 	{
-		return "test_index";
+
+	}
+
+	public function index()
+	{
+		$githubClient = new GithubRepo(\Config::get("laravel.original_docs.user"),   \Config::get("laravel.original_docs.repository"));
+		$commit = $githubClient->getLastCommit("master", "documentation.md");
+		$date = $commit['commit']['committer']['date'];
+		$carbon = \Carbon\Carbon::createFromTimestampUTC(strtotime($date));
+		dd($carbon);
 	}
 
 	public function getCommitByFile()

@@ -2,15 +2,24 @@
 
 @section('container')
 
-<div class="container">
+
+<div class="docs container">
+
+
 	<div class="row">
-		<div class="col-md-3">
+
+		<div id="docs-sidebar" class="docs-sidebar col-md-3 col-sm-3 col-xs-12">
 			@yield('sidebar')
-		</div>
-		<div class="col-md-9">
+		</div><!--//blog-side-bar-->
+
+		<div id="docs-entry" class="docs-entry section col-md-9 col-sm-9 col-xs-12">
+
 			@yield('content')
-		</div>
-	</div>
-</div>
+
+		</div> <!-- blog-entry -->
+
+	</div> <!-- row -->
+</div> <!-- container -->
+
 
 @stop

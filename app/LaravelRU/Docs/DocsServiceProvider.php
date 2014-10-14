@@ -1,39 +1,29 @@
 <?php namespace LaravelRU\Docs;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
 use LaravelRU\Docs\Commands\UpdateDocsCommand;
+use LaravelRU\Docs\Widgets\DocsWidget;
 
 class DocsServiceProvider extends ServiceProvider{
 
 	public function register()
 	{
-		// Module routes
-		require __DIR__.DIRECTORY_SEPARATOR.'docs_routes.php';
-
-		// Module views
-		$viewPaths = \Config::get('view.paths');
-		$viewPaths[] = __DIR__ . '/Views';
-		\Config::set('view.paths', $viewPaths);
-
 		$this->commands('LaravelRU\Docs\Commands\UpdateDocsCommand');
 
+		// Регистрация фасада DocsWidget
+		$this->app->bind("docswidget", function($app){
+			return new DocsWidget();
+		});
+		$this->app->booting(function(){
+			AliasLoader::getInstance()->alias('DocsWidget', 'LaravelRU\Docs\Facades\DocsWidget');
+		});
 	}
 
 	public function boot()
 	{
-		// Artisan
-		//Artisan::add(new UpdateDocsCommand);
-		//$artisan = $this->app->make("artisan");
-		//$artisan->add(new UpdateDocsCommand);
 
-//		$this->app->bind("commands.su.update_docs", function($app){
-//			new UpdateDocsCommand;
-//		});
 	}
 
-	public function provides()
-	{
-		//return array("command.su.update_docs");
-	}
 }

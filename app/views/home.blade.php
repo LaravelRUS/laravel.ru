@@ -1,4 +1,4 @@
-@extends("_layout.nosidebar")
+@extends("_layout.promohome")
 
 @section("title")
 Laravel - русскоязычное комьюнити
@@ -6,6 +6,35 @@ Laravel - русскоязычное комьюнити
 
 @section("content")
 
+<section id="promo" class="promo section">
+	<div class="container intro">
+		<h2 class="title">Laravel - php-фреймворк с выразительным и элегантным синтаксисом.</h2>
+		<p class="summary">Мы верим, что процесс разработки только тогда наиболее продуктивен, когда работа с фреймворком приносит радость и удовольствие. Счастливые разработчики пишут лучший код.</p>
+		<a class="btn btn-cta btn-cta-secondary" href="<?= route("docs") ?>">Быстрый старт</a>
+		<a class="btn btn-cta btn-cta-secondary" href="<?= route("docs") ?>">Документация</a>
+	</div><!--//intro-->
+
+	<div class="fixed-container">
+		<div class="social text-center">
+			<div class="container">
+				<span class="line">Нравится Laravel ? Расскажи друзьям:</span>
+
+				<!--//twitter tweet button code starts -->
+				<div class="twitter-tweet">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="laravel">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				</div>
+				<!--//twitter tweet button code ends -->
+
+			</div>
+		</div><!--//social-->
+	</div>
+</section><!--//promo-->
+
+
+<div class="page container">
+	<div class="row">
+
+		<div class="section col-md-12 col-sm-12 col-xs-12">
 
 		<h3>Приветствие</h3>
 		<p>Lorem ipsum dolor sit amet, dicit iriure at vel, inani eruditi no mel. Pri ex mazim placerat assueverit, ad quodsi everti erroribus vix, mundi delicatissimi sit ex. Fugit tantas atomorum vix et. Quo omnes vidisse ad, ad sed dicam consectetuer, cum senserit voluptatum ne. Eos ea sint magna, vis summo dicit sadipscing ut.
@@ -14,29 +43,35 @@ Laravel - русскоязычное комьюнити
 
 			Prima periculis mel no. Mei ex doming vivendo. Ei per ancillae lucilius expetenda, mea tempor meliore nominati no. Te altera bonorum persequeris pri, dicunt consequuntur has et. At est brute eruditi erroribus.</p>
 
-<div class="row">
-	<div class="col-md-6">
-		<h3>Новости</h3>
-		<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-	</div>
-	<div class="col-md-6">
-		<h3>Новые статьи</h3>
-		<?= $last_posts ?>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-4">
-		<h3>Новое в документации</h3>
-		In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to focus on the text, disregarding the layout and its elements. Besides, random text risks to be unintendedly humorous or offensive, an unacceptable risk in corporate environments. Lorem ipsum and its many variants have been employed since the early 1960ies, and quite likely since the sixteenth century.
-	</div>
-	<div class="col-md-4">
-		<h3>Вопросы</h3>
-		In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to focus on the text, disregarding the layout and its elements. Besides, random text risks to be unintendedly humorous or offensive, an unacceptable risk in corporate environments. Lorem ipsum and its many variants have been employed since the early 1960ies, and quite likely since the sixteenth century.
-	</div>
-	<div class="col-md-4">
-		<h3>Кое-что совершенно другое</h3>
-		In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to focus on the text, disregarding the layout and its elements. Besides, random text risks to be unintendedly humorous or offensive, an unacceptable risk in corporate environments. Lorem ipsum and its many variants have been employed since the early 1960ies, and quite likely since the sixteenth century.
-	</div>
-</div>
+		<div class="row">
+			<div class="col-md-6">
+				<h3>Новости</h3>
+				<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
+			</div>
+			<div class="col-md-6">
+				<h3>Новые статьи</h3>
+				<?= $last_posts ?>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<h3>Новое в документации</h3>
+				In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to focus on the text, disregarding the layout and its elements. Besides, random text risks to be unintendedly humorous or offensive, an unacceptable risk in corporate environments. Lorem ipsum and its many variants have been employed since the early 1960ies, and quite likely since the sixteenth century.
+			</div>
+			<div class="col-md-4">
+				<h3>Вопросы</h3>
+				In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to focus on the text, disregarding the layout and its elements. Besides, random text risks to be unintendedly humorous or offensive, an unacceptable risk in corporate environments. Lorem ipsum and its many variants have been employed since the early 1960ies, and quite likely since the sixteenth century.
+			</div>
+			<div class="col-md-4">
+				<h3>Кое-что совершенно другое</h3>
+				In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to focus on the text, disregarding the layout and its elements. Besides, random text risks to be unintendedly humorous or offensive, an unacceptable risk in corporate environments. Lorem ipsum and its many variants have been employed since the early 1960ies, and quite likely since the sixteenth century.
+			</div>
+		</div>
+
+
+		</div> <!-- blog-entry -->
+
+	</div> <!-- row -->
+</div> <!-- container -->
 
 @stop

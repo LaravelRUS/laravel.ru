@@ -24,9 +24,20 @@ class DocsController extends BaseController {
 		}
 
 		$page = Docs::version($version)->name($name)->first();
-		$menu = Docs::version($version)->name("menu")->first();
+		$menu = Docs::version($version)->name("documentation")->first();
 
-		return View::make("docs/docpage", ['page'=>$page, 'menu'=>$menu]);
+		return View::make("docs/docpage", ['page'=>$page, 'menu'=>$menu, 'version'=>$version, 'name'=>$name]);
+	}
+
+	// список страниц с
+	public function updates()
+	{
+		$docs = [];
+		foreach(\Config::get("laravel.versions") as $version){
+			$docs[$version] = Docs::version($version)->orderBy("name", "ASC")->get();
+		}
+
+		return View::make("docs/updates", compact("docs"));
 	}
 
 	
