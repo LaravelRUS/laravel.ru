@@ -19,9 +19,9 @@ class UserServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		// Add folder Views in global views path. Use subfolder 'user' for place module views.
-		$viewPaths = \Config::get('view.paths');
-		$viewPaths[] = __DIR__.DIRECTORY_SEPARATOR.'Views';
-		\Config::set('view.paths', $viewPaths);
+//		$viewPaths = \Config::get('view.paths');
+//		$viewPaths[] = __DIR__.DIRECTORY_SEPARATOR.'Views';
+//		\Config::set('view.paths', $viewPaths);
 
 		// Including module-related routes etc
 		include 'user_helpers.php';

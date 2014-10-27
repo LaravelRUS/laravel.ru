@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav version_selector_menu" >
         <li>
-            <a href="#"></a>
+            <span>Версия фреймворка:</span>
         </li>
         <?foreach($all_versions as $version){?>
         <li <?if($version == $current_version){?>class="active"<?}?> >

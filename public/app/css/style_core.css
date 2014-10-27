@@ -83,8 +83,11 @@ code{
 #version_selector{
 
 }
-.version_selector_menu{
-    margin: 0 auto;
+.version_selector_menu li > span {
+    position: relative;
+    display: block;
+    padding: 12px 15px;
+    margin-right: 0px;
 }
 .version_selector_menu .active a{
     font-weight: 600;
