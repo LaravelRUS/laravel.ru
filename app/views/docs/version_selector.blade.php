@@ -1,4 +1,10 @@
-    <ul class="nav nav-pills">
-        <li class="active"><a  href="pricing.html">master</a></li>
-        <li><a  href="pricing.html">4.1</a></li>
-    </ul><!--//nav-->
+<ul class="nav navbar-nav version_selector_menu" >
+        <li>
+            <a href="#"></a>
+        </li>
+        <?foreach($all_versions as $version){?>
+        <li <?if($version == $current_version){?>class="active"<?}?> >
+            <a href="<?= route("docs",[$version, $name]) ?>"><?= $version ?></a>
+        </li>
+        <?}?>
+    </ul><!--//nav version selector -->

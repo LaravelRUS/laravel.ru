@@ -29,6 +29,16 @@ Route::post('login',                    ['uses'=>'AuthController@postLogin',    
 
 Route::get( 'logout',                   ['uses'=>'AuthController@getLogout',            'as'=>'auth.logout']);
 
+// ===== Админка =====
+
+Route::group(['before'=>'librarians'], function() {
+
+	Route::get( 'admin',                        ['uses'=>'AdminController@listUsers',               'as'=>'admin']);
+	Route::post('admin/add_role',               ['uses'=>'AdminController@addRole',                 'as'=>'admin.add_role']);
+	Route::post('admin/remove_role',            ['uses'=>'AdminController@removeRole',              'as'=>'admin.remove_role']);
+
+});
+
 // ===== Документация
 
 Route::group(['before'=>'librarians'], function() {

@@ -11,11 +11,9 @@ class TestController extends BaseController {
 
 	public function index()
 	{
-		$githubClient = new GithubRepo(\Config::get("laravel.original_docs.user"),   \Config::get("laravel.original_docs.repository"));
-		$commit = $githubClient->getLastCommit("master", "documentation.md");
-		$date = $commit['commit']['committer']['date'];
-		$carbon = \Carbon\Carbon::createFromTimestampUTC(strtotime($date));
-		dd($carbon);
+		$user = User::find(1);
+		var_dump($user->roles->toArray());
+		return "debug";
 	}
 
 	public function getCommitByFile()
@@ -23,6 +21,7 @@ class TestController extends BaseController {
 		$client = new \Github\Client();
 		$commits = $client->api('repo')->commits()->all('laravel', 'docs', array('sha' => '4.1', 'path' => 'html.md'));
 		dd($commits);
+
 	}
 		
 	

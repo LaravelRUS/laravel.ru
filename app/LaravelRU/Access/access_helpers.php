@@ -13,3 +13,13 @@ function allowEditTerms()
 	return true;
 }
 
+function allowEditRoles()
+{
+	try{
+		Access::checkEditRoles();
+	}catch(AccessDeniedException $e){
+		return false;
+	}
+	return true;
+}
+

@@ -6,35 +6,23 @@ Laravel - русскоязычное комьюнити
 
 @section("content")
 
-<section id="promo" class="promo section">
-	<div class="container intro">
-		<h2 class="title">Laravel - php-фреймворк с выразительным и элегантным синтаксисом.</h2>
-		<p class="summary">Мы верим, что процесс разработки только тогда наиболее продуктивен, когда работа с фреймворком приносит радость и удовольствие. Счастливые разработчики пишут лучший код.</p>
-		<a class="btn btn-cta btn-cta-secondary" href="<?= route("docs") ?>">Быстрый старт</a>
-		<a class="btn btn-cta btn-cta-secondary" href="<?= route("docs") ?>">Документация</a>
-	</div><!--//intro-->
 
-	<div class="fixed-container">
-		<div class="social text-center">
-			<div class="container">
-				<span class="line">Нравится Laravel ? Расскажи друзьям:</span>
 
-				<!--//twitter tweet button code starts -->
-				<div class="twitter-tweet">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="laravel">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-				</div>
-				<!--//twitter tweet button code ends -->
-
-			</div>
-		</div><!--//social-->
+<div class="masthead homepage hexagons">
+	<div class="container">
+		<h1>Laravel - php-фреймворк нового поколения</h1>
+		<p class="button-subtext">Мы верим, что процесс разработки только тогда наиболее продуктивен, когда работа с фреймворком приносит радость и удовольствие. Счастливые разработчики пишут лучший код.</p>
+		<a class="btn btn-default">Быстрый старт</a> <button class="btn btn-default">Документация</button>
 	</div>
-</section><!--//promo-->
+</div>
 
 
-<div class="page container">
+<div class="super-container-white">
+<div class="container">
 	<div class="row">
 
 		<div class="section col-md-12 col-sm-12 col-xs-12">
+
 
 		<h3>Приветствие</h3>
 		<p>Lorem ipsum dolor sit amet, dicit iriure at vel, inani eruditi no mel. Pri ex mazim placerat assueverit, ad quodsi everti erroribus vix, mundi delicatissimi sit ex. Fugit tantas atomorum vix et. Quo omnes vidisse ad, ad sed dicam consectetuer, cum senserit voluptatum ne. Eos ea sint magna, vis summo dicit sadipscing ut.
@@ -73,5 +61,6 @@ Laravel - русскоязычное комьюнити
 
 	</div> <!-- row -->
 </div> <!-- container -->
+</div>
 
 @stop

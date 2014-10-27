@@ -23,6 +23,15 @@ class Access extends BaseAccess{
 		$this->disableGuests();
 	}
 
+	public function checkEditRoles()
+	{
+		if(Auth::user()->isAdmin()){
+			return;
+		}else{
+			throw new AccessDeniedException;
+		}
+	}
+
 
 
 

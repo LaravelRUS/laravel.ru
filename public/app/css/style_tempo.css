@@ -1,4 +1,11 @@
 /*
+ * Site
+*/
+
+
+
+
+/*
  * Template Name: Tempo - Responsive Website Template for Startups
  * Version: 1.0
  * Author: 3rd Wave Media
@@ -8,7 +15,7 @@
 body {
     font-family: arial, sans-serif;
     color: #444444;
-    font-size: 16px;
+    font-size: 15px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -38,11 +45,36 @@ h4,
 h5,
 h6 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
+
+h1{
+    margin-top: 0px;
+}
+
+h2{
+    color: #f06060;
+    font-size: 26px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+h3 {
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+ul{
+    list-style: none;
+    padding-left: 10px;
+}
+li{
+    list-style: none;
+}
+
 p {
     color: #444444;
-    font-size: 16px;
+    font-size: 15px;
 }
 a {
     color: #f06060;
@@ -68,6 +100,10 @@ a.btn {
 a.btn .fa {
     color: #fff;
     margin-right: 5px;
+}
+.btn-cta{
+    padding: 6px 12px;
+    line-height: 1.42857143;
 }
 a.btn-cta-primary,
 .btn-cta-primary {

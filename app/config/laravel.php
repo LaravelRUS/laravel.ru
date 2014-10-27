@@ -3,8 +3,8 @@
 return array(
 
 	'versions' => [
+		"master",
 		"4.1",
-		"master"
 	],
 
 	'default_version' => "master",
