@@ -20,9 +20,9 @@ class BlogServiceProvider extends ServiceProvider {
 	{
 
 		// Add folder Views in global views path. Use subfolder 'blog' for place module views.
-        $viewPaths = \Config::get('view.paths');
-        $viewPaths[] = __DIR__.DIRECTORY_SEPARATOR.'Views';
-        \Config::set('view.paths', $viewPaths);
+//        $viewPaths = \Config::get('view.paths');
+//        $viewPaths[] = __DIR__.DIRECTORY_SEPARATOR.'Views';
+//        \Config::set('view.paths', $viewPaths);
 
 		// Register Artisan command (if needed)
 		// $this->commands('LaravelRU\Blog\Commands\BlogCommand');
