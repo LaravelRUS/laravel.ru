@@ -373,7 +373,7 @@ table td:first-child.rowspan-padding {
 }
 
 .coreos-nav .navbar-brand,.coreos-subnav .navbar-brand {
-    width: 130px;
+    width: 160px;
     display: inline-block;
     padding-left: 1px;
     padding-right: 0px;
@@ -410,6 +410,10 @@ table td:first-child.rowspan-padding {
 
 .navbar-nav>.active>a,.navbar-nav>.active>a:hover,.navbar-nav>.active>a:focus {
     color: #f04c5c;
+    background: none;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
     background: none;
 }
 
