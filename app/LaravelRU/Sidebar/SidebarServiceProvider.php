@@ -20,9 +20,9 @@ class SidebarServiceProvider extends ServiceProvider {
 	{
 
 		// Add folder Views in global views path. Use subfolder 'sidebar' for place module views.
-        $viewPaths = \Config::get('view.paths');
-        $viewPaths[] = __DIR__.DIRECTORY_SEPARATOR.'Views';
-        \Config::set('view.paths', $viewPaths);
+//        $viewPaths = \Config::get('view.paths');
+//        $viewPaths[] = __DIR__.DIRECTORY_SEPARATOR.'Views';
+//        \Config::set('view.paths', $viewPaths);
 
 	}
 

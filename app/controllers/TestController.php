@@ -12,8 +12,7 @@ class TestController extends BaseController {
 	public function index()
 	{
 		$user = User::find(1);
-		var_dump($user->roles->toArray());
-		return "debug";
+		var_dump($user->posts);
 	}
 
 	public function getCommitByFile()
