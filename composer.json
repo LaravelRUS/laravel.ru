@@ -14,7 +14,8 @@
 		"slider23/laravel-modulator": "1.*",
 		"laracasts/validation": "~1.0",
 		"laracasts/presenter": "0.1.*",
-		"laracasts/flash": "~1.0"
+		"laracasts/flash": "~1.0",
+		"laravelrus/localized-carbon": "1.*"
 	},
 	"autoload": {
 		"classmap": [

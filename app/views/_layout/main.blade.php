@@ -68,8 +68,14 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<?if(Auth::check()){?>
-					<li><a href="<?= route('user.blog', [Auth::user()->name]) ?>">Блог</a></li>
-					<li><a href="<?= route('auth.logout') ?>">Выход</a></li>
+					<li>
+						<a href="#" data-toggle="dropdown"><?= Auth::user()->name ?><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="<?= route("user.blog", Auth::user()->name) ?>">Мой блог</a></li>
+							<li class="divider"></li>
+							<li><a href="<?= route('auth.logout') ?>">Выход</a></li>
+						</ul>
+					</li>
 				<?}else{?>
 					<li><a href="<?= route('auth.login') ?>">Вход</a></li>
 					<li><a href="<?= route('auth.registration') ?>">Регистрация</a></li>
@@ -93,7 +99,29 @@
 
 <footer>
 	<div class="container">
-		<p>&copy; Русское Laravel сообщество <?= date('Y') ?></p>
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
+				<div class="footer-group">
+					<h4>Присоединяйтесь</h4>
+					<ul>
+						<li><a href="https://gitter.im/LaravelRUS/chat" >Чат в Gitter</a></li>
+						<li><a href="https://vk.com/laravel_rus" >Сообщество Вконтакте</a></li>
+						<li><a href="https://twitter.com/LaravelRUS" >Твиттер</a></li>
+					</ul>
+				</div>
+				<?if(Auth::check() AND Auth::user()->isAdmin()){?>
+					<div class="footer-group">
+						<h4>Админка</h4>
+						<ul>
+							<li><a href="https://gitter.im/LaravelRUS/chat" >Чат в Gitter</a></li>
+							<li><a href="https://vk.com/laravel_rus" >Сообщество Вконтакте</a></li>
+							<li><a href="https://twitter.com/LaravelRUS" >Твиттер</a></li>
+						</ul>
+					</div>
+				<?}?>
+			</div>
+		</div>
+
 	</div>
 </footer>
 
