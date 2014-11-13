@@ -7,7 +7,8 @@
 @section("content")
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-		<div style="margin: 100px 0 300px 0">
+		<div style="margin: 150px 0 400px 0">
+			<div class="box">
 			<h1>Логин</h1>
 
 			<?= Form::open(['route'=>'auth.login.post']) ?>
@@ -26,9 +27,10 @@
 					@include('field-error', ['field'=>'remember_me'])
 				</div>
 				<div class="form-group">
-					<button class="btn btn-success btn-lg">Войти</button>
+					<button class="btn btn-default">Войти</button>
 				</div>
 			</form>
+			</div>
 		</div>
 	</div>
 </div>

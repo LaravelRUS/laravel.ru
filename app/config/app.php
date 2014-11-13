@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'ru',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -126,6 +126,7 @@ return array(
 		'Slider23\LaravelModulator\LaravelModulatorServiceProvider',
 		'Laracasts\Validation\ValidationServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
+		'Pingpong\Widget\WidgetServiceProvider',
 
 		// Главный сервис-провайдер приложения
 		'LaravelRU\Core\CoreServiceProvider'
@@ -196,7 +197,8 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 
-		'Flash'           => 'Laracasts\Flash\Flash'
+		'Flash'           => 'Laracasts\Flash\Flash',
+		'Widget'          => 'Pingpong\Widget\Facades\Widget'
 
 	),
 

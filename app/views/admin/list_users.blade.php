@@ -1,4 +1,4 @@
-@extends("_layout.admin.leftsidebar")
+@extends("_layout.rightsidebar")
 
 @section("title")
     Админка
@@ -30,13 +30,13 @@
                         <?= Form::open(['url'=>route("admin.remove_role")]) ?>
                         <input type="hidden" name="user_id" value="<?= $user->id ?>">
                         <input type="hidden" name="role_id" value="<?= $role->id ?>">
-                        <button class="btn btn-success btn-xs" type="submit"> </button>
+                        <button class="btn btn-success btn-xs" type="submit">&nbsp;</button>
                         <?= Form::close() ?>
                     <?}else{?>
                         <?= Form::open(['url'=>route("admin.add_role")]) ?>
                         <input type="hidden" name="user_id" value="<?= $user->id ?>">
                         <input type="hidden" name="role_id" value="<?= $role->id ?>">
-                        <button class="btn btn-default btn-xs" type="submit"> </button>
+                        <button class="btn btn-default btn-xs" type="submit">&nbsp;</button>
                         <?= Form::close() ?>
                     <?}?>
                 </td>

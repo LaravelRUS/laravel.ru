@@ -31,6 +31,7 @@ class PostServiceProvider extends ServiceProvider {
 		include __DIR__.DIRECTORY_SEPARATOR.'post_helpers.php';
 		include __DIR__.DIRECTORY_SEPARATOR.'post_events.php';
 		include __DIR__.DIRECTORY_SEPARATOR.'post_filters.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'post_widgets.php';
 
 		// ...
 	}

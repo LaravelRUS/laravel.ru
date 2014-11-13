@@ -4,13 +4,18 @@
 
 <div class="container">
 	<div class="col-md-8">
-		@yield('content')
+
+		@yield('breadcrumbs')
+
+		<div class="box">
+			@yield('content')
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-4">
-			<h1>Сайдбар</h1>
-			<div class="well">Виджет</div>
-			@yield('sidebar')
+			<div class="box-invisible sidebar">
+				@yield('sidebar', Sidebar::renderLastPosts())
+			</div>
 		</div>
 	</div>
 </div>

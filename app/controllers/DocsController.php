@@ -23,8 +23,14 @@ class DocsController extends BaseController {
 			return Redirect::route("docs", [$default_version, $version]);
 		}
 
-		$page = Docs::version($version)->name($name)->first();
+		try{
+			$page = Docs::version($version)->name($name)->firstOrFail();
+		}catch(Exception $e){
+			throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+		}
 		$menu = Docs::version($version)->name("documentation")->first();
+
+
 
 		return View::make("docs/docpage", ['page'=>$page, 'menu'=>$menu, 'version'=>$version, 'name'=>$name]);
 	}

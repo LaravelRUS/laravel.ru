@@ -1,4 +1,4 @@
-@extends('_layout.rightsidebar')
+@extends('_layout.nosidebar')
 
 @section('title')
 	Создание поста
@@ -6,9 +6,40 @@
 
 @section('content')
 
+<!--@include("_layout/partials/ace-editor")-->
+
+<script>
+	$(function(){
+
+		/* Вставляем tab при нажатии на tab в поле textarea
+		 ---------------------------------------------------------------- */
+		$(".post_text").keydown(function(event){
+
+			if( event.keyCode != 9 )
+				return;
+
+			event.preventDefault();
+
+			var
+					obj = $(this)[0],
+					start = obj.selectionStart,
+					end = obj.selectionEnd,
+					before = obj.value.substring(0, start),
+					after = obj.value.substring(end, obj.value.length);
+
+			obj.value = before + "\t" + after;
+
+			obj.setSelectionRange(start+1, start+1);
+		});
+
+	});
+</script>
+
 <?if($post->id){?>
+	<?= breadcrumbs(['Главная'=>route("home"), 'Мой блог'=>route("user.blog", Auth::user()->name), ""=>""]) ?>
 	<h1>Редактирование поста</h1>
 <?}else{?>
+	<?= breadcrumbs(['Главная'=>route("home"), 'Мой блог'=>route("user.blog", Auth::user()->name), ""=>""]) ?>
 	<h1>Создание поста в блоге</h1>
 <?}?>
 
@@ -16,37 +47,9 @@
 	<div class="alert alert-success"><?= Session::get("success")  ?></div>
 <?}?>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		$("select[name=category]").onChange(function(){
-			if(this.value == "news"){
-				$("#input-description").hide();
-				$("#input-difficulty").hide();
-			}
-		})
-	});
-</script>
-
 <?= Form::open(['route'=>'post.store']) ?>
 
 	<?= Form::hidden("id", $post->id) ?>
-
-	<div class="form-group">
-		<input type="submit" class="btn btn-default" value="Сохранить">
-	</div>
-
-	<div class="form-group">
-		<label>Категория</label>
-		<?= Form::select("category", ['posts'=>'Пост в блоге', 'news'=>'Новости', 'snipets'=>"Примеры кода (снипеты)"], $post->category, ['class'=>'form-control']); ?>
-		@include('field-error', ['field'=>'category'])
-	</div>
-
-	<div class="form-group">
-		<label><?= Form::check("is_draft", 1, $post->is_draft,['class'=>'ios-switch']); ?> Черновик</label>
-		<br><span class="text-muted">Черновики видны только вам.</span>
-		@include('field-error', ['field'=>'is_draft'])
-	</div>
 
 	<div class="form-group">
 		<label>Заголовок</label>
@@ -64,7 +67,7 @@
 	<div class="form-group" id="input-description">
 		<label>Описание</label>
 		<?= Form::textarea("description", $post->description, ['class'=>'form-control post_description']) ?>
-		<div class="text-muted">Краткое описание, выводится в списке постов. Не требуется для Новостей.</div>
+		<div class="text-muted">Краткое описание, выводится в списке постов.</div>
 		@include('field-error', ['field'=>'description'])
 	</div>
 
@@ -84,8 +87,14 @@
 
 	<div class="form-group">
 		<label>Текст</label>
-		<?= Form::textarea("text", $post->text, ['class'=>'form-control', 'id'=>'ace-editor']) ?>
+		<?= Form::textarea("text", $post->text, ['class'=>'form-control post_text', 'id'=>'editor']) ?>
 		@include('field-error', ['field'=>'text'])
+	</div>
+
+	<div class="form-group">
+		<label><?= Form::check("is_draft", 1, $post->is_draft,['class'=>'ios-switch']); ?> Черновик</label>
+		<br><span class="text-muted">Черновики видны только вам.</span>
+		@include('field-error', ['field'=>'is_draft'])
 	</div>
 
 	<div class="form-group">
@@ -93,5 +102,7 @@
 	</div>
 
 <?= Form::close() ?>
+
+<!--@include("_layout/partials/ace-editor")-->
 
 @stop

@@ -10,7 +10,7 @@ class DocsServiceProvider extends ServiceProvider{
 
 	public function register()
 	{
-		$this->commands('LaravelRU\Docs\Commands\UpdateDocsCommand');
+		$this->commands('LaravelRU\Docs\Commands\UpdateDocsCron');
 
 		// Регистрация фасада DocsWidget
 		$this->app->bind("docswidget", function($app){

@@ -1,6 +1,7 @@
 <?php namespace LaravelRU\Docs\Commands;
 
 use Carbon\Carbon;
+use Config;
 use Github\Client;
 use Indatus\Dispatcher\Scheduling\ScheduledCommand;
 use Indatus\Dispatcher\Scheduling\Schedulable;
@@ -11,7 +12,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class UpdateDocsCommand extends ScheduledCommand {
+class UpdateDocsCron extends ScheduledCommand {
 
 	/**
 	 * The console command name.
@@ -56,20 +57,38 @@ class UpdateDocsCommand extends ScheduledCommand {
 		$http = new \Guzzle\Http\Client();
 
 		$forceupdate = $this->argument("force");
-		foreach(\Config::get("laravel.versions") as $version){
+		$force_branch = $this->option("branch");
+		$force_file = $this->option("file");
+
+		if($force_branch){
+			$all_versions[] = $force_branch;
+		}else{
+			$all_versions = Config::get("laravel.versions");
+		}
+		foreach($all_versions as $version){
 
 			$this->info("Process branch $version");
 
-			if($forceupdate){
-				Docs::version($version)->delete();
-				$this->info("force clear database!");
+
+			if($force_file){
+				if($forceupdate){
+					Docs::version($version)->name($force_file)->delete();
+					$this->info("clear exist file $force_file !");
+				}
+				$lines = ["[File](/docs/$version/$force_file)"];
+
+			}else{
+
+				if($forceupdate){
+					Docs::version($version)->delete();
+					$this->info("clear exist $version docs !");
+				}
+				$this->line("Fetch documentation.md");
+				$content = $this->githubTranslated->getFile($version, "documentation.md");
+				$lines = explode("\n", $content);
+				$lines[] = "[Menu](/docs/$version/documentation)";
 			}
 
-			//$content = $this->githubTranslated->getFile($version, "menu.md");
-			$this->line("Fetch documentation.md");
-			$content = $this->githubTranslated->getFile($version, "documentation.md");
-			$lines = explode("\n", $content);
-			$lines[] = "[Menu](/docs/$version/documentation)";
 			$matches = array();
 			foreach($lines as $line){
 				preg_match("/\(\/docs\/(.*?)\/(.*?)\)/im", $line, $matches);
@@ -108,6 +127,7 @@ class UpdateDocsCommand extends ScheduledCommand {
 									$count_ahead = count($original_commits)-1;
 									$current_original_commit = $this->githubOriginal->getLastCommit($version, $filename);
 									$current_original_commit_id = $current_original_commit['sha'];
+									$current_original_commit_at = Carbon::createFromTimestampUTC(strtotime($current_original_commit['commit']['committer']['date']));
 
 //									$current_original_commit = $original_commits[0]['sha'];
 //									foreach($original_commits as $c){
@@ -130,6 +150,7 @@ class UpdateDocsCommand extends ScheduledCommand {
 										$page->last_original_commit = $last_original_commit_id;
 										$page->last_original_commit_at = $last_original_commit_at;
 										$page->current_original_commit = $current_original_commit_id;
+										$page->current_original_commit_at = $current_original_commit_at;
 										$page->original_commits_ahead = $count_ahead;
 										$page->title = $title;
 										$page->text = $content;
@@ -147,9 +168,10 @@ class UpdateDocsCommand extends ScheduledCommand {
 											'last_original_commit' => $last_original_commit_id,
 											'last_original_commit_at' => $last_original_commit_at,
 											'current_original_commit' => $current_original_commit_id,
+											'current_original_commit_at' => $current_original_commit_at,
 											'original_commits_ahead' => $count_ahead,
 											'text' => $content]);
-									$this->info("$version/$filename created. Commit $last_commit_id. Last original commit $last_original_commit_id.");
+									$this->info("Translate for $version/$filename created, commit $last_commit_id. Translated from original commit $last_original_commit_id.");
 								}
 
 							}
@@ -171,6 +193,14 @@ class UpdateDocsCommand extends ScheduledCommand {
 	{
 		return array(
 				array('force', InputArgument::OPTIONAL, 'Delete all docs and replace by github data.'),
+		);
+	}
+
+	protected function getOptions()
+	{
+		return array(
+				array('branch', null, InputOption::VALUE_OPTIONAL, 'Branch for update.', null),
+				array('file', null, InputOption::VALUE_OPTIONAL, 'File for update.', null),
 		);
 	}
 

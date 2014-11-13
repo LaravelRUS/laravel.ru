@@ -69,9 +69,16 @@
 			<ul class="nav navbar-nav navbar-right">
 				<?if(Auth::check()){?>
 					<li>
-						<a href="#" data-toggle="dropdown"><?= Auth::user()->name ?><span class="caret"></span></a>
+						<a href="#" data-toggle="dropdown"><?= Auth::user()->name ?> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="<?= route("user.blog", Auth::user()->name) ?>">Мой блог</a></li>
+							<?if(Auth::user()->isAdmin()){?>
+								<li class="divider"></li>
+								<li><a href="<?= route("admin.users") ?>">Список пользователей</a></li>
+							<?}?>
+							<?if(Auth::user()->isLibrarian()){?>
+								<li><a href="<?= route("docs.updates") ?>">Прогресс перевода</a></li>
+							<?}?>
 							<li class="divider"></li>
 							<li><a href="<?= route('auth.logout') ?>">Выход</a></li>
 						</ul>
@@ -86,13 +93,7 @@
 	</div>
 </div>
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			@include("_layout.partials.flash")
-		</div>
-	</div>
-</div>
+@yield("submenu")
 
 @yield("container")
 
@@ -114,8 +115,6 @@
 						<h4>Админка</h4>
 						<ul>
 							<li><a href="https://gitter.im/LaravelRUS/chat" >Чат в Gitter</a></li>
-							<li><a href="https://vk.com/laravel_rus" >Сообщество Вконтакте</a></li>
-							<li><a href="https://twitter.com/LaravelRUS" >Твиттер</a></li>
 						</ul>
 					</div>
 				<?}?>

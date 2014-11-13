@@ -66,6 +66,11 @@ class Post extends \Eloquent {
 		return $this->belongsTo('User', "author_id");
 	}
 
+	public function comments()
+	{
+		return $this->morphMany("Comment", "commentable");
+	}
+
 	// ===== Scopes =====
 
 	public function scopeNotDraft($query)

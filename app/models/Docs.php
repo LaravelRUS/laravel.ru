@@ -34,7 +34,7 @@ class Docs extends Eloquent {
 	protected   $softDelete =  false;
 	protected   $guarded =     [];
 	protected   $hidden =      [];
-	protected   $dates =       ['last_commit_at', 'last_original_commit_at'];
+	protected   $dates =       ['last_commit_at', 'last_original_commit_at', 'current_original_commit_at'];
 
 
 	public function scopeVersion($query, $version)

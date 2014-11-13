@@ -21,24 +21,28 @@ Laravel - русскоязычное комьюнити
 <div class="container">
 	<div class="row">
 
-		<div class="section col-md-12 col-sm-12 col-xs-12">
-
-
-		<h3>Приветствие</h3>
-		<p>Lorem ipsum dolor sit amet, dicit iriure at vel, inani eruditi no mel. Pri ex mazim placerat assueverit, ad quodsi everti erroribus vix, mundi delicatissimi sit ex. Fugit tantas atomorum vix et. Quo omnes vidisse ad, ad sed dicam consectetuer, cum senserit voluptatum ne. Eos ea sint magna, vis summo dicit sadipscing ut.
-
-			Tantas omnium singulis ea vel, postea consetetur honestatis eos eu. Doctus fabulas appellantur at sit, his vero accommodare et, graeco vocent ex nam. Meis dolorem an sed, vim ex inimicus consequat. Nam assum erroribus et, amet veniam invidunt est cu. Consul everti volutpat te vis, vel ea invenire voluptaria. Ne posse electram usu, nusquam gubergren id has.
-
-			Prima periculis mel no. Mei ex doming vivendo. Ei per ancillae lucilius expetenda, mea tempor meliore nominati no. Te altera bonorum persequeris pri, dicunt consequuntur has et. At est brute eruditi erroribus.</p>
-
 		<div class="row">
-			<div class="col-md-6">
-				<h3>Новости</h3>
-				<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
+			<div class="col-md-6" style="border-right: 1px solid #eee;">
+				<h3>Новости
+					<?if(allowCreateNews()){?>
+					<small><a href="<?= route("news.create") ?>" class="btn btn-secondary btn-sm">Предложить новость</a></small>
+					<?}?>
+				</h3>
+				<?foreach($lastNews as $news){?>
+					@news($news)
+				<?}?>
+
 			</div>
 			<div class="col-md-6">
-				<h3>Новые статьи</h3>
-				<?= $last_posts ?>
+				<h3>Новые статьи
+					<?if(allowCreatePost()){?>
+						<small><a href="<?= route("post.create") ?>" class="btn btn-secondary btn-sm">Написать свою</a></small>
+					<?}?>
+				</h3>
+				<?foreach($lastPosts as $post){?>
+					@previewPost($post)
+				<?}?>
+
 			</div>
 		</div>
 		<div class="row">
@@ -57,7 +61,7 @@ Laravel - русскоязычное комьюнити
 		</div>
 
 
-		</div> <!-- blog-entry -->
+
 
 	</div> <!-- row -->
 </div> <!-- container -->

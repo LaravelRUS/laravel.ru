@@ -1,6 +1,9 @@
 <?php namespace LaravelRU\Sidebar;
 
+use App;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use LaravelRU\Post\Repositories\PostRepo;
 
 class SidebarServiceProvider extends ServiceProvider {
 
@@ -18,11 +21,12 @@ class SidebarServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-
-		// Add folder Views in global views path. Use subfolder 'sidebar' for place module views.
-//        $viewPaths = \Config::get('view.paths');
-//        $viewPaths[] = __DIR__.DIRECTORY_SEPARATOR.'Views';
-//        \Config::set('view.paths', $viewPaths);
+		$this->app->bind("sidebar", function($app){
+			return $app->make('LaravelRU\Sidebar\Sidebar');
+		});
+		$this->app->booting(function(){
+			AliasLoader::getInstance()->alias('Sidebar', 'LaravelRU\Sidebar\Facades\Sidebar');
+		});
 
 	}
 

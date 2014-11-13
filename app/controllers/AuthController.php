@@ -37,7 +37,8 @@ class AuthController extends BaseController {
 
 		Auth::login($user);
 
-		return Redirect::route("auth.registration.confirmation");
+		//return Redirect::route("auth.registration.confirmation");
+		return Redirect::route("home");
 
 	}
 	public function getConfirmation()

@@ -16,7 +16,7 @@ Site
 .box {
     background: #fff;
     border: 1px solid #eee;
-    padding: 30px;
+    padding: 20px 30px 30px 30px;
     margin-top: 30px;
     margin-bottom: 30px;
 }
@@ -24,6 +24,9 @@ Site
     /*padding: 30px;*/
     margin-top: 30px;
     margin-bottom: 30px;
+}
+.sidebar{
+    min-height: 700px;
 }
 .title{
     margin-top: 0px;
@@ -92,12 +95,41 @@ code{
 .version_selector_menu .active a{
     font-weight: 600;
 }
-.version_selector_sticky{
+.submenu_panel_sticky{
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 101;
+}
+
+
+.news_box{
+    margin: 20px 0 30px 0;
+}
+.news_box .date{
+    margin-bottom: 1px;
+}
+
+
+textarea.post_description{
+    height: 120px;
+}
+textarea.post_text{
+    height: 500px;
+    font-size: 12px;
+    padding: 4px;
+    border-radius: 2px;
+}
+
+.text-danger {
+    color: #da3727;
+}
+.text-success {
+    color: #02a100;
+}
+.text-info {
+    color: #3a87ad;
 }
 
 /*
@@ -127,6 +159,8 @@ Coreos theme
     color: #fff;
 }
 
+
+
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -144,8 +178,10 @@ h1,h2,h3,h4,h5,h6 {
 
 h1 {
     font-weight: 600;
-    color: rgba(0,0,0,0.75);
+    color: rgba(0, 0, 0, 0.52);
     text-shadow: 0 1px 0 #fff;
+    margin-top: 0px;
+    font-size: 30px;
 }
 
 h2 {
@@ -154,6 +190,10 @@ h2 {
     color: #f4645f;
     text-shadow: 0 1px 0 #fff;
 }
+h1 small a, h2 small a, h3 small a{
+    float:right;
+}
+
 .docs h2{
     border-top: 1px solid #eee;
     margin-top: 20px;
@@ -361,18 +401,18 @@ table td:first-child.rowspan-padding {
     border: 0px;
 }
 
-.coreos-nav,.coreos-subnav {
+.coreos-nav,.submenu-nav {
     background: #fff;
     box-shadow: 0 0 3px rgba(153,153,153,0.75);
     font-weight: 400;
     font-size: 16px;
 }
 
-.coreos-nav .wordmark,.coreos-subnav .wordmark {
+.coreos-nav .wordmark,.submenu-nav .wordmark {
     text-shadow: 0 1px 0 white;
 }
 
-.coreos-nav .navbar-brand,.coreos-subnav .navbar-brand {
+.coreos-nav .navbar-brand,.submenu-nav .navbar-brand {
     width: 160px;
     display: inline-block;
     padding-left: 1px;
@@ -380,14 +420,16 @@ table td:first-child.rowspan-padding {
     padding-bottom: 0px;
     margin-right: 0px;
     font-size: 20px;
+    font-weight: 600;
     margin-left: 10px;
+    color: #f4645f;
 }
 
-.coreos-nav .navbar-brand img,.coreos-subnav .navbar-brand img {
+.coreos-nav .navbar-brand img,.submenu-nav .navbar-brand img {
     -webkit-filter: drop-shadow(0 1px 0 #fff);
 }
 
-.coreos-nav li,.coreos-subnav li {
+.coreos-nav li,.submenu-nav li {
     font-weight: 400;
 }
 
@@ -395,16 +437,16 @@ table td:first-child.rowspan-padding {
     padding-top: 12px;
 }
 
-.coreos-subnav {
+.submenu-nav {
     font-size: 14px;
     margin-bottom: 0px;
 }
 
-.coreos-subnav .container {
+.submenu-nav .container {
     padding-left: 7px;
 }
 
-.coreos-subnav .nav-hint {
+.submenu-nav .nav-hint {
     padding-top: 12px;
 }
 

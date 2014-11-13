@@ -41,9 +41,15 @@ class PostRepo extends BaseRepository {
 		return $post;
 	}
 
-	public function getAllLastPosts($num = 10)
+	/**
+	 * Последние посты
+	 *
+	 * @param int $num
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public function getLastPosts($num = 10)
 	{
-		return $this->model->notDraft()->with("author")->orderBy("published_at", "DESC")->get();
+		return $this->model->notDraft()->with("author")->orderBy("published_at", "DESC")->limit($num)->get();
 	}
 
 }

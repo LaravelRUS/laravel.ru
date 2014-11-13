@@ -7,6 +7,8 @@
 @section("content")
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
+			<div style="margin: 150px 0 400px 0">
+				<div class="box">
 			<h1>Регистрация</h1>
 
 			<?= Form::open(['route'=>'auth.registration.post']) ?>
@@ -30,9 +32,11 @@
 					@include('field-error', ['field'=>'i_agree'])
 				</div>
 				<div class="form-group">
-					<button class="btn btn-success btn-lg btn-block">Зарегистрироваться</button>
+					<button class="btn btn-primary">Зарегистрироваться</button>
 				</div>
 			</form>
+		</div>
+		</div>
 		</div>
 	</div>
 @stop

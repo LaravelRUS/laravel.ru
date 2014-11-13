@@ -9,13 +9,15 @@ Route::pattern('hex',    '[a-f0-9]+');
 Route::pattern('uuid',   '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
 Route::pattern('string', '[a-zA-Z0-9]+');
 Route::pattern('slug',   '[a-z0-9-]+'); // TODO решить, делаем ли кирилические урлы
+//Route::pattern("rus", '[^0-9\p{Cyrillic}]+');
 
 // CSRF Filter on all POST routes
 // You MUST use Form::open for forms
 Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 
 Route::get( '/',                        ['uses' => 'HomeController@home',               'as' => 'home']);
-Route::get( 'test',                     ['uses' => 'TestController@index',               'as' => 'test']);
+Route::get( 'test',                     ['uses' => 'TestController@getCommitByFile',               'as' => 'test']);
+
 
 // ===== Авторизация =====
 
@@ -29,11 +31,21 @@ Route::post('login',                    ['uses'=>'AuthController@postLogin',    
 
 Route::get( 'logout',                   ['uses'=>'AuthController@getLogout',            'as'=>'auth.logout']);
 
+// ===== Новости =====
+
+Route::group(['before'=>'logged'], function(){
+	Route::get( 'news/create',                  ['uses'=>'NewsController@create',               'as'=>'news.create']);
+	Route::get( 'news/edit/{id}',               ['uses'=>'NewsController@edit',                 'as'=>'news.edit']);
+	Route::post('news/save',                    ['uses'=>'NewsController@store',                'as'=>'news.store']);
+
+});
+Route::get( 'news',                     ['uses'=>'NewsController@all',                  'as'=>'news']);
+
 // ===== Админка =====
 
-Route::group(['before'=>'librarians'], function() {
+Route::group(['before'=>'administrator'], function() {
 
-	Route::get( 'admin',                        ['uses'=>'AdminController@listUsers',               'as'=>'admin']);
+	Route::get( 'admin/list_users',             ['uses'=>'AdminController@listUsers',               'as'=>'admin.users']);
 	Route::post('admin/add_role',               ['uses'=>'AdminController@addRole',                 'as'=>'admin.add_role']);
 	Route::post('admin/remove_role',            ['uses'=>'AdminController@removeRole',              'as'=>'admin.remove_role']);
 
@@ -56,7 +68,7 @@ Route::get( 'docs/{version}/{string?}',          ['uses'=>'DocsController@docs',
 
 // ===== Блог пользователя
 
-Route::get( 'user/{string}',            ['uses'=>'BlogController@blog',                 'as'=>'user.blog']);
+Route::get( 'user/{string}/blog',            ['uses'=>'BlogController@blog',                 'as'=>'user.blog']);
 
 // ===== Отображение поста
 

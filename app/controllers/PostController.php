@@ -10,7 +10,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostController extends BaseController {
 
-	private $postForm;
 	/**
 	 * @var PostAccess
 	 */
@@ -80,10 +79,10 @@ class PostController extends BaseController {
 
 		$post->fill($input);
 
-		if($post->is_draft == 0 AND $post->published_at == null) $post->published_at = Carbon::now();
+		if($post->is_draft == 0 AND is_null($post->published_at)) $post->published_at = Carbon::now();
 		$post->save();
 
-		return \Redirect::route("post.edit", [$post->slug])->with("success", "Пост сохранен - <a href='".route("post.view",[$post->slug])."'>".route("post.view",[$post->slug])."</a>");
+		return Redirect::route("post.edit", [$post->slug])->with("success", "Пост сохранен - <a href='".route("post.view",[$post->slug])."'>".route("post.view",[$post->slug])."</a>");
 	}
 
 }
