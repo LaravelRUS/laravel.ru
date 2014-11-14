@@ -9,7 +9,7 @@ class TestController extends BaseController {
 
 	}
 
-	public function index()
+	public function getIndex()
 	{
 		$client = new Packagist\Api\Client();
 		$name = "volicon/laravel-acl";
@@ -19,17 +19,23 @@ class TestController extends BaseController {
 		var_dump(array_first($versions, function(){ return true; }));
 	}
 
-	public function utf($string)
+	public function getFail()
+	{
+		$package = Package::where("name", "dfdfsgsd")->first();
+		dd($package);
+	}
+
+	public function getUtf($string)
 	{
 		return $string;
 	}
 
-	public function pregmatch()
+	public function getPregmatch()
 	{
 		var_dump(preg_match("#^/test/(?P<utf>[а-я]+)$#su", "/test/слово"));
 	}
 
-	public function getCommitByFile()
+	public function getCommit()
 	{
 		$client = new \Github\Client();
 		$commits = $client->api('repo')->commits()->all('laravel', 'docs', array('sha' => 'master', 'path' => 'eloquent.md'));

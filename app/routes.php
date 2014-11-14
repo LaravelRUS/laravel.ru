@@ -16,7 +16,7 @@ Route::pattern('slug',   '[a-z0-9-]+'); // TODO решить, делаем ли 
 Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 
 Route::get( '/',                        ['uses' => 'HomeController@home',               'as' => 'home']);
-Route::get( 'test',                     ['uses' => 'TestController@index',               'as' => 'test']);
+Route::controller( 'test',  "TestController");
 
 
 // ===== Авторизация =====

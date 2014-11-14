@@ -1,11 +1,13 @@
 <?php namespace LaravelRU\Packages\Commands;
 
 use Carbon\Carbon;
+use DB;
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Console\Command;
 use Indatus\Dispatcher\Drivers\Cron\Scheduler;
 use Indatus\Dispatcher\Scheduling\Schedulable;
 use Indatus\Dispatcher\Scheduling\ScheduledCommand;
+use LaravelRU\Packages\PackageRepo;
 use Package;
 use Packagist\Api\Client as PackagistClient;
 use Symfony\Component\Console\Input\InputOption;
@@ -28,14 +30,19 @@ class RefillPackagesCommand extends Command {
 	 * @var string
 	 */
 	protected $description = 'Parse entire packalyst.';
+	/**
+	 * @var PackageRepo
+	 */
+	private $packageRepo;
 
 	/**
 	 * Create a new command instance.
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(PackageRepo $packageRepo)
 	{
+		$this->packageRepo = $packageRepo;
 		parent::__construct();
 	}
 
@@ -46,8 +53,10 @@ class RefillPackagesCommand extends Command {
 	 */
 	public function fire()
 	{
-		// Собираем названия пакетов, представленных на packalyst
+		// Ресетим базу
+		DB::statement("TRUNCATE TABLE packages"); DB::statement("ALTER TABLE packages auto_increment = 1;");
 
+		// Собираем названия пакетов, представленных на packalyst
 		$packalyst = new GuzzleClient(['base_url' => 'http://packalyst.com']);
 		$maxPage = 60;
 		$packageFullNames = [];
@@ -73,34 +82,18 @@ class RefillPackagesCommand extends Command {
 		// Парсим инфу по пакетам с packagist
 		$packagist = new PackagistClient();
 		foreach($packageFullNames as $packageFullName){
+
 			$this->line($packageFullName);
 			try{
-				$page = $packagist->get($packageFullName);
+				$package = $this->packageRepo->createPackageFromPackagist($packageFullName);
+				$package->save();
+				$this->line("$packageFullName added");
 			}catch(ClientErrorResponseException $e){
 				$this->error("$packageFullName - ".$e->getMessage());
 				continue;
 			}
-
-			$package = new Package();
-			$package->name = $packageFullName;
-			$package->description = $page->getDescription();
-			$package->created_at = Carbon::createFromTimestampUTC(strtotime($page->getTime()));
-			$versions = $page->getVersions();
-			if(count($versions)>0){
-				$lastVersion = array_first($versions, function(){ return true; });
-				$package->updated_at = Carbon::createFromTimestampUTC(strtotime($lastVersion->getTime()));
-			}else{
-				$package->updated_at = $package->created_at;
-			}
-
-			$package->repository = $page->getRepository();
-			$package->downloads = $page->getDownloads()->getTotal();
-			$package->favers = $page->getFavers();
-			$package->save();
-			$this->line("$packageFullName added");
-
 		}
-		$this->line("end");
+		$this->line("Refill finished.");
 	}
 
 	/**
