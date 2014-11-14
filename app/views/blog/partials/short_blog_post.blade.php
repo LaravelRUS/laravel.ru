@@ -2,8 +2,8 @@
 	<a href="<?= route("post.view", [$post->slug]) ?>" class="post_short_link">
 		<?= e($post->title) ?>
 	</a><br>
-	<span class="text-muted">Автор: <?= $user->present()->blog ?>. </span>
+	<span class="text-muted">Автор: <?= $user->displayProfileUrl() ?>. </span>
 	<div class="post_short_description">
-		<?= $post->present()->short_html ?>
+		<?= e($post->description) ?>
 	</div>
 </div>

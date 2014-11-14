@@ -24,13 +24,9 @@ class PostServiceProvider extends ServiceProvider {
 //        \Config::set('view.paths', $viewPaths);
 
 		// Register Artisan command (if needed)
-		$this->commands('LaravelRU\Post\Commands\PostCommand');
+		//$this->commands('LaravelRU\Post\Commands\PostCommand');
 
 		// Including module-related routes etc
-		include __DIR__.DIRECTORY_SEPARATOR.'post_routes.php';
-		include __DIR__.DIRECTORY_SEPARATOR.'post_helpers.php';
-		include __DIR__.DIRECTORY_SEPARATOR.'post_events.php';
-		include __DIR__.DIRECTORY_SEPARATOR.'post_filters.php';
 		include __DIR__.DIRECTORY_SEPARATOR.'post_widgets.php';
 
 		// ...

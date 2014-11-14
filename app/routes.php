@@ -68,6 +68,7 @@ Route::get( 'docs/{version}/{string?}',          ['uses'=>'DocsController@docs',
 
 // ===== Блог пользователя
 
+Route::get( 'user/{string}',            ['uses'=>'UserController@profile',                 'as'=>'user.profile']);
 Route::get( 'user/{string}/blog',            ['uses'=>'BlogController@blog',                 'as'=>'user.blog']);
 
 // ===== Отображение поста
@@ -82,7 +83,7 @@ Route::group(['before'=>'auth'], function() {
 	Route::post('posts/store',           ['uses' => 'PostController@store',              'as' => 'post.store']);
 
 	// Внутренний профайл пользователя (настройки, смена пароля и т.п.)
-	Route::get('profile',               ['uses' => 'UserController@profile',            'as' => 'user.profile']);
+	Route::get('settings',               ['uses' => 'UserController@edit',            'as' => 'user.edit']);
 
 });
 

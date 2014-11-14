@@ -9,7 +9,7 @@
 <h1><?= e($post->title) ?></h1>
 
 <div class="post_credentials">
-	Автор: <?= $post->author->present()->blog ?>
+	Автор: <?= $post->author->displayBlogUrl() ?>
 </div>
 
 <?if(allow_edit_post($post->id)){?>
@@ -20,7 +20,7 @@
 
 
 <div class="post_content">
-	<?= $post->present()->html ?>
+	<?= $post->displayText() ?>
 </div>
 
 @stop

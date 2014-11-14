@@ -78,5 +78,18 @@ class Post extends \Eloquent {
 		return $query->where("is_draft", 0);
 	}
 
+	// ===== Presenter =====
+
+	public function displayText()
+	{
+		$parse = App::make('LaravelRU\Parser\Parse');
+		return $parse->markdown($this->text);
+	}
+
+	public function displayDate()
+	{
+		return $this->published_at->format("d M");
+	}
+
 
 };

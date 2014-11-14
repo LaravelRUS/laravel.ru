@@ -153,4 +153,11 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasRole("librarian");
 	}
 
+	// ===========================================================================================
+
+	public function displayProfileUrl()
+	{
+		return "<a class='user' href='".route("user.profile", [$this->name])."'>$this->name</a>";
+	}
+
 };
