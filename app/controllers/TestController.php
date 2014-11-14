@@ -11,8 +11,12 @@ class TestController extends BaseController {
 
 	public function index()
 	{
-		$user = User::find(1);
-		var_dump($user->posts);
+		$client = new Packagist\Api\Client();
+		$name = "volicon/laravel-acl";
+		$package = $client->get($name);
+		//var_dump($package);
+		$versions = $package->getVersions();
+		var_dump(array_first($versions, function(){ return true; }));
 	}
 
 	public function utf($string)

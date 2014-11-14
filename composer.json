@@ -9,6 +9,7 @@
 		"barryvdh/laravel-ide-helper": "1.*",
 		"doctrine/dbal": "~2.3",
 		"knplabs/github-api": "*",
+		"knplabs/packagist-api": "1.*@dev",
 		"erusev/parsedown": "1.1.0",
 		"indatus/dispatcher": "1.*",
 		"slider23/laravel-modulator": "1.*",
@@ -16,7 +17,8 @@
 		"laracasts/presenter": "0.1.*",
 		"laracasts/flash": "~1.0",
 		"laravelrus/localized-carbon": "1.*",
-		"pingpong/widget" : "1.0.*"
+		"pingpong/widget" : "1.0.*",
+		"sleeping-owl/apist": "1.*"
 	},
 	"autoload": {
 		"classmap": [

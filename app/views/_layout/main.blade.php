@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="shortcut icon" href="../../../public/favicon.ico">
+	<link rel="shortcut icon" href="favicon.ico">
 
 	<title>@yield('title', "LaravelRUS")</title>
 
@@ -16,7 +16,7 @@
 
 	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-	<link href="/app/css/style_core.css" rel="stylesheet">
+	<link href="/app/css/style.css" rel="stylesheet">
 
 	<!-- Just for debugging purposes. Don't actually copy this line! -->
 	<!--[if lt IE 9]><script src="/bootstrap/js/ie8-responsive-file-warning.js"></script><![endif]-->
