@@ -23,7 +23,7 @@ class PackagesServiceProvider extends ServiceProvider {
 		$this->commands('LaravelRU\Packages\Commands\RefillPackagesCommand');
 
 		// Including module-related routes etc
-		include __DIR__.DIRECTORY_SEPARATOR.'packages_helpers.php';
+		//include __DIR__.DIRECTORY_SEPARATOR.'packages_helpers.php';
 
 /*
 		// Registering facade
