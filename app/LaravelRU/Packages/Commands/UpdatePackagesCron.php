@@ -35,7 +35,7 @@ class UpdatePackagesCron extends ScheduledCommand{
                 if($package->isDirty()){
                     $this->info("$package->name is updated");
                 }
-                //$package->save();
+                $package->save();
 
             }catch(ClientErrorResponseException $e){
                 $this->error("$package->name - ".$e->getMessage());
