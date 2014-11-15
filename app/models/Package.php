@@ -24,5 +24,9 @@ class Package extends Eloquent {
 	{
 		return $this->created_at->format("d M");
 	}
+	public function displayUpdatedAt()
+	{
+		return $this->updated_at->format("d M");
+	}
 
 };

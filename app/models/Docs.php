@@ -59,5 +59,10 @@ class Docs extends Eloquent {
 		$html = $parsedown->text($text);
 		return $html;
 	}
+
+	public function displayUpdatedAt()
+	{
+		return $this->last_commit_at->format("d M");
+	}
 	
 }

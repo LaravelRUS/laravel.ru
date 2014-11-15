@@ -25,6 +25,11 @@
 
 			<?= DocsWidget::versionSelector($version, $name) ?>
 
+			<ul class="nav navbar-nav navbar-right">
+			<?if(allowEditTerms()){?><li><a href="<?= route("terms") ?>">Термины</a></li><?}?>
+				<li><a href="<?= route("docs.updates") ?>">Прогресс перевода</a></li>
+			</ul>
+
 		</div>
 	</div>
 	</div>

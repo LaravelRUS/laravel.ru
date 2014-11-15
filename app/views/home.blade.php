@@ -46,8 +46,9 @@ Laravel - русскоязычное комьюнити
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6">
-				<h3>Пакеты</h3>
+			<div class="col-md-4" style="border-right: 1px solid #eee;">
+
+				<h3>Новые пакеты</h3>
 				<? foreach($newPackages as $package){ ?>
 					<div class="package_box">
 						<div class="package_title"><span class="date"><?= $package->displayCreatedAt() ?></span><a href="<?= $package->repository ?>" target="_blank"><?= $package->name ?></a></div>
@@ -57,9 +58,30 @@ Laravel - русскоязычное комьюнити
 					</div>
 				<?}?>
 			</div>
-			<div class="col-md-6">
-				<h3>Вопросы</h3>
-				In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to focus on the text, disregarding the layout and its elements. Besides, random text risks to be unintendedly humorous or offensive, an unacceptable risk in corporate environments. Lorem ipsum and its many variants have been employed since the early 1960ies, and quite likely since the sixteenth century.
+
+			<div class="col-md-4" style="border-right: 1px solid #eee;">
+
+				<h3>Обновлённые пакеты</h3>
+				<? foreach($updatedPackages as $package){ ?>
+					<div class="package_box">
+						<div class="package_title"><a href="<?= $package->repository ?>" target="_blank"><?= $package->name ?></a> <span class="date">(<?= $package->displayUpdatedAt() ?>)</div>
+						<div class="package_description">
+							<?= $package->description ?>
+						</div>
+					</div>
+				<?}?>
+			</div>
+
+			<div class="col-md-4">
+				<h3>Апдейты документации</h3>
+				<? foreach($updatedDocs as $page){ ?>
+					<div class="docs_box">
+						<div class="title"><span class="date"><?= $page->displayUpdatedAt() ?></span> <a href="<?= route("docs", [$page->framework_version, $page->name]) ?>"><?=$page->framework_version?>/<?=$page->name?></a></div>
+						<div class="name"><?= $page->title ?></div>
+
+					</div>
+				<?}?>
+
 			</div>
 		</div>
 

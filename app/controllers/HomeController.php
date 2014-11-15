@@ -31,10 +31,13 @@ class HomeController extends BaseController{
 	{
 		$lastPosts = $this->postRepo->getLastPosts();
 		$lastNews = $this->newsRepo->getLastNews(5);
-		$newPackages = $this->packageRepo->getLastCreated();
-		$updatedPackages = $this->packageRepo->getLastUpdated();
 
-		return View::make("home", compact("lastPosts", "lastNews", "newPackages", "updatedPackages"));
+		$newPackages = $this->packageRepo->getLastCreated(10);
+		$updatedPackages = $this->packageRepo->getLastUpdated(10);
+
+		$updatedDocs = Docs::orderBy("last_commit_at", "desc")->limit(12)->get();
+
+		return View::make("home", compact("lastPosts", "lastNews", "newPackages", "updatedPackages", "updatedDocs"));
 	}
 
 
