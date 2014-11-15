@@ -53,4 +53,15 @@ class PackageRepo extends BaseRepository{
         return $package;
     }
 
+    public function updatePackageFromPackagist(Package $package)
+    {
+        $page = $this->packagist->get($package->name);
+        $versions = $page->getVersions();
+        if(count($versions)>0){
+            $lastVersion = array_first($versions, function(){ return true; });
+            $package->updated_at = Carbon::createFromTimestampUTC(strtotime($lastVersion->getTime()));
+        }
+        return $package;
+    }
+
 } 

@@ -22,6 +22,7 @@ class PackagesServiceProvider extends ServiceProvider {
 		// Register Artisan command (if needed)
 		$this->commands('LaravelRU\Packages\Commands\RefillPackagesCommand');
 		$this->commands('LaravelRU\Packages\Commands\CheckNewPackagesCron');
+		$this->commands('LaravelRU\Packages\Commands\UpdatePackagesCron');
 
 		// Including module-related routes etc
 		//include __DIR__.DIRECTORY_SEPARATOR.'packages_helpers.php';
