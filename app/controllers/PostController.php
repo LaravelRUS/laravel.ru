@@ -41,7 +41,6 @@ class PostController extends BaseController {
 		if( ! $post) throw new NotFoundHttpException;
 
 		$author = $post->author;
-		$str = $author->present()->name;
 
 		return View::make("post/view_post", compact("post"));
 	}

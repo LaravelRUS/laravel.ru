@@ -25,6 +25,7 @@ class PackagesServiceProvider extends ServiceProvider {
 
 		// Including module-related routes etc
 		//include __DIR__.DIRECTORY_SEPARATOR.'packages_helpers.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'package_widgets.php';
 
 /*
 		// Registering facade

@@ -46,16 +46,19 @@ Laravel - русскоязычное комьюнити
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4">
-				<h3>Новое в документации</h3>
-				In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to focus on the text, disregarding the layout and its elements. Besides, random text risks to be unintendedly humorous or offensive, an unacceptable risk in corporate environments. Lorem ipsum and its many variants have been employed since the early 1960ies, and quite likely since the sixteenth century.
+			<div class="col-md-6">
+				<h3>Пакеты</h3>
+				<? foreach($newPackages as $package){ ?>
+					<div class="package_box">
+						<div class="package_title"><span class="date"><?= $package->displayCreatedAt() ?></span><a href="<?= $package->repository ?>" target="_blank"><?= $package->name ?></a></div>
+						<div class="package_description">
+							<?= $package->description ?>
+						</div>
+					</div>
+				<?}?>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<h3>Вопросы</h3>
-				In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to focus on the text, disregarding the layout and its elements. Besides, random text risks to be unintendedly humorous or offensive, an unacceptable risk in corporate environments. Lorem ipsum and its many variants have been employed since the early 1960ies, and quite likely since the sixteenth century.
-			</div>
-			<div class="col-md-4">
-				<h3>Кое-что совершенно другое</h3>
 				In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to focus on the text, disregarding the layout and its elements. Besides, random text risks to be unintendedly humorous or offensive, an unacceptable risk in corporate environments. Lorem ipsum and its many variants have been employed since the early 1960ies, and quite likely since the sixteenth century.
 			</div>
 		</div>

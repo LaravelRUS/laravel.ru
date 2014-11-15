@@ -122,7 +122,7 @@ return array(
 
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-		//'Indatus\Dispatcher\ServiceProvider',
+		'Indatus\Dispatcher\ServiceProvider',
 		'Slider23\LaravelModulator\LaravelModulatorServiceProvider',
 		'Laracasts\Validation\ValidationServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',

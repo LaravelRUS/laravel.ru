@@ -20,4 +20,9 @@ class Package extends Eloquent {
 		// Setup event bindings...
 	}
 
+	public function displayCreatedAt()
+	{
+		return $this->created_at->format("d M");
+	}
+
 };

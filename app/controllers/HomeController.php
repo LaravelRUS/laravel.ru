@@ -32,8 +32,9 @@ class HomeController extends BaseController{
 		$lastPosts = $this->postRepo->getLastPosts();
 		$lastNews = $this->newsRepo->getLastNews(5);
 		$newPackages = $this->packageRepo->getLastCreated();
+		$updatedPackages = $this->packageRepo->getLastUpdated();
 
-		return View::make("home", compact("lastPosts", "lastNews", "newPackages"));
+		return View::make("home", compact("lastPosts", "lastNews", "newPackages", "updatedPackages"));
 	}
 
 

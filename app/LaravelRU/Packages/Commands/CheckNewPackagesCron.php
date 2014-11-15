@@ -55,6 +55,6 @@ class CheckNewPackagesCron extends ScheduledCommand{
      */
     public function schedule(Schedulable $scheduler)
     {
-        return $scheduler->everyMinutes(1);
+        return $scheduler->everyMinutes(3);
     }
 }
