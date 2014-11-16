@@ -20,9 +20,9 @@ class Parse {
 
     public function markdown($text)
     {
+        $text = strip_tags($text);
         $html = $this->markdownParser->text($text);
-        $html = strip_tags($html);
-        $html = $this->urlToAhref($html);
+        //$html = $this->urlToAhref($html);
         return $html;
     }
 
