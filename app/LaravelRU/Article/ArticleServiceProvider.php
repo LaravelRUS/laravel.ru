@@ -1,8 +1,8 @@
-<?php namespace LaravelRU\Post;
+<?php namespace LaravelRU\Article;
 
 use Illuminate\Support\ServiceProvider;
 
-class PostServiceProvider extends ServiceProvider {
+class ArticleServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -24,10 +24,10 @@ class PostServiceProvider extends ServiceProvider {
 //        \Config::set('view.paths', $viewPaths);
 
 		// Register Artisan command (if needed)
-		//$this->commands('LaravelRU\Post\Commands\PostCommand');
+		//$this->commands('LaravelRU\Article\Commands\PostCommand');
 
 		// Including module-related routes etc
-		include __DIR__.DIRECTORY_SEPARATOR.'post_widgets.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'article_widgets.php';
 
 		// ...
 	}

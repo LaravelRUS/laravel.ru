@@ -1,4 +1,4 @@
-<?php namespace LaravelRU\Post\Forms;
+<?php namespace LaravelRU\Article\Forms;
 
 use Laracasts\Validation\FormValidator;
 

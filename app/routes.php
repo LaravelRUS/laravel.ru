@@ -18,6 +18,10 @@ Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 Route::get( '/',                        ['uses' => 'HomeController@home',               'as' => 'home']);
 Route::controller( 'test',  "TestController");
 
+// ===== Хуки гитхаба =====
+
+Route::get( 'hook/docs_is_updated',                    ['uses'=>'HookController@docsIsUpdated',             'as'=>'hook.docs_is_updated']);
+
 
 // ===== Авторизация =====
 
@@ -73,14 +77,14 @@ Route::get( 'user/{string}/blog',            ['uses'=>'BlogController@blog',    
 
 // ===== Отображение поста
 
-Route::get( 'post/{slug}',              ['uses' => 'PostController@show',               'as' => 'post.view']);
+Route::get( 'article/{slug}',              ['uses' => 'ArticleController@show',               'as' => 'post.view']);
 
 Route::group(['before'=>'auth'], function() {
 
 	// Создание/редактирование постов
-	Route::get( 'post/{slug}/edit/',    ['uses' => 'PostController@edit',               'as' => 'post.edit']);
-	Route::get( 'posts/create',          ['uses' => 'PostController@create',             'as' => 'post.create']);
-	Route::post('posts/store',           ['uses' => 'PostController@store',              'as' => 'post.store']);
+	Route::get( 'post/{slug}/edit/',    ['uses' => 'ArticleController@edit',               'as' => 'post.edit']);
+	Route::get( 'posts/create',          ['uses' => 'ArticleController@create',             'as' => 'post.create']);
+	Route::post('posts/store',           ['uses' => 'ArticleController@store',              'as' => 'post.store']);
 
 	// Внутренний профайл пользователя (настройки, смена пароля и т.п.)
 	Route::get('settings',               ['uses' => 'UserController@edit',            'as' => 'user.edit']);

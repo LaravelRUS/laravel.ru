@@ -1,14 +1,14 @@
 <?php 
 
 use Carbon\Carbon;
-use LaravelRU\Post\Access\PostAccess;
+use LaravelRU\Article\Access\PostAccess;
 use Laracasts\Validation\FormValidationException;
-use LaravelRU\Post\Forms\CreatePostForm;
-use LaravelRU\Post\Forms\UpdatePostForm;
-use LaravelRU\Post\Repositories\PostRepo;
+use LaravelRU\Article\Forms\CreatePostForm;
+use LaravelRU\Article\Forms\UpdatePostForm;
+use LaravelRU\Article\Repositories\PostRepo;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class PostController extends BaseController {
+class ArticleController extends BaseController {
 
 	/**
 	 * @var PostAccess

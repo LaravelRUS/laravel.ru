@@ -1,6 +1,6 @@
 <?php
 
-use LaravelRU\Post\Repositories\PostRepo;
+use LaravelRU\Article\Repositories\PostRepo;
 use LaravelRU\User\Repositories\UserRepo;
 
 class UserController extends BaseController{

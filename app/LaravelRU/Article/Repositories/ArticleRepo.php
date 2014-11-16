@@ -1,14 +1,20 @@
-<?php namespace LaravelRU\Post\Repositories;
+<?php namespace LaravelRU\Article\Repositories;
 
 use LaravelRU\Core\Repository\BaseRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Post;
 
-class PostRepo extends BaseRepository {
+class ArticleRepo extends BaseRepository {
 
-	public function __construct(Post $post){
+	/**
+	 * @var Article
+	 */
+	private $article;
+
+	public function __construct(Article $article){
 
 		$this->model = $post;
+		$this->article = $article;
 	}
 
 	/**

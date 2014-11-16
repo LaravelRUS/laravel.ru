@@ -1,6 +1,6 @@
 <?php namespace LaravelRU\Sidebar;
 
-use LaravelRU\Post\Repositories\PostRepo;
+use LaravelRU\Article\Repositories\PostRepo;
 use View;
 
 class Sidebar {

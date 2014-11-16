@@ -430,21 +430,21 @@ table td:first-child.rowspan-padding {
     border: 0px;
 }
 
-.coreos-nav,.submenu-nav {
+.topmenu-nav,.submenu-nav {
     background: #fff;
     box-shadow: 0 0 3px rgba(153,153,153,0.75);
     font-weight: 400;
     font-size: 16px;
 }
 
-.coreos-nav .wordmark,.submenu-nav .wordmark {
+.topmenu-nav .wordmark,.submenu-nav .wordmark {
     text-shadow: 0 1px 0 white;
 }
 
-.coreos-nav .navbar-brand,.submenu-nav .navbar-brand {
+.topmenu-nav .navbar-brand,.submenu-nav .navbar-brand {
     width: 160px;
     display: inline-block;
-    padding-left: 1px;
+    /*padding-left: 1px;*/
     padding-right: 0px;
     padding-bottom: 0px;
     margin-right: 0px;
@@ -454,15 +454,15 @@ table td:first-child.rowspan-padding {
     color: #f4645f;
 }
 
-.coreos-nav .navbar-brand img,.submenu-nav .navbar-brand img {
+.topmenu-nav .navbar-brand img,.submenu-nav .navbar-brand img {
     -webkit-filter: drop-shadow(0 1px 0 #fff);
 }
 
-.coreos-nav li,.submenu-nav li {
+.topmenu-nav li,.submenu-nav li {
     font-weight: 400;
 }
 
-.coreos-nav .nav-hint {
+.topmenu-nav .nav-hint {
     padding-top: 12px;
 }
 

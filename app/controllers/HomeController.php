@@ -2,7 +2,7 @@
 
 use LaravelRU\News\Repositories\NewsRepo;
 use LaravelRU\Packages\PackageRepo;
-use LaravelRU\Post\Repositories\PostRepo;
+use LaravelRU\Article\Repositories\PostRepo;
 use LaravelRU\Sidebar\Sidebar;
 
 class HomeController extends BaseController{
