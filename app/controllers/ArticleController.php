@@ -1,87 +1,87 @@
 <?php 
 
 use Carbon\Carbon;
-use LaravelRU\Article\Access\PostAccess;
+use LaravelRU\Article\Access\ArticleAccess;
 use Laracasts\Validation\FormValidationException;
-use LaravelRU\Article\Forms\CreatePostForm;
-use LaravelRU\Article\Forms\UpdatePostForm;
-use LaravelRU\Article\Repositories\PostRepo;
+use LaravelRU\Article\Forms\CreateArticleForm;
+use LaravelRU\Article\Forms\UpdateArticleForm;
+use LaravelRU\Article\Repositories\ArticleRepo;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ArticleController extends BaseController {
 
 	/**
-	 * @var PostAccess
+	 * @var ArticleAccess
 	 */
 	private $access;
 	/**
-	 * @var PostRepo
+	 * @var ArticleRepo
 	 */
-	private $postRepo;
+	private $articleRepo;
 	/**
-	 * @var CreatePostForm
+	 * @var CreateArticleForm
 	 */
-	private $createPostForm;
+	private $createArticleForm;
 	/**
-	 * @var UpdatePostForm
+	 * @var UpdateArticleForm
 	 */
-	private $updatePostForm;
+	private $updateArticleForm;
 
-	public function __construct(PostAccess $access, CreatePostForm $createPostForm, UpdatePostForm $updatePostForm, PostRepo $postRepo)
+	public function __construct(ArticleAccess $access, CreateArticleForm $createArticleForm, UpdateArticleForm $updateArticleForm, ArticleRepo $articleRepo)
 	{
 		$this->access = $access;
-		$this->postRepo = $postRepo;
-		$this->createPostForm = $createPostForm;
-		$this->updatePostForm = $updatePostForm;
+		$this->articleRepo = $articleRepo;
+		$this->createArticleForm = $createArticleForm;
+		$this->updateArticleForm = $updateArticleForm;
 	}
 
 	public function show($slug)
 	{
-		$post = $this->postRepo->getBySlug($slug);
-		if( ! $post) throw new NotFoundHttpException;
+		$article = $this->articleRepo->getBySlug($slug);
+		if( ! $article) throw new NotFoundHttpException;
 
-		$author = $post->author;
+		$author = $article->author;
 
-		return View::make("post/view_post", compact("post"));
+		return View::make("article/view_article", compact("article"));
 	}
 
 	public function create()
 	{
-		$post = $this->postRepo->create(['is_draft'=>'1']);
-		return View::make("post/edit_post", compact("post"));
+		$article = $this->articleRepo->create(['is_draft'=>'1']);
+		return View::make("article/edit_article", compact("article"));
 	}
 
 	public function edit($slug)
 	{
-		$this->access->checkEditPostBySlug($slug);
+		$this->access->checkEditArticleBySlug($slug);
 
-		$post = $this->postRepo->getBySlug($slug);
-		if( ! $post) throw new NotFoundHttpException;
+		$article = $this->articleRepo->getBySlug($slug);
+		if( ! $article) throw new NotFoundHttpException;
 
-		return View::make("post/edit_post", compact("post"));
+		return View::make("article/edit_article", compact("article"));
 	}
 
 	public function store()
 	{
-		$post_id = Input::get("id");
+		$article_id = Input::get("id");
 		$input = Input::all();
 
-		if( $post_id ){
-			$this->access->checkEditPost($post_id);
-			$post = $this->postRepo->find($post_id);
-			$this->updatePostForm->validate($input);
+		if( $article_id ){
+			$this->access->checkEditArticle($article_id);
+			$article = $this->articleRepo->find($article_id);
+			$this->updateArticleForm->validate($input);
 		}else{
-			$post = $this->postRepo->create();
-			$post->author_id = \Auth::id();
-			$this->createPostForm->validate($input);
+			$article = $this->articleRepo->create();
+			$article->author_id = \Auth::id();
+			$this->createArticleForm->validate($input);
 		}
 
-		$post->fill($input);
+		$article->fill($input);
 
-		if($post->is_draft == 0 AND is_null($post->published_at)) $post->published_at = Carbon::now();
-		$post->save();
+		if($article->is_draft == 0 AND is_null($article->published_at)) $article->published_at = Carbon::now();
+		$article->save();
 
-		return Redirect::route("post.edit", [$post->slug])->with("success", "Пост сохранен - <a href='".route("post.view",[$post->slug])."'>".route("post.view",[$post->slug])."</a>");
+		return Redirect::route("article.edit", [$article->slug])->with("success", "Пост сохранен - <a href='".route("article.view",[$article->slug])."'>".route("article.view",[$article->slug])."</a>");
 	}
 
 }

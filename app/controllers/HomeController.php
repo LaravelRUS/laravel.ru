@@ -2,15 +2,15 @@
 
 use LaravelRU\News\Repositories\NewsRepo;
 use LaravelRU\Packages\PackageRepo;
-use LaravelRU\Article\Repositories\PostRepo;
+use LaravelRU\Article\Repositories\ArticleRepo;
 use LaravelRU\Sidebar\Sidebar;
 
 class HomeController extends BaseController{
 
 	/**
-	 * @var PostRepo
+	 * @var ArticleRepo
 	 */
-	private $postRepo;
+	private $articleRepo;
 	/**
 	 * @var NewsRepo
 	 */
@@ -20,16 +20,16 @@ class HomeController extends BaseController{
 	 */
 	private $packageRepo;
 
-	public function __construct(PostRepo $postRepo, NewsRepo $newsRepo, PackageRepo $packageRepo)
+	public function __construct(ArticleRepo $articleRepo, NewsRepo $newsRepo, PackageRepo $packageRepo)
 	{
-		$this->postRepo = $postRepo;
+		$this->articleRepo = $articleRepo;
 		$this->newsRepo = $newsRepo;
 		$this->packageRepo = $packageRepo;
 	}
 
 	public function home()
 	{
-		$lastPosts = $this->postRepo->getLastPosts();
+		$lastArticles = $this->articleRepo->getLastArticles();
 		$lastNews = $this->newsRepo->getLastNews(5);
 
 		$newPackages = $this->packageRepo->getLastCreated(10);
@@ -37,7 +37,7 @@ class HomeController extends BaseController{
 
 		$updatedDocs = Docs::orderBy("last_commit_at", "desc")->limit(12)->get();
 
-		return View::make("home", compact("lastPosts", "lastNews", "newPackages", "updatedPackages", "updatedDocs"));
+		return View::make("home", compact("lastArticles", "lastNews", "newPackages", "updatedPackages", "updatedDocs"));
 	}
 
 

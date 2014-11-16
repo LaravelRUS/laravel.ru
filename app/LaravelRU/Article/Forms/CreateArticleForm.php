@@ -2,11 +2,11 @@
 
 use Laracasts\Validation\FormValidator;
 
-class CreatePostForm extends FormValidator{
+class CreateArticleForm extends FormValidator{
 
 	protected $rules = [
 		'title'   => 'required',
-		'slug'    => 'required|unique:posts,slug|regex:/^[A-Za-z0-9\-]+$/',
+		'slug'    => 'required|unique:articles,slug|regex:/^[A-Za-z0-9\-]+$/',
 		'text'    => 'required',
 	];
 

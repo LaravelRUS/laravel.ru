@@ -16,14 +16,14 @@ class ArticleAccess extends BaseAccess{
 		$this->articleRepo = $articleRepo;
 	}
 
-	public function checkEditPost($id)
+	public function checkEditArticle($id)
 	{
 		if(\Auth::id() != $this->articleRepo->getAuthorId($id)){
 			throw new AccessDeniedException;
 		}
 	}
 
-	public function checkEditPostBySlug($slug)
+	public function checkEditArticleBySlug($slug)
 	{
 		if(\Auth::id() != $this->articleRepo->getAuthorIdBySlug($slug)){
 			throw new AccessDeniedException;

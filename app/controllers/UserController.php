@@ -1,6 +1,6 @@
 <?php
 
-use LaravelRU\Article\Repositories\PostRepo;
+use LaravelRU\Article\Repositories\ArticleRepo;
 use LaravelRU\User\Repositories\UserRepo;
 
 class UserController extends BaseController{
@@ -10,14 +10,14 @@ class UserController extends BaseController{
 	 */
 	private $userRepo;
 	/**
-	 * @var PostRepo
+	 * @var ArticleRepo
 	 */
-	private $postRepo;
+	private $articleRepo;
 
-	public function __construct(UserRepo $userRepo, PostRepo $postRepo)
+	public function __construct(UserRepo $userRepo, ArticleRepo $articleRepo)
 	{
 		$this->userRepo = $userRepo;
-		$this->postRepo = $postRepo;
+		$this->articleRepo = $articleRepo;
 	}
 
 

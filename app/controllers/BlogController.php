@@ -1,6 +1,6 @@
 <?php
 
-use LaravelRU\Article\Repositories\PostRepo;
+use LaravelRU\Article\Repositories\ArticleRepo;
 use LaravelRU\User\Repositories\UserRepo;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -11,17 +11,17 @@ class BlogController extends BaseController {
 	 */
 	private $userRepo;
 	/**
-	 * @var PostRepo
+	 * @var ArticleRepo
 	 */
-	private $postRepo;
+	private $articleRepo;
 
-	private $postsOnPage;
+	private $articlesOnPage;
 
-	public function __construct(UserRepo $userRepo, PostRepo $postRepo)
+	public function __construct(UserRepo $userRepo, ArticleRepo $articleRepo)
 	{
 		$this->userRepo = $userRepo;
-		$this->postRepo = $postRepo;
-		$this->postsOnPage = 10;
+		$this->articleRepo = $articleRepo;
+		$this->articlesOnPage = 10;
 	}
 
 	public function blog($username)
@@ -32,14 +32,14 @@ class BlogController extends BaseController {
 		}
 
 		if(Auth::id() == $user->id){
-			$posts = $user->posts()->paginate($this->postsOnPage);
+			$articles = $user->articles()->paginate($this->articlesOnPage);
 			$is_author = true;
 		}else{
-			$posts = $user->posts()->notDraft()->paginate($this->postsOnPage);
+			$articles = $user->articles()->notDraft()->paginate($this->articlesOnPage);
 			$is_author = false;
 		}
 
-		return View::make("blog/user_blog", compact("posts", "user", 'is_author'));
+		return View::make("blog/user_blog", compact("articles", "user", 'is_author'));
 	}
 
 

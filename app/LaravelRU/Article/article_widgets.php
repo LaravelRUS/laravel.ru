@@ -1,6 +1,6 @@
 <?php
 
-Widget::register('previewPost', function($post)
+Widget::register('previewArticle', function($article)
 {
-    return View::make("post/box_post", compact("post"))->render();
+    return View::make("article/box_article", compact("article"))->render();
 });

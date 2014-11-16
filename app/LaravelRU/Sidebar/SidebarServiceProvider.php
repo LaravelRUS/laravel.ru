@@ -3,7 +3,7 @@
 use App;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use LaravelRU\Article\Repositories\PostRepo;
+use LaravelRU\Article\Repositories\ArticleRepo;
 
 class SidebarServiceProvider extends ServiceProvider {
 

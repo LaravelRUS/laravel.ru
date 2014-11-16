@@ -35,12 +35,12 @@ Laravel - русскоязычное комьюнити
 			</div>
 			<div class="col-md-6">
 				<h3>Новые статьи
-					<?if(allowCreatePost()){?>
-						<small><a href="<?= route("post.create") ?>" class="btn btn-secondary btn-sm">Написать свою</a></small>
+					<?if(allowCreateArticle()){?>
+						<small><a href="<?= route("article.create") ?>" class="btn btn-secondary btn-sm">Написать свою</a></small>
 					<?}?>
 				</h3>
-				<?foreach($lastPosts as $post){?>
-					@previewPost($post)
+				<?foreach($lastArticles as $post){?>
+					@previewArticle($post)
 				<?}?>
 
 			</div>

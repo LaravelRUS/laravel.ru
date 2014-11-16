@@ -3,7 +3,7 @@
 use Auth;
 use LaravelRU\Core\Access\BaseAccess;
 use News;
-use Post;
+use Article;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class Access extends BaseAccess{
@@ -67,17 +67,17 @@ class Access extends BaseAccess{
 	 * Посты
 	 */
 
-	public function checkCreatePost()
+	public function checkCreateArticle()
 	{
 		$this->disableGuests();
 
 	}
 
-	public function checkEditPost(Post $post)
+	public function checkEditArticle(Article $article)
 	{
 		$this->disableGuests();
-		if( ! $post ) return false;
-		if($post->author_id == Auth::user()->id){
+		if( ! $article ) return false;
+		if($article->author_id == Auth::user()->id){
 			return true;
 		}
 		if(Auth::user()->isAdmin()) return true;

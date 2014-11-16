@@ -1,30 +1,30 @@
 <?php namespace LaravelRU\Sidebar;
 
-use LaravelRU\Article\Repositories\PostRepo;
+use LaravelRU\Article\Repositories\ArticleRepo;
 use View;
 
 class Sidebar {
 
 	/**
-	 * @var PostRepo
+	 * @var ArticleRepo
 	 */
-	private $postRepo;
+	private $articleRepo;
 
-	public function __construct(PostRepo $postRepo)
+	public function __construct(ArticleRepo $articleRepo)
 	{
-		$this->postRepo = $postRepo;
+		$this->articleRepo = $articleRepo;
 	}
 
-	public function renderLastPosts($num_posts = 6)
+	public function renderLastArticles($num_articles = 6)
 	{
-		$posts = $this->postRepo->getLastPosts($num_posts);
-		return View::make("sidebar/sidebar_last_posts", compact("posts"));
+		$articles = $this->articleRepo->getLastArticles($num_articles);
+		return View::make("sidebar/sidebar_last_articles", compact("articles"));
 	}
 
 
 	public function typicalSidebar()
 	{
-		return $this->renderLastPosts();
+		return $this->renderLastArticles();
 	}
 
 

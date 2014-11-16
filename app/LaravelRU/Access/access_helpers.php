@@ -68,21 +68,21 @@ function allowApproveNews(){
  * Посты
  */
 
-function allowCreatePost(){
+function allowCreateArticle(){
 	try{
-		Access::checkCreatePost();
+		Access::checkCreateArticle();
 	}catch(AccessDeniedException $e){
 		return false;
 	}
 	return true;
 }
-function allowEditPost($id){
+function allowEditArticle($id){
 
-	$post = Post::find($id);
-	if( ! $post) return false;
+	$article = Article::find($id);
+	if( ! $article) return false;
 
 	try{
-		Access::checkEditPost($post);
+		Access::checkEditArticle($article);
 	}catch(AccessDeniedException $e){
 		return false;
 	}

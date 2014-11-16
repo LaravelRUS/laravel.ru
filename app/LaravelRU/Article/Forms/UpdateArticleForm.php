@@ -2,7 +2,7 @@
 
 use Laracasts\Validation\FormValidator;
 
-class UpdatePostForm extends FormValidator{
+class UpdateArticleForm extends FormValidator{
 
 	protected $rules = [
 		'title'   => 'required',

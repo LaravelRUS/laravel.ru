@@ -77,14 +77,14 @@ Route::get( 'user/{string}/blog',            ['uses'=>'BlogController@blog',    
 
 // ===== Отображение поста
 
-Route::get( 'article/{slug}',              ['uses' => 'ArticleController@show',               'as' => 'post.view']);
+Route::get( 'article/{slug}',              ['uses' => 'ArticleController@show',               'as' => 'article.view']);
 
 Route::group(['before'=>'auth'], function() {
 
 	// Создание/редактирование постов
-	Route::get( 'post/{slug}/edit/',    ['uses' => 'ArticleController@edit',               'as' => 'post.edit']);
-	Route::get( 'posts/create',          ['uses' => 'ArticleController@create',             'as' => 'post.create']);
-	Route::post('posts/store',           ['uses' => 'ArticleController@store',              'as' => 'post.store']);
+	Route::get( 'article/{slug}/edit/',    ['uses' => 'ArticleController@edit',               'as' => 'article.edit']);
+	Route::get( 'articles/create',          ['uses' => 'ArticleController@create',             'as' => 'article.create']);
+	Route::post('articles/store',           ['uses' => 'ArticleController@store',              'as' => 'article.store']);
 
 	// Внутренний профайл пользователя (настройки, смена пароля и т.п.)
 	Route::get('settings',               ['uses' => 'UserController@edit',            'as' => 'user.edit']);
