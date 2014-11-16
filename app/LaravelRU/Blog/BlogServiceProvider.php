@@ -30,7 +30,6 @@ class BlogServiceProvider extends ServiceProvider {
 		// Including module-related routes etc
 		include __DIR__.DIRECTORY_SEPARATOR.'blog_helpers.php';
 		include __DIR__.DIRECTORY_SEPARATOR.'blog_events.php';
-		include __DIR__.DIRECTORY_SEPARATOR.'blog_filters.php';
 
 		// ...
 	}

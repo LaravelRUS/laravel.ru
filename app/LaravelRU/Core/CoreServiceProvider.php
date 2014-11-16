@@ -25,7 +25,7 @@ class CoreServiceProvider extends ServiceProvider{
 
 		include __DIR__.'/core_exceptions.php';
 		//include __DIR__.'/core_routes.php';
-		include __DIR__.'/core_helpers.php';
+//		include __DIR__ . '/core_helpers.php';
 
 	}
 

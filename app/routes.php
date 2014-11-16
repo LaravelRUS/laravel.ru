@@ -54,14 +54,14 @@ Route::group(['before'=>'administrator'], function() {
 // ===== Документация
 
 Route::group(['before'=>'librarians'], function() {
-	Route::get( 'admin/docs/terms',                    ['uses'=>'TermController@listTerms',             'as'=>'terms']);
-	Route::get( 'admin/docs/term/create',                    ['uses'=>'TermController@create',             'as'=>'term.create']);
-	Route::get( 'admin/docs/term/{id}/edit',                    ['uses'=>'TermController@edit',             'as'=>'term.edit']);
-	Route::post('admin/docs/term/store',                    ['uses'=>'TermController@store',             'as'=>'term.store']);
+	Route::get( 'documentation/terms',                    ['uses'=>'TermController@listTerms',             'as'=>'terms']);
+	Route::get( 'documentation/term/create',                    ['uses'=>'TermController@create',             'as'=>'term.create']);
+	Route::get( 'documentation/term/{id}/edit',                    ['uses'=>'TermController@edit',             'as'=>'term.edit']);
+	Route::post('documentation/term/store',                    ['uses'=>'TermController@store',             'as'=>'term.store']);
 
-	Route::get( 'admin/docs/updates',                    ['uses'=>'DocsController@updates',             'as'=>'docs.updates']);
+	Route::get( 'documentation/updates',                    ['uses'=>'DocsController@updates',             'as'=>'documentation.updates']);
 });
-Route::get( 'docs/term/{id}',                    ['uses'=>'TermController@popup',             'as'=>'term.popup']);
+Route::get( 'documentation/term/{id}',                    ['uses'=>'TermController@popup',             'as'=>'term.popup']);
 
 Route::get( 'docs',                              ['uses'=>'DocsController@docs',             'as'=>'documentation']);
 Route::get( 'docs/{version}/{string?}',          ['uses'=>'DocsController@docs',              'as'=>'docs']);

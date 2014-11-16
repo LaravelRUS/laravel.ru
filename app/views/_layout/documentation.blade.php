@@ -18,21 +18,21 @@
 </script>
 
 <div id="submenu_panel">
-<div class="navbar submenu-nav" id="version_selector">
+<div class="navbar submenu-nav">
 
 	<div class="container">
 		<div class="row">
 
-			<?= DocsWidget::versionSelector($version, $name) ?>
+			@versionSelector($version, $name)
 
 			<ul class="nav navbar-nav navbar-right">
-			<?if(allowEditTerms()){?><li><a href="<?= route("terms") ?>">Термины</a></li><?}?>
-				<li><a href="<?= route("docs.updates") ?>">Прогресс перевода</a></li>
+				<?if(allowEditTerms()){?> @li("Термины", "terms") <?}?>
+				@li("Прогресс перевода", "documentation.updates")
 			</ul>
 
 		</div>
 	</div>
-	</div>
+</div>
 </div>
 @stop
 

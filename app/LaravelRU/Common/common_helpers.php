@@ -25,3 +25,25 @@ function breadcrumbs($items)
 	$output .= "</ol>";
 	return $output;
 }
+
+/**
+ * Установить класс active для текущего пункта menu
+ *
+ * @param $route_menu string
+ * @return string
+ */
+function activeByRoute($routeMatch)
+{
+	$pregRouteMatch = str_replace('.','\.', $routeMatch);
+	$pregRouteMatch = str_replace('*','.*', $pregRouteMatch);
+	$currentRoute = Route::currentRouteName();
+	preg_match("/$pregRouteMatch/", $currentRoute, $match);
+
+	if( ! isset($match[0])) return false;
+
+	if($match[0] == $currentRoute){
+		return "active";
+	}else{
+		return "";
+	}
+}

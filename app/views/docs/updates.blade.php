@@ -4,6 +4,22 @@
     Апдейты документации
 @stop
 
+@section("submenu")
+
+<div class="navbar submenu-nav">
+
+    <div class="container">
+        <div class="row">
+            <ul class="nav navbar-nav navbar-right">
+                <?if(allowEditTerms()){?><li class="<?= activeByRoute("terms") ?>"><a href="<?= route("terms") ?>">Термины</a></li><?}?>
+                @li("Прогресс перевода", "documentation.updates")
+            </ul>
+        </div>
+    </div>
+</div>
+
+@stop
+
 @section('content')
 
 <h1>Апдейты документации</h1>
@@ -29,7 +45,7 @@
         <td><span class="text-muted"><?=$page->current_original_commit?></span></td>
         <td>
             <?if($page->original_commits_ahead==0){?>
-                    <span class="text-success"></span>
+                    <span class="text-success">перевод не требуется</span>
             <?}else{?>
                 <span class="text-danger"><?= $page->original_commits_ahead ?></span>
                 git difftool <?=substr($page->last_original_commit, 0, 7)?> <?=substr($page->current_original_commit, 0, 7)?> <?= $page->name ?>.md

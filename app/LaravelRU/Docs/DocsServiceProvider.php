@@ -12,13 +12,15 @@ class DocsServiceProvider extends ServiceProvider{
 	{
 		$this->commands('LaravelRU\Docs\Commands\UpdateDocsCron');
 
+		include __DIR__.DIRECTORY_SEPARATOR.'docs_widgets.php';
+
 		// Регистрация фасада DocsWidget
-		$this->app->bind("docswidget", function($app){
-			return new DocsWidget();
-		});
-		$this->app->booting(function(){
-			AliasLoader::getInstance()->alias('DocsWidget', 'LaravelRU\Docs\Facades\DocsWidget');
-		});
+//		$this->app->bind("docswidget", function($app){
+//			return new DocsWidget();
+//		});
+//		$this->app->booting(function(){
+//			AliasLoader::getInstance()->alias('DocsWidget', 'LaravelRU\Docs\Facades\DocsWidget');
+//		});
 	}
 
 	public function boot()

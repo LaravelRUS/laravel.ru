@@ -76,7 +76,7 @@
 								<li><a href="<?= route("admin.users") ?>">Список пользователей</a></li>
 							<?}?>
 							<?if(Auth::user()->isLibrarian()){?>
-								<li><a href="<?= route("docs.updates") ?>">Прогресс перевода</a></li>
+								<li><a href="<?= route("documentation.updates") ?>">Прогресс перевода</a></li>
 							<?}?>
 							<li class="divider"></li>
 							<li><a href="<?= route('auth.logout') ?>">Выход</a></li>
