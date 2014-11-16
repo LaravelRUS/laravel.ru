@@ -9,7 +9,7 @@
 <h1><?= e($post->title) ?></h1>
 
 <div class="post_credentials">
-	Автор: <?= $post->author->displayBlogUrl() ?>
+	Автор: <?= $post->author->displayProfileUrl() ?>
 </div>
 
 <?if(allow_edit_post($post->id)){?>
