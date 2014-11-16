@@ -76,3 +76,16 @@ function allowCreatePost(){
 	}
 	return true;
 }
+function allowEditPost($id){
+
+	$post = Post::find($id);
+	if( ! $post) return false;
+
+	try{
+		Access::checkEditPost($post);
+	}catch(AccessDeniedException $e){
+		return false;
+	}
+
+	return true;
+}
