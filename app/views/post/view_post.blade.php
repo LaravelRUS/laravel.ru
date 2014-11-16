@@ -12,7 +12,7 @@
 	Автор: <?= $post->author->displayProfileUrl() ?>
 </div>
 
-<?if(allow_edit_post($post->id)){?>
+<?if(allowEditPost($post->id)){?>
 	<div class="user_controls">
 		<a href="<?= route('post.edit',[$post->slug]) ?>" class="btn btn-default">Редактировать</a>
 	</div>
