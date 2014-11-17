@@ -24,6 +24,8 @@
 
 <h1>Апдейты документации</h1>
 
+<p>Если вы хотите помочь с переводом документации, ознакомьтесь пожалуйста с этой <a href="/article/rus-documentation-contribution-guide">инструкцией</a>.</p>
+
 <?foreach($docs as $version=>$pages){?>
 
 <h2>Ветка <?= $version ?></h2>

@@ -5,7 +5,6 @@ return array(
 	'versions' => [
 		"master",
 		"4.2",
-		
 		"4.1",
 	],
 
