@@ -15,7 +15,7 @@ use Laracasts\Presenter\PresentableTrait; // https://github.com/laracasts/Presen
  * @property string $password
  * @property string $remember_token
  * @property string $last_login_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\Article[] $posts
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Article[] $articles
  * @method static \Illuminate\Database\Query\Builder|\User whereId($value) 
  * @method static \Illuminate\Database\Query\Builder|\User whereCreatedAt($value) 
  * @method static \Illuminate\Database\Query\Builder|\User whereUpdatedAt($value) 

@@ -156,10 +156,10 @@ code{
 
 
 
-textarea.post_description{
+textarea.article_description{
     height: 120px;
 }
-textarea.post_text{
+textarea.article_text{
     height: 500px;
     font-size: 12px;
     padding: 4px;
