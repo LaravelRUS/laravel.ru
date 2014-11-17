@@ -111,6 +111,19 @@ code{
     margin-bottom: 1px;
 }
 
+
+/*новые статьи*/
+.article_box{
+    margin: 20px 0 0px 0;
+}
+.article_box .article_title a{
+    font-size: 18px;
+    font-weight: 600;
+}
+.article_box .date {
+    margin-right: 10px;
+}
+
 /*новые пакеты*/
 .package_box{
     margin: 20px 0 0px 0;
@@ -139,6 +152,8 @@ code{
 .docs_box .name {
     font-size: 16px;
 }
+
+
 
 
 textarea.post_description{

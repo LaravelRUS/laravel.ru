@@ -39,8 +39,12 @@ Laravel - русскоязычное комьюнити
 						<small><a href="<?= route("article.create") ?>" class="btn btn-secondary btn-sm">Написать свою</a></small>
 					<?}?>
 				</h3>
-				<?foreach($lastArticles as $post){?>
-					@previewArticle($post)
+				<?foreach($lastArticles as $article){?>
+					<div class="article_box">
+						<div class="article_title"><a href="<?= route("article.view", [$article->slug]) ?>"><?= e($article->title) ?></a></div>
+						<div class="article_credentials"><span class="date"><?= $article->displayPublishedAt() ?></span> <?= $article->author->displayProfile() ?></div>
+						<div class="article_preview"><?= e($article->description) ?></div>
+					</div>
 				<?}?>
 
 			</div>

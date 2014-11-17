@@ -9,6 +9,9 @@ class HookController extends BaseController {
 
 	public function docsIsUpdated()
 	{
+		$input = Input::json();
+		if($input->secret != $this->secret) return;
+
 		Artisan::call("su:update_docs");
 	}
 		

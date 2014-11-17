@@ -47,7 +47,7 @@ class Article extends \Eloquent {
 		return $parse->markdown($this->text);
 	}
 
-	public function displayDate()
+	public function displayPublishedAt()
 	{
 		return $this->published_at->format("d M");
 	}

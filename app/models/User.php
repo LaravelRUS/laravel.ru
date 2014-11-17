@@ -155,7 +155,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
 	// ===========================================================================================
 
-	public function displayProfileUrl()
+	public function displayProfile()
 	{
 		return "<a class='user' href='".route("user.profile", [$this->name])."'>$this->name</a>";
 	}

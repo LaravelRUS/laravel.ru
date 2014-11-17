@@ -20,7 +20,8 @@ Route::controller( 'test',  "TestController");
 
 // ===== Хуки гитхаба =====
 
-Route::get( 'hook/docs_is_updated',                    ['uses'=>'HookController@docsIsUpdated',             'as'=>'hook.docs_is_updated']);
+// Push или pull-request в репозиторий с доками
+Route::get( 'hook/docs_is_updated',     ['uses'=>'HookController@docsIsUpdated',        'as'=>'hook.docs_is_updated']);
 
 
 // ===== Авторизация =====

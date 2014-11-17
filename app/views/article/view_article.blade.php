@@ -9,18 +9,18 @@
 <h1><?= e($article->title) ?></h1>
 
 <div class="post_credentials">
-	Автор: <?= $post->author->displayProfileUrl() ?>
+	Автор: <?= $article->author->displayProfile() ?>
 </div>
 
-<?if(allowEditArticle($post->id)){?>
+<?if(allowEditArticle($article->id)){?>
 	<div class="user_controls">
-		<a href="<?= route('post.edit',[$post->slug]) ?>" class="btn btn-default">Редактировать</a>
+		<a href="<?= route('article.edit',[$article->slug]) ?>" class="btn btn-default btn-sm">Редактировать</a>
 	</div>
 <?}?>
 
 
 <div class="post_content">
-	<?= $post->displayText() ?>
+	<?= $article->displayText() ?>
 </div>
 
 @stop
