@@ -123,7 +123,12 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
 	public function articles()
 	{
-		return $this->hasMany('Article', "author_id")->orderBy('published_at','DESC')->limit(1);
+		return $this->hasMany('Article', "author_id")->orderBy('published_at','DESC');
+	}
+
+	public function tips()
+	{
+		return $this->hasMany("Tip", "author_id")->orderBy('published_at','DESC');
 	}
 
     // ===========================================================================================

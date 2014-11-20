@@ -44,7 +44,11 @@
         <td><?= $page->name ?></td>
         <td><?= $page->last_commit_at->format("d.m.Y H:i") ?> <span class="text-muted"><?= substr($page->last_commit, 0, 7) ?></span></td>
         <td><?= $page->last_original_commit_at->format("d.m.Y H:i") ?> <span class="text-muted"><?= substr($page->last_original_commit, 0, 7) ?></span></td>
-        <td><span class="text-muted"><?=$page->current_original_commit?></span></td>
+        <td><span class="text-muted">
+
+                <a href="https://github.com/laravel/docs/blob/<?=$page->current_original_commit?>/<?= $page->name ?>.md"><?=$page->current_original_commit?></a>
+            </span>
+        </td>
         <td>
             <?if($page->original_commits_ahead==0){?>
                     <span class="text-success">перевод не требуется</span>

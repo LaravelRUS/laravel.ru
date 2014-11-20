@@ -36,15 +36,7 @@ Route::post('login',                    ['uses'=>'AuthController@postLogin',    
 
 Route::get( 'logout',                   ['uses'=>'AuthController@getLogout',            'as'=>'auth.logout']);
 
-// ===== Новости =====
 
-Route::group(['before'=>'logged'], function(){
-	Route::get( 'news/create',                  ['uses'=>'NewsController@create',               'as'=>'news.create']);
-	Route::get( 'news/edit/{id}',               ['uses'=>'NewsController@edit',                 'as'=>'news.edit']);
-	Route::post('news/save',                    ['uses'=>'NewsController@store',                'as'=>'news.store']);
-
-});
-Route::get( 'news',                     ['uses'=>'NewsController@all',                  'as'=>'news']);
 
 // ===== Админка =====
 
@@ -71,26 +63,49 @@ Route::get( 'documentation/term/{id}',                    ['uses'=>'TermControll
 Route::get( 'docs',                              ['uses'=>'DocsController@docs',             'as'=>'documentation']);
 Route::get( 'docs/{version}/{string?}',          ['uses'=>'DocsController@docs',              'as'=>'docs']);
 
-// ===== Блог пользователя
+// ===== Профайл пользователя
 
 Route::get( 'user/{string}',            ['uses'=>'UserController@profile',                 'as'=>'user.profile']);
-Route::get( 'user/{string}/blog',            ['uses'=>'BlogController@blog',                 'as'=>'user.blog']);
-
-// ===== Отображение поста
-
-Route::get( 'article/{slug}',              ['uses' => 'ArticleController@show',               'as' => 'article.view']);
+Route::get( 'user/{string}/articles',            ['uses'=>'UserController@articles',                 'as'=>'user.articles']);
+Route::get( 'user/{string}/tips',            ['uses'=>'UserController@tips',                 'as'=>'user.tips']);
 
 Route::group(['before'=>'auth'], function() {
-
-	// Создание/редактирование постов
-	Route::get( 'article/{slug}/edit/',    ['uses' => 'ArticleController@edit',               'as' => 'article.edit']);
-	Route::get( 'articles/create',          ['uses' => 'ArticleController@create',             'as' => 'article.create']);
-	Route::post('articles/store',           ['uses' => 'ArticleController@store',              'as' => 'article.store']);
-
 	// Внутренний профайл пользователя (настройки, смена пароля и т.п.)
 	Route::get('settings',               ['uses' => 'UserController@edit',            'as' => 'user.edit']);
-
 });
+
+
+// ===== Новости =====
+
+Route::get( 'news',                         ['uses'=>'NewsController@all',                  'as'=>'news']);
+
+Route::group(['before'=>'logged'], function(){
+	Route::get( 'news/create',              ['uses'=>'NewsController@create',               'as'=>'news.create']);
+	Route::get( 'news/edit/{id}',           ['uses'=>'NewsController@edit',                 'as'=>'news.edit']);
+	Route::post('news/save',                ['uses'=>'NewsController@store',                'as'=>'news.store']);
+});
+
+
+// ===== Статьи
+
+Route::get( 'article/{slug}',               ['uses' => 'ArticleController@show',               'as' => 'article.view']);
+
+Route::group(['before'=>'auth'], function() {
+	Route::get( 'article/{slug}/edit/',     ['uses' => 'ArticleController@edit',               'as' => 'article.edit']);
+	Route::get( 'articles/create',          ['uses' => 'ArticleController@create',             'as' => 'article.create']);
+	Route::post('articles/store',           ['uses' => 'ArticleController@store',              'as' => 'article.store']);
+});
+
+
+// ===== "А знаете ли вы что" - советы
+
+Route::group(['before'=>'auth'], function() {
+	Route::get( 'tip/{id}/edit/',           ['uses' => 'TipsController@edit',               'as' => 'tips.edit']);
+	Route::get( 'tips/create',              ['uses' => 'TipsController@create',             'as' => 'tips.create']);
+	Route::post('tips/store',               ['uses' => 'TipsController@store',              'as' => 'tips.store']);
+});
+
+
 
 //Route::get("{any}", 'HomeController@home');
 

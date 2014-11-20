@@ -70,7 +70,7 @@
 					<li>
 						<a href="#" data-toggle="dropdown"><?= Auth::user()->name ?> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="<?= route("user.blog", Auth::user()->name) ?>">Мой блог</a></li>
+							<li><a href="<?= route("user.profile", Auth::user()->name) ?>">Мой профайл</a></li>
 							<?if(Auth::user()->isAdmin()){?>
 								<li class="divider"></li>
 								<li><a href="<?= route("admin.users") ?>">Список пользователей</a></li>

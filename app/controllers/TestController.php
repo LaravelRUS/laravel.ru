@@ -11,12 +11,18 @@ class TestController extends BaseController {
 
 	public function getIndex()
 	{
+		/*
 		$client = new Packagist\Api\Client();
 		$name = "volicon/laravel-acl";
 		$package = $client->get($name);
 		//var_dump($package);
 		$versions = $package->getVersions();
 		var_dump(array_first($versions, function(){ return true; }));
+*/
+		$packages = DB::table('packages')->where('id', '=', 87)->get();
+		return "eee";
+		//dd($packages->toArray());
+
 	}
 
 	public function getFail()
