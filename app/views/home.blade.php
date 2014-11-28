@@ -22,10 +22,27 @@ Laravel - русскоязычное комьюнити
 	<div class="row">
 
 		<div class="row">
-			<div class="col-md-6" style="border-right: 1px solid #eee;">
+
+			<div class="col-md-8" style="border-right: 1px solid #eee;">
+				<h3>Новые посты
+					<?if(allowCreatePost()){?>
+						<small><a href="<?= route("post.create") ?>" class="btn btn-secondary btn-sm">Написать пост</a></small>
+					<?}?>
+				</h3>
+				<?foreach($lastPosts as $post){?>
+					<div class="post_box">
+						<div class="post_title"><a href="<?= route("post.view", [$post->slug]) ?>"><?= e($post->title) ?></a></div>
+						<div class="post_credentials"><span class="date"><?= $post->displayPublishedAt() ?></span> <?= $post->author->displayProfile() ?></div>
+						<div class="post_preview"><?= e($post->description) ?></div>
+					</div>
+				<?}?>
+
+			</div>
+
+			<div class="col-md-4" >
 				<h3>Новости
 					<?if(allowCreateNews()){?>
-					<small><a href="<?= route("news.create") ?>" class="btn btn-secondary btn-sm">Предложить новость</a></small>
+						<small><a href="<?= route("news.create") ?>" class="btn btn-secondary btn-sm">Предложить новость</a></small>
 					<?}?>
 				</h3>
 				<?foreach($lastNews as $news){?>
@@ -33,22 +50,11 @@ Laravel - русскоязычное комьюнити
 				<?}?>
 
 			</div>
-			<div class="col-md-6">
-				<h3>Новые статьи
-					<?if(allowCreateArticle()){?>
-						<small><a href="<?= route("article.create") ?>" class="btn btn-secondary btn-sm">Написать свою</a></small>
-					<?}?>
-				</h3>
-				<?foreach($lastArticles as $article){?>
-					<div class="article_box">
-						<div class="article_title"><a href="<?= route("article.view", [$article->slug]) ?>"><?= e($article->title) ?></a></div>
-						<div class="article_credentials"><span class="date"><?= $article->displayPublishedAt() ?></span> <?= $article->author->displayProfile() ?></div>
-						<div class="article_preview"><?= e($article->description) ?></div>
-					</div>
-				<?}?>
 
-			</div>
 		</div>
+
+		<hr>
+
 		<div class="row">
 			<div class="col-md-4" style="border-right: 1px solid #eee;">
 

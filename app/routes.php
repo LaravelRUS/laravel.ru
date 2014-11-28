@@ -88,12 +88,12 @@ Route::group(['before'=>'logged'], function(){
 
 // ===== Статьи
 
-Route::get( 'article/{slug}',               ['uses' => 'ArticleController@show',               'as' => 'article.view']);
+Route::get( 'post/{slug}',               ['uses' => 'PostController@show',               'as' => 'post.view']);
 
 Route::group(['before'=>'auth'], function() {
-	Route::get( 'article/{slug}/edit/',     ['uses' => 'ArticleController@edit',               'as' => 'article.edit']);
-	Route::get( 'articles/create',          ['uses' => 'ArticleController@create',             'as' => 'article.create']);
-	Route::post('articles/store',           ['uses' => 'ArticleController@store',              'as' => 'article.store']);
+	Route::get( 'post/{slug}/edit/',     ['uses' => 'PostController@edit',               'as' => 'post.edit']);
+	Route::get( 'posts/create',          ['uses' => 'PostController@create',             'as' => 'post.create']);
+	Route::post('posts/store',           ['uses' => 'PostController@store',              'as' => 'post.store']);
 });
 
 

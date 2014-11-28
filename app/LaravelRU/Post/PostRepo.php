@@ -1,25 +1,25 @@
-<?php namespace LaravelRU\Article\Repositories;
+<?php namespace LaravelRU\Post;
 
 use LaravelRU\Core\Repository\BaseRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Article;
+use Post;
 
-class ArticleRepo extends BaseRepository {
+class PostRepo extends BaseRepository {
 	
-	public function __construct(Article $article)
+	public function __construct(Post $post)
 	{
-		$this->model = $article;
+		$this->model = $post;
 	}
 
 	/**
 	 * id автора поста
 	 *
-	 * @param int $article_id
+	 * @param int $post_id
 	 * @return int
 	 */
-	public function getAuthorId($article_id)
+	public function getAuthorId($post_id)
 	{
-		$author_id = $this->model->where("id", $article_id)->first(["author_id"])->author_id;
+		$author_id = $this->model->where("id", $post_id)->first(["author_id"])->author_id;
 		return $author_id;
 	}
 	public function getAuthorIdBySlug($slug)
@@ -36,9 +36,9 @@ class ArticleRepo extends BaseRepository {
 	 */
 	public function getBySlug($slug)
 	{
-		$article = $this->model->where("slug", $slug)->with("author")->first();
-		//$article = $this->model->where("slug", $slug)->with("author")->first();
-		return $article;
+		$post = $this->model->where("slug", $slug)->with("author")->first();
+		//$post = $this->model->where("slug", $slug)->with("author")->first();
+		return $post;
 	}
 
 	/**
@@ -47,7 +47,7 @@ class ArticleRepo extends BaseRepository {
 	 * @param int $num
 	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
-	public function getLastArticles($num = 10)
+	public function getLastPosts($num = 10)
 	{
 		return $this->model->notDraft()->with("author")->orderBy("published_at", "DESC")->limit($num)->get();
 	}

@@ -15,7 +15,7 @@ use Laracasts\Presenter\PresentableTrait; // https://github.com/laracasts/Presen
  * @property string $password
  * @property string $remember_token
  * @property string $last_login_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\Article[] $articles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Post[] $posts
  * @method static \Illuminate\Database\Query\Builder|\User whereId($value) 
  * @method static \Illuminate\Database\Query\Builder|\User whereCreatedAt($value) 
  * @method static \Illuminate\Database\Query\Builder|\User whereUpdatedAt($value) 
@@ -121,9 +121,9 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 		return $this->belongsToMany("Role","user_role_pivot","user_id","role_id");
 	}
 
-	public function articles()
+	public function posts()
 	{
-		return $this->hasMany('Article', "author_id")->orderBy('published_at','DESC');
+		return $this->hasMany('Post', "author_id")->orderBy('published_at','DESC');
 	}
 
 	public function tips()

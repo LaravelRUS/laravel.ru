@@ -1,8 +1,8 @@
-<?php namespace LaravelRU\Article\Forms;
+<?php namespace LaravelRU\Post\Forms;
 
 use Laracasts\Validation\FormValidator;
 
-class UpdateArticleForm extends FormValidator{
+class UpdatePostForm extends FormValidator{
 
 	protected $rules = [
 		'title'   => 'required',

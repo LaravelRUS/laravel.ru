@@ -113,14 +113,14 @@ code{
 
 
 /*новые статьи*/
-.article_box{
+.post_box{
     margin: 20px 0 0px 0;
 }
-.article_box .article_title a{
+.post_box .post_title a{
     font-size: 18px;
     font-weight: 600;
 }
-.article_box .date {
+.post_box .date {
     margin-right: 10px;
 }
 
@@ -156,10 +156,10 @@ code{
 
 
 
-textarea.article_description{
+textarea.post_description{
     height: 120px;
 }
-textarea.article_text{
+textarea.post_text{
     height: 500px;
     font-size: 12px;
     padding: 4px;

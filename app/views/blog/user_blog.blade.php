@@ -16,13 +16,13 @@
 	</div>
 @endif
 
-@if (count($articles)==0)
+@if (count($posts)==0)
 
 	<p>У пользователя пока нет постов.</p>
 
 @else
 
-	@foreach ($articles as $article)
+	@foreach ($posts as $post)
 
 		@include("blog.partials.short_blog_post")
 

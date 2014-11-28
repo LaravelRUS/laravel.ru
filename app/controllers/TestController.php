@@ -19,10 +19,8 @@ class TestController extends BaseController {
 		$versions = $package->getVersions();
 		var_dump(array_first($versions, function(){ return true; }));
 */
-		$packages = DB::table('packages')->where('id', '=', 87)->get();
-		return "eee";
-		//dd($packages->toArray());
-
+		$package = Package::find(1);
+		$package->update(['']);
 	}
 
 	public function getFail()

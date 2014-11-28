@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Categories extends Migration {
+class AddCategoriesToPost extends Migration {
 
 	/**
 	 * Run the migrations.

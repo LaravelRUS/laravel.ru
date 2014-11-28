@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Article extends \Eloquent {
+class Post extends \Eloquent {
 
-	protected   $table =        'articles';
+	protected   $table =        'posts';
 	protected   $primaryKey =   'id';
 	public      $timestamps =   true;
 
@@ -33,6 +33,11 @@ class Article extends \Eloquent {
 	}
 
 	// ===== Scopes =====
+
+	public function scopeArticle($query)
+	{
+		//return $query->where("")
+	}
 
 	public function scopeNotDraft($query)
 	{

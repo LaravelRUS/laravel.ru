@@ -18,7 +18,8 @@
 		"laracasts/flash": "~1.0",
 		"laravelrus/localized-carbon": "1.*",
 		"pingpong/widget" : "1.0.*",
-		"sleeping-owl/apist": "1.*"
+		"sleeping-owl/apist": "1.*",
+	  	"fguillot/picofeed": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

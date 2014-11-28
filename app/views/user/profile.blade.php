@@ -8,6 +8,5 @@
 
     <h1><?= e($user->name) ?></h1>
 
-    
 
 @stop
