@@ -3,6 +3,7 @@
 use LaravelRU\Post\PostRepo;
 use LaravelRU\Tips\TipsRepo;
 use LaravelRU\User\Repositories\UserRepo;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserController extends BaseController{
 
@@ -26,9 +27,14 @@ class UserController extends BaseController{
 		$this->tipsRepo = $tipsRepo;
 	}
 
-	public function profile()
+	public function profile($name)
 	{
-		$user = Auth::user()->with("posts")->with("tips")->with("news");
+		$user = User::where("name",$name)->with("posts")->with("tips")->with("news")->first();
+		if( ! $user){
+			throw new NotFoundHttpException;
+		}
+
+		$sidebar = Sidebar::renderLastPosts();
 
 		return View::make("user/profile", compact("user"));
 	}

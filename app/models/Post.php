@@ -44,6 +44,17 @@ class Post extends \Eloquent {
 		return $query->where("is_draft", 0);
 	}
 
+	// ===== Properties =====
+
+	public function isArticle()
+	{
+		if($this->type == "article"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	// ===== Presenter =====
 
 	public function displayText()

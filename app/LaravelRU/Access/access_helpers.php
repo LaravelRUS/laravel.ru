@@ -78,7 +78,12 @@ function allowCreatePost(){
 }
 function allowEditPost($id){
 
-	$post = Post::find($id);
+	if($id instanceof Post){
+		$post = &$id;
+	}else{
+		$post = Post::find($id);
+	}
+
 	if( ! $post) return false;
 
 	try{

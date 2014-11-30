@@ -112,7 +112,7 @@ code{
 }
 
 
-/*новые статьи*/
+/*новые посты*/
 .post_box{
     margin: 20px 0 0px 0;
 }
@@ -122,6 +122,13 @@ code{
 }
 .post_box .date {
     margin-right: 10px;
+}
+.post_credentials .controls{
+    margin-left: 10px;
+}
+
+.post_content{
+    margin-top: 20px;
 }
 
 /*новые пакеты*/

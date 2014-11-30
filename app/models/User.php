@@ -33,7 +33,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
 	protected   $fillable =     [];
     protected   $guarded =      [];
-    protected   $hidden =       ['password'];
+    protected   $hidden =       ['password', 'remember_token'];
 
 //	use         SoftDeletingTrait;
 //	protected   $dates =        ['deleted_at'];
@@ -129,6 +129,11 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	public function tips()
 	{
 		return $this->hasMany("Tip", "author_id")->orderBy('published_at','DESC');
+	}
+
+	public function news()
+	{
+		return $this->hasMany("News", "author_id")->orderBy('created_at','DESC');
 	}
 
     // ===========================================================================================

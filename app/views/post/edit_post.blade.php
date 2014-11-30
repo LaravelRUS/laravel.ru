@@ -39,11 +39,10 @@
 	});
 </script>
 
+<?= breadcrumbs(['Мой контент'=>route("user.profile", Auth::user()->name), ""=>""]) ?>
 <?if($post->id){?>
-	<?= breadcrumbs(['Мой блог'=>route("user.profile", Auth::user()->name), ""=>""]) ?>
 	<h1>Редактирование поста</h1>
 <?}else{?>
-	<?= breadcrumbs(['Мой блог'=>route("user.profile", Auth::user()->name), ""=>""]) ?>
 	<h1>Создание поста</h1>
 <?}?>
 

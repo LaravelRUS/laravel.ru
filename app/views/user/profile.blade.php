@@ -1,12 +1,10 @@
-@extends("_layout.rightsidebar")
+@extends('_layout.rightsidebar')
 
-@section("title")
-    Пользователь <?= $user->name ?>
+@section('title')
+    Пользователь
 @stop
 
-@section("content")
+@section('content')
 
-    <h1><?= e($user->name) ?></h1>
-
-
+sfsdfsd
 @stop
