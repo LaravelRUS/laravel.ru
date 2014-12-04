@@ -65,10 +65,16 @@ class Post extends \Eloquent {
 
 	public function displayDate()
 	{
+		if(is_null($this->published_at)){
+			return "не опубликовано";
+		}
 		return $this->published_at->format("d M");
 	}
 	public function displayPublishedAt()
 	{
+		if(is_null($this->published_at)){
+			return "не опубликовано";
+		}
 		return $this->published_at->format("d M");
 	}
 

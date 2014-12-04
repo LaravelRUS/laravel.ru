@@ -9,4 +9,5 @@ Thumbs.db
 /.vagrant
 .gitconfig
 .idea
-
+Envoy.blade.php
+deploy.php

@@ -19,8 +19,13 @@ class TestController extends BaseController {
 		$versions = $package->getVersions();
 		var_dump(array_first($versions, function(){ return true; }));
 */
-		$package = Package::find(1);
-		$package->update(['']);
+		Post::insert(
+				[
+					["title"=>"Oene", "description"=>"One Desc"],
+					["title"=>"Tweo", "description"=>"Two Desc"],
+				]
+		);
+		return "eee";
 	}
 
 	public function getFail()

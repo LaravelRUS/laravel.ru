@@ -74,6 +74,8 @@ class PostController extends BaseController {
 			$this->createPostForm->validate($input);
 		}
 
+		Post::insert($array);
+
 		$post->fill($input);
 
 		if($post->is_draft == 0 AND is_null($post->published_at)) $post->published_at = Carbon::now();
