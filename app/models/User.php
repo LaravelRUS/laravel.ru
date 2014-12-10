@@ -136,6 +136,11 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany("News", "author_id")->orderBy('created_at','DESC');
 	}
 
+	public function confirmation()
+	{
+		return $this->hasOne("UserConfirmation", "user_id")->orderBy('created_at','DESC');
+	}
+
     // ===========================================================================================
 
 	public function hasRole($role)
@@ -146,6 +151,11 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 		}else{
 			return false;
 		}
+	}
+
+	public function isActive()
+	{
+		return $this->is_confirmed;
 	}
 
 	public function isAdmin()

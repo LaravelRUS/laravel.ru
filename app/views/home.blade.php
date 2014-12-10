@@ -12,7 +12,7 @@ Laravel - русскоязычное комьюнити
 	<div class="container">
 		<h1>Laravel - php-фреймворк нового поколения</h1>
 		<p class="button-subtext">Мы верим, что процесс разработки только тогда наиболее продуктивен, когда работа с фреймворком приносит радость и удовольствие. Счастливые разработчики пишут лучший код.</p>
-		<a class="btn btn-default">Быстрый старт</a> <button class="btn btn-default">Документация</button>
+		<a class="btn btn-default" href="<?= route("docs") ?>">Документация</a> <a class="btn btn-default" href="/cheat">Cheat Sheet</a> <a class="btn btn-default" href="/">Циклы обучающих статей</a>
 	</div>
 </div>
 

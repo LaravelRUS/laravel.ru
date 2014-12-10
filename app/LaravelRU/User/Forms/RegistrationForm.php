@@ -8,7 +8,8 @@ class RegistrationForm extends FormValidator{
 		'name'          => 'required|min:4|max:23|unique:users,name|regex:/^[A-Za-z0-9]+$/',
 		'email'         => 'required|email|unique:users,email',
 		'password'      => 'required|min:6',
-		'i_agree'       => 'required'
+		'i_agree'       => 'required',
+		'g-recaptcha-response' => 'required|captcha'
 	];
 
 	protected $messages = [

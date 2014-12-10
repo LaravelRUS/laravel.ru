@@ -22,6 +22,7 @@ class AuthController extends BaseController {
 
 	public function getRegistration()
 	{
+
 		return View::make("auth/registration");
 	}
 	public function postRegistration()
@@ -33,6 +34,7 @@ class AuthController extends BaseController {
 		unset($input['i_agree']);
 
 		$user = User::create($input);
+		$user->confirmation = UserConfirmation::create(['code'=>Str::quickRandom(20)]);
 		$user->save();
 
 		Auth::login($user);
@@ -41,7 +43,7 @@ class AuthController extends BaseController {
 		return Redirect::route("home");
 
 	}
-	public function getConfirmation()
+	public function getConfirmation($code)
 	{
 		return View::make("auth/confirmation");
 	}

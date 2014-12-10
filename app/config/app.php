@@ -127,6 +127,7 @@ return array(
 		'Laracasts\Validation\ValidationServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
 		'Pingpong\Widget\WidgetServiceProvider',
+		'Anhskohbo\NoCaptcha\NoCaptchaServiceProvider',
 
 		// Главный сервис-провайдер приложения
 		'LaravelRU\Core\CoreServiceProvider'

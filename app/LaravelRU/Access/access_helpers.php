@@ -4,6 +4,32 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use LaravelRU\Access\Facades\Access;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+function isNeedConfirmation()
+{
+	if(Auth::check() AND ! Auth::user()->isActive()) return true;
+	else return false;
+}
+
+function isAdmin()
+{
+	if(Auth::guest()) return false;
+	return Auth::user()->isAdmin();
+}
+
+function isModerator()
+{
+	if(Auth::guest()) return false;
+	return Auth::user()->isModerator();
+}
+
+function isLibrarian()
+{
+	if(Auth::guest()) return false;
+	return Auth::user()->isLibrarian();
+}
+
+// ------------------------------
+
 function allowEditTerms()
 {
 	try{

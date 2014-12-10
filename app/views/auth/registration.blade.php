@@ -27,6 +27,10 @@
 					<input type="text" class="form-control" name="email" value="<?= Input::old('email') ?>">
 					@include('field-error', ['field'=>'email'])
 				</div>
+				<div class="form-group">
+					<?= Form::captcha() ?>
+					@include('field-error', ['field'=>'g-recaptcha-response'])
+				</div>
 				<div class="checkbox">
 					<label><input type="checkbox" name="i_agree" value="1"> Я соглашаюсь с правилами пользования.</label><br>
 					@include('field-error', ['field'=>'i_agree'])

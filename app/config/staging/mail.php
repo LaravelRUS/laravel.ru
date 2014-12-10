@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => "no-reply@sharedstation.net", 'name' => "Laravel.ru robot"),
+	'from' => array('address' => "postmaster@sharedstation.net", 'name' => "Laravel.ru robot"),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => "postmaster@sandboxb048aa52e8d24512bad356bb10abbe80.mailgun.org",
+	'username' => getenv("mailgun_username"),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => "d269f7ddf86fb331d2110a0717a243a7",
+	'password' => getenv("mailgun_password"),
 
 	/*
 	|--------------------------------------------------------------------------

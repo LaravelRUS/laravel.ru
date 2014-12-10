@@ -23,13 +23,20 @@ Route::controller( 'test',  "TestController");
 // Push или pull-request в репозиторий с доками
 Route::get( 'hook/docs_is_updated',     ['uses'=>'HookController@docsIsUpdated',        'as'=>'hook.docs_is_updated']);
 
+// ===== Страница cheatsheet =====
+
+Route::get( 'cheat', function(){
+	return View::make("cheatsheet/cheatsheet");
+});
+
 
 // ===== Авторизация =====
 
 Route::get( 'registration',             ['uses'=>'AuthController@getRegistration',      'as'=>'auth.registration']);
 Route::post('registration',             ['uses'=>'AuthController@postRegistration',     'as'=>'auth.registration.post']);
 
-Route::get( 'registration/done',        ['uses'=>'AuthController@getConfirmation',      'as'=>'auth.registration.confirmation']);
+Route::get( 'registration/done',        ['uses'=>'AuthController@getPreconfirmation',      'as'=>'auth.registration.preconfirmation']);
+Route::get( 'registration/confirmation/{string}',    ['uses'=>'AuthController@getConfirmation',      'as'=>'auth.registration.confirmation']);
 
 Route::get( 'login',                    ['uses'=>'AuthController@getLogin',             'as'=>'auth.login']);
 Route::post('login',                    ['uses'=>'AuthController@postLogin',            'as'=>'auth.login.post']);
