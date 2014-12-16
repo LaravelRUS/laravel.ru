@@ -13,7 +13,8 @@ Route::pattern('slug',   '[a-z0-9-]+'); // TODO решить, делаем ли 
 
 // CSRF Filter on all POST routes
 // You MUST use Form::open for forms
-Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
+// Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
+
 
 Route::get( '/',                        ['uses' => 'HomeController@home',               'as' => 'home']);
 Route::controller( 'test',  "TestController");
