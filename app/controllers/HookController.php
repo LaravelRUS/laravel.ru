@@ -10,10 +10,11 @@ class HookController extends BaseController {
 	public function docsIsUpdated()
 	{
 		$githubSecretHash = Request::header('X-Hub-Signature');
-		$body = Request::all();
+		$body = file_get_contents("php://input");
+
 		$calculatedSecretHash = hash_hmac("sha1", $body, $this->secret);
 
-		if( $githubSecretHash === $calculatedSecretHash){
+		if( $githubSecretHash === "sha1=".$calculatedSecretHash){
 			Mail::send("emails/admin/github_hook", [], function($message){
 				$message->from("robot@sharedstation.net");
 				$message->to("slider23@gmail.com");
