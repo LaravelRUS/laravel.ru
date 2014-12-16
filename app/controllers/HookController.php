@@ -9,10 +9,21 @@ class HookController extends BaseController {
 
 	public function docsIsUpdated()
 	{
-		$input = Input::json();
-		if($input->secret != $this->secret) return;
+		$githubSecretHash = Request::header('X-Hub-Signature');
+		$body = Request::all();
+		$calculatedSecretHash = hash_hmac("sha1", $body, $this->secret);
 
-		Artisan::call("su:update_docs");
+		if( $githubSecretHash === $calculatedSecretHash){
+			Mail::send("emails/admin/github_hook", [], function($message){
+				$message->from("robot@sharedstation.net");
+				$message->to("slider23@gmail.com");
+				$message->subject("SU:hook");
+			});
+			Artisan::call("su:update_docs");
+			return Response::json(['status'=>'success']);
+		}else{
+			return Response::make("Wrong secret hash", 403);
+		}
 	}
 		
 	
