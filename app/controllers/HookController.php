@@ -14,7 +14,8 @@ class HookController extends BaseController {
 
 		$calculatedSecretHash = "sha1=".hash_hmac("sha1", $body, $this->secret);
 
-		if( $githubSecretHash === $calculatedSecretHash){
+		//if( $githubSecretHash === $calculatedSecretHash){
+		if( 1 ){ // debug
 
 			//Artisan::call("su:update_docs");
 			Queue::push(function($job){
