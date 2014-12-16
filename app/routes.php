@@ -21,7 +21,7 @@ Route::controller( 'test',  "TestController");
 // ===== Хуки гитхаба =====
 
 // Push или pull-request в репозиторий с доками
-Route::get( 'hook/docs_is_updated',     ['uses'=>'HookController@docsIsUpdated',        'as'=>'hook.docs_is_updated']);
+Route::post( 'hook/docs_is_updated',     ['uses'=>'HookController@docsIsUpdated',        'as'=>'hook.docs_is_updated']);
 
 // ===== Страница cheatsheet =====
 
