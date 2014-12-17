@@ -30,8 +30,6 @@ class DocsController extends BaseController {
 		}
 		$menu = Docs::version($version)->name("documentation")->first();
 
-
-
 		return View::make("docs/docpage", ['page'=>$page, 'menu'=>$menu, 'version'=>$version, 'name'=>$name]);
 	}
 
