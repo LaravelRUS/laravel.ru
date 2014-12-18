@@ -8,6 +8,7 @@ use Indatus\Dispatcher\Scheduling\ScheduledCommand;
 use GuzzleHttp\Client as GuzzleClient;
 
 use LaravelRU\Packages\PackageRepo;
+use Log;
 use Package;
 
 class UpdatePackagesCron extends ScheduledCommand{
@@ -27,7 +28,8 @@ class UpdatePackagesCron extends ScheduledCommand{
 
     public function fire()
     {
-    	$packages = Package::all();
+        Log::info("su:update_packages begin");
+        $packages = Package::all();
         foreach($packages as $package){
             $this->line($package->name);
             try{
@@ -41,6 +43,7 @@ class UpdatePackagesCron extends ScheduledCommand{
                 $this->error("$package->name - ".$e->getMessage());
             }
         }
+        Log::info("su:update_packages end");
     }
 
     /**

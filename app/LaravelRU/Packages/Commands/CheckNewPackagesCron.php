@@ -8,6 +8,7 @@ use Indatus\Dispatcher\Scheduling\ScheduledCommand;
 use GuzzleHttp\Client as GuzzleClient;
 
 use LaravelRU\Packages\PackageRepo;
+use Log;
 use Package;
 
 
@@ -28,6 +29,7 @@ class CheckNewPackagesCron extends ScheduledCommand{
 
     public function fire()
     {
+        Log::info("su:check_new_packages begin");
         $packalyst = new GuzzleClient(['base_url' => 'http://packalyst.com']);
         $xml = $packalyst->get("/rss/packages")->getBody();
         $rss = simplexml_load_string($xml);
@@ -45,6 +47,7 @@ class CheckNewPackagesCron extends ScheduledCommand{
                 }
             }
         }
+        Log::info("su:check_new_packages end");
     }
 
 
@@ -55,6 +58,6 @@ class CheckNewPackagesCron extends ScheduledCommand{
      */
     public function schedule(Schedulable $scheduler)
     {
-        return $scheduler->everyMinutes(3);
+        return $scheduler->everyMinutes(20);
     }
 }
