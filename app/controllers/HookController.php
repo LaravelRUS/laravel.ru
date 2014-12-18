@@ -14,13 +14,13 @@ class HookController extends BaseController {
 
 		$calculatedSecretHash = "sha1=".hash_hmac("sha1", $body, $this->secret);
 
-		//if( $githubSecretHash === $calculatedSecretHash){
-		if( 1 ){ // debug
+		if( $githubSecretHash === $calculatedSecretHash){
+		//if( 1 ){ // debug
 
 			//Artisan::call("su:update_docs");
 			Queue::push(function($job){
 
-				Log::info("su:update_docs begin");
+				//Log::info("su:update_docs begin");
 //				Mail::send("emails/default", ['content'=>"su:update_docs begin"], function($message){
 //					$message->from("robot@sharedstation.net");
 //					$message->to("slider23@gmail.com");
@@ -29,7 +29,7 @@ class HookController extends BaseController {
 
 				Artisan::call("su:update_docs");
 
-				Log::info("su:update_docs end");
+				//Log::info("su:update_docs end");
 //				Mail::send("emails/default", ['content'=>"su:update_docs end"], function($message){
 //					$message->from("robot@sharedstation.net");
 //					$message->to("slider23@gmail.com");

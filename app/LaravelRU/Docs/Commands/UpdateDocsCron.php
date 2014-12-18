@@ -9,6 +9,7 @@ use Indatus\Dispatcher\Drivers\Cron\Scheduler;
 use Docs;
 use LaravelRU\Github\GithubRepo;
 use Illuminate\Console\Command;
+use Log;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -55,6 +56,7 @@ class UpdateDocsCron extends ScheduledCommand {
 	{
 		$github = new Client();
 		$http = new \Guzzle\Http\Client();
+		Log::info("su:update_docs begin");
 
 		$forceupdate = $this->argument("force");
 		$force_branch = $this->option("branch");
@@ -182,6 +184,8 @@ class UpdateDocsCron extends ScheduledCommand {
 			}
 
 		}
+
+		Log::info("su:update_docs end");
 	}
 
 	/**
