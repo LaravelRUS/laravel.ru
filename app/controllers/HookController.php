@@ -19,23 +19,8 @@ class HookController extends BaseController {
 
 			//Artisan::call("su:update_docs");
 			Queue::push(function($job){
-
-				//Log::info("su:update_docs begin");
-//				Mail::send("emails/default", ['content'=>"su:update_docs begin"], function($message){
-//					$message->from("robot@sharedstation.net");
-//					$message->to("slider23@gmail.com");
-//					$message->subject("SU:hook");
-//				});
-
+				Log::info("github hook incoming");
 				Artisan::call("su:update_docs");
-
-				//Log::info("su:update_docs end");
-//				Mail::send("emails/default", ['content'=>"su:update_docs end"], function($message){
-//					$message->from("robot@sharedstation.net");
-//					$message->to("slider23@gmail.com");
-//					$message->subject("SU:hook");
-//				});
-
 				$job->delete();
 			});
 
