@@ -47,7 +47,7 @@ class CheckNewPackagesCron extends ScheduledCommand{
                 }
             }
         }
-        Log::info("su:check_new_packages end");
+        Log::info("su:check_new_packages  end");
     }
 
 
@@ -58,6 +58,6 @@ class CheckNewPackagesCron extends ScheduledCommand{
      */
     public function schedule(Schedulable $scheduler)
     {
-        return $scheduler->everyMinutes(20);
+        return $scheduler->everyMinutes(3);
     }
 }
