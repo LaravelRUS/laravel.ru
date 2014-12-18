@@ -93,99 +93,84 @@ class UpdateDocsCron extends ScheduledCommand {
 
 			$matches = array();
 			foreach($lines as $line){
-				preg_match("/\(\/docs\/(.*?)\/(.*?)\)/im", $line, $matches);
-				if(isset($matches[2])){
-					$name = $matches[2];
-					$filename = $name.".md";
-					$this->line("");
-					$this->line("Fetch $filename ..");
-					//$last_commit_id = $this->githubTranslated->getLastCommitId($version, $filename);
-					$this->line(" get last translated commit");
-					$commit = $this->githubTranslated->getLastCommit($version, $filename);
 
-					if( ! is_null($commit)) {
-						$last_commit_id = $commit['sha'];
-						$last_commit_at = Carbon::createFromTimestampUTC(strtotime($commit['commit']['committer']['date']));
-						$this->line(" get file");
-						$content = $this->githubTranslated->getFile($version, $filename, $last_commit_id);
-						if(!is_null($content)) {
-							preg_match("/git (.*?)$/m", $content, $matches);
-							$last_original_commit_id = array_get($matches, '1');
-							//if(!$last_original_commit) {
-							if(!$last_original_commit_id AND $name != "menu") {
-								$this->error("Not found git signature in $filename");
-							}
-							else {
-								$this->line(" get last translated original commit $last_original_commit_id");
-								$original_commit = $this->githubOriginal->getCommit($last_original_commit_id);
-								$count_ahead = 0;
-								$current_original_commit = "";
-								if($original_commit) {
-									$last_original_commit_at = Carbon::createFromTimestampUTC(strtotime($original_commit['commit']['committer']['date']));
+				try {
+					preg_match("/\(\/docs\/(.*?)\/(.*?)\)/im", $line, $matches);
+					if(isset($matches[2])) {
+						$name = $matches[2];
+						$filename = $name . ".md";
+						$this->line("");
+						$this->line("Fetch $filename ..");
+						//$last_commit_id = $this->githubTranslated->getLastCommitId($version, $filename);
+						$this->line(" get last translated commit");
+						$commit = $this->githubTranslated->getLastCommit($version, $filename);
 
-									// Считаем сколько коммитов прошло с момента перевода
-									$this->line(" get current original commit");
-									$original_commits = $this->githubOriginal->getCommits($version, $filename, $last_original_commit_at);
-									$count_ahead = count($original_commits)-1;
-									$current_original_commit = $this->githubOriginal->getLastCommit($version, $filename);
-									$current_original_commit_id = $current_original_commit['sha'];
-									$current_original_commit_at = Carbon::createFromTimestampUTC(strtotime($current_original_commit['commit']['committer']['date']));
-
-//									$current_original_commit = $original_commits[0]['sha'];
-//									foreach($original_commits as $c){
-//										if($c['sha']!=$last_original_commit_id) $count_ahead++;
-//									}
-
+						if(!is_null($commit)) {
+							$last_commit_id = $commit['sha'];
+							$last_commit_at = Carbon::createFromTimestampUTC(strtotime($commit['commit']['committer']['date']));
+							$this->line(" get file");
+							$content = $this->githubTranslated->getFile($version, $filename, $last_commit_id);
+							if(!is_null($content)) {
+								preg_match("/git (.*?)$/m", $content, $matches);
+								$last_original_commit_id = array_get($matches, '1');
+								//if(!$last_original_commit) {
+								if(!$last_original_commit_id AND $name != "menu") {
+									$this->error("Not found git signature in $filename");
 								}
 								else {
-									$last_original_commit_at = null;
-								}
+									$this->line(" get last translated original commit $last_original_commit_id");
+									$original_commit = $this->githubOriginal->getCommit($last_original_commit_id);
+									$count_ahead = 0;
+									$current_original_commit = "";
+									if($original_commit) {
+										$last_original_commit_at = Carbon::createFromTimestampUTC(strtotime($original_commit['commit']['committer']['date']));
 
-								$content = preg_replace("/git(.*?)(\n*?)---(\n*?)/", "", $content);
-								preg_match("/#(.*?)$/m", $content, $matches);
-								$title = trim(array_get($matches, '1'));
-								$page = Docs::version($version)->name($name)->first();
-								if($page) {
-									if($last_commit_id != $page->last_commit) {
-										$page->last_commit = $last_commit_id;
-										$page->last_commit_at = $last_commit_at;
-										$page->last_original_commit = $last_original_commit_id;
-										$page->last_original_commit_at = $last_original_commit_at;
-										$page->current_original_commit = $current_original_commit_id;
-										$page->current_original_commit_at = $current_original_commit_at;
-										$page->original_commits_ahead = $count_ahead;
-										$page->title = $title;
-										$page->text = $content;
-										$page->save();
-										$this->info("$version/$filename updated. Commit $last_commit_id. Last original commit $last_original_commit_id.");
+										// Считаем сколько коммитов прошло с момента перевода
+										$this->line(" get current original commit");
+										$original_commits = $this->githubOriginal->getCommits($version, $filename, $last_original_commit_at);
+										$count_ahead = count($original_commits) - 1;
+										$current_original_commit = $this->githubOriginal->getLastCommit($version, $filename);
+										$current_original_commit_id = $current_original_commit['sha'];
+										$current_original_commit_at = Carbon::createFromTimestampUTC(strtotime($current_original_commit['commit']['committer']['date']));
+
+									}
+									else {
+										$last_original_commit_at = null;
+									}
+
+									$content = preg_replace("/git(.*?)(\n*?)---(\n*?)/", "", $content);
+									preg_match("/#(.*?)$/m", $content, $matches);
+									$title = trim(array_get($matches, '1'));
+									$page = Docs::version($version)->name($name)->first();
+									if($page) {
+										if($last_commit_id != $page->last_commit) {
+											$page->last_commit = $last_commit_id;
+											$page->last_commit_at = $last_commit_at;
+											$page->last_original_commit = $last_original_commit_id;
+											$page->last_original_commit_at = $last_original_commit_at;
+											$page->current_original_commit = $current_original_commit_id;
+											$page->current_original_commit_at = $current_original_commit_at;
+											$page->original_commits_ahead = $count_ahead;
+											$page->title = $title;
+											$page->text = $content;
+											$page->save();
+											$this->info("$version/$filename updated. Commit $last_commit_id. Last original commit $last_original_commit_id.");
+										}
+									}
+									else {
+										Docs::create(['framework_version' => $version, 'name' => $name, 'title' => $title, 'last_commit' => $last_commit_id, 'last_commit_at' => $last_commit_at, 'last_original_commit' => $last_original_commit_id, 'last_original_commit_at' => $last_original_commit_at, 'current_original_commit' => $current_original_commit_id, 'current_original_commit_at' => $current_original_commit_at, 'original_commits_ahead' => $count_ahead, 'text' => $content]);
+										$this->info("Translate for $version/$filename created, commit $last_commit_id. Translated from original commit $last_original_commit_id.");
 									}
 								}
-								else {
-									Docs::create([
-											'framework_version' => $version,
-											'name' => $name,
-											'title' => $title,
-											'last_commit' => $last_commit_id,
-											'last_commit_at' => $last_commit_at,
-											'last_original_commit' => $last_original_commit_id,
-											'last_original_commit_at' => $last_original_commit_at,
-											'current_original_commit' => $current_original_commit_id,
-											'current_original_commit_at' => $current_original_commit_at,
-											'original_commits_ahead' => $count_ahead,
-											'text' => $content]);
-									$this->info("Translate for $version/$filename created, commit $last_commit_id. Translated from original commit $last_original_commit_id.");
-								}
-
 							}
 						}
 					}
-
+				}catch(\Github\Exception\RuntimeException $e){
+					Log::error("su:update_docs \\Github\\Exception\\RuntimeException ".$e->getMessage());
 				}
 			}
-
 		}
-
-		Log::info("su:update_docs end");
+		Log::info("su:update_docs  end");
 	}
 
 	/**

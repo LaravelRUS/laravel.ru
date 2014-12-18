@@ -19,7 +19,7 @@ class HookController extends BaseController {
 
 			//Artisan::call("su:update_docs");
 			Queue::push(function($job){
-				Log::info("github hook incoming");
+				Log::info("GITHUB HOOK INCOMING");
 				Artisan::call("su:update_docs");
 				$job->delete();
 			});
