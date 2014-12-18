@@ -167,6 +167,7 @@ class UpdateDocsCron extends ScheduledCommand {
 					}
 				}catch(\Github\Exception\RuntimeException $e){
 					Log::error("su:update_docs \\Github\\Exception\\RuntimeException ".$e->getMessage());
+					die();
 				}
 			}
 		}
