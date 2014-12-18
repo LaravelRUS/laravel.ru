@@ -202,7 +202,8 @@ class UpdateDocsCron extends ScheduledCommand {
 	 */
 	public function schedule(Schedulable $scheduler)
 	{
-		return $scheduler->everyHours(2);
+		//return $scheduler->everyHours(2);
+		return $scheduler->everyHours(3)->minutes(8);
 	}
 
 }
