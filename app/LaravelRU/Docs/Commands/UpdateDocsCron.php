@@ -171,7 +171,7 @@ class UpdateDocsCron extends ScheduledCommand {
 				}
 			}
 		}
-		Log::info("su:update_docs  end");
+		Log::info("su:update_docs   end");
 	}
 
 	/**

@@ -47,7 +47,7 @@ class CheckNewPackagesCron extends ScheduledCommand{
                 }
             }
         }
-        Log::info("su:check_new_packages  end");
+        Log::info("su:check_new_packages   end");
     }
 
 

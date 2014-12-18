@@ -43,7 +43,7 @@ class UpdatePackagesCron extends ScheduledCommand{
                 $this->error("$package->name - ".$e->getMessage());
             }
         }
-        Log::info("su:update_packages  end");
+        Log::info("su:update_packages   end");
     }
 
     /**
