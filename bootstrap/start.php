@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(function () {
 
-	if(gethostname() == "curved-air") return "staging";
+	//if(gethostname() == "curved-air") return "staging";
 	if(getenv("APP_ENV")!="") return getenv("APP_ENV");
 	return "local";
 });
