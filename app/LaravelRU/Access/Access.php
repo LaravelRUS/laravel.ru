@@ -18,6 +18,10 @@ class Access extends BaseAccess
 	{
 		if(Auth::guest()) {
 			throw new AccessDeniedException;
+		}else{
+			if(Auth::user()->is_confirmed==0){
+				throw new AccessDeniedException;
+			}
 		}
 	}
 

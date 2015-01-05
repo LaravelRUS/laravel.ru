@@ -36,7 +36,7 @@ Route::get( 'cheat', function(){
 Route::get( 'registration',             ['uses'=>'AuthController@getRegistration',      'as'=>'auth.registration']);
 Route::post('registration',             ['uses'=>'AuthController@postRegistration',     'as'=>'auth.registration.post']);
 
-Route::get( 'registration/done',        ['uses'=>'AuthController@getPreconfirmation',      'as'=>'auth.registration.preconfirmation']);
+Route::get( 'registration/almost_done',        ['uses'=>'AuthController@getPreconfirmation',      'as'=>'auth.registration.preconfirmation']);
 Route::get( 'registration/confirmation/{string}',    ['uses'=>'AuthController@getConfirmation',      'as'=>'auth.registration.confirmation']);
 
 Route::get( 'login',                    ['uses'=>'AuthController@getLogin',             'as'=>'auth.login']);

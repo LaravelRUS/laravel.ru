@@ -31,6 +31,11 @@ class Post extends \Eloquent {
 	{
 		return $this->morphMany("Comment", "commentable");
 	}
+	
+	public function framework_version()
+	{
+		return $this->belongsTo("FrameworkVersion");
+	}
 
 	// ===== Scopes =====
 

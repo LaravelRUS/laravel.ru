@@ -22,30 +22,60 @@ class AuthController extends BaseController {
 
 	public function getRegistration()
 	{
-
-		return View::make("auth/registration");
+		$jsToken = Str::quickRandom(10);
+		Session::set("jsToken", $jsToken);
+		return View::make("auth/registration", compact("jsToken"));
 	}
 	public function postRegistration()
 	{
-		$input = Input::only('name', 'email', 'password', 'i_agree');
+		$input = Input::only('name', 'email', 'password', 'i_agree', 'g-recaptcha-response', 'js_token');
 
 		$this->registrationForm->validate($input);
 
 		unset($input['i_agree']);
+		unset($input['js_token']);
+		unset($input['g-recaptcha-response']);
 
 		$user = User::create($input);
-		$user->confirmation = UserConfirmation::create(['code'=>Str::quickRandom(20)]);
 		$user->save();
 
-		Auth::login($user);
+		$confirmationString = Str::quickRandom(20);
+		$userConfirmation = UserConfirmation::create(['code'=>$confirmationString]);
 
-		//return Redirect::route("auth.registration.confirmation");
-		return Redirect::route("home");
+		$user->confirmation()->save($userConfirmation);
+
+		$email = $input['email']; $password = $input['password'];
+		Mail::queue("emails/auth/register", ['confirmationString' => $confirmationString], function($message)use($email){
+			$message->from("postmaster@sharedstation.net");
+			$message->to($email);
+			$message->subject("Подтверждение регистрации");
+		});
+
+		//Auth::login($user);
+
+		return Redirect::route("auth.registration.preconfirmation");
+		//return Redirect::route("home");
 
 	}
+
+	public function getPreconfirmation()
+	{
+		return View::make("auth/preconfirmation");
+	}
+
 	public function getConfirmation($code)
 	{
-		return View::make("auth/confirmation");
+		$userConfirmation = UserConfirmation::where('code', $code)->first();
+		if($userConfirmation){
+			$user = $userConfirmation->user;
+			$user->is_confirmed = 1;
+			$user->save();
+			$userConfirmation->delete();
+			Auth::login($user);
+			return View::make("auth/confirmation_success");
+		}else{
+			return View::make("auth/confirmation_error");
+		}
 	}
 
 	public function getLogin()

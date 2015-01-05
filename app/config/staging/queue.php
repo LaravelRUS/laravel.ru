@@ -31,7 +31,7 @@ return array(
 	'connections' => array(
 
 		'sync' => array(
-			'driver' => 'sync',
+			'driver' => 'redis',
 		),
 
 		'beanstalkd' => array(

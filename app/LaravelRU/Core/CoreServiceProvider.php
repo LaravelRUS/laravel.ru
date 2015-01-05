@@ -1,6 +1,8 @@
 <?php namespace LaravelRU\Core;
 
 use Illuminate\Support\ServiceProvider;
+use Session;
+use Validator;
 
 class CoreServiceProvider extends ServiceProvider{
 
@@ -17,6 +19,9 @@ class CoreServiceProvider extends ServiceProvider{
 		$this->app->register('LaravelRU\News\NewsServiceProvider');
 		$this->app->register('LaravelRU\Packages\PackagesServiceProvider');
 
+
+
+
 		// регистрация папки Views
 //		$viewPaths = \Config::get('view.paths');
 //		$viewPaths[] = __DIR__ . '/Views';
@@ -30,6 +35,19 @@ class CoreServiceProvider extends ServiceProvider{
 
 	public function boot()
 	{
+		$this->addValidators();
+	}
 
+	/**
+	 * Extends Validator to include a recaptcha type
+	 */
+	public function addValidators()
+	{
+		//$validator = $this->app['Validator'];
+
+		Validator::extend('jstoken', function($attribute, $value, $parameters)
+		{
+			return Session::get("jsToken") == $value;
+		});
 	}
 }

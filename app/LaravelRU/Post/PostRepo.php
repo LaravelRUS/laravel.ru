@@ -52,4 +52,14 @@ class PostRepo extends BaseRepository {
 		return $this->model->notDraft()->with("author")->orderBy("published_at", "DESC")->limit($num)->get();
 	}
 
+	/**
+	 * html-селектор выбора версии фрейворка в посте
+	 */
+	public function getFrameworkVersionSelect($currentFrameworkVersion)
+	{
+		$allVersions = \FrameworkVersion::all();
+
+	}
+
+
 }

@@ -1,7 +1,13 @@
 <?php
 
 return array(
-	'mysql_database'=>'laravelsu',
+	'mysql_database'=>'laravelru',
 	'mysql_username'=>'root',
-	'mysql_password'=>''
+	'mysql_password'=>'',
+
+	'mailgun_username' => "",
+	'mailgun_password' => "",
+
+	'recaptcha_sitekey' => "",
+	'recaptcha_secret' => "",
 );

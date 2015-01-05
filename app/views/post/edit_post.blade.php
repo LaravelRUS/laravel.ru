@@ -53,24 +53,23 @@
 <?= Form::open(['route'=>"post.store"]) ?>
 
 	<?= Form::hidden("id", $post->id) ?>
-
-	<div class="form-group">
-		<label>Заголовок</label>
-		<?= Form::text("title", $post->title, ['class'=>'form-control']); ?>
-		@include('field-error', ['field'=>'title'])
-	</div>
-
-	<div class="form-group">
-		<label>Тип</label>
-		<?= Form::select("type", ['article'=>"Статья", 'snipet'=>"Пример кода (snipet)"], $post->type, ['class'=>'form-control']); ?>
-		@include('field-error', ['field'=>'type'])
-	</div>
-
-	<div class="form-group">
-		<label>Slug</label>
-		<?= Form::text("slug", $post->slug, ['class'=>'form-control']); ?>
-		<div class="text-muted">Строка в урле, с которой будет идентифицирован этот материал.</div>
-		@include('field-error', ['field'=>'slug'])
+	<div class="row">
+		<div class="col-md-8">
+			<div class="form-group">
+				<label>Заголовок</label>
+				<?= Form::text("title", $post->title, ['class'=>'form-control']); ?>
+				<div class="text-muted">Название поста, выводится в списке постов.</div>
+				@include('field-error', ['field'=>'title'])
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label>Slug</label>
+				<?= Form::text("slug", $post->slug, ['class'=>'form-control']); ?>
+				<div class="text-muted">Строка в урле, с которой будет идентифицирован этот материал.</div>
+				@include('field-error', ['field'=>'slug'])
+			</div>
+		</div>
 	</div>
 
 	<div class="form-group" id="input-description">
@@ -80,19 +79,37 @@
 		@include('field-error', ['field'=>'description'])
 	</div>
 
-	<div class="form-group" id="input-difficulty">
-		<label>Уровень сложности материала</label>
-		<?= Form::select("difficulty", ['unknown'=>"Не определять", 'easy'=>'Легкий, для новичков, слабо знакомых с фреймворком', 'hard'=>"Сложный, для хорошо разбирающихся в фреймворке"], $post->difficulty, ['class'=>'form-control']); ?>
-		<div class="text-muted">Для фильтра по сложности контента - чтобы новички могли подбирать для себя подходящие обучающие материалы.</div>
-		@include('field-error', ['field'=>'difficulty'])
+	<div class="row">
+		<div class="col-md-5">
+			<div class="form-group">
+				<label>Версия фреймворка</label>
+				<?= Form::select('frameworkversion_id', all_framework_versions(), $post->frameworkversion_id, ['class'=>'form-control']) ?>
+				<div class="text-muted"></div>
+			</div>
+		</div>
+		<div class="col-md-5">
+			<div class="form-group" id="input-difficulty">
+				<label>Уровень сложности материала</label>
+				<?= Form::select("difficulty", ['unknown'=>"Не определена", 'easy'=>'Легкий, для новичков, слабо знакомых с фреймворком', 'hard'=>"Сложный, для хорошо разбирающихся в фреймворке"], $post->difficulty, ['class'=>'form-control']); ?>
+				<div class="text-muted"></div>
+				@include('field-error', ['field'=>'difficulty'])
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<label>Формат текста</label>
+				<?= Form::select("parser_type", ['markdown'=>'Markdown', 'uversewiki'=>'Uversewiki'], $post->parset_type, ['class'=>'form-control']); ?>
+				<span class="text-muted"></span>
+				@include('field-error', ['field'=>'parser_type'])
+			</div>
+		</div>
 	</div>
 
-	<div class="form-group">
-		<label>Парсер</label>
-		<?= Form::select("parser_type", ['markdown'=>'Markdown', 'uversewiki'=>'Uversewiki'], $post->parset_type, ['class'=>'form-control']); ?>
-		<span class="text-muted">Формат текста поста.</span>
-		@include('field-error', ['field'=>'parser_type'])
-	</div>
+<!--<div class="form-group">-->
+<!--	<label>Тип</label>-->
+<!--	--><?//= Form::select("type", ['article'=>"Статья", 'snipet'=>"Пример кода (snipet)"], $post->type, ['class'=>'form-control']); ?>
+<!--	@include('field-error', ['field'=>'type'])-->
+<!--</div>-->
 
 	<div class="form-group">
 		<label>Текст</label>

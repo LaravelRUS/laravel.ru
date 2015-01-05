@@ -28,6 +28,7 @@ class PostServiceProvider extends ServiceProvider {
 
 		// Including module-related routes etc
 		include __DIR__.DIRECTORY_SEPARATOR.'post_widgets.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'post_helpers.php';
 
 		// ...
 	}

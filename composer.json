@@ -20,7 +20,7 @@
 		"pingpong/widget" : "1.0.*",
 		"sleeping-owl/apist": "1.*",
 	  	"fguillot/picofeed": "dev-master",
-	  	"anhskohbo/no-captcha": "*"
+	  	"greggilbert/recaptcha": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
