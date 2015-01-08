@@ -3,6 +3,7 @@
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use User;
 
 class UserCommand extends Command {
 
@@ -11,14 +12,14 @@ class UserCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $name = 'command:name';
+	protected $name = 'su:create_user';
 
 	/**
 	 * The console command description.
 	 *
 	 * @var string
 	 */
-	protected $description = 'Command description.';
+	protected $description = 'Creating user.';
 
 	/**
 	 * Create a new command instance.
@@ -37,7 +38,18 @@ class UserCommand extends Command {
 	 */
 	public function fire()
 	{
-		//
+		$name = $this->argument("username");
+		$password = $this->argument("password");
+		$email = $this->argument("email");
+		$isAdmin = $this->option("admin");
+
+		$user = User::create(['name'=>$name, 'password'=>$password, 'email'=>$email]);
+		$user->is_confirmed = 1;
+		$user->save();
+		$user->roles()->sync([1]);
+
+		$this->info("User $name created.");
+
 	}
 
 	/**
@@ -48,7 +60,9 @@ class UserCommand extends Command {
 	protected function getArguments()
 	{
 		return array(
-				array('example', InputArgument::REQUIRED, 'An example argument.'),
+				array('username', InputArgument::REQUIRED, 'User Name.'),
+				array('password', InputArgument::REQUIRED, 'User Password.'),
+				array('email', InputArgument::REQUIRED, 'User Email.'),
 		);
 	}
 
@@ -60,7 +74,7 @@ class UserCommand extends Command {
 	protected function getOptions()
 	{
 		return array(
-				array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
+				array('admin', null, InputOption::VALUE_NONE, 'Set admin permissions', null),
 		);
 	}
 

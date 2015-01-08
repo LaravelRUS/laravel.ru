@@ -8,6 +8,7 @@
 2. Скопировать env.example.php в .env.local.php и указать там данные доступа для mysql, ключ к mailgun для отправки писем и, опционально, ключ к recaptcha.
 3. Сделать `composer update`
 4. Создать базу данных и сделать `php artisan migrate` 
+5. Создать пользователя-админа `php artisan su:create_user admin admin_password admin@mail.ru --admin`
 
 ### Описание
 

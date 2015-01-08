@@ -28,6 +28,7 @@ class UserServiceProvider extends ServiceProvider {
 		include 'user_events.php';
 		include 'user_filters.php';
 
+		$this->commands('LaravelRU\User\Commands\UserCommand');
 	}
 
 	/**
