@@ -8,7 +8,7 @@ return array(
 		"4.1",
 	],
 
-	'default_version' => "master",
+	'default_version' => "4.2",
 
 	'original_docs' =>[
 		'user'=>"laravel",

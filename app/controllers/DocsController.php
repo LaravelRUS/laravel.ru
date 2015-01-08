@@ -18,9 +18,13 @@ class DocsController extends BaseController {
 	public function docs($version = "", $name = "installation")
 	{
 		if( ! in_array($version, Config::get("laravel.versions"))){
+
 			// Запрошен универсальный урл типа /docs/installation - средиректить на /docs/5.0/installation
-			$default_version = Config::get("laravel.default_version");
-			return Redirect::route("docs", [$default_version, $version]);
+			$session_version = Session::get("docs_version");
+			if( ! $session_version){
+				$session_version = Config::get("laravel.default_version");
+			}
+			return Redirect::route("docs", [$session_version, $version]);
 		}
 
 		try{
@@ -28,6 +32,8 @@ class DocsController extends BaseController {
 		}catch(Exception $e){
 			throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 		}
+
+		Session::set("docs_version", $version);
 		$menu = Docs::version($version)->name("documentation")->first();
 
 		return View::make("docs/docpage", ['page'=>$page, 'menu'=>$menu, 'version'=>$version, 'name'=>$name]);
