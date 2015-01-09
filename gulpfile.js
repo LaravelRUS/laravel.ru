@@ -7,16 +7,17 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var size = require('gulp-size');
 
-gulp.task('default', ['styles']);
+gulp.task('default', ['styles', 'scripts', 'font-awesome']);
 
 gulp.task('watch', function () {
-	gulp.watch(' *** ', ['styles']);
+	gulp.watch('resources/styles/**/*.scss', ['styles']);
+	gulp.watch('resources/js/*.js', ['scripts']);
 });
 
 gulp.task('styles', function () {
 	var compressed = size();
 	var gzipped = size({gzip: true});
-	gulp.src(' *** ')
+	gulp.src('compile/styles/**/*.scss')
 		.pipe(sass({
 			outputStyle: 'compressed',
 			precision: 10
@@ -27,7 +28,7 @@ gulp.task('styles', function () {
 			dirname: "",
 			suffix: ".min"
 		}))
-		.pipe(gulp.dest(' *** '))
+		.pipe(gulp.dest('public/css'))
 		.pipe(compressed)
 		.pipe(gzipped)
 		.pipe(notify({
@@ -50,11 +51,11 @@ gulp.task('scripts', function () {
 		.pipe(concatinated)
 		.pipe(uglify())
 		.pipe(uglified)
-		.pipe(gulp.dest(' *** '))
+		.pipe(gulp.dest('public/js'))
 		.pipe(gzipped)
 		.pipe(notify({
 			onLast: true,
-			title: "JS scripts compiled",
+			title: "Scripts compiled",
 			message: function () {
 				return concatinated.prettySize + ' | ' + uglified.prettySize + ' | ' + gzipped.prettySize;
 			}
@@ -63,6 +64,10 @@ gulp.task('scripts', function () {
 
 gulp.task('font-awesome', function () {
 	gulp.src('vendor/bower_components/fontawesome/fonts/**.*')
-		.pipe(gulp.dest(' *** /fonts'))
-		.pipe(notify("Font Awesome copied!"));
+		.pipe(gulp.dest('public/fonts'))
+		.pipe(notify({
+			onLast: true,
+			title: "Font Awesome copied!",
+			message: 'Success!'
+		}));
 });
