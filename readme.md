@@ -2,7 +2,7 @@
 
 Будущий laravel.ru . Рабочие сборки выкладываются на [http://sharedstation.net](http://sharedstation.net)
 
-Обсуждение в чате: [![Чат](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/gitterHQ/gitter)
+Обсуждение в чате: [![Чат](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/LaravelRUS/chat)
 
 ### Инсталляция
 
