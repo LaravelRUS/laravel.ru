@@ -1,6 +1,8 @@
 <?php namespace LaravelRU\User;
 
+use App;
 use Illuminate\Support\ServiceProvider;
+use Request;
 
 class UserServiceProvider extends ServiceProvider {
 
@@ -29,6 +31,7 @@ class UserServiceProvider extends ServiceProvider {
 		include 'user_filters.php';
 
 		$this->commands('LaravelRU\User\Commands\UserCommand');
+
 	}
 
 	/**

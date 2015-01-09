@@ -15,7 +15,6 @@ Route::pattern('slug',   '[a-z0-9-]+'); // TODO решить, делаем ли 
 // You MUST use Form::open for forms
 // Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 
-
 Route::get( '/',                        ['uses' => 'HomeController@home',               'as' => 'home']);
 Route::controller( 'test',  "TestController");
 
