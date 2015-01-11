@@ -10,14 +10,14 @@ var size = require('gulp-size');
 gulp.task('default', ['styles', 'scripts', 'font-awesome']);
 
 gulp.task('watch', function () {
-	gulp.watch('resources/styles/**/*.scss', ['styles']);
+	gulp.watch('resources/scss/**/*.scss', ['styles']);
 	gulp.watch('resources/js/*.js', ['scripts']);
 });
 
 gulp.task('styles', function () {
 	var compressed = size();
 	var gzipped = size({gzip: true});
-	gulp.src('compile/styles/**/*.scss')
+	gulp.src('resources/scss/**/*.scss')
 		.pipe(sass({
 			outputStyle: 'compressed',
 			precision: 10
@@ -45,12 +45,15 @@ gulp.task('scripts', function () {
 	var uglified = size();
 	var gzipped = size({gzip: true});
 	gulp.src([
-		'vendor/bower_components/jquery/dist/jquery.js'
+		'vendor/bower_components/jquery/dist/jquery.js',
+		'vendor/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js',
+		'vendor/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js',
+		'vendor/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js'
 	])
-		.pipe(concat('scripts.min.js'))
+		.pipe(concat('script.min.js'))
 		.pipe(concatinated)
-		.pipe(uglify())
-		.pipe(uglified)
+		//.pipe(uglify())
+		//.pipe(uglified)
 		.pipe(gulp.dest('public/js'))
 		.pipe(gzipped)
 		.pipe(notify({
