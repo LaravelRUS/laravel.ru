@@ -1,4 +1,4 @@
-@extends('_layout.documentation')
+@extends('layouts.documentation')
 
 @section('title')
 <?= $page->displayTitle() ?>
