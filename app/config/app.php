@@ -120,15 +120,11 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-		'Barryvdh\Debugbar\ServiceProvider',
-		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'Indatus\Dispatcher\ServiceProvider',
 		'Slider23\LaravelModulator\LaravelModulatorServiceProvider',
 		'Laracasts\Validation\ValidationServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
 		'Pingpong\Widget\WidgetServiceProvider',
-		//'Anhskohbo\NoCaptcha\NoCaptchaServiceProvider',
-		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
 
 		// Главный сервис-провайдер приложения
 		'LaravelRU\Core\CoreServiceProvider'
