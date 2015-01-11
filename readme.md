@@ -8,10 +8,10 @@
 
 ### Инсталляция
 
-1. Установить переменную окружения APP_ENV равную local (SetEnv в .htaccess или fastcgi_param в конфиге nginx).
-2. Скопировать env.example.php в .env.local.php и указать там данные доступа для mysql, ключ к mailgun для отправки писем и, опционально, ключ к recaptcha.
+1. Установить переменную окружения `APP_ENV` равную `local` (`SetEnv` в `.htaccess` или `fastcgi_param` в конфиге nginx).
+2. Скопировать `env.example.php` в `.env.local.php` и указать в нем данные доступа для mysql, ключ к mailgun для отправки писем и, опционально, ключ к recaptcha.
 3. Сделать `composer update`
-4. Создать базу данных и сделать `php artisan migrate` 
+4. Создать базу данных и выполнить команду `php artisan migrate` 
 5. Создать пользователя-админа `php artisan su:create_user admin admin_password admin@mail.ru --admin`
 
 ### Описание
@@ -24,6 +24,4 @@
 ### Помощь
    
 1. Перевод документации. [Инструкция, как это делать правильно](http://sharedstation.net/content/rus-documentation-contribution-guide).
-2. Работа над [кодом](https://trello.com/b/lDqJrw8x/-). Разработку ведется по системе git flow. 
-
-
+2. Работа над [кодом](https://trello.com/b/lDqJrw8x/-). В разработке используется модель [git-flow](https://www.atlassian.com/ja/git/workflows/pageSections/00/contentFullWidth/0/tabs/02/pageSections/010/contentFullWidth/0/content_files/file0/document/git-workflow-release-cycle-4maintenance.png).
