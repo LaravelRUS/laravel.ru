@@ -1,12 +1,10 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
+	"name": "Laravel.ru",
+	"description": "",
+	"keywords": ["laravel"],
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"barryvdh/laravel-debugbar": "1.*",
-		"barryvdh/laravel-ide-helper": "1.*",
 		"doctrine/dbal": "~2.3",
 		"knplabs/github-api": "*",
 		"knplabs/packagist-api": "1.*@dev",
@@ -17,10 +15,13 @@
 		"laracasts/presenter": "0.1.*",
 		"laracasts/flash": "~1.0",
 		"laravelrus/localized-carbon": "1.*",
-		"pingpong/widget" : "1.0.*",
+		"pingpong/widget": "1.0.*",
 		"sleeping-owl/apist": "1.*",
-	  	"fguillot/picofeed": "dev-master",
-	  	"greggilbert/recaptcha": "dev-master"
+		"fguillot/picofeed": "dev-master"
+	},
+	"require-dev": {
+		"barryvdh/laravel-debugbar": "1.*",
+		"barryvdh/laravel-ide-helper": "1.*"
 	},
 	"autoload": {
 		"classmap": [
