@@ -6,8 +6,7 @@ use News;
 use Post;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class Access extends BaseAccess
-{
+class Access extends BaseAccess {
 
 	public function __construct()
 	{
@@ -16,10 +15,14 @@ class Access extends BaseAccess
 
 	public function disableGuests()
 	{
-		if(Auth::guest()) {
+		if (Auth::guest())
+		{
 			throw new AccessDeniedException;
-		}else{
-			if(Auth::user()->is_confirmed==0){
+		}
+		else
+		{
+			if ( ! Auth::user()->is_confirmed)
+			{
 				throw new AccessDeniedException;
 			}
 		}
@@ -32,10 +35,12 @@ class Access extends BaseAccess
 
 	public function checkEditRoles()
 	{
-		if(Auth::user()->isAdmin()) {
+		if (Auth::user()->isAdmin())
+		{
 			return;
 		}
-		else {
+		else
+		{
 			throw new AccessDeniedException;
 		}
 	}
@@ -52,19 +57,20 @@ class Access extends BaseAccess
 	public function checkEditNews(News $news)
 	{
 		$this->disableGuests();
-		if(!$news) return false;
-		if($news->author_id == Auth::user()->id) {
-			return true;
-		}
-		return false;
+
+		return $news->author_id == Auth::user()->id;
 	}
 
 	public function checkApproveNews()
 	{
 		$this->disableGuests();
-		if(Auth::user()->isAdmin() OR Auth::user()->isModerator()) {
+
+		if (Auth::user()->isAdmin() || Auth::user()->isModerator())
+		{
 			return;
-		} else {
+		}
+		else
+		{
 			throw new AccessDeniedException;
 		}
 	}
@@ -76,19 +82,13 @@ class Access extends BaseAccess
 	public function checkCreatePost()
 	{
 		$this->disableGuests();
-
 	}
 
 	public function checkEditPost(Post $post)
 	{
 		$this->disableGuests();
-		if(!$post) return false;
-		if($post->author_id == Auth::user()->id) {
-			return true;
-		}
-		if(Auth::user()->isAdmin()) return true;
-		return false;
-	}
 
+		return $post->author_id == Auth::user()->id || Auth::user()->isAdmin();
+	}
 
 }

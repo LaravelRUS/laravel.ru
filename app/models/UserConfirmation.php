@@ -1,17 +1,16 @@
 <?php
+
 class UserConfirmation extends \Eloquent {
 
-	protected   $table =       'users_confirmation';
-	protected   $primaryKey =  'id';
-	public      $timestamps =  true;
+	protected $table = 'users_confirmation';
+	protected $guarded = [];
 
-	protected   $guarded =     [];
-	protected   $hidden =      [];
+	/**
+	 * Ralations
+	 */
 
 	public function user()
 	{
-		return $this->belongsTo("User");
+		return $this->belongsTo('User');
 	}
-	
-	
 }

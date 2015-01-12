@@ -6,25 +6,27 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 function isNeedConfirmation()
 {
-	if(Auth::check() AND ! Auth::user()->isActive()) return true;
-	else return false;
+	return Auth::check() && ! Auth::user()->isActive();
 }
 
 function isAdmin()
 {
-	if(Auth::guest()) return false;
+	if (Auth::guest()) return false;
+
 	return Auth::user()->isAdmin();
 }
 
 function isModerator()
 {
-	if(Auth::guest()) return false;
+	if (Auth::guest()) return false;
+
 	return Auth::user()->isModerator();
 }
 
 function isLibrarian()
 {
-	if(Auth::guest()) return false;
+	if (Auth::guest()) return false;
+
 	return Auth::user()->isLibrarian();
 }
 
@@ -32,21 +34,29 @@ function isLibrarian()
 
 function allowEditTerms()
 {
-	try{
+	try
+	{
 		Access::checkEditTerms();
-	}catch(AccessDeniedException $e){
+	}
+	catch (AccessDeniedException $e)
+	{
 		return false;
 	}
+
 	return true;
 }
 
 function allowEditRoles()
 {
-	try{
+	try
+	{
 		Access::checkEditRoles();
-	}catch(AccessDeniedException $e){
+	}
+	catch (AccessDeniedException $e)
+	{
 		return false;
 	}
+
 	return true;
 }
 
@@ -56,37 +66,52 @@ function allowEditRoles()
 
 function allowCreateNews()
 {
-	try{
+	try
+	{
 		Access::checkCreateNews();
-	}catch(AccessDeniedException $e){
+	}
+	catch (AccessDeniedException $e)
+	{
 		return false;
 	}
+
 	return true;
 }
 
-function allowEditNews($id){
-
-	try{
+function allowEditNews($id)
+{
+	try
+	{
 		$news = News::findOrFail($id);
-	}catch(ModelNotFoundException $e){
+	}
+	catch (ModelNotFoundException $e)
+	{
 		return false;
 	}
 
-	try{
+	try
+	{
 		Access::checkEditNews($news);
-	}catch(AccessDeniedException $e){
+	}
+	catch (AccessDeniedException $e)
+	{
 		return false;
 	}
 
 	return true;
 }
 
-function allowApproveNews(){
-	try{
+function allowApproveNews()
+{
+	try
+	{
 		Access::checkApproveNews();
-	}catch(AccessDeniedException $e){
+	}
+	catch (AccessDeniedException $e)
+	{
 		return false;
 	}
+
 	return true;
 }
 
@@ -94,27 +119,39 @@ function allowApproveNews(){
  * Посты
  */
 
-function allowCreatePost(){
-	try{
+function allowCreatePost()
+{
+	try
+	{
 		Access::checkCreatePost();
-	}catch(AccessDeniedException $e){
+	}
+	catch (AccessDeniedException $e)
+	{
 		return false;
 	}
+
 	return true;
 }
-function allowEditPost($id){
 
-	if($id instanceof Post){
+function allowEditPost($id)
+{
+	if ($id instanceof Post)
+	{
 		$post = $id;
-	}else{
+	}
+	else
+	{
 		$post = Post::find($id);
 	}
 
-	if( ! $post) return false;
+	if ( ! $post) return false;
 
-	try{
+	try
+	{
 		Access::checkEditPost($post);
-	}catch(AccessDeniedException $e){
+	}
+	catch (AccessDeniedException $e)
+	{
 		return false;
 	}
 

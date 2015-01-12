@@ -2,24 +2,22 @@
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use LaravelRU\Access\Access;
 
-class AccessServiceProvider extends ServiceProvider{
+class AccessServiceProvider extends ServiceProvider {
 
 	public function register()
 	{
-		include __DIR__.'/access_helpers.php';
+		include __DIR__ . '/access_helpers.php';
 
-		$this->app->bind("access", function($app){
+		$this->app->bind('access', function ()
+		{
 			return new Access();
 		});
-		$this->app->booting(function(){
+
+		$this->app->booting(function ()
+		{
 			AliasLoader::getInstance()->alias('Access', 'LaravelRU\Access\Facades\Access');
 		});
 	}
 
-	public function boot()
-	{
-
-	}
 }

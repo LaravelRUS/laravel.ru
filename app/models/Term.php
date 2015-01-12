@@ -1,29 +1,36 @@
 <?php
+
 class Term extends Eloquent {
 
-	protected   $table =       'terms';
-	protected   $primaryKey =  'id';
-	public      $timestamps =  false;
-	protected   $softDelete =  false;
-	protected   $guarded =     [];
-	protected   $hidden =      [];
-    protected   $fillable =     ['name'];
+	public $timestamps = false;
 
-    public function text()
-    {
-        return $this->belongsTo("Termtext");
-    }
+	protected $table = 'terms';
+	protected $primaryKey = 'id';
+	protected $softDelete = false;
+	protected $guarded = [];
+	protected $fillable = ['name'];
 
-    public function displayText()
-    {
-        return $this->text->displayText();
-    }
-    public function displayName()
-    {
-        return e($this->name);
-    }
+	/**
+	 * Ralations
+	 */
 
+	public function text()
+	{
+		return $this->belongsTo('Termtext');
+	}
 
+	/**
+	 * Presenters
+	 */
 
-	
+	public function displayText()
+	{
+		return $this->text->displayText();
+	}
+
+	public function displayName()
+	{
+		return e($this->name);
+	}
+
 }

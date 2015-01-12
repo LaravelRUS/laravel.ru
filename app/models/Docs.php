@@ -11,37 +11,32 @@
  * @property string         $title
  * @property string         $text
  * @property integer        $updater_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Docs whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Docs whereFrameworkVersion($value)
- * @method static \Illuminate\Database\Query\Builder|\Docs whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\Docs whereLastCommit($value)
- * @method static \Illuminate\Database\Query\Builder|\Docs whereLastOriginalCommit($value)
- * @method static \Illuminate\Database\Query\Builder|\Docs whereTitle($value)
- * @method static \Illuminate\Database\Query\Builder|\Docs whereText($value)
- * @method static \Illuminate\Database\Query\Builder|\Docs whereUpdaterId($value)
- * @method static \Illuminate\Database\Query\Builder|\Docs whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Docs whereUpdatedAt($value)
- * @method static \Docs version($version)
- * @method static \Docs name($name)
+ * @property Carbon\Carbon $created_at
+ * @property Carbon\Carbon $updated_at
+ * @property Carbon\Carbon $last_commit_at
+ * @method static Illuminate\Database\Query\Builder|Docs whereId($value)
+ * @method static Illuminate\Database\Query\Builder|Docs whereFrameworkVersion($value)
+ * @method static Illuminate\Database\Query\Builder|Docs whereName($value)
+ * @method static Illuminate\Database\Query\Builder|Docs whereLastCommit($value)
+ * @method static Illuminate\Database\Query\Builder|Docs whereLastOriginalCommit($value)
+ * @method static Illuminate\Database\Query\Builder|Docs whereTitle($value)
+ * @method static Illuminate\Database\Query\Builder|Docs whereText($value)
+ * @method static Illuminate\Database\Query\Builder|Docs whereUpdaterId($value)
+ * @method static Illuminate\Database\Query\Builder|Docs whereCreatedAt($value)
+ * @method static Illuminate\Database\Query\Builder|Docs whereUpdatedAt($value)
+ * @method static Docs version($version)
+ * @method static Docs name($name)
  */
 class Docs extends Eloquent {
 
 	protected $table = 'docs';
-
-	protected $primaryKey = 'id';
-
-	public $timestamps = true;
-
 	protected $softDelete = false;
-
 	protected $guarded = [];
-
-	protected $hidden = [];
-
 	protected $dates = ['last_commit_at', 'last_original_commit_at', 'current_original_commit_at'];
 
+	/**
+	 * Scopes
+	 */
 
 	public function scopeVersion($query, $version)
 	{
@@ -52,6 +47,10 @@ class Docs extends Eloquent {
 	{
 		return $query->where('name', '=', $name);
 	}
+
+	/**
+	 * Presenters
+	 */
 
 	public function displayText()
 	{
@@ -64,7 +63,7 @@ class Docs extends Eloquent {
 
 	public function displayUpdatedAt()
 	{
-		return $this->last_commit_at->format("d M");
+		return $this->last_commit_at->format('d M');
 	}
 
 }
