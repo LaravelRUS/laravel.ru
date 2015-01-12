@@ -1,11 +1,16 @@
-<h3>Обновлённые пакеты</h3>
-<? foreach($updatedPackages as $package){ ?>
-<div class="package_box">
-	<div class="package_title">
-		<a href="<?= $package->repository ?>" target="_blank"><?= $package->name ?></a>
-		<span class="date">(<?= $package->displayUpdatedAt() ?>)</div>
-	<div class="package_description">
-		<?= $package->description ?>
-	</div>
-</div>
-<?}?>
+<section class="widget">
+	<header class="m-b-25">
+		<h3>Обновлённые пакеты</h3>
+	</header>
+	<ul class="list-unstyled">
+		@foreach($updatedPackages as $package)
+			<li>
+				<p class="title">
+					<span class="date">{{ $package->displayCreatedAt() }}</span>
+					<span><a href="{{ URL::to($package->repository) }}" target="_blank">{{ $package->name }}</a></span>
+				</p>
+				<p>{{ $package->description }}</p>
+			</li>
+		@endforeach
+	</ul>
+</section>
