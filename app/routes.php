@@ -16,7 +16,6 @@ Route::pattern('slug', '[a-z0-9-]+'); // TODO решить, делаем ли к
 // Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 
 Route::get('/', ['uses' => 'HomeController@home', 'as' => 'home']);
-Route::controller('test', "TestController");
 
 // ===== Хуки гитхаба =====
 
@@ -52,6 +51,7 @@ Route::group(['before' => 'administrator'], function ()
 });
 
 // ===== Документация
+Route::get('docs', ['as' => 'documentation', 'uses' => 'DocsController@docs']);
 
 Route::group(['before' => 'librarians'], function ()
 {
@@ -62,9 +62,10 @@ Route::group(['before' => 'librarians'], function ()
 
 	Route::get('documentation/updates', ['uses' => 'DocsController@updates', 'as' => 'documentation.updates']);
 });
+
 Route::get('documentation/term/{id}', ['uses' => 'TermController@popup', 'as' => 'term.popup']);
 
-Route::get('docs', ['uses' => 'DocsController@docs', 'as' => 'documentation']);
+
 Route::get('docs/{version}/{string?}', ['uses' => 'DocsController@docs', 'as' => 'docs']);
 
 // ===== Профайл пользователя
@@ -115,7 +116,8 @@ Route::group(['before' => 'auth'], function ()
 	Route::post('tips/store', ['uses' => 'TipsController@store', 'as' => 'tips.store']);
 });
 
-
+// Тестовый контроллер
+Route::controller('test', "TestController");
 
 //Route::get("{any}", 'HomeController@home');
 
