@@ -166,35 +166,6 @@ Coreos theme
 	font-style: italic;
 }
 
-.super-container {
-	padding: 20px 0px;
-}
-
-.super-container a.no-underline:hover {
-	text-decoration: none;
-}
-
-.super-container svg {
-	display: block;
-	margin: 0 auto;
-	max-width: 100%;
-}
-
-.super-container li, .super-container p {
-	font-weight: 400;
-}
-
-.super-container li {
-	margin-bottom: 10px;
-}
-
-.super-container-white {
-	background-color: #FFFFFF;
-	border-top: 1px solid #EEEEEE;
-	border-bottom: 1px solid #EEEEEE;
-	padding: 20px 0px 20px 0px;
-}
-
 table {
 	width: 100%;
 	box-sizing: border-box;
@@ -241,36 +212,8 @@ table td:first-child.rowspan-padding {
 	padding-left: 0;
 }
 
-.caption {
-	font-size: 13px;
-	color: #999999;
-	font-style: italic;
-	width: 100%;
-	text-align: center;
-	margin-bottom: 30px;
-	margin-top: 10px;
-	line-height: 16px;
-}
-
 .img-full {
 	width: 100%;
-}
-
-.date {
-	font-style: italic;
-}
-
-.social {
-	margin-top: 20px;
-	padding-top: 20px;
-	border-top: 1px solid rgba(230, 230, 230, 0.75);
-	text-shadow: 0 0 1px #FFFFFF;
-}
-
-.hn-link {
-	display: inline-block;
-	padding: 0 0 0 21px;
-	background: url(../images/partners/yc-favicon.png) left center no-repeat;
 }
 
 .btn {
