@@ -1,0 +1,83 @@
+.navbar {
+	margin-bottom: 0;
+	background-color: $navbar-bg-color;
+	font-size: 16px;
+}
+
+.navbar-brand {
+	width: 160px;
+	font-size: 20px;
+	font-weight: 600;
+//	margin-left: 10px; // TODO mobile
+	color: $navbar-brand-color;
+
+	&:hover, &:focus {
+		color: lighten($navbar-brand-color, 10);
+	}
+}
+
+.navbar-fixed-top {
+//	border: 0;
+}
+
+.topmenu-nav, .submenu-nav {
+//	background: #FFFFFF;
+//	box-shadow: 0 0 3px rgba(153, 153, 153, 0.75);
+//	font-weight: 400;
+//	font-size: 16px;
+}
+
+.topmenu-nav .navbar-brand, .submenu-nav .navbar-brand {
+//	width: 160px;
+//	display: inline-block;
+//	/*padding-left: 1px;*/
+//	padding-right: 0px;
+//	padding-bottom: 0px;
+//	margin-right: 0px;
+//	font-size: 20px;
+//	font-weight: 600;
+//	margin-left: 10px;
+//	color: #F4645F;
+}
+
+.topmenu-nav .navbar-brand img, .submenu-nav .navbar-brand img {
+//	-webkit-filter: drop-shadow(0 1px 0 #FFFFFF);
+}
+
+.topmenu-nav li, .submenu-nav li {
+//	font-weight: 400;
+}
+
+.topmenu-nav .nav-hint {
+//	padding-top: 12px;
+}
+
+.submenu-nav {
+	font-size: 14px;
+	margin-bottom: 0px;
+}
+
+.submenu-nav .container {
+	padding-left: 7px;
+}
+
+.submenu-nav .nav-hint {
+	padding-top: 12px;
+}
+
+.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+//	font-weight: 200;
+}
+
+.submenu-nav li.active {
+	background-color: rgba(255, 167, 150, 0.16);
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+//	text-decoration: none;
+//	background: none;
+}
+
+.navbar-toggle .icon-bar {
+//	background-color: #333333;
+}

@@ -1,0 +1,33 @@
+.row.with-border {
+	section {
+		box-shadow: 1px 0 0 0 #EEEEEE;
+
+		&:last-of-type {
+			box-shadow: none;
+		}
+	}
+}
+
+.hexagons {
+	background: $header-bg-color url('/img/partials/hexagons.png');
+}
+
+.c-white {
+	color: white;
+}
+
+.bg-white {
+	background-color: white;
+}
+
+.letter-spacing-stiff {
+	letter-spacing: -0.03em;
+}
+
+.p-20-0 {
+	padding: 20px 0;
+}
+
+.m-b-25 {
+	margin-bottom: 25px;
+}
