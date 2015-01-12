@@ -1,53 +1,46 @@
 <?php
 
-use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableInterface;
 use Laracasts\Presenter\PresentableTrait; // https://github.com/laracasts/Presenter
 
 /**
  * User
  *
  * @property integer $id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon\Carbon $created_at
+ * @property Carbon\Carbon $updated_at
  * @property string $name
  * @property string $email
  * @property string $password
  * @property string $remember_token
  * @property string $last_login_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\Post[] $posts
- * @method static \Illuminate\Database\Query\Builder|\User whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereEmail($value) 
- * @method static \Illuminate\Database\Query\Builder|\User wherePassword($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereRememberToken($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereLastLoginAt($value) 
+ * @property int $is_confirmed
+ * @property-read Illuminate\Database\Eloquent\Collection|Post[] $posts
+ * @method static Illuminate\Database\Query\Builder|User whereId($value)
+ * @method static Illuminate\Database\Query\Builder|User whereCreatedAt($value)
+ * @method static Illuminate\Database\Query\Builder|User whereUpdatedAt($value)
+ * @method static Illuminate\Database\Query\Builder|User whereName($value)
+ * @method static Illuminate\Database\Query\Builder|User whereEmail($value)
+ * @method static Illuminate\Database\Query\Builder|User wherePassword($value)
+ * @method static Illuminate\Database\Query\Builder|User whereRememberToken($value)
+ * @method static Illuminate\Database\Query\Builder|User whereLastLoginAt($value)
  */
-class User extends \Eloquent implements UserInterface, RemindableInterface {
+class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	protected   $table =        'users';
-	protected   $primaryKey =   'id';
-	public      $timestamps =   true;
+	//use SoftDeletingTrait;
+	use PresentableTrait;
 
-	protected   $fillable =     [];
-    protected   $guarded =      [];
-    protected   $hidden =       ['password', 'remember_token'];
+	protected $table = 'users';
+	protected $guarded = [];
+	protected $hidden = ['password', 'remember_token'];
+	protected $presenter = 'LaravelRU\User\Presenters\UserPresenter';
 
-//	use         SoftDeletingTrait;
-//	protected   $dates =        ['deleted_at'];
-
-	use         PresentableTrait;
-	protected   $presenter =    '\LaravelRU\User\Presenters\UserPresenter';
-
-	public static function boot()
-	{
-		parent::boot();
-		// Setup event bindings...
-	}
-
-	// Автохэширование пароля
+	/**
+	 * Автохэширование пароля
+	 *
+	 * @param string $password
+	 */
 	public function setPasswordAttribute($password)
 	{
 		$this->attributes['password'] = Hash::make($password);
@@ -86,7 +79,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	/**
 	 * Set the token value for the "remember me" session.
 	 *
-	 * @param  string  $value
+	 * @param  string $value
 	 * @return void
 	 */
 	public function setRememberToken($value)
@@ -114,43 +107,49 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
-	// ===========================================================================================
+	/**
+	 * Ralations
+	 */
 
 	public function roles()
 	{
-		return $this->belongsToMany("Role","user_role_pivot","user_id","role_id");
+		return $this->belongsToMany('Role', 'user_role_pivot', 'user_id', 'role_id');
 	}
 
 	public function posts()
 	{
-		return $this->hasMany('Post', "author_id")->orderBy('published_at','DESC');
+		return $this->hasMany('Post', 'author_id')->orderBy('published_at', 'DESC');
 	}
 
 	public function tips()
 	{
-		return $this->hasMany("Tip", "author_id")->orderBy('published_at','DESC');
+		return $this->hasMany('Tip', 'author_id')->orderBy('published_at', 'DESC');
 	}
 
 	public function news()
 	{
-		return $this->hasMany("News", "author_id")->orderBy('created_at','DESC');
+		return $this->hasMany('News', 'author_id')->orderBy('created_at', 'DESC');
 	}
 
 	public function confirmation()
 	{
-		return $this->hasOne("UserConfirmation", "user_id")->orderBy('created_at','DESC');
+		return $this->hasOne('UserConfirmation', 'user_id')->orderBy('created_at', 'DESC');
 	}
 
-    // ===========================================================================================
+	/**
+	 * Properties
+	 */
 
+	/**
+	 * @param $role
+	 *
+	 * @return bool
+	 */
 	public function hasRole($role)
 	{
-		$roles = $this->roles->lists("name");
-		if(in_array($role, $roles)){
-			return true;
-		}else{
-			return false;
-		}
+		$roles = $this->roles->lists('name');
+
+		return in_array($role, $roles);
 	}
 
 	public function isActive()
@@ -160,24 +159,26 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
 	public function isAdmin()
 	{
-		return $this->hasRole("administrator");
+		return $this->hasRole('administrator');
 	}
 
 	public function isModerator()
 	{
-		return $this->hasRole("moderator");
+		return $this->hasRole('moderator');
 	}
 
 	public function isLibrarian()
 	{
-		return $this->hasRole("librarian");
+		return $this->hasRole('librarian');
 	}
 
-	// ===========================================================================================
+	/**
+	 * Presenters
+	 */
 
 	public function displayProfile()
 	{
-		return "<a class='user' href='".route("user.profile", [$this->name])."'>$this->name</a>";
+		return '<a class="user" href="' . route('user.profile', [$this->name]) . '">' . $this->name . '</a>';
 	}
 
-};
+}

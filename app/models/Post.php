@@ -2,25 +2,17 @@
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Post extends \Eloquent {
+class Post extends Eloquent {
 
-	protected   $table =        'posts';
-	protected   $primaryKey =   'id';
-	public      $timestamps =   true;
+	use SoftDeletingTrait;
 
-	protected   $fillable =     [];
-    protected   $guarded =      ['id','author_id'];
-    protected   $hidden =       [];
+	protected $table = 'posts';
+	protected $guarded = ['id', 'author_id'];
+	protected $dates = ['deleted_at', 'published_at'];
 
-	use         SoftDeletingTrait;
-	protected   $dates =        ['deleted_at', 'published_at'];
-
-
-	public static function boot()
-	{
-		parent::boot();
-		// Setup event bindings...
-	}
+	/**
+	 * Ralations
+	 */
 
 	public function author()
 	{
@@ -31,13 +23,15 @@ class Post extends \Eloquent {
 	{
 		return $this->morphMany("Comment", "commentable");
 	}
-	
+
 	public function framework_version()
 	{
 		return $this->belongsTo("FrameworkVersion");
 	}
 
-	// ===== Scopes =====
+	/**
+	 * Scopes
+	 */
 
 	public function scopeArticle($query)
 	{
@@ -49,39 +43,44 @@ class Post extends \Eloquent {
 		return $query->where("is_draft", 0);
 	}
 
-	// ===== Properties =====
+	/**
+	 * Properties
+	 */
 
 	public function isArticle()
 	{
-		if($this->type == "article"){
-			return true;
-		}else{
-			return false;
-		}
+		return $this->type == "article";
 	}
 
-	// ===== Presenter =====
+	/**
+	 * Presenters
+	 */
 
 	public function displayText()
 	{
 		$parse = App::make('LaravelRU\Parser\Parse');
+
 		return $parse->markdown($this->text);
 	}
 
 	public function displayDate()
 	{
-		if(is_null($this->published_at)){
-			return "не опубликовано";
+		if (is_null($this->published_at))
+		{
+			return 'не опубликовано';
 		}
-		return $this->published_at->format("d M");
+
+		return $this->published_at->format('d M');
 	}
+
 	public function displayPublishedAt()
 	{
-		if(is_null($this->published_at)){
-			return "не опубликовано";
+		if (is_null($this->published_at))
+		{
+			return 'не опубликовано';
 		}
-		return $this->published_at->format("d M");
+
+		return $this->published_at->format('d M');
 	}
 
-
-};
+}

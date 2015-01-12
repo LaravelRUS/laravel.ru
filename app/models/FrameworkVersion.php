@@ -1,11 +1,18 @@
 <?php
+
 class FrameworkVersion extends Eloquent {
 
-	protected   $table      =  'framework_versions';
-	public      $timestamps =  false;
+	public $timestamps = false;
+
+	protected $table = 'framework_versions';
+
+	/**
+	 * Ralations
+	 */
 
 	public function posts()
 	{
-		return $this->hasMany("Post");
+		return $this->hasMany('Post');
 	}
+
 }

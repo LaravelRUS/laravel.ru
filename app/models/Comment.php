@@ -1,19 +1,21 @@
 <?php
 
-use Carbon\Carbon;
+class Comment extends Eloquent {
 
-class Comment extends \Eloquent {
-    protected $table = "comments";
-    public $timestamps = true;
+	protected $table = 'comments';
 
-    public function user()
-    {
-        return $this->belongsTo("User");
-    }
+	/**
+	 * Ralations
+	 */
 
-    public function commentable()
-    {
-        return $this->morphTo();
-    }
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function commentable()
+	{
+		return $this->morphTo();
+	}
 
 }
