@@ -1,5 +1,4 @@
 // Homepage Header section
-
 .homepage {
 	padding: 30px 0;
 
@@ -12,5 +11,22 @@
 	}
 	h2 {
 		font-size: 20px;
+	}
+}
+
+// Homepage Widget
+.widget {
+	li {
+		margin-bottom: 25px;
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+	.title a {
+		font-size: 16px;
+	}
+	.date {
+		padding-right: 7px;
 	}
 }

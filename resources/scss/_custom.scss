@@ -94,71 +94,6 @@ code {
 	z-index: 101;
 }
 
-/* превью новостей */
-.news_box {
-	margin: 20px 0 30px 0;
-}
-
-.news_box .date {
-	margin-bottom: 1px;
-}
-
-/*новые посты*/
-.post_box {
-	margin: 20px 0 0px 0;
-}
-
-.post_box .post_title a {
-	font-size: 18px;
-	font-weight: 600;
-}
-
-.post_box .date {
-	margin-right: 10px;
-}
-
-.post_credentials .controls {
-	margin-left: 10px;
-}
-
-.post_content {
-	margin-top: 20px;
-}
-
-/*новые пакеты*/
-.package_box {
-	margin: 20px 0 0px 0;
-}
-
-.package_box .date {
-	padding-right: 10px;
-}
-
-.package_box .postdate {
-	padding-left: 10px;
-}
-
-.package_box .package_title a {
-	font-size: 16px;
-}
-
-/*обновления документации*/
-.docs_box {
-	margin: 20px 0 0px 0;
-}
-
-.docs_box .title a {
-	font-size: 16px;
-}
-
-.docs_box .date {
-	padding-right: 10px;
-}
-
-.docs_box .name {
-	font-size: 16px;
-}
-
 textarea.post_description {
 	height: 120px;
 }
@@ -226,26 +161,6 @@ h1 small a, h2 small a, h3 small a {
 	padding-top: 15px;
 	margin-bottom: 20px;
 	color: #419EDA;
-}
-
-svg {
-	font-family: "Source Sans Pro", sans-serif;
-}
-
-ul, ol {
-	padding-left: 25px;
-}
-
-p, li {
-	font-weight: 400;
-}
-
-p a, li a {
-	font-weight: 400;
-}
-
-b, strong {
-	font-weight: 600;
 }
 
 .lead {
@@ -345,7 +260,6 @@ table td:first-child.rowspan-padding {
 	width: 100%;
 }
 
-
 .date {
 	font-style: italic;
 }
@@ -362,9 +276,6 @@ table td:first-child.rowspan-padding {
 	padding: 0 0 0 21px;
 	background: url(../images/partners/yc-favicon.png) left center no-repeat;
 }
-
-
-
 
 .btn {
 	border: none;
