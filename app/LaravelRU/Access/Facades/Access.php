@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Access extends Facade{
+class Access extends Facade {
 
 	protected static function getFacadeAccessor()
 	{
-		return "access";
+		return 'access';
 	}
 }
