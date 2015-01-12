@@ -38,7 +38,7 @@ class HomeController extends BaseController {
 
 		$updatedDocs = Docs::orderBy('last_commit_at', 'desc')->limit(12)->get();
 
-		return View::make('home.home', compact('lastPosts', 'lastNews', 'newPackages', 'updatedPackages', 'updatedDocs'));
+		return View::make('home.home-page', compact('lastPosts', 'lastNews', 'newPackages', 'updatedPackages', 'updatedDocs'));
 	}
 
 }
