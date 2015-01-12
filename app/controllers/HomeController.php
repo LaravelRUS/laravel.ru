@@ -33,8 +33,8 @@ class HomeController extends BaseController {
 		$lastPosts = $this->postRepo->getLastPosts();
 		$lastNews = $this->newsRepo->getLastNews(5);
 
-		$newPackages = $this->packageRepo->getLastCreated(10);
-		$updatedPackages = $this->packageRepo->getLastUpdated(10);
+		$newPackages = $this->packageRepo->getLastCreated();
+		$updatedPackages = $this->packageRepo->getLastUpdated();
 
 		$updatedDocs = Docs::orderBy('last_commit_at', 'desc')->limit(12)->get();
 
