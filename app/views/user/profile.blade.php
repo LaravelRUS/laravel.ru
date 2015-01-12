@@ -1,4 +1,4 @@
-@extends('_layout.rightsidebar')
+@extends('layouts.rightsidebar')
 
 @section('title')
     Пользователь

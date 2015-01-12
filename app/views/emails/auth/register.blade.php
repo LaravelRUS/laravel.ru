@@ -1,4 +1,4 @@
-@extends("emails._layout.default")
+@extends("emails.layouts.default")
 
 @section("content")
 <p>

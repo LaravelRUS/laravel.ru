@@ -1,0 +1,271 @@
+.box {
+	background: #FFFFFF;
+	border: 1px solid #EEEEEE;
+	padding: 20px 30px 30px 30px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.box-invisible {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.sidebar {
+	min-height: 700px;
+}
+
+.title {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+code {
+	background: #EEEEEE;
+	color: #F4645F;
+	padding: 1px 5px;
+	border-radius: 3px;
+	font-family: source-code-pro, monospace;
+	font-size: 13px;
+}
+
+.docs blockquote {
+	background: #F4726D;
+	border-radius: 2px;
+	box-sizing: border-box;
+	margin-bottom: 20px;
+	max-width: 100%;
+	padding: 18px 20px;
+	font-size: 14px;
+	border-left: 0px;
+}
+
+.docs blockquote p {
+	color: #FFFFFF;
+}
+
+.docs-entry ul {
+	list-style: none;
+	margin: 0;
+	padding: 15px 0 20px;
+}
+
+.docs-entry ul li a {
+	font-weight: 600;
+	color: #F4645F;
+	margin-left: 30px;
+}
+
+.docs-sidebar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0px 0px 20px;
+}
+
+.docs-sidebar ul li {
+	font-weight: 600;
+	color: #F4645F;
+	font-size: 16px;
+}
+
+.docs-sidebar ul li a {
+	font-weight: 400;
+	color: #F4645F;
+	font-size: 14px;
+	padding-left: 10px;
+}
+
+.version_selector_menu li > span {
+	position: relative;
+	display: block;
+	padding: 12px 15px;
+	margin-right: 0px;
+}
+
+.version_selector_menu .active a {
+	font-weight: 600;
+}
+
+.submenu_panel_sticky {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 101;
+}
+
+textarea.post_description {
+	height: 120px;
+}
+
+textarea.post_text {
+	height: 500px;
+	font-size: 12px;
+	padding: 4px;
+	border-radius: 2px;
+}
+
+.text-danger {
+	color: #DA3727;
+}
+
+.text-success {
+	color: #02A100;
+}
+
+.text-info {
+	color: #3A87AD;
+}
+
+/*
+Coreos theme
+*/
+.red {
+	color: #F4645F;
+}
+
+.blue {
+	color: #419EDA;
+}
+
+.green {
+	color: #6EC654;
+}
+
+.gray {
+	color: rgba(0, 0, 0, 0.75);
+}
+
+.black {
+	color: #000000;
+}
+
+.white {
+	color: #FFFFFF;
+}
+
+.docs h2 {
+	border-top: 1px solid #EEEEEE;
+	margin-top: 20px;
+	padding-top: 35px;
+	margin-bottom: 25px;
+	color: #F4645F;
+}
+
+.docs h3 {
+	margin-top: 10px;
+	padding-top: 15px;
+	margin-bottom: 20px;
+	color: #419EDA;
+}
+
+.lead {
+	font-weight: 400;
+	color: rgba(77, 77, 77, 0.75);
+	text-shadow: 0 1px 1px #FFFFFF;
+	font-style: italic;
+}
+
+table {
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	font-weight: 400;
+}
+
+table thead th {
+	text-transform: uppercase;
+	font-size: 13px;
+	line-height: 20px;
+	border-bottom: 1px solid #DDDDDD;
+	padding-top: 0px;
+	padding-right: 10px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	color: #666666;
+}
+
+table tbody td {
+	line-height: 18px;
+	font-size: 12px;
+	border-bottom: 1px solid #DDDDDD;
+	padding-top: 6px;
+	padding-right: 10px;
+	padding-bottom: 6px;
+	padding-left: 0px;
+	vertical-align: text-top;
+}
+
+table thead td:first-child, table thead th:first-child, table tbody td:first-child, table tfoot td:first-child {
+	padding-left: 10px;
+}
+
+table thead td:last-child, thead th:last-child, table tbody td:last-child, table tfoot td:last-child {
+	padding-right: 10px;
+}
+
+table td.dashed {
+	border-bottom: 1px dashed #DDDDDD;
+}
+
+table td:first-child.rowspan-padding {
+	padding-left: 0;
+}
+
+.img-full {
+	width: 100%;
+}
+
+.btn {
+	border: none;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+	margin-right: 10px;
+	border-radius: 2px;
+}
+
+.btn-lg {
+	border-radius: 3px;
+}
+
+.btn-group .btn {
+	margin-right: 0px;
+}
+
+.btn-primary {
+	color: #FFFFFF;
+	background-color: #F04C5C;
+	text-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled], .open .dropdown-toggle.btn-primary {
+	color: #FFFFFF;
+	background-color: #DD1326;
+}
+
+.btn-secondary {
+	color: #FFFFFF;
+	background-color: #419EDA;
+	text-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+}
+
+.btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus, .btn-secondary.active, .btn-secondary.disabled, .btn-secondary[disabled], .open .dropdown-toggle.btn-secondary {
+	color: #FFFFFF;
+	background-color: #2276AD;
+}
+
+.btn-default {
+	color: rgba(0, 0, 0, 0.75);
+	background-color: #FFFFFF;
+	border-top: 1px solid #EEEEEE;
+}
+
+.btn-default:hover, .btn-default:active, .btn-default.active, .btn-default.disabled, .btn-default[disabled] {
+	color: #000000;
+	background-color: #F1F1F1;
+	border-color: #EEEEEE;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.bs-top {
+	display: none;
+}

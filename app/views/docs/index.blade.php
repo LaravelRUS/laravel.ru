@@ -1,4 +1,4 @@
-@extends('..._layout.main')
+@extends('layouts.main')
 
 @section('title')
 Документация

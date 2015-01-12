@@ -1,4 +1,4 @@
-@extends("..._layout.nosidebar")
+@extends("layouts.nosidebar")
 
 @section("title")
 Вход

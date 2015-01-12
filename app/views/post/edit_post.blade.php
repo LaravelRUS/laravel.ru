@@ -1,4 +1,4 @@
-@extends('_layout.nosidebar')
+@extends('layouts.nosidebar')
 
 @section('title')
 <?if($post->id){?>
@@ -10,7 +10,7 @@
 
 @section('content')
 
-<!--@include("_layout/partials/ace-editor")-->
+<!--@include("layouts/partials/ace-editor")-->
 
 <script>
 	$(function(){
@@ -129,6 +129,6 @@
 
 <?= Form::close() ?>
 
-<!--@include("_layout/partials/ace-editor")-->
+<!--@include("layouts/partials/ace-editor")-->
 
 @stop

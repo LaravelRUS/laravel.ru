@@ -1,0 +1,33 @@
+// Homepage Header section
+.homepage {
+	padding: 30px 0;
+
+	h1, h2 {
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, .25)
+	}
+
+	h1 {
+		font-size: 44px;
+	}
+	h2 {
+		font-size: 20px;
+	}
+}
+
+// Homepage Widget
+.widget {
+	li {
+		margin-bottom: 25px;
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+	.title a {
+		font-size: 16px;
+	}
+	.date {
+		padding-right: 7px;
+		font-style: italic;
+	}
+}
