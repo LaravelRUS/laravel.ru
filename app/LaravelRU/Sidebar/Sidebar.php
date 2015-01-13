@@ -18,15 +18,13 @@ class Sidebar {
 	public function renderLastPosts($num_posts = 6)
 	{
 		$posts = $this->postRepo->getLastPosts($num_posts);
-		return View::make("sidebar/sidebar_last_posts", compact("posts"));
-	}
 
+		return View::make('sidebar/sidebar_last_posts', compact('posts'));
+	}
 
 	public function typicalSidebar()
 	{
 		return $this->renderLastPosts();
 	}
 
-
-
-} 
+}
