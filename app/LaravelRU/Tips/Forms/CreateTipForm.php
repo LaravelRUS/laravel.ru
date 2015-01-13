@@ -2,13 +2,10 @@
 
 use Laracasts\Validation\FormValidator;
 
-class CreateTipForm extends FormValidator{
+class CreateTipForm extends FormValidator {
 
-	protected $rules = [
-		'text'    => 'required',
-	];
+	protected $rules = ['text' => 'required'];
 
-	protected $messages = [
-	];
+	protected $messages = [];
 
-} 
+}

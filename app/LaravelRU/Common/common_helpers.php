@@ -3,9 +3,9 @@
 /**
  * Генерация блока breadcrubs
  * Использование: $items = ['Текст ссылки'=>'урл ссылки', ...]
-
  *
-*@param array $items
+ * @param array $items
+ *
  * @return string
  */
 function breadcrumbs($items)
@@ -56,4 +56,12 @@ function activeByRoute($routeMatch)
 	}
 
 	return '';
+}
+
+if ( ! function_exists('abort'))
+{
+	function abort($code = 404, $message = '')
+    {
+	    return app()->abort($code, $message);
+    }
 }

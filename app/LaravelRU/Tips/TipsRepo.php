@@ -3,25 +3,22 @@
 use LaravelRU\Core\Repository\BaseRepository;
 use Tip;
 
-class TipsRepo extends BaseRepository
-{
+class TipsRepo extends BaseRepository {
 
-    public function __construct(Tip $tip)
-    {
-        $this->model = $tip;
-    }
+	public function __construct(Tip $tip)
+	{
+		$this->model = $tip;
+	}
 
-    /**
-     * Последние "а знаете ли вы что"
-     *
-     * @param int $num
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    public function getLastTips($num = 10)
-    {
-        return $this->model->orderBy("published_at", "DESC")->limit($num)->get();
-    }
+	/**
+	 * Последние "а знаете ли вы что"
+	 *
+	 * @param int $num
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public function getLastTips($num = 10)
+	{
+		return $this->model->orderBy(Tip::PUBLISHED_AT, 'desc')->limit($num)->get();
+	}
 
 }
-    
-?> 

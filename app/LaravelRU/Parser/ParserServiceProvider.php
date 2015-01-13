@@ -1,20 +1,13 @@
 <?php namespace LaravelRU\Parser;
 
-use App;
+// TODO Это точно тот провайдер от корого необходимо наследоваться?
 use Indatus\Dispatcher\ServiceProvider;
 
-class ParserServiceProvider extends ServiceProvider{
+class ParserServiceProvider extends ServiceProvider {
 
-    public function register()
-    {
-        App::bindShared('LaravelRU\Parser\Parse', function(){
-            return new Parse();
-        });
-    }
-
-    public function boot()
-    {
-
-    }
+	public function register()
+	{
+		$this->app->singleton('LaravelRU\Parser\Parse');
+	}
 
 }

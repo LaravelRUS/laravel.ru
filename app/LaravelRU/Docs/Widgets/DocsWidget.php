@@ -6,15 +6,20 @@ use View;
 
 class DocsWidget {
 
-    public function sidebar($version)
-    {
-        return Document::version($version)->name("documentation")->first()->displayText();
-    }
+	public function sidebar($version)
+	{
+		return Document::version($version)->name('documentation')->first()->displayText();
+	}
 
-    public function versionSelector($version, $name)
-    {
-        $all_versions = Config::get("laravel.versions");
-        return View::make("docs/version_selector", ['all_versions'=>$all_versions, 'current_version'=>$version, 'name'=>$name])->render();
-    }
+	public function versionSelector($version, $name)
+	{
+		$all_versions = Config::get('laravel.versions');
 
-} 
+		return View::make('docs/version_selector', [
+			'all_versions' => $all_versions,
+			'current_version' => $version,
+			'name' => $name
+		])->render();
+	}
+
+}

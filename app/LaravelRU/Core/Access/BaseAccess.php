@@ -2,8 +2,6 @@
 
 // Базовый класс проверки доступа. Возможно, понадобится в будущем.
 
-abstract class BaseAccess{
+abstract class BaseAccess {
 
-
-
-} 
+}

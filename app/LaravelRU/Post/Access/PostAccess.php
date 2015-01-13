@@ -1,10 +1,11 @@
 <?php namespace LaravelRU\Post\Access;
 
+use Auth;
 use LaravelRU\Core\Access\BaseAccess;
 use LaravelRU\Post\PostRepo;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class PostAccess extends BaseAccess{
+class PostAccess extends BaseAccess {
 
 	/**
 	 * @var PostRepo
@@ -18,16 +19,18 @@ class PostAccess extends BaseAccess{
 
 	public function checkEditPost($id)
 	{
-		if(\Auth::id() != $this->postRepo->getAuthorId($id)){
+		if (Auth::id() != $this->postRepo->getAuthorId($id))
+		{
 			throw new AccessDeniedException;
 		}
 	}
 
 	public function checkEditPostBySlug($slug)
 	{
-		if(\Auth::id() != $this->postRepo->getAuthorIdBySlug($slug)){
+		if (Auth::id() != $this->postRepo->getAuthorIdBySlug($slug))
+		{
 			throw new AccessDeniedException;
 		}
 	}
 
-} 
+}
