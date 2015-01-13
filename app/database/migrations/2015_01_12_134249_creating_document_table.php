@@ -30,8 +30,10 @@ class CreatingDocumentTable extends Migration {
 			$table->timestamp("last_original_commit_at")->nullable();
 			$table->timestamp("current_original_commit_at");
 
+			$table->integer('original_commits_ahead');
+
 			$table->integer('version_id');
-			$table->integer('updater_id')->unsigned();
+			$table->integer('updater_id')->unsigned()->nullable();
 			$table->timestamps();
 
 			$table->unique(array('version_id', 'name'), 'page');
