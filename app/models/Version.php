@@ -4,6 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Version extends Model {
 
+	const MASTER = 'master';
+
 	public $timestamps = false;
 
 	public function posts()
@@ -19,6 +21,16 @@ class Version extends Model {
 	public function tips()
 	{
 		return $this->hasMany('Tip');
+	}
+
+	public function isMaster()
+	{
+		return (bool) $this->is_master;
+	}
+
+	public function isDefault()
+	{
+		return (bool) $this->is_default;
 	}
 
 	function __toString()
