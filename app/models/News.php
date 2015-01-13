@@ -7,17 +7,8 @@ class News extends Eloquent {
 
 	use SoftDeletingTrait;
 
-<<<<<<< HEAD
-	protected $dates = ['deleted_at'];
-=======
-	protected $table = 'news';
-	protected $dates = ['created_at', 'updated_at', 'deleted_at'];
-	protected $guarded = [];
 
-	/**
-	 * Ralations
-	 */
->>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208
+	protected $dates = ['deleted_at'];
 
 	public function author()
 	{
@@ -39,26 +30,4 @@ class News extends Eloquent {
 		return $this->where('is_draft', 0);
 	}
 
-<<<<<<< HEAD
 }
-=======
-	/**
-	 * Presenters
-	 */
-
-	public function displayDate()
-	{
-		$date = LocalizedCarbon::instance($this->created_at);
-
-		return $date->formatLocalized('%e %B %Y');
-	}
-
-	public function displayText()
-	{
-		$parse = App::make('LaravelRU\Parser\Parse');
-
-		return $parse->markdown($this->text);
-	}
-
-}
->>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208

@@ -42,11 +42,8 @@ class AuthController extends BaseController {
 		$user->save();
 
 		$confirmationString = Str::quickRandom(20);
-<<<<<<< HEAD
+
 		$userConfirmation = Confirmation::create(['code'=>$confirmationString]);
-=======
-		$userConfirmation = UserConfirmation::create(['code' => $confirmationString]);
->>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208
 
 		$user->confirmation()->save($userConfirmation);
 
@@ -70,14 +67,9 @@ class AuthController extends BaseController {
 
 	public function getConfirmation($code)
 	{
-<<<<<<< HEAD
+
 		$userConfirmation = Confirmation::where('code', $code)->first();
 		if($userConfirmation){
-=======
-		$userConfirmation = UserConfirmation::where('code', $code)->first();
-
-		if ($userConfirmation) {
->>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208
 			$user = $userConfirmation->user;
 			$user->is_confirmed = 1;
 			$user->save();
