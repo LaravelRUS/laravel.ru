@@ -1,7 +1,10 @@
 <?php
-class Version extends Eloquent {
 
-	public      $timestamps =  false;
+use Illuminate\Database\Eloquent\Model;
+
+class Version extends Model {
+
+	public $timestamps = false;
 
 	public function posts()
 	{
@@ -12,9 +15,10 @@ class Version extends Eloquent {
 	{
 		return $this->hasMany('Document');
 	}
-	
-	public  function tips()
+
+	public function tips()
 	{
 		return $this->hasMany('Tip');
 	}
+
 }
