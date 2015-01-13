@@ -30,7 +30,7 @@ class CreatingVersionsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::dropIfExists('versions');
 	}
 
 }

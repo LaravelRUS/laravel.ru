@@ -6,11 +6,19 @@ class Document extends Eloquent {
 
 	public function scopeVersion($query, $version)
 	{
-		return $query->where('framework_version', '=', $version);
+		return $query->whereHas('frameworkVersion', function($q) use ($version)
+		{
+			return $q->whereIteration($version);
+		});
 	}
 
 	public function scopeName($query, $name)
 	{
 		return $query->where('name', '=', $name);
+	}
+
+	public function frameworkVersion()
+	{
+		return $this->belongsTo('Version', 'version_id');
 	}
 }
