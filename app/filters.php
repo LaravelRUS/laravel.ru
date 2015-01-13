@@ -2,28 +2,6 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application & Route Filters
-|--------------------------------------------------------------------------
-|
-| Below you will find the "before" and "after" events for the application
-| which may be used to do any work before or after a request into your
-| application. Here you may also register your custom route filters.
-|
-*/
-
-App::before(function($request)
-{
-	//
-});
-
-
-App::after(function($request, $response)
-{
-	//
-});
-
-/*
-|--------------------------------------------------------------------------
 | Authentication Filters
 |--------------------------------------------------------------------------
 |
@@ -33,13 +11,13 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('auth', function()
+Route::filter('auth', function ()
 {
 	if (Auth::guest()) return Redirect::guest('login');
 });
 
 
-Route::filter('auth.basic', function()
+Route::filter('auth.basic', function ()
 {
 	return Auth::basic();
 });
@@ -55,12 +33,12 @@ Route::filter('auth.basic', function()
 |
 */
 
-Route::filter('guest', function()
+Route::filter('guest', function ()
 {
 	if (Auth::check()) return Redirect::to('/');
 });
 
-Route::filter('logged', function()
+Route::filter('logged', function ()
 {
 	if ( ! Auth::check()) return Redirect::to('/');
 });
@@ -77,7 +55,7 @@ Route::filter('logged', function()
 |
 */
 
-Route::filter('csrf', function()
+Route::filter('csrf', function ()
 {
 	if (Session::token() !== Input::get('_token'))
 	{
@@ -88,15 +66,7 @@ Route::filter('csrf', function()
 /**
  * Редактирование терминов в документации
  */
-Route::filter('documentation', function()
+Route::filter('documentation', function ()
 {
 
-});
-
-/**
- * Макрос Form::check - чекбокс, который возвращает 0 в неустановленном состоянии
- */
-
-Form::macro("check", function($name, $value = 1, $checked = null, $options = array()){
-	return Form::hidden($name, 0).Form::checkbox($name, $value, $checked, $options);
 });
