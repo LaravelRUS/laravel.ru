@@ -1,11 +1,11 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class News extends Eloquent {
+class News extends Model {
 
 	use SoftDeletingTrait;
-
 
 	protected $dates = ['deleted_at'];
 
