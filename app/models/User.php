@@ -1,14 +1,21 @@
 <?php
 
-use Illuminate\Auth\UserInterface;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Auth\UserInterface;
 
+class User extends Model implements UserInterface, RemindableInterface {
 
-class User extends \Eloquent implements UserInterface, RemindableInterface {
+	/**
+	 * The name of the "published at" column.
+	 *
+	 * @var string
+	 */
+	const PUBLISHED_AT = 'published_at';
 
-	protected   $hidden =       ['password', 'remember_token'];
-
+	protected $hidden = ['password', 'remember_token'];
 	protected $guarded = [];
+	protected $dates = ['published_at'];
 
 	/**
 	 * Автохэширование пароля
@@ -87,28 +94,27 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
 	public function roles()
 	{
-		return $this->belongsToMany('Role','user_role','user_id', 'role_id');
+		return $this->belongsToMany('Role', 'user_role', 'user_id', 'role_id');
 	}
 
 	public function posts()
 	{
-		return $this->hasMany('Post', 'author_id')->orderBy('published_at', 'DESC');
+		return $this->hasMany('Post', 'author_id')->orderBy(static::PUBLISHED_AT, 'desc');
 	}
 
 	public function tips()
 	{
-		return $this->hasMany('Tip', 'author_id')->orderBy('published_at', 'DESC');
+		return $this->hasMany('Tip', 'author_id')->orderBy(static::PUBLISHED_AT, 'desc');
 	}
 
 	public function news()
 	{
-		return $this->hasMany('News', 'author_id')->orderBy('created_at', 'DESC');
+		return $this->hasMany('News', 'author_id')->orderBy(static::CREATED_AT, 'desc');
 	}
 
 	public function confirmation()
 	{
-
-		return $this->hasOne('Confirmation')->orderBy('created_at','DESC');
+		return $this->hasOne('Confirmation')->orderBy(static::CREATED_AT, 'desc');
 	}
 
 	/**
@@ -122,12 +128,9 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 */
 	public function hasRole($role)
 	{
-
 		$roles = $this->roles->lists('name');
 
-		if(in_array($role, $roles))	return true;
-
-		return false;
+		return in_array($role, $roles);
 	}
 
 	public function isActive()
