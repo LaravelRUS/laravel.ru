@@ -77,15 +77,19 @@ class UpdateDocsCron extends ScheduledCommand {
 
 		if ($force_branch)
 		{
-			$all_versions[] = $force_branch;
+			$all_versions[] = FrameworkVersion::where('is_master', 1)->first();
 		}
 		else
 		{
-			$all_versions = FrameworkVersion::lists('iteration', 'id');
+			$all_versions = FrameworkVersion::all();
 		}
 
-		foreach ($all_versions as $id => $version)
+		/** @var FrameworkVersion $v */
+		foreach ($all_versions as $v)
 		{
+			$id = $v->id;
+			$version = $v->isMaster() ? FrameworkVersion::MASTER : $v->iteration;
+
 			$this->info("Process branch $version");
 
 			if ($force_file)
@@ -103,11 +107,11 @@ class UpdateDocsCron extends ScheduledCommand {
 				if ($forceupdate)
 				{
 					Document::version($version)->delete();
-					$this->info("clear exist $version docs!");
+					$this->info("clear exist {$version} docs!");
 				}
 
-				$this->line("Fetch documentation.md");
-				$content = $this->githubTranslated->getFile($version, "documentation.md");
+				$this->line('Fetch documentation.md');
+				$content = $this->githubTranslated->getFile($version, 'documentation.md');
 				$lines = explode("\n", $content);
 				$lines[] = "[Menu](/docs/$version/documentation)";
 			}
@@ -118,20 +122,22 @@ class UpdateDocsCron extends ScheduledCommand {
 				try
 				{
 					preg_match('/\(\/docs\/(.*?)\/(.*?)\)/im', $line, $matches);
+
 					if (isset($matches[2]))
 					{
 						$name = $matches[2];
 						$filename = $name . '.md';
 						$this->line('');
-						$this->line("Fetch $filename ...");
-						//$last_commit_id = $this->githubTranslated->getLastCommitId($version, $filename);
+						$this->line("Fetch {$filename}...");
 						$this->line(' get last translated commit');
 						$commit = $this->githubTranslated->getLastCommit($version, $filename);
 
 						if ( ! is_null($commit))
 						{
 							$last_commit_id = $commit['sha'];
-							$last_commit_at = Carbon::createFromTimestampUTC(strtotime($commit['commit']['committer']['date']));
+							$last_commit_at = Carbon::createFromTimestampUTC(
+								strtotime($commit['commit']['committer']['date'])
+							);
 							$this->line(' get file');
 							$content = $this->githubTranslated->getFile($version, $filename, $last_commit_id);
 							if ( ! is_null($content))
@@ -159,7 +165,11 @@ class UpdateDocsCron extends ScheduledCommand {
 										$count_ahead = count($original_commits) - 1;
 										$current_original_commit = $this->githubOriginal->getLastCommit($version, $filename);
 										$current_original_commit_id = $current_original_commit['sha'];
-										$current_original_commit_at = Carbon::createFromTimestampUTC(strtotime($current_original_commit['commit']['committer']['date']));
+										$current_original_commit_at = Carbon::createFromTimestampUTC(
+											strtotime(
+												$current_original_commit['commit']['committer']['date']
+											)
+										);
 
 									}
 									else
@@ -170,7 +180,7 @@ class UpdateDocsCron extends ScheduledCommand {
 									$content = preg_replace("/git(.*?)(\n*?)---(\n*?)/", "", $content);
 									preg_match("/#(.*?)$/m", $content, $matches);
 									$title = trim(array_get($matches, '1'));
-									$page = Document::version($version)->name($name)->first();
+									$page = Document::version($v)->name($name)->first();
 									if ($page)
 									{
 										if ($last_commit_id != $page->last_commit)
