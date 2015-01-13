@@ -9,21 +9,21 @@ use Symfony\Component\Console\Input\InputOption;
 class UserCommand extends Command {
 
 	/**
-	 * The console command name.
+	 * The console command name
 	 *
 	 * @var string
 	 */
 	protected $name = 'su:create_user';
 
 	/**
-	 * The console command description.
+	 * The console command description
 	 *
 	 * @var string
 	 */
-	protected $description = 'Creating user.';
+	protected $description = 'Creating user or admin.';
 
 	/**
-	 * Execute the console command.
+	 * Execute the console command
 	 *
 	 * @return mixed
 	 */
