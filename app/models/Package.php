@@ -1,5 +1,11 @@
 <?php
 
+<<<<<<< HEAD
+
+class Package extends Eloquent {
+    
+};
+=======
 class Package extends Eloquent {
 
 	public $timestamps = false;
@@ -23,3 +29,4 @@ class Package extends Eloquent {
 	}
 
 }
+>>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208

@@ -1,0 +1,7 @@
+diff a/app/controllers/AuthController.php b/app/controllers/AuthController.php	(rejected hunks)
+@@ -1,4 +0,4 @@
+-<?php 
++<?php
+ 
+ use LaravelRU\User\Forms\LoginForm;
+ use LaravelRU\User\Forms\RegistrationForm;

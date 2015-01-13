@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeColumnTypeUserRoles extends Migration {
+class CreatingVersionsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,14 @@ class ChangeColumnTypeUserRoles extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table("user_roles", function(Blueprint $table){
-			$table->dropColumn("name");
-		});
-		Schema::table("user_roles", function(Blueprint $table){
-			$table->string("name");
+		Schema::create('versions', function(Blueprint $table)
+		{
+			$table->engine = 'InnoDB';
+
+			$table->increments('id');
+			$table->string('iteration');
+			$table->boolean('is_master');
+			$table->boolean('is_default');
 		});
 	}
 
@@ -27,7 +30,7 @@ class ChangeColumnTypeUserRoles extends Migration {
 	 */
 	public function down()
 	{
-		// no way back
+		//
 	}
 
 }

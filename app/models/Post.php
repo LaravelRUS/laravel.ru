@@ -6,6 +6,11 @@ class Post extends Eloquent {
 
 	use SoftDeletingTrait;
 
+<<<<<<< HEAD
+	protected  $guarded = ['id','author_id'];
+
+	protected  $dates 	= ['deleted_at', 'published_at'];
+=======
 	protected $table = 'posts';
 	protected $guarded = ['id', 'author_id'];
 	protected $dates = ['deleted_at', 'published_at'];
@@ -13,6 +18,7 @@ class Post extends Eloquent {
 	/**
 	 * Ralations
 	 */
+>>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208
 
 	public function author()
 	{
@@ -26,6 +32,9 @@ class Post extends Eloquent {
 
 	public function framework_version()
 	{
+<<<<<<< HEAD
+		return $this->belongsTo("Version");
+=======
 		return $this->belongsTo("FrameworkVersion");
 	}
 
@@ -36,6 +45,7 @@ class Post extends Eloquent {
 	public function scopeArticle($query)
 	{
 		//return $query->where("")
+>>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208
 	}
 
 	public function scopeNotDraft($query)
@@ -43,6 +53,9 @@ class Post extends Eloquent {
 		return $query->where("is_draft", 0);
 	}
 
+<<<<<<< HEAD
+};
+=======
 	/**
 	 * Properties
 	 */
@@ -84,3 +97,4 @@ class Post extends Eloquent {
 	}
 
 }
+>>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208
