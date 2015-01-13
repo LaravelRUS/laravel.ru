@@ -1,8 +1,8 @@
 <?php
 
-use LaravelRU\Post\PostRepo;
-use LaravelRU\Packages\PackageRepo;
 use LaravelRU\News\Repositories\NewsRepo;
+use LaravelRU\Packages\PackageRepo;
+use LaravelRU\Post\PostRepo;
 
 class HomeController extends BaseController {
 

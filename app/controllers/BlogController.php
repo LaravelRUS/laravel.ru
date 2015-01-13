@@ -10,6 +10,7 @@ class BlogController extends BaseController {
 	 * @var UserRepo
 	 */
 	private $userRepo;
+
 	/**
 	 * @var PostRepo
 	 */
@@ -27,20 +28,24 @@ class BlogController extends BaseController {
 	public function blog($username)
 	{
 		$user = $this->userRepo->getByName($username);
-		if( ! $user){
+
+		if ( ! $user)
+		{
 			throw new NotFoundHttpException();
 		}
 
-		if(Auth::id() == $user->id){
+		if (Auth::id() == $user->id)
+		{
 			$posts = $user->posts()->paginate($this->postsOnPage);
 			$is_author = true;
-		}else{
+		}
+		else
+		{
 			$posts = $user->posts()->notDraft()->paginate($this->postsOnPage);
 			$is_author = false;
 		}
 
-		return View::make("blog/user_blog", compact("posts", "user", 'is_author'));
+		return View::make('blog/user_blog', compact('posts', 'user', 'is_author'));
 	}
-
 
 }

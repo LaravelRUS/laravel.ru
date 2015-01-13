@@ -10,10 +10,12 @@ class TipsController extends BaseController {
 	 * @var Access
 	 */
 	private $access;
+
 	/**
 	 * @var CreateTipForm
 	 */
 	private $createTipForm;
+
 	/**
 	 * @var UpdateTipForm
 	 */
@@ -30,51 +32,56 @@ class TipsController extends BaseController {
 	{
 		$tip = new Tip();
 		$tip->is_draft = 1;
+
 		$author = Auth::user();
-		return View::make("tips/edit_tip", compact("tip", "author"));
+
+		return View::make('tips/edit_tip', compact('tip', 'author'));
 	}
 
 	public function edit($id)
 	{
-		$tip = Tip::find($id);
-		if( ! $tip) throw new NotFoundHttpException;
+		if ( ! $tip = Tip::find($id)) abort();
+
 		$author = $tip->user;
 
-		return View::make("tips/edit_tip", compact("tip", "author"));
+		return View::make('tips/edit_tip', compact('tip', 'author'));
 	}
 
 	public function store()
 	{
-		$tip_id = Input::get("id");
+		$tip_id = Input::get('id');
 
-		if( $tip_id ){
+		if ($tip_id)
+		{
 			$this->updateTipForm->validate(Input::all());
+
 			$tip = Tip::find($tip_id);
+
 			$this->access->checkEditTip($tip);
-		}else{
+		}
+		else
+		{
 			$this->createTipForm->validate(Input::all());
+
 			$tip = Tip::create([]);
 			$tip->author_id = Auth::id();
 			$tip->is_draft = 0;
-			if(allowApproveTip()){
-				$tip->is_approved = 1;
-			}else{
-				$tip->is_approved = 0;
-			}
+			// TODO добавить функцию или пересмотреть поведение
+			$tip->is_approved = (int) allowApproveTip();
 		}
 
-		$tip->text = Input::get("text");
+		$tip->text = Input::get('text');
 		$tip->save();
 
-		if($tip->is_approved){
-			return Redirect::route("tips.edit", [$tip->id])->with("success", "Новость сохранена и опубликована.");
-		}else{
-			// TODO разослать уведомление модераторам на аппрув новости
-			return Redirect::route("tips.edit", [$tip->id])->with("success", "Новость сохранена и будет опубликована после одобрения модераторами.");
+		if ($tip->is_approved)
+		{
+			return Redirect::route('tips.edit', $tip->id)
+				->with('success', 'Новость сохранена и опубликована.');
 		}
 
+		// TODO разослать уведомление модераторам на аппрув новости
+		return Redirect::route('tips.edit', $tip->id)
+			->with('success', 'Новость сохранена и будет опубликована после одобрения модераторами.');
 	}
-		
-	
-	
+
 }

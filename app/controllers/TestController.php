@@ -1,7 +1,5 @@
 <?php
 
-use LaravelRU\Github\GithubRepo;
-
 class TestController extends BaseController {
 
 	public function __construct()
@@ -20,11 +18,12 @@ class TestController extends BaseController {
 		var_dump(array_first($versions, function(){ return true; }));
 */
 		Post::insert(
-				[
-					["title"=>"Oene", "description"=>"One Desc"],
-					["title"=>"Tweo", "description"=>"Two Desc"],
-				]
+			[
+				["title" => "Oene", "description" => "One Desc"],
+				["title" => "Tweo", "description" => "Two Desc"],
+			]
 		);
+
 		return "eee";
 	}
 
@@ -47,11 +46,9 @@ class TestController extends BaseController {
 	public function getCommit()
 	{
 		$client = new \Github\Client();
-		$commits = $client->api('repo')->commits()->all('laravel', 'docs', array('sha' => 'master', 'path' => 'eloquent.md'));
+		$commits = $client->api('repo')->commits()->all('laravel', 'docs', ['sha' => 'master', 'path' => 'eloquent.md']);
 		dd($commits);
 
 	}
-		
-	
-	
+
 }

@@ -8,6 +8,7 @@ use LaravelRU\Docs\DocsUtil;
 class DocsController extends BaseController {
 
 	protected $versions;
+
 	protected $default_version;
 
 	public function __construct()
@@ -39,14 +40,8 @@ class DocsController extends BaseController {
 		}
 
 		//Todo: ловим одно исключение чтобы выбросить другое?
-		try
-		{
-			$page = Document::version($version)->name($name)->firstOrFail();
-		}
-		catch (Exception $e)
-		{
-			throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-		}
+		$page = Document::version($version)->name($name)->first();
+		if ( ! $page) abort();
 
 		Session::set('docs_version', $version);
 		$menu = Document::version($version)->name('documentation')->first();
@@ -62,10 +57,10 @@ class DocsController extends BaseController {
 		// Todo: запросы в цикле? Выпилить.
 		foreach ($this->versions as $version => $is_default)
 		{
-			$docs[$version] = Document::version($version)->orderBy("name", "ASC")->get();
+			$docs[$version] = Document::version($version)->orderBy('name', 'ASC')->get();
 		}
 
-		return View::make("docs/updates", compact("docs"));
+		return View::make('docs/updates', compact('docs'));
 	}
 
 }
