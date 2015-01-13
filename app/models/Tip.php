@@ -7,7 +7,9 @@ class Tip extends Model {
 
 	use SoftDeletingTrait;
 
-	protected $dates = ['deleted_at', 'published_at'];
+	const PUBLISHED_AT = 'published_at';
+
+	protected $dates = ['deleted_at', self::PUBLISHED_AT];
 
 	public function author()
 	{

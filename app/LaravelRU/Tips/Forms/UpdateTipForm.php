@@ -2,13 +2,10 @@
 
 use Laracasts\Validation\FormValidator;
 
-class UpdateTipForm extends FormValidator{
+class UpdateTipForm extends FormValidator {
 
-	protected $rules = [
-		'text'    => 'required',
-	];
+	protected $rules = ['text' => 'required'];
 
-	protected $messages = [
-	];
+	protected $messages = [];
 
-} 
+}
