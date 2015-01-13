@@ -1,15 +1,16 @@
 <?php
 
-class Role extends Eloquent {
+use Illuminate\Database\Eloquent\Model;
 
+class Role extends Model {
 
-	protected   $table = 'roles';
+	public $timestamps = false;
 
-	public      $timestamps =  false;
+	protected $table = 'roles';
 
 	public function users()
 	{
-		return $this->belongsToMany("User","user_role","role_id","user_id");
+		return $this->belongsToMany('User', 'user_role', 'role_id', 'user_id');
 	}
 
 }

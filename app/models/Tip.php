@@ -1,11 +1,13 @@
 <?php
+
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Tip extends Eloquent {
+class Tip extends Model {
 
 	use SoftDeletingTrait;
 
-	protected   $dates = ['deleted_at', 'published_at'];
+	protected $dates = ['deleted_at', 'published_at'];
 
 	public function author()
 	{
@@ -16,5 +18,5 @@ class Tip extends Eloquent {
 	{
 		return $this->belongsTo('Version');
 	}
-	
+
 }
