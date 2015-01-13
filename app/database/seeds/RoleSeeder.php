@@ -1,18 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Роман
- * Date: 13.01.2015
- * Time: 1:30
- */
-
 
 class RoleSeeder extends Seeder{
 
-    function up()
+    public function run()
     {
         $roles = [
-            ['name' => '']
+            ['name'=>'administrator'],
+            ['name'=>'librarian'],
+            ['name'=>'moderator'],
+            ['name'=>'user'],
         ];
+        Role::insert($roles);
     }
+
+
 }

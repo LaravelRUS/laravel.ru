@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
-use Laravelrus\LocalizedCarbon\LocalizedCarbon;
 
 class News extends Eloquent {
 
