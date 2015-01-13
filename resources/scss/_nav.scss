@@ -2,6 +2,7 @@
 	margin-bottom: 0;
 	background-color: $navbar-bg-color;
 	font-size: 16px;
+	box-shadow: 0 0 3px #c2c2c2;
 }
 
 .navbar-brand {
@@ -16,13 +17,19 @@
 	}
 }
 
+.nab > li > a:hover,
+.nav > li > a:focus {
+	text-decoration: none;
+	background: none;
+}
+
 .navbar-fixed-top {
 //	border: 0;
 }
 
 .topmenu-nav, .submenu-nav {
 //	background: #FFFFFF;
-//	box-shadow: 0 0 3px rgba(153, 153, 153, 0.75);
+//
 //	font-weight: 400;
 //	font-size: 16px;
 }
@@ -71,11 +78,6 @@
 
 .submenu-nav li.active {
 	background-color: rgba(255, 167, 150, 0.16);
-}
-
-.nav > li > a:hover, .nav > li > a:focus {
-//	text-decoration: none;
-//	background: none;
 }
 
 .navbar-toggle .icon-bar {
