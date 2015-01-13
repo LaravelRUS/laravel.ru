@@ -3,13 +3,13 @@
 		<h3>Апдейты документации</h3>
 	</header>
 	<ul class="list-unstyled">
-		@foreach($updatedDocs as $page)
+		@foreach($updatedDocs as $doc)
 			<li>
 				<p class="title">
-					<span class="date">{{ $page->displayUpdatedAt() }}</span>
-					<span><a href="{{ route("docs", [$page->framework_version, $page->name]) }}">{{ $page->framework_version }}/{{ $page->name }}</a></span>
+					<span class="date">{{ $doc->displayUpdatedAt() }}</span>
+					<span><a href="{{ route('docs', [$doc->frameworkVersion->iteration, $doc->name]) }}">{{ $doc->frameworkVersion->iteration }}/{{ $doc->name }}</a></span>
 				</p>
-				<p class="name">{{ $page->title }}</p>
+				<p class="name">{{ $doc->title }}</p>
 			</li>
 		@endforeach
 	</ul>

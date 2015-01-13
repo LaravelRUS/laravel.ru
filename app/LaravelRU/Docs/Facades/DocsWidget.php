@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class DocsWidget extends Facade{
+class DocsWidget extends Facade {
 
-    protected static function getFacadeAccessor()
-    {
-        return "docswidget";
-    }
+	protected static function getFacadeAccessor()
+	{
+		return 'docswidget';
+	}
 
-} 
+}

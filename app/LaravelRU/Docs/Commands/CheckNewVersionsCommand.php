@@ -1,8 +1,8 @@
 <?php namespace LaravelRU\Docs\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class CheckNewVersionsCommand extends Command {
 
@@ -21,16 +21,6 @@ class CheckNewVersionsCommand extends Command {
 	protected $description = 'Check new version of original Laravel docs .';
 
 	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
-	/**
 	 * Execute the console command.
 	 *
 	 * @return mixed
@@ -47,9 +37,9 @@ class CheckNewVersionsCommand extends Command {
 	 */
 	protected function getArguments()
 	{
-		return array(
-			array('example', InputArgument::REQUIRED, 'An example argument.'),
-		);
+		return [
+			['example', InputArgument::REQUIRED, 'An example argument.'],
+		];
 	}
 
 	/**
@@ -59,9 +49,9 @@ class CheckNewVersionsCommand extends Command {
 	 */
 	protected function getOptions()
 	{
-		return array(
-			array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
-		);
+		return [
+			['example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
+		];
 	}
 
 }
