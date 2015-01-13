@@ -1,7 +1,6 @@
 <?php namespace LaravelRU\Parser;
 
-// TODO Это точно тот провайдер от корого необходимо наследоваться?
-use Indatus\Dispatcher\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 class ParserServiceProvider extends ServiceProvider {
 

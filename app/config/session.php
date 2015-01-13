@@ -44,7 +44,7 @@ return array(
 	|
 	*/
 
-	'files' => storage_path().'/sessions',
+	'files' => storage_path('sessions'),
 
 	/*
 	|--------------------------------------------------------------------------

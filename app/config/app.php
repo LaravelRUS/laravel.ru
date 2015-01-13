@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
 	/*
 	|--------------------------------------------------------------------------
@@ -91,7 +91,7 @@ return array(
 	|
 	*/
 
-	'providers' => array(
+	'providers' => [
 
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
@@ -129,7 +129,7 @@ return array(
 		// Главный сервис-провайдер приложения
 		'LaravelRU\Core\CoreServiceProvider'
 
-	),
+	],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -142,7 +142,7 @@ return array(
 	|
 	*/
 
-	'manifest' => storage_path().'/meta',
+	'manifest' => storage_path('meta'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -155,7 +155,7 @@ return array(
 	|
 	*/
 
-	'aliases' => array(
+	'aliases' => [
 
 		'App'             => 'Illuminate\Support\Facades\App',
 		'Artisan'         => 'Illuminate\Support\Facades\Artisan',
@@ -198,6 +198,6 @@ return array(
 		'Flash'           => 'Laracasts\Flash\Flash',
 		'Widget'          => 'Pingpong\Widget\Facades\Widget'
 
-	),
+	],
 
-);
+];
