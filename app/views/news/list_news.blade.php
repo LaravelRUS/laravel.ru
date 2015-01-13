@@ -10,8 +10,8 @@
 
 <?foreach($listNews as $news){?>
     <div class="news_box">
-        <div class="date"><?= $news->displayDate() ?></div>
-        <p><?= $news->displayText() ?></p>
+        <div class="date"><?= $news->created_at ?></div>
+        <p><?= $news->text ?></p>
     </div>
 <?}?>
 

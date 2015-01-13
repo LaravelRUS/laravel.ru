@@ -6,7 +6,7 @@ use Github\Client;
 use Indatus\Dispatcher\Scheduling\ScheduledCommand;
 use Indatus\Dispatcher\Scheduling\Schedulable;
 use Indatus\Dispatcher\Drivers\Cron\Scheduler;
-use Docs;
+use Document;
 use LaravelRU\Github\GithubRepo;
 use Illuminate\Console\Command;
 use Log;
@@ -74,7 +74,7 @@ class UpdateDocsCron extends ScheduledCommand {
 
 			if($force_file){
 				if($forceupdate){
-					Docs::version($version)->name($force_file)->delete();
+					Document::version($version)->name($force_file)->delete();
 					$this->info("clear exist file $force_file !");
 				}
 				$lines = ["[File](/docs/$version/$force_file)"];
@@ -82,7 +82,7 @@ class UpdateDocsCron extends ScheduledCommand {
 			}else{
 
 				if($forceupdate){
-					Docs::version($version)->delete();
+					Document::version($version)->delete();
 					$this->info("clear exist $version docs !");
 				}
 				$this->line("Fetch documentation.md");
@@ -141,7 +141,7 @@ class UpdateDocsCron extends ScheduledCommand {
 									$content = preg_replace("/git(.*?)(\n*?)---(\n*?)/", "", $content);
 									preg_match("/#(.*?)$/m", $content, $matches);
 									$title = trim(array_get($matches, '1'));
-									$page = Docs::version($version)->name($name)->first();
+									$page = Document::version($version)->name($name)->first();
 									if($page) {
 										if($last_commit_id != $page->last_commit) {
 											$page->last_commit = $last_commit_id;
@@ -158,7 +158,7 @@ class UpdateDocsCron extends ScheduledCommand {
 										}
 									}
 									else {
-										Docs::create(['framework_version' => $version, 'name' => $name, 'title' => $title, 'last_commit' => $last_commit_id, 'last_commit_at' => $last_commit_at, 'last_original_commit' => $last_original_commit_id, 'last_original_commit_at' => $last_original_commit_at, 'current_original_commit' => $current_original_commit_id, 'current_original_commit_at' => $current_original_commit_at, 'original_commits_ahead' => $count_ahead, 'text' => $content]);
+										Document::create(['framework_version' => $version, 'name' => $name, 'title' => $title, 'last_commit' => $last_commit_id, 'last_commit_at' => $last_commit_at, 'last_original_commit' => $last_original_commit_id, 'last_original_commit_at' => $last_original_commit_at, 'current_original_commit' => $current_original_commit_id, 'current_original_commit_at' => $current_original_commit_at, 'original_commits_ahead' => $count_ahead, 'text' => $content]);
 										$this->info("Translate for $version/$filename created, commit $last_commit_id. Translated from original commit $last_original_commit_id.");
 									}
 								}

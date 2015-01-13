@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Auth\UserInterface;
+<<<<<<< HEAD
+
+class User extends \Eloquent implements UserInterface, RemindableInterface {
+
+	protected   $hidden =       ['password', 'remember_token'];
+=======
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Laracasts\Presenter\PresentableTrait; // https://github.com/laracasts/Presenter
 
@@ -35,6 +41,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $guarded = [];
 	protected $hidden = ['password', 'remember_token'];
 	protected $presenter = 'LaravelRU\User\Presenters\UserPresenter';
+>>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208
 
 	/**
 	 * Автохэширование пароля
@@ -133,7 +140,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function confirmation()
 	{
+<<<<<<< HEAD
+		return $this->hasOne("Confirmation")->orderBy('created_at','DESC');
+=======
 		return $this->hasOne('UserConfirmation', 'user_id')->orderBy('created_at', 'DESC');
+>>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208
 	}
 
 	/**
@@ -147,9 +158,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	public function hasRole($role)
 	{
+<<<<<<< HEAD
+		$roles = $this->roles->lists("name");
+
+		if(in_array($role, $roles))	return true;
+
+		return false;
+=======
 		$roles = $this->roles->lists('name');
 
 		return in_array($role, $roles);
+>>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208
 	}
 
 	public function isActive()
@@ -172,6 +191,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasRole('librarian');
 	}
 
+<<<<<<< HEAD
+};
+=======
 	/**
 	 * Presenters
 	 */
@@ -182,3 +204,4 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 }
+>>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208

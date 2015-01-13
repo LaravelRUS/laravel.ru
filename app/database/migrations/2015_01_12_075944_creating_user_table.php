@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration {
+class CreatingUserTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,17 +12,18 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		\Schema::create("users", function(Blueprint $table){
+		Schema::create("users", function(Blueprint $table)
+		{
+			$table->engine = 'InnoDB';
+
 			$table->increments("id");
-			$table->timestamps();
-			$table->string("name");
-			$table->string("email");
+			$table->string("name")->unique();
+			$table->string("email")->unique();
 			$table->string("password");
 			$table->string("remember_token");
+			$table->boolean('is_confirmed');
 			$table->timestamp("last_login_at");
-
-			$table->unique("name");
-			$table->unique("email");
+			$table->timestamps();
 		});
 	}
 
@@ -33,7 +34,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		\Schema::drop("users");
+		Schema::dropIfExists('users');
 	}
 
 }

@@ -36,7 +36,11 @@ class HomeController extends BaseController {
 		$newPackages = $this->packageRepo->getLastCreated();
 		$updatedPackages = $this->packageRepo->getLastUpdated();
 
+<<<<<<< HEAD
+		$updatedDocs = Document::orderBy("last_commit_at", "desc")->limit(12)->get();
+=======
 		$updatedDocs = Docs::orderBy('last_commit_at', 'desc')->limit(12)->get();
+>>>>>>> 54f09da6ce9ac5009c314d8debc50ebbcac69208
 
 		return View::make('home.home-page', compact('lastPosts', 'lastNews', 'newPackages', 'updatedPackages', 'updatedDocs'));
 	}
