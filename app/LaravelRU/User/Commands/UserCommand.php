@@ -25,7 +25,7 @@ class UserCommand extends Command {
 	/**
 	 * Create a new command instance.
 	 *
-	 * @return void
+	 * @return UserCommand
 	 */
 	public function __construct()
 	{
@@ -49,11 +49,10 @@ class UserCommand extends Command {
 		$role = Role::whereName($roleName)->first();
 
 		$user = User::create(['name'=>$name, 'password'=>$password, 'email'=>$email]);
+
 		$user->is_confirmed = 1;
 
 		$role->users()->save($user);
-
-
 
 		$this->info("User $name created.");
 
