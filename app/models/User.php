@@ -41,7 +41,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
-	 * Get the token value for the "remember me" session.
+	 * Get the token value for the 'remember me' session.
 	 *
 	 * @return string
 	 */
@@ -51,7 +51,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
-	 * Set the token value for the "remember me" session.
+	 * Set the token value for the 'remember me' session.
 	 *
 	 * @param  string $value
 	 * @return void
@@ -62,7 +62,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
-	 * Get the column name for the "remember me" token.
+	 * Get the column name for the 'remember me' token.
 	 *
 	 * @return string
 	 */
@@ -87,7 +87,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
 	public function roles()
 	{
-		return $this->belongsToMany('Role', 'user_role_pivot', 'user_id', 'role_id');
+		return $this->belongsToMany('Role','user_role','user_id', 'role_id');
 	}
 
 	public function posts()
@@ -108,7 +108,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	public function confirmation()
 	{
 
-		return $this->hasOne("Confirmation")->orderBy('created_at','DESC');
+		return $this->hasOne('Confirmation')->orderBy('created_at','DESC');
 	}
 
 	/**
@@ -123,7 +123,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	public function hasRole($role)
 	{
 
-		$roles = $this->roles->lists("name");
+		$roles = $this->roles->lists('name');
 
 		if(in_array($role, $roles))	return true;
 

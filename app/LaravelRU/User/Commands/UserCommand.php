@@ -4,6 +4,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use User;
+use Role;
 
 class UserCommand extends Command {
 
@@ -43,10 +44,16 @@ class UserCommand extends Command {
 		$email = $this->argument("email");
 		$isAdmin = $this->option("admin");
 
+		$roleName = $isAdmin ? 'administrator' : 'user';
+
+		$role = Role::whereName($roleName)->first();
+
 		$user = User::create(['name'=>$name, 'password'=>$password, 'email'=>$email]);
 		$user->is_confirmed = 1;
-		$user->save();
-		$user->roles()->sync([1]);
+
+		$role->users()->save($user);
+
+
 
 		$this->info("User $name created.");
 
@@ -74,7 +81,7 @@ class UserCommand extends Command {
 	protected function getOptions()
 	{
 		return array(
-				array('admin', null, InputOption::VALUE_NONE, 'Set admin permissions', null),
+				array('admin', 'a', InputOption::VALUE_NONE, 'Set admin permissions', null),
 		);
 	}
 

@@ -1,15 +1,12 @@
 <?php
 
-class Role extends Eloquent {
-
-
-	protected   $table =       'roles';
+class Role extends \Eloquent {
 
 	public      $timestamps =  false;
 
 	public function users()
 	{
-		return $this->belongsToMany("User","user_role","role_id","user_id");
+		return $this->belongsToMany('User','user_role','role_id','user_id');
 	}
 
 }

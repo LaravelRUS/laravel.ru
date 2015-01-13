@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Роман
- * Date: 13.01.2015
- * Time: 0:16
- */
 
 class VersionSeeder extends Seeder{
 
