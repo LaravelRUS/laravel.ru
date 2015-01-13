@@ -19,7 +19,7 @@ class DocsServiceProvider extends ServiceProvider{
 //			return new DocsWidget();
 //		});
 //		$this->app->booting(function(){
-//			AliasLoader::getInstance()->alias('DocsWidget', 'LaravelRU\Docs\Facades\DocsWidget');
+//			AliasLoader::getInstance()->alias('DocsWidget', 'LaravelRU\Document\Facades\DocsWidget');
 //		});
 	}
 

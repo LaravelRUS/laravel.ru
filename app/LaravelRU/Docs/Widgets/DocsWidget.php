@@ -1,14 +1,14 @@
 <?php namespace LaravelRU\Docs\Widgets;
 
 use Config;
-use Docs;
+use Document;
 use View;
 
 class DocsWidget {
 
     public function sidebar($version)
     {
-        return Docs::version($version)->name("documentation")->first()->displayText();
+        return Document::version($version)->name("documentation")->first()->displayText();
     }
 
     public function versionSelector($version, $name)

@@ -57,7 +57,7 @@ class PostRepo extends BaseRepository {
 	 */
 	public function getFrameworkVersionSelect($currentFrameworkVersion)
 	{
-		$allVersions = \FrameworkVersion::all();
+		$allVersions = \Version::all();
 
 	}
 

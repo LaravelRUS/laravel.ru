@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenamePostToArticle extends Migration {
+class CreatingRoleTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,13 @@ class RenamePostToArticle extends Migration {
 	 */
 	public function up()
 	{
-		Schema::rename("posts", "articles");
+		Schema::create('roles', function(Blueprint $table)
+		{
+			$table->engine = 'InnoDB';
+
+			$table->increments("id");
+			$table->string("name")->unique();
+		});
 	}
 
 	/**
@@ -22,7 +28,7 @@ class RenamePostToArticle extends Migration {
 	 */
 	public function down()
 	{
-		Schema::rename("articles", "posts");
+		Schema::dropIfExists('roles');
 	}
 
 }
