@@ -5,14 +5,6 @@
 @stop
 
 @section("content")
-
-	<script>
-		$(document).ready(function() {
-			$("input[name=name] + input").val("<?= $jsToken ?>")
-		});
-	</script>
-
-
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<div style="margin: 50px 0 400px 0">
@@ -54,4 +46,12 @@
 			</div>
 		</div>
 	</div>
+@stop
+
+@section('scripts')
+<script>
+$(document).ready(function() {
+	$('input[name=name] + input').val('{{ $jsToken }}')
+});
+</script>
 @stop
