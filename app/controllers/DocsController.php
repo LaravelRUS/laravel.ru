@@ -24,6 +24,11 @@ class DocsController extends BaseController {
 	 */
 	protected $master_version;
 
+	/**
+	 * @var string
+	 */
+	protected $default_page = 'installation';
+
 	public function __construct()
 	{
 		// TODO закешировать?
@@ -32,23 +37,27 @@ class DocsController extends BaseController {
 
 		$this->default_version = $this->versions->first(function ($key, $item)
 		{
-			return $item->is_default;
+			return $item->isDefault();
 		});
 
 		$this->master_version = $this->versions->first(function ($key, $item)
 		{
-			return $item->is_master;
+			return $item->isMaster();
 		});
 	}
 
-	public function defaultDocs($name = 'installation')
+	public function defaultDocs($name = null)
 	{
+		if ( ! $name) $name = $this->default_page;
+
 		return Redirect::route('docs', [$this->default_version->iteration, $name]);
 	}
 
-	public function docs($iteration = '', $name = 'installation')
+	public function docs($iteration = '', $name = null)
 	{
-		if ($iteration == 'master')
+		if ( ! $name) $name = $this->default_page;
+
+		if ($iteration == Version::MASTER)
 		{
 			$version = $this->master_version;
 		}
@@ -60,18 +69,18 @@ class DocsController extends BaseController {
 			});
 		}
 
+		if ($version && $version->isMaster() && $iteration == $version->iteration)
+		{
+			return Redirect::route('docs', [Version::MASTER, $name]);
+		}
+
 		if ( ! $version)
 		{
 			/**
 			 * Запрошен универсальный урл типа /docs/installation
 			 * средиректить на /docs/4.2/installation
 			 */
-			$session_version = Session::get('docs_version');
-
-			if ( ! $session_version)
-			{
-				$session_version = $this->default_version->iteration;
-			}
+			$session_version = Session::get('docs_version', $this->default_version->iteration);
 
 			return Redirect::route('docs', [$session_version, $name]);
 		}
@@ -80,12 +89,12 @@ class DocsController extends BaseController {
 
 		if ( ! $page)
 		{
-			return Redirect::route('docs', [$version->iteration]);
+			return Redirect::route('docs', [$version->iteration, $this->default_page]);
 		}
 
-		Session::set('docs_version', $iteration);
-
 		$menu = Document::version($version)->name('documentation')->first();
+
+		Session::set('docs_version', $iteration);
 
 		return View::make('docs.docs-page', compact('page', 'menu', 'version', 'name'));
 	}
