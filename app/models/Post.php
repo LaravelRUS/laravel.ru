@@ -7,8 +7,10 @@ class Post extends Model {
 
 	use SoftDeletingTrait;
 
+	const PUBLISHED_AT = 'published_at';
+
 	protected $guarded = ['id', 'author_id'];
-	protected $dates = ['deleted_at', 'published_at'];
+	protected $dates = ['deleted_at', self::PUBLISHED_AT];
 
 	public function author()
 	{
