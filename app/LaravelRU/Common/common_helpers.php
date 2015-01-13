@@ -3,9 +3,9 @@
 /**
  * Генерация блока breadcrubs
  * Использование: $items = ['Текст ссылки'=>'урл ссылки', ...]
-
  *
-*@param array $items
+ * @param array $items
+ *
  * @return string
  */
 function breadcrumbs($items)
@@ -38,7 +38,7 @@ function breadcrumbs($items)
  * Установить класс active для текущего пункта menu
  *
  * @param string $routeMatch
- *
+ * 
  * @return string
  */
 function activeByRoute($routeMatch)

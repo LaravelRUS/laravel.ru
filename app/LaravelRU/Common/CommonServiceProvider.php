@@ -6,8 +6,6 @@ class CommonServiceProvider extends ServiceProvider {
 
 	/**
 	 * Register the service provider.
-	 *
-	 * @return void
 	 */
 	public function register()
 	{
@@ -23,8 +21,6 @@ class CommonServiceProvider extends ServiceProvider {
 
 	/**
 	 * Boot the service provider.
-	 *
-	 * @return void
 	 */
 	public function boot()
 	{
