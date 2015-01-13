@@ -38,7 +38,7 @@ function breadcrumbs($items)
  * Установить класс active для текущего пункта menu
  *
  * @param string $routeMatch
- * 
+ *
  * @return string
  */
 function activeByRoute($routeMatch)
@@ -56,4 +56,12 @@ function activeByRoute($routeMatch)
 	}
 
 	return '';
+}
+
+if ( ! function_exists('abort'))
+{
+	function abort($code = 404, $message = '')
+    {
+	    return app()->abort($code, $message);
+    }
 }
