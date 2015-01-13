@@ -14,6 +14,11 @@ class Document extends Model {
 
 	public function scopeVersion($query, $version)
 	{
+		if ($version instanceof Version)
+		{
+			return $query->where('version_id', $version->id);
+		}
+
 		return $query->whereHas('frameworkVersion', function ($q) use ($version)
 		{
 			return $q->whereIteration($version);
