@@ -1,35 +1,17 @@
 @extends('layouts.main')
 
-@section("submenu")
-
-<script type="application/javascript">
-	function offsetPosition(e) { // отступ от верхнего края экрана до элемента
-		var offsetTop = 0;
-		do {offsetTop  += e.offsetTop;} while (e = e.offsetParent);
-		return offsetTop;
-	}
-	$(document).ready(function() {
-		var aside = document.querySelector('#submenu_panel');
-		var OP = offsetPosition(aside);
-		window.onscroll = function () {
-			aside.className = (OP < window.pageYOffset ? 'submenu_panel_sticky' : ''); // если значение прокрутки больше отступа от верхнего края экрана до элемента, то элементу присваивается класс sticky
-		}
-	});
-</script>
-
+@section('submenu')
 <div id="submenu_panel">
 <div class="navbar submenu-nav">
-
 	<div class="container">
 		<div class="row">
-
 			@versionSelector($version, $name)
-
 			<ul class="nav navbar-nav navbar-right">
-				<?if(allowEditTerms()){?> @li("Термины", "terms") <?}?>
-				@li("Прогресс перевода", "documentation.updates")
+				@if(allowEditTerms())
+					@li('Термины', 'terms')
+				@endif
+				@li('Прогресс перевода', 'documentation.updates')
 			</ul>
-
 		</div>
 	</div>
 </div>
@@ -37,7 +19,6 @@
 @stop
 
 @section('container')
-
 <div class="docs container">
 
 	<div class="row">
@@ -56,6 +37,23 @@
 
 	</div> <!-- row -->
 </div> <!-- container -->
+@stop
 
-
+@section('scripts')
+<script type="text/javascript">
+	function offsetPosition(e) { // отступ от верхнего края экрана до элемента
+		var offsetTop = 0;
+		do { offsetTop  += e.offsetTop } while (e = e.offsetParent);
+		return offsetTop;
+	}
+	$(document).ready(function() {
+		var aside = document.querySelector('#submenu_panel');
+		var OP = offsetPosition(aside);
+		window.onscroll = function () {
+			// если значение прокрутки больше отступа от верхнего края экрана до элемента,
+			// то элементу присваивается класс sticky
+			aside.className = (OP < window.pageYOffset ? 'submenu_panel_sticky' : '');
+		}
+	});
+</script>
 @stop
