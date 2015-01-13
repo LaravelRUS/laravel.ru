@@ -3,6 +3,7 @@
  * Типовые реакции на эксепшны
  */
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laracasts\Validation\FormValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -15,10 +16,8 @@ App::error(function (FormValidationException $e)
 		// TODO json вывод для ошибок валидации форм (если надо)
 		return null;
 	}
-	else
-	{
-		return Redirect::back()->withInput()->withErrors($e->getErrors());
-	}
+
+	return Redirect::back()->withInput()->withErrors($e->getErrors());
 });
 
 // Ошибка доступа
@@ -29,10 +28,8 @@ App::error(function (AccessDeniedException $e)
 		// TODO json вывод для ошибки доступа
 		return null;
 	}
-	else
-	{
-		return Response::view('errors.403', [], 403);
-	}
+
+	return Response::view('errors.403', [], 403);
 });
 
 // 404
@@ -43,8 +40,18 @@ App::error(function (NotFoundHttpException $e)
 		// TODO json вывод для 404
 		return null;
 	}
-	else
+
+	return Response::view('errors.404', [], 404);
+});
+
+// Model Not Found
+App::error(function (ModelNotFoundException $e)
+{
+	if (Request::ajax())
 	{
-		return Response::view('errors.404', [], 404);
+		// TODO json вывод для 404
+		return null;
 	}
+
+	return Response::view('errors.404', [], 404);
 });
