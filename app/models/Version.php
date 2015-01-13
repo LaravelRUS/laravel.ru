@@ -21,4 +21,9 @@ class Version extends Model {
 		return $this->hasMany('Tip');
 	}
 
+	function __toString()
+	{
+		return $this->iteration;
+	}
+
 }
