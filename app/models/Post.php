@@ -7,11 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Post extends Model {
 
-	use CommentableTrait;
-
-	use SoftDeletingTrait;
-
-	use LikeableTrait;
+	use CommentableTrait, SoftDeletingTrait, LikeableTrait;
 
 	const PUBLISHED_AT = 'published_at';
 

@@ -7,11 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class News extends Model {
 
-	use CommentableTrait;
-
-	use SoftDeletingTrait;
-
-	use LikeableTrait;
+	use CommentableTrait, SoftDeletingTrait, LikeableTrait;
 
 	protected $dates = ['deleted_at'];
 
