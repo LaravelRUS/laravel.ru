@@ -33,7 +33,7 @@ class CreatingDocumentTable extends Migration {
 			$table->integer('original_commits_ahead');
 
 			$table->integer('version_id');
-			$table->integer('updater_id')->unsigned()->nullable();
+			
 			$table->timestamps();
 
 			$table->unique(array('version_id', 'name'), 'page');
