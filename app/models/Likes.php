@@ -1,7 +1,8 @@
 <?php
+
 use Illuminate\Database\Eloquent\Model;
 
-class Likes  extends Model{
+class Likes extends Model {
 
 	protected $table = 'likes';
 
