@@ -46,30 +46,23 @@ class DocsController extends BaseController {
 		});
 	}
 
-	public function defaultDocs($name = null)
+	public function docs($number = '', $name = null)
 	{
 		if ( ! $name) $name = $this->default_page;
 
-		return Redirect::route('docs', [$this->default_version->iteration, $name]);
-	}
-
-	public function docs($iteration = '', $name = null)
-	{
-		if ( ! $name) $name = $this->default_page;
-
-		if ($iteration == Version::MASTER)
+		if ($number == Version::MASTER)
 		{
 			$version = $this->master_version;
 		}
 		else
 		{
-			$version = $this->versions->first(function ($key, $item) use ($iteration)
+			$version = $this->versions->first(function ($key, $item) use ($number)
 			{
-				return $item->iteration == $iteration;
+				return $item->number == $number;
 			});
 		}
 
-		if ($version && $version->isMaster() && $iteration == $version->iteration)
+		if ($version && $version->isMaster() && $number == $version->number)
 		{
 			return Redirect::route('docs', [Version::MASTER, $name]);
 		}
@@ -80,7 +73,7 @@ class DocsController extends BaseController {
 			 * Запрошен универсальный урл типа /docs/installation
 			 * средиректить на /docs/4.2/installation
 			 */
-			$session_version = Session::get('docs_version', $this->default_version->iteration);
+			$session_version = Session::get('docs_version', $this->default_version->number);
 
 			return Redirect::route('docs', [$session_version, $name]);
 		}
@@ -89,28 +82,24 @@ class DocsController extends BaseController {
 
 		if ( ! $page)
 		{
-			return Redirect::route('docs', [$version->iteration, $this->default_page]);
+			return Redirect::route('docs', [$version->number, $this->default_page]);
 		}
 
 		$menu = Document::version($version)->name('documentation')->first();
 
-		Session::set('docs_version', $iteration);
+		Session::set('docs_version', $number);
 
 		return View::make('docs.docs-page', compact('page', 'menu', 'version', 'name'));
 	}
 
-	// TODO Что вообще делает этот метод?
 	public function updates()
 	{
-		$docs = [];
-
-		// Todo: запросы в цикле? Выпилить.
-		foreach ($this->versions as $version)
+		$versions = Version::with(['documents' => function ($q)
 		{
-			$docs[$version->iteration] = Document::version($version)->orderBy('name', 'ASC')->get();
-		}
+			$q->orderBy('name', 'ASC');
+		}])->get();
 
-		return View::make('docs/updates', compact('docs'));
+		return View::make('docs/updates', compact('versions'));
 	}
 
 }
