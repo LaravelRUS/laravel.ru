@@ -1,5 +1,6 @@
 <?php
 
+use LaravelRU\Likes\LikeableTrait;
 use LaravelRU\Comment\CommentableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
@@ -9,6 +10,8 @@ class News extends Model {
 	use CommentableTrait;
 
 	use SoftDeletingTrait;
+
+	use LikeableTrait;
 
 	protected $dates = ['deleted_at'];
 

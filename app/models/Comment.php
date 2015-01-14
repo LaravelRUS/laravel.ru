@@ -1,8 +1,11 @@
 <?php
 
+use LaravelRU\Likes\LikeableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model {
+
+	use LikeableTrait;
 
 	public function user()
 	{
