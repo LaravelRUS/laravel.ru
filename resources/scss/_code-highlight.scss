@@ -1,0 +1,58 @@
+pre .str, code .str {
+	color: #BCD42A;
+}
+
+pre .kwd, code .kwd {
+	color: #4BB1B1;
+}
+
+pre .com, code .com {
+	color: #75715E;
+	font-style: italic;
+}
+
+pre .typ, code .typ {
+	color: #EF7C61;
+}
+
+pre .lit, code .lit {
+	color: #BCD42A;
+}
+
+pre .pun, code .pun {
+	color: #FFFFFF;
+}
+
+pre .pln, code .pln {
+	color: #FFFFFF;
+}
+
+pre .tag, code .tag {
+	color: #F92672;
+}
+
+pre .atn, code .atn {
+	color: #A6E22A;
+}
+
+pre .atv, code .atv {
+	color: #E6DB74;
+}
+
+pre .dec, code .dec {
+	color: #AE81FF;
+}
+
+/* decimal */
+
+pre.prettyprint, code.prettyprint {
+	background-color: #272822;
+	border-radius: 8px;
+}
+
+pre.prettyprint {
+	width: 100%;
+	margin: 1em auto;
+	padding: 1.5em;
+	white-space: pre-wrap;
+}
