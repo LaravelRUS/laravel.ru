@@ -90,7 +90,7 @@ class UpdateDocsCron extends ScheduledCommand {
 		foreach ($all_versions as $v)
 		{
 			$id = $v->id;
-			$version = $v->isMaster() ? FrameworkVersion::MASTER : $v->number;
+			$version = $v->number_alias;
 
 			$this->info("Process branch $version");
 
@@ -98,7 +98,7 @@ class UpdateDocsCron extends ScheduledCommand {
 			{
 				if ($forceupdate)
 				{
-					Document::version($version)->name($force_file)->delete();
+					Document::version($v)->name($force_file)->delete();
 					$this->info("clear exist file $force_file !");
 				}
 
