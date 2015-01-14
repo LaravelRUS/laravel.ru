@@ -1,9 +1,12 @@
 <?php
 
+use LaravelRU\Comment\CommentableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Post extends Model {
+
+	use CommentableTrait;
 
 	use SoftDeletingTrait;
 
