@@ -17,7 +17,8 @@ return array(
 
 	'providers' => append_config([
 		'Barryvdh\Debugbar\ServiceProvider',
-		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider'
+		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider'
 	])
 
 );

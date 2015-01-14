@@ -21,7 +21,8 @@
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "1.*",
-		"barryvdh/laravel-ide-helper": "1.*"
+		"barryvdh/laravel-ide-helper": "1.*",
+		"way/generators": "~2.0"
 	},
 	"autoload": {
 		"classmap": [
