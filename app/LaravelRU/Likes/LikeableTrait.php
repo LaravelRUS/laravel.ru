@@ -1,13 +1,15 @@
 <?php namespace LaravelRU\Likes;
 
+use \Like;
+
 trait LikeableTrait {
 
 	public function likes()
 	{
-		return $this->morphMany('Likes', 'likeable');
+		return $this->morphMany('Like', 'likeable');
 	}
 
-	public function addLike(Likes $like)
+	public function addLike(Like $like)
 	{
 		return $this->likes()->save($like);
 	}
