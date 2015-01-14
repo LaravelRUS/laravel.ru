@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $number
  * @property int $is_default
  * @property int $is_master
+ * @property string $number_alias
  */
 class Version extends Model {
 
