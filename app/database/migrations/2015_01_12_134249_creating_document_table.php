@@ -37,7 +37,6 @@ class CreatingDocumentTable extends Migration {
 			$table->timestamps();
 
 			$table->unique(array('version_id', 'name'), 'page');
-			$table->foreign('updater_id')->references('id')->on('users');
 		});
 	}
 
