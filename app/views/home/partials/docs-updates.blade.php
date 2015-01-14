@@ -7,7 +7,7 @@
 			<li>
 				<p class="title">
 					<span class="date">{{ $doc->displayUpdatedAt() }}</span>
-					<span><a href="{{ route('docs', [$doc->frameworkVersion->iteration, $doc->name]) }}">{{ $doc->frameworkVersion->iteration }}/{{ $doc->name }}</a></span>
+					<span><a href="{{ route('docs', [$doc->frameworkVersion->number, $doc->name]) }}">{{ $doc->frameworkVersion->number }}/{{ $doc->name }}</a></span>
 				</p>
 				<p class="name">{{ $doc->title }}</p>
 			</li>
