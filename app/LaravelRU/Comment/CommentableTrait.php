@@ -1,5 +1,7 @@
 <?php namespace LaravelRU\Comment;
 
+use \Comment;
+
 trait CommentableTrait {
 
 	public function comments()
