@@ -1,8 +1,11 @@
 <?php
 
+use LaravelRU\Comment\CommentableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model {
+
+	use CommentableTrait;
 
 	const LAST_COMMIT_AT = 'last_commit_at';
 
