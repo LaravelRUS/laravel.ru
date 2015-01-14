@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Package extends Model {
 
-	use CommentableTrait;
-
-	use LikeableTrait;
+	use CommentableTrait, LikeableTrait;
 
 }
