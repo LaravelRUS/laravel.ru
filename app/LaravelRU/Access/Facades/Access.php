@@ -1,4 +1,4 @@
-<? namespace LaravelRU\Access\Facades;
+<?php namespace LaravelRU\Access\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
