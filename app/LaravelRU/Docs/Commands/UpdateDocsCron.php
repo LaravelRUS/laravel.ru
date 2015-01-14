@@ -92,7 +92,7 @@ class UpdateDocsCron extends ScheduledCommand {
 		foreach ($all_versions as $v)
 		{
 			$id = $v->id;
-			$version = $v->isMaster() ? FrameworkVersion::MASTER : $v->iteration;
+			$version = $v->isMaster() ? FrameworkVersion::MASTER : $v->number;
 
 			$this->info("Process branch $version");
 
