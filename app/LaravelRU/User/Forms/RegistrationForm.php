@@ -11,7 +11,7 @@ class RegistrationForm extends FormValidator{
 		'i_agree'       => 'required',
 		'js_token'      => 'required|jstoken',
 		//'g-recaptcha-response' => 'required|captcha'
-		'g-recaptcha-response' => 'required|recaptcha',
+		//'g-recaptcha-response' => 'required|recaptcha',
 	];
 
 	protected $messages = [

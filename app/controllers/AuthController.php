@@ -44,7 +44,8 @@ class AuthController extends BaseController {
 
 		$confirmationString = Str::quickRandom(20);
 
-		$userConfirmation = Confirmation::create(['code' => $confirmationString]);
+		$userConfirmation = new Confirmation();
+		$userConfirmation->code = $confirmationString;
 
 		$user->confirmation()->save($userConfirmation);
 
