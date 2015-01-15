@@ -1,0 +1,8 @@
+%hash-tag {
+	&:before {
+		content: '#';
+		font-family: 'Tahoma', sans-serif;
+		color: lighten($primary-color, 20%);
+		margin-right: 8px;
+	}
+}
