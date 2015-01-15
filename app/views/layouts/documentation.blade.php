@@ -1,59 +1,34 @@
 @extends('layouts.main')
 
 @section('submenu')
-<div id="submenu_panel">
-<div class="navbar submenu-nav">
-	<div class="container">
-		<div class="row">
-			@versionSelector($version, $name)
-			<ul class="nav navbar-nav navbar-right">
-				@if(allowEditTerms())
-					@li('Термины', 'terms')
-				@endif
-				@li('Прогресс перевода', 'documentation.updates')
+	<div class="navbar submenu-nav">
+		<div class="container">
+			<ul class="list-inline">
+				<li class="hidden-xs">
+					<span>Версия фреймворка:</span>
+				</li>
+				@foreach($documentedVersions as $version)
+					<li @if(Route::current()->parameter('version') == $version) class="active" @endif>
+						<a href="{{ route('docs', $version) }}">{{ $version }}</a>
+					</li>
+				@endforeach
+				<li class="pull-right">
+					<a href="{{ route('documentation.updates') }}">Прогресс перевода</a>
+				</li>
 			</ul>
 		</div>
 	</div>
-</div>
-</div>
 @stop
 
 @section('container')
-<div class="docs container">
-
-	<div class="row">
-
-		<div id="docs-sidebar" class="docs-sidebar col-md-3 col-sm-3 col-xs-12">
-			<div class="box-invisible">
-			@yield('sidebar')
+	<div class="container docs">
+		<div class="row">
+			<div class="col-xs-12 col-md-3 hidden-xs hidden-sm sidebar">
+				@yield('sidebar')
 			</div>
-		</div><!--//docs-side-bar-->
-
-		<div id="docs-entry" class="docs-entry section col-md-9 col-sm-9 col-xs-12">
-			<div class="box">
+			<div class="col-xs-12 col-md-9 main">
 				@yield('content')
 			</div>
-		</div> <!-- docs-entry -->
-
-	</div> <!-- row -->
-</div> <!-- container -->
-@stop
-
-@section('scripts')
-<script type="text/javascript">
-	function offsetPosition(e) { // отступ от верхнего края экрана до элемента
-		var offsetTop = 0;
-		do { offsetTop  += e.offsetTop } while (e = e.offsetParent);
-		return offsetTop;
-	}
-	$(document).ready(function() {
-		var aside = document.querySelector('#submenu_panel');
-		var OP = offsetPosition(aside);
-		window.onscroll = function () {
-			// если значение прокрутки больше отступа от верхнего края экрана до элемента,
-			// то элементу присваивается класс sticky
-			aside.className = (OP < window.pageYOffset ? 'submenu_panel_sticky' : '');
-		}
-	});
-</script>
+		</div>
+	</div>
 @stop

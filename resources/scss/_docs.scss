@@ -13,6 +13,16 @@
 	color: #FFFFFF;
 }
 
+.docs-entry {
+	font-family: Verdana, Tahoma, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.6;
+	letter-spacing: -0.02em;;
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Open Sans', Arial, sans-serif;
+	}
+}
+
 .docs-entry ul {
 	list-style: none;
 	margin: 0;
@@ -20,7 +30,7 @@
 }
 
 .docs-entry ul li a {
-	font-weight: 600;
+//	font-weight: 600;
 	color: #F4645F;
 	margin-left: 30px;
 }

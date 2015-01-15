@@ -1,11 +1,14 @@
+// Additional Font
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=cyrillic,latin);
 // Bootstrap
 @import "vendor/bootstrap";
 // Font Awesome
-@import "vendor/bower_components/fontawesome/scss/font-awesome";
+@import "./vendor/bower_components/fontawesome/scss/font-awesome";
 // Project Styles
 @import "variables";
 @import "global";
 @import "common";
+@import "code-highlight";
 @import "elements";
 @import "nav";
 @import "footer";

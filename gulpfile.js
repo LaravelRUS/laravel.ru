@@ -1,11 +1,15 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var prefix = require('gulp-autoprefixer');
-var notify = require('gulp-notify');
-var rename = require('gulp-rename');
-var uglify = require('gulp-uglify');
-var size = require('gulp-size');
+var gulp = require('gulp'),
+	sass = require('gulp-sass'),
+	concat = require('gulp-concat'),
+	prefix = require('gulp-autoprefixer'),
+	notify = require('gulp-notify'),
+	rename = require('gulp-rename'),
+	uglify = require('gulp-uglify'),
+	size = require('gulp-size'),
+
+	paths = {
+		bower: 'vendor/bower_components/'
+	};
 
 gulp.task('default', ['styles', 'scripts', 'font-awesome']);
 
@@ -45,15 +49,17 @@ gulp.task('scripts', function () {
 	var uglified = size();
 	var gzipped = size({gzip: true});
 	gulp.src([
-		'vendor/bower_components/jquery/dist/jquery.js',
-		'vendor/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js',
-		'vendor/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js',
-		'vendor/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js'
+		paths.bower + 'jquery/dist/jquery.js',
+		paths.bower + 'bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js',
+		paths.bower + 'bootstrap-sass-official/assets/javascripts/bootstrap/transition.js',
+		paths.bower + 'bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js',
+		paths.bower + 'google-code-prettify/bin/prettify.min.js',
+		'resources/js/*.js'
 	])
 		.pipe(concat('script.min.js'))
 		.pipe(concatinated)
-		//.pipe(uglify())
-		//.pipe(uglified)
+		.pipe(uglify())
+		.pipe(uglified)
 		.pipe(gulp.dest('public/js'))
 		.pipe(gzipped)
 		.pipe(notify({

@@ -10,6 +10,7 @@
     "fontawesome": "~4.2.0",
     "jquery": "~1.11.2",
     "brand-colors": "~0.3.0",
-    "ace": "~1.1.8"
+    "ace": "~1.1.8",
+    "google-code-prettify": "~1.0.3"
   }
 }

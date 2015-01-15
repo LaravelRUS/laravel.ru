@@ -4,28 +4,30 @@ use LaravelRU\Comment\CommentableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Document
+ * Class Documentation
  *
- * @property int $id
- * @property string $title
- * @property string $name
- * @property string $text
- * @property string $last_commit
- * @property string $last_original_commit
- * @property string $current_original_commit
+ * @property int            $id
+ * @property string         $title
+ * @property string         $name
+ * @property string         $text
+ * @property string         $last_commit
+ * @property string         $last_original_commit
+ * @property string         $current_original_commit
  * @property \Carbon\Carbon $last_commit_at
  * @property \Carbon\Carbon $last_original_commit_at
  * @property \Carbon\Carbon $current_original_commit_at
- * @property int $original_commits_ahead
+ * @property int            $original_commits_ahead
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property int $version_id
+ * @property int            $version_id
  */
-class Document extends Model {
+class Documentation extends Model {
 
 	use CommentableTrait;
 
 	const LAST_COMMIT_AT = 'last_commit_at';
+
+	protected $table = 'documentation';
 
 	protected $dates = [
 		'last_commit_at',
@@ -46,9 +48,9 @@ class Document extends Model {
 		});
 	}
 
-	public function scopeName($query, $name)
+	public function scopePage($query, $pageTitle)
 	{
-		return $query->whereName($name);
+		return $query->wherePage($pageTitle);
 	}
 
 	public function scopeOrderByLastCommit($query)
