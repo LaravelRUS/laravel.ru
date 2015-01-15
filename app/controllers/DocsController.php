@@ -12,7 +12,7 @@ class DocsController extends BaseController {
 	/**
 	 * @var Version
 	 */
-	protected $default_version;
+	protected $defaultVersion;
 
 	/**
 	 * @var Version
