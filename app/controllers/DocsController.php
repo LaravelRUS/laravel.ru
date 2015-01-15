@@ -50,7 +50,6 @@ class DocsController extends BaseController {
 		View::share('documentedVersions', $this->documentedVersions);
 	}
 
-	// TODO store in cookies or session
 	public function docs($versionNumber = '', $page = null)
 	{
 		if ( ! $versionNumber)
@@ -59,6 +58,11 @@ class DocsController extends BaseController {
 		}
 		elseif ($versionNumber == Version::MASTER)
 		{
+			$versionNumber = $this->masterVersion;
+		}
+		else
+		{
+			// TODO check in cookies or session
 			$versionNumber = $this->masterVersion;
 		}
 
