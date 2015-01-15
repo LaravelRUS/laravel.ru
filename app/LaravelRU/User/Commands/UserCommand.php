@@ -34,11 +34,6 @@ class UserCommand extends Command {
 		$email = $this->argument('email');
 		$isAdmin = $this->option('admin');
 
-		$roleName = $isAdmin ? 'administrator' : 'user';
-
-		/** @var Role $role */
-		$role = Role::whereName($roleName)->first();
-
 		/** @var User $user */
 		$user = User::create([
 			'name' => $name,
@@ -47,8 +42,13 @@ class UserCommand extends Command {
 		]);
 
 		$user->is_confirmed = 1;
+		$user->save();
 
-		$role->users()->save($user);
+		if($isAdmin){
+			/** @var Role $role */
+			$role = Role::whereName("administrator")->first();
+			$role->users()->save($user);
+		}
 
 		$this->info("User \"$name\" created.");
 
