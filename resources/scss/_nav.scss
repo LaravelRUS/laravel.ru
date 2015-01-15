@@ -3,6 +3,28 @@
 	background-color: $navbar-bg-color;
 	font-size: 15px;
 	box-shadow: 0 0 3px #C2C2C2;
+
+	li {
+		line-height: 50px;
+
+		a {
+			display: inline;
+			color: $color-grey-5;
+			text-transform: uppercase;
+			font-size: 13px;
+			padding-top: 0;
+			padding-bottom: 0;
+
+			&:hover, &:focus {
+				color: $primary-color;
+				background: none;
+			}
+		}
+	}
+
+	&.navbar-static-top li a {
+		font-weight: 600;
+	}
 }
 
 .navbar-brand {
@@ -21,16 +43,6 @@
 	background-color: $color-grey-4;
 }
 
-.nab > li > a:hover,
-.nav > li > a:focus {
-	text-decoration: none;
-	background: none;
-}
-
-.navbar-fixed-top {
-	//	border: 0;
-}
-
 .submenu-nav {
 	margin-bottom: 1px;
 	border: none;
@@ -41,9 +53,16 @@
 
 	ul {
 		margin-bottom: 0;
-	}
 
-	li.active {
-		background-color: rgba(255, 167, 150, 0.16);
+		li a {
+			padding: 6px 8px;
+		}
+		li.active, li:hover, li:focus {
+			a {
+				background-color: $color-grey-6;
+				border-radius: 4px;
+				color: white;
+			}
+		}
 	}
 }
