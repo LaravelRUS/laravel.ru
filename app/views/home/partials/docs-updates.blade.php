@@ -6,7 +6,7 @@
 		@foreach($updatedDocs as $doc)
 			<li>
 				<p class="title">
-					<span class="date">{{ $doc->displayUpdatedAt() }}</span>
+					<span class="date">{{ $doc->present()->lastCommitDate() }}</span>
 					<span><a href="{{ route('docs', [$doc->frameworkVersion->number, $doc->page]) }}">{{ $doc->frameworkVersion->number }}/{{ $doc->page }}</a></span>
 				</p>
 				<p class="name">{{ $doc->title }}</p>
