@@ -5,10 +5,10 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Version
  *
- * @property int $id
+ * @property int    $id
  * @property string $number
- * @property int $is_default
- * @property int $is_master
+ * @property int    $is_default
+ * @property int    $is_master
  * @property string $number_alias
  */
 class Version extends Model {
@@ -40,6 +40,11 @@ class Version extends Model {
 	public function isDefault()
 	{
 		return (bool) $this->is_default;
+	}
+
+	public function isDocumented()
+	{
+		return (bool) $this->is_documented;
 	}
 
 	public function getNumberAliasAttribute()

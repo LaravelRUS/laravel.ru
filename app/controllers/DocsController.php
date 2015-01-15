@@ -1,10 +1,5 @@
 <?php
 
-//use LaravelRU\Docs\DocsUtil;
-
-// TODO change config storage to DB
-// TODO если такая страница, но другой версии отсутствует - кидает 404. изменить
-// TODO change to compact()
 use Illuminate\Database\Eloquent\Collection;
 
 class DocsController extends BaseController {
@@ -22,12 +17,17 @@ class DocsController extends BaseController {
 	/**
 	 * @var Version
 	 */
-	protected $master_version;
+	protected $masterVersion;
 
 	/**
 	 * @var string
 	 */
 	protected $default_page = 'installation';
+
+	/**
+	 * @var array
+	 */
+	protected $documentedVersions;
 
 	public function __construct()
 	{
@@ -35,71 +35,69 @@ class DocsController extends BaseController {
 		/** @var Collection versions */
 		$this->versions = Version::all();
 
-		$this->default_version = $this->versions->first(function ($key, $item)
+		$this->documentedVersions = $this->getAllDocumentedVersions($this->versions);
+
+		$this->defaultVersion = $this->versions->first(function ($key, $item)
 		{
 			return $item->isDefault();
 		});
 
-		$this->master_version = $this->versions->first(function ($key, $item)
+		$this->masterVersion = $this->versions->first(function ($key, $item)
 		{
 			return $item->isMaster();
 		});
+
+		View::share('documentedVersions', $this->documentedVersions);
 	}
 
-	public function docs($number = '', $name = null)
+	// TODO store in cookies or session
+	public function docs($versionNumber = '', $page = null)
 	{
-		if ( ! $name) $name = $this->default_page;
-
-		if ($number == Version::MASTER)
+		if ( ! $versionNumber)
 		{
-			$version = $this->master_version;
+			$versionNumber = $this->defaultVersion;
 		}
-		else
+		elseif ($versionNumber == Version::MASTER)
 		{
-			$version = $this->versions->first(function ($key, $item) use ($number)
-			{
-				return $item->number == $number;
-			});
+			$versionNumber = $this->masterVersion;
 		}
 
-		if ($version && $version->isMaster() && $number == $version->number)
-		{
-			return Redirect::route('docs', [Version::MASTER, $name]);
-		}
+		if ( ! $page) $page = $this->default_page;
 
-		if ( ! $version)
-		{
-			/**
-			 * Запрошен универсальный урл типа /docs/installation
-			 * средиректить на /docs/4.2/installation
-			 */
-			$session_version = Session::get('docs_version', $this->default_version->number);
+		$page = Documentation::version($versionNumber)->page($page)->firstOrFail();
 
-			return Redirect::route('docs', [$session_version, $name]);
-		}
+		$menu = Documentation::version($versionNumber)->page('documentation')->first();
 
-		$page = Documentation::version($version)->page($name)->first();
-
-		if ( ! $page)
-		{
-			return Redirect::route('docs', [$version->number, $this->default_page]);
-		}
-
-		$menu = Documentation::version($version)->page('documentation')->first();
-
-		Session::set('docs_version', $number);
-
-		return View::make('docs.docs-page', compact('page', 'menu', 'version', 'name'));
+		return View::make('docs.docs-page', compact('menu', 'page'));
 	}
 
 	public function updates()
 	{
-		$versions = Version::with(['documents' => function ($q)
-		{
-			$q->orderBy('name', 'ASC');
-		}])->get();
+		$versions = Version::with([
+			'documents' => function ($q)
+			{
+				$q->orderBy('name', 'ASC');
+			}
+		])->get();
 
 		return View::make('docs/updates', compact('versions'));
+	}
+
+	/**
+	 * Get all documented versions & name the master branch
+	 *
+	 * @param $versions
+	 * @return array
+	 */
+	private function getAllDocumentedVersions($versions)
+	{
+		return $versions->filter(function ($item)
+		{
+			return $item->isDocumented();
+		})->each(function ($item)
+		{
+			return $item->is_master ? $item->number = 'master' : $item;
+		})->lists('number');
 	}
 
 }
