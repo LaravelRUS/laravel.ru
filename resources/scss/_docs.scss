@@ -16,6 +16,7 @@
 					color: #F4645F;
 					font-size: 14px;
 					padding-left: 10px;
+					text-decoration: none;
 				}
 			}
 		}
@@ -31,14 +32,55 @@
 			font-family: 'Open Sans', Tahoma, Arial, sans-serif;
 		}
 
+		h1 {
+			font-size: 28px;
+			text-transform: uppercase;
+			color: $primary-color;
+		}
+		h2 {
+			font-size: 20px;
+			font-weight: 400;
+			text-transform: uppercase;
+			color: $primary-color;
+
+			border-top: 1px solid #EEEEEE;
+			padding-top: 35px;
+			margin-bottom: 20px;
+		}
+		h3 {
+			font-size: 18px;
+			font-weight: 400;
+			color: $color-grey-6;
+			margin-bottom: 15px;
+		}
+
+		a {
+			color: $color-green;
+			text-decoration: underline;
+		}
+
 		ul {
 			list-style: none;
 			margin: 0;
 			padding: 15px 0 20px;
 
-			li a {
-				color: #F4645F;
-				margin-left: 30px;
+			li {
+				position: relative;
+				margin-bottom: 5px;
+				padding-left: 20px;
+
+				&:before {
+					content: '#';
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					color: $primary-color;
+				}
+				
+				a {
+					color: darken($primary-color, 20%);
+					text-decoration: none;
+				}
 			}
 		}
 
@@ -52,6 +94,12 @@
 			&red {
 				border-top: 10px solid $docs-color-red;
 			}
+		}
+
+		img {
+			display: block;
+			margin: 0 auto;
+			max-width: 100%;
 		}
 	}
 

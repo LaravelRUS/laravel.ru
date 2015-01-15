@@ -8,7 +8,7 @@
 @stop
 
 @section('content')
-	<div class="bg-white p-30-45 {{ translationStatus($page) }}">
+	<div class="bg-white p-35-45 {{ translationStatus($page) }}">
 		{{ $page->present()->documentText() }}
 	</div>
 @stop

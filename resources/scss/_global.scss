@@ -1,5 +1,5 @@
 body {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 15px;
 	font-weight: 400;
 	color: $body-color;
@@ -16,21 +16,8 @@ h1, h2, h3, h4, h5, h6,
 
 h1 {
 	color: rgba(0, 0, 0, 0.52);
-	//	text-shadow: 0 1px 0 #FFFFFF;
 	margin-top: 0;
 	font-size: 30px;
-}
-
-h2, h3 {
-	color: #F4645F;
-	//	text-shadow: 0 1px 0 #FFFFFF;
-	&.small {
-		font-weight: 300;
-	}
-}
-
-h4 {
-	//	text-shadow: 0 1px 0 #FFFFFF;
 }
 
 h5 {
@@ -44,4 +31,13 @@ a {
 
 b, strong {
 	font-weight: 600;
+}
+
+code {
+	background: #EEEEEE;
+	color: $primary-color;
+	padding: 2px 7px;
+	border-radius: 3px;
+	font-family: source-code-pro, monospace;
+	font-size: 13px;
 }
