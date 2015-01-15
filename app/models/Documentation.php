@@ -4,7 +4,7 @@ use LaravelRU\Comment\CommentableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Document
+ * Class Documentation
  *
  * @property int $id
  * @property string $title
@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property int $version_id
  */
-class Document extends Model {
+class Documentation extends Model {
 
 	use CommentableTrait;
 

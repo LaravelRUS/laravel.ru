@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Config;
-use Document;
+use Documentation;
 use Github\Client as GithubClient;
 use Github\Exception\RuntimeException;
 use Guzzle\Http\Client as GuzzleClient;
@@ -98,7 +98,7 @@ class UpdateDocsCron extends ScheduledCommand {
 			{
 				if ($forceupdate)
 				{
-					Document::version($v)->name($force_file)->delete();
+					Documentation::version($v)->name($force_file)->delete();
 					$this->info("clear exist file $force_file !");
 				}
 
@@ -108,7 +108,7 @@ class UpdateDocsCron extends ScheduledCommand {
 			{
 				if ($forceupdate)
 				{
-					Document::version($version)->delete();
+					Documentation::version($version)->delete();
 					$this->info("clear exist {$version} docs!");
 				}
 
@@ -192,7 +192,7 @@ class UpdateDocsCron extends ScheduledCommand {
 									$content = preg_replace('/git(.*?)(\n*?)---(\n*?)/', "", $content);
 									preg_match('/#(.*?)$/m', $content, $matches);
 									$title = trim(array_get($matches, '1'));
-									$page = Document::version($v)->name($name)->first();
+									$page = Documentation::version($v)->name($name)->first();
 									if ($page)
 									{
 										if ($last_commit_id != $page->last_commit)
@@ -212,7 +212,7 @@ class UpdateDocsCron extends ScheduledCommand {
 									}
 									else
 									{
-										Document::create([
+										Documentation::create([
 											'version_id' => $id,
 											'name' => $name,
 											'title' => $title,

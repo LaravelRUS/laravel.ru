@@ -22,9 +22,9 @@ class Version extends Model {
 		return $this->hasMany('Post');
 	}
 
-	public function documents()
+	public function documentation()
 	{
-		return $this->hasMany('Document');
+		return $this->hasMany('Documentation');
 	}
 
 	public function tips()

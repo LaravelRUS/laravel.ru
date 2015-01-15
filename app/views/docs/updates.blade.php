@@ -35,7 +35,7 @@
         <th>Текущий оригинал</th>
         <th>Новые коммиты</th>
     </tr>
-    @foreach($v->documents as $i => $doc)
+    @foreach($v->documentation as $i => $doc)
     <tr>
         <td style="text-align: center">{{ $i+1 }}</td>
         <td>{{ $doc->name }}</td>
