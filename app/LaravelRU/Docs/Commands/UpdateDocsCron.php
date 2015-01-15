@@ -214,7 +214,7 @@ class UpdateDocsCron extends ScheduledCommand {
 									{
 										Documentation::create([
 											'version_id' => $id,
-											'name' => $name,
+											'page' => $name,
 											'title' => $title,
 											'last_commit' => $last_commit_id,
 											'last_commit_at' => $last_commit_at,
