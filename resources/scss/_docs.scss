@@ -1,7 +1,7 @@
 .docs {
 	.sidebar {
 		padding-top: 45px;
-		
+
 		ul {
 			list-style: none;
 			margin: 0;
@@ -26,8 +26,9 @@
 		font-size: 14px;
 		line-height: 1.6;
 		letter-spacing: -0.02em;;
+
 		h1, h2, h3, h4, h5, h6 {
-			font-family: 'Open Sans', Arial, sans-serif;
+			font-family: 'Open Sans', Tahoma, Arial, sans-serif;
 		}
 
 		ul {
@@ -41,6 +42,17 @@
 			}
 		}
 
+		.status- {
+			&green {
+				border-top: 10px solid $docs-color-green;
+			}
+			&yellow {
+				border-top: 10px solid $docs-color-yellow;
+			}
+			&red {
+				border-top: 10px solid $docs-color-red;
+			}
+		}
 	}
 
 	blockquote {
