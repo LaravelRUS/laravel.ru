@@ -10,6 +10,7 @@ class DocsServiceProvider extends ServiceProvider {
 		$this->commands('LaravelRU\Docs\Commands\UpdateDocsCron');
 
 		include __DIR__ . DIRECTORY_SEPARATOR . 'docs_widgets.php';
+		include __DIR__ . DIRECTORY_SEPARATOR . 'docs-macros.php';
 	}
 
 }
