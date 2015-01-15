@@ -10,4 +10,6 @@ return array(
 
 	'recaptcha_sitekey' => "",
 	'recaptcha_secret' => "",
+
+    'github_hook_secret' => "",
 );
