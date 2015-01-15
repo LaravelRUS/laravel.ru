@@ -1,10 +1,13 @@
-<ul class="nav navbar-nav version_selector_menu">
-	<li>
+<ul class="list-inline">
+	<li class="hidden-xs">
 		<span>Версия фреймворка:</span>
 	</li>
 	@foreach($all_versions as $version)
-	<li class="{{ $version == $current_version ? 'active' : '' }}">
-		<a href="{{ route('docs', [$version, $name]) }}">{{ $version }}</a>
-	</li>
+		<li class="{{ $version == $current_version ? 'active' : '' }}">
+			<a href="{{ route('docs', [$version, $name]) }}">{{ $version }}</a>
+		</li>
 	@endforeach
-</ul><!--//nav version selector -->
+	<li class="pull-right">
+		<a href="{{ route('documentation.updates') }}">Прогресс перевода</a>
+	</li>
+</ul>
