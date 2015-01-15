@@ -17,4 +17,8 @@ return array(
 
 	'url' => 'http://sharedstation.net',
 
+	'providers' => append_config([
+		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+	])
+
 );
