@@ -26,7 +26,7 @@
 			<div class="col-xs-12 col-md-3 hidden-xs hidden-sm sidebar">
 				@yield('sidebar')
 			</div>
-			<div class="col-xs-12 col-md-9 main">
+			<div class="col-xs-12 col-md-9 main m-b-30">
 				@yield('content')
 			</div>
 		</div>
