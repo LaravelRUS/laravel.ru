@@ -52,7 +52,7 @@ class DocsController extends BaseController {
 
 	public function docs($versionNumber = '', $page = null)
 	{
-		if ($versionNumber && is_null($page))
+		if ( ! in_array($versionNumber, $this->documentedVersions) && ($versionNumber && is_null($page)))
 		{
 			return Redirect::route('docs', [$this->defaultVersion, $versionNumber]);
 		}
