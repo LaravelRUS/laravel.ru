@@ -54,7 +54,9 @@ class DocsController extends BaseController {
 	{
 		if ( ! $versionNumber && ! $page)
 		{
-			return Redirect::route('docs', [$this->defaultVersion, $this->defaultPage]);
+			$versionNumber = $this->checkForVersionInCookies();
+
+			return Redirect::route('docs', [$versionNumber, $this->defaultPage]);
 		}
 
 		if ($versionNumber && ! $page)
@@ -63,7 +65,7 @@ class DocsController extends BaseController {
 			{
 				$page = $versionNumber;
 
-				$versionNumber = $this->defaultVersion;
+				$versionNumber = $this->checkForVersionInCookies();
 
 				return Redirect::route('docs', [$versionNumber, $page]);
 			}
@@ -75,6 +77,8 @@ class DocsController extends BaseController {
 		{
 			$versionNumber = $this->masterVersion;
 		}
+
+		Cookie::queue('docs_version', $versionNumber, 2628000);
 
 		$page = Documentation::version($versionNumber)->page($page)->firstOrFail();
 
@@ -110,6 +114,11 @@ class DocsController extends BaseController {
 		{
 			return $item->is_master ? $item->number = 'master' : $item;
 		})->lists('number');
+	}
+
+	private function checkForVersionInCookies()
+	{
+		return Cookie::has('docs_version') ? Cookie::get('docs_version') : $this->defaultVersion;
 	}
 
 }
