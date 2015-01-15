@@ -22,7 +22,7 @@ class DocsController extends BaseController {
 	/**
 	 * @var string
 	 */
-	protected $defaultPage = 'installation';
+	protected $defaultPage = 'introduction';
 
 	/**
 	 * @var array
@@ -52,21 +52,33 @@ class DocsController extends BaseController {
 
 	public function docs($versionNumber = '', $page = null)
 	{
-		if ( ! in_array($versionNumber, $this->documentedVersions) && ($versionNumber && is_null($page)))
+		if ( ! $versionNumber && ! $page)
 		{
-			return Redirect::route('docs', [$this->defaultVersion, $versionNumber]);
+			$versionNumber = $this->checkForVersionInCookies();
+
+			return Redirect::route('docs', [$versionNumber, $this->defaultPage]);
 		}
 
-		if ( ! $versionNumber)
+		if ($versionNumber && ! $page)
 		{
-			$versionNumber = $this->defaultVersion;
+			if ( ! in_array($versionNumber, $this->documentedVersions))
+			{
+				$page = $versionNumber;
+
+				$versionNumber = $this->checkForVersionInCookies();
+
+				return Redirect::route('docs', [$versionNumber, $page]);
+			}
+
+			return Redirect::route('docs', [$versionNumber, $this->defaultPage]);
 		}
-		elseif ($versionNumber == Version::MASTER)
+
+		if ($versionNumber == Version::MASTER)
 		{
 			$versionNumber = $this->masterVersion;
 		}
 
-		if ( ! $page) $page = $this->defaultPage;
+		Cookie::queue('docs_version', $versionNumber, 2628000);
 
 		$page = Documentation::version($versionNumber)->page($page)->firstOrFail();
 
@@ -84,7 +96,7 @@ class DocsController extends BaseController {
 			}
 		])->get();
 
-		return View::make('docs/updates', compact('versions'));
+		return View::make('docs.updates', compact('versions'));
 	}
 
 	/**
@@ -102,6 +114,11 @@ class DocsController extends BaseController {
 		{
 			return $item->is_master ? $item->number = 'master' : $item;
 		})->lists('number');
+	}
+
+	private function checkForVersionInCookies()
+	{
+		return Cookie::has('docs_version') ? Cookie::get('docs_version') : $this->defaultVersion;
 	}
 
 }
