@@ -101,20 +101,19 @@
 			margin: 0 auto;
 			max-width: 100%;
 		}
-	}
 
-	blockquote {
-		background: #F4726D;
-		border-radius: 2px;
-		box-sizing: border-box;
-		margin-bottom: 20px;
-		max-width: 100%;
-		padding: 18px 20px;
-		font-size: 14px;
-		border-left: 0px;
+		blockquote {
+			background: $docs-bloquote-bg-color;
+			border-radius: 2px;
+			margin-bottom: 20px;
+			max-width: 100%;
+			padding: 18px 20px;
+			font-size: 14px;
+			border: 0;
 
-		p {
-			color: #FFFFFF;
+			p, a {
+				color: white;
+			}
 		}
 	}
 }
