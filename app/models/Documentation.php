@@ -1,29 +1,12 @@
 <?php
 
+use Laracasts\Presenter\PresentableTrait;
 use LaravelRU\Comment\CommentableTrait;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Documentation
- *
- * @property int            $id
- * @property string         $title
- * @property string         $name
- * @property string         $text
- * @property string         $last_commit
- * @property string         $last_original_commit
- * @property string         $current_original_commit
- * @property \Carbon\Carbon $last_commit_at
- * @property \Carbon\Carbon $last_original_commit_at
- * @property \Carbon\Carbon $current_original_commit_at
- * @property int            $original_commits_ahead
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property int            $version_id
- */
 class Documentation extends Model {
 
-	use CommentableTrait;
+	use CommentableTrait, PresentableTrait;
 
 	const LAST_COMMIT_AT = 'last_commit_at';
 
@@ -34,6 +17,8 @@ class Documentation extends Model {
 		'last_original_commit_at',
 		'current_original_commit_at'
 	];
+
+	protected $presenter = 'LaravelRU\Docs\Presenters\DocsPresenter';
 
 	public function scopeVersion($query, $version)
 	{
@@ -61,24 +46,6 @@ class Documentation extends Model {
 	public function frameworkVersion()
 	{
 		return $this->belongsTo('Version', 'version_id');
-	}
-
-	/**
-	 * Presenters
-	 */
-
-	public function displayText()
-	{
-		$parsedown = new Parsedown();
-		$text = $this->text;
-		$html = $parsedown->text($text);
-
-		return $html;
-	}
-
-	public function displayUpdatedAt()
-	{
-		return $this->last_commit_at->format('d M');
 	}
 
 }

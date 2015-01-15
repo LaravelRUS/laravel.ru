@@ -9,6 +9,6 @@
 
 @section('content')
 	<div class="bg-white p-30-45 {{ translationStatus($page) }}">
-		{{ Markdown::render($page->text) }}
+		{{ $page->present()->documentText() }}
 	</div>
 @stop

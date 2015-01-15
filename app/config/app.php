@@ -125,6 +125,7 @@ return [
 		'Laracasts\Validation\ValidationServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
 		'Pingpong\Widget\WidgetServiceProvider',
+		'Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider',
 		'GrahamCampbell\Markdown\MarkdownServiceProvider',
 
 		// Главный сервис-провайдер приложения
@@ -198,6 +199,7 @@ return [
 
 		'Flash'           => 'Laracasts\Flash\Flash',
 		'Widget'          => 'Pingpong\Widget\Facades\Widget',
+		'LocalizedCarbon' => 'Laravelrus\LocalizedCarbon\LocalizedCarbon',
 		'Markdown'        => 'GrahamCampbell\Markdown\Facades\Markdown'
 
 	],

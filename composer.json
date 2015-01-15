@@ -14,7 +14,7 @@
 		"laracasts/validation": "~1.0",
 		"laracasts/presenter": "0.1.*",
 		"laracasts/flash": "~1.0",
-		"laravelrus/localized-carbon": "1.*",
+		"laravelrus/localized-carbon": "dev-master",
 		"pingpong/widget": "1.0.*",
 		"sleeping-owl/apist": "1.*",
 		"fguillot/picofeed": "dev-master",
