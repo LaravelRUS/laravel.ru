@@ -19,7 +19,8 @@ Route::get( '/',                                ['uses' => 'HomeController@home'
 // ===== Хуки гитхаба =====
 
 // Push или pull-request в репозиторий с доками
-Route::any('hook/docs_is_updated',              ['uses' => 'HookController@docsIsUpdated',      'as' => 'hook.docs_is_updated']);
+Route::post('hook/docs_is_updated',             ['uses' => 'HookController@docsIsUpdated',      'as' => 'hook.docs_is_updated']);
+Route::post('hook/push_to_develop',             ['uses' => 'HookController@pushToDevelop',      'as' => 'hook.push_to_develop']);
 
 // ===== Страница cheat sheet =====
 Route::get( 'cheat-sheet',                      ['uses' => 'PagesController@cheatSheetPage',    'as' => 'cheat-sheet']);
