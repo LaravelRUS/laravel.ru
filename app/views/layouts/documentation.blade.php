@@ -38,22 +38,3 @@
 	</div> <!-- row -->
 </div> <!-- container -->
 @stop
-
-@section('scripts')
-<script type="text/javascript">
-	function offsetPosition(e) { // отступ от верхнего края экрана до элемента
-		var offsetTop = 0;
-		do { offsetTop  += e.offsetTop } while (e = e.offsetParent);
-		return offsetTop;
-	}
-	$(document).ready(function() {
-		var aside = document.querySelector('#submenu_panel');
-		var OP = offsetPosition(aside);
-		window.onscroll = function () {
-			// если значение прокрутки больше отступа от верхнего края экрана до элемента,
-			// то элементу присваивается класс sticky
-			aside.className = (OP < window.pageYOffset ? 'submenu_panel_sticky' : '');
-		}
-	});
-</script>
-@stop
