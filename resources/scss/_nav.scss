@@ -31,7 +31,6 @@
 	width: 160px;
 	font-size: 20px;
 	font-weight: 600;
-	//	margin-left: 10px; // TODO mobile
 	color: $navbar-brand-color;
 
 	&:hover, &:focus {
@@ -56,13 +55,12 @@
 
 		li a {
 			padding: 6px 8px;
+			border-radius: 4px;
 		}
-		li.active, li:hover, li:focus {
-			a {
-				background-color: $color-grey-6;
-				border-radius: 4px;
-				color: white;
-			}
+
+		li.active a, li a:hover, li a:focus {
+			background-color: $color-grey-6;
+			color: white;
 		}
 	}
 }
