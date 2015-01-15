@@ -22,7 +22,7 @@ class DocsController extends BaseController {
 	/**
 	 * @var string
 	 */
-	protected $default_page = 'installation';
+	protected $defaultPage = 'installation';
 
 	/**
 	 * @var array
@@ -62,7 +62,7 @@ class DocsController extends BaseController {
 			$versionNumber = $this->masterVersion;
 		}
 
-		if ( ! $page) $page = $this->default_page;
+		if ( ! $page) $page = $this->defaultPage;
 
 		$page = Documentation::version($versionNumber)->page($page)->firstOrFail();
 
