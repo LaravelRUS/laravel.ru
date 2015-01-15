@@ -60,11 +60,7 @@ class DocsController extends BaseController {
 		{
 			$versionNumber = $this->masterVersion;
 		}
-		else
-		{
-			// TODO check in cookies or session
-			$versionNumber = $this->masterVersion;
-		}
+		
 
 		if ( ! $page) $page = $this->defaultPage;
 
