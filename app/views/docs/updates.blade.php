@@ -38,7 +38,7 @@
     @foreach($v->documentation as $i => $doc)
     <tr>
         <td style="text-align: center">{{ $i+1 }}</td>
-        <td>{{ $doc->name }}</td>
+        <td>{{ $doc->page }}</td>
         <td>{{ $doc->last_commit_at->format('d.m.Y H:i') }} <span class="text-muted">{{ substr($doc->last_commit, 0, 7) }}</span></td>
         <td>{{ $doc->last_original_commit_at->format('d.m.Y H:i') }} <span class="text-muted">{{ substr($doc->last_original_commit, 0, 7) }}</span></td>
         <td>
