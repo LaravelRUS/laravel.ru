@@ -74,9 +74,9 @@ class DocsController extends BaseController {
 	public function updates()
 	{
 		$versions = Version::with([
-			'documents' => function ($q)
+			'documentation' => function ($q)
 			{
-				$q->orderBy('name', 'ASC');
+				$q->orderBy('page', 'ASC');
 			}
 		])->get();
 
