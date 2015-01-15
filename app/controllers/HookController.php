@@ -16,7 +16,7 @@ class HookController extends BaseController {
 		$githubSecretHash = Request::header('X-Hub-Signature');
 		$body = file_get_contents('php://input');
 		$calculatedSecretHash = 'sha1=' . hash_hmac('sha1', $body, $this->secret);
-		if($githubSecretHash !== $calculatedSecretHash)
+		if ($githubSecretHash !== $calculatedSecretHash)
 		{
 			throw new AccessDeniedException;
 		}
@@ -36,7 +36,7 @@ class HookController extends BaseController {
 
 		return Response::json(['status' => 'success']);
 	}
-	
+
 	public function pushToDevelop()
 	{
 		$this->checkAccess();
@@ -44,13 +44,17 @@ class HookController extends BaseController {
 		Queue::push(function ($job)
 		{
 			Log::info('GITHUB HOOK push develop INCOMING');
-			shell_exec("cd /home/forge/sharedstation.net && git checkout develop && git reset HEAD --hard && git pull origin develop && composer update && php artisan migrate");
-
+			$output = shell_exec("cd /home/forge/sharedstation.net && git checkout develop && git reset HEAD --hard && git pull origin develop && composer update && php artisan migrate");
+			$lines = explode("\n", $output);
+			foreach ($lines as $line)
+			{
+				$line = trim($line);
+				Log::info($line);
+			}
 			$job->delete();
 		});
 
 		return Response::json(['status' => 'success']);
 	}
-
 
 }
