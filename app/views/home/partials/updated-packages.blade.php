@@ -6,7 +6,7 @@
 		@foreach($updatedPackages as $package)
 			<li>
 				<p class="title">
-					<span class="date">{{ $package->displayCreatedAt() }}</span>
+					<span class="date">{{ $package->created_at->format('d M') }}</span>
 					<span><a href="{{ URL::to($package->repository) }}" target="_blank">{{ $package->name }}</a></span>
 				</p>
 				<p>{{ $package->description }}</p>
