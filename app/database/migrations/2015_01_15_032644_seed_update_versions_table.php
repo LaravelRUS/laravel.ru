@@ -12,7 +12,7 @@ class SeedUpdateVersionsTable extends Migration {
 	 */
 	public function up()
 	{
-		DB::table('versions')->where('iteration', '!=', '4.0')->update([
+		DB::table('versions')->where('number', '!=', '4.0')->update([
 			'is_documented' => 1
 		]);
 	}
