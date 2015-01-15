@@ -9,10 +9,7 @@
     <div class="container">
         <div class="row">
             <ul class="nav navbar-nav navbar-right">
-                @if(allowEditTerms())
-		            <li class="{{ activeByRoute('terms') }}"><a href="{{ route('terms') }}">Термины</a></li>
-	            @endif
-                @li('Прогресс перевода', 'documentation.updates')
+	            @li('Прогресс перевода', 'documentation.updates')
             </ul>
         </div>
     </div>

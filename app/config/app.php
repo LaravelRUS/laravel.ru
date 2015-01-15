@@ -125,6 +125,7 @@ return [
 		'Laracasts\Validation\ValidationServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
 		'Pingpong\Widget\WidgetServiceProvider',
+		'GrahamCampbell\Markdown\MarkdownServiceProvider',
 
 		// Главный сервис-провайдер приложения
 		'LaravelRU\Core\CoreServiceProvider'
@@ -196,7 +197,8 @@ return [
 		'View'            => 'Illuminate\Support\Facades\View',
 
 		'Flash'           => 'Laracasts\Flash\Flash',
-		'Widget'          => 'Pingpong\Widget\Facades\Widget'
+		'Widget'          => 'Pingpong\Widget\Facades\Widget',
+		'Markdown'        => 'GrahamCampbell\Markdown\Facades\Markdown'
 
 	],
 

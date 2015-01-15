@@ -17,7 +17,8 @@
 		"laravelrus/localized-carbon": "1.*",
 		"pingpong/widget": "1.0.*",
 		"sleeping-owl/apist": "1.*",
-		"fguillot/picofeed": "dev-master"
+		"fguillot/picofeed": "dev-master",
+		"graham-campbell/markdown": "~2.0"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "1.*",
@@ -44,6 +45,7 @@
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
+			"php artisan ide-helper:generate",
 			"php artisan optimize"
 		],
 		"post-create-project-cmd": [
