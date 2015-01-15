@@ -24,8 +24,8 @@
 
 <p>Если вы хотите помочь с переводом документации, ознакомьтесь пожалуйста с этой <a href="/content/rus-documentation-contribution-guide">инструкцией</a>.</p>
 
-@foreach($docs as $version => $pages)
-<h2>Ветка {{ $version }}</h2>
+@foreach($versions as $v)
+<h2>Ветка <a href="https://github.com/laravel/docs/tree/{{ $v->number_alias }}">{{ $v->number_alias }}</a></h2>
 <table class="table table-bordered">
     <tr>
         <th></th>
@@ -35,23 +35,23 @@
         <th>Текущий оригинал</th>
         <th>Новые коммиты</th>
     </tr>
-    @foreach($pages as $i => $page)
+    @foreach($v->documents as $i => $doc)
     <tr>
-        <td>{{ $i+1 }}</td>
-        <td>{{ $page->name }}</td>
-        <td>{{ $page->last_commit_at->format('d.m.Y H:i') }} <span class="text-muted">{{ substr($page->last_commit, 0, 7) }}</span></td>
-        <td>{{ $page->last_original_commit_at->format('d.m.Y H:i') }} <span class="text-muted">{{ substr($page->last_original_commit, 0, 7) }}</span></td>
+        <td style="text-align: center">{{ $i+1 }}</td>
+        <td>{{ $doc->name }}</td>
+        <td>{{ $doc->last_commit_at->format('d.m.Y H:i') }} <span class="text-muted">{{ substr($doc->last_commit, 0, 7) }}</span></td>
+        <td>{{ $doc->last_original_commit_at->format('d.m.Y H:i') }} <span class="text-muted">{{ substr($doc->last_original_commit, 0, 7) }}</span></td>
         <td>
 	        <span class="text-muted">
-                <a href="https://github.com/laravel/docs/blob/{{ $page->current_original_commit }}/{{ $page->name }}.md">{{ $page->current_original_commit }}</a>
+                <a href="https://github.com/laravel/docs/blob/{{ $doc->current_original_commit }}/{{ $doc->name }}.md">{{ $doc->current_original_commit }}</a>
             </span>
         </td>
         <td>
-            @if( ! $page->original_commits_ahead)
+            @if( ! $doc->original_commits_ahead)
                 <span class="text-success">перевод не требуется</span>
             @else
-                <span class="text-danger">{{ $page->original_commits_ahead }}</span>
-                git difftool {{ substr($page->last_original_commit, 0, 7) }} {{ substr($page->current_original_commit, 0, 7) }} {{ $page->name }}.md
+                <span class="text-danger">{{ $doc->original_commits_ahead }}</span>
+                git difftool {{ substr($doc->last_original_commit, 0, 7) }} {{ substr($doc->current_original_commit, 0, 7) }} {{ $doc->name }}.md
             @endif
         </td>
     </tr>

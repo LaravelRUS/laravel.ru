@@ -1,6 +1,5 @@
 <?php namespace LaravelRU\Docs\Commands;
 
-
 use Carbon\Carbon;
 use Config;
 use Document;
@@ -16,7 +15,6 @@ use Log;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Version as FrameworkVersion;
-
 
 class UpdateDocsCron extends ScheduledCommand {
 
@@ -81,7 +79,7 @@ class UpdateDocsCron extends ScheduledCommand {
 
 		if ($force_branch)
 		{
-			$all_versions[] = FrameworkVersion::where('is_master', 1)->first();
+			$all_versions[] = FrameworkVersion::master()->first();
 		}
 		else
 		{
@@ -92,7 +90,7 @@ class UpdateDocsCron extends ScheduledCommand {
 		foreach ($all_versions as $v)
 		{
 			$id = $v->id;
-			$version = $v->isMaster() ? FrameworkVersion::MASTER : $v->iteration;
+			$version = $v->number_alias;
 
 			$this->info("Process branch $version");
 
@@ -100,7 +98,7 @@ class UpdateDocsCron extends ScheduledCommand {
 			{
 				if ($forceupdate)
 				{
-					Document::whereHas('version')->name($force_file)->delete();
+					Document::version($v)->name($force_file)->delete();
 					$this->info("clear exist file $force_file !");
 				}
 
@@ -116,7 +114,7 @@ class UpdateDocsCron extends ScheduledCommand {
 
 				$this->line('Fetch documentation.md');
 
-				//В случае ошибки при получении документации продолжить цикл.
+				// В случае ошибки при получении документации продолжить цикл.
 				try
 				{
 					$content = $this->githubTranslated->getFile($version, 'documentation.md');
