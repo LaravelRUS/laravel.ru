@@ -98,7 +98,7 @@ class UpdateDocsCron extends ScheduledCommand {
 			{
 				if ($forceupdate)
 				{
-					Documentation::version($v)->name($force_file)->delete();
+					Documentation::version($v)->page($force_file)->delete();
 					$this->info("clear exist file $force_file !");
 				}
 
@@ -192,7 +192,7 @@ class UpdateDocsCron extends ScheduledCommand {
 									$content = preg_replace('/git(.*?)(\n*?)---(\n*?)/', "", $content);
 									preg_match('/#(.*?)$/m', $content, $matches);
 									$title = trim(array_get($matches, '1'));
-									$page = Documentation::version($v)->name($name)->first();
+									$page = Documentation::version($v)->page($name)->first();
 									if ($page)
 									{
 										if ($last_commit_id != $page->last_commit)

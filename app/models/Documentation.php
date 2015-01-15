@@ -46,9 +46,9 @@ class Documentation extends Model {
 		});
 	}
 
-	public function scopeName($query, $name)
+	public function scopePage($query, $pageName)
 	{
-		return $query->whereName($name);
+		return $query->wherePage($pageName);
 	}
 
 	public function scopeOrderByLastCommit($query)

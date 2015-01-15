@@ -8,7 +8,7 @@ class DocsWidget {
 
 	public function sidebar($version)
 	{
-		return Documentation::version($version)->name('documentation')->first()->displayText();
+		return Documentation::version($version)->page('documentation')->first()->displayText();
 	}
 
 	public function versionSelector($version, $name)

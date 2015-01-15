@@ -78,14 +78,14 @@ class DocsController extends BaseController {
 			return Redirect::route('docs', [$session_version, $name]);
 		}
 
-		$page = Documentation::version($version)->name($name)->first();
+		$page = Documentation::version($version)->page($name)->first();
 
 		if ( ! $page)
 		{
 			return Redirect::route('docs', [$version->number, $this->default_page]);
 		}
 
-		$menu = Documentation::version($version)->name('documentation')->first();
+		$menu = Documentation::version($version)->page('documentation')->first();
 
 		Session::set('docs_version', $number);
 
