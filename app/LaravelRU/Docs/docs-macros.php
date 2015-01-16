@@ -17,3 +17,8 @@ function translationStatus($page)
 
 	return $status;
 }
+
+function checkMasterVersion($version)
+{
+	return $version->isMaster() ? 'master' : $version->number;
+}
