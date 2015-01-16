@@ -95,6 +95,11 @@ class DocsController extends BaseController {
 			return Redirect::route('documentation', [$versionNumber, $this->defaultPage]);
 		}
 
+		if ($versionNumber == $this->masterVersion->getOriginal('number'))
+		{
+			return Response::view('errors.404', [], 404);
+		}
+
 		if ($versionNumber == Version::MASTER)
 		{
 			$versionNumber = $this->masterVersion;
