@@ -102,12 +102,12 @@ class DocsController extends BaseController {
 			return Response::view('errors.404', [], 404);
 		}
 
+		Cookie::queue('docs_version', $versionNumber, 2628000);
+
 		if ($versionNumber == Version::MASTER)
 		{
-			$versionNumber = $this->masterVersion;
+			$versionNumber = $this->masterVersion->number;
 		}
-
-		Cookie::queue('docs_version', $versionNumber, 2628000);
 
 		$page = Documentation::version($versionNumber)->page($page)->firstOrFail();
 
