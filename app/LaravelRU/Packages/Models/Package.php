@@ -1,4 +1,4 @@
-<?php
+<?php namespace LaravelRU\Packages\Models;
 
 use Laracasts\Presenter\PresentableTrait;
 use LaravelRU\Likes\LikeableTrait;

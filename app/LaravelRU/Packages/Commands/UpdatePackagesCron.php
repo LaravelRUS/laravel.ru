@@ -5,7 +5,7 @@ use Indatus\Dispatcher\Scheduling\Schedulable;
 use Indatus\Dispatcher\Scheduling\ScheduledCommand;
 use LaravelRU\Packages\PackageRepo;
 use Log;
-use Package;
+use LaravelRU\Packages\Models\Package;
 
 class UpdatePackagesCron extends ScheduledCommand {
 

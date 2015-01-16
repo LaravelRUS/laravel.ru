@@ -2,16 +2,11 @@
 
 use Auth;
 use LaravelRU\Core\Access\BaseAccess;
-use News;
-use Post;
+use LaravelRU\News\Models\News;
+use LaravelRU\Post\Models\Post;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class Access extends BaseAccess {
-
-	public function __construct()
-	{
-
-	}
 
 	public function disableGuests()
 	{
@@ -35,14 +30,9 @@ class Access extends BaseAccess {
 
 	public function checkEditRoles()
 	{
-		if (Auth::user()->isAdmin())
-		{
-			return;
-		}
-		else
-		{
-			throw new AccessDeniedException;
-		}
+		if (Auth::user()->isAdmin()) return;
+
+		throw new AccessDeniedException;
 	}
 
 	/**
@@ -65,14 +55,9 @@ class Access extends BaseAccess {
 	{
 		$this->disableGuests();
 
-		if (Auth::user()->isAdmin() || Auth::user()->isModerator())
-		{
-			return;
-		}
-		else
-		{
-			throw new AccessDeniedException;
-		}
+		if (Auth::user()->isAdmin() || Auth::user()->isModerator()) return;
+
+		throw new AccessDeniedException;
 	}
 
 	/**

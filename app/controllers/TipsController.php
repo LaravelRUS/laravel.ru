@@ -3,6 +3,7 @@
 use LaravelRU\Access\Access;
 use LaravelRU\Tips\Forms\CreateTipForm;
 use LaravelRU\Tips\Forms\UpdateTipForm;
+use LaravelRU\Tips\Models\Tip;
 
 class TipsController extends BaseController {
 

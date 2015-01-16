@@ -5,9 +5,9 @@ use GuzzleHttp\Client as GuzzleClient;
 use Indatus\Dispatcher\Drivers\Cron\Scheduler;
 use Indatus\Dispatcher\Scheduling\Schedulable;
 use Indatus\Dispatcher\Scheduling\ScheduledCommand;
+use LaravelRU\Packages\Models\Package;
 use LaravelRU\Packages\PackageRepo;
 use Log;
-use Package;
 
 class CheckNewPackagesCron extends ScheduledCommand {
 

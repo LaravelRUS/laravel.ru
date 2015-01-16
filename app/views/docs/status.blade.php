@@ -30,7 +30,7 @@
 								<tr class="row">
 									<td class="hidden-xs col-sm-1 text-center">{{ $i + 1 }}</td>
 									<td class="col-xs-9 col-md-2 col-lg-3">
-										<a href="{{ route('documentation', [checkMasterVersion($doc->frameworkVersion), $doc->page]) }}">{{ $doc->page }}</a>
+										<a href="{{ route('documentation', [$doc->frameworkVersion->number_alias, $doc->page]) }}">{{ $doc->page }}</a>
 									</td>
 									<td class="hidden-xs hidden-sm col-md-4 col-lg-3">
 										<a href="https://github.com/laravel/docs/blob/{{ $doc->current_original_commit }}/{{ $doc->page }}.md">{{ $doc->current_original_commit }}</a>

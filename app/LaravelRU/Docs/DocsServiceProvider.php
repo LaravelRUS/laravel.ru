@@ -1,7 +1,6 @@
 <?php namespace LaravelRU\Docs;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelRU\Docs\Commands\UpdateDocsCommand;
 
 class DocsServiceProvider extends ServiceProvider {
 
@@ -10,7 +9,7 @@ class DocsServiceProvider extends ServiceProvider {
 		$this->commands('LaravelRU\Docs\Commands\UpdateDocsCron');
 
 		include __DIR__ . DIRECTORY_SEPARATOR . 'docs_widgets.php';
-		include __DIR__ . DIRECTORY_SEPARATOR . 'docs-macros.php';
+		include __DIR__ . DIRECTORY_SEPARATOR . 'docs_macros.php';
 	}
 
 }

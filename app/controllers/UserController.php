@@ -2,6 +2,7 @@
 
 use LaravelRU\Post\PostRepo;
 use LaravelRU\Tips\TipsRepo;
+use LaravelRU\User\Models\User;
 use LaravelRU\User\Repositories\UserRepo;
 
 class UserController extends BaseController {

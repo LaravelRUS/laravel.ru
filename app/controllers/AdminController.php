@@ -1,6 +1,8 @@
 <?php
 
 use LaravelRU\Access\Access;
+use LaravelRU\Access\Models\Role;
+use LaravelRU\User\Models\User;
 
 class AdminController extends BaseController {
 
