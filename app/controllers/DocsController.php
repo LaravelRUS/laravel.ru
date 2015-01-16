@@ -2,37 +2,52 @@
 
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class DocsController
+ */
 class DocsController extends BaseController {
 
 	/**
+	 * All framework versions.
+	 *
 	 * @var Collection|static[]
 	 */
 	protected $versions;
 
 	/**
+	 * The documented framework versions.
+	 *
+	 * @var array
+	 */
+	protected $documentedVersions;
+
+	/**
+	 * The default framework version.
+	 *
 	 * @var Version
 	 */
 	protected $defaultVersion;
 
 	/**
+	 * The master framework version.
+	 *
 	 * @var Version
 	 */
 	protected $masterVersion;
 
 	/**
+	 * The default docs page.
+	 *
 	 * @var string
 	 */
 	protected $defaultPage = 'introduction';
 
 	/**
-	 * @var array
+	 * Constructor function.
 	 */
-	protected $documentedVersions;
-
 	public function __construct()
 	{
 		// TODO закешировать?
-		/** @var Collection versions */
 		$this->versions = Version::all();
 
 		$this->documentedVersions = $this->getAllDocumentedVersions($this->versions);
@@ -50,13 +65,20 @@ class DocsController extends BaseController {
 		View::share('documentedVersions', $this->documentedVersions);
 	}
 
+	/**
+	 * Show the docs page.
+	 *
+	 * @param string $versionNumber
+	 * @param null   $page
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+	 */
 	public function docs($versionNumber = '', $page = null)
 	{
 		if ( ! $versionNumber && ! $page)
 		{
 			$versionNumber = $this->checkForVersionInCookies();
 
-			return Redirect::route('docs', [$versionNumber, $this->defaultPage]);
+			return Redirect::route('documentation', [$versionNumber, $this->defaultPage]);
 		}
 
 		if ($versionNumber && ! $page)
@@ -67,10 +89,10 @@ class DocsController extends BaseController {
 
 				$versionNumber = $this->checkForVersionInCookies();
 
-				return Redirect::route('docs', [$versionNumber, $page]);
+				return Redirect::route('documentation', [$versionNumber, $page]);
 			}
 
-			return Redirect::route('docs', [$versionNumber, $this->defaultPage]);
+			return Redirect::route('documentation', [$versionNumber, $this->defaultPage]);
 		}
 
 		if ($versionNumber == Version::MASTER)
@@ -87,20 +109,20 @@ class DocsController extends BaseController {
 		return View::make('docs.docs-page', compact('menu', 'page'));
 	}
 
-	public function updates()
+	/**
+	 * Show the translation status page.
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function status()
 	{
-		$versions = Version::with([
-			'documentation' => function ($q)
-			{
-				$q->orderBy('page', 'ASC');
-			}
-		])->get();
+		$versions = Version::documented()->withDocumentation()->get();
 
-		return View::make('docs.updates', compact('versions'));
+		return View::make('docs.status', compact('versions'));
 	}
 
 	/**
-	 * Get all documented versions & name the master branch
+	 * Get all documented versions & rename the master branch.
 	 *
 	 * @param $versions
 	 * @return array
@@ -116,6 +138,11 @@ class DocsController extends BaseController {
 		})->lists('number');
 	}
 
+	/**
+	 * Check the cookies for docs version or return the default one.
+	 *
+	 * @return mixed|null|string|Version
+	 */
 	private function checkForVersionInCookies()
 	{
 		return Cookie::has('docs_version') ? Cookie::get('docs_version') : $this->defaultVersion;
