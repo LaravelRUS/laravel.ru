@@ -4,6 +4,10 @@
 	font-size: 15px;
 	box-shadow: 0 0 3px #C2C2C2;
 
+	a {
+		@extend %transition;
+	}
+
 	li {
 		line-height: 50px;
 

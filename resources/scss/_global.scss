@@ -36,8 +36,6 @@ a {
 	color: $link-color;
 	text-decoration: none;
 
-	@extend %transition-short;
-
 	&:hover, &:focus {
 		text-decoration: none;
 	}
@@ -72,6 +70,12 @@ table {
 	}
 	i {
 		margin-right: 3px;
+	}
+}
+
+ul {
+	li {
+		position: relative;
 	}
 }
 
