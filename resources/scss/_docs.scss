@@ -78,7 +78,7 @@
 				@extend %hash-tag;
 
 				a {
-					color: darken($primary-color, 20%);
+					color: $primary-color;
 					text-decoration: none;
 				}
 			}
