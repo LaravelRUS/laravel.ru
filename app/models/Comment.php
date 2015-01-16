@@ -16,5 +16,4 @@ class Comment extends Model {
 	{
 		return $this->belongsTo('User', 'author_id');
 	}
-
 }
