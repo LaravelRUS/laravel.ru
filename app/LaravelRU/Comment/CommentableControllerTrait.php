@@ -12,10 +12,10 @@ trait CommentableControllerTrait {
 	}
 
 	// Todo: добавить валидацию. Greabock 16.01.15
-	public function addComment($entityId)
+	public function addComment($commentableId)
 	{
 
-		$entity = forward_static_call([$this->commentableModelName, 'test'], $entityId);
+		$entity = forward_static_call([$this->commentableModelName, 'findOrFail'], $commentableId);
 		$comment = new Comment;
 		$comment->text = Inut::get('text');
 		$comment->author_id = Auth::user()->id;
