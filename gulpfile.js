@@ -61,6 +61,7 @@ gulp.task('scripts', function () {
 		.pipe(concat('script.min.js'))
 		.pipe(concatinated)
 		.pipe(uglify())
+		.on("error", notify.onError("<%= error.message %>"))
 		.pipe(uglified)
 		.pipe(gulp.dest('public/js'))
 		.pipe(gzipped)
