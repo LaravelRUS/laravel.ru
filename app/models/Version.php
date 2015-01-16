@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
  * Class Version
  *
@@ -11,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int    $is_master
  * @property string $number_alias
  */
-class Version extends Model {
+class Version extends Eloquent {
 
 	const MASTER = 'master';
 
@@ -60,6 +58,21 @@ class Version extends Model {
 	public function scopeDefault($query)
 	{
 		return $query->where('is_default', 1);
+	}
+
+	public function scopeDocumented($query)
+	{
+		return $query->where('is_documented', 1);
+	}
+
+	public function scopeWithDocumentation($query)
+	{
+		return $query->with([
+			'documentation' => function ($q)
+			{
+				$q->orderBy('page');
+			}
+		]);
 	}
 
 	function __toString()

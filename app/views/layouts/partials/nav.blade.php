@@ -33,7 +33,7 @@
 							@endif
 							@if(Auth::user()->isLibrarian())
 								<li>
-									<a href="{{ route("documentation.updates") }}">Прогресс перевода</a>
+									<a href="{{ route("documentation.status") }}">Прогресс перевода</a>
 								</li>
 							@endif
 							<li class="divider"></li>

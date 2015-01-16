@@ -170,3 +170,8 @@ function fieldAttributes($name, $attributes = [])
 }
 
 // end http://laravelsnippets.com/snippets/bootstrap-3-form-macros
+
+function activeClassName($route)
+{
+	return (Route::currentRouteName() == $route) ? 'active' : null;
+}

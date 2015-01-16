@@ -69,52 +69,6 @@ Coreos theme
 	font-style: italic;
 }
 
-table {
-	width: 100%;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	font-weight: 400;
-}
-
-table thead th {
-	text-transform: uppercase;
-	font-size: 13px;
-	line-height: 20px;
-	border-bottom: 1px solid #DDDDDD;
-	padding-top: 0px;
-	padding-right: 10px;
-	padding-bottom: 0px;
-	padding-left: 0px;
-	color: #666666;
-}
-
-table tbody td {
-	line-height: 18px;
-	font-size: 12px;
-	border-bottom: 1px solid #DDDDDD;
-	padding-top: 6px;
-	padding-right: 10px;
-	padding-bottom: 6px;
-	padding-left: 0px;
-	vertical-align: text-top;
-}
-
-table thead td:first-child, table thead th:first-child, table tbody td:first-child, table tfoot td:first-child {
-	padding-left: 10px;
-}
-
-table thead td:last-child, thead th:last-child, table tbody td:last-child, table tfoot td:last-child {
-	padding-right: 10px;
-}
-
-table td.dashed {
-	border-bottom: 1px dashed #DDDDDD;
-}
-
-table td:first-child.rowspan-padding {
-	padding-left: 0;
-}
-
 .img-full {
 	width: 100%;
 }

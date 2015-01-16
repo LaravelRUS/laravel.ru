@@ -6,6 +6,7 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	uglify = require('gulp-uglify'),
 	size = require('gulp-size'),
+	replace = require('gulp-replace'),
 
 	paths = {
 		bower: 'vendor/bower_components/'
@@ -32,6 +33,7 @@ gulp.task('styles', function () {
 			dirname: "",
 			suffix: ".min"
 		}))
+		.pipe(replace(/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\//g, ''))
 		.pipe(gulp.dest('public/css'))
 		.pipe(compressed)
 		.pipe(gzipped)

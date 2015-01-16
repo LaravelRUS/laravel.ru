@@ -9,26 +9,13 @@
 				</li>
 				@foreach($documentedVersions as $version)
 					<li @if(Route::current()->parameter('version') == $version) class="active" @endif>
-						<a href="{{ route('docs', $version) }}">{{ $version }}</a>
+						<a href="{{ route('documentation', $version) }}">{{ $version }}</a>
 					</li>
 				@endforeach
-				<li class="pull-right">
-					<a href="{{ route('documentation.updates') }}">Прогресс перевода</a>
+				<li class="pull-right {{ activeClassName('documentation.status') }}">
+					<a href="{{ route('documentation.status') }}">Прогресс перевода</a>
 				</li>
 			</ul>
-		</div>
-	</div>
-@stop
-
-@section('container')
-	<div class="container docs">
-		<div class="row">
-			<div class="col-xs-12 col-md-3 hidden-xs hidden-sm sidebar">
-				@yield('sidebar')
-			</div>
-			<div class="col-xs-12 col-md-9 main m-b-30">
-				@yield('content')
-			</div>
 		</div>
 	</div>
 @stop

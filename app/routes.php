@@ -51,11 +51,8 @@ Route::group(['before' => 'administrator'], function ()
 });
 
 // ===== Документация
-// Главная страница
-Route::get( 'docs',                             ['uses' => 'DocsController@docs',               'as' => 'documentation']);
-// Страница конкретного файла
-Route::get( 'docs/{version}/{string?}',         ['uses' => 'DocsController@docs',               'as' => 'docs']);
-Route::get( 'documentation/updates',            ['uses' => 'DocsController@updates',            'as' => 'documentation.updates']);
+Route::get( 'docs/status',                      ['uses' => 'DocsController@status',             'as' => 'documentation.status']);
+Route::get( 'docs/{version?}/{string?}',        ['uses' => 'DocsController@docs',               'as' => 'documentation']);
 
 // ===== Профайл пользователя
 
@@ -108,5 +105,3 @@ Route::group(['before' => 'auth'], function ()
 
 // Тестовый контроллер
 Route::controller('test', "TestController");
-
-//Route::get("{any}", 'HomeController@home');
