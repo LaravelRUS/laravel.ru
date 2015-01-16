@@ -1,12 +1,12 @@
 <?php namespace LaravelRU\Comment;
 
-use \Comment;
+use LaravelRU\Comment\Models\Comment;
 
 trait CommentableTrait {
 
 	public function comments()
 	{
-		return $this->morphMany('Comment', 'commentable');
+		return $this->morphMany('LaravelRU\Comment\Models\Comment', 'commentable');
 	}
 
 	public function storeComment(Comment $comment)

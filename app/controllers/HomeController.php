@@ -1,5 +1,6 @@
 <?php
 
+use LaravelRU\Docs\Models\Documentation;
 use LaravelRU\News\Repositories\NewsRepo;
 use LaravelRU\Packages\PackageRepo;
 use LaravelRU\Post\PostRepo;

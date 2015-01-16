@@ -1,4 +1,4 @@
-<?php
+<?php namespace LaravelRU\Comment\Models;
 
 use LaravelRU\Likes\LikeableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ class Comment extends Model {
 
 	public function author()
 	{
-		return $this->belongsTo('User', 'author_id');
+		return $this->belongsTo('LaravelRU\User\Models\User', 'author_id');
 	}
 
 }

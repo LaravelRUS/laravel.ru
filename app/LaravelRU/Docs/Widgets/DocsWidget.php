@@ -1,7 +1,7 @@
 <?php namespace LaravelRU\Docs\Widgets;
 
 use Config;
-use Documentation;
+use LaravelRU\Docs\Models\Documentation;
 use View;
 
 class DocsWidget {

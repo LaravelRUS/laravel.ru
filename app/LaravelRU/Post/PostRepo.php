@@ -1,7 +1,8 @@
 <?php namespace LaravelRU\Post;
 
+use LaravelRU\Core\Models\Version;
 use LaravelRU\Core\Repository\BaseRepository;
-use Post;
+use LaravelRU\Post\Models\Post;
 
 class PostRepo extends BaseRepository {
 
@@ -60,7 +61,7 @@ class PostRepo extends BaseRepository {
 	 */
 	public function getFrameworkVersionSelect($currentFrameworkVersion)
 	{
-		$allVersions = \Version::all();
+		$allVersions = Version::all();
 	}
 
 }

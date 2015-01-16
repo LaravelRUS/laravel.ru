@@ -2,14 +2,14 @@
 
 use Laracasts\Validation\FormValidator;
 
-class LoginForm extends FormValidator{
+class LoginForm extends FormValidator {
 
 	protected $rules = [
-		'email'      => 'required|email|exists:users',
-		'password'   => 'required',
+		'email' => 'required|email|exists:users',
+		'password' => 'required',
 	];
 
 	protected $messages = [
 	];
 
-} 
+}

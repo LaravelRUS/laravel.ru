@@ -3,6 +3,7 @@
 use LaravelRU\Access\Access;
 use LaravelRU\News\Forms\CreateNewsForm;
 use LaravelRU\News\Forms\UpdateNewsForm;
+use LaravelRU\News\Models\News;
 
 class NewsController extends BaseController {
 

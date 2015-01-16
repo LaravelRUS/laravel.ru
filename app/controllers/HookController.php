@@ -8,7 +8,7 @@ class HookController extends BaseController {
 
 	public function __construct()
 	{
-		$this->secret = getenv("github_hook_secret");
+		$this->secret = getenv('github_hook_secret');
 	}
 
 	public function checkAccess()

@@ -1,4 +1,4 @@
-<?php
+<?php namespace LaravelRU\Tips\Models;
 
 use LaravelRU\Likes\LikeableTrait;
 use LaravelRU\Comment\CommentableTrait;
@@ -15,12 +15,12 @@ class Tip extends Model {
 
 	public function author()
 	{
-		return $this->belongsTo('User', 'author_id');
+		return $this->belongsTo('LaravelRU\User\Models\User', 'author_id');
 	}
 
 	public function version()
 	{
-		return $this->belongsTo('Version');
+		return $this->belongsTo('LaravelRU\Core\Models\Version');
 	}
 
 }

@@ -2,7 +2,7 @@
 
 function all_framework_versions()
 {
-	$allVersions = Version::all();
+	$allVersions = LaravelRU\Core\Models\Version::all();
 	$options = [0 => 'любая / пост не относится к фреймворку'];
 
 	foreach ($allVersions as $version)

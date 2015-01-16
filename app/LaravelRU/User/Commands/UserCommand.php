@@ -1,8 +1,8 @@
 <?php namespace LaravelRU\User\Commands;
 
-use Role;
-use User;
 use Illuminate\Console\Command;
+use LaravelRU\Access\Models\Role;
+use LaravelRU\User\Models\User;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -44,13 +44,14 @@ class UserCommand extends Command {
 		$user->is_confirmed = 1;
 		$user->save();
 
-		if($isAdmin){
+		if ($isAdmin)
+		{
 			/** @var Role $role */
-			$role = Role::whereName("administrator")->first();
+			$role = Role::whereName('administrator')->first();
 			$role->users()->save($user);
 		}
 
-		$this->info("User \"$name\" created.");
+		$this->info('User "' . $name . '"  created.');
 
 	}
 

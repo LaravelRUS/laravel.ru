@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use LaravelRU\Core\Repository\BaseRepository;
-use Package;
+use LaravelRU\Packages\Models\Package;
 use Packagist\Api\Client as PackagistClient;
 
 class PackageRepo extends BaseRepository {

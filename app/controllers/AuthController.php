@@ -2,6 +2,8 @@
 
 use LaravelRU\User\Forms\LoginForm;
 use LaravelRU\User\Forms\RegistrationForm;
+use LaravelRU\User\Models\Confirmation;
+use LaravelRU\User\Models\User;
 
 class AuthController extends BaseController {
 

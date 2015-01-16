@@ -1,7 +1,7 @@
 <?php namespace LaravelRU\Tips;
 
 use LaravelRU\Core\Repository\BaseRepository;
-use Tip;
+use LaravelRU\Tips\Models\Tip;
 
 class TipsRepo extends BaseRepository {
 
