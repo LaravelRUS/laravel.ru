@@ -12,12 +12,19 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-weight: 600;
 	line-height: 1.4;
+	margin-top: 0;
 }
 
 h1 {
-	color: rgba(0, 0, 0, 0.52);
-	margin-top: 0;
-	font-size: 30px;
+	font-size: 28px;
+	text-transform: uppercase;
+	color: #F4645F;
+}
+
+h2 {
+	font-size: 20px;
+	font-weight: 400;
+	text-transform: uppercase;
 }
 
 h5 {
@@ -47,4 +54,32 @@ code {
 	border-radius: 3px;
 	font-family: source-code-pro, monospace;
 	font-size: 13px;
+}
+
+table {
+	margin-bottom: 30px;
+
+	thead th {
+		font-size: 12px;
+		text-transform: uppercase;
+	}
+	tbody {
+
+	}
+	th, td {
+		line-height: 35px;
+		border: 2px solid $border-color;
+	}
+	i {
+		margin-right: 3px;
+	}
+}
+
+@media (max-width: $screen-xs-max) {
+	.container {
+		padding: 0;
+	}
+	.p-35-45 {
+		padding: 15px !important;
+	}
 }

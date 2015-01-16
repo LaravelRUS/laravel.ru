@@ -16,6 +16,18 @@
 	color: white;
 }
 
+.c-green {
+	color: $color-green;
+}
+
+.c-yellow {
+	color: $color-yellow;
+}
+
+.c-red {
+	color: $color-red;
+}
+
 .bg-white {
 	background-color: white;
 }
@@ -56,4 +68,9 @@
 
 .position-relative {
 	position: relative;
+}
+
+header.bordered {
+	padding-bottom: 20px;
+	border-bottom: 2px solid $border-color;
 }
