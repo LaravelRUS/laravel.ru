@@ -18,7 +18,8 @@
 		"pingpong/widget": "1.0.*",
 		"sleeping-owl/apist": "1.*",
 		"fguillot/picofeed": "dev-master",
-		"graham-campbell/markdown": "~2.0"
+		"graham-campbell/markdown": "~2.0",
+		"vanchelo/ajax-response": "dev-master"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "1.*",
