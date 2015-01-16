@@ -1,4 +1,6 @@
-<?php
+<?php namespace LaravelRU\Core\Models;
+
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Version
@@ -9,7 +11,7 @@
  * @property int    $is_master
  * @property string $number_alias
  */
-class Version extends Eloquent {
+class Version extends Model {
 
 	const MASTER = 'master';
 
@@ -17,17 +19,17 @@ class Version extends Eloquent {
 
 	public function posts()
 	{
-		return $this->hasMany('Post');
+		return $this->hasMany('LaravelRU\Post\Models\Post');
 	}
 
 	public function documentation()
 	{
-		return $this->hasMany('Documentation');
+		return $this->hasMany('LaravelRU\Docs\Models\Documentation');
 	}
 
 	public function tips()
 	{
-		return $this->hasMany('Tip');
+		return $this->hasMany('LaravelRU\Tips\Models\Tip');
 	}
 
 	public function isMaster()

@@ -1,9 +1,9 @@
 <?php namespace LaravelRU\User\Repositories;
 
 use LaravelRU\Core\Repository\BaseRepository;
-use User;
+use LaravelRU\User\Models\User;
 
-class UserRepo extends BaseRepository{
+class UserRepo extends BaseRepository {
 
 	public function __construct(User $user)
 	{
@@ -12,7 +12,7 @@ class UserRepo extends BaseRepository{
 
 	public function getByName($name)
 	{
-		return $this->model->where("name", $name)->first();
+		return $this->model->where('name', $name)->first();
 	}
 
-} 
+}

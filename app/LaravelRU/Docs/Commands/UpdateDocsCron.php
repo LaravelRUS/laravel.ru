@@ -2,19 +2,19 @@
 
 use Carbon\Carbon;
 use Config;
-use Documentation;
 use Github\Client as GithubClient;
 use Github\Exception\RuntimeException;
 use Guzzle\Http\Client as GuzzleClient;
 use Indatus\Dispatcher\Drivers\Cron\Scheduler;
 use Indatus\Dispatcher\Scheduling\Schedulable;
 use Indatus\Dispatcher\Scheduling\ScheduledCommand;
+use LaravelRU\Docs\Models\Documentation;
 use LaravelRU\Github\GithubRepo;
 use Laravelrus\LocalizedCarbon\Models\Eloquent;
 use Log;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use Version as FrameworkVersion;
+use LaravelRU\Core\Models\Version as FrameworkVersion;
 
 class UpdateDocsCron extends ScheduledCommand {
 

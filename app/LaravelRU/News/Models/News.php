@@ -1,4 +1,4 @@
-<?php
+<?php namespace LaravelRU\News\Models;
 
 use LaravelRU\Likes\LikeableTrait;
 use LaravelRU\Comment\CommentableTrait;
@@ -13,12 +13,7 @@ class News extends Model {
 
 	public function author()
 	{
-		return $this->belongsTo('User');
-	}
-
-	public function comments()
-	{
-		return $this->morphMany('Comment', 'commentable');
+		return $this->belongsTo('LaravelRU\User\Models\User');
 	}
 
 	public function scopeApproved()

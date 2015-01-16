@@ -1,8 +1,9 @@
-<?php
+<?php namespace LaravelRU\Docs\Models;
 
 use Laracasts\Presenter\PresentableTrait;
 use LaravelRU\Comment\CommentableTrait;
 use Illuminate\Database\Eloquent\Model;
+use LaravelRU\Core\Models\Version;
 
 class Documentation extends Model {
 
@@ -13,7 +14,7 @@ class Documentation extends Model {
 	protected $table = 'documentation';
 
 	protected $dates = [
-		'last_commit_at',
+		self::LAST_COMMIT_AT,
 		'last_original_commit_at',
 		'current_original_commit_at'
 	];
@@ -45,7 +46,7 @@ class Documentation extends Model {
 
 	public function frameworkVersion()
 	{
-		return $this->belongsTo('Version', 'version_id');
+		return $this->belongsTo('LaravelRU\Core\Models\Version', 'version_id');
 	}
 
 }

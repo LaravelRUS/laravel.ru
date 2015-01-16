@@ -31,6 +31,8 @@ class RefillPackagesCommand extends Command {
 
 	/**
 	 * Create a new command instance.
+	 *
+	 * @param PackageRepo $packageRepo
 	 */
 	public function __construct(PackageRepo $packageRepo)
 	{
@@ -70,9 +72,9 @@ class RefillPackagesCommand extends Command {
 			$this->line("parse page $n");
 		}
 
-		$this->info("total packages: " . count($packageFullNames));
+		$this->info('total packages: ' . count($packageFullNames));
 		$packageFullNames = array_unique($packageFullNames);
-		$this->info("unique packages: " . count($packageFullNames));
+		$this->info('unique packages: ' . count($packageFullNames));
 
 		// Парсим инфу по пакетам с packagist
 		$packagist = new PackagistClient();

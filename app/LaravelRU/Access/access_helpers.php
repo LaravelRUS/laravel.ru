@@ -1,5 +1,6 @@
 <?php
 
+use LaravelRU\Post\Models\Post;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use LaravelRU\Access\Facades\Access;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -82,7 +83,7 @@ function allowEditNews($id)
 {
 	try
 	{
-		$news = News::findOrFail($id);
+		$news = LaravelRU\News\Models\News::findOrFail($id);
 	}
 	catch (ModelNotFoundException $e)
 	{

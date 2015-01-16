@@ -2,10 +2,10 @@
 
 use Laracasts\Validation\FormValidator;
 
-class CreateNewsForm extends FormValidator{
+class CreateNewsForm extends FormValidator {
 
 	protected $rules = [
-		'text'    => 'required',
+		'text' => 'required',
 	];
 
 	protected $messages = [

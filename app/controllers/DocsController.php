@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Eloquent\Collection;
+use LaravelRU\Core\Models\Version;
+use LaravelRU\Docs\Models\Documentation;
 
 /**
  * Class DocsController
@@ -137,10 +139,7 @@ class DocsController extends BaseController {
 		return $versions->filter(function ($item)
 		{
 			return $item->isDocumented();
-		})->each(function ($item)
-		{
-			return $item->is_master ? $item->number = 'master' : $item;
-		})->lists('number');
+		})->lists('number_alias');
 	}
 
 	/**

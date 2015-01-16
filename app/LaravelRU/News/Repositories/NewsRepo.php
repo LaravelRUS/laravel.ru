@@ -1,13 +1,12 @@
 <?php namespace LaravelRU\News\Repositories;
 
 use LaravelRU\Core\Repository\BaseRepository;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use News;
+use LaravelRU\News\Models\News;
 
 class NewsRepo extends BaseRepository {
 
-	public function __construct(News $news){
-
+	public function __construct(News $news)
+	{
 		$this->model = $news;
 	}
 
@@ -19,7 +18,7 @@ class NewsRepo extends BaseRepository {
 	 */
 	public function getLastNews($num = 10)
 	{
-		return $this->model->approved()->notDraft()->orderBy("created_at", "DESC")->limit($num)->get();
+		return $this->model->approved()->notDraft()->orderBy(News::CREATED_AT, 'desc')->limit($num)->get();
 	}
 
 }

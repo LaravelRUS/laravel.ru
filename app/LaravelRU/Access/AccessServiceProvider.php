@@ -9,10 +9,7 @@ class AccessServiceProvider extends ServiceProvider {
 	{
 		include __DIR__ . '/access_helpers.php';
 
-		$this->app->bind('access', function ()
-		{
-			return new Access();
-		});
+		$this->app->bind('access', 'LaravelRU\Access\Access');
 
 		$this->app->booting(function ()
 		{

@@ -1,4 +1,4 @@
-<?php
+<?php namespace LaravelRU\Post\Models;
 
 use LaravelRU\Likes\LikeableTrait;
 use LaravelRU\Comment\CommentableTrait;
@@ -17,17 +17,12 @@ class Post extends Model {
 
 	public function author()
 	{
-		return $this->belongsTo('User', 'author_id');
-	}
-
-	public function comments()
-	{
-		return $this->morphMany('Comment', 'commentable');
+		return $this->belongsTo('LaravelRU\User\Models\User', 'author_id');
 	}
 
 	public function framework_version()
 	{
-		return $this->belongsTo('Version');
+		return $this->belongsTo('LaravelRU\Core\Models\Version');
 	}
 
 	public function scopeNotDraft($query)

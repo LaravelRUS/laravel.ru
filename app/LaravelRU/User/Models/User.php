@@ -1,4 +1,4 @@
-<?php
+<?php namespace LaravelRU\User\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Reminders\RemindableInterface;
@@ -15,7 +15,7 @@ class User extends Model implements UserInterface, RemindableInterface {
 
 	protected $hidden = ['password', 'remember_token'];
 	protected $guarded = [];
-	protected $dates = ['published_at'];
+	protected $dates = [self::PUBLISHED_AT];
 
 	/**
 	 * Автохэширование пароля
@@ -24,7 +24,7 @@ class User extends Model implements UserInterface, RemindableInterface {
 	 */
 	public function setPasswordAttribute($password)
 	{
-		$this->attributes['password'] = Hash::make($password);
+		$this->attributes['password'] = bcrypt($password);
 	}
 
 	/**
@@ -94,27 +94,31 @@ class User extends Model implements UserInterface, RemindableInterface {
 
 	public function roles()
 	{
-		return $this->belongsToMany('Role', 'user_role', 'user_id', 'role_id');
+		return $this->belongsToMany('LaravelRU\Access\Models\Role', 'user_role', 'user_id', 'role_id');
 	}
 
 	public function posts()
 	{
-		return $this->hasMany('Post', 'author_id')->orderBy(static::PUBLISHED_AT, 'desc');
+		return $this->hasMany('LaravelRU\Post\Models\Post', 'author_id')
+			->orderBy(static::PUBLISHED_AT, 'desc');
 	}
 
 	public function tips()
 	{
-		return $this->hasMany('Tip', 'author_id')->orderBy(static::PUBLISHED_AT, 'desc');
+		return $this->hasMany('LaravelRU\Tips\Models\Tip', 'author_id')
+			->orderBy(static::PUBLISHED_AT, 'desc');
 	}
 
 	public function news()
 	{
-		return $this->hasMany('News', 'author_id')->orderBy(static::CREATED_AT, 'desc');
+		return $this->hasMany('LaravelRU\News\Models\News', 'author_id')
+			->orderBy(static::CREATED_AT, 'desc');
 	}
 
 	public function confirmation()
 	{
-		return $this->hasOne('Confirmation')->orderBy(static::CREATED_AT, 'desc');
+		return $this->hasOne('LaravelRU\User\Models\Confirmation')
+			->orderBy(static::CREATED_AT, 'desc');
 	}
 
 	/**
