@@ -7,14 +7,14 @@ class Comment extends Model {
 
 	use LikeableTrait;
 
-	public function user()
-	{
-		return $this->belongsTo('User');
-	}
-
 	public function commentable()
 	{
 		return $this->morphTo();
+	}
+
+	public function author()
+	{
+		return $this->belongsTo('User', 'author_id');
 	}
 
 }
