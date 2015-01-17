@@ -135,6 +135,26 @@ class User extends Model implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * User Social Networks
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function social()
+	{
+		return $this->hasOne('LaravelRU\User\Models\UserSocialNetwork');
+	}
+
+	/**
+	 * User additional info
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function info()
+	{
+		return $this->hasOne('LaravelRU\User\Models\UserInfo');
+	}
+
+	/**
 	 * Properties
 	 */
 
