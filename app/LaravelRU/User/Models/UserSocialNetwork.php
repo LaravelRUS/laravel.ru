@@ -6,7 +6,7 @@ class UserSocialNetwork extends Model {
 
 	public $timestamps = false;
 
-	protected $table = 'user_social_network';
+	protected $table = 'user_social_networks';
 
 	protected $guarded = [];
 
