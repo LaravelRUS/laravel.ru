@@ -4,6 +4,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\UserInterface;
 
+/**
+ * Class User
+ *
+ * @package LaravelRU\User\Models
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property bool $is_confirmed
+ * @property \Carbon\Carbon $last_login_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class User extends Model implements UserInterface, RemindableInterface {
 
 	/**
@@ -15,7 +29,6 @@ class User extends Model implements UserInterface, RemindableInterface {
 
 	protected $hidden = ['password', 'remember_token'];
 	protected $guarded = [];
-	protected $dates = [self::PUBLISHED_AT];
 
 	/**
 	 * Автохэширование пароля

@@ -1,10 +1,10 @@
 <?php namespace LaravelRU\Post;
 
 use LaravelRU\Core\Models\Version;
-use LaravelRU\Core\Repository\BaseRepository;
+use LaravelRU\Core\Repository\AbstractRepository;
 use LaravelRU\Post\Models\Post;
 
-class PostRepo extends BaseRepository {
+class PostRepo extends AbstractRepository {
 
 	public function __construct(Post $post)
 	{

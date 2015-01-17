@@ -1,9 +1,9 @@
 <?php namespace LaravelRU\Tips;
 
-use LaravelRU\Core\Repository\BaseRepository;
+use LaravelRU\Core\Repository\AbstractRepository;
 use LaravelRU\Tips\Models\Tip;
 
-class TipsRepo extends BaseRepository {
+class TipsRepo extends AbstractRepository {
 
 	public function __construct(Tip $tip)
 	{
