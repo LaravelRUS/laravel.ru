@@ -28,6 +28,7 @@
 				</div>
 				<div class="form-group">
 					<button class="btn btn-default">Войти</button>
+					@include('field-error', ['field' => 'wrong_input'])
 				</div>
 			</form>
 			</div>

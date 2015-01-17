@@ -95,6 +95,7 @@ class AuthController extends BaseController {
 	public function postLogin()
 	{
 		$credentials = Input::only('email', 'password');
+
 		$this->loginForm->validate($credentials);
 
 		$success = Auth::attempt($credentials, Input::has('remember_me'), true);
@@ -102,7 +103,7 @@ class AuthController extends BaseController {
 		if ( ! $success)
 		{
 			return Redirect::route('auth.login')
-				->withErrors(['wrong_password' => 'Неправильный пароль.'])
+				->withErrors(['wrong_input' => 'Неправильный email или пароль.'])
 				->onlyInput('email', 'remember_me');
 		}
 
