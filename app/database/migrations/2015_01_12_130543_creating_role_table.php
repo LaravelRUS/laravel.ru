@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatingRoleTable extends Migration {
 
@@ -12,12 +12,12 @@ class CreatingRoleTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('roles', function(Blueprint $table)
+		Schema::create('roles', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
 
-			$table->increments("id");
-			$table->string("name")->unique();
+			$table->increments('id');
+			$table->string('name')->unique();
 		});
 	}
 

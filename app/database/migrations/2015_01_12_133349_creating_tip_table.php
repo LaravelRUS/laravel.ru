@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatingTipTable extends Migration {
 
@@ -12,7 +12,7 @@ class CreatingTipTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tips', function(Blueprint $table)
+		Schema::create('tips', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
 

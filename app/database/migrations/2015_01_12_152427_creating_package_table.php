@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatingPackageTable extends Migration {
 
@@ -12,7 +12,7 @@ class CreatingPackageTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('packages', function(Blueprint $table)
+		Schema::create('packages', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
 

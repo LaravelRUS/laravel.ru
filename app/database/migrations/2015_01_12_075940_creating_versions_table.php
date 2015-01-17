@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatingVersionsTable extends Migration {
 
@@ -12,7 +12,7 @@ class CreatingVersionsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('versions', function(Blueprint $table)
+		Schema::create('versions', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
 

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatingUserTable extends Migration {
 
@@ -12,17 +12,17 @@ class CreatingUserTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create("users", function(Blueprint $table)
+		Schema::create("users", function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
 
-			$table->increments("id");
-			$table->string("name")->unique();
-			$table->string("email")->unique();
-			$table->string("password");
-			$table->string("remember_token");
+			$table->increments('id');
+			$table->string('name')->unique();
+			$table->string('email')->unique();
+			$table->string('password');
+			$table->string('remember_token');
 			$table->boolean('is_confirmed');
-			$table->timestamp("last_login_at");
+			$table->timestamp('last_login_at');
 			$table->timestamps();
 		});
 	}

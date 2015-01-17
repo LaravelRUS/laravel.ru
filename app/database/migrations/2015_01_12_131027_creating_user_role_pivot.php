@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatingUserRolePivot extends Migration {
 
@@ -12,7 +12,7 @@ class CreatingUserRolePivot extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('user_role', function(Blueprint $table)
+		Schema::create('user_role', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
 
