@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class RenameFavorsColumnAndMakeDescriptionNullableOnPackagesTable extends Migration {
 
@@ -12,13 +12,13 @@ class RenameFavorsColumnAndMakeDescriptionNullableOnPackagesTable extends Migrat
 	 */
 	public function up()
 	{
-		Schema::table('packages', function(Blueprint $table)
+		Schema::table('packages', function (Blueprint $table)
 		{
 			$table->renameColumn('favors', 'favers');
 		});
 
 		DB::statement('ALTER TABLE packages '
-			.'MODIFY description TEXT NULL');
+			. 'MODIFY description TEXT NULL');
 	}
 
 	/**
@@ -28,13 +28,13 @@ class RenameFavorsColumnAndMakeDescriptionNullableOnPackagesTable extends Migrat
 	 */
 	public function down()
 	{
-		Schema::table('packages', function(Blueprint $table)
+		Schema::table('packages', function (Blueprint $table)
 		{
 			$table->renameColumn('favers', 'favors');
 		});
 
 		DB::statement('ALTER TABLE packages '
-			.'MODIFY description TEXT NOT NULL');
+			. 'MODIFY description TEXT NOT NULL');
 	}
 
 }

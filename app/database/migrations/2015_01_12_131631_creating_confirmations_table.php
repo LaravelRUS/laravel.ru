@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatingConfirmationsTable extends Migration {
 
@@ -12,7 +12,7 @@ class CreatingConfirmationsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('confirmations', function(Blueprint $table)
+		Schema::create('confirmations', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
 

@@ -1,11 +1,11 @@
 <?php namespace LaravelRU\Packages;
 
 use Carbon\Carbon;
-use LaravelRU\Core\Repository\BaseRepository;
+use LaravelRU\Core\Repository\AbstractRepository;
 use LaravelRU\Packages\Models\Package;
 use Packagist\Api\Client as PackagistClient;
 
-class PackageRepo extends BaseRepository {
+class PackageRepo extends AbstractRepository {
 
 	private $packagist;
 

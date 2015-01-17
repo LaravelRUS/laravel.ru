@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatingPostTable extends Migration {
 
@@ -12,7 +12,7 @@ class CreatingPostTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('posts', function(Blueprint $table)
+		Schema::create('posts', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
 
@@ -22,9 +22,9 @@ class CreatingPostTable extends Migration {
 			$table->text('text');
 			$table->string('translated_url');
 			$table->string('slug');
-			$table->enum('type', ['article','snippet']);
+			$table->enum('type', ['article', 'snippet']);
 			$table->integer('version_id')->unsigned();
-			$table->enum('difficulty',['unknown', 'easy', 'medium', 'hard']);
+			$table->enum('difficulty', ['unknown', 'easy', 'medium', 'hard']);
 			$table->boolean('is_draft');
 			$table->boolean('is_approved');
 			$table->integer('author_id')->unsigned();

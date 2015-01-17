@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatingDocumentTable extends Migration {
 
@@ -12,7 +12,7 @@ class CreatingDocumentTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('documents', function(Blueprint $table)
+		Schema::create('documents', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
 
@@ -26,17 +26,17 @@ class CreatingDocumentTable extends Migration {
 			$table->string('last_original_commit')->nullable();
 			$table->string('current_original_commit');
 
-			$table->timestamp("last_commit_at");
-			$table->timestamp("last_original_commit_at")->nullable();
-			$table->timestamp("current_original_commit_at");
+			$table->timestamp('last_commit_at');
+			$table->timestamp('last_original_commit_at')->nullable();
+			$table->timestamp('current_original_commit_at');
 
 			$table->integer('original_commits_ahead');
 
 			$table->integer('version_id');
-			
+
 			$table->timestamps();
 
-			$table->unique(array('version_id', 'name'), 'page');
+			$table->unique(['version_id', 'name'], 'page');
 		});
 	}
 

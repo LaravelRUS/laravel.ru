@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class RenameIterationColumnToNumberOnVersionTable extends Migration {
 
@@ -12,7 +12,7 @@ class RenameIterationColumnToNumberOnVersionTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('versions', function(Blueprint $table)
+		Schema::table('versions', function (Blueprint $table)
 		{
 			$table->renameColumn('iteration', 'number');
 		});
@@ -25,7 +25,7 @@ class RenameIterationColumnToNumberOnVersionTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('versions', function(Blueprint $table)
+		Schema::table('versions', function (Blueprint $table)
 		{
 			$table->renameColumn('number', 'iteration');
 		});

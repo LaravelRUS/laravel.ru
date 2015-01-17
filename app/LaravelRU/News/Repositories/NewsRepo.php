@@ -1,9 +1,9 @@
 <?php namespace LaravelRU\News\Repositories;
 
-use LaravelRU\Core\Repository\BaseRepository;
+use LaravelRU\Core\Repository\AbstractRepository;
 use LaravelRU\News\Models\News;
 
-class NewsRepo extends BaseRepository {
+class NewsRepo extends AbstractRepository {
 
 	public function __construct(News $news)
 	{

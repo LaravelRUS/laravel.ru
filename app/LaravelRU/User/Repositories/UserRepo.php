@@ -1,9 +1,9 @@
 <?php namespace LaravelRU\User\Repositories;
 
-use LaravelRU\Core\Repository\BaseRepository;
+use LaravelRU\Core\Repository\AbstractRepository;
 use LaravelRU\User\Models\User;
 
-class UserRepo extends BaseRepository {
+class UserRepo extends AbstractRepository {
 
 	public function __construct(User $user)
 	{

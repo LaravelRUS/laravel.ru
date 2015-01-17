@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-abstract class BaseRepository {
+abstract class AbstractRepository {
 
 	/**
 	 * @var Model
@@ -117,11 +117,17 @@ abstract class BaseRepository {
 		{
 			return $model->save();
 		}
-		else
-		{
-			return $model->touch();
-		}
+
+        return $model->touch();
 	}
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query()
+    {
+        return $this->model->query();
+    }
 
 	/**
 	 * @param array $data
