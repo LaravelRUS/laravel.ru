@@ -7,4 +7,9 @@ class PagesController extends BaseController {
 		return View::make('cheat-sheet/cheat-sheet');
 	}
 
+	public function rules()
+	{
+		return View::make('pages/rules');
+	}
+
 }
