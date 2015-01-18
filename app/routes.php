@@ -23,14 +23,11 @@ Route::post('hook/docs_is_updated',             ['uses' => 'HookController@docsI
 Route::post('hook/push_to_develop',             ['uses' => 'HookController@pushToDevelop',      'as' => 'hook.push_to_develop']);
 
 // ===== Страница cheat sheet =====
-Route::get('cheat-sheet',                      ['uses' => 'PagesController@cheatSheetPage',    'as' => 'cheat-sheet']);
+Route::get('cheat-sheet',                      ['uses' => 'PagesController@cheatSheetPage',     'as' => 'cheat-sheet']);
 
 // ===== Дополнительная информация
-Route::get('help/rules', [
-	'as' => 'pages.rules',
-	'uses' => 'PagesController@rulesPage'
-]);
-Route::get('help/{page}',                      ['uses' => 'PagesController@page',    'as' => 'page']);
+
+Route::get('help/{page}',                      ['uses' => 'PagesController@page',               'as' => 'page']);
 
 // ===== Авторизация =====
 
@@ -110,5 +107,13 @@ Route::group(['before' => 'auth'], function ()
 	Route::post('tips/store',                   ['uses' => 'TipsController@store',              'as' => 'tips.store']);
 });
 
+// ==== Комментарии
+Route::group(['before'=>'auth|csrf'],function()
+{
+	Route::post('comment/store',                ['uses' => 'CommentController@store',           'as' => 'comment.store']);
+});
+
 // Тестовый контроллер
 Route::controller('test', "TestController");
+
+

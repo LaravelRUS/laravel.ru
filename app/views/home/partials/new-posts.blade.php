@@ -13,7 +13,7 @@
 						<h4 class="m-b-0"><a href="{{ route("post.view", $post->slug) }}">{{ e($post->title) }}</a></h4>
 					</header>
 					<div>
-						<span class="date">{{ $post->displayPublishedAt() }}</span>
+						<span class="date">{{ $post->present()->publishedAt }}</span>
 						<span><a href="{{ route("user.profile", $post->author->name) }}">{{ $post->author->name }}</a></span>
 						@if(allowEditPost($post))
 							<span class="m-l-10"><a class="btn btn-default btn-xs" href="{{ route("post.edit", [$post->slug]) }}"><i class="fa fa-fw fa-pencil"></i></a></span>
