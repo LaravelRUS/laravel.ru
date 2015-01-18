@@ -17,6 +17,8 @@ return array(
 
 	'url' => 'http://sharedstation.net',
 
+	'timezone' => 'Europe/Moscow',
+
 	'providers' => append_config([
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 	])
