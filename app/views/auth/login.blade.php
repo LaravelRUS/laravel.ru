@@ -22,10 +22,6 @@
 					<input type="password" class="form-control" name="password">
 					@include('field-error', ['field' => 'password'])
 				</div>
-				<div class="checkbox">
-					<label><input type="checkbox" name="remember_me" value="1" {{ Input::old('remember_me') ? 'checked' : '' }}> запомнить меня</label><br>
-					@include('field-error', ['field' => 'remember_me'])
-				</div>
 				<div class="form-group">
 					<button class="btn btn-default">Войти</button>
 					@include('field-error', ['field' => 'wrong_input'])

@@ -33,13 +33,11 @@ class AuthController extends BaseController {
 
 	public function postRegistration()
 	{
-		$input = Input::only('name', 'email', 'password', 'i_agree', 'g-recaptcha-response', 'js_token');
+		$input = Input::only('name', 'email', 'password', 'js_token');
 
 		$this->registrationForm->validate($input);
 
-		unset($input['i_agree']);
 		unset($input['js_token']);
-		unset($input['g-recaptcha-response']);
 
 		$user = User::create($input);
 		$user->save();
@@ -98,13 +96,13 @@ class AuthController extends BaseController {
 
 		$this->loginForm->validate($credentials);
 
-		$success = Auth::attempt($credentials, Input::has('remember_me'), true);
+		$success = Auth::attempt($credentials, true, true);
 
 		if ( ! $success)
 		{
 			return Redirect::route('auth.login')
 				->withErrors(['wrong_input' => 'Неправильный email или пароль.'])
-				->onlyInput('email', 'remember_me');
+				->onlyInput('email');
 		}
 
 		return Redirect::intended();

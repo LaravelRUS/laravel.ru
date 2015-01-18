@@ -3,12 +3,12 @@
 /**
  * Паттерны параметров роутов
  */
-Route::pattern('id', '[0-9]+'); 
+Route::pattern('id', '[0-9]+');
 Route::pattern('hash', '[a-z0-9]+');
 Route::pattern('hex', '[a-f0-9]+');
 Route::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
 Route::pattern('string', '[a-zA-Z0-9]+');
-Route::pattern('slug', '[a-z0-9-]+'); 
+Route::pattern('slug', '[a-z0-9-]+');
 
 // CSRF Filter on all POST routes
 // You MUST use Form::open for forms
@@ -23,7 +23,11 @@ Route::post('hook/docs_is_updated',             ['uses' => 'HookController@docsI
 Route::post('hook/push_to_develop',             ['uses' => 'HookController@pushToDevelop',      'as' => 'hook.push_to_develop']);
 
 // ===== Страница cheat sheet =====
-Route::get( 'cheat-sheet',                      ['uses' => 'PagesController@cheatSheetPage',    'as' => 'cheat-sheet']);
+Route::get('cheat-sheet',                      ['uses' => 'PagesController@cheatSheetPage',    'as' => 'cheat-sheet']);
+
+// ===== Дополнительная информация
+
+Route::get('help/rules',                      ['uses' => 'PagesController@rules',    'as' => 'rules']);
 
 // ===== Авторизация =====
 
