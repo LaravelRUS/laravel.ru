@@ -1,134 +1,135 @@
 @extends('layouts.nosidebar')
 
 @section('title')
-<?if($post->id){?>
+@if($post->id)
 	Редактирование поста
-<?}else{?>
+@else
 	Создание поста
-<?}?>
+@endif
 @stop
 
 @section('content')
 
-<!--@include("layouts/partials/ace-editor")-->
+{{--@include('layouts/partials/ace-editor')--}}
 
 <script>
-	$(function(){
-
+	$(function () {
 		/* Вставляем tab при нажатии на tab в поле textarea
 		 ---------------------------------------------------------------- */
-		$(".post_text").keydown(function(event){
+		$('.post_text').keydown(function (event) {
 
-			if( event.keyCode != 9 )
-				return;
+			if (event.keyCode != 9) return;
 
 			event.preventDefault();
 
-			var
-					obj = $(this)[0],
-					start = obj.selectionStart,
-					end = obj.selectionEnd,
-					before = obj.value.substring(0, start),
-					after = obj.value.substring(end, obj.value.length);
+			var obj = $(this)[0],
+				start = obj.selectionStart,
+				end = obj.selectionEnd,
+				before = obj.value.substring(0, start),
+				after = obj.value.substring(end, obj.value.length);
 
 			obj.value = before + "\t" + after;
 
 			obj.setSelectionRange(start+1, start+1);
 		});
-
 	});
 </script>
 
-<?= breadcrumbs(['Мой профайл'=>route("user.profile", Auth::user()->name), ""=>""]) ?>
-<?if($post->id){?>
-	<h1>Редактирование поста</h1>
-<?}else{?>
-	<h1>Создание поста</h1>
-<?}?>
+{{ breadcrumbs(['Мой профайл' => route('user.profile', Auth::user()->username), '' => '']) }}
+@if($post->id)
+<h1>Редактирование поста</h1>
+@else
+<h1>Создание поста</h1>
+@endif
 
-<? if(Session::has("success")){?>
-	<div class="alert alert-success"><?= Session::get("success")  ?></div>
-<?}?>
+@if(Session::has('success'))
+	<div class="alert alert-success">{{ Session::get("success") }}</div>
+@endif
 
-<?= Form::open(['route'=>"post.store"]) ?>
-
-	<?= Form::hidden("id", $post->id) ?>
+{{ Form::open(['route' => 'post.store']) }}
+	{{ Form::hidden('id', $post->id) }}
 	<div class="row">
 		<div class="col-md-8">
 			<div class="form-group">
 				<label>Заголовок</label>
-				<?= Form::text("title", $post->title, ['class'=>'form-control']); ?>
+				{{ Form::text('title', $post->title, ['class' => 'form-control']) }}
 				<div class="text-muted">Название поста, выводится в списке постов.</div>
-				@include('field-error', ['field'=>'title'])
+				@include('field-error', ['field' => 'title'])
 			</div>
 		</div>
+
 		<div class="col-md-4">
 			<div class="form-group">
 				<label>Slug</label>
-				<?= Form::text("slug", $post->slug, ['class'=>'form-control']); ?>
+				{{ Form::text('slug', $post->slug, ['class' => 'form-control']) }}
 				<div class="text-muted">Строка в урле, с которой будет идентифицирован этот материал.</div>
-				@include('field-error', ['field'=>'slug'])
+				@include('field-error', ['field' => 'slug'])
 			</div>
 		</div>
 	</div>
 
 	<div class="form-group" id="input-description">
 		<label>Краткое описание</label>
-		<?= Form::textarea("description", $post->description, ['class'=>'form-control post_description']) ?>
+		{{ Form::textarea('description', $post->description, ['class' => 'form-control post_description']) }}
 		<div class="text-muted">Краткое описание поста, выводится на главной странице в списке постов.</div>
-		@include('field-error', ['field'=>'description'])
+		@include('field-error', ['field' => 'description'])
 	</div>
 
 	<div class="row">
 		<div class="col-md-5">
 			<div class="form-group">
 				<label>Версия фреймворка</label>
-				<?= Form::select('version_id', all_framework_versions(), $post->version_id, ['class'=>'form-control']) ?>
+				{{ Form::select('version_id', all_framework_versions(), $post->version_id, ['class'=>'form-control']) }}
 				<div class="text-muted"></div>
 			</div>
 		</div>
+
 		<div class="col-md-5">
 			<div class="form-group" id="input-difficulty">
 				<label>Уровень сложности материала</label>
-				<?= Form::select("difficulty", ['unknown'=>"Не определена", 'easy'=>'Легкий, для новичков, слабо знакомых с фреймворком', 'hard'=>"Сложный, для хорошо разбирающихся в фреймворке"], $post->difficulty, ['class'=>'form-control']); ?>
+				{{ Form::select('difficulty', [
+					'unknown' => 'Не определена',
+					'easy' => 'Легкий, для новичков, слабо знакомых с фреймворком',
+					'hard' => 'Сложный, для хорошо разбирающихся в фреймворке'
+				], $post->difficulty, ['class' => 'form-control']) }}
 				<div class="text-muted"></div>
-				@include('field-error', ['field'=>'difficulty'])
+				@include('field-error', ['field' => 'difficulty'])
 			</div>
 		</div>
+
 		<div class="col-md-2">
 			<div class="form-group">
 				<label>Формат текста</label>
-				<?= Form::select("type", ['markdown'=>'Markdown', 'uversewiki'=>'Uversewiki'], $post->parset_type, ['class'=>'form-control']); ?>
+				{{ Form::select("type", ['markdown' => 'Markdown', 'uversewiki' => 'Uversewiki'], $post->parset_type, ['class' => 'form-control']) }}
 				<span class="text-muted"></span>
-				@include('field-error', ['field'=>'type'])
+				@include('field-error', ['field' => 'type'])
 			</div>
 		</div>
 	</div>
 
-<!--<div class="form-group">-->
-<!--	<label>Тип</label>-->
-<!--	--><?//= Form::select("type", ['article'=>"Статья", 'snipet'=>"Пример кода (snipet)"], $post->type, ['class'=>'form-control']); ?>
-<!--	@include('field-error', ['field'=>'type'])-->
-<!--</div>-->
+	{{--<div class="form-group">--}}
+		{{--<label>Тип</label>--}}
+		{{--{{ Form::select('type', ['article' => 'Статья', 'snipet' => 'Пример кода (snipet)'], $post->type, ['class' => 'form-control']) }}--}}
+		{{--@include('field-error', ['field' => 'type'])--}}
+	{{--</div>--}}
 
 	<div class="form-group">
 		<label>Текст</label>
-		<?= Form::textarea("text", $post->text, ['class'=>'form-control post_text', 'id'=>'editor']) ?>
-		@include('field-error', ['field'=>'text'])
+		{{ Form::textarea('text', $post->text, ['class' => 'form-control post_text', 'id' => 'editor']) }}
+		@include('field-error', ['field' => 'text'])
 	</div>
 
 	<div class="form-group">
-		<label><?= Form::check("is_draft", 1, $post->is_draft,['class'=>'ios-switch']); ?> Черновик</label>
+		<label>{{ Form::check('is_draft', 1, $post->is_draft, ['class' => 'ios-switch']) }} Черновик</label>
 		<br><span class="text-muted">Черновики видны только вам.</span>
-		@include('field-error', ['field'=>'is_draft'])
+		@include('field-error', ['field' => 'is_draft'])
 	</div>
 
 	<div class="form-group">
 		<input type="submit" class="btn btn-default" value="Сохранить">
 	</div>
 
-<?= Form::close() ?>
+{{ Form::close() }}
 
-<!--@include("layouts/partials/ace-editor")-->
-
+{{--@include('layouts/partials/ace-editor')--}}
 @stop

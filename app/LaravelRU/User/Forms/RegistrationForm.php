@@ -5,14 +5,14 @@ use Laracasts\Validation\FormValidator;
 class RegistrationForm extends FormValidator {
 
 	protected $rules = [
-		'name' => 'required|min:4|max:23|unique:users,name|regex:/^[A-Za-z0-9]+$/',
+		'username' => 'required|min:4|max:23|unique:users,username|regex:/^[A-Za-z0-9]+$/',
 		'email' => 'required|email|unique:users,email',
 		'password' => 'required|min:6',
 		'jtoken' => 'required|jstoken'
 	];
 
 	protected $messages = [
-		'name.unique' => 'Такой никнейм уже занят.',
+		'username.unique' => 'Такой никнейм уже занят.',
 		'email.unique' => 'Пользователь с таким мейлом уже есть в системе.',
 		'jtoken.required' => 'Антибот-проверка не пройдена. Включите javascript.',
 		'jtoken.jstoken' => 'Антибот-проверка не пройдена. Включите javascript.'

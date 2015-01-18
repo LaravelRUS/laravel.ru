@@ -27,7 +27,7 @@ class BlogController extends BaseController {
 
 	public function blog($username)
 	{
-		$user = $this->userRepo->getByName($username);
+		$user = $this->userRepo->getByUsername($username);
 
 		if ( ! $user)
 		{

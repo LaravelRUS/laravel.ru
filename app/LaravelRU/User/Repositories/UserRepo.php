@@ -10,9 +10,9 @@ class UserRepo extends AbstractRepository {
 		$this->model = $user;
 	}
 
-	public function getByName($name)
+	public function getByUsername($name)
 	{
-		return $this->model->where('name', $name)->first();
+		return $this->model->where('username', $name)->first();
 	}
 
 }

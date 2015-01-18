@@ -5,11 +5,10 @@ use Laracasts\Validation\FormValidator;
 class LoginForm extends FormValidator {
 
 	protected $rules = [
-		'email' => 'required|email',
+		'login' => 'required',
 		'password' => 'required',
 	];
 
-	protected $messages = [
-	];
+	protected $messages = [];
 
 }

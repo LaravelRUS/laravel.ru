@@ -29,14 +29,14 @@ class UserCommand extends Command {
 	 */
 	public function fire()
 	{
-		$name = $this->argument('username');
+		$username = $this->argument('username');
 		$password = $this->argument('password');
 		$email = $this->argument('email');
 		$isAdmin = $this->option('admin');
 
 		/** @var User $user */
 		$user = User::create([
-			'name' => $name,
+			'username' => $username,
 			'password' => $password,
 			'email' => $email
 		]);
@@ -51,7 +51,7 @@ class UserCommand extends Command {
 			$role->users()->save($user);
 		}
 
-		$this->info('User "' . $name . '"  created.');
+		$this->info('User "' . $username . '"  created.');
 
 	}
 
