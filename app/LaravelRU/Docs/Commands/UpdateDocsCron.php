@@ -224,6 +224,7 @@ class UpdateDocsCron extends ScheduledCommand {
 										$page->last_commit_at = $last_commit_at;
 										$page->last_original_commit = $last_original_commit_id;
 										$page->last_original_commit_at = $last_original_commit_at;
+										$page->original_commits_ahead = $count_ahead;
 										$page->title = $title;
 										$page->text = $content;
 										if ( ! $isPretend)
