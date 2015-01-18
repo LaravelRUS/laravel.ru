@@ -44,13 +44,43 @@ class HookController extends BaseController {
 		Queue::push(function ($job)
 		{
 			Log::info('GITHUB HOOK push develop INCOMING');
-			$output = shell_exec("cd /home/forge/sharedstation.net && git checkout develop && git reset HEAD --hard && git pull origin develop && composer update && php artisan migrate");
+			Log::info('Part1: pull changes');
+			//$output = shell_exec("cd /home/forge/sharedstation.net && git checkout develop && git reset HEAD --hard && git pull origin develop && composer update && php artisan migrate");
+			$output = exec("cd /home/forge/sharedstation.net && git checkout develop && git reset HEAD --hard && git pull origin develop");
 			$lines = explode("\n", $output);
 			foreach ($lines as $line)
 			{
 				$line = trim($line);
 				Log::info($line);
 			}
+
+			Queue::push(function ($job)
+			{
+				Log::info('Part2: migrations');
+				$output = exec("cd /home/forge/sharedstation.net && php artisan migrate");
+				$lines = explode("\n", $output);
+				foreach ($lines as $line)
+				{
+					$line = trim($line);
+					Log::info($line);
+				}
+
+				Queue::push(function ($job)
+				{
+					Log::info('Part3: composer update');
+					$output = exec("cd /home/forge/sharedstation.net && composer update");
+					$lines = explode("\n", $output);
+					foreach ($lines as $line)
+					{
+						$line = trim($line);
+						Log::info($line);
+					}
+					$job->delete();
+				});
+
+				$job->delete();
+			});
+
 			$job->delete();
 		});
 
