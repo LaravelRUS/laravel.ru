@@ -8,10 +8,12 @@ use Guzzle\Http\Client as GuzzleClient;
 use Indatus\Dispatcher\Drivers\Cron\Scheduler;
 use Indatus\Dispatcher\Scheduling\Schedulable;
 use Indatus\Dispatcher\Scheduling\ScheduledCommand;
+use LaravelRU\Access\Models\Role;
 use LaravelRU\Docs\Models\Documentation;
 use LaravelRU\Github\GithubRepo;
 use Laravelrus\LocalizedCarbon\Models\Eloquent;
 use Log;
+use Mail;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use LaravelRU\Core\Models\Version as FrameworkVersion;
@@ -68,18 +70,25 @@ class UpdateDocsCron extends ScheduledCommand {
 	public function fire()
 	{
 		Eloquent::unguard();
-
-		$github = new GithubClient();
-		$http = new GuzzleClient();
 		Log::info('su:update_docs begin');
+
+		$updatedOriginalDocs = [];
 
 		$forceupdate = $this->argument('force');
 		$force_branch = $this->option('branch');
 		$force_file = $this->option('file');
+		$isPretend = $this->option('pretend');
 
 		if ($force_branch)
 		{
-			$all_versions[] = FrameworkVersion::master()->first();
+			if ($force_branch == "master")
+			{
+				$all_versions[] = FrameworkVersion::master()->first();
+			}
+			else
+			{
+				$all_versions[] = FrameworkVersion::whereNumber($force_branch)->first();
+			}
 		}
 		else
 		{
@@ -112,7 +121,7 @@ class UpdateDocsCron extends ScheduledCommand {
 					$this->info("clear exist {$version} docs!");
 				}
 
-				$this->line('Fetch documentation.md');
+				$this->line('Fetch documentation menu');
 
 				// В случае ошибки при получении документации продолжить цикл.
 				try
@@ -195,36 +204,54 @@ class UpdateDocsCron extends ScheduledCommand {
 									$page = Documentation::version($v)->page($name)->first();
 									if ($page)
 									{
+										if ($current_original_commit_id != $page->current_original_commit)
+										{
+											// Обновилась оригинальная дока
+											$page->current_original_commit = $current_original_commit_id;
+											$page->current_original_commit_at = $current_original_commit_at;
+											$page->original_commits_ahead = $count_ahead;
+											if ( ! $isPretend)
+											{
+												$page->save();
+											}
+											$this->info("Detected changes in original $version/$filename - commit $current_original_commit_id. Requires new translation.");
+											$updatedOriginalDocs[] = ['name'=>"$version/$filename", 'commit' => $current_original_commit_id];
+										}
+
 										if ($last_commit_id != $page->last_commit)
 										{
+											// Обновился перевод
 											$page->last_commit = $last_commit_id;
 											$page->last_commit_at = $last_commit_at;
 											$page->last_original_commit = $last_original_commit_id;
 											$page->last_original_commit_at = $last_original_commit_at;
-											$page->current_original_commit = $current_original_commit_id;
-											$page->current_original_commit_at = $current_original_commit_at;
-											$page->original_commits_ahead = $count_ahead;
 											$page->title = $title;
 											$page->text = $content;
-											$page->save();
+											if ( ! $isPretend)
+											{
+												$page->save();
+											}
 											$this->info("$version/$filename updated. Commit $last_commit_id. Last original commit $last_original_commit_id.");
 										}
 									}
 									else
 									{
-										Documentation::create([
-											'version_id' => $id,
-											'page' => $name,
-											'title' => $title,
-											'last_commit' => $last_commit_id,
-											'last_commit_at' => $last_commit_at,
-											'last_original_commit' => $last_original_commit_id,
-											'last_original_commit_at' => $last_original_commit_at,
-											'current_original_commit' => $current_original_commit_id,
-											'current_original_commit_at' => $current_original_commit_at,
-											'original_commits_ahead' => $count_ahead,
-											'text' => $content
-										]);
+										if ( ! $isPretend)
+										{
+											Documentation::create([
+												'version_id' => $id,
+												'page' => $name,
+												'title' => $title,
+												'last_commit' => $last_commit_id,
+												'last_commit_at' => $last_commit_at,
+												'last_original_commit' => $last_original_commit_id,
+												'last_original_commit_at' => $last_original_commit_at,
+												'current_original_commit' => $current_original_commit_id,
+												'current_original_commit_at' => $current_original_commit_at,
+												'original_commits_ahead' => $count_ahead,
+												'text' => $content
+											]);
+										}
 
 										$this->info("Translate for $version/$filename created, commit $last_commit_id. Translated from original commit $last_original_commit_id.");
 									}
@@ -239,6 +266,22 @@ class UpdateDocsCron extends ScheduledCommand {
 					die();
 				}
 			}
+		}
+
+		if (count($updatedOriginalDocs) > 0)
+		{
+
+			$librarians = Role::whereName("librarian")->users;
+			foreach ($librarians as $user)
+			{
+				Mail::queue('emails/librarian/changes', ['updatedOriginalDocs' => $updatedOriginalDocs], function ($message) use ($user)
+				{
+					$message->from('postmaster@sharedstation.net');
+					$message->to($user->email);
+					$message->subject('Изменения в оригинальной документации Laravel');
+				});
+			}
+
 		}
 
 		Log::info('su:update_docs   end');
@@ -259,8 +302,9 @@ class UpdateDocsCron extends ScheduledCommand {
 	protected function getOptions()
 	{
 		return [
-			['branch', null, InputOption::VALUE_OPTIONAL, 'Branch for update.', null],
-			['file', null, InputOption::VALUE_OPTIONAL, 'File for update.', null],
+			['branch', null, InputOption::VALUE_REQUIRED, 'Name of branch for update.', null],
+			['file', null, InputOption::VALUE_REQUIRED, 'Filename for update.', null],
+			['pretend', null, InputOption::VALUE_NONE, 'Emulation only, without DB changes.', null],
 		];
 	}
 
@@ -272,7 +316,7 @@ class UpdateDocsCron extends ScheduledCommand {
 	 */
 	public function schedule(Schedulable $scheduler)
 	{
-		return $scheduler->everyHours(1)->minutes(8);
+		return $scheduler->everyHours(1)->minutes(50);
 	}
 
 }
