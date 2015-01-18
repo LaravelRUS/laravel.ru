@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="cheatsheet/css/normalize.css" />
 	<link rel="stylesheet" href="cheatsheet/css/foundation.min.css" />
 	<link rel="stylesheet" href="cheatsheet/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="cheatsheet/css/page.css" />
+	<link rel="stylesheet" href="../../../public/cheatsheet/css/page.css" />
 	<meta name="description" content="Laravel Cheat Sheet , Codes , function , methods of laravel framework">
 	<title>Laravel Cheat Sheet</title>
 </head>
