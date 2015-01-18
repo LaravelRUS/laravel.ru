@@ -7,6 +7,8 @@ class Comment extends Model {
 
 	use LikeableTrait;
 
+	protected $guarded = ['id'];
+
 	public function commentable()
 	{
 		return $this->morphTo();
