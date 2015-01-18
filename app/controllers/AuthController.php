@@ -33,7 +33,7 @@ class AuthController extends BaseController {
 
 	public function postRegistration()
 	{
-		$input = Input::only('name', 'email', 'password', 'jtoken');
+		$input = Input::only('username', 'email', 'password', 'jtoken');
 
 		$this->registrationForm->validate($input);
 
@@ -91,17 +91,26 @@ class AuthController extends BaseController {
 
 	public function postLogin()
 	{
-		$credentials = Input::only('email', 'password');
+		$login = Input::get('login');
+		$password = Input::get('password');
 
-		$this->loginForm->validate($credentials);
+		$this->loginForm->validate([
+			'login' => $login,
+			'password' => $password,
+		]);
 
-		$success = Auth::attempt($credentials, true, true);
+		$loginBy = strpos($login, '@') > 1 ? 'email' : 'username';
+
+		$success = Auth::attempt([
+			$loginBy => $login,
+			'password' => $password,
+		], true, true);
 
 		if ( ! $success)
 		{
 			return Redirect::route('auth.login')
-				->withErrors(['wrong_input' => 'Неправильный email или пароль.'])
-				->onlyInput('email');
+				->withErrors(['wrong_input' => 'Неправильный email/логин или пароль.'])
+				->onlyInput('login');
 		}
 
 		return Redirect::intended();

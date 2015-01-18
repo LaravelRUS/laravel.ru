@@ -10,7 +10,7 @@ use Illuminate\Auth\UserInterface;
  * @package LaravelRU\User\Models
  *
  * @property int $id
- * @property string $name
+ * @property string $username
  * @property string $email
  * @property string $password
  * @property bool $is_confirmed

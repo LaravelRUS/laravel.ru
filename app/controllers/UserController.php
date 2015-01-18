@@ -29,13 +29,13 @@ class UserController extends BaseController {
 		$this->tipsRepo = $tipsRepo;
 	}
 
-	public function profile($name)
+	public function profile($username)
 	{
-		$user = User::where('name', $name)->with(['posts', 'tips', 'news'])->first();
+		$user = User::where('username', $username)->with(['posts', 'tips', 'news'])->first();
 		if ( ! $user) abort();
 
 		// TODO для чего переменная $sidebar?
-		$sidebar = Sidebar::renderLastPosts();
+		//$sidebar = Sidebar::renderLastPosts();
 
 		return View::make('user/profile', compact('user'));
 	}

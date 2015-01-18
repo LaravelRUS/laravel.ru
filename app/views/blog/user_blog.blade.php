@@ -1,11 +1,11 @@
 @extends('layouts/rightsidebar')
 
 @section('title')
-Блог {{ $user->name }}
+Блог {{ $user->username }}
 @stop
 
 @section('content')
-<h1>Блог {{ $user->name }}</h1>
+<h1>Блог {{ $user->username }}</h1>
 
 <div class="well">Карма, статистика и прочие плюшки.</div>
 

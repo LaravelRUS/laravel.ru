@@ -20,10 +20,10 @@
 			<ul class="nav navbar-nav navbar-right">
 				@if(Auth::check())
 					<li>
-						<a href="#" data-toggle="dropdown">{{ Auth::user()->name }} <span class="caret"></span></a>
+						<a href="#" data-toggle="dropdown">{{ Auth::user()->username }} <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="{{ route("user.profile", Auth::user()->name) }}">Мой профайл</a>
+								<a href="{{ route("user.profile", Auth::user()->username) }}">Мой профайл</a>
 							</li>
 							@if(Auth::user()->isAdmin())
 								<li class="divider"></li>

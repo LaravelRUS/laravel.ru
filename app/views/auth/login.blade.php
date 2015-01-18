@@ -9,13 +9,13 @@
 	<div class="col-md-6 col-md-offset-3">
 		<div style="margin:150px 0 400px">
 			<div class="box">
-			<h1>Логин</h1>
+			<h1>Авторизация</h1>
 
 			{{ Form::open(['route' => 'auth.login.post']) }}
 				<div class="form-group">
-					<label>Email</label>
-					{{ Form::text('email', '', ['class' => 'form-control', 'required' => 'required']) }}
-					@include('field-error', ['field' => 'email'])
+					<label>Логин / Email</label>
+					{{ Form::text('login', '', ['class' => 'form-control', 'required' => 'required']) }}
+					@include('field-error', ['field' => 'login'])
 				</div>
 
 				<div class="form-group">

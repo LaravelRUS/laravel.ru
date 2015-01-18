@@ -12,7 +12,7 @@
 					</header>
 					{{ Form::open(['route' => 'auth.registration.post', 'class' => 'register']) }}
 						<input name="jtoken" type="hidden" data-token="{{ $jsToken }}">
-						{{ Bootstrap3::input('text', 'name', 'Никнейм', null, null, true) }}
+						{{ Bootstrap3::input('text', 'username', 'Имя пользователя', null, null, true) }}
 						{{ Bootstrap3::password('password', 'Пароль') }}
 						{{ Bootstrap3::input('email', 'email', 'Email', null, null, true) }}
 						{{ Bootstrap3::button('Зарегистрироваться') }}

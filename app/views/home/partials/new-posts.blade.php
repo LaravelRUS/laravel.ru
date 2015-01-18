@@ -14,7 +14,7 @@
 					</header>
 					<div>
 						<span class="date">{{ $post->present()->publishedAt }}</span>
-						<span><a href="{{ route("user.profile", $post->author->name) }}">{{ $post->author->name }}</a></span>
+						<span><a href="{{ route("user.profile", $post->author->username) }}">{{ $post->author->username }}</a></span>
 						@if(allowEditPost($post))
 							<span class="m-l-10"><a class="btn btn-default btn-xs" href="{{ route("post.edit", [$post->slug]) }}"><i class="fa fa-fw fa-pencil"></i></a></span>
 						@endif

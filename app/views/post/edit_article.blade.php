@@ -36,10 +36,10 @@
 </script>
 
 <?if($post->id){?>
-	<?= breadcrumbs(['Главная'=>route("home"), 'Мои статьи'=>route("user.profile", Auth::user()->name), ""=>""]) ?>
+	<?= breadcrumbs(['Главная'=>route("home"), 'Мои статьи'=>route("user.profile", Auth::user()->username), ""=>""]) ?>
 	<h1>Редактирование статьи</h1>
 <?}else{?>
-	<?= breadcrumbs(['Главная'=>route("home"), 'Мой блог'=>route("user.profile", Auth::user()->name), ""=>""]) ?>
+	<?= breadcrumbs(['Главная'=>route("home"), 'Мой блог'=>route("user.profile", Auth::user()->username), ""=>""]) ?>
 	<h1>Создание статьи</h1>
 <?}?>
 

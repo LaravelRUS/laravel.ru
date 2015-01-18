@@ -11,7 +11,7 @@
 <h1>{{{ $post->title }}}</h1>
 
 <div class="post_credentials">
-	<span class="date">{{ $post->present()->publishedAt }}</span> <a href="{{ route('user.profile', $post->author->name) }}">{{ $post->author->name }}</a>
+	<span class="date">{{ $post->present()->publishedAt }}</span> <a href="{{ route('user.profile', $post->author->username) }}">{{ $post->author->username }}</a>
 	@if(allowEditPost($post))
 		<span class="controls"><a class="btn btn-default btn-xs" href="{{ route('post.edit', $post->slug) }}">Редактировать</a></span>
 	@endif
