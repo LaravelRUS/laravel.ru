@@ -83,7 +83,7 @@
 		<div class="col-md-5">
 			<div class="form-group">
 				<label>Версия фреймворка</label>
-				<?= Form::select('frameworkversion_id', all_framework_versions(), $post->frameworkversion_id, ['class'=>'form-control']) ?>
+				<?= Form::select('version_id', all_framework_versions(), $post->version_id, ['class'=>'form-control']) ?>
 				<div class="text-muted"></div>
 			</div>
 		</div>
@@ -98,9 +98,9 @@
 		<div class="col-md-2">
 			<div class="form-group">
 				<label>Формат текста</label>
-				<?= Form::select("parser_type", ['markdown'=>'Markdown', 'uversewiki'=>'Uversewiki'], $post->parset_type, ['class'=>'form-control']); ?>
+				<?= Form::select("type", ['markdown'=>'Markdown', 'uversewiki'=>'Uversewiki'], $post->parset_type, ['class'=>'form-control']); ?>
 				<span class="text-muted"></span>
-				@include('field-error', ['field'=>'parser_type'])
+				@include('field-error', ['field'=>'type'])
 			</div>
 		</div>
 	</div>
