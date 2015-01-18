@@ -16,6 +16,7 @@ class CoreServiceProvider extends ServiceProvider {
 		$this->app->register('LaravelRU\Parser\ParserServiceProvider');
 		$this->app->register('LaravelRU\News\NewsServiceProvider');
 		$this->app->register('LaravelRU\Packages\PackagesServiceProvider');
+		$this->app->register('LaravelRU\HTML\HtmlServiceProvider');
 
 		include __DIR__ . '/core_exceptions.php';
 	}
