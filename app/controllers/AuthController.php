@@ -28,19 +28,18 @@ class AuthController extends BaseController {
 		$jsToken = Str::quickRandom(10);
 		Session::set('jsToken', $jsToken);
 
-		return View::make('auth/registration', compact('jsToken'));
+		return View::make('auth.registration', compact('jsToken'));
 	}
 
 	public function postRegistration()
 	{
-		$input = Input::only('name', 'email', 'password', 'js_token');
+		$input = Input::only('name', 'email', 'password', 'jtoken');
 
 		$this->registrationForm->validate($input);
 
-		unset($input['js_token']);
+		unset($input['jtoken']);
 
 		$user = User::create($input);
-		$user->save();
 
 		$confirmationString = Str::quickRandom(20);
 
