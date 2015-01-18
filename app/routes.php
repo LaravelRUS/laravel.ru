@@ -27,7 +27,7 @@ Route::get('cheat-sheet',                      ['uses' => 'PagesController@cheat
 
 // ===== Дополнительная информация
 
-Route::get('help/rules',                      ['uses' => 'PagesController@rules',    'as' => 'rules']);
+Route::get('help/{page}',                      ['uses' => 'PagesController@page',    'as' => 'page']);
 
 // ===== Авторизация =====
 
