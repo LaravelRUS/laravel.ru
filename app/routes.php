@@ -26,7 +26,10 @@ Route::post('hook/push_to_develop',             ['uses' => 'HookController@pushT
 Route::get('cheat-sheet',                      ['uses' => 'PagesController@cheatSheetPage',     'as' => 'cheat-sheet']);
 
 // ===== Дополнительная информация
-
+Route::get('help/rules', [
+	'as' => 'pages.rules',
+    'uses' => 'PagesController@rulesPage'
+]);
 Route::get('help/{page}',                      ['uses' => 'PagesController@page',               'as' => 'page']);
 
 // ===== Авторизация =====
