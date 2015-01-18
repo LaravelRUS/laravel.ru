@@ -2,10 +2,12 @@
 
 use LaravelRU\Likes\LikeableTrait;
 use LaravelRU\Comment\CommentableTrait;
+use LaravelRU\Comment\CommentableInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class News extends Model {
+
+class News extends Model implements CommentableInterface {
 
 	use CommentableTrait, SoftDeletingTrait, LikeableTrait;
 

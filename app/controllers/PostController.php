@@ -5,6 +5,7 @@ use LaravelRU\Post\Access\PostAccess;
 use LaravelRU\Post\Forms\CreatePostForm;
 use LaravelRU\Post\Forms\UpdatePostForm;
 use LaravelRU\Post\PostRepo;
+use LaravelRU\Comment\Models\Comment;
 
 class PostController extends BaseController {
 
@@ -41,7 +42,18 @@ class PostController extends BaseController {
 		$post = $this->postRepo->getBySlug($slug);
 		if ( ! $post) App::abort(404);
 
-		return View::make('post/view_post', compact('post'));
+
+
+		//Todo рефакторь меня полностью... Я тебя прошу! Ты можешь меня рефакторить? Зря... /Greabock 18.01.15
+		$post->load('comments', 'comments.author');
+
+		$comments = $post->comments;
+
+		$commentable_id = $post->id;
+
+		$commentable_type = get_class($post);
+
+		return View::make('post/view_post', compact('post', 'comments', 'commentable_id', 'commentable_type'));
 	}
 
 	public function create()

@@ -2,18 +2,25 @@
 
 use LaravelRU\Likes\LikeableTrait;
 use LaravelRU\Comment\CommentableTrait;
+use LaravelRU\Comment\CommentableInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Laracasts\Presenter\PresentableTrait;
 
-class Post extends Model {
 
-	use CommentableTrait, SoftDeletingTrait, LikeableTrait;
+
+class Post extends Model implements CommentableInterface {
+
+	use CommentableTrait, SoftDeletingTrait, LikeableTrait, PresentableTrait;
 
 	const PUBLISHED_AT = 'published_at';
 
 	protected $guarded = ['id', 'author_id'];
 
 	protected $dates = ['deleted_at', self::PUBLISHED_AT];
+
+
+	protected $presenter = 'LaravelRU\Post\Presenters\PostPresenter';
 
 	public function author()
 	{
@@ -28,6 +35,11 @@ class Post extends Model {
 	public function scopeNotDraft($query)
 	{
 		return $query->where('is_draft', 0);
+	}
+
+	public function displayText()
+	{
+
 	}
 
 }
