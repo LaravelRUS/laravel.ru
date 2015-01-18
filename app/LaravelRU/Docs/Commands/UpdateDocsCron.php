@@ -166,96 +166,95 @@ class UpdateDocsCron extends ScheduledCommand {
 								preg_match('/git (.*?)$/m', $content, $matches);
 								$last_original_commit_id = array_get($matches, '1');
 
-								if ( ! $last_original_commit_id && $name != 'menu')
+
+								$this->line(" get last translated original commit $last_original_commit_id");
+								$count_ahead = 0;
+								try
 								{
-									$this->error("Not found git signature in $filename");
+									$original_commit = $this->githubOriginal->getCommit($last_original_commit_id);
+									$current_original_commit = "";
+									$last_original_commit_at = Carbon::createFromTimestampUTC(strtotime($original_commit['commit']['committer']['date']));
+
+									// Считаем сколько коммитов прошло с момента перевода
+									$this->line(' get current original commit');
+									$original_commits = $this->githubOriginal->getCommits($version, $filename, $last_original_commit_at);
+									$count_ahead = count($original_commits) - 1;
+									$current_original_commit = $this->githubOriginal->getLastCommit($version, $filename);
+									$current_original_commit_id = $current_original_commit['sha'];
+									$current_original_commit_at = Carbon::createFromTimestampUTC(
+										strtotime(
+											$current_original_commit['commit']['committer']['date']
+										)
+									);
+
+								}
+								catch (RuntimeException $e)
+								{
+									// Оригинальный файл не найден
+									$last_original_commit_at = null;
+									$current_original_commit_id = "";
+									$current_original_commit_at = null;
+								}
+
+
+								$content = preg_replace('/git(.*?)(\n*?)---(\n*?)/', "", $content);
+								preg_match('/#(.*?)$/m', $content, $matches);
+								$title = trim(array_get($matches, '1'));
+								$page = Documentation::version($v)->page($name)->first();
+								if ($page)
+								{
+									if ($current_original_commit_id != $page->current_original_commit)
+									{
+										// Обновилась оригинальная дока
+										$page->current_original_commit = $current_original_commit_id;
+										$page->current_original_commit_at = $current_original_commit_at;
+										$page->original_commits_ahead = $count_ahead;
+										if ( ! $isPretend)
+										{
+											$page->save();
+										}
+										$this->info("Detected changes in original $version/$filename - commit $current_original_commit_id. Requires new translation.");
+										$updatedOriginalDocs[] = ['name' => "$version/$filename", 'commit' => $current_original_commit_id];
+									}
+
+									if ($last_commit_id != $page->last_commit)
+									{
+										// Обновился перевод
+										$page->last_commit = $last_commit_id;
+										$page->last_commit_at = $last_commit_at;
+										$page->last_original_commit = $last_original_commit_id;
+										$page->last_original_commit_at = $last_original_commit_at;
+										$page->title = $title;
+										$page->text = $content;
+										if ( ! $isPretend)
+										{
+											$page->save();
+										}
+										$this->info("$version/$filename updated. Commit $last_commit_id. Last original commit $last_original_commit_id.");
+									}
 								}
 								else
 								{
-									$this->line(" get last translated original commit $last_original_commit_id");
-									$original_commit = $this->githubOriginal->getCommit($last_original_commit_id);
-									$count_ahead = 0;
-									$current_original_commit = "";
-									if ($original_commit)
+									if ( ! $isPretend)
 									{
-										$last_original_commit_at = Carbon::createFromTimestampUTC(strtotime($original_commit['commit']['committer']['date']));
-
-										// Считаем сколько коммитов прошло с момента перевода
-										$this->line(' get current original commit');
-										$original_commits = $this->githubOriginal->getCommits($version, $filename, $last_original_commit_at);
-										$count_ahead = count($original_commits) - 1;
-										$current_original_commit = $this->githubOriginal->getLastCommit($version, $filename);
-										$current_original_commit_id = $current_original_commit['sha'];
-										$current_original_commit_at = Carbon::createFromTimestampUTC(
-											strtotime(
-												$current_original_commit['commit']['committer']['date']
-											)
-										);
-
-									}
-									else
-									{
-										$last_original_commit_at = null;
+										Documentation::create([
+											'version_id' => $id,
+											'page' => $name,
+											'title' => $title,
+											'last_commit' => $last_commit_id,
+											'last_commit_at' => $last_commit_at,
+											'last_original_commit' => $last_original_commit_id,
+											'last_original_commit_at' => $last_original_commit_at,
+											'current_original_commit' => $current_original_commit_id,
+											'current_original_commit_at' => $current_original_commit_at,
+											'original_commits_ahead' => $count_ahead,
+											'text' => $content
+										]);
 									}
 
-									$content = preg_replace('/git(.*?)(\n*?)---(\n*?)/', "", $content);
-									preg_match('/#(.*?)$/m', $content, $matches);
-									$title = trim(array_get($matches, '1'));
-									$page = Documentation::version($v)->page($name)->first();
-									if ($page)
-									{
-										if ($current_original_commit_id != $page->current_original_commit)
-										{
-											// Обновилась оригинальная дока
-											$page->current_original_commit = $current_original_commit_id;
-											$page->current_original_commit_at = $current_original_commit_at;
-											$page->original_commits_ahead = $count_ahead;
-											if ( ! $isPretend)
-											{
-												$page->save();
-											}
-											$this->info("Detected changes in original $version/$filename - commit $current_original_commit_id. Requires new translation.");
-											$updatedOriginalDocs[] = ['name'=>"$version/$filename", 'commit' => $current_original_commit_id];
-										}
-
-										if ($last_commit_id != $page->last_commit)
-										{
-											// Обновился перевод
-											$page->last_commit = $last_commit_id;
-											$page->last_commit_at = $last_commit_at;
-											$page->last_original_commit = $last_original_commit_id;
-											$page->last_original_commit_at = $last_original_commit_at;
-											$page->title = $title;
-											$page->text = $content;
-											if ( ! $isPretend)
-											{
-												$page->save();
-											}
-											$this->info("$version/$filename updated. Commit $last_commit_id. Last original commit $last_original_commit_id.");
-										}
-									}
-									else
-									{
-										if ( ! $isPretend)
-										{
-											Documentation::create([
-												'version_id' => $id,
-												'page' => $name,
-												'title' => $title,
-												'last_commit' => $last_commit_id,
-												'last_commit_at' => $last_commit_at,
-												'last_original_commit' => $last_original_commit_id,
-												'last_original_commit_at' => $last_original_commit_at,
-												'current_original_commit' => $current_original_commit_id,
-												'current_original_commit_at' => $current_original_commit_at,
-												'original_commits_ahead' => $count_ahead,
-												'text' => $content
-											]);
-										}
-
-										$this->info("Translate for $version/$filename created, commit $last_commit_id. Translated from original commit $last_original_commit_id.");
-									}
+									$this->info("Translate for $version/$filename created, commit $last_commit_id. Translated from original commit $last_original_commit_id.");
 								}
+
 							}
 						}
 					}
