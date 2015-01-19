@@ -70,6 +70,7 @@ class UpdateDocsCron extends ScheduledCommand {
 	public function fire()
 	{
 		Eloquent::unguard();
+		date_default_timezone_set('UTC');
 		Log::info('su:update_docs begin');
 
 		$updatedOriginalDocs = [];
@@ -117,7 +118,7 @@ class UpdateDocsCron extends ScheduledCommand {
 			{
 				if ($forceupdate)
 				{
-					Documentation::version($version)->delete();
+					Documentation::version($v)->delete();
 					$this->info("clear exist {$version} docs!");
 				}
 
