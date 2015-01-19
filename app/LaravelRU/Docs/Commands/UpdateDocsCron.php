@@ -177,8 +177,10 @@ class UpdateDocsCron extends ScheduledCommand {
 
 									// Считаем сколько коммитов прошло с момента перевода
 									$this->line(' get current original commit');
-									$original_commits = $this->githubOriginal->getCommits($version, $filename, $last_original_commit_at);
-									$count_ahead = count($original_commits) - 1;
+									$after_last_original_commit_at = $last_original_commit_at;
+									$after_last_original_commit_at = $after_last_original_commit_at->addSecond();
+									$original_commits = $this->githubOriginal->getCommits($version, $filename, $after_last_original_commit_at);
+									$count_ahead = count($original_commits);
 									$current_original_commit = $this->githubOriginal->getLastCommit($version, $filename);
 									$current_original_commit_id = $current_original_commit['sha'];
 									$current_original_commit_at = Carbon::createFromTimestampUTC(
