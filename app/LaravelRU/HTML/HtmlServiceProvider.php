@@ -42,6 +42,11 @@ class HtmlServiceProvider extends ServiceProvider {
 		});
 
 		$this->app->bind('LaravelRU\HTML\HtmlPurifier', 'purifier');
+
+		$this->app->booting(function ()
+		{
+			AliasLoader::getInstance()->alias('Purifier', 'LaravelRU\HTML\Facades\Purifier');
+		});
 	}
 
 }
