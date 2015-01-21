@@ -19,23 +19,23 @@
 						<table>
 							<thead>
 								<tr class="row">
-									<th class="hidden-xs col-sm-1 text-center">#</th>
-									<th class="col-xs-9 col-md-2 col-lg-3">Наименование</th>
-									<th class="hidden-xs hidden-sm col-md-4 col-lg-3">Оригинал</th>
-									<th class="col-xs-3 col-sm-2 col-md-5">Статус <span class="hidden-xs hidden-sm">перевода</span></th>
+									<th class="hidden-xs text-center">#</th>
+									<th>Наименование</th>
+									<th class="hidden-xs hidden-sm">Оригинал</th>
+									<th>Статус <span class="hidden-xs hidden-sm">перевода</span></th>
 								</tr>
 							</thead>
 							<tbody>
 							@foreach($version->documentation as $i => $doc)
 								<tr class="row">
-									<td class="hidden-xs col-sm-1 text-center">{{ $i + 1 }}</td>
-									<td class="col-xs-9 col-md-2 col-lg-3">
+									<td class="hidden-xs text-center">{{ $i + 1 }}</td>
+									<td>
 										<a href="{{ route('documentation', [$doc->frameworkVersion->number_alias, $doc->page]) }}">{{ $doc->page }}</a>
 									</td>
-									<td class="hidden-xs hidden-sm col-md-4 col-lg-3">
+									<td class="hidden-xs hidden-sm">
 										<a href="https://github.com/laravel/docs/blob/{{ $doc->current_original_commit }}/{{ $doc->page }}.md">{{ $doc->current_original_commit }}</a>
 									</td>
-									<td class="col-xs-3 col-sm-2 col-md-5">
+									<td>
 										@if( ! $doc->original_commits_ahead)
 											<span class="c-green">
 												<i class="fa fa-circle"></i> <span class="hidden-xs hidden-sm">перевод не требуется</span>
