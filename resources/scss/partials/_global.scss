@@ -46,9 +46,10 @@ b, strong {
 }
 
 code {
+	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 	background: #EEEEEE;
 	color: $primary-color;
-	padding: 2px 7px;
+	padding: 0 7px;
 	border-radius: 3px;
 	font-size: 13px;
 }
