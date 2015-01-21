@@ -34,7 +34,6 @@ class HtmlServiceProvider extends ServiceProvider {
 			$jevix->cfgSetTagNoTypography(['pre','code']);
 			$jevix->cfgSetTagParamDefault('a', 'href', '/');
 			$jevix->cfgSetTagParamDefault('a', 'rel', 'nofollow');
-			$jevix->cfgSetTagParamDefault('a', 'target', '_blank');
 			$jevix->cfgSetTagPreformatted(['code']);
 			$jevix->cfgSetTagCutWithContent(['script', 'iframe', 'object', 'style']);
 
