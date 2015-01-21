@@ -41,7 +41,7 @@
 												<i class="fa fa-circle"></i> <span class="hidden-xs hidden-sm">перевод не требуется</span>
 											</span>
 										@else
-											<span class="c-red"><i class="fa fa-circle"></i> {{ $doc->original_commits_ahead }}</span>
+											<span @if($doc->original_commits_ahead < 3) class="c-yellow" @else class="c-red" @endif><i class="fa fa-circle"></i> {{ $doc->original_commits_ahead }}</span>
 											<span class="hidden-xs hidden-sm">git difftool {{ substr($doc->last_original_commit, 0, 7) }} {{ substr($doc->current_original_commit, 0, 7) }} {{ $doc->page }}.md</span>
 										@endif
 									</td>
