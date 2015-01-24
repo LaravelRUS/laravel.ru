@@ -19,7 +19,8 @@
 		"sleeping-owl/apist": "1.*",
 		"fguillot/picofeed": "dev-master",
 		"graham-campbell/markdown": "~2.0",
-		"vanchelo/ajax-response": "dev-master"
+		"vanchelo/ajax-response": "dev-master",
+		"agelxnash/jevix": "dev-master"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "1.*",
