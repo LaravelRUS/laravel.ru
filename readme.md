@@ -13,8 +13,9 @@
 3. Сделать `composer update`
 4. Создать базу данных и выполнить команду `php artisan migrate` 
 5. Создать пользователя-админа `php artisan su:create_user admin admin_password admin@mail.ru --admin`
-6. Проинициализировать фронтэнд: `bower install`
-7. Если не стоит gulp, поставить: `npm install gulp gulp-sass gulp-concat gulp-autoprefixer gulp-notify gulp-rename gulp-uglify gulp-size gulp-replace` . Для сборки css и js нужно держать запущенную команду `gulp watch`. 
+6. Установить необходимые npm пакеты: `npm install`
+7. Установить необходимые bower пакеты: `bower install`
+8. Для сборки css и js используется gulp, все доступные команды в `.gulpfile.js`.
 
 ### Описание
 

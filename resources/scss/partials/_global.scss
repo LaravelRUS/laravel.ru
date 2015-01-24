@@ -19,6 +19,7 @@ h1 {
 	font-size: 28px;
 	text-transform: uppercase;
 	color: #F4645F;
+	margin-bottom: 20px;
 }
 
 h2 {
@@ -46,15 +47,16 @@ b, strong {
 }
 
 code {
+	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 	background: #EEEEEE;
 	color: $primary-color;
 	padding: 2px 7px;
 	border-radius: 3px;
-	font-family: source-code-pro, monospace;
-	font-size: 13px;
+	font-size: 12px;
 }
 
 table {
+	width: 100%;
 	margin-bottom: 30px;
 
 	thead th {
@@ -66,6 +68,7 @@ table {
 	}
 	th, td {
 		line-height: 35px;
+		padding: 0 10px;
 		border: 2px solid $border-color;
 	}
 	i {
@@ -79,11 +82,11 @@ ul {
 	}
 }
 
-@media (max-width: $screen-xs-max) {
-	.container {
-		padding: 0;
-	}
-	.p-35-45 {
-		padding: 15px !important;
-	}
-}
+//@media (max-width: $screen-xs-max) {
+//	.container {
+//		padding: 0;
+//	}
+//	.p-35-45 {
+//		padding: 15px !important;
+//	}
+//}

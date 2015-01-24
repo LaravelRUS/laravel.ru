@@ -80,9 +80,14 @@
 			}
 		}
 		h3 {
-			font-size: 18px;
+			font-size: 17px;
 			font-weight: 400;
 			color: $color-grey-6;
+			padding-top: 10px;
+			margin-bottom: 15px;
+		}
+
+		p {
 			margin-bottom: 15px;
 		}
 
@@ -138,6 +143,10 @@
 
 			p, a {
 				color: white;
+			}
+
+			p:last-of-type {
+				margin-bottom: 0;
 			}
 		}
 	}

@@ -1,8 +1,3 @@
-code {
-	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-	white-space: nowrap;
-}
-
 pre .str, code .str {
 	color: #BCD42A;
 }
@@ -53,12 +48,17 @@ pre .dec, code .dec {
 pre.prettyprint, code.prettyprint {
 	background-color: #272822;
 	border-radius: 8px;
+
+	code {
+		padding: 0;
+		background-color: #272822;
+	}
 }
 
 pre.prettyprint {
 	width: 100%;
-	margin: 1em auto;
+	margin: 20px auto;
 	font-size: 12px;
-	padding: 1.5em;
+	padding: 2.2em;
 	white-space: pre-wrap;
 }

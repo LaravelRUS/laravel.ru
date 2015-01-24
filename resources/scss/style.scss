@@ -7,13 +7,12 @@
 // Bootflat Colors
 @import "./vendor/bower_components/bootflat-color-picker-colors/bootflat-color-picker";
 // Project Styles
-@import "variables";
-@import "global";
-@import "common";
-@import "mixins";
-@import "code-highlight";
-@import "elements";
-@import "nav";
-@import "footer";
-@import "docs";
-@import "custom";
+@import "partials/variables";
+@import "partials/global";
+@import "partials/common";
+@import "partials/mixins";
+@import "partials/code-highlight";
+@import "partials/elements";
+@import "partials/nav";
+@import "partials/footer";
+@import "partials/docs";

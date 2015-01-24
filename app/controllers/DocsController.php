@@ -123,7 +123,7 @@ class DocsController extends BaseController {
 	 */
 	public function status()
 	{
-		$versions = Version::documented()->withDocumentation()->get();
+		$versions = Version::documented()->withDocumentation()->orderBy('number', 'desc')->get();
 
 		return View::make('docs.status', compact('versions'));
 	}
@@ -139,7 +139,7 @@ class DocsController extends BaseController {
 		return $versions->filter(function ($item)
 		{
 			return $item->isDocumented();
-		})->lists('number_alias');
+		})->sortByDesc('number_alias')->lists('number_alias');
 	}
 
 	/**
