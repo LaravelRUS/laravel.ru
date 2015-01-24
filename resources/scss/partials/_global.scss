@@ -19,6 +19,7 @@ h1 {
 	font-size: 28px;
 	text-transform: uppercase;
 	color: #F4645F;
+	margin-bottom: 20px;
 }
 
 h2 {
@@ -49,9 +50,9 @@ code {
 	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 	background: #EEEEEE;
 	color: $primary-color;
-	padding: 0 7px;
+	padding: 2px 7px;
 	border-radius: 3px;
-	font-size: 13px;
+	font-size: 12px;
 }
 
 table {

@@ -50,6 +50,7 @@ pre.prettyprint, code.prettyprint {
 	border-radius: 8px;
 
 	code {
+		padding: 0;
 		background-color: #272822;
 	}
 }
@@ -58,6 +59,6 @@ pre.prettyprint {
 	width: 100%;
 	margin: 20px auto;
 	font-size: 12px;
-	padding: 1.5em;
+	padding: 2.2em;
 	white-space: pre-wrap;
 }

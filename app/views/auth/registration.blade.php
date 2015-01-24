@@ -6,9 +6,9 @@
 	<main class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<section class="box">
+				<section class="bg-white p-35-45">
 					<header>
-						<h1>Регистрация</h1>
+						<h1 class="text-center">Регистрация</h1>
 					</header>
 					{{ Form::open(['route' => 'auth.registration.post', 'class' => 'register']) }}
 						<input name="jtoken" type="hidden" data-token="{{ $jsToken }}">
