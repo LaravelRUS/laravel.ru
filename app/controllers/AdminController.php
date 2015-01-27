@@ -49,13 +49,18 @@ class AdminController extends BaseController {
 		$user_id = Input::get('user_id');
 		$role_id = Input::get('role_id');
 
-		$user = User::findOrFail($user_id);
+		// Запрещено сниматьсебе админский статус
+		// TODO переделать на $this->access->... в модуле Admin, который тоже надо сделать.
+		if( ! (Auth::user()->id == $user_id AND $role_id == 1))
+		{
+			$user = User::findOrFail($user_id);
 
-		$arrayRoles = $user->roles()->lists('id');
-		$arrayRoles = array_diff($arrayRoles, [$role_id]);
-		$arrayRoles = array_unique($arrayRoles);
+			$arrayRoles = $user->roles()->lists('id');
+			$arrayRoles = array_diff($arrayRoles, [$role_id]);
+			$arrayRoles = array_unique($arrayRoles);
 
-		$user->roles()->sync($arrayRoles);
+			$user->roles()->sync($arrayRoles);
+		}
 
 		return Redirect::back();
 	}
