@@ -5,6 +5,7 @@ use Guzzle\Http\Exception\ClientErrorResponseException;
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Console\Command;
 use Indatus\Dispatcher\Scheduling\Schedulable;
+use LaravelRU\Packages\Models\Package;
 use LaravelRU\Packages\PackageRepo;
 use Packagist\Api\Client as PackagistClient;
 
@@ -48,20 +49,26 @@ class RefillPackagesCommand extends Command {
 	public function fire()
 	{
 		// Ресетим базу
-		DB::statement('TRUNCATE TABLE packages');
-		DB::statement('ALTER TABLE packages auto_increment = 1;');
+		//DB::statement('TRUNCATE TABLE packages');
+		//DB::statement('ALTER TABLE packages auto_increment = 1;');
 
 		// Собираем названия пакетов, представленных на packalyst
 		$packalyst = new GuzzleClient(['base_url' => 'http://packalyst.com']);
-		$maxPage = 60;
+		$maxPage = 1000; // на всякий случай ставим заведомо большой лимит, чтобы не войти в бесконечный цикл
 		$packageFullNames = [];
 
-		for ($n = $maxPage; $n > 0; $n--)
+		// Парсим packalyst, собираем названия пакетов
+		for ($n = 1; $n < $maxPage; $n++)
 		{
 			$packalystPage = $packalyst->get("/packages?page=$n")->getBody();
 			$packalystPage = str_replace("\n", '', $packalystPage);
 			preg_match_all('/<div class="package-card-inner">.*?>(.*?)<\/a>/', $packalystPage, $matchesName);
 			preg_match_all('/<div class="package-card-inner">.*?Packages by (.*?)">/', $packalystPage, $matchesVendor);
+
+			if (count($matchesName[1]) == 0)
+			{
+				break;
+			}
 
 			foreach ($matchesName[1] as $i => $packageName)
 			{
@@ -69,7 +76,7 @@ class RefillPackagesCommand extends Command {
 				$packageFullNames[] = "$packageVendor/$packageName";
 			}
 
-			$this->line("parse page $n");
+			$this->line("parse packalyst page $n");
 		}
 
 		$this->info('total packages: ' . count($packageFullNames));
@@ -77,21 +84,26 @@ class RefillPackagesCommand extends Command {
 		$this->info('unique packages: ' . count($packageFullNames));
 
 		// Парсим инфу по пакетам с packagist
-		$packagist = new PackagistClient();
-
 		foreach ($packageFullNames as $packageFullName)
 		{
-			$this->line($packageFullName);
-			try
+			$existPackage = Package::name($packageFullName)->first(["id"]);
+			if ( ! $existPackage)
 			{
-				$package = $this->packageRepo->createPackageFromPackagist($packageFullName);
-				$package->save();
-				$this->line("$packageFullName added");
+				try
+				{
+					$package = $this->packageRepo->createPackageFromPackagist($packageFullName);
+					$package->save();
+					$this->info("$packageFullName added");
+				}
+				catch (ClientErrorResponseException $e)
+				{
+					$this->error("$packageFullName - " . $e->getMessage());
+					continue;
+				}
 			}
-			catch (ClientErrorResponseException $e)
+			else
 			{
-				$this->error("$packageFullName - " . $e->getMessage());
-				continue;
+				$this->line("$packageFullName exist");
 			}
 		}
 
