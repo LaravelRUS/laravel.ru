@@ -12,4 +12,9 @@ class Package extends Model implements CommentableInterface{
 
 	protected $presenter = 'LaravelRU\Packages\Presenters\PackagePresenter';
 
+	public function scopeName($query, $name)
+	{
+		return $query->whereName($name);
+	}
+
 }
