@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "fontawesome": "~4.2.0",
+    "fontawesome": "~4.3.0",
     "jquery": "~1.11.2",
     "brand-colors": "~0.3.0",
     "google-code-prettify": "~1.0.3",
