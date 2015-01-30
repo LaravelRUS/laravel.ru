@@ -8,7 +8,7 @@
 		<div class="container">
 			<h1 class="c-white letter-spacing-stiff">Laravel &mdash; php-фреймворк нового поколения</h1>
 			<h2 class="c-white small m-b-25">Мы верим, что процесс разработки только тогда наиболее продуктивен, когда работа с фреймворком приносит радость и удовольствие. Счастливые разработчики пишут лучший код.</h2>
-			<ul class="list-inline">
+			<ul class="inline">
 				<li>
 					<a class="btn btn-default" href="{{ route('documentation') }}">Документация</a>
 				</li>
