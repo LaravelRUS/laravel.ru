@@ -5,11 +5,10 @@
 @stop
 
 @section('content')
-
 <div class="row">
-	<div class="col-md-12">
-		<h1>{{ $user->username }}</h1>
-	</div>
+    <div class="col-md-12">
+        <h1>{{ $user->username }}</h1>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-4">
@@ -24,13 +23,13 @@
     </div>
 
     <div class="col-md-8">
-	    @if($user->info->about)
+        @if($user->info->about)
         <div class="row">
             <div class="col-md-12">
                 <p>О себе: {{ $user->info->about }}</p>
             </div>
         </div>
-	    @endif
+        @endif
         <div class="row">
             <div class="col-md-6">
                 @if($user->social->vkontakte)

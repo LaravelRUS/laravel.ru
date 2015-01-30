@@ -4,6 +4,8 @@ use LaravelRU\User\Forms\LoginForm;
 use LaravelRU\User\Forms\RegistrationForm;
 use LaravelRU\User\Models\Confirmation;
 use LaravelRU\User\Models\User;
+use LaravelRU\User\Models\UserInfo;
+use LaravelRU\User\Models\UserSocialNetwork;
 
 class AuthController extends BaseController {
 
@@ -40,6 +42,8 @@ class AuthController extends BaseController {
 		unset($input['jtoken']);
 
 		$user = User::create($input);
+		$user->info()->save(new UserInfo);
+		$user->social()->save(new UserSocialNetwork);
 
 		$confirmationString = Str::quickRandom(20);
 
