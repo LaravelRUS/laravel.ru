@@ -8,6 +8,7 @@ Route::pattern('hash', '[a-z0-9]+');
 Route::pattern('hex', '[a-f0-9]+');
 Route::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
 Route::pattern('string', '[a-zA-Z0-9]+');
+Route::pattern('username', '^\b[a-z\pN\-\_\.]+\b$');
 Route::pattern('slug', '[a-z0-9-]+');
 
 // CSRF Filter on all POST routes
@@ -63,17 +64,15 @@ Route::get( 'docs/{version?}/{string?}',        ['uses' => 'DocsController@docs'
 
 // ===== Профайл пользователя
 
-Route::get( '@{string}',                    ['uses' => 'UserController@profile',            'as' => 'user.profile']);
-Route::get( '@{string}/articles',           ['uses' => 'UserController@articles',           'as' => 'user.articles']);
-Route::get( '@{string}/tips',               ['uses' => 'UserController@tips',               'as' => 'user.tips']);
+Route::get( '@{username}',                    ['uses' => 'UserController@profile',            'as' => 'user.profile']);
+Route::get( '@{username}/articles',           ['uses' => 'UserController@articles',           'as' => 'user.articles']);
+Route::get( '@{username}/tips',               ['uses' => 'UserController@tips',               'as' => 'user.tips']);
 
 Route::group(['before' => 'auth'], function ()
 {
 	// Внутренний профайл пользователя (настройки, смена пароля и т.п.)
 	Route::get(  'settings',                     ['uses' => 'UserController@edit',               'as' => 'user.edit']);
-	Route::post( 'settings/main',                ['uses' => 'UserController@saveMain',           'as' => 'user.edit.main']);
-	Route::post( 'settings/social',              ['uses' => 'UserController@saveSocial',         'as' => 'user.edit.social']);
-	Route::post( 'settings/info',                ['uses' => 'UserController@saveInfo',           'as' => 'user.edit.info']);
+	Route::post( 'settings',                     ['uses' => 'UserController@update']);
 });
 
 
