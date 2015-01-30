@@ -155,6 +155,16 @@ class User extends Model implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * User comments
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function comments()
+	{
+		return $this->hasMany('LaravelRU\Comment\Models\Comment', 'author_id');
+	}
+
+	/**
 	 * Properties
 	 */
 
