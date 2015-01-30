@@ -10,9 +10,9 @@
         <h1>Редактирование профиля</h1>
     </div>
 </div>
+<form action="{{ route('user.edit') }}" method="POST" role="form" onsubmit="profile.save(this);return false;">
 <div class="row">
     <div class="col-md-4">
-        <form action="{{ route('user.edit.main') }}" method="POST" role="form" onsubmit="profile.save(this);return false;">
             <legend>Основные данные</legend>
             <div class="form-group">
                 <label for="fullname">Имя</label>
@@ -28,13 +28,9 @@
                 <label for="email">Email</label>
                 <input type="email" class="form-control" name="email" id="email"  value="{{ $user->email }}">
             </div>
-
-            <button type="submit" class="btn btn-primary">Сохранить</button>
-        </form>
     </div>
 
     <div class="col-md-4">
-        <form action="{{ route('user.edit.social') }}" method="POST" role="form" onsubmit="profile.save(this);return false;">
             <legend>Социальные сети</legend>
 
             @foreach(trans('social') as $id => $name)
@@ -43,13 +39,9 @@
                 <input type="text" class="form-control" name="social_{{ $id }}" id="{{ $id }}" value="{{ $user->social->{$id} }}">
             </div>
             @endforeach
-
-            <button type="submit" class="btn btn-primary">Сохранить</button>
-        </form>
     </div>
 
     <div class="col-md-4">
-        <form action="{{ route('user.edit.info') }}" method="POST" role="form" onsubmit="profile.save(this);return false;">
             <legend>Дополнительная информация</legend>
 
             @foreach(trans('user_info') as $id => $name)
@@ -62,11 +54,11 @@
                 @endif
             </div>
             @endforeach
-
-            <button type="submit" class="btn btn-primary">Сохранить</button>
-        </form>
     </div>
 </div>
+    <div class="msg alert" style="display:none"></div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
 
 <script>
 (function (window) { 'use strict';
@@ -74,50 +66,53 @@
     var Profile = function () {
 
         function save(form) {
-            var $form = $(form);
-            var id;
+            var $form = $(form),
+                msg = $form.find('.msg'),
+                id;
 
             $.ajax({
                 url: form.action,
                 data: $form.serialize(),
                 method: 'post',
-                success: function (res) {
-                    var msg = $('<div class="alert">'+res.message+'</div>');
-                    if (res.error) {
+                success: function (data) {
+                    if (data.success && data.redirect) {
+                        window.location.href = data.redirect;
+	                    return;
+                    }
+
+                    if (data.error) {
                         msg.addClass('alert-error');
 
-                        if (res.errors) {
-                            for (id in res.errors) {
-                                if (res.errors.hasOwnProperty(id)) {
-                                    $('<div class="error">' + res.errors[id].join('<br>') + '</div>')
+                        if (data.errors) {
+                            for (id in data.errors) {
+                                if (data.errors.hasOwnProperty(id)) {
+                                    $('<div class="error">' + data.errors[id].join('<br>') + '</div>')
                                             .insertAfter($form.find('[name="' + id + '"]'));
                                 }
                             }
                         }
                     }
 
-                    if (res.success) {
-                        if (res.data) {
-                            for (id in res.data) {
-                                if (res.data.hasOwnProperty(id)) {
-                                    $form.find('[name="' + id + '"]').val(res.data[id]);
+                    if (data.success) {
+                        if (data.data) {
+                            for (id in data.data) {
+                                if (data.data.hasOwnProperty(id)) {
+                                    $form.find('[name="' + id + '"]').val(data.data[id]);
                                 }
                             }
                         }
 
                         msg.addClass('alert-success');
                         setTimeout(function () {
-                            msg.fadeOut(200, function () { msg.remove() });
+                            msg.fadeOut(200, function () { msg.hide() });
                         }, 3000);
                     }
 
-                    if (res.message) {
-                        msg.insertAfter($form.find('legend'));
-                    }
+                    data.message && msg.html(data.message).fadeIn(100);
                 },
                 beforeSend: function () {
                     $form.find('.error').remove();
-                    $form.find('.alert').remove();
+                    msg.removeClass('alert-error alert-success').html('').hide();
                 }
             });
         }
