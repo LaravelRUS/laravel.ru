@@ -73,7 +73,8 @@ class UserController extends BaseController {
 		$user->username = array_get($data, 'username');
 		$user->email= array_get($data, 'email');
 		$user->fullname = array_get($data, 'fullname');
-		$user->save();
+
+		if ( ! $user->save()) return $response->error('Ошибка');
 
 		return $response->message('Данные успешно сохранены');
 	}
@@ -84,12 +85,12 @@ class UserController extends BaseController {
 		$response = app('app.response');
 
 		$rules = [
-			'social_vkontakte' => 'alphaNumDashDot',
-			'social_facebook' => 'alphaNumDashDot',
-			'social_twitter' => 'alphaNumDashDot',
-			'social_github' => 'alphaNumDashDot',
-			'social_bitbucket' => 'alphaNumDashDot',
-			'social_google' => 'alphaNumDashDot',
+			'social_vkontakte' => 'social:vkontakte',
+			'social_facebook' => 'social:facebook',
+			'social_twitter' => 'social:twitter',
+			'social_github' => 'social:github',
+			'social_bitbucket' => 'social:bitbucket',
+			'social_google' => 'social:google',
 		];
 
 		$validator = Validator::make($data, $rules);
@@ -101,18 +102,25 @@ class UserController extends BaseController {
 
 		/** @var User $user */
 		$user = Auth::user();
-
+		/** @var \LaravelRU\User\Models\UserSocialNetwork $social */
 		$social = $user->social;
-		$social->vkontakte = e(array_get($data, 'social_vkontakte'));
-		$social->facebook = e(array_get($data, 'social_facebook'));
-		$social->twitter = e(array_get($data, 'social_twitter'));
-		$social->github = e(array_get($data, 'social_github'));
-		$social->bitbucket = e(array_get($data, 'social_bitbucket'));
-		$social->google = e(array_get($data, 'social_google'));
 
-		$social->save();
+		$regexps = Config::get('social_regexp');
+		foreach (trans('social') as $id => $name)
+		{
+			if ($value = trim(array_get($data, "social_{$id}")))
+			{
+				preg_match('/' . $regexps[$id] . '/u', $value, $matches);
+				$value = $matches[2];
+			}
 
-		return $response->message('Данные успешно сохранены');
+			$social->{$id} = $value;
+			$data["social_{$id}"] = $value;
+		}
+
+		if ( ! $social->save()) return $response->error('Ошибка');
+
+		return $response->message('Данные успешно сохранены')->data(compact('data'));
 	}
 
 	public function saveInfo()
@@ -136,14 +144,15 @@ class UserController extends BaseController {
 
 		/** @var User $user */
 		$user = Auth::user();
-
+		/** @var \LaravelRU\User\Models\UserInfo $info */
 		$info = $user->info;
+
 		$info->about = e(strip_tags(array_get($data, 'info_about')));
 		$info->birthday = array_get($data, 'info_birthday');
 		$info->site = array_get($data, 'info_site');
-		$info->skype = e(array_get($data, 'info_skype'));
+		$info->skype = array_get($data, 'info_skype');
 
-		$info->save();
+		if ( ! $info->save())  return $response->error('Ошибка');
 
 		return $response->message('Данные успешно сохранены');
 	}
