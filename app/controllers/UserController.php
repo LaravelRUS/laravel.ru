@@ -1,7 +1,7 @@
 <?php
 
 use LaravelRU\Post\PostRepo;
-use LaravelRU\Tips\TipsRepo;
+use LaravelRU\User\Forms\UpdateForm;
 use LaravelRU\User\Models\User;
 use LaravelRU\User\Repositories\UserRepo;
 
@@ -18,15 +18,15 @@ class UserController extends BaseController {
 	private $postRepo;
 
 	/**
-	 * @var TipsRepo
+	 * @var UpdateForm
 	 */
-	private $tipsRepo;
+	private $updateForm;
 
-	public function __construct(UserRepo $userRepo, PostRepo $postRepo, TipsRepo $tipsRepo)
+	public function __construct(UserRepo $userRepo, PostRepo $postRepo, UpdateForm $updateForm)
 	{
 		$this->userRepo = $userRepo;
 		$this->postRepo = $postRepo;
-		$this->tipsRepo = $tipsRepo;
+		$this->updateForm = $updateForm;
 	}
 
 	public function profile($username)
@@ -35,10 +35,7 @@ class UserController extends BaseController {
 
 		$user->load(['posts', 'tips', 'news', 'info', 'social']);
 
-		$owner = $user->username == $username;
-
-		// TODO для чего переменная $sidebar?
-		//$sidebar = Sidebar::renderLastPosts();
+		$owner = Auth::check() && Auth::user()->username == $username;
 
 		return View::make('user/profile', compact('user', 'owner'));
 	}
@@ -51,23 +48,12 @@ class UserController extends BaseController {
 		return View::make('user/edit', compact('user'));
 	}
 
-	public function saveMain()
+	public function update()
 	{
-		$data = Input::all();
 		$response = app('app.response');
+		$data = Input::all();
 
-		$rules = [
-			'username' => 'required|alphaDash|unique:users,username,' . Auth::id(),
-			'email' => 'required|email|unique:users,email,' . Auth::id(),
-			'fullname' => '',
-		];
-
-		$validator = Validator::make($data, $rules);
-
-		if ( ! $validator->passes())
-		{
-			return $response->error('Исправьте ошибки в форме')->errors($validator->errors());
-		}
+		$this->updateForm->validate($data);
 
 		/** @var User $user */
 		$user = Auth::user();
@@ -75,37 +61,6 @@ class UserController extends BaseController {
 		$user->username = array_get($data, 'username');
 		$user->email= array_get($data, 'email');
 		$user->fullname = array_get($data, 'fullname');
-
-		if ( ! $user->save()) return $response->error('Ошибка');
-
-		return $response->message('Данные успешно сохранены');
-	}
-
-	public function saveSocial()
-	{
-		$data = Input::all();
-		$response = app('app.response');
-
-		$rules = [
-			'social_vkontakte' => 'social:vkontakte',
-			'social_facebook' => 'social:facebook',
-			'social_twitter' => 'social:twitter',
-			'social_github' => 'social:github',
-			'social_bitbucket' => 'social:bitbucket',
-			'social_google' => 'social:google',
-		];
-
-		$validator = Validator::make($data, $rules);
-
-		if ( ! $validator->passes())
-		{
-			return $response->error('Исправьте ошибки в форме')->errors($validator->errors());
-		}
-
-		/** @var User $user */
-		$user = Auth::user();
-		/** @var \LaravelRU\User\Models\UserSocialNetwork $social */
-		$social = $user->social;
 
 		$regexps = Config::get('social_regexp');
 		foreach (trans('social') as $id => $name)
@@ -116,47 +71,22 @@ class UserController extends BaseController {
 				$value = $matches[2];
 			}
 
-			$social->{$id} = $value;
-			$data["social_{$id}"] = $value;
+			$user->social->{$id} = $value;
 		}
 
-		if ( ! $social->save()) return $response->error('Ошибка');
+		$user->info->about = e(strip_tags(array_get($data, 'info_about')));
+		$user->info->birthday = array_get($data, 'info_birthday');
+		$user->info->site = array_get($data, 'info_site');
+		$user->info->skype = array_get($data, 'info_skype');
 
-		return $response->message('Данные успешно сохранены')->data(compact('data'));
-	}
-
-	public function saveInfo()
-	{
-		$data = Input::all();
-		$response = app('app.response');
-
-		$rules = [
-			'info_about' => '',
-			'info_birthday' => 'date|date_format:Y-m-d',
-			'info_site' => 'url',
-			'info_skype' => 'alphaNumDashDot',
-		];
-
-		$validator = Validator::make($data, $rules);
-
-		if ( ! $validator->passes())
+		if ( ! $user->save() || ! $user->social->save() || ! $user->info->save())
 		{
-			return $response->error('Исправьте ошибки в форме')->errors($validator->errors());
+			return $response->error('Ошибка');
 		}
 
-		/** @var User $user */
-		$user = Auth::user();
-		/** @var \LaravelRU\User\Models\UserInfo $info */
-		$info = $user->info;
-
-		$info->about = e(strip_tags(array_get($data, 'info_about')));
-		$info->birthday = array_get($data, 'info_birthday');
-		$info->site = array_get($data, 'info_site');
-		$info->skype = array_get($data, 'info_skype');
-
-		if ( ! $info->save())  return $response->error('Ошибка');
-
-		return $response->message('Данные успешно сохранены');
+		return $response->message('Данные успешно сохранены')->data([
+			'redirect' => route('user.profile', $user->username)
+		]);
 	}
 
 }
