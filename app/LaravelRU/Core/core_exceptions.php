@@ -13,8 +13,7 @@ App::error(function (FormValidationException $e)
 {
 	if (Request::ajax())
 	{
-		// TODO json вывод для ошибок валидации форм (если надо)
-		return null;
+		return App::make('app.response')->error('Исправьте ошибки в форме')->errors($e->getErrors());
 	}
 
 	return Redirect::back()->withInput()->withErrors($e->getErrors());
