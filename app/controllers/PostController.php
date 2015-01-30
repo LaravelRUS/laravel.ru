@@ -42,8 +42,6 @@ class PostController extends BaseController {
 		$post = $this->postRepo->getBySlug($slug);
 		if ( ! $post) App::abort(404);
 
-
-
 		//Todo рефакторь меня полностью... Я тебя прошу! Ты можешь меня рефакторить? Зря... /Greabock 18.01.15
 		$post->load('comments', 'comments.author');
 
@@ -58,16 +56,21 @@ class PostController extends BaseController {
 
 	public function create()
 	{
-		$post = $this->postRepo->create(['is_draft' => '1']);
+		if ( ! $post = $this->postRepo->getUncompletedPostByAuthor(Auth::user()))
+		{
+			$post = $this->postRepo->create(['is_draft' => 1]);
+			$post->author_id = Auth::id();
+			$post->save();
+		}
 
-		return View::make('post/edit_post', compact('post'));
+		return Redirect::route('post.edit', $post->id);
 	}
 
-	public function edit($slug)
+	public function edit($id)
 	{
-		$this->access->checkEditPostBySlug($slug);
+		$this->access->checkEditPost($id);
 
-		if ( ! $post = $this->postRepo->getBySlug($slug)) abort();
+		if ( ! $post = $this->postRepo->find($id)) abort();
 
 		return View::make('post/edit_post', compact('post'));
 	}
@@ -99,7 +102,7 @@ class PostController extends BaseController {
 
 		$post->save();
 
-		return Redirect::route('post.edit', [$post->slug])
+		return Redirect::route('post.edit', $post->id)
 			->with('success',
 				'Пост сохранен - <a href="' . route('post.view', $post->slug) . '">'
 				. route('post.view', $post->slug) . '</a>'

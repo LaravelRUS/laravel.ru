@@ -2,9 +2,9 @@
 
 @section('title')
 @if($post->id)
-	Редактирование поста
+	Редактирование статьи
 @else
-	Создание поста
+	Создание статьи
 @endif
 @stop
 
@@ -43,7 +43,7 @@
 @endif
 
 @if(Session::has('success'))
-	<div class="alert alert-success">{{ Session::get("success") }}</div>
+	<div class="alert alert-success">{{ Session::get('success') }}</div>
 @endif
 
 {{ Form::open(['route' => 'post.store']) }}
@@ -53,7 +53,7 @@
 			<div class="form-group">
 				<label>Заголовок</label>
 				{{ Form::text('title', $post->title, ['class' => 'form-control']) }}
-				<div class="text-muted">Название поста, выводится в списке постов.</div>
+				<div class="text-muted">Название статьи, выводится в списке статей</div>
 				@include('field-error', ['field' => 'title'])
 			</div>
 		</div>
@@ -62,7 +62,7 @@
 			<div class="form-group">
 				<label>Slug</label>
 				{{ Form::text('slug', $post->slug, ['class' => 'form-control']) }}
-				<div class="text-muted">Строка в урле, с которой будет идентифицирован этот материал.</div>
+				<div class="text-muted">URL по которому будет доступна эта статья</div>
 				@include('field-error', ['field' => 'slug'])
 			</div>
 		</div>
@@ -71,7 +71,7 @@
 	<div class="form-group" id="input-description">
 		<label>Краткое описание</label>
 		{{ Form::textarea('description', $post->description, ['class' => 'form-control post_description']) }}
-		<div class="text-muted">Краткое описание поста, выводится на главной странице в списке постов.</div>
+		<div class="text-muted">Краткое описание статьи, выводится на главной странице в списке статей</div>
 		@include('field-error', ['field' => 'description'])
 	</div>
 
@@ -86,7 +86,7 @@
 
 		<div class="col-md-5">
 			<div class="form-group" id="input-difficulty">
-				<label>Уровень сложности материала</label>
+				<label>Уровень сложности</label>
 				{{ Form::select('difficulty', [
 					'unknown' => 'Не определена',
 					'easy' => 'Легкий, для новичков, слабо знакомых с фреймворком',
@@ -97,14 +97,14 @@
 			</div>
 		</div>
 
-		<div class="col-md-2">
+		{{--<div class="col-md-2">
 			<div class="form-group">
 				<label>Формат текста</label>
 				{{ Form::select("type", ['markdown' => 'Markdown', 'uversewiki' => 'Uversewiki'], $post->parset_type, ['class' => 'form-control']) }}
 				<span class="text-muted"></span>
 				@include('field-error', ['field' => 'type'])
 			</div>
-		</div>
+		</div>--}}
 	</div>
 
 	{{--<div class="form-group">--}}
@@ -120,8 +120,13 @@
 	</div>
 
 	<div class="form-group">
+		<label>{{ Form::check('is_translate', 1, $post->is_translate, ['class' => 'ios-switch']) }} Перевод</label>
+		@include('field-error', ['field' => 'is_translate'])
+	</div>
+
+	<div class="form-group">
 		<label>{{ Form::check('is_draft', 1, $post->is_draft, ['class' => 'ios-switch']) }} Черновик</label>
-		<br><span class="text-muted">Черновики видны только вам.</span>
+		<br><span class="text-muted">Черновики видны только вам</span>
 		@include('field-error', ['field' => 'is_draft'])
 	</div>
 
