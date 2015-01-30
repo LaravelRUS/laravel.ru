@@ -12,10 +12,10 @@ class RegistrationForm extends FormValidator {
 	];
 
 	protected $messages = [
-		'username.unique' => 'Такой никнейм уже занят.',
-		'email.unique' => 'Пользователь с таким мейлом уже есть в системе.',
-		'jtoken.required' => 'Антибот-проверка не пройдена. Включите javascript.',
-		'jtoken.jstoken' => 'Антибот-проверка не пройдена. Включите javascript.'
+		'username.unique' => 'Этот логин уже кем-то занят',
+		'email.unique' => 'Этот Email уже кем-то занят',
+		'jtoken.required' => 'Антибот-проверка не пройдена. Включите javascript',
+		'jtoken.jstoken' => 'Антибот-проверка не пройдена. Включите javascript'
 	];
 
 }
