@@ -6,7 +6,7 @@ class CreatePostForm extends FormValidator {
 
 	protected $rules = [
 		'title' => 'required',
-		'slug' => 'required|unique:posts,slug|regex:/^[A-Za-z0-9\-]+$/',
+		'slug' => 'required|unique:posts,slug|slug',
 		'text' => 'required',
 	];
 

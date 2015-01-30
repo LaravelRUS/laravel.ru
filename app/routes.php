@@ -63,9 +63,9 @@ Route::get( 'docs/{version?}/{string?}',        ['uses' => 'DocsController@docs'
 
 // ===== Профайл пользователя
 
-Route::get( 'user/{string}',                    ['uses' => 'UserController@profile',            'as' => 'user.profile']);
-Route::get( 'user/{string}/articles',           ['uses' => 'UserController@articles',           'as' => 'user.articles']);
-Route::get( 'user/{string}/tips',               ['uses' => 'UserController@tips',               'as' => 'user.tips']);
+Route::get( '@{string}',                    ['uses' => 'UserController@profile',            'as' => 'user.profile']);
+Route::get( '@{string}/articles',           ['uses' => 'UserController@articles',           'as' => 'user.articles']);
+Route::get( '@{string}/tips',               ['uses' => 'UserController@tips',               'as' => 'user.tips']);
 
 Route::group(['before' => 'auth'], function ()
 {
@@ -95,7 +95,7 @@ Route::get( 'content/{slug}',                   ['uses' => 'PostController@show'
 
 Route::group(['before' => 'auth'], function ()
 {
-		Route::get( 'content/{slug}/edit/',     ['uses' => 'PostController@edit',               'as' => 'post.edit']);
+		Route::get( 'content/{id}/edit/',       ['uses' => 'PostController@edit',               'as' => 'post.edit']);
 		Route::get( 'posts/create',             ['uses' => 'PostController@create',             'as' => 'post.create']);
 		Route::post('posts/store',              ['uses' => 'PostController@store',              'as' => 'post.store']);
 	});

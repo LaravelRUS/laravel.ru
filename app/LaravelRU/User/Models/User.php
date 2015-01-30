@@ -155,6 +155,16 @@ class User extends Model implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * User comments
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function comments()
+	{
+		return $this->hasMany('LaravelRU\Comment\Models\Comment', 'author_id');
+	}
+
+	/**
 	 * Properties
 	 */
 
@@ -188,6 +198,11 @@ class User extends Model implements UserInterface, RemindableInterface {
 	public function isLibrarian()
 	{
 		return $this->hasRole('librarian');
+	}
+
+	public function getAvatarAttribute()
+	{
+		return 'http://www.gravatar.com/avatar/' . md5($this->email) . '&s=128';
 	}
 
 }

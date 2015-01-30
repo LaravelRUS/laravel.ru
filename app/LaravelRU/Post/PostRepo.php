@@ -64,4 +64,21 @@ class PostRepo extends AbstractRepository {
 		$allVersions = Version::all();
 	}
 
+	/**
+	 * Get uncompleted post by author
+	 *
+	 * @param \LaravelRU\User\Models\User $author
+	 * @return mixed
+	 */
+	public function getUncompletedPostByAuthor($author)
+	{
+		$post = $author->posts()
+			->where(function($q) {
+				$q->whereNull('title');
+				$q->orWhere('title', '');
+			})->first();
+
+		return $post;
+	}
+
 }

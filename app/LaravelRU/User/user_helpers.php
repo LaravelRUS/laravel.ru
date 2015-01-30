@@ -4,3 +4,11 @@
 | Helpers
 |--------------------------------------------------------------------------
 */
+
+HTML::macro('social', function ($key, $user)
+{
+	if ($info = $user->social->{$key})
+	{
+		return $info;
+	}
+});
