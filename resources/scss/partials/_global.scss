@@ -1,18 +1,19 @@
-body {
-	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	font-weight: 400;
-	color: $body-color;
-	line-height: 1.6;
-	background-color: $body-bg-color;
-	position: relative;
+* {
+	box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-	font-weight: 600;
-	line-height: 1.4;
-	margin-top: 0;
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 1.5em;
+	line-height: 1.6;
+	font-weight: 400;
+	color: $body-color;
+	background-color: $body-bg-color;
+	position: relative;
 }
 
 h1 {
@@ -37,8 +38,10 @@ a {
 	color: $link-color;
 	text-decoration: none;
 
-	&:hover, &:focus {
-		text-decoration: none;
+	@extend %transition;
+
+	&:hover {
+		color: $link-hover-color;
 	}
 }
 
@@ -80,6 +83,24 @@ ul {
 	li {
 		position: relative;
 	}
+
+	&.inline {
+		display: inline;
+
+		> li {
+			float: left;
+			list-style-type: none;
+			padding: 0 15px;
+		}
+
+		@extend %clearfix;
+	}
+
+	&.unstyled {
+		> li {
+			list-style-type: none;
+		}
+	}
 }
 
 //@media (max-width: $screen-xs-max) {
@@ -90,3 +111,39 @@ ul {
 //		padding: 15px !important;
 //	}
 //}
+
+span[data-toggle=dropdown] {
+	cursor: pointer;
+
+	@extend %transition;
+}
+
+button,
+.button {
+	margin-bottom: 1rem;
+}
+
+select,
+fieldset {
+	margin-bottom: 1.5rem;
+}
+
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+	margin-bottom: 2.5rem;
+}
+
+
+hr {
+	margin-top: 3rem;
+	margin-bottom: 3.5rem;
+	border-width: 0;
+	border-top: 1px solid #E1E1E1;
+}
