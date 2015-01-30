@@ -7,11 +7,13 @@
 @section('content')
 
 <div class="row">
+	<div class="col-md-12">
+		<h1>{{ $user->username }}</h1>
+	</div>
+</div>
+<div class="row">
     <div class="col-md-4">
-        <h3>{{ $user->username }}</h3>
-        <p>
-            <br><br>Аватар<br><br>
-        </p>
+        <p><img src="{{ $user->avatar }}" alt="{{ $user->name }}"/></p>
         @if($user->isAdmin()) <span class="text-danger">Администратор</span> @endif
         @if($user->isModerator()) <span class="text-danger">Модератор</span> @endif
         <p>Зарегистрировался: {{ $user->created_at->format('d M Y') }}</p>
@@ -22,19 +24,33 @@
     </div>
 
     <div class="col-md-8">
+	    @if($user->info->about)
         <div class="row">
             <div class="col-md-12">
                 <p>О себе: {{ $user->info->about }}</p>
             </div>
         </div>
+	    @endif
         <div class="row">
             <div class="col-md-6">
-	            @if($user->social->vkontakte)
-                <p>{{ trans('social.vkontakte') }}: <a href="http://vk.com/{{ $user->social->vkontakte }}">{{ $user->social->vkontakte }}</a></p>
-	            @endif
-	            @if($user->social->twitter)
-                <p>{{ trans('social.twitter') }}: <a href="http://twitter.com/{{ $user->social->twitter }}">{{ $user->social->twitter }}</a></p>
-	            @endif
+                @if($user->social->vkontakte)
+                <p><a href="http://vk.com/{{ $user->social->vkontakte }}"><i class="fa fa-vk"></i>&nbsp;{{ trans('social.vkontakte') }}</a></p>
+                @endif
+                @if($user->social->facebook)
+                <p><a href="http://facebook.com/{{ $user->social->facebook }}"><i class="fa fa-facebook"></i>&nbsp;{{ trans('social.facebook') }}</a></p>
+                @endif
+                @if($user->social->twitter)
+                <p><a href="https://twitter.com/{{ $user->social->twitter }}"><i class="fa fa-twitter"></i>&nbsp;{{ trans('social.twitter') }}</a></p>
+                @endif
+                @if($user->social->github)
+                <p><a href="https://github.com/{{ $user->social->github }}"><i class="fa fa-github"></i>&nbsp;{{ trans('social.github') }}</a></p>
+                @endif
+                @if($user->social->bitbucket)
+                <p><a href="https://bitbucket.com/{{ $user->social->bitbucket }}"><i class="fa fa-bitbucket"></i>&nbsp;{{ trans('social.bitbucket') }}</a></p>
+                @endif
+                @if($user->social->google)
+                <p><a href="https://plus.google.com/+{{ $user->social->google }}"><i class="fa fa-google-plus"></i>&nbsp;{{ trans('social.google') }}</a></p>
+                @endif
             </div>
             <div class="col-md-6">
 
@@ -45,8 +61,8 @@
 
 <ul class="nav nav-tabs">
     <li class="active">Статьи</li>
-	<li>Новости</li>
-	<li>Черновики</li>
+    <li>Новости</li>
+    <li>Черновики</li>
 </ul>
 
 @stop
