@@ -75,6 +75,7 @@
 
         function save(form) {
             var $form = $(form);
+            var id;
 
             $.ajax({
                 url: form.action,
@@ -86,15 +87,24 @@
                         msg.addClass('alert-error');
 
                         if (res.errors) {
-                            for (var id in res.errors) {
+                            for (id in res.errors) {
                                 if (res.errors.hasOwnProperty(id)) {
-                                    $form.find('[name="' + id + '"]').after('<div class="error">' + res.errors[id].join('<br>') + '</div>');
+                                    $('<div class="error">' + res.errors[id].join('<br>') + '</div>')
+                                            .insertAfter($form.find('[name="' + id + '"]'));
                                 }
                             }
                         }
                     }
 
                     if (res.success) {
+                        if (res.data) {
+                            for (id in res.data) {
+                                if (res.data.hasOwnProperty(id)) {
+                                    $form.find('[name="' + id + '"]').val(res.data[id]);
+                                }
+                            }
+                        }
+
                         msg.addClass('alert-success');
                         setTimeout(function () {
                             msg.fadeOut(200, function () { msg.remove() });
@@ -120,4 +130,11 @@
     window.profile = new Profile;
 })(window);
 </script>
+<style scoped="">
+.error {
+    color: #F00;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+</style>
 @stop
