@@ -35,6 +35,11 @@ class CoreServiceProvider extends ServiceProvider {
 		{
 			return $this->app['session']->get('jsToken') === $value;
 		});
+
+		$this->app['validator']->extend('slug', function ($attribute, $value, $parameters)
+		{
+			return preg_match('/^\b[a-z\pN-]+\b$/u', $value);
+		});
 	}
 
 }

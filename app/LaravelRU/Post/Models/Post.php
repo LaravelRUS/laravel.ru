@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Laracasts\Presenter\PresentableTrait;
 
-
-
 class Post extends Model implements CommentableInterface {
 
 	use CommentableTrait, SoftDeletingTrait, LikeableTrait, PresentableTrait;
@@ -18,7 +16,6 @@ class Post extends Model implements CommentableInterface {
 	protected $guarded = ['id', 'author_id'];
 
 	protected $dates = ['deleted_at', self::PUBLISHED_AT];
-
 
 	protected $presenter = 'LaravelRU\Post\Presenters\PostPresenter';
 
