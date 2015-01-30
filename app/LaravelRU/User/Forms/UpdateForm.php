@@ -5,7 +5,11 @@ use Laracasts\Validation\FormValidator;
 
 class UpdateForm extends FormValidator {
 
-	protected $messages = [];
+	protected $messages = [
+		'info_birthday.date' => 'Дата рождения имеет неверный формат. Пример, 2000-12-31',
+		'info_birthday.date_format' => 'Дата рождения имеет неверный формат. Пример, 2000-12-31',
+		'info_site.url' => 'Указанный адрес сайта является некорректным',
+	];
 
 	public function getValidationRules()
 	{

@@ -119,7 +119,7 @@ return [
 	*/
 
 	'attributes' => [
-		'user_name' => "Никнейм",
+		'username' => "Логин",
 		'password' => 'Пароль',
 		'i_agree' => "Согласен с правилами",
 		'asp' => "Антиспам",
@@ -127,7 +127,8 @@ return [
 		'articul' => "Артикул",
 		'size' => "Размер",
 		'price' => "Цена",
-		'row_html' => "Описание"
+		'row_html' => "Описание",
+	    'info_birthday' => "Дата рождения",
 	],
 
 ];
