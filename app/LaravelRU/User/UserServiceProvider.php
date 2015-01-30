@@ -15,6 +15,8 @@ class UserServiceProvider extends ServiceProvider {
 	{
 		include 'user_helpers.php';
 		include 'user_events.php';
+
+		$this->registerValidatorRules();
 	}
 
 	/**
@@ -28,6 +30,13 @@ class UserServiceProvider extends ServiceProvider {
 		include 'user_filters.php';
 
 		$this->commands('LaravelRU\User\Commands\UserCommand');
+	}
+
+	private function registerValidatorRules()
+	{
+		$validator = $this->app['validator'];
+
+		include 'user_validator_rules.php';
 	}
 
 }

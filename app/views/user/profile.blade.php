@@ -7,7 +7,10 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <h1>{{ $user->username }}</h1>
+        <h1>
+	        {{ $user->username }}
+	        @if($owner) <a href="{{ route('user.edit') }}" class="pull-right">Настройки</a> @endif
+        </h1>
     </div>
 </div>
 <div class="row">
@@ -33,10 +36,10 @@
         <div class="row">
             <div class="col-md-6">
                 @if($user->social->vkontakte)
-                <p><a href="http://vk.com/{{ $user->social->vkontakte }}"><i class="fa fa-vk"></i>&nbsp;{{ trans('social.vkontakte') }}</a></p>
+                <p><a href="https://vk.com/{{ $user->social->vkontakte }}"><i class="fa fa-vk"></i>&nbsp;{{ trans('social.vkontakte') }}</a></p>
                 @endif
                 @if($user->social->facebook)
-                <p><a href="http://facebook.com/{{ $user->social->facebook }}"><i class="fa fa-facebook"></i>&nbsp;{{ trans('social.facebook') }}</a></p>
+                <p><a href="https://facebook.com/{{ $user->social->facebook }}"><i class="fa fa-facebook"></i>&nbsp;{{ trans('social.facebook') }}</a></p>
                 @endif
                 @if($user->social->twitter)
                 <p><a href="https://twitter.com/{{ $user->social->twitter }}"><i class="fa fa-twitter"></i>&nbsp;{{ trans('social.twitter') }}</a></p>
