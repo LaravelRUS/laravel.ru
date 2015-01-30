@@ -70,7 +70,10 @@ Route::get( '@{string}/tips',               ['uses' => 'UserController@tips',   
 Route::group(['before' => 'auth'], function ()
 {
 	// Внутренний профайл пользователя (настройки, смена пароля и т.п.)
-	Route::get( 'settings',                     ['uses' => 'UserController@edit',               'as' => 'user.edit']);
+	Route::get(  'settings',                     ['uses' => 'UserController@edit',               'as' => 'user.edit']);
+	Route::post( 'settings/main',                ['uses' => 'UserController@saveMain',           'as' => 'user.edit.main']);
+	Route::post( 'settings/social',              ['uses' => 'UserController@saveSocial',         'as' => 'user.edit.social']);
+	Route::post( 'settings/info',                ['uses' => 'UserController@saveInfo',           'as' => 'user.edit.info']);
 });
 
 

@@ -40,6 +40,11 @@ class CoreServiceProvider extends ServiceProvider {
 		{
 			return preg_match('/^\b[a-z\pN-]+\b$/u', $value);
 		});
+
+		$this->app['validator']->extend('alphaNumDashDot', function ($attribute, $value, $parameters)
+		{
+			return preg_match('/^\b[a-z\pN\-_\.]+\b$/u', $value);
+		});
 	}
 
 }

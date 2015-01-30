@@ -202,7 +202,7 @@ class User extends Model implements UserInterface, RemindableInterface {
 
 	public function getAvatarAttribute()
 	{
-		return 'http://www.gravatar.com/avatar/' . md5($this->email) . '&s=128';
+		return 'http://www.gravatar.com/avatar/' . md5($this->email) . '?s=256' . '&d=' . urlencode(app('url')->asset('img/avatar.png'));
 	}
 
 }
