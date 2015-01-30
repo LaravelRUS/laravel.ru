@@ -31,8 +31,9 @@ class UserController extends BaseController {
 
 	public function profile($username)
 	{
-		$user = User::where('username', $username)->with(['posts', 'tips', 'news'])->first();
-		if ( ! $user) abort();
+		if ( ! $user = $this->userRepo->getByUsername($username)) abort();
+
+		$user->load(['posts', 'tips', 'news', 'info', 'social']);
 
 		// TODO для чего переменная $sidebar?
 		//$sidebar = Sidebar::renderLastPosts();
