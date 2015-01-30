@@ -72,12 +72,9 @@ class UserController extends BaseController {
 			}
 
 			$user->social->{$id} = $value;
-			$data["social_{$id}"] = $value;
 		}
 
-		$data['info_about'] = e(strip_tags(array_get($data, 'info_about')));
-
-		$user->info->about = $data['info_about'];
+		$user->info->about = e(strip_tags(array_get($data, 'info_about')));
 		$user->info->birthday = array_get($data, 'info_birthday');
 		$user->info->site = array_get($data, 'info_site');
 		$user->info->skype = array_get($data, 'info_skype');
