@@ -95,7 +95,7 @@ Route::get( 'content/{slug}',                   ['uses' => 'PostController@show'
 
 Route::group(['before' => 'auth'], function ()
 {
-		Route::get( 'content/{slug}/edit/',     ['uses' => 'PostController@edit',               'as' => 'post.edit']);
+		Route::get( 'content/{id}/edit/',       ['uses' => 'PostController@edit',               'as' => 'post.edit']);
 		Route::get( 'posts/create',             ['uses' => 'PostController@create',             'as' => 'post.create']);
 		Route::post('posts/store',              ['uses' => 'PostController@store',              'as' => 'post.store']);
 	});
