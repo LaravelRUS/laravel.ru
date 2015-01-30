@@ -1,50 +1,52 @@
-<nav class="navbar navbar-static-top" role="navigation">
+<nav role="navigation">
 	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#laravel-navbar-collapse">
-				<span class="sr-only">Навигация</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<div class="brand-area">
-				<a class="navbar-brand text-uppercase" href="{{ route('home') }}">Laravel.ru</a>
-			</div>
+		<div class="brand">
+			<a href="{{ route('home') }}">Laravel.ru</a>
 		</div>
-		<div class="navbar-collapse collapse" id="laravel-navbar-collapse">
-			<ul class="nav navbar-nav">
+		<ul class="inline float-right">
+			<li>
+				<a href="{{ route("documentation") }}">Документация</a>
+			</li>
+			<li>
+				<a href="{{ route("documentation") }}">Статьи</a>
+			</li>
+			<li>
+				<a href="{{ route("documentation") }}">Ответы</a>
+			</li>
+			<li>
+				<a href="{{ route("documentation") }}">Пакеты</a>
+			</li>
+			<li>
+				<a href="{{ route("documentation") }}">Cheat Sheet</a>
+			</li>
+			@if(Auth::check())
 				<li>
-					<a href="{{ route("documentation") }}">Документация</a>
-				</li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				@if(Auth::check())
-					<li>
-						<a href="#" data-toggle="dropdown">{{ Auth::user()->username }} <span class="caret"></span></a>
-						<ul class="dropdown-menu">
+					<span data-toggle="dropdown">{{ Auth::user()->username }}</span>
+					<ul class="dropdown">
+						<li>
+							<a href="{{ route("user.profile", Auth::user()->username) }}">Профиль</a>
+						</li>
+						@if(Auth::user()->isAdmin())
 							<li>
-								<a href="{{ route("user.profile", Auth::user()->username) }}">Мой профайл</a>
+								<a href="{{ route("admin.users") }}">Новая статья</a>
 							</li>
-							@if(Auth::user()->isAdmin())
-								<li class="divider"></li>
-								<li>
-									<a href="{{ route("admin.users") }}">Список пользователей</a>
-								</li>
-							@endif
-							@if(Auth::user()->isLibrarian())
-								<li>
-									<a href="{{ route("documentation.status") }}">Прогресс перевода</a>
-								</li>
-							@endif
-							<li class="divider"></li>
-							<li><a href="{{ route('auth.logout') }}">Выход</a></li>
-						</ul>
-					</li>
-				@else
-					<li><a href="{{ route('auth.login') }}">Вход</a></li>
-					<li><a href="{{ route('auth.registration') }}">Регистрация</a></li>
-				@endif
-			</ul>
-		</div>
+						@endif
+						@if(Auth::user()->isLibrarian())
+							<li>
+								<a href="{{ route("documentation.status") }}">Прогресс перевода</a>
+							</li>
+						@endif
+						<li><a href="{{ route('auth.logout') }}">Выход</a></li>
+					</ul>
+				</li>
+			@else
+				<li>
+					<a href="{{ route('auth.login') }}">Вход</a>
+				</li>
+				<li>
+					<a href="{{ route('auth.registration') }}">Регистрация</a>
+				</li>
+			@endif
+		</ul>
 	</div>
 </nav>
