@@ -35,10 +35,12 @@ class UserController extends BaseController {
 
 		$user->load(['posts', 'tips', 'news', 'info', 'social']);
 
+		$owner = $user->username == $username;
+
 		// TODO для чего переменная $sidebar?
 		//$sidebar = Sidebar::renderLastPosts();
 
-		return View::make('user/profile', compact('user'));
+		return View::make('user/profile', compact('user', 'owner'));
 	}
 
 	public function edit()
