@@ -3,7 +3,7 @@
 return [
 	'vkontakte' => 'Вконтакте',
 	'facebook' => 'Facebook',
-	'bitbucket' => 'BitBucket',
+	'bitbucket' => 'Bitbucket',
 	'github' => 'GitHub',
 	'twitter' => 'Twitter',
 	'google' => 'Google+',
