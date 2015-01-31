@@ -23,7 +23,6 @@ $body-bg-color: $color-grey-0;
 $link-color: $color-grey-6;
 $link-hover-color: $color-grey-8;
 
-$input-border-focus-color: $border-color;
 // Nav
 $nav-height: 70px;
 $nav-bg-color: white;
@@ -56,5 +55,13 @@ $header-bg-color: #C8544E;
 // Sidebar
 $sidebar-widget-light-bg-color: white;
 
+// Buttons
 $button-border-color: #696969;
-$input-border-color: #696969;
+$button-success-color: white;
+$button-success-bg-color: $color-green;
+$button-success-hover-color: white;
+$button-success-hover-bg-color: lighten($color-green, 5%);
+
+// Forms
+$input-border-color: $color-grey-2;
+$input-border-hover-color: $color-grey-5;

@@ -58,13 +58,7 @@ span[data-toggle=dropdown] {
 	@extend %transition;
 }
 
-button,
-.button {
-	margin-bottom: 1rem;
-}
-
-select,
-fieldset {
+select, fieldset {
 	margin-bottom: 1.5rem;
 }
 
@@ -75,8 +69,7 @@ figure,
 table,
 p,
 ul,
-ol,
-form {
+ol {
 	margin-bottom: 2.5rem;
 }
 
