@@ -8,30 +8,11 @@ html {
 
 body {
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 1.5em;
 	line-height: 1.6;
 	font-weight: 400;
 	color: $body-color;
 	background-color: $body-bg-color;
 	position: relative;
-}
-
-h1 {
-	font-size: 28px;
-	text-transform: uppercase;
-	color: #F4645F;
-	margin-bottom: 20px;
-}
-
-h2 {
-	font-size: 20px;
-	font-weight: 400;
-	text-transform: uppercase;
-}
-
-h5 {
-	font-size: 16px;
-	margin-bottom: 2px;
 }
 
 a {
@@ -47,15 +28,6 @@ a {
 
 b, strong {
 	font-weight: 600;
-}
-
-code {
-	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-	background: #EEEEEE;
-	color: $primary-color;
-	padding: 2px 7px;
-	border-radius: 3px;
-	font-size: 12px;
 }
 
 table {
@@ -78,39 +50,6 @@ table {
 		margin-right: 3px;
 	}
 }
-
-ul {
-	li {
-		position: relative;
-	}
-
-	&.inline {
-		display: inline;
-
-		> li {
-			float: left;
-			list-style-type: none;
-			padding: 0 15px;
-		}
-
-		@extend %clearfix;
-	}
-
-	&.unstyled {
-		> li {
-			list-style-type: none;
-		}
-	}
-}
-
-//@media (max-width: $screen-xs-max) {
-//	.container {
-//		padding: 0;
-//	}
-//	.p-35-45 {
-//		padding: 15px !important;
-//	}
-//}
 
 span[data-toggle=dropdown] {
 	cursor: pointer;

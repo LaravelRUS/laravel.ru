@@ -13,3 +13,12 @@ pre > code {
 	padding: 1rem 1.5rem;
 	white-space: pre;
 }
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+	background: #EEEEEE;
+	color: $primary-color;
+	padding: 2px 7px;
+	border-radius: 3px;
+	font-size: 12px;
+}
