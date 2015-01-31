@@ -49,24 +49,25 @@ Route::get('registration/almost-done', [
 	'uses' => 'AuthController@preConfirmation'
 ]);
 
-Route::get('registration/confirmation/{string}',['uses' => 'AuthController@getConfirmation',    'as' => 'auth.registration.confirmation']);
+Route::get('registration/confirmation/{string}', [
+	'as' => 'auth.registration.confirmation',
+	'uses' => 'AuthController@checkConfirmation'
+]);
 
-Route::get( 'login',                            ['uses' => 'AuthController@getLogin',           'as' => 'auth.login']);
-Route::post('login',                            ['uses' => 'AuthController@postLogin',          'as' => 'auth.login.post']);
+Route::get('login', [
+	'as' => 'auth.login',
+	'uses' => 'AuthController@login'
+]);
 
-Route::get( 'logout',                           ['uses' => 'AuthController@getLogout',          'as' => 'auth.logout']);
+Route::post('login', [
+	'as' => 'auth.login.post',
+	'uses' => 'AuthController@submitLogin'
+]);
 
-
-// ===== Админка =====
-
-Route::group(['before' => 'administrator'], function ()
-{
-	// Админка
-	Route::get( 'admin/list_users',             ['uses' => 'AdminController@listUsers',         'as' => 'admin.users']);
-	Route::post('admin/add_role',               ['uses' => 'AdminController@addRole',           'as' => 'admin.add_role']);
-	Route::post('admin/remove_role',            ['uses' => 'AdminController@removeRole',        'as' => 'admin.remove_role']);
-
-});
+Route::get('logout', [
+	'as' => 'auth.logout',
+	'uses' => 'AuthController@logout'
+]);
 
 // Docs
 Route::get('docs/status', [
@@ -78,6 +79,17 @@ Route::get('docs/{version?}/{string?}', [
 	'as' => 'documentation',
 	'uses' => 'DocsController@docs'
 ]);
+
+// ===== Админка =====
+
+Route::group(['before' => 'administrator'], function ()
+{
+	// Админка
+	Route::get( 'admin/list_users',             ['uses' => 'AdminController@listUsers',         'as' => 'admin.users']);
+	Route::post('admin/add_role',               ['uses' => 'AdminController@addRole',           'as' => 'admin.add_role']);
+	Route::post('admin/remove_role',            ['uses' => 'AdminController@removeRole',        'as' => 'admin.remove_role']);
+
+});
 
 // ===== Профайл пользователя
 

@@ -69,7 +69,7 @@ class AuthController extends BaseController {
 		return View::make('auth.pre-confirmation');
 	}
 
-	public function getConfirmation($code)
+	public function checkConfirmation($code)
 	{
 		$userConfirmation = Confirmation::where('code', $code)->first();
 
@@ -82,18 +82,18 @@ class AuthController extends BaseController {
 
 			Auth::login($user);
 
-			return View::make('auth/confirmation_success');
+			return View::make('auth.confirmation-success');
 		}
 
-		return View::make('auth/confirmation_error');
+		return View::make('auth.confirmation-error');
 	}
 
-	public function getLogin()
+	public function login()
 	{
 		return View::make('auth.login');
 	}
 
-	public function postLogin()
+	public function submitLogin()
 	{
 		$login = Input::get('login');
 		$password = Input::get('password');
@@ -120,11 +120,11 @@ class AuthController extends BaseController {
 		return Redirect::intended();
 	}
 
-	public function getLogout()
+	public function logout()
 	{
 		Auth::logout();
 
-		return Redirect::to('/');
+		return Redirect::route('home');
 	}
 
 }

@@ -7,7 +7,7 @@
 	<main class="container">
 		<div class="row">
 			<div class="col-xs-6 col-xs-offset-3">
-				<article class="bg-white p-45 popup">
+				<article class="bg-white popup">
 					<header class="text-center">
 						<h1>Регистрация</h1>
 					</header>
