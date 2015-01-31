@@ -35,11 +35,11 @@ class AuthController extends BaseController {
 
 	public function postRegistration()
 	{
-		$input = Input::only('username', 'email', 'password', 'jtoken');
+		$input = Input::only('username', 'email', 'password', 'jsToken');
 
 		$this->registrationForm->validate($input);
 
-		unset($input['jtoken']);
+		unset($input['jsToken']);
 
 		$user = User::create($input);
 		$user->info()->save(new UserInfo);
@@ -90,7 +90,7 @@ class AuthController extends BaseController {
 
 	public function getLogin()
 	{
-		return View::make('auth/login');
+		return View::make('auth.login');
 	}
 
 	public function postLogin()
@@ -113,7 +113,7 @@ class AuthController extends BaseController {
 		if ( ! $success)
 		{
 			return Redirect::route('auth.login')
-				->withErrors(['wrong_input' => 'Неправильный email/логин или пароль.'])
+				->withErrors(['wrong_input' => 'Неправильный логин, email или пароль.'])
 				->onlyInput('login');
 		}
 

@@ -1,0 +1,10 @@
+.sidebar {
+	aside.widget {
+		padding: 25px;
+		margin-bottom: 30px;
+
+		&.light {
+			background-color: $sidebar-widget-light-bg-color;
+		}
+	}
+}

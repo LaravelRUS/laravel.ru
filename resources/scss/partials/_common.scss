@@ -32,6 +32,10 @@
 	background-color: white;
 }
 
+.bg-dark-grey {
+	background-color: $color-grey-8;
+}
+
 .letter-spacing-stiff {
 	letter-spacing: -0.03em;
 }
@@ -42,6 +46,14 @@
 
 .p-35-45 {
 	padding: 35px 45px;
+}
+
+.p-45 {
+	padding: 45px;
+}
+
+.m-t-30 {
+	margin-top: 30px;
 }
 
 .m-l-10 {
@@ -73,4 +85,16 @@
 header.bordered {
 	padding-bottom: 20px;
 	border-bottom: 2px solid $border-color;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.full-width {
+	width: 100%;
 }

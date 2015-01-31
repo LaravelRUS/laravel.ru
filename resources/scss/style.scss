@@ -1,7 +1,7 @@
 // Additional Font
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=cyrillic,latin);
-// Bootstrap
-@import "vendor/bootstrap";
+// Normalize
+@import "partials/normalize";
 // Font Awesome
 @import "./vendor/bower_components/fontawesome/scss/font-awesome";
 // Bootflat Colors
@@ -9,10 +9,18 @@
 // Project Styles
 @import "partials/variables";
 @import "partials/global";
+@import "partials/grid";
 @import "partials/common";
 @import "partials/mixins";
+@import "partials/typography";
+@import "partials/buttons";
+@import "partials/lists";
+@import "partials/forms";
+@import "partials/code";
 @import "partials/code-highlight";
 @import "partials/elements";
 @import "partials/nav";
+@import "partials/sidebar";
 @import "partials/footer";
+@import "partials/utilities";
 @import "partials/docs";

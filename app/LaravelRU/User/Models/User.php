@@ -110,9 +110,9 @@ class User extends Model implements UserInterface, RemindableInterface {
 		return $this->belongsToMany('LaravelRU\Access\Models\Role', 'user_role', 'user_id', 'role_id');
 	}
 
-	public function posts()
+	public function articles()
 	{
-		return $this->hasMany('LaravelRU\Post\Models\Post', 'author_id')
+		return $this->hasMany('LaravelRU\Articles\Models\Article', 'author_id')
 			->orderBy(static::PUBLISHED_AT, 'desc');
 	}
 

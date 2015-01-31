@@ -54,6 +54,18 @@ abstract class AbstractRepository {
 	}
 
 	/**
+	 * Find or fail model by ID
+	 *
+	 * @param int $id
+	 *
+	 * @return Model|null
+	 */
+	public function findOrFail($id)
+	{
+		return $this->model->findOrFail($id);
+	}
+
+	/**
 	 * Find model by ID
 	 *
 	 * @param int $id

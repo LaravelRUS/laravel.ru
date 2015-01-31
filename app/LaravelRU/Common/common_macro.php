@@ -175,3 +175,8 @@ function activeClassName($route)
 {
 	return (Route::currentRouteName() == $route) ? 'active' : null;
 }
+
+function activeClass($routes = [])
+{
+	return (in_array(Route::currentRouteName(), $routes)) ? 'class="active"' : null;
+}

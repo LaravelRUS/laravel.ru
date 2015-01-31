@@ -3,14 +3,14 @@
 use LaravelRU\Docs\Models\Documentation;
 use LaravelRU\News\Repositories\NewsRepo;
 use LaravelRU\Packages\PackageRepo;
-use LaravelRU\Post\PostRepo;
+use LaravelRU\Articles\ArticleRepo;
 
 class HomeController extends BaseController {
 
 	/**
-	 * @var PostRepo
+	 * @var ArticleRepo
 	 */
-	private $postRepo;
+	private $articleRepo;
 
 	/**
 	 * @var NewsRepo
@@ -22,16 +22,16 @@ class HomeController extends BaseController {
 	 */
 	private $packageRepo;
 
-	public function __construct(PostRepo $postRepo, NewsRepo $newsRepo, PackageRepo $packageRepo)
+	public function __construct(ArticleRepo $articleRepo, NewsRepo $newsRepo, PackageRepo $packageRepo)
 	{
-		$this->postRepo = $postRepo;
+		$this->articleRepo = $articleRepo;
 		$this->newsRepo = $newsRepo;
 		$this->packageRepo = $packageRepo;
 	}
 
 	public function home()
 	{
-		$lastPosts = $this->postRepo->getLastPosts();
+		$lastPosts = $this->articleRepo->getLastArticles();
 		$lastNews = $this->newsRepo->getLastNews(5);
 
 		$newPackages = $this->packageRepo->getLastCreated();
