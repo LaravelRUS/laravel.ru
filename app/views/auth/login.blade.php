@@ -7,8 +7,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-6 col-xs-offset-3">
-				<main class="bg-white p-45 popup">
+				<main class="bg-white popup">
 					<article>
+						<aside class="header-icon">
+							<i class="fa fa-user-secret"></i>
+						</aside>
 						<header class="text-center">
 							<h1>Авторизация</h1>
 						</header>

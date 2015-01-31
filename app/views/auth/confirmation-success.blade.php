@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Завершение регистрации')
+@section('title', 'Успешная регистрация')
 @section('meta-description', 'Описание')
 
 @section('container')
@@ -10,12 +10,12 @@
 				<main class="bg-white p-45 popup">
 					<article>
 						<aside class="header-icon success">
-							<i class="fa fa-check"></i>
+							<i class="fa fa-child"></i>
 						</aside>
 						<header class="text-center">
-							<h1 class="c-green">Регистрация прошла успешно!</h1>
+							<h1 class="c-green">Регистрация успешно завершена!</h1>
 						</header>
-						<p class="text-center">Ссылка для завершения регистрации выслана на email.</p>
+						<p class="text-center">Приветствуем в нашем сообществе.</p>
 					</article>
 				</main>
 			</div>

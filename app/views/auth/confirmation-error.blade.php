@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Завершение регистрации')
+@section('title', 'Ошибка при регистрации')
 @section('meta-description', 'Описание')
 
 @section('container')
@@ -9,13 +9,13 @@
 			<div class="col-xs-6 col-xs-offset-3">
 				<main class="bg-white p-45 popup">
 					<article>
-						<aside class="header-icon success">
-							<i class="fa fa-check"></i>
+						<aside class="header-icon danger">
+							<i class="fa fa-times"></i>
 						</aside>
 						<header class="text-center">
-							<h1 class="c-green">Регистрация прошла успешно!</h1>
+							<h1 class="c-red">Код подтверждения неверен!</h1>
 						</header>
-						<p class="text-center">Ссылка для завершения регистрации выслана на email.</p>
+						<p class="text-center">Указанный код неверный. Проверьте его ещё раз.</p>
 					</article>
 				</main>
 			</div>
