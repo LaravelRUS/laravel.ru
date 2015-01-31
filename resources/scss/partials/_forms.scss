@@ -52,4 +52,24 @@ div.form-group {
 	&:last-of-type {
 		margin-bottom: 30px;
 	}
+
+	&.has-error {
+		input {
+			border-color: $color-red;
+		}
+		p {
+			color: $color-red;
+		}
+	}
+
+	p {
+		font-size: 1.4rem;
+		margin: 10px 0;
+	}
+}
+
+form p {
+	&:last-of-type {
+		margin-bottom: 0;
+	}
 }
