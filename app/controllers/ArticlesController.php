@@ -6,7 +6,7 @@ use LaravelRU\Articles\Forms\UpdateArticleForm;
 use LaravelRU\Articles\ArticleRepo;
 use LaravelRU\Comment\Models\Comment;
 
-class ArticleController extends BaseController {
+class ArticlesController extends BaseController {
 
 	/**
 	 * @var ArticleRepo
@@ -26,8 +26,15 @@ class ArticleController extends BaseController {
 	public function __construct(CreateArticleForm $createArticleForm, UpdateArticleForm $updateArticleForm, ArticleRepo $articleRepo)
 	{
 		$this->articleRepo = $articleRepo;
-		$this-$createArticleForm = $createArticleForm;
-		$this-$updateArticleForm = $updateArticleForm;
+		//$this->$createArticleForm = $createArticleForm;
+		//$this->$updateArticleForm = $updateArticleForm;
+	}
+
+	public function showAll()
+	{
+		$articles = $this->articleRepo->query()->with('author')->paginate(10);
+
+		return View::make('articles.show-all', compact('articles'));
 	}
 
 	public function show($slug)
