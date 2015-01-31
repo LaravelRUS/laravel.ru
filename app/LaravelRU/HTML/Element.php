@@ -83,6 +83,6 @@ class Element {
 
 	private function errorHelpBlock($field)
 	{
-		return (($errors = Session::get('errors')) && $errors->has($field)) ? '<span class="help-block">' . $errors->first($field) . '</span>' : null;
+		return (($errors = Session::get('errors')) && $errors->has($field)) ? '<p class="error-block">' . $errors->first($field) . '</p>' : null;
 	}
 }

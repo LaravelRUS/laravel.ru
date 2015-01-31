@@ -13,6 +13,8 @@ class RefactorArticlesTable extends Migration {
 	public function up()
 	{
 		DB::statement('ALTER TABLE articles MODIFY COLUMN version_id int(10) AFTER id');
+		DB::statement('ALTER TABLE `articles` MODIFY `title` varchar(255) NULL DEFAULT NULL');
+		DB::statement('ALTER TABLE `articles` MODIFY `slug` varchar(255) NULL DEFAULT NULL');
 
 		Schema::table('articles', function (Blueprint $table)
 		{
@@ -22,9 +24,6 @@ class RefactorArticlesTable extends Migration {
 			$table->string('source_article_url')->nullable()->default(null)->unique()->after('source_article_author');
 			$table->unique(['title', 'slug']);
 		});
-
-		DB::statement('ALTER TABLE `articles` MODIFY `title` varchar(255) NULL DEFAULT NULL');
-		DB::statement('ALTER TABLE `articles` MODIFY `slug` varchar(255) NULL DEFAULT NULL');
 	}
 
 	/**
@@ -35,6 +34,8 @@ class RefactorArticlesTable extends Migration {
 	public function down()
 	{
 		DB::statement('ALTER TABLE articles MODIFY COLUMN version_id int(10) AFTER slug');
+		DB::statement('ALTER TABLE `articles` MODIFY `title` varchar(255) NOT NULL');
+		DB::statement('ALTER TABLE `articles` MODIFY `slug` varchar(255) NOT NULL');
 
 		Schema::table('articles', function (Blueprint $table)
 		{
@@ -44,9 +45,6 @@ class RefactorArticlesTable extends Migration {
 			$table->dropColumn('source_article_url');
 			$table->dropUnique(['title', 'slug']);
 		});
-
-		DB::statement('ALTER TABLE `articles` MODIFY `title` varchar(255) NOT NULL');
-		DB::statement('ALTER TABLE `articles` MODIFY `slug` varchar(255) NOT NULL');
 	}
 
 }

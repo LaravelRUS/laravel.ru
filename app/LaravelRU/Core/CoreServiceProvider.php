@@ -29,7 +29,7 @@ class CoreServiceProvider extends ServiceProvider {
 	 */
 	public function registerValidatorExtenders()
 	{
-		$this->app['validator']->extend('jstoken', function ($attribute, $value, $parameters)
+		$this->app['validator']->extend('js_token', function ($attribute, $value, $parameters)
 		{
 			return $this->app['session']->get('jsToken') === $value;
 		});
