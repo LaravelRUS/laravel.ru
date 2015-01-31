@@ -4,11 +4,11 @@
 			<a href="{{ route('home') }}">Laravel.ru</a>
 		</div>
 		<ul class="inline float-right">
-			<li>
+			<li {{activeClass(['documentation', 'documentation.status'])}}>
 				<a href="{{ route("documentation") }}">Документация</a>
 			</li>
-			<li>
-				<a href="{{ route("documentation") }}">Статьи</a>
+			<li {{activeClass(['articles.all'])}}>
+				<a href="{{ route("articles.all") }}">Статьи</a>
 			</li>
 			<li>
 				<a href="{{ route("documentation") }}">Ответы</a>

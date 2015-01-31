@@ -34,4 +34,13 @@ class Article extends Eloquent implements CommentableInterface {
 		return $query->where('is_draft', 0);
 	}
 
+	public function scopeWithAuthor($query)
+	{
+		return $query->with('author');
+	}
+
+	public function scopeOrderByDatePublished($query, $sortOrder = 'desc')
+	{
+		return $query->orderBy(self::PUBLISHED_AT, $sortOrder);
+	}
 }

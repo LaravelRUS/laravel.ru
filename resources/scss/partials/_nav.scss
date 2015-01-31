@@ -2,6 +2,7 @@ nav {
 	font-weight: 600;
 	text-transform: uppercase;
 	line-height: $nav-height;
+	margin-bottom: $nav-margin-bottom;
 	background-color: $nav-bg-color;
 
 	div.brand {
@@ -30,11 +31,13 @@ nav {
 		> a, span {
 			padding-bottom: 5px;
 			border-bottom: 2px solid $nav-bg-color;
+		}
 
-			&:hover, &:focus {
-				color: $primary-color;
-				border-color: $primary-color;
-			}
+		&.active > a,
+		a:hover, a:focus,
+		span:hover, span:focus {
+			color: $primary-color;
+			border-color: $primary-color;
 		}
 	}
 

@@ -27,6 +27,7 @@ $input-border-focus-color: $border-color;
 // Nav
 $nav-height: 70px;
 $nav-bg-color: white;
+$nav-margin-bottom: 30px;
 $nav-brand-width: 200px;
 $nav-brand-color: $primary-color;
 $nav-dropdown-height: 60px;
@@ -51,6 +52,9 @@ $docs-bloquote-bg-color: #F4726D;
 // Home
 $header-bg-url: 'img/hexagons.jpg';
 $header-bg-color: #C8544E;
+
+// Sidebar
+$sidebar-widget-light-bg-color: white;
 
 $button-border-color: #696969;
 $input-border-color: #696969;

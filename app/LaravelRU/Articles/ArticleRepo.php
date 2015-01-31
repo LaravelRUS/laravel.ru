@@ -45,8 +45,18 @@ class ArticleRepo extends AbstractRepository {
 	 */
 	public function getLastArticles($num = 10)
 	{
-		return $this->model->notDraft()->with('author')->orderBy(Article::PUBLISHED_AT, 'desc')
-			->limit($num)->get();
+		return $this->model->notDraft()->withAuthor()->orderByDatePublished()->limit($num)->get();
+	}
+
+	/**
+	 * Get the latest articles and paginate them
+	 *
+	 * @param int $num
+	 * @return mixed
+	 */
+	public function getArticlesAndPaginate($num = 15)
+	{
+		return $this->model->notDraft()->withAuthor()->withComments()->orderByDatePublished()->paginate($num);
 	}
 
 	/**
@@ -66,7 +76,8 @@ class ArticleRepo extends AbstractRepository {
 	public function getUncompletedArticleByAuthor($author)
 	{
 		$article = $author->articles()
-			->where(function($q) {
+			->where(function ($q)
+			{
 				$q->whereNull('title');
 				$q->orWhere('title', '');
 			})->first();

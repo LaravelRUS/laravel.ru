@@ -32,7 +32,7 @@ class ArticlesController extends BaseController {
 
 	public function showAll()
 	{
-		$articles = $this->articleRepo->query()->with('author')->paginate(10);
+		$articles = $this->articleRepo->getArticlesAndPaginate();
 
 		return View::make('articles.show-all', compact('articles'));
 	}
