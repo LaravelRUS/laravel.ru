@@ -1,36 +1,26 @@
-@extends('layouts.nosidebar')
+@extends('layouts.main')
 
-@section('title')
-Вход
-@stop
+@section('title', 'Вход')
+@section('meta-description', 'Описание')
 
-@section('content')
-<div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<div style="margin:150px 0 400px">
-			<div class="box">
-			<h1>Авторизация</h1>
-
-			{{ Form::open(['route' => 'auth.login.post']) }}
-				<div class="form-group">
-					<label>Логин / Email</label>
-					{{ Form::text('login', '', ['class' => 'form-control', 'required' => 'required']) }}
-					@include('field-error', ['field' => 'login'])
-				</div>
-
-				<div class="form-group">
-					<label>Пароль</label>
-					<input type="password" class="form-control" name="password" required="required">
-					@include('field-error', ['field' => 'password'])
-				</div>
-
-				<div class="form-group">
-					<button class="btn btn-default">Войти</button>
-					@include('field-error', ['field' => 'wrong_input'])
-				</div>
-			{{ Form::close() }}
+@section('container')
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6 col-xs-offset-3">
+				<main class="bg-white p-45 popup">
+					<article>
+						<header class="text-center">
+							<h1>Авторизация</h1>
+						</header>
+						@include('partials.error', ['field' => 'wrong_input'])
+						{{ Form::open(['route' => 'auth.login.post']) }}
+							{{ Element::input('text', 'login', 'Логин или Email', null, null, true) }}
+							{{ Element::password() }}
+							{{ Element::button('Войти') }}
+						{{ Form::close() }}
+					</article>
+				</main>
 			</div>
 		</div>
 	</div>
-</div>
 @stop

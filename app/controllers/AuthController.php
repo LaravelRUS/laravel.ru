@@ -113,7 +113,7 @@ class AuthController extends BaseController {
 		if ( ! $success)
 		{
 			return Redirect::route('auth.login')
-				->withErrors(['wrong_input' => 'Неправильный email/логин или пароль.'])
+				->withErrors(['wrong_input' => 'Неправильный логин, email или пароль.'])
 				->onlyInput('login');
 		}
 
