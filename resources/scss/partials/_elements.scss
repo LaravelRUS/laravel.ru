@@ -49,4 +49,27 @@
 		border-bottom: 2px solid $border-color;
 		margin-bottom: 30px;
 	}
+
+	.header-icon {
+		text-align: center;
+
+		i {
+			color: white;
+			background-color: $color-grey-8;
+			margin: 0 auto 40px auto;
+			font-size: 6rem;
+			padding: 35px;
+			border-radius: 50%;
+			border: 10px solid $border-color;
+		}
+
+		&.success i {
+			color: white;
+			background-color: $color-green;
+		}
+	}
+
+	p:last-of-type {
+		margin-bottom: 0;
+	}
 }

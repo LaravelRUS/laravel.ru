@@ -29,6 +29,11 @@ class UserController extends BaseController {
 		$this->updateForm = $updateForm;
 	}
 
+	public function showAll()
+	{
+		return View::make('//TODO');
+	}
+
 	public function profile($username)
 	{
 		if ( ! $user = $this->userRepo->getByUsername($username)) abort();
@@ -59,7 +64,7 @@ class UserController extends BaseController {
 		$user = Auth::user();
 
 		$user->username = array_get($data, 'username');
-		$user->email= array_get($data, 'email');
+		$user->email = array_get($data, 'email');
 		$user->fullname = array_get($data, 'fullname');
 
 		$regexps = Config::get('social_regexp');
