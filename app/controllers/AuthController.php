@@ -25,7 +25,7 @@ class AuthController extends BaseController {
 		$this->loginForm = $loginForm;
 	}
 
-	public function getRegistration()
+	public function registration()
 	{
 		$jsToken = Str::quickRandom(10);
 		Session::set('jsToken', $jsToken);
@@ -33,7 +33,7 @@ class AuthController extends BaseController {
 		return View::make('auth.registration', compact('jsToken'));
 	}
 
-	public function postRegistration()
+	public function submitRegistration()
 	{
 		$input = Input::only('username', 'email', 'password', 'jsToken');
 
@@ -61,12 +61,12 @@ class AuthController extends BaseController {
 			$message->subject('Подтверждение регистрации');
 		});
 
-		return Redirect::route('auth.registration.preconfirmation');
+		return Redirect::route('auth.registration.pre-confirmation');
 	}
 
-	public function getPreconfirmation()
+	public function preConfirmation()
 	{
-		return View::make('auth/preconfirmation');
+		return View::make('auth.pre-confirmation');
 	}
 
 	public function getConfirmation($code)

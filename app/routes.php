@@ -33,12 +33,22 @@ Route::get('help/rules', [
 ]);
 Route::get('help/{page}',                      ['uses' => 'PagesController@page',               'as' => 'page']);
 
-// ===== Авторизация =====
+// Auth
+Route::get('registration', [
+	'as' => 'auth.registration',
+	'uses' => 'AuthController@registration'
+]);
 
-Route::get( 'registration',                     ['uses' => 'AuthController@getRegistration',    'as' => 'auth.registration']);
-Route::post('registration',                     ['uses' => 'AuthController@postRegistration',   'as' => 'auth.registration.post']);
+Route::post('registration', [
+	'as' => 'auth.registration.post',
+	'uses' => 'AuthController@submitRegistration'
+]);
 
-Route::get('registration/almost_done',          ['uses' => 'AuthController@getPreconfirmation', 'as' => 'auth.registration.preconfirmation']);
+Route::get('registration/almost-done', [
+	'as' => 'auth.registration.pre-confirmation',
+	'uses' => 'AuthController@preConfirmation'
+]);
+
 Route::get('registration/confirmation/{string}',['uses' => 'AuthController@getConfirmation',    'as' => 'auth.registration.confirmation']);
 
 Route::get( 'login',                            ['uses' => 'AuthController@getLogin',           'as' => 'auth.login']);
