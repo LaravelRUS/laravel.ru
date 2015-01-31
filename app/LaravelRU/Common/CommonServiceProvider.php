@@ -18,7 +18,6 @@ class CommonServiceProvider extends ServiceProvider {
 		$this->app['config']->set('view.paths', $viewPaths);
 
 		include __DIR__ . DIRECTORY_SEPARATOR . 'common_helpers.php';
-		include __DIR__ . DIRECTORY_SEPARATOR . 'common_widgets.php';
 
 	}
 
