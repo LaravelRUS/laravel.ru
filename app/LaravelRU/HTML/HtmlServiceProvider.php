@@ -7,11 +7,11 @@ class HtmlServiceProvider extends ServiceProvider {
 
 	public function register()
 	{
-		$this->app->bind('bootstrap3', 'LaravelRU\HTML\Bootstrap3');
+		$this->app->bind('element', 'LaravelRU\HTML\Element');
 
 		$this->app->booting(function ()
 		{
-			AliasLoader::getInstance()->alias('Bootstrap3', 'LaravelRU\HTML\Facades\Bootstrap3');
+			AliasLoader::getInstance()->alias('Element', 'LaravelRU\HTML\Facades\Element');
 		});
 
 		$this->bindHtmlPurifier();

@@ -3,7 +3,7 @@
 use Input;
 use Session;
 
-class Bootstrap3 {
+class Element {
 
 	public function input($type = 'text', $field, $label, $placeholder = null, $value = null, $required = false, $disabled = false)
 	{
@@ -18,7 +18,7 @@ class Bootstrap3 {
 		return $element;
 	}
 
-	public function password($field, $label, $placeholder = null, $required = true)
+	public function password($field = 'password', $label = 'Пароль', $placeholder = null, $required = true)
 	{
 		$element = '<div class="form-group' . $this->errorClass($field) . '">';
 		$element .= '<label for="' . $field . '">' . $label . '</label>';
@@ -38,7 +38,7 @@ class Bootstrap3 {
 
 	public function button($text, $class = 'success', $type = 'submit')
 	{
-		return '<button type="' . $type . '" class="btn btn-' . $class . '">' . $text . '</button>';
+		return '<button type="' . $type . '" class="' . $class . '">' . $text . '</button>';
 	}
 
 	private function checkForValue($field, $value)
