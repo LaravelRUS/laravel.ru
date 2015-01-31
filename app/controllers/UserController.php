@@ -1,6 +1,6 @@
 <?php
 
-use LaravelRU\Post\PostRepo;
+use LaravelRU\Articles\ArticleRepo;
 use LaravelRU\User\Forms\UpdateForm;
 use LaravelRU\User\Models\User;
 use LaravelRU\User\Repositories\UserRepo;
@@ -13,19 +13,19 @@ class UserController extends BaseController {
 	private $userRepo;
 
 	/**
-	 * @var PostRepo
+	 * @var ArticleRepo
 	 */
-	private $postRepo;
+	private $articleRepo;
 
 	/**
 	 * @var UpdateForm
 	 */
 	private $updateForm;
 
-	public function __construct(UserRepo $userRepo, PostRepo $postRepo, UpdateForm $updateForm)
+	public function __construct(UserRepo $userRepo, ArticleRepo $articleRepo, UpdateForm $updateForm)
 	{
 		$this->userRepo = $userRepo;
-		$this->postRepo = $postRepo;
+		$this->articleRepo = $articleRepo;
 		$this->updateForm = $updateForm;
 	}
 

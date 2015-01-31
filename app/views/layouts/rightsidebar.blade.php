@@ -15,7 +15,6 @@
 		<div class="col-md-4">
 			<div class="box-invisible sidebar">
 				@yield('sidebar')
-<!--				Sidebar::renderLastPosts()-->
 			</div>
 		</div>
 	</div>

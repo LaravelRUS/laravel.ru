@@ -58,9 +58,16 @@ Route::group(['before' => 'administrator'], function ()
 
 });
 
-// ===== Документация
-Route::get( 'docs/status',                      ['uses' => 'DocsController@status',             'as' => 'documentation.status']);
-Route::get( 'docs/{version?}/{string?}',        ['uses' => 'DocsController@docs',               'as' => 'documentation']);
+// Docs
+Route::get('docs/status', [
+	'as' => 'documentation.status',
+	'uses' => 'DocsController@status'
+]);
+
+Route::get('docs/{version?}/{string?}', [
+	'as' => 'documentation',
+	'uses' => 'DocsController@docs'
+]);
 
 // ===== Профайл пользователя
 
@@ -88,18 +95,19 @@ Route::group(['before' => 'logged'], function ()
 });
 
 
-// ===== Посты =====
-
-// Лента последних постов
-Route::get( 'feed',                             ['uses' => 'PostController@feed',               'as' => 'feed']);
+// Articles
+Route::get('articles', [
+	'as' => 'articles.all',
+	'uses' => 'ArticlesController@showAll'
+]);
 // Отдельный пост
-Route::get( 'content/{slug}',                   ['uses' => 'PostController@show',               'as' => 'post.view']);
+Route::get( 'content/{slug}',                   ['uses' => 'ArticleController@show',               'as' => 'post.view']);
 
 Route::group(['before' => 'auth'], function ()
 {
-		Route::get( 'content/{id}/edit/',       ['uses' => 'PostController@edit',               'as' => 'post.edit']);
-		Route::get( 'posts/create',             ['uses' => 'PostController@create',             'as' => 'post.create']);
-		Route::post('posts/store',              ['uses' => 'PostController@store',              'as' => 'post.store']);
+		Route::get( 'content/{id}/edit/',       ['uses' => 'ArticleController@edit',               'as' => 'post.edit']);
+		Route::get( 'posts/create',             ['uses' => 'ArticleController@create',             'as' => 'post.create']);
+		Route::post('posts/store',              ['uses' => 'ArticleController@store',              'as' => 'post.store']);
 	});
 
 

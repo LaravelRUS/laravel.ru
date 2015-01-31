@@ -1,58 +1,34 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
 body {
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 14px;
+	font-size: 1.5em;
+	line-height: 1.6;
 	font-weight: 400;
 	color: $body-color;
-	line-height: 1.6;
 	background-color: $body-bg-color;
 	position: relative;
-}
-
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-	font-weight: 600;
-	line-height: 1.4;
-	margin-top: 0;
-}
-
-h1 {
-	font-size: 28px;
-	text-transform: uppercase;
-	color: #F4645F;
-	margin-bottom: 20px;
-}
-
-h2 {
-	font-size: 20px;
-	font-weight: 400;
-	text-transform: uppercase;
-}
-
-h5 {
-	font-size: 16px;
-	margin-bottom: 2px;
 }
 
 a {
 	color: $link-color;
 	text-decoration: none;
 
-	&:hover, &:focus {
-		text-decoration: none;
+	@extend %transition;
+
+	&:hover {
+		color: $link-hover-color;
 	}
 }
 
 b, strong {
 	font-weight: 600;
-}
-
-code {
-	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-	background: #EEEEEE;
-	color: $primary-color;
-	padding: 2px 7px;
-	border-radius: 3px;
-	font-size: 12px;
 }
 
 table {
@@ -76,17 +52,31 @@ table {
 	}
 }
 
-ul {
-	li {
-		position: relative;
-	}
+span[data-toggle=dropdown] {
+	cursor: pointer;
+
+	@extend %transition;
 }
 
-//@media (max-width: $screen-xs-max) {
-//	.container {
-//		padding: 0;
-//	}
-//	.p-35-45 {
-//		padding: 15px !important;
-//	}
-//}
+select, fieldset {
+	margin-bottom: 1.5rem;
+}
+
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol {
+	margin-bottom: 2.5rem;
+}
+
+
+hr {
+	margin-top: 3rem;
+	margin-bottom: 3.5rem;
+	border-width: 0;
+	border-top: 1px solid #E1E1E1;
+}
