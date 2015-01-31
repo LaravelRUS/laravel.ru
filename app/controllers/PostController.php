@@ -1,78 +1,70 @@
 <?php
 
 use Carbon\Carbon;
-use LaravelRU\Post\Access\PostAccess;
-use LaravelRU\Post\Forms\CreatePostForm;
-use LaravelRU\Post\Forms\UpdatePostForm;
-use LaravelRU\Post\PostRepo;
+use LaravelRU\Articles\Forms\CreateArticleForm;
+use LaravelRU\Articles\Forms\UpdateArticleForm;
+use LaravelRU\Articles\ArticleRepo;
 use LaravelRU\Comment\Models\Comment;
 
-class PostController extends BaseController {
+class ArticleController extends BaseController {
 
 	/**
-	 * @var PostAccess
+	 * @var ArticleRepo
 	 */
-	private $access;
+	private $articleRepo;
 
 	/**
-	 * @var PostRepo
+	 * @var CreateArticleForm
 	 */
-	private $postRepo;
+	private $createArticleForm;
 
 	/**
-	 * @var CreatePostForm
+	 * @var UpdateArticleForm
 	 */
-	private $createPostForm;
+	private $updateArticleForm;
 
-	/**
-	 * @var UpdatePostForm
-	 */
-	private $updatePostForm;
-
-	public function __construct(PostAccess $access, CreatePostForm $createPostForm, UpdatePostForm $updatePostForm, PostRepo $postRepo)
+	public function __construct(CreateArticleForm $createArticleForm, UpdateArticleForm $updateArticleForm, ArticleRepo $articleRepo)
 	{
-		$this->access = $access;
-		$this->postRepo = $postRepo;
-		$this->createPostForm = $createPostForm;
-		$this->updatePostForm = $updatePostForm;
+		$this->articleRepo = $articleRepo;
+		$this-$createArticleForm = $createArticleForm;
+		$this-$updateArticleForm = $updateArticleForm;
 	}
 
 	public function show($slug)
 	{
-		$post = $this->postRepo->getBySlug($slug);
-		if ( ! $post) App::abort(404);
+		$article = $this->articleRepo->getBySlug($slug);
 
 		//Todo рефакторь меня полностью... Я тебя прошу! Ты можешь меня рефакторить? Зря... /Greabock 18.01.15
-		$post->load('comments', 'comments.author');
+		$article->load('comments', 'comments.author');
 
-		$comments = $post->comments;
+		$comments = $article->comments;
 
-		$commentable_id = $post->id;
+		$commentable_id = $article->id;
 
-		$commentable_type = get_class($post);
+		$commentable_type = get_class($article);
 
-		return View::make('post/view_post', compact('post', 'comments', 'commentable_id', 'commentable_type'));
+		return View::make('articles.show', compact('article', 'comments', 'commentable_id', 'commentable_type'));
 	}
 
 	public function create()
 	{
-		if ( ! $post = $this->postRepo->getUncompletedPostByAuthor(Auth::user()))
+		if ( ! $article = $this->articleRepo->getUncompletedArticleByAuthor(Auth::user()))
 		{
-			$post = $this->postRepo->create(['is_draft' => 1]);
-			$post->author_id = Auth::id();
-			$post->save();
+			$article = $this->articleRepo->create(['is_draft' => 1]);
+			$article->author_id = Auth::id();
+			$article->save();
 		}
 
-		return Redirect::route('post.edit', $post->id);
+		return Redirect::route('articles.edit', $article->id);
 	}
 
 	public function edit($id)
 	{
 		$this->access->checkEditPost($id);
 
-		if ( ! $post = $this->postRepo->find($id)) abort();
+		$post = $this->postRepo->findOrFail($id);
 
-		return View::make('post/edit_post', compact('post'));
+		return View::make('posts.edit-post', compact('post'));
 	}
 
 	public function store()
@@ -82,7 +74,7 @@ class PostController extends BaseController {
 
 		if ($post_id)
 		{
-			$this->access->checkEditPost($post_id);
+			//$this->access->checkEditPost($post_id);
 			$post = $this->postRepo->find($post_id);
 			$this->updatePostForm->validate($input);
 		}
@@ -110,3 +102,10 @@ class PostController extends BaseController {
 	}
 
 }
+//public function checkEditPost($id)
+//{
+//	if (Auth::id() != $this->postRepo->getAuthorId($id))
+//	{
+//		throw new AccessDeniedException;
+//	}
+//}

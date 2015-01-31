@@ -1,10 +1,10 @@
-<?php namespace LaravelRU\Post\Presenters;
+<?php namespace LaravelRU\Articles\Presenters;
 
 use Laracasts\Presenter\Presenter;
 use LocalizedCarbon;
 use Markdown;
 
-class PostPresenter extends Presenter {
+class ArticlePresenter extends Presenter {
 
 	public function publishedAt()
 	{

@@ -1,32 +1,25 @@
-<?php namespace LaravelRU\Post;
+<?php namespace LaravelRU\Articles;
 
 use LaravelRU\Core\Models\Version;
 use LaravelRU\Core\Repository\AbstractRepository;
-use LaravelRU\Post\Models\Post;
+use LaravelRU\Articles\Models\Article;
 
-class PostRepo extends AbstractRepository {
+class ArticleRepo extends AbstractRepository {
 
-	public function __construct(Post $post)
+	public function __construct(Article $article)
 	{
-		$this->model = $post;
+		$this->model = $article;
 	}
 
 	/**
 	 * ID автора поста
 	 *
-	 * @param int $post_id
+	 * @param int $article_id
 	 * @return int
 	 */
-	public function getAuthorId($post_id)
+	public function getAuthorId($article_id)
 	{
-		$author_id = $this->model->where('id', $post_id)->pluck('author_id');
-
-		return $author_id;
-	}
-
-	public function getAuthorIdBySlug($slug)
-	{
-		$author_id = $this->model->where('slug', $slug)->pluck('author_id');
+		$author_id = $this->model->where('id', $article_id)->pluck('author_id');
 
 		return $author_id;
 	}
@@ -39,9 +32,9 @@ class PostRepo extends AbstractRepository {
 	 */
 	public function getBySlug($slug)
 	{
-		$post = $this->model->where('slug', $slug)->with('author')->first();
+		$article = $this->model->where('slug', $slug)->with('author')->withComments()->firstOrFail();
 
-		return $post;
+		return $article;
 	}
 
 	/**
@@ -50,9 +43,9 @@ class PostRepo extends AbstractRepository {
 	 * @param int $num
 	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
-	public function getLastPosts($num = 10)
+	public function getLastArticles($num = 10)
 	{
-		return $this->model->notDraft()->with('author')->orderBy(Post::PUBLISHED_AT, 'desc')
+		return $this->model->notDraft()->with('author')->orderBy(Article::PUBLISHED_AT, 'desc')
 			->limit($num)->get();
 	}
 
@@ -65,20 +58,20 @@ class PostRepo extends AbstractRepository {
 	}
 
 	/**
-	 * Get uncompleted post by author
+	 * Get uncompleted article by author
 	 *
-	 * @param \LaravelRU\User\Models\User $author
+	 * @param \\Illuminate\Auth\Guard $author
 	 * @return mixed
 	 */
-	public function getUncompletedPostByAuthor($author)
+	public function getUncompletedArticleByAuthor($author)
 	{
-		$post = $author->posts()
+		$article = $author->articles()
 			->where(function($q) {
 				$q->whereNull('title');
 				$q->orWhere('title', '');
 			})->first();
 
-		return $post;
+		return $article;
 	}
 
 }

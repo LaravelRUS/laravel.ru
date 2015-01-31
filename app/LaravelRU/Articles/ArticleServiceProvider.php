@@ -1,8 +1,8 @@
-<?php namespace LaravelRU\Post;
+<?php namespace LaravelRU\Articles;
 
 use Illuminate\Support\ServiceProvider;
 
-class PostServiceProvider extends ServiceProvider {
+class ArticleServiceProvider extends ServiceProvider {
 
 	/**
 	 * Register the service provider.
@@ -10,7 +10,6 @@ class PostServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		// Including module-related routes etc
-		include __DIR__ . DIRECTORY_SEPARATOR . 'post_widgets.php';
 		include __DIR__ . DIRECTORY_SEPARATOR . 'post_helpers.php';
 	}
 

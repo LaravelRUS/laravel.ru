@@ -1,13 +1,13 @@
-<?php namespace LaravelRU\Post\Models;
+<?php namespace LaravelRU\Articles\Models;
 
+use Eloquent;
 use LaravelRU\Likes\LikeableTrait;
 use LaravelRU\Comment\CommentableTrait;
 use LaravelRU\Comment\CommentableInterface;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Laracasts\Presenter\PresentableTrait;
 
-class Post extends Model implements CommentableInterface {
+class Article extends Eloquent implements CommentableInterface {
 
 	use CommentableTrait, SoftDeletingTrait, LikeableTrait, PresentableTrait;
 
@@ -17,7 +17,7 @@ class Post extends Model implements CommentableInterface {
 
 	protected $dates = ['deleted_at', self::PUBLISHED_AT];
 
-	protected $presenter = 'LaravelRU\Post\Presenters\PostPresenter';
+	protected $presenter = 'LaravelRU\Articles\Presenters\ArticlePresenter';
 
 	public function author()
 	{
@@ -32,11 +32,6 @@ class Post extends Model implements CommentableInterface {
 	public function scopeNotDraft($query)
 	{
 		return $query->where('is_draft', 0);
-	}
-
-	public function displayText()
-	{
-
 	}
 
 }

@@ -96,23 +96,7 @@
 				@include('field-error', ['field' => 'difficulty'])
 			</div>
 		</div>
-
-		{{--<div class="col-md-2">
-			<div class="form-group">
-				<label>Формат текста</label>
-				{{ Form::select("type", ['markdown' => 'Markdown', 'uversewiki' => 'Uversewiki'], $post->parset_type, ['class' => 'form-control']) }}
-				<span class="text-muted"></span>
-				@include('field-error', ['field' => 'type'])
-			</div>
-		</div>--}}
 	</div>
-
-	{{--<div class="form-group">--}}
-		{{--<label>Тип</label>--}}
-		{{--{{ Form::select('type', ['article' => 'Статья', 'snipet' => 'Пример кода (snipet)'], $post->type, ['class' => 'form-control']) }}--}}
-		{{--@include('field-error', ['field' => 'type'])--}}
-	{{--</div>--}}
-
 	<div class="form-group">
 		<label>Текст</label>
 		{{ Form::textarea('text', $post->text, ['class' => 'form-control post_text', 'id' => 'editor']) }}
@@ -135,6 +119,4 @@
 	</div>
 
 {{ Form::close() }}
-
-{{--@include('layouts/partials/ace-editor')--}}
 @stop
