@@ -10,8 +10,15 @@ ul {
 		position: relative;
 	}
 
-	&.inline {
+	&.inline,
+	&.tabs,
+	&.tab-contents {
 		display: inline;
+		float: left;
+
+		&.float-right {
+			float: right;
+		}
 
 		> li {
 			float: left;
@@ -25,6 +32,54 @@ ul {
 	&.unstyled {
 		> li {
 			list-style-type: none;
+		}
+	}
+
+	&.tabs {
+		width: 100%;
+		margin-bottom: 0;
+		border-bottom: 2px solid $color-grey-3;
+
+		li {
+			font-size: 1.3rem;
+			font-weight: 600;
+			text-transform: uppercase;
+			cursor: pointer;
+
+			@extend %transition;
+
+			&.active {
+				background-color: white;
+				border-radius: 4px 4px 0 0;
+			}
+		}
+
+		p {
+			padding: 15px;
+			margin-bottom: 0;
+		}
+	}
+
+	&.tab-contents {
+		width: 100%;
+
+		li {
+			display: none;
+			padding: 0;
+			width: 100%;
+
+			&.visible {
+				display: block;
+			}
+		}
+		section {
+			background-color: white;
+			padding: 35px;
+			border-radius: 0 0 4px 4px;
+
+			p:last-of-type {
+				margin-bottom: 0;
+			}
 		}
 	}
 }
