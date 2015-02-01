@@ -3,7 +3,7 @@
 use Auth;
 use LaravelRU\Core\Access\BaseAccess;
 use LaravelRU\News\Models\News;
-use LaravelRU\Post\Models\Post;
+use LaravelRU\Articles\Models\Article;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class Access extends BaseAccess {
@@ -61,19 +61,19 @@ class Access extends BaseAccess {
 	}
 
 	/**
-	 * Посты
+	 * Статьи
 	 */
 
-	public function checkCreatePost()
+	public function checkCreateArticle()
 	{
 		$this->disableGuests();
 	}
 
-	public function checkEditPost(Post $post)
+	public function checkEditArticle(Article $article)
 	{
 		$this->disableGuests();
 
-		return $post->author_id == Auth::user()->id || Auth::user()->isAdmin();
+		return $article->author_id == Auth::user()->id || Auth::user()->isAdmin();
 	}
 
 }

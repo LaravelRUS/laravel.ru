@@ -12,7 +12,7 @@
 
 <div class="post_credentials">
 	<span class="date">{{ $post->present()->publishedAt }}</span> <a href="{{ route('user.profile', $post->author->username) }}">{{ $post->author->username }}</a>
-	@if(allowEditPost($post))
+	@if(allowEditArticle($post))
 		<span class="controls"><a class="btn btn-default btn-xs" href="{{ route('post.edit', $post->slug) }}">Редактировать</a></span>
 	@endif
 </div>
