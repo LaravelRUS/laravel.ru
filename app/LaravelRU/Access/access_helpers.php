@@ -1,6 +1,6 @@
 <?php
 
-use LaravelRU\Post\Models\Post;
+use LaravelRU\Articles\Models\Article;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use LaravelRU\Access\Facades\Access;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -125,11 +125,11 @@ function allowApproveNews()
  * Посты
  */
 
-function allowCreatePost()
+function allowCreateArticle()
 {
 	try
 	{
-		Access::checkCreatePost();
+		Access::checkCreateArticle();
 	}
 	catch (AccessDeniedException $e)
 	{
@@ -139,22 +139,22 @@ function allowCreatePost()
 	return true;
 }
 
-function allowEditPost($id)
+function allowEditArticle($id)
 {
-	if ($id instanceof Post)
+	if ($id instanceof Article)
 	{
-		$post = $id;
+		$article = $id;
 	}
 	else
 	{
-		$post = Post::find($id);
+		$article = Article::find($id);
 	}
 
-	if ( ! $post) return false;
+	if ( ! $article) return false;
 
 	try
 	{
-		Access::checkEditPost($post);
+		Access::checkEditArticle($article);
 	}
 	catch (AccessDeniedException $e)
 	{
