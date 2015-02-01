@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use LaravelRU\Access\Access;
 use LaravelRU\Articles\Forms\CreateArticleForm;
 use LaravelRU\Articles\Forms\UpdateArticleForm;
 use LaravelRU\Articles\ArticleRepo;
@@ -23,11 +24,17 @@ class ArticlesController extends BaseController {
 	 */
 	private $updateArticleForm;
 
-	public function __construct(CreateArticleForm $createArticleForm, UpdateArticleForm $updateArticleForm, ArticleRepo $articleRepo)
+	/**
+	 * @var Access
+	 */
+	private $access;
+
+	public function __construct(CreateArticleForm $createArticleForm, UpdateArticleForm $updateArticleForm, ArticleRepo $articleRepo, Access $access)
 	{
 		$this->articleRepo = $articleRepo;
 		//$this->$createArticleForm = $createArticleForm;
 		//$this->$updateArticleForm = $updateArticleForm;
+		$this->access = $access;
 	}
 
 	public function showAll()
@@ -41,7 +48,7 @@ class ArticlesController extends BaseController {
 	{
 		$article = $this->articleRepo->getBySlug($slug);
 
-		//Todo рефакторь меня полностью... Я тебя прошу! Ты можешь меня рефакторить? Зря... /Greabock 18.01.15
+		//TODO нужен рефакторинг /Greabock 18.01.15
 		$article->load('comments', 'comments.author');
 
 		$comments = $article->comments;
@@ -67,7 +74,7 @@ class ArticlesController extends BaseController {
 
 	public function edit($id)
 	{
-		$this->access->checkEditPost($id);
+		$this->access->checkEditArticle($id);
 
 		$post = $this->postRepo->findOrFail($id);
 
@@ -81,7 +88,7 @@ class ArticlesController extends BaseController {
 
 		if ($post_id)
 		{
-			//$this->access->checkEditPost($post_id);
+			$this->access->checkEditArticle($post_id);
 			$post = $this->postRepo->find($post_id);
 			$this->updatePostForm->validate($input);
 		}
@@ -109,10 +116,3 @@ class ArticlesController extends BaseController {
 	}
 
 }
-//public function checkEditPost($id)
-//{
-//	if (Auth::id() != $this->postRepo->getAuthorId($id))
-//	{
-//		throw new AccessDeniedException;
-//	}
-//}

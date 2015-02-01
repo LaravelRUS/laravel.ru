@@ -17,9 +17,9 @@ class Version extends Model {
 
 	public $timestamps = false;
 
-	public function posts()
+	public function articles()
 	{
-		return $this->hasMany('LaravelRU\Post\Models\Post');
+		return $this->hasMany('LaravelRU\Articles\Models\Article');
 	}
 
 	public function documentation()

@@ -1,7 +1,7 @@
 <section class="widget">
 	<header class="m-b-25 position-relative">
 		<h3>Новые посты</h3>
-		@if(allowCreatePost())
+		@if(allowCreateArticle())
 			<a href="{{ route("post.create") }}" class="btn btn-secondary btn-sm btn-corner"><i class="fa fa-fw fa-plus"></i></a>
 		@endif
 	</header>
@@ -15,7 +15,7 @@
 					<div>
 						<span class="date">{{ $post->present()->publishedAt }}</span>
 						<span><a href="{{ route("user.profile", $post->author->username) }}">{{ $post->author->username }}</a></span>
-						@if(allowEditPost($post))
+						@if(allowEditArticle($post))
 							<span class="m-l-10"><a class="btn btn-default btn-xs" href="{{ route("post.edit", [$post->slug]) }}"><i class="fa fa-fw fa-pencil"></i></a></span>
 						@endif
 					</div>

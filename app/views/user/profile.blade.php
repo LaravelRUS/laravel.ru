@@ -20,7 +20,7 @@
         @if($user->isModerator()) <span class="text-danger">Модератор</span> @endif
         <p>Зарегистрировался: {{ $user->created_at->format('d M Y') }}</p>
         <p>Последняя активность: {{ $user->created_at->format('d M Y') }}</p>
-        <p>Статей: {{ $user->posts()->notDraft()->count() }}</p>
+        <p>Статей: {{ $user->articles()->notDraft()->count() }}</p>
         <p>Комментариев: {{ $user->comments()->count() }}</p>
         <p>Новостей предложено: 0</p>
     </div>
