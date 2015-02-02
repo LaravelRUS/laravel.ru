@@ -45,46 +45,23 @@ class HookController extends BaseController {
 		{
 			Log::info('GITHUB HOOK push develop INCOMING');
 			Log::info('Part1: reset repository and pull changes');
-			//$output = shell_exec("cd /home/forge/sharedstation.net && git checkout develop && git reset HEAD --hard && git pull origin develop && composer update && php artisan migrate");
-			$output = exec("cd /home/forge/sharedstation.net && git checkout develop && git reset HEAD --hard && git pull origin develop");
-			$lines = explode("\n", $output);
-			foreach ($lines as $line)
-			{
-				$line = trim($line);
-				Log::info($line);
-			}
 
-			Queue::push(function ($job)
-			{
-				Log::info('Part2: migrations');
-				$output = exec("cd /home/forge/sharedstation.net && php artisan migrate");
-				$lines = explode("\n", $output);
-				foreach ($lines as $line)
-				{
-					$line = trim($line);
-					Log::info($line);
-				}
-
-				Queue::push(function ($job)
-				{
-					Log::info('Part3: composer update');
-					$output = exec("cd /home/forge/sharedstation.net && composer update");
-					$lines = explode("\n", $output);
-					foreach ($lines as $line)
-					{
-						$line = trim($line);
-						Log::info($line);
-					}
-					$job->delete();
-				});
-
-				$job->delete();
-			});
+			$arrayOutput = [];
+			exec("cd /home/forge/sharedstation.net || git checkout develop || git reset HEAD --hard || git pull origin develop || composer update || php artisan migrate", $arrayOutput);
+			$this->displayArrayOutput($arrayOutput);
 
 			$job->delete();
 		});
 
 		return Response::json(['status' => 'success']);
+	}
+
+	public function displayArrayOutput($arrayOutput)
+	{
+		foreach ($arrayOutput as $line)
+		{
+			Log::info(trim($line));
+		}
 	}
 
 }
