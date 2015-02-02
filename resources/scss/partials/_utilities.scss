@@ -1,3 +1,27 @@
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.full-width {
+	width: 100%;
+}
+
 .text-center {
 	text-align: center;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+.border-rounded {
+	@extend %border-radius;
 }
