@@ -31,7 +31,7 @@ class HomeController extends BaseController {
 
 	public function home()
 	{
-		$lastPosts = $this->articleRepo->getLastArticles();
+		$lastArticles = $this->articleRepo->getLastArticles();
 		$lastNews = $this->newsRepo->getLastNews(5);
 
 		$newPackages = $this->packageRepo->getLastCreated();
@@ -40,7 +40,7 @@ class HomeController extends BaseController {
 		$updatedDocs = Documentation::with('frameworkVersion')->orderByLastCommit()->limit(12)->get();
 
 		return View::make('home.home-page', compact(
-			'lastPosts', 'lastNews', 'newPackages', 'updatedPackages', 'updatedDocs'
+			'lastArticles', 'lastNews', 'newPackages', 'updatedPackages', 'updatedDocs'
 		));
 	}
 

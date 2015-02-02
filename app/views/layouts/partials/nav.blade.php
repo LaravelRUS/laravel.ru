@@ -11,13 +11,16 @@
 				<a href="{{ route("articles.all") }}">Статьи</a>
 			</li>
 			<li>
-				<a href="{{ route("documentation") }}">Ответы</a>
+				<a href="{{ route("documentation") }}">Вопросы</a>
 			</li>
 			<li>
 				<a href="{{ route("documentation") }}">Пакеты</a>
 			</li>
 			<li>
 				<a href="{{ route("documentation") }}">Cheat Sheet</a>
+			</li>
+			<li>
+				<a href="https://gitter.im/LaravelRUS/chat">Чат</a>
 			</li>
 			@if(Auth::check())
 				<li>
@@ -28,7 +31,7 @@
 						</li>
 						@if(Auth::user()->isAdmin())
 							<li>
-								<a href="{{ route("admin.users") }}">Новая статья</a>
+								<a href="{{ route("admin.users") }}">Список пользователей</a>
 							</li>
 						@endif
 						@if(Auth::user()->isLibrarian())
