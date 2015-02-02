@@ -20,13 +20,13 @@
 				<p class="text-center">{{ $user->present()->fullname() }}</p>
 			@endif
 			<aside class="badges text-center">
-				@if(isAdmin())
+				@if($user->isAdmin())
 					<span class="badge badge-admin" title="Администратор"><i class="fa fa-diamond"></i></span>
 				@endif
-				@if(isModerator())
+				@if($user->isModerator())
 					<span class="badge badge-moderator" title="Модератор"><i class="fa fa-gavel"></i></span>
 				@endif
-				@if(isLibrarian())
+				@if($user->isLibrarian())
 					<span class="badge badge-librarian" title="Библиотекарь"><i class="fa fa-institution"></i></span>
 				@endif
 			</aside>
