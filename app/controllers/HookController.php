@@ -48,20 +48,15 @@ class HookController extends BaseController {
 
 			$arrayOutput = [];
 			exec("cd /home/forge/sharedstation.net || git checkout develop || git reset HEAD --hard || git pull origin develop || composer update || php artisan migrate", $arrayOutput);
-			$this->displayArrayOutput($arrayOutput);
+			foreach ($arrayOutput as $line)
+			{
+				Log::info(trim($line));
+			}
 
 			$job->delete();
 		});
 
 		return Response::json(['status' => 'success']);
-	}
-
-	public function displayArrayOutput($arrayOutput)
-	{
-		foreach ($arrayOutput as $line)
-		{
-			Log::info(trim($line));
-		}
 	}
 
 }
