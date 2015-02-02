@@ -70,13 +70,16 @@ table,
 p,
 ul,
 ol {
-	margin-bottom: 2.5rem;
+	margin-bottom: 2rem;
 }
 
 
 hr {
-	margin-top: 3rem;
-	margin-bottom: 3.5rem;
+	margin: 2rem 0;
 	border-width: 0;
-	border-top: 1px solid #E1E1E1;
+	border-top: 2px solid $border-color;
+}
+
+img {
+	max-width: 100%;
 }

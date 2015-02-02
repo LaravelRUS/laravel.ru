@@ -1,6 +1,5 @@
 input, textarea, select {
 	width: 100%;
-	height: 38px;
 	padding: 6px 10px;
 	background-color: #FFFFFF;
 	border: 2px solid $input-border-color;
@@ -14,6 +13,10 @@ input, textarea, select {
 	&:focus, &:hover {
 		border: 2px solid $input-border-hover-color;
 	}
+}
+
+input, select {
+	height: 38px;
 }
 
 input, textarea {

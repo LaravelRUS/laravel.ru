@@ -36,21 +36,17 @@ class UserController extends BaseController {
 
 	public function profile($username)
 	{
-		if ( ! $user = $this->userRepo->getByUsername($username)) abort();
+		$user = User::username($username)->withLatestArticles(10)
+			->withInfo()->withSocial()->firstOrFail();
 
-		$user->load(['posts', 'tips', 'news', 'info', 'social']);
-
-		$owner = Auth::check() && Auth::user()->username == $username;
-
-		return View::make('user/profile', compact('user', 'owner'));
+		return View::make('user.profile', compact('user'));
 	}
 
 	public function edit()
 	{
-		$user = Auth::user();
-		$user->load(['info', 'social']);
+		$user = User::withInfo()->withSocial()->findOrFail(Auth::id());
 
-		return View::make('user/edit', compact('user'));
+		return View::make('user.settings', compact('user'));
 	}
 
 	public function update()
@@ -62,34 +58,22 @@ class UserController extends BaseController {
 
 		/** @var User $user */
 		$user = Auth::user();
-
 		$user->username = array_get($data, 'username');
 		$user->email = array_get($data, 'email');
-		$user->fullname = array_get($data, 'fullname');
+		$user->info->name = array_get($data, 'name');
+		$user->info->surname = array_get($data, 'surname');
+		$user->info->birthday = array_get($data, 'birthday');
+		$user->info->about = e(strip_tags(array_get($data, 'about')));
+		$user->info->website = array_get($data, 'website');
+		$user->info->skype = array_get($data, 'skype');
 
-		$regexps = Config::get('social_regexp');
-		foreach (trans('social') as $id => $name)
-		{
-			if ($value = trim(array_get($data, "social_{$id}")))
-			{
-				preg_match('/' . $regexps[$id] . '/u', $value, $matches);
-				$value = $matches[2];
-			}
-
-			$user->social->{$id} = $value;
-		}
-
-		$user->info->about = e(strip_tags(array_get($data, 'info_about')));
-		$user->info->birthday = array_get($data, 'info_birthday');
-		$user->info->site = array_get($data, 'info_site');
-		$user->info->skype = array_get($data, 'info_skype');
-
-		if ( ! $user->save() || ! $user->social->save() || ! $user->info->save())
+		if ( ! $user->save() || ! $user->info->save())
 		{
 			return $response->error('Ошибка');
 		}
 
-		return $response->message('Данные успешно сохранены')->data([
+		return $response->data([
+			'title' => "Данные успешно сохранены",
 			'redirect' => route('user.profile', $user->username)
 		]);
 	}

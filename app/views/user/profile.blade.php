@@ -1,70 +1,69 @@
-@extends('layouts.nosidebar')
+@extends('layouts.profile')
 
-@section('title')
-Пользователь
-@stop
+@section('title', $user->username)
+@section('meta-description', 'Описание')
 
-@section('content')
-<div class="row">
-    <div class="col-md-12">
-        <h1>
-	        {{ $user->username }}
-	        @if($owner) <a href="{{ route('user.edit') }}" class="pull-right">Настройки</a> @endif
-        </h1>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <p><img src="{{ $user->avatar }}" alt="{{ $user->name }}"/></p>
-        @if($user->isAdmin()) <span class="text-danger">Администратор</span> @endif
-        @if($user->isModerator()) <span class="text-danger">Модератор</span> @endif
-        <p>Зарегистрировался: {{ $user->created_at->format('d M Y') }}</p>
-        <p>Последняя активность: {{ $user->created_at->format('d M Y') }}</p>
-        <p>Статей: {{ $user->articles()->notDraft()->count() }}</p>
-        <p>Комментариев: {{ $user->comments()->count() }}</p>
-        <p>Новостей предложено: 0</p>
-    </div>
+@section('contents')
+	<section class="bg-white p-35 p-b-25 m-b-30 border-rounded">
+		@if($user->info->birthday)
+			<p class="m-b-5"><strong>День рождения</strong></p>
+			<p class="small" title="О себе">{{ $user->present()->birthday() }}</p>
+		@endif
+		@if($user->info->about)
+			<p class="m-b-5"><strong>Обо мне</strong></p>
+			<p class="small" title="О себе">{{ $user->info->about }}</p>
+		@endif
+		@if($user->info->about || $user->info->birthday)
+			<hr>
+		@endif
+		<aside class="row">
+			<section class="col-xs-3">
+				<p class="text-center big"><strong>{{ $user->articles()->count() }}</strong></p>
+				<p class="tiny text-center text-uppercase last">Статей</p>
+			</section>
+			<section class="col-xs-3">
+				<p class="text-center big"><strong>{{ $user->comments()->count() }}</strong></p>
+				<p class="tiny text-center text-uppercase last">Комментариев</p>
+			</section>
+		</aside>
+	</section>
 
-    <div class="col-md-8">
-        @if($user->info->about)
-        <div class="row">
-            <div class="col-md-12">
-                <p>О себе: {{ $user->info->about }}</p>
-            </div>
-        </div>
-        @endif
-        <div class="row">
-            <div class="col-md-6">
-                @if($user->social->vkontakte)
-                <p><a href="https://vk.com/{{ $user->social->vkontakte }}"><i class="fa fa-vk"></i>&nbsp;{{ trans('social.vkontakte') }}</a></p>
-                @endif
-                @if($user->social->facebook)
-                <p><a href="https://facebook.com/{{ $user->social->facebook }}"><i class="fa fa-facebook"></i>&nbsp;{{ trans('social.facebook') }}</a></p>
-                @endif
-                @if($user->social->twitter)
-                <p><a href="https://twitter.com/{{ $user->social->twitter }}"><i class="fa fa-twitter"></i>&nbsp;{{ trans('social.twitter') }}</a></p>
-                @endif
-                @if($user->social->github)
-                <p><a href="https://github.com/{{ $user->social->github }}"><i class="fa fa-github"></i>&nbsp;{{ trans('social.github') }}</a></p>
-                @endif
-                @if($user->social->bitbucket)
-                <p><a href="https://bitbucket.com/{{ $user->social->bitbucket }}"><i class="fa fa-bitbucket"></i>&nbsp;{{ trans('social.bitbucket') }}</a></p>
-                @endif
-                @if($user->social->google)
-                <p><a href="https://plus.google.com/+{{ $user->social->google }}"><i class="fa fa-google-plus"></i>&nbsp;{{ trans('social.google') }}</a></p>
-                @endif
-            </div>
-            <div class="col-md-6">
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<ul class="nav nav-tabs">
-    <li class="active">Статьи</li>
-    <li>Новости</li>
-    <li>Черновики</li>
-</ul>
-
+	<section>
+		<ul class="tabs">
+			<li class="active" data-tab="articles">
+				<p>Статьи</p>
+			</li>
+			<li data-tab="news">
+				<p>Новости</p>
+			</li>
+			<li data-tab="drafts">
+				<p>Черновики</p>
+			</li>
+		</ul>
+		<ul class="tab-contents">
+			<li class="visible" data-tab="articles">
+				<section>
+					@if(count($user->articles))
+						<ul class="unstyled">
+							@foreach($user->articles as $article)
+								<li>{{ 1 }}</li>
+							@endforeach
+						</ul>
+					@else
+						<p>Пользователь пока не написал ни одной статьи</p>
+					@endif
+				</section>
+			</li>
+			<li data-tab="news">
+				<section>
+					<p>123</p>
+				</section>
+			</li>
+			<li data-tab="drafts">
+				<section>
+					<p>dr</p>
+				</section>
+			</li>
+		</ul>
+	</section>
 @stop

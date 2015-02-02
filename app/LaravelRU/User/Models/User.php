@@ -1,6 +1,6 @@
 <?php namespace LaravelRU\User\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\UserInterface;
 
@@ -8,17 +8,18 @@ use Illuminate\Auth\UserInterface;
  * Class User
  *
  * @package LaravelRU\User\Models
- *
- * @property int $id
- * @property string $username
- * @property string $email
- * @property string $password
- * @property bool $is_confirmed
+ * @property int            $id
+ * @property string         $username
+ * @property string         $email
+ * @property string         $password
+ * @property bool           $is_confirmed
  * @property \Carbon\Carbon $last_login_at
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
-class User extends Model implements UserInterface, RemindableInterface {
+class User extends \Eloquent implements UserInterface, RemindableInterface {
+
+	use PresentableTrait;
 
 	/**
 	 * The name of the "published at" column.
@@ -28,7 +29,10 @@ class User extends Model implements UserInterface, RemindableInterface {
 	const PUBLISHED_AT = 'published_at';
 
 	protected $hidden = ['password', 'remember_token'];
+
 	protected $guarded = [];
+
+	protected $presenter = 'LaravelRU\User\Presenters\UserPresenter';
 
 	/**
 	 * Автохэширование пароля
@@ -113,7 +117,7 @@ class User extends Model implements UserInterface, RemindableInterface {
 	public function articles()
 	{
 		return $this->hasMany('LaravelRU\Articles\Models\Article', 'author_id')
-			->orderBy(static::PUBLISHED_AT, 'desc');
+			->orderBy(static::PUBLISHED_AT, 'desc')->notDraft();
 	}
 
 	public function tips()
@@ -170,7 +174,6 @@ class User extends Model implements UserInterface, RemindableInterface {
 
 	/**
 	 * @param $role
-	 *
 	 * @return bool
 	 */
 	public function hasRole($role)
@@ -203,6 +206,31 @@ class User extends Model implements UserInterface, RemindableInterface {
 	public function getAvatarAttribute()
 	{
 		return 'http://www.gravatar.com/avatar/' . md5($this->email) . '?s=256' . '&d=' . urlencode(app('url')->asset('img/avatar.png'));
+	}
+
+	public function scopeUsername($query, $username)
+	{
+		return $query->where('username', $username);
+	}
+
+	public function scopeWithInfo($query)
+	{
+		return $query->with('info');
+	}
+
+	public function scopeWithSocial($query)
+	{
+		return $query->with('social');
+	}
+
+	public function scopeWithLatestArticles($query, $num = 10)
+	{
+		return $query->with([
+			'articles' => function ($q) use ($num)
+			{
+				return $q->limit($num);
+			}
+		]);
 	}
 
 }

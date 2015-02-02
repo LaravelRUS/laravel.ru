@@ -1,12 +1,18 @@
 <?php namespace LaravelRU\User\Presenters;
 
 use Laracasts\Presenter\Presenter;
+use LocalizedCarbon;
 
 class UserPresenter extends Presenter {
 
-	public function blog()
+	public function fullname()
 	{
-		return '<a class="user" href="' . route('user.blog', [$this->username]) . '">' . $this->username . '</a>';
+		return $this->info->name . ' ' . $this->info->surname;
+	}
+
+	public function birthday()
+	{
+		return LocalizedCarbon::createFromFormat('Y-m-d', $this->info->birthday)->formatLocalized('%e %f %Y');
 	}
 
 }

@@ -1,10 +1,81 @@
 .sidebar {
-	aside.widget {
+	.widget {
+		position: relative;
 		padding: 25px;
 		margin-bottom: 30px;
 
+		@extend %border-radius;
+
 		&.light {
 			background-color: $sidebar-widget-light-bg-color;
+		}
+
+		&.dark {
+			color: $color-grey-4;
+			background-color: $color-grey-8;
+		}
+
+		&.profile {
+			img {
+				display: block;
+				max-width: 150px;
+				margin: 0 auto 15px auto;
+				border: 10px solid $color-grey-6;
+				border-radius: 50%;
+			}
+
+			h1 {
+				margin-bottom: 0;
+			}
+
+			span.verified {
+				position: absolute;
+				top: 0;
+				left: 0;
+				padding: 3px 0 0 10px;
+				color: white;
+
+				&:before {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					border: 25px solid $color-green;
+					border-right-color: transparent;
+					border-bottom-color: transparent;
+					border-top-left-radius: 4px;
+				}
+			}
+			span.settings {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				background-color: $color-grey-7;
+				padding: 2px 10px;
+
+				a {
+					color: $color-grey-3;
+
+					&:hover, &:focus {
+						color: white;
+					}
+				}
+			}
+			aside.badges {
+				width: 100%;
+
+				span {
+					padding: 7px;
+					margin: 0 5px;
+					background-color: $color-grey-7;
+					border-radius: 50%;
+
+					i {
+						width: 20px;
+						height: 20px;
+					}
+				}
+			}
 		}
 	}
 }

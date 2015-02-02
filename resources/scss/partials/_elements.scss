@@ -46,6 +46,8 @@
 	padding: $popup-padding;
 	margin: 30px 0;
 
+	@extend %border-radius;
+
 	header {
 		border-bottom: 2px solid $border-color;
 		margin-bottom: 30px;

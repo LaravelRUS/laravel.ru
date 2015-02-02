@@ -44,12 +44,20 @@
 	padding: 20px 0;
 }
 
+.p-35 {
+	padding: 35px;
+}
+
 .p-35-45 {
 	padding: 35px 45px;
 }
 
 .p-45 {
 	padding: 45px;
+}
+
+.p-b-25 {
+	padding-bottom: 25px;
 }
 
 .m-t-30 {
@@ -62,6 +70,10 @@
 
 .m-b-0 {
 	margin-bottom: 0;
+}
+
+.m-b-5 {
+	margin-bottom: 5px;
 }
 
 .m-b-25 {
@@ -85,16 +97,4 @@
 header.bordered {
 	padding-bottom: 20px;
 	border-bottom: 2px solid $border-color;
-}
-
-.float-left {
-	float: left;
-}
-
-.float-right {
-	float: right;
-}
-
-.full-width {
-	width: 100%;
 }

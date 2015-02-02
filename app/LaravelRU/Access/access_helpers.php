@@ -31,6 +31,11 @@ function isLibrarian()
 	return Auth::user()->isLibrarian();
 }
 
+function isOwner($username)
+{
+	return Auth::check() && Auth::user()->username == $username;
+}
+
 // ------------------------------
 
 function allowEditTerms()
