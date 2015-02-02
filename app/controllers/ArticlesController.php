@@ -69,49 +69,49 @@ class ArticlesController extends BaseController {
 			$article->save();
 		}
 
-		return Redirect::route('articles.edit', $article->id);
+		return Redirect::route('article.edit', $article->id);
 	}
 
 	public function edit($id)
 	{
-		$this->access->checkEditArticle($id);
+		$article = $this->articleRepo->findOrFail($id);
 
-		$post = $this->postRepo->findOrFail($id);
+		$this->access->checkEditArticle($article);
 
-		return View::make('posts.edit-post', compact('post'));
+		return View::make('articles.edit-article', compact('article'));
 	}
 
 	public function store()
 	{
-		$post_id = Input::get('id');
+		$article_id = Input::get('id');
 		$input = Input::all();
 
-		if ($post_id)
+		if ($article_id)
 		{
-			$this->access->checkEditArticle($post_id);
-			$post = $this->postRepo->find($post_id);
-			$this->updatePostForm->validate($input);
+			$article = $this->articleRepo->find($article_id);
+			$this->access->checkEditArticle($article);
+			//$this->updatePostForm->validate($input);
 		}
 		else
 		{
-			$post = $this->postRepo->create();
-			$post->author_id = Auth::id();
-			$this->createPostForm->validate($input);
+			$article = $this->articleRepo->create();
+			$article->author_id = Auth::id();
+			//$this->createPostForm->validate($input);
 		}
 
-		$post->fill($input);
+		$article->fill($input);
 
-		if ($post->is_draft == 0 && is_null($post->published_at))
+		if ($article->is_draft == 0 && is_null($article->published_at))
 		{
-			$post->published_at = Carbon::now();
+			$article->published_at = Carbon::now();
 		}
 
-		$post->save();
+		$article->save();
 
-		return Redirect::route('post.edit', $post->id)
+		return Redirect::route('article.edit', $article->id)
 			->with('success',
-				'Пост сохранен - <a href="' . route('post.view', $post->slug) . '">'
-				. route('post.view', $post->slug) . '</a>'
+				'Пост сохранен - <a href="' . route('article.view', $article->slug) . '">'
+				. route('article.view', $article->slug) . '</a>'
 			);
 	}
 

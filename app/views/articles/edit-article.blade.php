@@ -1,7 +1,7 @@
 @extends('layouts.nosidebar')
 
 @section('title')
-@if($post->id)
+@if($article->id)
 	Редактирование статьи
 @else
 	Создание статьи
@@ -16,7 +16,7 @@
 	$(function () {
 		/* Вставляем tab при нажатии на tab в поле textarea
 		 ---------------------------------------------------------------- */
-		$('.post_text').keydown(function (event) {
+		$('.article_text').keydown(function (event) {
 
 			if (event.keyCode != 9) return;
 
@@ -36,7 +36,7 @@
 </script>
 
 {{ breadcrumbs(['Мой профайл' => route('user.profile', Auth::user()->username), '' => '']) }}
-@if($post->id)
+@if($article->id)
 <h1>Редактирование поста</h1>
 @else
 <h1>Создание поста</h1>
@@ -46,13 +46,13 @@
 	<div class="alert alert-success">{{ Session::get('success') }}</div>
 @endif
 
-{{ Form::open(['route' => 'post.store']) }}
-	{{ Form::hidden('id', $post->id) }}
+{{ Form::open(['route' => 'article.store']) }}
+	{{ Form::hidden('id', $article->id) }}
 	<div class="row">
 		<div class="col-md-8">
 			<div class="form-group">
 				<label>Заголовок</label>
-				{{ Form::text('title', $post->title, ['class' => 'form-control']) }}
+				{{ Form::text('title', $article->title, ['class' => 'form-control']) }}
 				<div class="text-muted">Название статьи, выводится в списке статей</div>
 				@include('field-error', ['field' => 'title'])
 			</div>
@@ -61,7 +61,7 @@
 		<div class="col-md-4">
 			<div class="form-group">
 				<label>Slug</label>
-				{{ Form::text('slug', $post->slug, ['class' => 'form-control']) }}
+				{{ Form::text('slug', $article->slug, ['class' => 'form-control']) }}
 				<div class="text-muted">URL по которому будет доступна эта статья</div>
 				@include('field-error', ['field' => 'slug'])
 			</div>
@@ -70,7 +70,7 @@
 
 	<div class="form-group" id="input-description">
 		<label>Краткое описание</label>
-		{{ Form::textarea('description', $post->description, ['class' => 'form-control post_description']) }}
+		{{ Form::textarea('description', $article->description, ['class' => 'form-control article_description']) }}
 		<div class="text-muted">Краткое описание статьи, выводится на главной странице в списке статей</div>
 		@include('field-error', ['field' => 'description'])
 	</div>
@@ -79,7 +79,7 @@
 		<div class="col-md-5">
 			<div class="form-group">
 				<label>Версия фреймворка</label>
-				{{ Form::select('version_id', all_framework_versions(), $post->version_id, ['class'=>'form-control']) }}
+				{{ Form::select('version_id', all_framework_versions(), $article->version_id, ['class'=>'form-control']) }}
 				<div class="text-muted"></div>
 			</div>
 		</div>
@@ -91,7 +91,7 @@
 					'unknown' => 'Не определена',
 					'easy' => 'Легкий, для новичков, слабо знакомых с фреймворком',
 					'hard' => 'Сложный, для хорошо разбирающихся в фреймворке'
-				], $post->difficulty, ['class' => 'form-control']) }}
+				], $article->difficulty, ['class' => 'form-control']) }}
 				<div class="text-muted"></div>
 				@include('field-error', ['field' => 'difficulty'])
 			</div>
@@ -99,17 +99,17 @@
 	</div>
 	<div class="form-group">
 		<label>Текст</label>
-		{{ Form::textarea('text', $post->text, ['class' => 'form-control post_text', 'id' => 'editor']) }}
+		{{ Form::textarea('text', $article->text, ['class' => 'form-control article_text', 'id' => 'editor']) }}
 		@include('field-error', ['field' => 'text'])
 	</div>
 
 	<div class="form-group">
-		<label>{{ Form::check('is_translate', 1, $post->is_translate, ['class' => 'ios-switch']) }} Перевод</label>
+		<label>{{ Form::check('is_translate', 1, $article->is_translate, ['class' => 'ios-switch']) }} Перевод</label>
 		@include('field-error', ['field' => 'is_translate'])
 	</div>
 
 	<div class="form-group">
-		<label>{{ Form::check('is_draft', 1, $post->is_draft, ['class' => 'ios-switch']) }} Черновик</label>
+		<label>{{ Form::check('is_draft', 1, $article->is_draft, ['class' => 'ios-switch']) }} Черновик</label>
 		<br><span class="text-muted">Черновики видны только вам</span>
 		@include('field-error', ['field' => 'is_draft'])
 	</div>
