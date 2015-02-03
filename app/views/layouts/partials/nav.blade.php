@@ -1,7 +1,7 @@
 <nav role="navigation">
 	<div class="container">
 		<div class="brand">
-			<a href="{{ route('home') }}">Laravel.ru</a>
+			<a href="{{ route('home') }}">Laravel.su</a>
 		</div>
 		<ul class="inline float-right">
 			<li {{activeClass(['documentation', 'documentation.status'])}}>

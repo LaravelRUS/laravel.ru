@@ -42,7 +42,7 @@ class DocsController extends BaseController {
 	 *
 	 * @var string
 	 */
-	protected $defaultPage = 'introduction';
+	protected $defaultPage = 'installation';
 
 	/**
 	 * Constructor function.
