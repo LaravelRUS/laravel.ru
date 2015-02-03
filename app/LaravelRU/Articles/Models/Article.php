@@ -29,6 +29,16 @@ class Article extends Eloquent implements CommentableInterface {
 		return $this->belongsTo('LaravelRU\Core\Models\Version');
 	}
 
+	public function difficulty_version()
+	{
+		return $this->belongsTo('LaravelRU\Articles\Models\DifficultyLevel');
+	}
+
+	public function scopeDraft($query)
+	{
+		return $query->where('is_draft', 1);
+	}
+
 	public function scopeNotDraft($query)
 	{
 		return $query->where('is_draft', 0);

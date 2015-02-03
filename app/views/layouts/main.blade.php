@@ -21,5 +21,6 @@
 	@include('layouts.partials.footer')
 
 	<script src="{{ asset('js/script.min.js') }}"></script>
+	@yield('scripts')
 </body>
 </html>

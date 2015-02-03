@@ -27,7 +27,6 @@
 			</section>
 		</aside>
 	</section>
-
 	<section>
 		<ul class="tabs">
 			<li class="active" data-tab="articles">

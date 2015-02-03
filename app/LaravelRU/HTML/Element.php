@@ -31,7 +31,53 @@ class Element {
 
 	public function hidden($field, $value = null)
 	{
-		$element = '<input type="hidden" name="' . $field . '" id="' . $field . '" value="' . $value . '">';
+		$element = '<input type="hidden" name="' . $field . '" value="' . $value . '">';
+
+		return $element;
+	}
+
+	public function textarea($field, $label, $rows = 3, $placeholder = null, $value = null, $disabled = false, $disableLabel = false)
+	{
+		$oldInput = Input::old($field);
+
+		if ($oldInput && $oldInput !== null)
+		{
+			$value = $oldInput;
+		}
+
+		$element = '<div class="form-group' . $this->errorClass($field) . '">';
+		if ( ! $disableLabel)
+		{
+			$element .= '<label for="' . $field . '">' . $label . '</label>';
+		}
+		$element .= '<textarea name="' . $field . '" class="form-control" id="' . $field . '"' . $this->placeholderText($placeholder) . $this->disabledWord($disabled) . ' rows="' . $rows . '">' . $value . '</textarea>';
+		$element .= $this->errorHelpBlock($field);
+		$element .= '</div>';
+
+		return $element;
+	}
+
+	public function select($field, $label, array $values, $selected = null, $nullable = false)
+	{
+		$oldInput = Input::old($field);
+
+		if ($oldInput && $oldInput !== null)
+		{
+			$selected = $oldInput;
+		}
+
+		$element = '<div class="form-group ' . $this->errorClass($field) . '">';
+		$element .= '<label for="' . $field . '">' . $label . '</label>';
+		$element .= '<select name="' . $field . '" class="form-control" id="' . $field . '">';
+		$element .= $nullable ? '<option value="0">- - -</option>' : null;
+		foreach ($values as $key => $value)
+		{
+			$selectedCategory = ($selected == $key) ? 'selected="selected"' : '';
+			$element .= '<option value="' . $key . '" ' . $selectedCategory . '>' . $value . '</option>';
+		}
+		$element .= '</select>';
+		$element .= $this->errorHelpBlock($field);
+		$element .= '</div>';
 
 		return $element;
 	}
@@ -39,6 +85,18 @@ class Element {
 	public function button($text, $class = 'success', $type = 'submit')
 	{
 		return '<button type="' . $type . '" class="' . $class . '">' . $text . '</button>';
+	}
+
+	public function ace($field, $label, $value = null)
+	{
+		$element = '<div class="form-group ' . $this->errorClass($field) . '">';
+		$element .= '<label for="ace">' . $label . '</label>';
+		$element .= '<input type="hidden" name="' . $field . '">';
+		$element .= '<div id="ace">' . $value . '</div>';
+		$element .= $this->errorHelpBlock($field);
+		$element .= '</div>';
+
+		return $element;
 	}
 
 	private function checkForValue($field, $value)

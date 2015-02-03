@@ -1,10 +1,7 @@
 @extends('layouts.left-sidebar')
 
-@section('title', $user->username)
-@section('meta-description', 'Описание')
-
 @section('sidebar')
-	<main class="widget dark profile">
+	<section class="widget dark profile">
 		@if($user->is_confirmed)
 			<span class="verified"><i class="fa fa-check"></i></span>
 		@endif
@@ -31,5 +28,15 @@
 				@endif
 			</aside>
 		</aside>
-	</main>
+	</section>
+	@if(isOwner($user->username))
+		<aside class="widget light">
+			<header>
+				<h2>Меню</h2>
+			</header>
+			<ul class="unstyled">
+				<li><a href="{{ route('articles.create') }}">Новая статья</a></li>
+			</ul>
+		</aside>
+	@endif
 @stop

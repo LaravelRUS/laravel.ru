@@ -117,7 +117,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	public function articles()
 	{
 		return $this->hasMany('LaravelRU\Articles\Models\Article', 'author_id')
-			->orderBy(static::PUBLISHED_AT, 'desc')->notDraft();
+			->orderBy(static::PUBLISHED_AT, 'desc');
 	}
 
 	public function tips()

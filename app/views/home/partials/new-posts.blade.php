@@ -2,7 +2,7 @@
 	<header class="m-b-25 position-relative">
 		<h3>Новые посты</h3>
 		@if(allowCreateArticle())
-			<a href="{{ route("post.create") }}" class="btn btn-secondary btn-sm btn-corner"><i class="fa fa-fw fa-plus"></i></a>
+			<a href="{{ route("articles.create") }}" class="btn btn-secondary btn-sm btn-corner"><i class="fa fa-fw fa-plus"></i></a>
 		@endif
 	</header>
 	<ul class="list-unstyled">
