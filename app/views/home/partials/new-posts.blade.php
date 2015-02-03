@@ -2,24 +2,24 @@
 	<header class="m-b-25 position-relative">
 		<h3>Новые посты</h3>
 		@if(allowCreateArticle())
-			<a href="{{ route("articles.create") }}" class="btn btn-secondary btn-sm btn-corner"><i class="fa fa-fw fa-plus"></i></a>
+			<a href="{{ route("article.create") }}" class="btn btn-secondary btn-sm btn-corner"><i class="fa fa-fw fa-plus"></i></a>
 		@endif
 	</header>
 	<ul class="list-unstyled">
-		@foreach($lastPosts as $post)
+		@foreach($lastArticles as $article)
 			<li>
 				<article>
 					<header>
-						<h4 class="m-b-0"><a href="{{ route("post.view", $post->slug) }}">{{ e($post->title) }}</a></h4>
+						<h4 class="m-b-0"><a href="{{ route("article.view", $article->slug) }}">{{ e($article->title) }}</a></h4>
 					</header>
 					<div>
-						<span class="date">{{ $post->present()->publishedAt }}</span>
-						<span><a href="{{ route("user.profile", $post->author->username) }}">{{ $post->author->username }}</a></span>
-						@if(allowEditArticle($post))
-							<span class="m-l-10"><a class="btn btn-default btn-xs" href="{{ route("post.edit", [$post->slug]) }}"><i class="fa fa-fw fa-pencil"></i></a></span>
+						<span class="date">{{ $article->present()->publishedAt }}</span>
+						<span><a href="{{ route("user.profile", $article->author->username) }}">{{ $article->author->username }}</a></span>
+						@if(allowEditArticle($article))
+							<span class="m-l-10"><a class="btn btn-default btn-xs" href="{{ route("article.edit", [$article->slug]) }}"><i class="fa fa-fw fa-pencil"></i></a></span>
 						@endif
 					</div>
-					<div class="post-preview">{{ e($post->description) }}</div>
+					<div class="article-preview">{{ e($article->description) }}</div>
 				</article>
 			</li>
 		@endforeach

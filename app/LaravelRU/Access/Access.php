@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class Access extends BaseAccess {
 
-	public function disableGuests()
+	private function disableGuests()
 	{
 		if (Auth::guest())
 		{
@@ -20,6 +20,15 @@ class Access extends BaseAccess {
 			{
 				throw new AccessDeniedException;
 			}
+		}
+	}
+
+	private function onlyAdmins()
+	{
+		$this->disableGuests();
+		if ( ! Auth::user()->isAdmin())
+		{
+			throw new AccessDeniedException;
 		}
 	}
 
@@ -67,13 +76,17 @@ class Access extends BaseAccess {
 	public function checkCreateArticle()
 	{
 		$this->disableGuests();
+
+		$this->onlyAdmins();
 	}
 
 	public function checkEditArticle(Article $article)
 	{
 		$this->disableGuests();
 
-		return $article->author_id == Auth::user()->id || Auth::user()->isAdmin();
+		$this->onlyAdmins();
+
+		//return $article->author_id == Auth::user()->id || Auth::user()->isAdmin();
 	}
 
 }

@@ -24,12 +24,12 @@
 	<div class="bg-white p-20-0">
 		<div class="container">
 			<div class="row with-border">
-				<section class="col-md-8">
+				<section class="col-md-12">
 					@include('home.partials.new-posts')
 				</section>
-				<section class="col-md-4">
-					@include('home.partials.news')
-				</section>
+				{{--<section class="col-md-4">--}}
+					{{--@include('home.partials.news')--}}
+				{{--</section>--}}
 			</div>
 			<hr>
 			<div class="row with-border">
