@@ -128,8 +128,14 @@ Route::get( 'content/{slug}',                   ['uses' => 'ArticleController@sh
 Route::group(['before' => 'auth'], function ()
 {
 		Route::get( 'content/{id}/edit/',       ['uses' => 'ArticleController@edit',               'as' => 'post.edit']);
-		Route::get( 'posts/create',             ['uses' => 'ArticleController@create',             'as' => 'post.create']);
-		Route::post('posts/store',              ['uses' => 'ArticleController@store',              'as' => 'post.store']);
+		Route::get('articles/create', [
+			'as' => 'articles.create',
+			'uses' => 'ArticlesController@create'
+		]);
+		Route::post('articles/store', [
+			'as' => 'articles.store',
+			'uses' => 'ArticlesController@store'
+		]);
 	});
 
 
