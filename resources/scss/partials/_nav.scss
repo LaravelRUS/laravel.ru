@@ -136,7 +136,7 @@ nav {
 					right: 0;
 					text-transform: none;
 					background-color: $nav-bg-color;
-					z-index: 10;
+					z-index: -1;
 					border: 2px solid $border-color;
 					border-top-color: $primary-color;
 
@@ -158,6 +158,11 @@ nav {
 								color: $primary-color;
 							}
 						}
+					}
+
+					&.visible {
+						z-index: 10;
+
 					}
 				}
 			}

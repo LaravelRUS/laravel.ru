@@ -4,13 +4,13 @@
 @section('meta-description', 'Описание')
 
 @section('sidebar')
-<div class="hidden-xs hidden-sm col-md-3 sidebar">
+<div class="hidden-xs hidden-sm hidden-md col-lg-3 sidebar">
 	@include('partials.widgets.profile', ['profile' => Auth::user()])
 </div>
 @stop
 
 @section('contents')
-<div class="col-xs-12 col-md-9">
+<div class="col-xs-12 col-lg-9">
 	<main>
 		<article class="bg-white p-35-45">
 			<header>
