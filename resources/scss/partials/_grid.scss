@@ -88,12 +88,30 @@ $container-lg: (1100px + $grid-gutter-width) !default;
 	@media (min-width: $screen-lg-min) {
 		width: $container-lg;
 	}
+
+	@media (max-width: $screen-xs-max) {
+		padding: 0 10px;
+	}
 }
+
 .row {
 	margin-left: ($grid-gutter-width / -2);
 	margin-right: ($grid-gutter-width / -2);
 
 	@extend %clearfix;
+}
+
+
+@media (max-width: $screen-xs-max) {
+	.no-gutter {
+		.row {
+			margin: 0;
+		}
+
+		[class*="col-"] {
+			padding: 0;
+		}
+	}
 }
 
 // Columns

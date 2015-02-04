@@ -44,13 +44,15 @@
 
 .popup {
 	padding: $popup-padding;
-	margin: 30px 0;
+
+	@media (max-width: $screen-xs-max) {
+		padding: 30px 20px;
+	}
 
 	@extend %border-radius;
 
 	header {
-		border-bottom: 2px solid $border-color;
-		margin-bottom: 30px;
+		margin-bottom: 20px;
 	}
 
 	.header-icon {
