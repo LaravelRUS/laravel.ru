@@ -57,6 +57,11 @@ class Version extends Model {
 		return $query->where('is_master', 1);
 	}
 
+	public function scopeNotMaster($query)
+	{
+		return $query->where('is_master', 0);
+	}
+
 	public function scopeDefault($query)
 	{
 		return $query->where('is_default', 1);

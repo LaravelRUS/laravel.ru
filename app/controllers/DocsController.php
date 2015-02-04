@@ -123,7 +123,7 @@ class DocsController extends BaseController {
 	 */
 	public function status()
 	{
-		$versions = Version::documented()->withDocumentation()->orderBy('number', 'desc')->get();
+		$versions = Version::documented()->withDocumentation()->notMaster()->orderBy('number', 'desc')->get();
 
 		return View::make('docs.status', compact('versions'));
 	}
