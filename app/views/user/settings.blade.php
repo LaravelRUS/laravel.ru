@@ -16,14 +16,14 @@
 			<h1>Редактирование профиля</h1>
 		</header>
 		<hr>
-		{{ Form::open(['route' => 'user.edit', 'class' => 'ajax']) }}
 			<section>
 				<header>
 					<h2>Основные данные</h2>
 				</header>
-				{{ Element::input('text', 'username', 'Логин', null, $user->username, true) }}
-				{{ Element::input('email', 'email', 'Email', null, $user->email, true) }}
+				{{ Element::button('Сменить пароль') }}	{{ Element::button('Сменить email') }}
+				<br><br>
 			</section>
+		{{ Form::open(['route' => 'user.edit', 'class' => 'ajax']) }}
 			<section>
 				<header>
 					<h2 class="h3">Дополнительная информация</h2>
