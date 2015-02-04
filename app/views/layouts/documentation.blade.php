@@ -9,7 +9,7 @@
 				</li>
 				@foreach($documentedVersions as $version)
 					<li @if(Route::current()->parameter('version') == $version) class="active" @endif>
-						<?php if($version == "master") $displayVersion = "5.0"; else $displayVersion = $version; ?>
+						<?php if($version == "master") $displayVersion = "Develop"; else $displayVersion = $version; ?>
 						<a href="{{ route('documentation', $version) }}">{{ $displayVersion }}</a>
 					</li>
 				@endforeach
