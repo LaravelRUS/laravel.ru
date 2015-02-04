@@ -30,6 +30,7 @@
 				</div>
 			</div>
 			{{ Element::ace('text', 'Текст статьи') }}
+			<input type="checkbox" name="is_draft" checked>
 			{{ Element::button('Сохранить') }}
 		{{ Form::close() }}
 	</article>

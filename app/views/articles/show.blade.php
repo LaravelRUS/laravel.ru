@@ -1,27 +1,27 @@
 @extends('layouts.nosidebar')
 
 @section('title')
-	{{{ $post->title }}}
+	{{{ $article->title }}}
 @stop
 
 @section('content')
 
-{{ breadcrumbs(['Последние посты' => route('feed'), '' => '']) }}
+{{--{{ breadcrumbs(['Последние посты' => route('feed'), '' => '']) }}--}}
 
-<h1>{{{ $post->title }}}</h1>
+<h1>{{{ $article->title }}}</h1>
 
-<div class="post_credentials">
-	<span class="date">{{ $post->present()->publishedAt }}</span> <a href="{{ route('user.profile', $post->author->username) }}">{{ $post->author->username }}</a>
-	@if(allowEditArticle($post))
-		<span class="controls"><a class="btn btn-default btn-xs" href="{{ route('post.edit', $post->slug) }}">Редактировать</a></span>
+<div class="article_credentials">
+	<span class="date">{{ $article->present()->publishedAt }}</span> <a href="{{ route('user.profile', $article->author->username) }}">{{ $article->author->username }}</a>
+	@if(allowEditArticle($article))
+		<span class="controls"><a class="btn btn-default btn-xs" href="{{ route('articles.edit', $article->slug) }}">Редактировать</a></span>
 	@endif
 </div>
 
-<div class="post_content">
-	{{ $post->present()->textMD }}
+<div class="article_content">
+	{{ $article->present()->textMD }}
 </div>
 <div class="comment_containeer">
-	@if(count($post->comments))
+	@if(count($article->comments))
 		@include('comment.comments')
 	@endif
 	@include('comment.form')

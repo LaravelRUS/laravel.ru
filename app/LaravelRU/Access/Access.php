@@ -84,9 +84,9 @@ class Access extends BaseAccess {
 	{
 		$this->disableGuests();
 
-		$this->onlyAdmins();
+		//$this->onlyAdmins();
 
-		//return $article->author_id == Auth::user()->id || Auth::user()->isAdmin();
+		return $article->author_id == Auth::user()->id || Auth::user()->isAdmin();
 	}
 
 }
