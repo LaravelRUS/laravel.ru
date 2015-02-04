@@ -168,6 +168,7 @@ nav {
 .subnav {
 	background-color: $subnav-bg-color;
 	line-height: $subnav-height;
+	border-top: 1px solid $border-color;
 
 	.container {
 		line-height: 50px;

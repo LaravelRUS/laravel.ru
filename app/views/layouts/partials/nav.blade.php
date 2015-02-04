@@ -1,4 +1,4 @@
-<nav role="navigation">
+<nav {{ navMargin() }} role="navigation">
 	<div class="container">
 		<div class="header">
 			<div class="brand">
