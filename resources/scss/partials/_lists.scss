@@ -13,15 +13,8 @@ ul {
 	&.inline,
 	&.tabs,
 	&.tab-contents {
-		display: inline;
-		float: left;
-
-		&.float-right {
-			float: right;
-		}
-
 		> li {
-			float: left;
+			display: inline;
 			list-style-type: none;
 			padding: 0 15px;
 		}

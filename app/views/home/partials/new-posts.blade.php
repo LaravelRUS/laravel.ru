@@ -1,16 +1,15 @@
 <section class="widget">
 	<header class="m-b-25 position-relative">
-		<h3>Новые посты</h3>
-		@if(allowCreateArticle())
-			<a href="{{ route("article.create") }}" class="btn btn-secondary btn-sm btn-corner"><i class="fa fa-fw fa-plus"></i></a>
-		@endif
+		<h3>Новые статьи</h3>
 	</header>
-	<ul class="list-unstyled">
+	<ul class="unstyled">
 		@foreach($lastArticles as $article)
 			<li>
 				<article>
 					<header>
-						<h4 class="m-b-0"><a href="{{ route("article.view", $article->slug) }}">{{ e($article->title) }}</a></h4>
+						<h4 class="m-b-0">
+							<a href="{{ route("article.view", $article->slug) }}">{{ e($article->title) }}</a>
+						</h4>
 					</header>
 					<div>
 						<span class="date">{{ $article->present()->publishedAt }}</span>

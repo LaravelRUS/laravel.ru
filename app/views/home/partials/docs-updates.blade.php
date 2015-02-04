@@ -2,7 +2,7 @@
 	<header class="m-b-25">
 		<h3>Апдейты документации</h3>
 	</header>
-	<ul class="list-unstyled">
+	<ul class="unstyled">
 		@foreach($updatedDocs as $doc)
 			<li>
 				<p class="title">

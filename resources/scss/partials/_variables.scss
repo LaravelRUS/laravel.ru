@@ -58,11 +58,15 @@ $header-bg-color: #C8544E;
 $sidebar-widget-light-bg-color: white;
 
 // Buttons
-$button-border-color: #696969;
+$button-default-color: $color-grey-7;
+$button-default-bg-color: white;
+$button-default-hover-color: $button-default-color;
+$button-default-hover-bg-color: darken($button-default-bg-color, 2%);
+
 $button-success-color: white;
 $button-success-bg-color: $color-green;
-$button-success-hover-color: white;
-$button-success-hover-bg-color: lighten($color-green, 5%);
+$button-success-hover-color: $button-success-color;
+$button-success-hover-bg-color: lighten($button-success-bg-color, 5%);
 
 // Forms
 $input-border-color: $color-grey-2;
