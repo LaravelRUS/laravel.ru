@@ -69,6 +69,8 @@ class HookController extends BaseController {
 				Log::info(trim($line));
 			}
 
+			Log::info('GITHUB HOOK push develop FINISHED');
+
 			$job->delete();
 		});
 
