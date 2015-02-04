@@ -62,6 +62,10 @@ select, fieldset {
 	margin-bottom: 1.5rem;
 }
 
+blockquote {
+	margin: 0;
+}
+
 pre,
 blockquote,
 dl,
@@ -72,7 +76,6 @@ ul,
 ol {
 	margin-bottom: 2rem;
 }
-
 
 hr {
 	margin: 2rem 0;

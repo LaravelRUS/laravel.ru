@@ -10,13 +10,13 @@
 			<h2 class="c-white small m-b-25">Мы верим, что процесс разработки только тогда наиболее продуктивен, когда работа с фреймворком приносит радость и удовольствие. Счастливые разработчики пишут лучший код.</h2>
 			<ul class="inline">
 				<li>
-					<a class="btn btn-default" href="{{ route('documentation') }}">Документация</a>
+					<a class="button" href="{{ route('documentation') }}">Документация</a>
 				</li>
 				<li>
-					<a class="btn btn-default" href="{{ route('cheat-sheet') }}">Cheat Sheet</a>
+					<a class="button" href="{{ route('cheat-sheet') }}">Cheat Sheet</a>
 				</li>
 				<li>
-					<a class="btn btn-default" href="#">Циклы обучающих статей</a>
+					<a class="button" href="#">Циклы обучающих статей</a>
 				</li>
 			</ul>
 		</div>

@@ -20,78 +20,147 @@ nav {
 		}
 	}
 
-	ul, li {
-		margin-bottom: 0;
+	div.header {
+		@extend %clearfix;
 	}
+	div.collapse {
+		display: none;
+		margin: 0 -15px;
 
-	ul.inline > li {
-		font-size: 13px;
-		padding: 0 15px;
+		ul {
+			font-size: 1.3rem;
+			list-style-type: none;
+			margin: 0 -15px;
 
-		> a, span {
-			padding-bottom: 5px;
-			border-bottom: 2px solid $nav-bg-color;
-		}
+			li {
+				padding: 0 15px;
+				line-height: 40px;
 
-		&.active > a,
-		a:hover, a:focus,
-		span:hover, span:focus {
-			color: $primary-color;
-			border-color: $primary-color;
-		}
-	}
+				&:hover {
+					background-color: darken($nav-bg-color, 10%);
+				}
 
-	span {
-		position: relative;
+				&.active {
+					background-color: darken($nav-bg-color, 15%);
+				}
 
-		&:after {
-			content: "";
-			position: absolute;
-			top: 7px;
-			right: -12px;
-			border-top: 4px solid;
-			border-right: 4px solid transparent;
-			border-left: 4px solid transparent;
+				a, span {
+					padding: 0 15px;
+					display: block;
+				}
+
+				span {
+					position: relative;
+
+					&:after {
+						content: "";
+						position: absolute;
+						top: 18px;
+						right: 15px;
+						border-top: 4px solid;
+						border-right: 4px solid transparent;
+						border-left: 4px solid transparent;
+					}
+				}
+			}
 		}
 	}
 
 	ul.dropdown {
+		display: none;
 		opacity: 0;
-		position: absolute;
-		top: $nav-dropdown-height;
-		right: 0;
-		margin: 0;
-		text-transform: none;
-		background-color: $nav-bg-color;
-		z-index: 10;
-		border: 2px solid $border-color;
-		border-top-color: $primary-color;
+		background-color: darken($nav-bg-color, 2%);
 
 		@extend %transition;
 
-		li {
-			font-size: 13px;
-			list-style-type: none;
-			line-height: $nav-dropdown-line-height;
-			padding: 0 20px;
-			border-bottom: 1px solid $border-color;
-			white-space: nowrap;
+		&.visible {
+			display: block;
+			opacity: 1;
+		}
+	}
 
-			&:last-of-type {
-				border-bottom: 0;
-			}
+	@media (min-width: $screen-sm-min) {
+		div.toggle-button {
+			display: none;
+		}
+		div.header {
+			float: left;
+		}
+		div.collapse {
+			display: block !important;
+			margin: 0;
 
-			a {
-				color: $nav-dropdown-link-color;
+			@extend %clearfix;
 
-				&:hover, &:focus {
-					color: $primary-color;
+			ul {
+				float: right;
+				margin: 0;
+
+				li {
+					float: left;
+					line-height: $nav-height;
+
+					&:hover, &.active {
+						background-color: $nav-bg-color;
+					}
+
+					a, span {
+						display: inline;
+						padding: 0;
+					}
+
+					span:after {
+						top: 7px;
+						right: -12px;
+					}
+				}
+
+				> li {
+					> a, span {
+						padding-bottom: 5px;
+						border-bottom: 2px solid $nav-bg-color;
+					}
+
+					&.active > a,
+					a:hover, a:focus,
+					span:hover, span:focus {
+						color: $primary-color;
+						border-color: $primary-color;
+					}
+				}
+
+				&.dropdown {
+					display: block;
+					position: absolute;
+					top: $nav-dropdown-height;
+					right: 0;
+					text-transform: none;
+					background-color: $nav-bg-color;
+					z-index: 10;
+					border: 2px solid $border-color;
+					border-top-color: $primary-color;
+
+					li {
+						line-height: $nav-dropdown-line-height;
+						padding: 0 20px;
+						white-space: nowrap;
+						border-bottom: 1px solid $border-color;
+
+						&:last-of-type {
+							border-bottom: 0;
+						}
+
+						a {
+							color: $nav-dropdown-link-color;
+							border-bottom: none;
+
+							&:hover, &:focus {
+								color: $primary-color;
+							}
+						}
+					}
 				}
 			}
-		}
-
-		&.visible {
-			opacity: 1;
 		}
 	}
 }
@@ -99,6 +168,8 @@ nav {
 .subnav {
 	background-color: $subnav-bg-color;
 	line-height: $subnav-height;
+	border-top: 1px solid $border-color;
+	border-bottom: 1px solid $border-color;
 
 	.container {
 		line-height: 50px;

@@ -2,25 +2,25 @@
 	display: inline-block;
 	height: 38px;
 	padding: 0 30px;
-	color: #555555;
+	color: $button-default-color;
 	text-align: center;
 	font-size: 11px;
 	font-weight: 600;
 	line-height: 38px;
 	text-transform: uppercase;
 	white-space: nowrap;
-	background-color: transparent;
+	background-color: $button-default-bg-color;
 	border-radius: 4px;
-	border: 2px solid $button-border-color;
+	border: 2px solid darken($button-default-bg-color, 5%);
 	cursor: pointer;
-	box-sizing: border-box;
 	outline: 0;
 
 	@extend %transition;
 
 	&:hover, &:focus {
-		color: #333333;
-		border-color: #888888;
+		color: $button-default-hover-color;
+		background-color: $button-default-hover-bg-color;
+		border-color: darken($button-default-hover-bg-color, 5%);
 	}
 
 	&.success {

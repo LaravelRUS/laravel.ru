@@ -15,7 +15,10 @@ Route::pattern('slug', '[a-z0-9-]+');
 // You MUST use Form::open for forms
 // Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 
-Route::get('/', ['uses' => 'HomeController@home', 'as' => 'home']);
+Route::get('/', [
+	'as' => 'home',
+	'uses' => 'HomeController@home'
+]);
 
 // ===== Хуки гитхаба =====
 
@@ -117,29 +120,27 @@ Route::group(['before' => 'logged'], function ()
 });
 
 
-// ===== Articles =====
-
+// Articles
 Route::get('articles', [
 	'as' => 'articles.all',
-	'uses' => 'ArticlesController@showAll',
+	'uses' => 'ArticlesController@showAll'
 ]);
-
 // Отдельный пост
-Route::get('content/{slug}', ['uses' => 'ArticlesController@show', 'as' => 'article.view']);
+Route::get('articles/{slug}', [
+	'as' => 'articles.show',
+	'uses' => 'ArticlesController@show'
+]);
 
 Route::group(['before' => 'auth'], function ()
 {
-	Route::get('content/{id}/edit/', [
-		'as' => 'article.edit',
-		'uses' => 'ArticlesController@edit',
+	Route::get('content/{id}/edit/', ['uses' => 'ArticleController@edit', 'as' => 'articles.edit']);
+	Route::get('articles/create', [
+		'as' => 'articles.create',
+		'uses' => 'ArticlesController@create'
 	]);
-	Route::get('article/create', [
-		'as' => 'article.create',
-		'uses' => 'ArticlesController@create',
-	]);
-	Route::post('article/store', [
-		'as' => 'article.store',
-		'uses' => 'ArticlesController@store',
+	Route::post('articles/store', [
+		'as' => 'articles.store',
+		'uses' => 'ArticlesController@store'
 	]);
 });
 

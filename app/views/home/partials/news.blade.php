@@ -5,7 +5,7 @@
 			<a href="{{ route("news.create") }}" class="btn btn-secondary btn-sm btn-corner"><i class="fa fa-fw fa-plus"></i></a>
 		@endif
 	</header>
-	<ul class="list-unstyled">
+	<ul class="unstyled">
 		@foreach($lastNews as $news)
 			@news($news)
 			{{-- // TODO Нужно ли так писать виджеты, а не через include? --}}

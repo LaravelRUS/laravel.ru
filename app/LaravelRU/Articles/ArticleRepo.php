@@ -67,22 +67,4 @@ class ArticleRepo extends AbstractRepository {
 		$allVersions = Version::all();
 	}
 
-	/**
-	 * Get uncompleted article by author
-	 *
-	 * @param \\Illuminate\Auth\Guard $author
-	 * @return mixed
-	 */
-	public function getUncompletedArticleByAuthor($author)
-	{
-		$article = $author->articles()
-			->where(function ($q)
-			{
-				$q->whereNull('title');
-				$q->orWhere('title', '');
-			})->first();
-
-		return $article;
-	}
-
 }

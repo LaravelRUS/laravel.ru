@@ -2,7 +2,7 @@
 	<header class="m-b-25">
 		<h3>Обновлённые пакеты</h3>
 	</header>
-	<ul class="list-unstyled">
+	<ul class="unstyled">
 		@foreach($updatedPackages as $package)
 			<li>
 				<p class="title">

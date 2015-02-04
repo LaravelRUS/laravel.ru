@@ -5,6 +5,8 @@ use LaravelRU\Access\Access;
 use LaravelRU\Articles\Forms\CreateArticleForm;
 use LaravelRU\Articles\Forms\UpdateArticleForm;
 use LaravelRU\Articles\ArticleRepo;
+use LaravelRU\Articles\Models\Article;
+use LaravelRU\Articles\Models\DifficultyLevel;
 use LaravelRU\Comment\Models\Comment;
 
 class ArticlesController extends BaseController {
@@ -32,8 +34,8 @@ class ArticlesController extends BaseController {
 	public function __construct(CreateArticleForm $createArticleForm, UpdateArticleForm $updateArticleForm, ArticleRepo $articleRepo, Access $access)
 	{
 		$this->articleRepo = $articleRepo;
-		//$this->$createArticleForm = $createArticleForm;
-		//$this->$updateArticleForm = $updateArticleForm;
+		$this->createArticleForm = $createArticleForm;
+		$this->updateArticleForm = $updateArticleForm;
 		$this->access = $access;
 	}
 
@@ -62,44 +64,42 @@ class ArticlesController extends BaseController {
 
 	public function create()
 	{
-		if ( ! $article = $this->articleRepo->getUncompletedArticleByAuthor(Auth::user()))
+		$user = Auth::user();
+		$article = $user->articles()->draft()->first();
+		$difficultyLevels = DifficultyLevel::lists('title', 'id');
+
+		if ( ! $article)
 		{
-			$article = $this->articleRepo->create(['is_draft' => 1]);
+			$article = new Article();
 			$article->author_id = Auth::id();
 			$article->save();
 		}
 
-		return Redirect::route('article.edit', $article->id);
+		return View::make('articles.create', compact('article', 'difficultyLevels', 'user'));
 	}
 
 	public function edit($id)
 	{
-		$article = $this->articleRepo->findOrFail($id);
+		$this->access->checkEditArticle($id);
 
-		$this->access->checkEditArticle($article);
+		$post = $this->postRepo->findOrFail($id);
 
-		return View::make('articles.edit-article', compact('article'));
+		return View::make('posts.edit-post', compact('post'));
 	}
 
 	public function store()
 	{
-		$article_id = Input::get('id');
-		$input = Input::all();
+		$data = Input::all();
 
-		if ($article_id)
-		{
-			$article = $this->articleRepo->find($article_id);
-			$this->access->checkEditArticle($article);
-			//$this->updatePostForm->validate($input);
-		}
-		else
-		{
-			$article = $this->articleRepo->create();
-			$article->author_id = Auth::id();
-			//$this->createPostForm->validate($input);
-		}
+		$this->createArticleForm->validate($data);
 
-		$article->fill($input);
+		// TODO remove everything not needed in the text field
+
+		$article = Article::find($data['id'])->first();
+
+		$this->access->checkEditArticle($article);
+
+		$article->fill($data);
 
 		if ($article->is_draft == 0 && is_null($article->published_at))
 		{
@@ -108,11 +108,7 @@ class ArticlesController extends BaseController {
 
 		$article->save();
 
-		return Redirect::route('article.edit', $article->id)
-			->with('success',
-				'Пост сохранен - <a href="' . route('article.view', $article->slug) . '">'
-				. route('article.view', $article->slug) . '</a>'
-			);
+		return Redirect::route('user.profile')->with('success', 'Статья сохранена сохранен');
 	}
 
 }

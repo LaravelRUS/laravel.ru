@@ -5,8 +5,10 @@ use Laracasts\Validation\FormValidator;
 class CreateArticleForm extends FormValidator {
 
 	protected $rules = [
-		'title' => 'required',
-		'slug' => 'required|unique:posts,slug|slug',
+		'id' => 'required|exists:articles',
+		'title' => 'required|unique:articles',
+		'slug' => 'required|unique:articles|slug',
+		'meta_description' => 'required|max:150',
 		'text' => 'required',
 	];
 

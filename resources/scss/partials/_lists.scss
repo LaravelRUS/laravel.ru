@@ -13,15 +13,8 @@ ul {
 	&.inline,
 	&.tabs,
 	&.tab-contents {
-		display: inline;
-		float: left;
-
-		&.float-right {
-			float: right;
-		}
-
 		> li {
-			float: left;
+			display: inline;
 			list-style-type: none;
 			padding: 0 15px;
 		}
@@ -41,6 +34,7 @@ ul {
 		border-bottom: 2px solid $color-grey-3;
 
 		li {
+			float: left;
 			font-size: 1.3rem;
 			font-weight: 600;
 			text-transform: uppercase;

@@ -9,7 +9,7 @@
 				<h1>Статус перевода</h1>
 				<p>Если вы хотите помочь с переводом документации, ознакомьтесь пожалуйста с этой <a href="/content/rus-documentation-contribution-guide">инструкцией</a>.</p>
 			</header>
-			<ul class="list-unstyled">
+			<ul class="unstyled">
 			@foreach($versions as $version)
 				<li>
 					<article>
