@@ -15,7 +15,7 @@ return array(
 
 	'debug' => false,
 
-	'url' => 'http://sharedstation.net',
+	'url' => 'http://laravel.su',
 
 	'timezone' => 'Europe/Moscow',
 
