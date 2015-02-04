@@ -83,12 +83,15 @@ Route::get('docs/{version?}/{string?}', [
 	'uses' => 'DocsController@docs'
 ]);
 
-// ===== Админка =====
+// Admin
 
 Route::group(['before' => 'administrator'], function ()
 {
 	// Админка
-	Route::get('admin/list_users', ['uses' => 'AdminController@listUsers', 'as' => 'admin.users']);
+	Route::get('admin/users', [
+		'as' => 'admin.users',
+		'uses' => 'AdminController@usersList',
+	]);
 	Route::post('admin/add_role', ['uses' => 'AdminController@addRole', 'as' => 'admin.add_role']);
 	Route::post('admin/remove_role', ['uses' => 'AdminController@removeRole', 'as' => 'admin.remove_role']);
 

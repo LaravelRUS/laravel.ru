@@ -16,12 +16,12 @@ class AdminController extends BaseController {
 		$this->access = $access;
 	}
 
-	public function listUsers()
+	public function usersList()
 	{
-		$users = User::orderBy('id', 'asc')->with('roles')->get();
+		$users = User::orderBy('id', 'asc')->withRoles()->get();
 		$roles = Role::all();
 
-		return View::make('admin/list_users', compact('users', 'roles'));
+		return View::make('admin.users-list', compact('users', 'roles'));
 	}
 
 	public function addRole()
@@ -51,7 +51,7 @@ class AdminController extends BaseController {
 
 		// Запрещено сниматьсебе админский статус
 		// TODO переделать на $this->access->... в модуле Admin, который тоже надо сделать.
-		if( ! (Auth::user()->id == $user_id AND $role_id == 1))
+		if ( ! (Auth::user()->id == $user_id AND $role_id == 1))
 		{
 			$user = User::findOrFail($user_id);
 

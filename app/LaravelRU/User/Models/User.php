@@ -213,6 +213,11 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 		return $query->where('username', $username);
 	}
 
+	public function scopeWithRoles($query)
+	{
+		return $query->with('roles');
+	}
+
 	public function scopeWithInfo($query)
 	{
 		return $query->with('info');
