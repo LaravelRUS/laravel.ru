@@ -51,6 +51,10 @@ ul {
 		p {
 			padding: 15px;
 			margin-bottom: 0;
+
+			@media (max-width: $screen-xs-max) {
+				padding: 15px 2px;
+			}
 		}
 	}
 
@@ -66,6 +70,7 @@ ul {
 				display: block;
 			}
 		}
+
 		section {
 			background-color: white;
 			padding: 35px;
@@ -73,6 +78,10 @@ ul {
 
 			p:last-of-type {
 				margin-bottom: 0;
+			}
+
+			@media (max-width: $screen-xs-max) {
+				padding: 20px;
 			}
 		}
 	}

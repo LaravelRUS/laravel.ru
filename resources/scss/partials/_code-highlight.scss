@@ -43,22 +43,26 @@ pre .dec, code .dec {
 	color: #AE81FF;
 }
 
-/* decimal */
-
 pre.prettyprint, code.prettyprint {
+	width: 100%;
+	margin: 20px auto;
+	font-size: 1.2rem;
+	padding: 2em;
+	white-space: pre;
+	word-wrap: break-word;
 	background-color: #272822;
-	border-radius: 8px;
+	border-radius: 6px;
 
 	code {
 		padding: 0;
 		background-color: #272822;
-	}
-}
 
-pre.prettyprint {
-	width: 100%;
-	margin: 20px auto;
-	font-size: 12px;
-	padding: 2.2em;
-	white-space: pre-wrap;
+		@media (max-width: $screen-xs-max) {
+			font-size: 1.1rem;
+		}
+	}
+
+	@media (max-width: $screen-xs-max) {
+		padding: 1rem;
+	}
 }

@@ -64,8 +64,7 @@ class ArticlesController extends BaseController {
 
 	public function create()
 	{
-		$user = Auth::user();
-		$article = $user->articles()->draft()->first();
+		$article = Auth::user()->articles()->draft()->first();
 		$difficultyLevels = DifficultyLevel::lists('title', 'id');
 
 		if ( ! $article)
@@ -75,7 +74,7 @@ class ArticlesController extends BaseController {
 			$article->save();
 		}
 
-		return View::make('articles.create', compact('article', 'difficultyLevels', 'user'));
+		return View::make('articles.create', compact('article', 'difficultyLevels'));
 	}
 
 	public function edit($id)

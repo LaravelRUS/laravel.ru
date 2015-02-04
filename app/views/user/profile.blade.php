@@ -1,9 +1,16 @@
-@extends('layouts.profile')
+@extends('layouts.left-sidebar')
 
 @section('title', $user->username)
 @section('meta-description', 'Описание')
 
+@section('sidebar')
+<div class="col-xs-12 col-sm-4 col-md-3 sidebar">
+	@include('partials.widgets.profile', ['profile' => $user])
+</div>
+@stop
+
 @section('contents')
+<div class="col-xs-12 col-sm-8 col-md-9">
 	<section class="bg-white p-35 p-b-25 m-b-30 border-rounded">
 		@if($user->info->birthday)
 			<p class="m-b-5"><strong>День рождения</strong></p>
@@ -17,11 +24,11 @@
 			<hr>
 		@endif
 		<aside class="row">
-			<section class="col-xs-3">
+			<section class="col-xs-6 col-sm-3">
 				<p class="text-center big"><strong>{{ $user->articles()->count() }}</strong></p>
 				<p class="tiny text-center text-uppercase last">Статей</p>
 			</section>
-			<section class="col-xs-3">
+			<section class="col-xs-6 col-sm-3">
 				<p class="text-center big"><strong>{{ $user->comments()->count() }}</strong></p>
 				<p class="tiny text-center text-uppercase last">Комментариев</p>
 			</section>
@@ -65,4 +72,5 @@
 			</li>
 		</ul>
 	</section>
+</div>
 @stop

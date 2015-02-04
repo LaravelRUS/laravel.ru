@@ -46,10 +46,18 @@
 
 .p-35 {
 	padding: 35px;
+
+	@media (max-width: $screen-xs-max) {
+		padding: 20px;
+	}
 }
 
 .p-35-45 {
 	padding: 35px 45px;
+
+	@media (max-width: $screen-xs-max) {
+		padding: 20px 15px;
+	}
 }
 
 .p-45 {

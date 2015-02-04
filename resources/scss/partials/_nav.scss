@@ -163,6 +163,10 @@ nav {
 			}
 		}
 	}
+
+	@media (max-width: $screen-xs-max) {
+		margin-bottom: 10px;
+	}
 }
 
 .subnav {
@@ -178,9 +182,13 @@ nav {
 	ul {
 		margin-bottom: 0;
 
-		li a {
-			padding: 6px 8px;
-			border-radius: 4px;
+		li {
+			padding: 0;
+
+			a {
+				padding: 6px 8px;
+				border-radius: 4px;
+			}
 		}
 
 		li.active a, li a:hover, li a:focus {

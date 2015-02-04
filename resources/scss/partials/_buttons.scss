@@ -34,4 +34,23 @@
 			border-color: darken($button-success-hover-bg-color, 5%);
 		}
 	}
+
+	i {
+		margin: 0;
+	}
+
+	.fa {
+		display: block;
+	}
+
+	&.small {
+		height: 26px;
+		line-height: 26px;
+		padding: 0 15px;
+
+		i {
+			width: 10px;
+			height: 10px;
+		}
+	}
 }

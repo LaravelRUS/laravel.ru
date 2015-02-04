@@ -146,4 +146,8 @@
 			}
 		}
 	}
+
+	@media (max-width: $screen-xs-max) {
+		padding: 0;
+	}
 }
