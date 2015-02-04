@@ -13,6 +13,7 @@ body > footer {
 
 	a {
 		color: $footer-link-color;
+		border-bottom: none;
 
 		&:focus, &:hover {
 			color: $primary-color;

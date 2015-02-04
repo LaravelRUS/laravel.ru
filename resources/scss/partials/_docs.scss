@@ -18,6 +18,7 @@
 					font-size: 14px;
 					font-weight: normal;
 					padding-left: 17px;
+					border-bottom: none;
 
 					&:before {
 						content: "";
@@ -27,7 +28,7 @@
 						width: 10px;
 						height: 10px;
 						border-radius: 50%;
-						background-color: $color-grey-2;
+						background-color: $color-grey-3;
 					}
 				}
 			}
@@ -74,6 +75,7 @@
 			a {
 				position: relative;
 				color: $primary-color;
+				border-bottom: none;
 
 				@extend %hash-tag;
 			}
@@ -90,10 +92,6 @@
 			margin-bottom: 15px;
 		}
 
-		a {
-			color: $color-green;
-		}
-
 		ul {
 			list-style: none;
 			margin: 0;
@@ -107,6 +105,7 @@
 
 				a {
 					color: $primary-color;
+					border-bottom: none;
 				}
 			}
 		}

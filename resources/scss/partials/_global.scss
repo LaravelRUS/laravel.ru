@@ -19,11 +19,14 @@ body {
 a {
 	color: $link-color;
 	text-decoration: none;
+	padding-bottom: 1px;
+	border-bottom: 1px solid $color-grey-3;
 
 	@extend %transition;
 
 	&:hover {
 		color: $link-hover-color;
+		border-color: $primary-color;
 	}
 }
 

@@ -5,6 +5,10 @@ nav {
 	margin-bottom: $nav-margin-bottom;
 	background-color: $nav-bg-color;
 
+	a {
+		color: $color-grey-6;
+	}
+
 	div.brand {
 		float: left;
 		height: $nav-height;
@@ -200,5 +204,11 @@ nav {
 			background-color: $color-grey-6;
 			color: white;
 		}
+	}
+}
+
+nav, .subnav {
+	a {
+		border-bottom: none;
 	}
 }
