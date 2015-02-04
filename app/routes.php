@@ -128,11 +128,6 @@ Route::get('articles', [
 	'as' => 'articles.all',
 	'uses' => 'ArticlesController@showAll'
 ]);
-// Отдельный пост
-Route::get('articles/{slug}', [
-	'as' => 'articles.show',
-	'uses' => 'ArticlesController@show'
-]);
 
 Route::group(['before' => 'auth'], function ()
 {
@@ -146,6 +141,11 @@ Route::group(['before' => 'auth'], function ()
 		'uses' => 'ArticlesController@store'
 	]);
 });
+
+Route::get('articles/{slug}', [
+	'as' => 'articles.show',
+	'uses' => 'ArticlesController@show'
+]);
 
 
 // ===== "А знаете ли вы что" - советы
