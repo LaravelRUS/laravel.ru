@@ -7,7 +7,7 @@
 			<li>
 				<p class="title">
 					<span class="date">{{ $doc->present()->lastCommitDate() }}</span>
-					<span><a href="{{ route('documentation', [$doc->frameworkVersion->number, $doc->page]) }}">{{ $doc->frameworkVersion->number }}/{{ $doc->page }}</a></span>
+					<span><a href="{{ route('documentation', [$doc->frameworkVersion->number_alias, $doc->page]) }}">{{ $doc->frameworkVersion->number }}/{{ $doc->page }}</a></span>
 				</p>
 				<p class="name">{{ $doc->title }}</p>
 			</li>
