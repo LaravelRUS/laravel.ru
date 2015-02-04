@@ -10,7 +10,7 @@
 				@foreach($documentedVersions as $version)
 					@if($version != "master")
 					<li @if(Route::current()->parameter('version') == $version) class="active" @endif>
-						<a href="{{ route('documentation', $version) }}">{{ $displayVersion }}</a>
+						<a href="{{ route('documentation', $version) }}">{{ $version }}</a>
 					</li>
 					@endif
 				@endforeach
