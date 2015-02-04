@@ -44,10 +44,26 @@ class HookController extends BaseController {
 		Queue::push(function ($job)
 		{
 			Log::info('GITHUB HOOK push develop INCOMING');
-			Log::info('Part1: reset repository and pull changes');
 
+			Log::info('Part1: reset repository to HEAD and pull changes');
 			$arrayOutput = [];
-			exec("cd /home/forge/sharedstation.net || git checkout develop || git reset HEAD --hard || git pull origin develop || composer update || php artisan migrate", $arrayOutput);
+			exec("cd /home/forge/sharedstation.net && git checkout develop && git reset HEAD --hard && git pull origin develop", $arrayOutput);
+			foreach ($arrayOutput as $line)
+			{
+				Log::info(trim($line));
+			}
+
+			Log::info('Part2: composer update');
+			$arrayOutput = [];
+			exec("cd /home/forge/sharedstation.net && composer update", $arrayOutput);
+			foreach ($arrayOutput as $line)
+			{
+				Log::info(trim($line));
+			}
+
+			Log::info('Part3: migration');
+			$arrayOutput = [];
+			exec("cd /home/forge/sharedstation.net && php artisan migrate", $arrayOutput);
 			foreach ($arrayOutput as $line)
 			{
 				Log::info(trim($line));
