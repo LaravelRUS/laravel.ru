@@ -29,14 +29,14 @@
 			</aside>
 		</aside>
 	</section>
-	@if(isOwner($user->username))
-		<aside class="widget light">
-			<header>
-				<h2>Меню</h2>
-			</header>
-			<ul class="unstyled">
-				<li><a href="{{ route('articles.create') }}">Новая статья</a></li>
-			</ul>
-		</aside>
-	@endif
+	{{--@if(isOwner($user->username))--}}
+		{{--<aside class="widget light">--}}
+			{{--<header>--}}
+				{{--<h2>Меню</h2>--}}
+			{{--</header>--}}
+			{{--<ul class="unstyled">--}}
+				{{--<li><a href="{{ route('articles.create') }}">Новая статья</a></li>--}}
+			{{--</ul>--}}
+		{{--</aside>--}}
+	{{--@endif--}}
 @stop

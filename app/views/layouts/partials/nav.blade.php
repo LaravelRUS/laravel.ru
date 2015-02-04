@@ -13,18 +13,18 @@
 				<li {{activeClass(['documentation', 'documentation.status'])}}>
 					<a href="{{ route("documentation") }}">Документация</a>
 				</li>
-				<li {{activeClass(['articles.all'])}}>
-					<a href="{{ route("articles.all") }}">Статьи</a>
-				</li>
-				<li>
-					<a href="{{ route("documentation") }}">Вопросы</a>
-				</li>
-				<li class="hidden-sm">
-					<a href="{{ route("documentation") }}">Пакеты</a>
-				</li>
-				<li>
-					<a href="{{ route("documentation") }}">Cheat Sheet</a>
-				</li>
+				{{--<li {{activeClass(['articles.all'])}}>--}}
+					{{--<a href="{{ route("articles.all") }}">Статьи</a>--}}
+				{{--</li>--}}
+				{{--<li>--}}
+					{{--<a href="{{ route("documentation") }}">Вопросы</a>--}}
+				{{--</li>--}}
+				{{--<li class="hidden-sm">--}}
+					{{--<a href="{{ route("documentation") }}">Пакеты</a>--}}
+				{{--</li>--}}
+				{{--<li>--}}
+					{{--<a href="{{ route("documentation") }}">Cheat Sheet</a>--}}
+				{{--</li>--}}
 				<li class="hidden-sm">
 					<a href="https://gitter.im/LaravelRUS/chat">Чат</a>
 				</li>
