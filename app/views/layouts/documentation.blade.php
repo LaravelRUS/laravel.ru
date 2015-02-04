@@ -8,10 +8,11 @@
 					<span>Версия фреймворка:</span>
 				</li>
 				@foreach($documentedVersions as $version)
+					@if($version != "master")
 					<li @if(Route::current()->parameter('version') == $version) class="active" @endif>
-						<?php if($version == "master") $displayVersion = "Develop"; else $displayVersion = $version; ?>
 						<a href="{{ route('documentation', $version) }}">{{ $displayVersion }}</a>
 					</li>
+					@endif
 				@endforeach
 				<li class="float-right {{ activeClassName('documentation.status') }}">
 					<a href="{{ route('documentation.status') }}">Прогресс перевода</a>
