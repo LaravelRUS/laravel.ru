@@ -4,12 +4,13 @@
 @section('meta-description', 'Описание')
 
 @section('sidebar')
-	<div class="hidden-xs">
-		@include('partials.widgets.profile', ['profile' => $user])
-	</div>
+<div class="hidden-xs hidden-sm col-md-3 sidebar">
+	@include('partials.widgets.profile', ['profile' => $user])
+</div>
 @stop
 
 @section('contents')
+<div class="col-xs-12 col-md-9">
 	<section class="bg-white p-35-45">
 		<header>
 			<h1>Редактирование профиля</h1>
@@ -54,4 +55,5 @@
 			{{ Element::button('Сохранить') }}
 		{{ Form::close() }}
 	</section>
+</div>
 @stop

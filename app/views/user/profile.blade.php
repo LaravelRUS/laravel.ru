@@ -4,10 +4,13 @@
 @section('meta-description', 'Описание')
 
 @section('sidebar')
+<div class="col-xs-12 col-sm-4 col-md-3 sidebar">
 	@include('partials.widgets.profile', ['profile' => $user])
+</div>
 @stop
 
 @section('contents')
+<div class="col-xs-12 col-sm-8 col-md-9">
 	<section class="bg-white p-35 p-b-25 m-b-30 border-rounded">
 		@if($user->info->birthday)
 			<p class="m-b-5"><strong>День рождения</strong></p>
@@ -69,4 +72,5 @@
 			</li>
 		</ul>
 	</section>
+</div>
 @stop
