@@ -26,7 +26,7 @@
 					{{--<a href="{{ route("documentation") }}">Cheat Sheet</a>--}}
 				{{--</li>--}}
 				<li class="hidden-sm">
-					<a href="https://gitter.im/LaravelRUS/chat">Чат</a>
+					<a href="https://gitter.im/LaravelRUS/chat" rel="nofollow" target="_blank">Чат</a>
 				</li>
 				@if(Auth::check())
 					<li>
