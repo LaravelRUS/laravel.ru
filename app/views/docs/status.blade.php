@@ -3,7 +3,7 @@
 @section('title', 'Статус перевода')
 
 @section('container')
-	<main class="container">
+	<main class="container docs">
 		<article class="bg-white p-35-45">
 			<header class="bordered m-b-30">
 				<h1>Статус перевода</h1>

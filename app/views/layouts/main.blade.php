@@ -14,7 +14,7 @@
 	<script src="/bootstrap/js/ie8-responsive-file-warning.js"></script>
 	<![endif]-->
 </head>
-<body>
+<body class="no-gutter">
 	@include('layouts.partials.nav')
 	@yield('submenu')
 	@yield('container')

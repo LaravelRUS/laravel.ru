@@ -53,7 +53,7 @@ class AuthController extends BaseController {
 		$user->confirmation()->save($userConfirmation);
 
 		$email = $input['email'];
-		$password = $input['password'];
+
 		Mail::queue('emails/auth/register', ['confirmationString' => $confirmationString], function ($message) use ($email)
 		{
 			$message->from('postmaster@sharedstation.net');
@@ -113,7 +113,7 @@ class AuthController extends BaseController {
 		if ( ! $success)
 		{
 			return Redirect::route('auth.login')
-				->withErrors(['wrong_input' => 'Неправильный логин, email или пароль.'])
+				->withErrors(['wrong_input' => 'Неверный логин, email или пароль.'])
 				->onlyInput('login');
 		}
 
