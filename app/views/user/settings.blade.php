@@ -36,7 +36,7 @@
 						{{ Element::input('text', 'surname', 'Фамилия', null, $user->info->surname) }}
 					</div>
 				</div>
-				{{ Element::input('date', 'birthday', 'Дата рождения', null, $user->birthday) }}
+				{{ Element::input('date', 'birthday', 'Дата рождения', null, $user->info->birthday) }}
 				{{ Element::textarea('about', 'Обо мне') }}
 			</section>
 			<section>
@@ -45,10 +45,10 @@
 				</header>
 				<div class="row">
 					<div class="col-xs-12 col-sm-6">
-						{{ Element::input('text', 'website', 'Сайт', null, $user->website) }}
+						{{ Element::input('text', 'website', 'Сайт', null, $user->info->website) }}
 					</div>
 					<div class="col-xs-12 col-sm-6">
-						{{ Element::input('text', 'skype', 'Skype', null, $user->skype) }}
+						{{ Element::input('text', 'skype', 'Skype', null, $user->info->skype) }}
 					</div>
 				</div>
 			</section>
