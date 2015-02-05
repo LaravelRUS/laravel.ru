@@ -4,7 +4,8 @@ ul, ol {
 }
 
 ul {
-	list-style: circle inside;
+	list-style-type: disc;
+	list-style-position: inside;
 
 	li {
 		position: relative;
@@ -36,7 +37,7 @@ ul {
 		li {
 			float: left;
 			font-size: 1.3rem;
-			font-weight: 600;
+			font-weight: 700;
 			text-transform: uppercase;
 			cursor: pointer;
 
