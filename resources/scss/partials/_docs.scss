@@ -19,14 +19,13 @@
 					padding-left: 22px;
 					border-bottom: none;
 					display: inline-block;
-					height: 20px;
-					line-height: 20px;
-					max-height: 20px;
+					height: 1.6rem;
+					line-height: 1.6rem;
 
 					&:before {
 						content: "";
 						position: absolute;
-						top: 6px;
+						top: 4px;
 						left: 5px;
 						width: 8px;
 						height: 8px;
