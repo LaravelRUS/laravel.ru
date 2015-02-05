@@ -7,7 +7,7 @@
 		<article class="bg-white p-35-45">
 			<header class="bordered m-b-30">
 				<h1>Статус перевода</h1>
-				<p>Если вы хотите помочь с переводом документации, ознакомьтесь пожалуйста с этой <a href="/content/rus-documentation-contribution-guide">инструкцией</a>.</p>
+				<p>Если вы хотите помочь с переводом документации, ознакомьтесь пожалуйста с этой <a href="/articles/rus-documentation-contribution-guide">инструкцией</a>.</p>
 			</header>
 			<ul class="unstyled">
 			@foreach($versions as $version)
