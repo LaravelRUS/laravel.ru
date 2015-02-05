@@ -58,8 +58,6 @@ class UserController extends BaseController {
 
 		/** @var User $user */
 		$user = Auth::user();
-		//$user->username = array_get($data, 'username');
-		//$user->email = array_get($data, 'email');
 		$user->info->name = array_get($data, 'name');
 		$user->info->surname = array_get($data, 'surname');
 		$user->info->birthday = array_get($data, 'birthday');
@@ -73,7 +71,7 @@ class UserController extends BaseController {
 		}
 
 		return $response->data([
-			'title' => "Данные успешно сохранены",
+			'title' => 'Данные успешно сохранены',
 			'redirect' => route('user.profile', $user->username)
 		]);
 	}
