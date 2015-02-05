@@ -16,17 +16,25 @@
 					color: $color-grey-6;
 					font-size: 1.6rem;
 					font-weight: normal;
-					padding-left: 5px;
+					padding-left: 22px;
 					border-bottom: none;
+					display: inline-block;
+					height: 20px;
+					line-height: 20px;
+					max-height: 20px;
 
 					&:before {
-						content: "\f111";
-						font: normal normal normal 14px/1 FontAwesome;
-						color: $color-grey-3;
-						font-size: 9px;
-						line-height: 20px;
-						margin-right: 10px;
+						content: "";
+						position: absolute;
+						top: 6px;
+						left: 5px;
+						width: 8px;
+						height: 8px;
+						border-radius: 50%;
 						vertical-align: middle;
+						background-color: $color-grey-3;
+
+						@extend %transition;
 					}
 				}
 			}
@@ -40,7 +48,7 @@
 			color: $primary-color;
 
 			&:before {
-				color: $primary-color;
+				background-color: $primary-color;
 			}
 		}
 
