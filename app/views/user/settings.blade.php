@@ -37,7 +37,7 @@
 					</div>
 				</div>
 				{{ Element::input('date', 'birthday', 'Дата рождения', null, $user->info->birthday) }}
-				{{ Element::textarea('about', 'Обо мне') }}
+				{{ Element::textarea('about', 'Обо мне', 3, null, $user->info->about) }}
 			</section>
 			<section>
 				<header>
