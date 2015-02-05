@@ -9,8 +9,6 @@ input, textarea, select {
 	outline: 0;
 	-webkit-appearance: none;
 
-	@extend %transition;
-
 	&:focus, &:hover {
 		border: 2px solid $input-border-hover-color;
 	}
@@ -39,6 +37,12 @@ legend {
 	color: $color-grey-5;
 	text-transform: uppercase;
 	margin-bottom: .5rem;
+
+	&:hover, &:focus {
+		+ input {
+			border-color: $input-border-color;
+		}
+	}
 
 	@media (max-width: $screen-xs-max) {
 		font-size: 1.2rem;
