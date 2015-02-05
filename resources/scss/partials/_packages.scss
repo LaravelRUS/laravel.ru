@@ -1,0 +1,29 @@
+.packages {
+	article {
+		position: relative;
+		padding: 20px;
+		height: 220px;
+
+		h2 {
+			color: $color-grey-7;
+			font-weight: 600;
+			font-size: 1.7rem;
+			line-height: 2rem;
+
+			@extend %open-sans;
+		}
+
+		p {
+			color: $color-grey-4;
+			font-size: 1.4rem;
+			line-height: 1.8rem;
+			margin-bottom: 0;
+		}
+
+		footer {
+			position: absolute;
+			left: 20px;
+			bottom: 14px;
+		}
+	}
+}
