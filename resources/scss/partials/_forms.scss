@@ -9,7 +9,7 @@ input, textarea, select {
 	outline: 0;
 	-webkit-appearance: none;
 
-	transition: border ease-in-out .35s;
+	@extend %transition;
 
 	&:focus, &:hover {
 		border: 2px solid $input-border-hover-color;
