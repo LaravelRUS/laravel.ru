@@ -14,8 +14,8 @@ class UpdateForm extends FormValidator {
 	public function getValidationRules()
 	{
 		return [
-			'username' => 'required|username|unique:users,username,' . Auth::id(),
-			'email' => 'required|email|unique:users,email,' . Auth::id(),
+			//'username' => 'required|username|unique:users,username,' . Auth::id(),
+			//'email' => 'required|email|unique:users,email,' . Auth::id(),
 			'name' => 'min:3',
 			'surname' => 'min:3',
 
