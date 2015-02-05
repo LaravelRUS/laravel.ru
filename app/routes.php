@@ -8,7 +8,7 @@ Route::pattern('hash', '[a-z0-9]+');
 Route::pattern('hex', '[a-f0-9]+');
 Route::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
 Route::pattern('string', '[a-zA-Z0-9]+');
-Route::pattern('username', '^\b[a-z\pN\-\_\.]+\b$');
+Route::pattern('username', '^\b[a-zA-Z\pN\-\_\.]+\b$');
 Route::pattern('slug', '[a-z0-9-]+');
 
 // CSRF Filter on all POST routes
@@ -99,10 +99,6 @@ Route::group(['before' => 'administrator'], function ()
 
 // ===== Профайл пользователя
 
-Route::get('@{username}', ['uses' => 'UserController@profile', 'as' => 'user.profile']);
-Route::get('@{username}/articles', ['uses' => 'UserController@articles', 'as' => 'user.articles']);
-Route::get('@{username}/tips', ['uses' => 'UserController@tips', 'as' => 'user.tips']);
-
 Route::group(['before' => 'auth'], function ()
 {
 	// Внутренний профайл пользователя (настройки, смена пароля и т.п.)
@@ -163,7 +159,8 @@ Route::group(['before' => 'auth|csrf'], function ()
 	Route::post('comment/store', ['uses' => 'CommentController@store', 'as' => 'comment.store']);
 });
 
-// Тестовый контроллер
-Route::controller('test', "TestController");
+// ===== Профайл пользователя
 
-
+Route::get('{username}', ['uses' => 'UserController@profile', 'as' => 'user.profile']);
+Route::get('{username}/articles', ['uses' => 'UserController@articles', 'as' => 'user.articles']);
+Route::get('{username}/tips', ['uses' => 'UserController@tips', 'as' => 'user.tips']);
