@@ -24,7 +24,10 @@
 	@if(count($article->comments))
 		@include('comment.comments')
 	@endif
-	@include('comment.form')
+
+	@if( ! $article->is_comments_disabled)
+		@include('comment.form')
+	@endif
 </div>
 @stop
 
