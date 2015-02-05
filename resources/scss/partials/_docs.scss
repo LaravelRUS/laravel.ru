@@ -9,13 +9,12 @@
 
 			li {
 				color: $primary-color;
-				font-size: 16px;
-				font-weight: bold;
+				font-size: 1.8rem;
 
 				a {
 					position: relative;
 					color: $color-grey-6;
-					font-size: 14px;
+					font-size: 1.5rem;
 					font-weight: normal;
 					padding-left: 17px;
 					border-bottom: none;
@@ -25,8 +24,8 @@
 						position: absolute;
 						top: 5px;
 						left: 0;
-						width: 10px;
-						height: 10px;
+						width: 8px;
+						height: 8px;
 						border-radius: 50%;
 						background-color: $color-grey-3;
 					}
@@ -35,7 +34,7 @@
 		}
 
 		> ul ul {
-			padding: 3px 0 0 3px;
+			padding-top: 5px;
 		}
 
 		li.active a, a:hover, a:focus {
@@ -49,27 +48,26 @@
 	}
 
 	.main {
-		font-family: Verdana, Tahoma, Arial, sans-serif;
-		font-size: 14px;
-		line-height: 1.6;
-
-		h1, h2, h3, h4, h5, h6 {
-			font-family: 'Open Sans', Tahoma, Arial, sans-serif;
+		article {
+			border-radius: 0 0 4px 4px;
 		}
 
 		h1 {
-			font-size: 28px;
-			text-transform: uppercase;
-			color: $primary-color;
+			font-size: 3rem;
+			margin-bottom: 2.5rem;
+
+			& + ul li {
+				list-style-type: none;
+
+				@extend %hash-tag;
+			}
 		}
 		h2 {
-			font-size: 20px;
-			font-weight: 400;
+			font-size: 2.2rem;
 			text-transform: uppercase;
 			color: $primary-color;
 
-			border-top: 1px solid #EEEEEE;
-			padding-top: 35px;
+			padding-top: 60px;
 			margin-bottom: 20px;
 
 			a {
@@ -81,27 +79,27 @@
 			}
 		}
 		h3 {
-			font-size: 17px;
-			font-weight: 400;
+			font-size: 2rem;
 			color: $color-grey-6;
 			padding-top: 10px;
 			margin-bottom: 15px;
 		}
 
-		p {
-			margin-bottom: 15px;
+		a[name] {
+			position: absolute;
+			top: 25px;
+			left: 0;
+			width: 100%;
+			border-bottom: 1px solid $border-color;
 		}
 
 		ul {
-			list-style: none;
-			margin: 0;
-			padding: 15px 0 20px;
+			font-size: 1.6rem;
+			padding-left: 15px;
 
 			li {
 				position: relative;
 				margin-bottom: 5px;
-
-				@extend %hash-tag;
 
 				a {
 					color: $primary-color;
@@ -130,10 +128,9 @@
 
 		blockquote {
 			background: $docs-bloquote-bg-color;
-			border-radius: 2px;
+			border-radius: 3px;
 			max-width: 100%;
 			padding: 18px 20px;
-			font-size: 14px;
 			border: 0;
 
 			p, a {

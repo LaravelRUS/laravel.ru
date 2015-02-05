@@ -1,5 +1,4 @@
 nav {
-	font-weight: 600;
 	text-transform: uppercase;
 	line-height: $nav-height;
 	margin-bottom: $nav-margin-bottom;
@@ -32,7 +31,7 @@ nav {
 		margin: 0 -15px;
 
 		ul {
-			font-size: 1.3rem;
+			font-size: 1.4rem;
 			list-style-type: none;
 			margin: 0 -15px;
 
@@ -143,8 +142,10 @@ nav {
 					z-index: -1;
 					border: 2px solid $border-color;
 					border-top-color: $primary-color;
+					border-radius: 0 0 4px 4px;
 
 					li {
+						width: 100%;
 						line-height: $nav-dropdown-line-height;
 						padding: 0 20px;
 						white-space: nowrap;
