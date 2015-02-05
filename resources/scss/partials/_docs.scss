@@ -51,19 +51,20 @@
 		article {
 			border-radius: 0 0 4px 4px;
 		}
-
 		h1 {
-			font-size: 3rem;
+			font-size: 3.2rem;
 			margin-bottom: 2.5rem;
 
 			& + ul li {
+				font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
+				font-size: 1.5rem;
 				list-style-type: none;
 
 				@extend %hash-tag;
 			}
 		}
 		h2 {
-			font-size: 2.2rem;
+			font-size: 2.1rem;
 			text-transform: uppercase;
 			color: $primary-color;
 
@@ -79,7 +80,7 @@
 			}
 		}
 		h3 {
-			font-size: 2rem;
+			font-size: 1.9rem;
 			color: $color-grey-6;
 			padding-top: 10px;
 			margin-bottom: 15px;
@@ -94,8 +95,7 @@
 		}
 
 		ul {
-			font-size: 1.6rem;
-			padding-left: 15px;
+			padding-left: 5px;
 
 			li {
 				position: relative;
@@ -104,6 +104,9 @@
 				a {
 					color: $primary-color;
 					border-bottom: none;
+				}
+				ul {
+					padding: 5px 0 5px 15px;
 				}
 			}
 		}

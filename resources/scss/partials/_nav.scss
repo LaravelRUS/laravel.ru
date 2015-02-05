@@ -3,6 +3,8 @@ nav {
 	line-height: $nav-height;
 	margin-bottom: $nav-margin-bottom;
 	background-color: $nav-bg-color;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: 600;
 
 	a {
 		color: $color-grey-6;
@@ -31,7 +33,7 @@ nav {
 		margin: 0 -15px;
 
 		ul {
-			font-size: 1.4rem;
+			font-size: 1.3rem;
 			list-style-type: none;
 			margin: 0 -15px;
 
