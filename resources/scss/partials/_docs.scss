@@ -56,10 +56,10 @@
 			margin-bottom: 2.5rem;
 
 			& + ul li {
-				font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
 				font-size: 1.5rem;
 				list-style-type: none;
 
+				@extend %open-sans;
 				@extend %hash-tag;
 			}
 		}
@@ -92,6 +92,10 @@
 			left: 0;
 			width: 100%;
 			border-bottom: 1px solid $border-color;
+		}
+
+		p + ul {
+			margin-top: -10px;
 		}
 
 		ul {

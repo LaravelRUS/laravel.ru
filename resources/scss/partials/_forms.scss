@@ -9,6 +9,8 @@ input, textarea, select {
 	outline: 0;
 	-webkit-appearance: none;
 
+	transition: border ease-in-out .35s;
+
 	&:focus, &:hover {
 		border: 2px solid $input-border-hover-color;
 	}
@@ -30,13 +32,14 @@ textarea {
 
 label,
 legend {
-	font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
 	display: block;
 	font-size: 1.3rem;
 	font-weight: 700;
 	color: $color-grey-5;
 	text-transform: uppercase;
 	margin-bottom: .5rem;
+
+	@extend %open-sans;
 
 	&:hover, &:focus {
 		+ input {

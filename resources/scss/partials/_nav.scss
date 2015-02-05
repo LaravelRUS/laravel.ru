@@ -3,8 +3,9 @@ nav {
 	line-height: $nav-height;
 	margin-bottom: $nav-margin-bottom;
 	background-color: $nav-bg-color;
-	font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
 	font-weight: 600;
+
+	@extend %open-sans;
 
 	a {
 		color: $color-grey-6;
