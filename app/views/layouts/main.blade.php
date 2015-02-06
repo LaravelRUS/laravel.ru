@@ -14,7 +14,7 @@
 	<![endif]-->
 </head>
 <body class="no-gutter">
-	@include('layouts.partials.google-analytics')
+	@include('layouts.partials.google-tag-manager')
 	@include('layouts.partials.nav')
 	@yield('submenu')
 	@yield('container')
