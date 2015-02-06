@@ -21,5 +21,6 @@
 
 	<script src="{{ asset('js/script.min.js') }}"></script>
 	@yield('scripts')
+	@include('layouts.partials.counter')
 </body>
 </html>
