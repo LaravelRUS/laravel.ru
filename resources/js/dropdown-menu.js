@@ -6,5 +6,5 @@ $(document).ready(function () {
 
 	$('body').on('click', '.toggle-button', function () {
 		$(this).parent().siblings('div.collapse').slideToggle("fast");
-	})
+	});
 });
