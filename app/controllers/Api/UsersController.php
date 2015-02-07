@@ -41,7 +41,12 @@ class UsersController extends BaseController
 		return $this->response->message('User successfully deleted');
 	}
 
-	public function store($id)
+	public function store()
+	{
+
+	}
+
+	public function update($id)
 	{
 
 	}
