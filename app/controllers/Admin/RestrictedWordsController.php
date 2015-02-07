@@ -23,7 +23,18 @@ class RestrictedWordsController extends BaseController
 	public function show($id)
 	{
 		return View::make('admin.restricted-words.show')
-			->with('restrictedWord', $this->model->findOrFail($id));
+			->with('word', $this->model->findOrFail($id));
+	}
+
+	public function edit($id)
+	{
+		return View::make('admin.restricted-words.edit')
+			->with('word', $this->model->findOrFail($id));
+	}
+
+	public function create()
+	{
+		return View::make('admin.restricted-words.create');
 	}
 
 	public function remove($id)

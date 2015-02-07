@@ -10,16 +10,35 @@ class UsersController extends BaseController
 	public function index()
 	{
 		$users = $this->model->orderBy('id', 'asc')->withRoles()->get();
-		$roles = Role::all();
 
-		return View::make('admin.users-list', compact('users', 'roles'));
+		if ( ! $this->request->ajax())
+		{
+			$roles = Role::all();
+
+			return View::make('admin.users.index', compact('users', 'roles'));
+		}
+
+		return $this->response->data([
+			'data' => $users,
+			'total' => $this->model->count(),
+		]);
 	}
 
 	public function show($id)
 	{
-		return $this->response->data([
-			'data' => $this->model->withRoles()->find($id),
-		]);
+		return View::make('admin.users.show')
+			->with('user', $this->model->findOrFail($id));
+	}
+
+	public function edit($id)
+	{
+		return View::make('admin.restricted-words.edit')
+			->with('word', $this->model->findOrFail($id));
+	}
+
+	public function create()
+	{
+		return View::make('admin.users.create');
 	}
 
 	public function remove($id)
