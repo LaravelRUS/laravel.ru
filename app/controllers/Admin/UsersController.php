@@ -1,4 +1,7 @@
-<?php namespace Api;
+<?php namespace Admin;
+
+use LaravelRU\Access\Models\Role;
+use View;
 
 class UsersController extends BaseController
 {
@@ -6,10 +9,10 @@ class UsersController extends BaseController
 
 	public function index()
 	{
-		return $this->response->data([
-			'data' => $this->model->withRoles()->get(),
-			'total' => $this->model->count(),
-		]);
+		$users = $this->model->orderBy('id', 'asc')->withRoles()->get();
+		$roles = Role::all();
+
+		return View::make('admin.users-list', compact('users', 'roles'));
 	}
 
 	public function show($id)

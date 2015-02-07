@@ -165,32 +165,9 @@ Route::get('{username}', ['uses' => 'UserController@profile', 'as' => 'user.prof
 Route::get('{username}/articles', ['uses' => 'UserController@articles', 'as' => 'user.articles']);
 Route::get('{username}/tips', ['uses' => 'UserController@tips', 'as' => 'user.tips']);
 
-Route::group(['prefix' => 'api', 'before' => 'api', 'namespace' => 'Api'], function ()
+Route::group(['prefix' => 'admin', 'before' => 'admin', 'namespace' => 'Admin'], function ()
 {
-	Route::group(['prefix' => 'users'], function ()
-	{
-		Route::get('{id}', 'UsersController@show');
-		Route::get('', 'UsersController@index');
-		Route::delete('{id}', 'UsersController@remove');
-		Route::put('{id}', 'UsersController@update');
-		Route::post('', 'UsersController@store');
-	});
-
-	Route::group(['prefix' => 'articles'], function ()
-	{
-		Route::get('{id}', 'ArticlesController@show');
-		Route::get('', 'ArticlesController@index');
-		Route::delete('{id}', 'ArticlesController@remove');
-		Route::put('{id}', 'ArticlesController@update');
-		Route::post('', 'ArticlesController@store');
-	});
-
-	Route::group(['prefix' => 'restricted-words'], function ()
-	{
-		Route::get('{id}', 'RestrictedWordsController@show');
-		Route::get('', 'RestrictedWordsController@index');
-		Route::delete('{id}', 'RestrictedWordsController@remove');
-		Route::put('{id}', 'RestrictedWordsController@update');
-		Route::post('', 'RestrictedWordsController@store');
-	});
+	Route::resource('users', 'UsersController');
+	Route::resource('articles', 'ArticlesController');
+	Route::resource('restricted-words', 'RestrictedWordsController');
 });

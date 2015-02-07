@@ -1,4 +1,4 @@
-<?php namespace Api;
+<?php namespace Admin;
 
 class ArticlesController extends BaseController
 {

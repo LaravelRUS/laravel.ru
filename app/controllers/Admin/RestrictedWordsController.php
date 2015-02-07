@@ -1,4 +1,7 @@
-<?php namespace Api;
+<?php namespace Admin;
+
+use URL;
+use View;
 
 class RestrictedWordsController extends BaseController
 {
@@ -6,6 +9,11 @@ class RestrictedWordsController extends BaseController
 
 	public function index()
 	{
+		if ( ! $this->request->ajax())
+		{
+			return View::make('admin.restricted-words.index');
+		}
+
 		return $this->response->data([
 			'data' => $this->model->get(),
 			'total' => $this->model->count(),
@@ -14,9 +22,8 @@ class RestrictedWordsController extends BaseController
 
 	public function show($id)
 	{
-		return $this->response->data([
-			'data' => $this->model->findOrFail($id),
-		]);
+		return View::make('admin.restricted-words.show')
+			->with('restrictedWord', $this->model->findOrFail($id));
 	}
 
 	public function remove($id)
@@ -42,7 +49,8 @@ class RestrictedWordsController extends BaseController
 		$word->save();
 
 		return $this->response->message('Word successfully added')->data([
-			'data' => $word
+			'data' => $word,
+		    'redirect' => URL::route('admin.restricted-words.index')
 		]);
 	}
 
@@ -58,7 +66,8 @@ class RestrictedWordsController extends BaseController
 		$word->save();
 
 		return $this->response->message('Word successfully updated')->data([
-			'data' => $word
+			'data' => $word,
+			'redirect' => URL::route('admin.restricted-words.index')
 		]);
 	}
 }
