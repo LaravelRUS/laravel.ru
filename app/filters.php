@@ -63,6 +63,8 @@ Route::filter('csrf', function ()
 	}
 });
 
+Route::filter('api', 'LaravelRU\Api\AuthFilter@execute');
+
 /**
  * Редактирование терминов в документации
  */
