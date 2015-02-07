@@ -13,7 +13,7 @@
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </head>
-<body class="no-gutter">
+<body>
 	@include('layouts.partials.google-tag-manager')
 	@include('layouts.partials.nav')
 	@yield('submenu')

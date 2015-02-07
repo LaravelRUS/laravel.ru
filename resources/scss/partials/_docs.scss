@@ -1,6 +1,6 @@
 .docs {
-	.sidebar section {
-		padding-top: 45px;
+	.sidebar {
+		padding-top: 30px;
 
 		ul {
 			list-style-type: none;
@@ -51,6 +51,13 @@
 			}
 		}
 
+		@media (max-width: $screen-xs-max) {
+			display: none;
+		}
+
+		&.visible {
+			display: block;
+		}
 	}
 
 	.main {
@@ -95,6 +102,48 @@
 		h4 {
 			font-size: 1.7rem;
 			font-weight: 700;
+		}
+
+		@media (max-width: $screen-xs-max) {
+			font-size: 1.4rem;
+
+			h1 {
+				font-size: 2rem;
+				margin-bottom: 2rem;
+
+				+ ul {
+					padding: 0;
+
+					li {
+						font-size: 1.4rem;
+					}
+				}
+			}
+
+			h2 {
+				font-size: 1.8rem;
+				margin-bottom: 1.5rem;
+			}
+
+			h3 {
+				font-size: 1.7rem;
+				margin-bottom: 1rem;
+			}
+
+			h4 {
+				font-size: 1.6rem;
+				margin-bottom: .5rem;
+			}
+
+			p {
+				font-size: 1.4rem;
+			}
+
+			code {
+				font-size: 1.1rem;
+				white-space: normal;
+				word-break: break-word;
+			}
 		}
 
 		a[name] {
@@ -159,9 +208,10 @@
 				margin-bottom: 0;
 			}
 		}
-	}
 
-	@media (max-width: $screen-xs-max) {
-		padding: 0;
+		@media (max-width: $screen-xs-max) {
+			padding: 5px;
+			margin-bottom: 0;
+		}
 	}
 }

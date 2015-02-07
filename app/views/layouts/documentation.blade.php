@@ -4,6 +4,7 @@
 	<div class="subnav">
 		<div class="container">
 			<ul class="inline">
+				<li class="docs-menu-button"><i class="fa fa-bars"></i></li>
 				<li class="hidden-xs">
 					<span>Версия фреймворка:</span>
 				</li>

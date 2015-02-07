@@ -89,9 +89,6 @@ $container-lg: (1140px + $grid-gutter-width) !default;
 		width: $container-lg;
 	}
 
-	@media (max-width: $screen-xs-max) {
-		padding: 0 10px;
-	}
 }
 
 .row {
@@ -99,19 +96,6 @@ $container-lg: (1140px + $grid-gutter-width) !default;
 	margin-right: ($grid-gutter-width / -2);
 
 	@extend %clearfix;
-}
-
-
-@media (max-width: $screen-xs-max) {
-	.no-gutter {
-		.row {
-			margin: 0;
-		}
-
-		[class*="col-"] {
-			padding: 0;
-		}
-	}
 }
 
 // Columns
@@ -129,4 +113,16 @@ $container-lg: (1140px + $grid-gutter-width) !default;
 
 @media (min-width: $screen-lg-min) {
 	@include make-grid(lg);
+}
+
+@media (max-width: $screen-xs-max) {
+//	.no-gutter {
+		//		.row {
+		//			margin: 0;
+		//		}
+		//
+		//		[class*="col-"] {
+		//			padding: 0;
+		//		}
+//	}
 }
