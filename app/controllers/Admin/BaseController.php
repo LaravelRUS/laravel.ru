@@ -1,4 +1,4 @@
-<?php namespace Api;
+<?php namespace Admin;
 
 use Illuminate\Auth\AuthManager;
 use Illuminate\Database\Eloquent\Model;
