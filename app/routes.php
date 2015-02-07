@@ -164,3 +164,13 @@ Route::group(['before' => 'auth|csrf'], function ()
 Route::get('{username}', ['uses' => 'UserController@profile', 'as' => 'user.profile']);
 Route::get('{username}/articles', ['uses' => 'UserController@articles', 'as' => 'user.articles']);
 Route::get('{username}/tips', ['uses' => 'UserController@tips', 'as' => 'user.tips']);
+
+Route::group(['prefix' => 'api', 'before' => 'api', 'namespace' => 'Api'], function ()
+{
+	Route::group(['prefix' => 'users'], function ()
+	{
+		Route::get('{id}', 'UsersController@show');
+		Route::get('', 'UsersController@index');
+		Route::delete('{id}', 'UsersController@remove');
+	});
+});
