@@ -6,7 +6,7 @@
 @section('container')
 	<main class="container docs">
 		<div class="row">
-			<div class="col-xs-12 col-md-3 hidden-xs hidden-sm sidebar">
+			<div class="col-xs-12 col-md-3 sidebar">
 				<section>{{ Markdown::render($menu->text) }}</section>
 			</div>
 			<div class="col-xs-12 col-md-9 main m-b-30">

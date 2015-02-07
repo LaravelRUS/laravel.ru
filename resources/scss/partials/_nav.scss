@@ -190,6 +190,7 @@ nav {
 .subnav {
 	background-color: $subnav-bg-color;
 	line-height: $subnav-height;
+	margin-bottom: $nav-margin-bottom;
 	border-top: 1px solid $border-color;
 	border-bottom: 1px solid $border-color;
 
@@ -205,13 +206,39 @@ nav {
 
 			a {
 				padding: 6px 8px;
-				border-radius: 4px;
+				color: $color-grey-4;
+				border-radius: 3px;
 			}
 		}
 
 		li.active a, li a:hover, li a:focus {
-			background-color: $color-grey-6;
-			color: white;
+			background-color: $color-grey-2;
+			color: $color-grey-8;
+		}
+	}
+
+	.docs-menu-button {
+		display: none;
+		font-size: 1.4rem;
+		color: white;
+		background-color: $color-green;
+		padding: 6px 10px;
+		margin-right: 10px;
+		border-radius: 2px;
+		cursor: pointer;
+	}
+
+	@media (max-width: $screen-xs-max) {
+		margin-bottom: 0;
+
+		.container {
+			padding: 0 10px;
+		}
+	}
+
+	@media (max-width: $screen-sm-max) {
+		.docs-menu-button {
+			display: inline;
 		}
 	}
 }

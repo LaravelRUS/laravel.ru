@@ -4,7 +4,8 @@
 	<div class="subnav">
 		<div class="container">
 			<ul class="inline">
-				<li class="hidden-xs">
+				<li class="docs-menu-button"><i class="fa fa-bars"></i></li>
+				<li class="hidden-xs hidden-sm">
 					<span>Версия фреймворка:</span>
 				</li>
 				@foreach($documentedVersions as $version)
