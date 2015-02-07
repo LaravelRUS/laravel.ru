@@ -234,7 +234,9 @@ nav {
 		.container {
 			padding: 0 10px;
 		}
+	}
 
+	@media (max-width: $screen-sm-max) {
 		.docs-menu-button {
 			display: inline;
 		}
