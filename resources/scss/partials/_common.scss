@@ -90,6 +90,10 @@
 
 .m-b-30 {
 	margin-bottom: 30px;
+
+	@media (max-width: $screen-xs-max) {
+		margin-bottom: 5px;
+	}
 }
 
 .btn-corner {
@@ -100,9 +104,4 @@
 
 .position-relative {
 	position: relative;
-}
-
-header.bordered {
-	padding-bottom: 20px;
-	border-bottom: 2px solid $border-color;
 }

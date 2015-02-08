@@ -228,8 +228,20 @@ nav {
 		cursor: pointer;
 	}
 
+	.docs-status {
+		text-align: right;
+
+		i {
+			display: inline;
+
+			@media (min-width: $screen-sm-min) {
+				display: none;
+			}
+		}
+	}
+
 	@media (max-width: $screen-xs-max) {
-		margin-bottom: 0;
+		margin-bottom: 5px;
 
 		.container {
 			padding: 0 10px;

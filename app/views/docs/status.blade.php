@@ -3,12 +3,13 @@
 @section('title', 'Статус перевода')
 
 @section('container')
-	<main class="container docs">
-		<article class="bg-white p-35-45">
-			<header class="bordered m-b-30">
+	<main class="container docs no-gutter-xs">
+		<article class="bg-white border-rounded p-35-45 m-b-30">
+			<header class="m-b-30">
 				<h1>Статус перевода</h1>
 				<p>Если вы хотите помочь с переводом документации, ознакомьтесь пожалуйста с этой <a href="/articles/rus-documentation-contribution-guide">инструкцией</a>.</p>
 			</header>
+			<hr>
 			<ul class="unstyled">
 			@foreach($versions as $version)
 				<li>

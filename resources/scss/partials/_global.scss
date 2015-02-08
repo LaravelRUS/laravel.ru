@@ -14,6 +14,10 @@ body {
 	color: $body-color;
 	background-color: $body-bg-color;
 	position: relative;
+
+	@media (max-width: $screen-xs-max) {
+		font-size: 1.4em;
+	}
 }
 
 a {
@@ -43,7 +47,6 @@ table {
 		text-transform: uppercase;
 	}
 	tbody {
-		font-size: 1.4rem;
 	}
 	th, td {
 		line-height: 35px;
