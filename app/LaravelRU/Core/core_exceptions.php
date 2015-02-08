@@ -15,7 +15,9 @@ App::error(function (FormValidationException $e)
 {
 	if (Request::ajax())
 	{
-		return new JsonResponse(app('app.response')->error('Исправьте ошибки в форме')->errors($e->getErrors()), JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
+		return new JsonResponse(
+			app('app.response')->error('Исправьте ошибки в форме')->errors($e->getErrors())
+		);
 	}
 
 	return Redirect::back()->withInput()->withErrors($e->getErrors());
