@@ -116,13 +116,21 @@ $container-lg: (1140px + $grid-gutter-width) !default;
 }
 
 @media (max-width: $screen-xs-max) {
-//	.no-gutter {
-		//		.row {
-		//			margin: 0;
-		//		}
-		//
-		//		[class*="col-"] {
-		//			padding: 0;
-		//		}
-//	}
+	.no-gutter-xs {
+		padding: 0 5px;
+
+		.row {
+			margin: 0 -5px;
+		}
+
+		[class*="col-"] {
+			padding-left: 5px;
+			padding-right: 5px;
+
+			&.normal-padding {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+		}
+	}
 }
