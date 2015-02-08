@@ -49,7 +49,7 @@ trait ValidatesRequests {
 	{
 		if ($request->ajax())
 		{
-			return new JsonResponse(app('app.response')->errors($errors), 422);
+			return new JsonResponse(app('app.response')->errors($errors));
 		}
 
 		return redirect()->to($this->getRedirectUrl())

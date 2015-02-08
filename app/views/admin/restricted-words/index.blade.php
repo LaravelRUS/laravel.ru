@@ -12,15 +12,14 @@
 			<a href="{{ route('admin.restricted-words.create') }}" class="button success m-b-25">Добавить слово</a>
 			<table class="data-table">
 				<thead>
-				<tr>
-					<th>id</th>
-					<th>id</th>
-					<th>id</th>
-					<th>id</th>
-					<th>id</th>
-				</tr>
+					<tr>
+						<th>Id</th>
+						<th>Title</th>
+						<th>Created At</th>
+						<th>Updated At</th>
+						<th>Actions</th>
+					</tr>
 				</thead>
-
 			</table>
 		</article>
 	</main>
