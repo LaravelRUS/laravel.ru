@@ -36,6 +36,7 @@
 						{{ Element::select('difficulty_level_id', 'Уровень сложности', $difficultyLevels, null, true) }}
 					</div>
 				</div>
+				<button id="fullScreen" type="button" class="success" data-text="Вернуться [Esc]">На весь экран [Ctrl+Enter]</button>
 				{{ Element::ace('text', 'Текст статьи') }}
 				<input type="checkbox" name="is_draft" checked>
 				{{ Element::button('Сохранить') }}
