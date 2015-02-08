@@ -17,7 +17,7 @@
 				<h1 class="h2">Список пользователей</h1>
 			</header>
 			<hr>
-			<table class="table table-bordered">
+			<table class="table">
 				<thead>
 					<tr>
 						<th rowspan="2">#</th>

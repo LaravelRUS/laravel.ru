@@ -4,9 +4,9 @@
 @section('meta-description', 'Описание')
 
 @section('container')
-	<main class="container docs">
+	<main class="container docs no-gutter-xs">
 		<div class="row">
-			<div class="col-xs-12 col-md-3 sidebar">
+			<div class="col-xs-12 col-md-3 sidebar normal-padding">
 				<section>{{ Markdown::render($menu->text) }}</section>
 			</div>
 			<div class="col-xs-12 col-md-9 main m-b-30">
