@@ -41,7 +41,7 @@ class UsersController extends BaseController
 		return View::make('admin.users.create');
 	}
 
-	public function remove($id)
+	public function destroy($id)
 	{
 		if ($this->auth->user()->id == $id)
 		{

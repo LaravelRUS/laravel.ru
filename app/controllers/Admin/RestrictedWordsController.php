@@ -36,7 +36,7 @@ class RestrictedWordsController extends BaseController {
 		return View::make('admin.restricted-words.create');
 	}
 
-	public function remove($id)
+	public function destroy($id)
 	{
 		$word = $this->model->findOrFail($id);
 
