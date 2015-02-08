@@ -3,8 +3,8 @@
 use URL;
 use View;
 
-class RestrictedWordsController extends BaseController
-{
+class RestrictedWordsController extends BaseController {
+
 	protected $modelClassName = 'LaravelRU\Core\Models\RestrictedWord';
 
 	public function index()
@@ -15,8 +15,7 @@ class RestrictedWordsController extends BaseController
 		}
 
 		return $this->response->data([
-			'data' => $this->model->get(),
-			'total' => $this->model->count(),
+			'data' => $this->model->get()
 		]);
 	}
 
@@ -52,16 +51,16 @@ class RestrictedWordsController extends BaseController
 	public function store()
 	{
 		$this->validate($this->request, [
-			'title' => 'required|unique:restricted_words'
+			'title' => 'required|min:2|unique:restricted_words'
 		]);
 
 		$word = $this->model->newInstance();
 		$word->title = trim($this->request->input('title'));
 		$word->save();
 
-		return $this->response->message('Word successfully added')->data([
-			'data' => $word,
-		    'redirect' => URL::route('admin.restricted-words.index')
+		return $this->response->data([
+			'title' => 'Новое слово успешно добавлено!',
+			'redirect' => route('admin.restricted-words.index')
 		]);
 	}
 
@@ -70,14 +69,14 @@ class RestrictedWordsController extends BaseController
 		$word = $this->model->findOrFail($id);
 
 		$this->validate($this->request, [
-			'title' => "required|unique:restricted_words,title,{$id}"
+			'title' => "required|min:2|unique:restricted_words,title,{$id}"
 		]);
 
 		$word->title = trim($this->request->input('title'));
 		$word->save();
 
-		return $this->response->message('Word successfully updated')->data([
-			'data' => $word,
+		return $this->response->data([
+			'title' => 'Слово успешно обновлено!',
 			'redirect' => URL::route('admin.restricted-words.index')
 		]);
 	}

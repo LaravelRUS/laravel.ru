@@ -2,7 +2,7 @@ $('form.ajax').submit(function (event) {
 	event.preventDefault();
 	var form = $(this);
 	$.ajax({
-		url: form.action,
+		url: form.attr('action'),
 		data: form.serialize(),
 		method: 'post',
 		success: function (data) {

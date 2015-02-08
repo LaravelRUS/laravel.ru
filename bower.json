@@ -10,7 +10,6 @@
     "jquery": "~1.11.2",
     "brand-colors": "~0.3.0",
     "google-code-prettify": "~1.0.3",
-    "bootflat-color-picker-colors": "~1.0.1",
-    "DataTables": "~1.10.4"
+    "bootflat-color-picker-colors": "~1.0.1"
   }
 }

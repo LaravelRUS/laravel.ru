@@ -3,15 +3,29 @@
 @section('title', 'Запрещённые слова')
 
 @section('container')
-	<div class="col-xs-12">
-		<main>
-			<article class="bg-white p-35-45">
-				<header>
-					<h1 class="h2">Запрещённые слова</h1>
-				</header>
-				<hr>
+	<main class="container m-b-30">
+		<article class="bg-white p-35-45">
+			<header>
+				<h1 class="h2">Запрещённые слова</h1>
+			</header>
+			<hr>
+			<a href="{{ route('admin.restricted-words.create') }}" class="button success m-b-25">Добавить слово</a>
+			<table class="data-table">
+				<thead>
+				<tr>
+					<th>id</th>
+					<th>id</th>
+					<th>id</th>
+					<th>id</th>
+					<th>id</th>
+				</tr>
+				</thead>
 
-			</article>
-		</main>
-	</div>
+			</table>
+		</article>
+	</main>
+@stop
+
+@section('scripts')
+	<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.js"></script>
 @stop
