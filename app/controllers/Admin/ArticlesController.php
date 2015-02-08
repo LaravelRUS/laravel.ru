@@ -19,7 +19,7 @@ class ArticlesController extends BaseController
 		]);
 	}
 
-	public function remove($id)
+	public function destroy($id)
 	{
 		$article = $this->model->findOrFail($id);
 
