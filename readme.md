@@ -1,10 +1,10 @@
 ## Сайт русскоязычного сообщества Laravel
 
-Будущий laravel.ru . Рабочие сборки выкладываются на [http://sharedstation.net](http://sharedstation.net)
+Будущий laravel.ru . Рабочие сборки выкладываются на [http://laravel.su](http://laravel.su)
 
 Обсуждение в чате: [![Чат](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/LaravelRUS/laravel.ru)
 
-Таск-лист и багтрекер: [Trello](https://trello.com/b/lDqJrw8x/-).
+Таск-лист и багтрекер: [Trello](https://trello.com/b/lDqJrw8x/-) (приватный, за доступом стучитесь в чат). 
 
 ### Инсталляция
 
@@ -27,5 +27,5 @@
    
 ### Помощь
    
-1. Перевод документации. [Инструкция, как это делать правильно](http://sharedstation.net/content/rus-documentation-contribution-guide).
+1. Перевод документации. [Инструкция, как это делать правильно](http://sharedstation.net/articles/rus-documentation-contribution-guide).
 2. Работа над [кодом](https://trello.com/b/lDqJrw8x/-). В разработке используется модель [git-flow](https://www.atlassian.com/ja/git/workflows/pageSections/00/contentFullWidth/0/tabs/02/pageSections/010/contentFullWidth/0/content_files/file0/document/git-workflow-release-cycle-4maintenance.png).
