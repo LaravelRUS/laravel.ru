@@ -88,6 +88,47 @@
 	}
 }
 
+.fullScreen {
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+
+	#ace {
+		height: auto !important;
+		width: auto !important;
+		border: 0;
+		margin: 0;
+		position: fixed !important;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 1000;
+		min-height: inherit;
+	}
+
+	#fullScreen {
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 1001;
+		margin: 10px;
+		padding: 0 12px;
+		line-height: normal;
+		border: none;
+		transition: none;
+	}
+}
+
+#fullScreen {
+	transition: none;
+}
+
 div#ace {
-	min-height: 600px;
+	min-height: 400px;
+	font-size: $ace-editor-font-size;
+	border-width: 2px 0;
+	margin: 0 -35px;
+	border-style: solid;
+	border-color: $color-grey-2;
 }
