@@ -18,7 +18,8 @@ $(document).ready(function () {
 			aceElement.prev('input[type=hidden]').val(code);
 		});
 
-		var enterFullScreen = function () {
+		var enterFullScreen = function (e) {
+			e && e.preventDefault && e.preventDefault();
 			var btnSmall = btn.children[0];
 			btnSmall.innerHTML = [btnSmall.dataset.text, btnSmall.dataset.text = btnSmall.innerHTML][0];
 			btn.classList.toggle('fa-expand');
