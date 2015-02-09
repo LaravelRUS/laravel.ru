@@ -112,23 +112,41 @@
 		top: 0;
 		right: 0;
 		z-index: 1001;
-		margin: 10px;
-		padding: 0 12px;
+		margin: 0;
 		line-height: normal;
 		border: none;
 		transition: none;
+		border-radius: 0 0 0 4px;
 	}
 }
 
 #fullScreen {
+	background-color: $color-grey-2;
+	border: none;
+	border-radius: 4px 0 0;
+	margin-right: 15px;
+	padding: 5px 7px;
+	position: absolute;
+	right: 0;
 	transition: none;
+
+	small {
+		@extend %open-sans;
+		line-height: 16px;
+		margin-left: 10px;
+		vertical-align: text-top;
+	}
 }
 
 div#ace {
-	min-height: 400px;
+	min-height: 700px;
 	font-size: $ace-editor-font-size;
 	border-width: 2px 0;
 	margin: 0 -35px;
 	border-style: solid;
 	border-color: $color-grey-2;
+
+	@media (max-width: $screen-sm-min) {
+		margin: 0 -20px;
+	}
 }

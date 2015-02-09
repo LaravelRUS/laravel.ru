@@ -19,7 +19,10 @@ $(document).ready(function () {
 		});
 
 		var enterFullScreen = function () {
-			btn.innerText = [btn.dataset.text, btn.dataset.text = btn.innerText][0];
+			var btnSmall = btn.children[0];
+			btnSmall.innerHTML = [btnSmall.dataset.text, btnSmall.dataset.text = btnSmall.innerHTML][0];
+			btn.classList.toggle('fa-expand');
+			btn.classList.toggle('fa-compress');
 			document.body.classList.toggle('fullScreen');
 			editor.resize();
 			editor.focus();
