@@ -4,6 +4,7 @@ use Illuminate\Auth\AuthManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use LaravelRU\Access\Access;
 use LaravelRU\Core\Http\ValidatesRequests;
 use Vanchelo\AjaxResponse\Response;
 
@@ -31,11 +32,17 @@ class BaseController extends Controller
 	 */
 	protected $model;
 
-	function __construct(Request $request, Response $response, AuthManager $auth)
+	/**
+	 * @var Access
+	 */
+	protected $access;
+
+	function __construct(Request $request, Response $response, AuthManager $auth, Access $access)
 	{
 		$this->response = $response;
 		$this->auth = $auth;
 		$this->request = $request;
+		$this->access = $access;
 		$this->model = app($this->modelClassName);
 	}
 
