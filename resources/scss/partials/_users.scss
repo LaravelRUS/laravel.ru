@@ -4,6 +4,10 @@
 	margin: 0;
 	border: none;
 	line-height: normal;
+
+	.space {
+		height: 40px;
+	}
 }
 
 .users-list_info {
@@ -13,6 +17,7 @@
 		margin-bottom: 20px;
 		display: block;
 		font-size: 1.4em;
+		line-height: 0.9em;
 	}
 }
 
