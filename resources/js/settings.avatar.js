@@ -4,7 +4,7 @@ $(document).ready(function () {
 	if (!btnChange) return false;
 
 	$(btnChange).fileapi({
-		url: '/settings/avatar',
+		url: '/settings/upload',
 		accept: 'image/*',
 		multiple: false,
 		maxSize: 1 * FileAPI.MB,
