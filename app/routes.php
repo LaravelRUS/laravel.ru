@@ -106,7 +106,8 @@ Route::group(['prefix' => 'settings', 'before' => 'auth'], function ()
 		'as' => 'user.avatar',
 		'uses' => 'UserController@changeAvatar',
 	]);
-	Route::delete('avatar', [
+	Route::delete('avatar-delete', [
+		'as' => 'user.avatar.delete',
 		'uses' => 'UserController@deleteAvatar',
 	]);
 	// Внутренний профайл пользователя (настройки, смена пароля и т.п.)

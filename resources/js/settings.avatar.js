@@ -52,7 +52,7 @@ $(document).ready(function () {
 			closeOnConfirm: false
 		}, function () {
 			$.ajax({
-				url: '/settings/avatar',
+				url: '/settings/avatar-delete',
 				type: 'delete',
 				success: function (data) {
 					if (data.success) {
