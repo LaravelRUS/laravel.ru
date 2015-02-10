@@ -29,7 +29,7 @@
 					<tr>
 						<td style="width:100px;vertical-align: top">
 							<a href="{{ route('user.profile', $user->username) }}" style="border: none">
-								<img width="100" src="{{ $user->avatar }}" alt="{{ $user->username }}" />
+								<img class="users-list_avatar" width="100" src="{{ $user->avatar }}" alt="{{ $user->username }}" />
 							</a>
 						</td>
 						<td style="vertical-align: top">
