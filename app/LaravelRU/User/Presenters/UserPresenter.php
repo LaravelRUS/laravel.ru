@@ -19,7 +19,7 @@ class UserPresenter extends Presenter {
 
 	public function created_at()
 	{
-		return LocalizedCarbon::createFromFormat('Y-m-d H:i:s', $this->entity->created_at)->formatLocalized('%e %f %Y в %H:%M');
+		return LocalizedCarbon::instance($this->entity->created_at)->formatLocalized('%e %f %Y в %H:%M');
 	}
 
 }
