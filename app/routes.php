@@ -99,20 +99,20 @@ Route::group(['before' => 'administrator'], function ()
 
 // ===== Профайл пользователя
 
-Route::group(['prefix' => 'settings', 'before' => 'auth'], function ()
+Route::group(['before' => 'auth'], function ()
 {
 	// Работа с аватаром пользователя
-	Route::post('upload', [
+	Route::post('settings/avatar-upload', [
 		'as' => 'user.avatar',
 		'uses' => 'UserController@changeAvatar',
 	]);
-	Route::delete('avatar-delete', [
+	Route::delete('settings/avatar-delete', [
 		'as' => 'user.avatar.delete',
 		'uses' => 'UserController@deleteAvatar',
 	]);
 	// Внутренний профайл пользователя (настройки, смена пароля и т.п.)
-	Route::get('/', ['uses' => 'UserController@edit', 'as' => 'user.edit']);
-	Route::post('/', ['uses' => 'UserController@update']);
+	Route::get('settings', ['uses' => 'UserController@edit', 'as' => 'user.edit']);
+	Route::post('settings', ['uses' => 'UserController@update']);
 
 });
 
