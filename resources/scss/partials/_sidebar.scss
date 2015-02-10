@@ -20,14 +20,6 @@
 		}
 
 		&.profile {
-			img {
-				display: block;
-				max-width: 150px;
-				margin: 0 auto 15px auto;
-				border: 10px solid $color-grey-6;
-				border-radius: 50%;
-			}
-
 			header {
 				margin-bottom: 3rem;
 
@@ -87,3 +79,67 @@
 		}
 	}
 }
+
+.avatar {
+	$size: 150px;
+	$border-width: 10px;
+	height: $size + 20px;
+	width: $size;
+	margin: 0 auto 15px;
+	position: relative;
+
+	img {
+		display: block;
+		max-width: $size;
+		max-height: $size;
+		border: $border-width solid $color-grey-6;
+		border-radius: 50%;
+	}
+
+	.deleteAvatar {
+		display: block;
+		text-align: center;
+		font-size: 0.8em;
+
+		&.hidden {
+			display: none;
+		}
+	}
+
+	.changeAvatar {
+		background-color: rgba(0, 0, 0, 0.5);
+		border-radius: 50%;
+		height: $size - $border-width * 2;
+		left: $border-width;
+		opacity: 0;
+		position: absolute;
+		top: $border-width;
+		width: $size - $border-width * 2;
+		cursor: pointer;
+		transition: opacity 0.3s linear;
+		overflow: hidden;
+
+		&:hover {
+			opacity: 1;
+		}
+
+		input {
+			cursor: pointer;
+			height: $size - $border-width * 2;
+			width: $size - $border-width * 2;
+			opacity: 0;
+		}
+
+		i {
+			color: #fff;
+			font-size: 20px;
+			left: 50%;
+			margin-left: -9px;
+			margin-top: -10px;
+			position: absolute;
+			text-shadow: 0 0 2px #000;
+			top: 50%;
+		}
+	}
+}
+
