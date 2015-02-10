@@ -116,9 +116,10 @@ Route::group(['before' => 'auth'], function ()
 });
 
 // ===== Список пользователей
-Route::get('users', function () {
-	return '';
-});
+Route::get('users', [
+	'as' => 'users',
+    'uses' => 'UsersController@index',
+]);
 
 // ===== Новости
 Route::get('news', ['uses' => 'NewsController@all', 'as' => 'news']);
@@ -168,11 +169,6 @@ Route::group(['before' => 'auth|csrf'], function ()
 	Route::post('comment/store', ['uses' => 'CommentController@store', 'as' => 'comment.store']);
 });
 
-// ===== Профайл пользователя
-Route::get('{username}', ['uses' => 'UserController@profile', 'as' => 'user.profile']);
-Route::get('{username}/articles', ['uses' => 'UserController@articles', 'as' => 'user.articles']);
-Route::get('{username}/tips', ['uses' => 'UserController@tips', 'as' => 'user.tips']);
-
 // ===== Admin
 Route::group(['prefix' => 'admin', 'before' => 'admin', 'namespace' => 'Admin'], function ()
 {
@@ -200,3 +196,8 @@ Route::group(['prefix' => 'admin', 'before' => 'admin', 'namespace' => 'Admin'],
 		'as' => 'admin.remove_role',
 	]);
 });
+
+// ===== Профайл пользователя
+Route::get('{username}', ['uses' => 'UserController@profile', 'as' => 'user.profile']);
+Route::get('{username}/articles', ['uses' => 'UserController@articles', 'as' => 'user.articles']);
+Route::get('{username}/tips', ['uses' => 'UserController@tips', 'as' => 'user.tips']);

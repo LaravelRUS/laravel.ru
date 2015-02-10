@@ -243,4 +243,20 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 		]);
 	}
 
+	public function scopeSearch($query, $text = null)
+	{
+		if (empty($text)) return $query;
+
+		if ( ! $text = filter_var($text, FILTER_SANITIZE_STRING)) return $query;
+
+		$query->where('username', 'LIKE', "%{$text}%");
+		$query->orWhereHas('info', function ($query) use ($text)
+		{
+			$query->where('name', 'LIKE', "%{$text}%");
+			$query->orWhere('surname', 'LIKE', "%{$text}%");
+		});
+
+		return $query;
+	}
+
 }
