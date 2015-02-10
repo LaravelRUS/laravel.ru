@@ -116,6 +116,9 @@ Route::group(['before' => 'auth'], function ()
 
 });
 
+Route::get('users', function () {
+	return '';
+});
 
 // ===== Новости =====
 
