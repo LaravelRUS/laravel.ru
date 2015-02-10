@@ -7,6 +7,8 @@ class UserPresenter extends Presenter {
 
 	public function fullname()
 	{
+		if ( ! $this->info->name && ! $this->info->surname) return $this->entity->username;
+
 		return $this->info->name . ' ' . $this->info->surname;
 	}
 
