@@ -48,7 +48,7 @@
 					<tr><td colspan="4"><div class="space">&nbsp;</div></td></tr>
 					@endforeach
 				</table>
-				<div class="paginate">{{ $users->links() }}</div>
+				<div class="paginate">{{ $users->appends('query', $query)->links() }}</div>
 				@else
 				<div class="text-center" style="margin:20px 0 50px"><strong>Ничего не найдено</strong></div>
 				@endif
