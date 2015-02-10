@@ -102,7 +102,7 @@ Route::group(['before' => 'administrator'], function ()
 Route::group(['prefix' => 'settings', 'before' => 'auth'], function ()
 {
 	// Работа с аватаром пользователя
-	Route::post('avatar', [
+	Route::post('upload', [
 		'as' => 'user.avatar',
 		'uses' => 'UserController@changeAvatar',
 	]);
