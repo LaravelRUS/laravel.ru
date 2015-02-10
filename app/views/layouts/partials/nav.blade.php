@@ -11,7 +11,7 @@
 		<div class="collapse">
 			<ul>
 				<li {{activeClass(['documentation', 'documentation.status'])}}>
-					<a href="{{ route("documentation") }}">Документация</a>
+					<a href="{{ route('documentation') }}">Документация</a>
 				</li>
 				{{--<li {{activeClass(['articles.all'])}}>--}}
 					{{--<a href="{{ route("articles.all") }}">Статьи</a>--}}
@@ -28,21 +28,24 @@
 				<li class="hidden-sm">
 					<a href="https://gitter.im/LaravelRUS/chat" rel="nofollow" target="_blank">Чат</a>
 				</li>
+				<li {{ activeClass(['users']) }}>
+					<a href="{{ route('users') }}">Пользователи</a>
+				</li>
 				@if(Auth::check())
 					<li>
 						<span data-toggle="dropdown">{{ Auth::user()->username }}</span>
 						<ul class="dropdown">
 							<li>
-								<a href="{{ route("user.profile", Auth::user()->username) }}">Профиль</a>
+								<a href="{{ route('user.profile', Auth::user()->username) }}">Профиль</a>
 							</li>
 							@if(Auth::user()->isAdmin())
 								<li>
-									<a href="{{ route("admin.users") }}">Список пользователей</a>
+									<a href="{{ route('admin.users') }}">Список пользователей</a>
 								</li>
 							@endif
 							@if(Auth::user()->isLibrarian())
 								<li>
-									<a href="{{ route("documentation.status") }}">Прогресс перевода</a>
+									<a href="{{ route('documentation.status') }}">Прогресс перевода</a>
 								</li>
 							@endif
 							<li><a href="{{ route('auth.logout') }}">Выход</a></li>
