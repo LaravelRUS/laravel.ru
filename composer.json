@@ -20,7 +20,8 @@
 		"fguillot/picofeed": "dev-master",
 		"graham-campbell/markdown": "~2.0",
 		"vanchelo/ajax-response": "dev-master",
-		"agelxnash/jevix": "dev-master"
+		"agelxnash/jevix": "dev-master",
+		"intervention/image": "~2.1"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "1.*",
