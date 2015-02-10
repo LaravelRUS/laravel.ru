@@ -102,7 +102,7 @@ class UserController extends BaseController {
 
 		$fileName = str_hash($user->id, 'avatar');
 		$img = app('image')->make($this->request->file('avatar'))
-			->fit(256, 256)
+			->fit(config('users.avatar_size'), config('users.avatar_size'))
 			->save("{$path}/{$fileName}.jpg");
 
 		$user->info->avatar = $img;
