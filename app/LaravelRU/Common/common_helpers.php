@@ -312,3 +312,11 @@ if ( ! function_exists('redirect'))
 		return app('redirect')->to($to, $status, $headers, $secure);
 	}
 }
+
+if ( ! function_exists('str_hash'))
+{
+	function str_hash($string, $salt = '')
+	{
+		return substr(md5($string . $salt), 0, 11);
+	}
+}

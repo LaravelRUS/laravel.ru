@@ -54,6 +54,8 @@ gulp.task('scripts', function () {
 		paths.bower + 'jquery/dist/jquery.js',
 		paths.bower + 'sweetalert/lib/sweet-alert.js',
 		paths.bower + 'google-code-prettify/bin/prettify.min.js',
+		paths.bower + 'jquery.fileapi/FileAPI/FileAPI.min.js',
+		paths.bower + 'jquery.fileapi/jquery.fileapi.min.js',
 		'resources/js/*.js'
 	])
 		.pipe(concat('script.min.js'))

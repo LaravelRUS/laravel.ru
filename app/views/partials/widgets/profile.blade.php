@@ -5,7 +5,18 @@
 	@if(isOwner($profile->username))
 		<span class="settings" title="Настройки"><a href="{{ route('user.edit') }}"><i class="fa fa-cog"></i></a></span>
 	@endif
-	<img src="{{ $profile->avatar }}" alt="{{ $profile->name }}"/>
+	<div class="avatar">
+		<img src="{{ $profile->avatar }}" alt="{{ $profile->name }}"/>
+		@if(isOwner($profile->username))
+			<div class="changeAvatar">
+				<i class="fa fa-upload"></i>
+				<div class="js-fileapi-wrapper">
+					<input type="file" name="avatar" />
+				</div>
+			</div>
+			<a href="#" class="deleteAvatar{{ ! $profile->info->avatar ? ' hidden' : '' }}"><i class="fa fa-remove"></i> Удалить фото</a>
+		@endif
+	</div>
 	<header class="text-center">
 		<h1 class="h5">{{ $profile->username }}</h1>
 		@if($profile->info->name)

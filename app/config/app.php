@@ -127,6 +127,7 @@ return [
 		'Pingpong\Widget\WidgetServiceProvider',
 		'Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider',
 		'GrahamCampbell\Markdown\MarkdownServiceProvider',
+		'Intervention\Image\ImageServiceProvider',
 
 		// Главный сервис-провайдер приложения
 		'LaravelRU\Core\CoreServiceProvider'
@@ -200,7 +201,8 @@ return [
 		'Flash'           => 'Laracasts\Flash\Flash',
 		'Widget'          => 'Pingpong\Widget\Facades\Widget',
 		'LocalizedCarbon' => 'Laravelrus\LocalizedCarbon\LocalizedCarbon',
-		'Markdown'        => 'GrahamCampbell\Markdown\Facades\Markdown'
+		'Markdown'        => 'GrahamCampbell\Markdown\Facades\Markdown',
+		'Image'           => 'Intervention\Image\Facades\Image'
 
 	],
 
