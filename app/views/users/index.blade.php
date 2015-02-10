@@ -15,7 +15,7 @@
 				</form>
 
 				@if( ! $users->isEmpty())
-				<div class="text-center"><strong>Показано {{ $users->getTotal() }} из {{ $users->count() }}</strong></div>
+				<div class="text-center"><strong>Показано {{ $users->count() }} из {{ $users->getTotal() }}</strong></div>
 				<table class="users-list">
 					<thead>
 						<tr>
@@ -27,7 +27,7 @@
 					</thead>
 					@foreach($users as $user)
 					<tr>
-						<td style="width:100px">
+						<td style="width:100px;vertical-align: top">
 							<a href="{{ route('user.profile', $user->username) }}" style="border: none">
 								<img width="100" src="{{ $user->avatar }}" alt="{{ $user->username }}" />
 							</a>
@@ -35,7 +35,8 @@
 						<td style="vertical-align: top">
 							<div class="users-list_info">
 								<div class="username"><a href="{{ route('user.profile', $user->username) }}">{{ $user->present()->fullName }}</a></div>
-								<div>Зарегистрирован: {{ $user->present()->created_at }}</div>
+								<div>Зарегистрировался: {{ $user->present()->created_at }}</div>
+								<div>Последняя активность: &mdash;</div>
 								@if($user->info->birthday)
 								<div>День рождения: {{ $user->present()->birthday }}</div>
 								@endif
@@ -44,6 +45,7 @@
 						<td style="text-align: center">&mdash;</td>
 						<td style="text-align: center">&mdash;</td>
 					</tr>
+					<tr><td colspan="4"><div class="space">&nbsp;</div></td></tr>
 					@endforeach
 				</table>
 				<div class="paginate">{{ $users->links() }}</div>
