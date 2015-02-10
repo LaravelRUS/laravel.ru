@@ -205,7 +205,12 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
 	public function getAvatarAttribute()
 	{
-		return 'http://www.gravatar.com/avatar/' . md5($this->email) . '?s=256' . '&d=' . urlencode(app('url')->asset('img/avatar.png'));
+		if ($image = $this->info->avatar)
+		{
+			return avatar_path($image);
+		}
+
+		return gravatar($this->email);
 	}
 
 	public function scopeUsername($query, $username)
