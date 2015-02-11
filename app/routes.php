@@ -113,6 +113,20 @@ Route::group(['before' => 'auth'], function ()
 	// Внутренний профайл пользователя (настройки, смена пароля и т.п.)
 	Route::get('settings', ['uses' => 'UserController@edit', 'as' => 'user.edit']);
 	Route::post('settings', ['uses' => 'UserController@update']);
+
+	// Изменение пароля
+	Route::get('settings/change-password', [
+		'uses' => 'ChangePasswordController@getForm',
+		'as' => 'user.change-password'
+	]);
+	Route::post('settings/change-password', ['uses' => 'ChangePasswordController@postForm']);
+
+	// Изменение Email
+	Route::get('settings/change-email', [
+		'uses' => 'ChangeEmailController@getForm',
+		'as' => 'user.change-email'
+	]);
+	Route::post('settings/change-email', ['uses' => 'ChangeEmailController@postForm']);
 });
 
 // ===== Список пользователей
