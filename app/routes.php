@@ -116,10 +116,10 @@ Route::group(['before' => 'auth'], function ()
 });
 
 // ===== Список пользователей
-Route::get('users', [
+Route::get('users/{status?}', [
 	'as' => 'users',
     'uses' => 'UsersController@index',
-]);
+])->where('status', 'online|offline');
 
 // ===== Новости
 Route::get('news', ['uses' => 'NewsController@all', 'as' => 'news']);
