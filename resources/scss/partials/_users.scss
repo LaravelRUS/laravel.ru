@@ -49,11 +49,9 @@
 	display: inline-block;
 	height: 10px;
 	margin-left: 5px;
-	position: absolute;
 	width: 10px;
 
 	&_inline {
-		position: static;
 		margin-right: 5px;
 		margin-left: 0;
 	}
