@@ -10,6 +10,8 @@ class UserInfo extends Model {
 
 	protected $guarded = [];
 
+	protected $dates = ['birthday'];
+
 	public static function boot()
 	{
 		parent::boot();
