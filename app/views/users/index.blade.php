@@ -37,17 +37,13 @@
 								<div class="username">
 									<a href="{{ route('user.profile', $user->username) }}">{{ $user->present()->fullName }}</a>
 									@if($user->isCurrentlyActive())
-									<span class="user-online"></span>
+									<span class="user-online" title="Сейчас на сайте"></span>
 									@endif
 								</div>
 								<div>Зарегистрировался: {{ $user->present()->created_at }}</div>
-								<div>Последняя активность:
-									@if($user->isCurrentlyActive())
-									сейчас на сайте
-									@else
-									{{ $user->present()->last_activity_at }}
-									@endif
-								</div>
+								@if( ! $user->isCurrentlyActive())
+								<div>Последняя активность: {{ $user->present()->last_activity_at }}</div>
+								@endif
 								@if($user->info->birthday && $user->info->birthday->year > 0)
 								<div>Родился: {{ $user->present()->birthday }}</div>
 								@endif
