@@ -20,9 +20,11 @@
 					<header>
 						<h2>Основные данные</h2>
 					</header>
-					{{ Element::button('Сменить пароль') }}	{{ Element::button('Сменить email') }}
-					<br><br>
+					<a class="button" href="{{ route('user.change-email') }}">Изменить Email</a>
+					<a class="button" href="{{ route('user.change-password') }}">Изменить пароль</a>
+					<a class="button" href="#">Сбросить пароль</a>
 				</section>
+			<br><br>
 			{{ Form::open(['route' => 'user.edit', 'class' => 'ajax']) }}
 				<section>
 					<header>
@@ -36,7 +38,7 @@
 							{{ Element::input('text', 'surname', 'Фамилия', null, $user->info->surname) }}
 						</div>
 					</div>
-					{{ Element::input('date', 'birthday', 'Дата рождения', null, $user->info->birthday) }}
+					{{ Element::input('date', 'birthday', 'Дата рождения', null, $user->info->birthday->format('Y-m-d')) }}
 					{{ Element::textarea('about', 'Обо мне', 3, null, $user->info->about) }}
 				</section>
 				<section>
