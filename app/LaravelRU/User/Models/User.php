@@ -17,7 +17,7 @@ use Illuminate\Auth\UserInterface;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
-class User extends \Eloquent implements UserInterface, RemindableInterface {
+class User extends \Eloquent implements UserInterface, RemindableInterface, ActivityInterface {
 
 	use PresentableTrait;
 
@@ -28,9 +28,25 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 */
 	const PUBLISHED_AT = 'published_at';
 
+	/**
+	 * The name of the "last login at" column.
+	 *
+	 * @var string
+	 */
+	const LAST_LOGIN_AT = 'last_login_at';
+
+	/**
+	 * The name of the "last activity at" column.
+	 *
+	 * @var string
+	 */
+	const LAST_ACTIVITY_AT = 'last_activity_at';
+
 	protected $hidden = ['password', 'remember_token'];
 
 	protected $guarded = [];
+
+	protected $dates = [self::LAST_ACTIVITY_AT, self::LAST_LOGIN_AT];
 
 	protected $presenter = 'LaravelRU\User\Presenters\UserPresenter';
 
@@ -257,6 +273,35 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 		});
 
 		return $query;
+	}
+
+	public function touchLastActivityAt()
+	{
+		$time = $this->freshTimestamp();
+
+		if ( ! $this->last_activity_at || $time->diffInSeconds($this->last_activity_at) > 120)
+		{
+			$this->timestamps = false;
+			$this->update([self::LAST_ACTIVITY_AT => $time]);
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public function touchLastLoginAt()
+	{
+		$this->timestamps = false;
+		$this->update([self::LAST_LOGIN_AT => $this->freshTimestamp()]);
+
+		return true;
+	}
+
+	public function isCurrentlyActive()
+	{
+		return $this->{self::LAST_ACTIVITY_AT}
+		       && $this->freshTimestamp()->diffInSeconds($this->{self::LAST_ACTIVITY_AT}) <= 120;
 	}
 
 }
