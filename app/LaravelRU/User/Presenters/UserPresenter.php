@@ -16,18 +16,19 @@ class UserPresenter extends Presenter {
 
 	public function birthday()
 	{
-		return LocalizedCarbon::createFromFormat('Y-m-d', $this->info->birthday)->formatLocalized('%e %f %Y');
+		return $this->localizedDate($this->info->birthday, '%e %f %Y');
 	}
 
 	/**
 	 * @param \Carbon\Carbon $date
+	 * @param string $format
 	 * @return mixed|string
 	 */
-	private function localizedDate($date)
+	public function localizedDate($date, $format = '%e %f %Y в %H:%M')
 	{
 		if ( ! $date || $date->year < 0) return '&mdash;';
 
-		return LocalizedCarbon::instance($date)->formatLocalized('%e %f %Y в %H:%M');
+		return LocalizedCarbon::instance($date)->formatLocalized($format);
 	}
 
 	/**
