@@ -277,6 +277,18 @@ class User extends \Eloquent implements UserInterface, RemindableInterface, Acti
 		return $query;
 	}
 
+	public function scopeOnline($query, $online = true)
+	{
+		$query->where(self::LAST_ACTIVITY_AT, $online ? '>' : '<', $this->freshTimestamp()->subSeconds(self::TIMEOUT_ACTIVITY));
+
+		return $query;
+	}
+
+	public function scopeOffline($query)
+	{
+		return $this->scopeOnline($query, false);
+	}
+
 	public function touchLastActivityAt()
 	{
 		$time = $this->freshTimestamp();

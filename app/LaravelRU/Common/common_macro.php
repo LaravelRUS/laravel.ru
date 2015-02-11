@@ -5,8 +5,14 @@ function activeClassName($route)
 	return (Route::currentRouteName() == $route) ? 'active' : null;
 }
 
-function activeClass($routes = [])
+/**
+ * @param array|string $routes
+ * @return null|string
+ */
+function activeClass($routes = null)
 {
+	if ( ! is_array($routes)) $routes = func_get_args();
+
 	return (in_array(Route::currentRouteName(), $routes)) ? 'class="active"' : null;
 }
 

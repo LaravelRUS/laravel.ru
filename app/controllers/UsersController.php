@@ -24,10 +24,11 @@ class UsersController extends BaseController
 		$this->request = $request;
 	}
 
-	public function index()
+	public function index($status = null)
 	{
-		$users = $this->users->search(
-			$query = $this->request->input('query')
+		$users = $this->users->searchWithStatus(
+			$query = $this->request->input('query'),
+			$status
 		);
 
 		return view('users.index', compact('users', 'query'));

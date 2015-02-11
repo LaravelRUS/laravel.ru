@@ -10,7 +10,7 @@
 		</div>
 		<div class="collapse">
 			<ul>
-				<li {{activeClass(['documentation', 'documentation.status'])}}>
+				<li {{ activeClass('documentation', 'documentation.status') }}>
 					<a href="{{ route('documentation') }}">Документация</a>
 				</li>
 				{{--<li {{activeClass(['articles.all'])}}>--}}
@@ -28,7 +28,7 @@
 				<li class="hidden-sm">
 					<a href="https://gitter.im/LaravelRUS/chat" rel="nofollow" target="_blank">Чат</a>
 				</li>
-				<li {{ activeClass(['users']) }}>
+				<li {{ activeClass('users') }}>
 					<a href="{{ route('users') }}">Пользователи</a>
 				</li>
 				@if(Auth::check())
