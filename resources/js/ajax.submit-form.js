@@ -25,7 +25,7 @@ $('form.ajax').submit(function (event) {
 						if (data.errors.hasOwnProperty(key)) {
 							var input = form.find('input[name="' + key + '"]');
 							input.parent().addClass('has-error');
-							$('<p class="error-block">' + data.errors[key] + '</p>').insertAfter(input);
+							$('<p class="error-block">' + data.errors[key].join('<br/>') + '</p>').insertAfter(input);
 						}
 					}
 				}
