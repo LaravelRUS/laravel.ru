@@ -34,11 +34,22 @@
 						</td>
 						<td style="vertical-align: top">
 							<div class="users-list_info">
-								<div class="username"><a href="{{ route('user.profile', $user->username) }}">{{ $user->present()->fullName }}</a></div>
+								<div class="username">
+									<a href="{{ route('user.profile', $user->username) }}">{{ $user->present()->fullName }}</a>
+									@if($user->isCurrentlyActive())
+									<span class="user-online"></span>
+									@endif
+								</div>
 								<div>Зарегистрировался: {{ $user->present()->created_at }}</div>
-								<div>Последняя активность: &mdash;</div>
+								<div>Последняя активность:
+									@if($user->isCurrentlyActive())
+									сейчас на сайте
+									@else
+									{{ $user->present()->last_activity_at }}
+									@endif
+								</div>
 								@if($user->info->birthday)
-								<div>День рождения: {{ $user->present()->birthday }}</div>
+								<div>Родился: {{ $user->present()->birthday }}</div>
 								@endif
 							</div>
 						</td>

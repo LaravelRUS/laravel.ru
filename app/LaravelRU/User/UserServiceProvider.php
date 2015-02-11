@@ -1,6 +1,7 @@
 <?php namespace LaravelRU\User;
 
 use Illuminate\Support\ServiceProvider;
+use LaravelRU\User\Models\ActivityInterface;
 
 class UserServiceProvider extends ServiceProvider {
 
@@ -17,6 +18,8 @@ class UserServiceProvider extends ServiceProvider {
 		include 'user_events.php';
 
 		$this->registerValidatorRules();
+
+		$this->registerUserListeners($this->app['auth']->user());
 	}
 
 	/**
@@ -37,6 +40,26 @@ class UserServiceProvider extends ServiceProvider {
 		$validator = $this->app['validator'];
 
 		include 'user_validator_rules.php';
+	}
+
+	/**
+	 * @param \LaravelRU\User\Models\User $user
+	 */
+	private function registerUserListeners($user)
+	{
+		if ($user && $user instanceof ActivityInterface)
+		{
+			$this->app['events']->listen('auth.login', function () use ($user)
+			{
+				$user->touchLastLoginAt();
+			});
+
+			$this->app->before(function () use ($user)
+			{
+				$user->touchLastActivityAt();
+			});
+
+		}
 	}
 
 }
