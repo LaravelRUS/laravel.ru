@@ -20,7 +20,7 @@
 	<header class="text-center">
 		<h1 class="h5">{{ $profile->username }}</h1>
 		@if($profile->info->name)
-			<p class="text-center">{{ $profile->present()->fullname() }}</p>
+			<p class="text-center">{{ $profile->present()->fullname }}</p>
 		@endif
 	</header>
 	<aside class="badges text-center">

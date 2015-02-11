@@ -48,7 +48,7 @@
 									{{ $user->present()->last_activity_at }}
 									@endif
 								</div>
-								@if($user->info->birthday)
+								@if($user->info->birthday && $user->info->birthday->year > 0)
 								<div>Родился: {{ $user->present()->birthday }}</div>
 								@endif
 							</div>

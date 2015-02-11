@@ -12,12 +12,18 @@
 @section('contents')
 <div class="col-xs-12 col-sm-8 col-md-9">
 	<section class="bg-white p-35 p-b-25 m-b-30 border-rounded">
-		@if($user->info->birthday)
-			<p class="m-b-5"><strong>День рождения</strong></p>
-			<p class="small" title="О себе">{{ $user->present()->birthday() }}</p>
+		@if( ! $user->isCurrentlyActive())
+			<p class="m-b-5"><strong>Последний раз был на сайте</strong></p>
+			<p class="small" title="Активность">{{ $user->present()->last_activity_at }}</p>
+		@else
+			<p class="small" title="Статус"><span class="user-online user-online_inline"></span> Сейчас на сайте</p>
+		@endif
+		@if($user->info->birthday && $user->info->birthday->year > 0)
+			<p class="m-b-5"><strong>Родился</strong></p>
+			<p class="small" title="Родился">{{ $user->present()->birthday }}</p>
 		@endif
 		@if($user->info->about)
-			<p class="m-b-5"><strong>Обо мне</strong></p>
+			<p class="m-b-5"><strong>Краткая информация</strong></p>
 			<p class="small" title="О себе">{{ $user->info->about }}</p>
 		@endif
 		@if($user->info->about || $user->info->birthday)
@@ -42,17 +48,19 @@
 			<li data-tab="news">
 				<p>Новости</p>
 			</li>
+			@if(isOwner($user->username) || isAdmin())
 			<li data-tab="drafts">
 				<p>Черновики</p>
 			</li>
+			@endif
 		</ul>
 		<ul class="tab-contents">
 			<li class="visible" data-tab="articles">
 				<section>
-					@if(count($user->articles))
+					@if($user->articles->count())
 						<ul class="unstyled">
 							@foreach($user->articles as $article)
-								<li>{{ 1 }}</li>
+								<li>{{ $article->title }}</li>
 							@endforeach
 						</ul>
 					@else
@@ -62,14 +70,22 @@
 			</li>
 			<li data-tab="news">
 				<section>
-					<p>123</p>
+					<div>
+						<div>Новость 1</div>
+						<div>Новость 2</div>
+					</div>
 				</section>
 			</li>
+			@if(isOwner($user->username) || isAdmin())
 			<li data-tab="drafts">
 				<section>
-					<p>dr</p>
+					<div>
+						<div>Черновик 1</div>
+						<div>Черновик 2</div>
+					</div>
 				</section>
 			</li>
+			@endif
 		</ul>
 	</section>
 </div>
