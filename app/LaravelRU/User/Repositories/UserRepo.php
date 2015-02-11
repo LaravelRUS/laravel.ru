@@ -23,7 +23,15 @@ class UserRepo extends AbstractRepository {
 
 		if ( ! is_null($callback)) call_user_func($callback, $q);
 
-		return $q->paginate();
+		return $q->paginate(3);
+	}
+
+	public function searchWithStatus($query, $status)
+	{
+		return $this->search($query, function ($q) use ($status)
+		{
+			$status && $q->{$status}();
+		});
 	}
 
 }
