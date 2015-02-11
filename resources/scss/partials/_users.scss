@@ -58,3 +58,17 @@
 		margin-left: 0;
 	}
 }
+
+.users-statuses {
+	margin: 10px 0;
+
+	& > a {
+		margin: 0 5px;
+		color: $color-green;
+		border-color: lighten($color-green, 15%);
+
+		&:hover {
+			border-color: $color-green;
+		}
+	}
+}
