@@ -32,6 +32,11 @@ class UserServiceProvider extends ServiceProvider {
 		// Including module-related routes etc
 		include 'user_filters.php';
 
+		$this->app->bindShared('Illuminate\Auth\UserInterface', function ($app)
+		{
+			return $app['auth']->user();
+		});
+
 		$this->commands('LaravelRU\User\Commands\UserCommand');
 	}
 
