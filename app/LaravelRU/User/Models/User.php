@@ -42,6 +42,8 @@ class User extends \Eloquent implements UserInterface, RemindableInterface, Acti
 	 */
 	const LAST_ACTIVITY_AT = 'last_activity_at';
 
+	const TIMEOUT_ACTIVITY = 300;
+
 	protected $hidden = ['password', 'remember_token'];
 
 	protected $guarded = [];
@@ -279,7 +281,8 @@ class User extends \Eloquent implements UserInterface, RemindableInterface, Acti
 	{
 		$time = $this->freshTimestamp();
 
-		if ( ! $this->last_activity_at || $time->diffInSeconds($this->last_activity_at) > 120)
+		if ( ! $this->last_activity_at
+			|| $time->diffInSeconds($this->last_activity_at) > self::TIMEOUT_ACTIVITY)
 		{
 			$this->timestamps = false;
 			$this->update([self::LAST_ACTIVITY_AT => $time]);
@@ -301,7 +304,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface, Acti
 	public function isCurrentlyActive()
 	{
 		return $this->{self::LAST_ACTIVITY_AT}
-		       && $this->freshTimestamp()->diffInSeconds($this->{self::LAST_ACTIVITY_AT}) <= 120;
+		       && $this->freshTimestamp()->diffInSeconds($this->{self::LAST_ACTIVITY_AT}) <= self::TIMEOUT_ACTIVITY;
 	}
 
 }
