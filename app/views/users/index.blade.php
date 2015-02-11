@@ -16,6 +16,14 @@
 
 				@if( ! $users->isEmpty())
 				<div class="text-center"><strong>Показано {{ $users->count() }} из {{ $users->getTotal() }}</strong></div>
+
+				<div class="text-center users-statuses">
+					<strong>Показать:</strong>
+					<a href="{{ route('users') }}">всех</a>
+					<a href="{{ route('users', 'online') }}">кто сейчас на сайте</a>
+					<a href="{{ route('users', 'offline') }}">кого нет</a>
+				</div>
+
 				<table class="users-list">
 					<thead>
 						<tr>
@@ -55,7 +63,7 @@
 					<tr><td colspan="4"><div class="space">&nbsp;</div></td></tr>
 					@endforeach
 				</table>
-				<div class="paginate">{{ $users->appends('query', $query)->links() }}</div>
+				{{ $users->appends('query', $query)->links('paginator.slider') }}
 				@else
 				<div class="text-center" style="margin:20px 0 50px"><strong>Ничего не найдено</strong></div>
 				@endif
