@@ -42,7 +42,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface, Acti
 	 */
 	const LAST_ACTIVITY_AT = 'last_activity_at';
 
-	const TIMEOUT_ACTIVITY = 300;
+	const TIMEOUT_ACTIVITY = 120;
 
 	protected $hidden = ['password', 'remember_token'];
 
@@ -294,13 +294,10 @@ class User extends \Eloquent implements UserInterface, RemindableInterface, Acti
 
 	public function touchLastActivityAt()
 	{
-		$time = $this->freshTimestamp();
-
-		if ( ! $this->last_activity_at
-			|| $time->diffInSeconds($this->last_activity_at) > self::TIMEOUT_ACTIVITY)
+		if ( ! $this->isCurrentlyActive())
 		{
 			$this->timestamps = false;
-			$this->update([self::LAST_ACTIVITY_AT => $time]);
+			$this->update([self::LAST_ACTIVITY_AT => $this->freshTimestamp()]);
 
 			return true;
 		}
@@ -311,7 +308,10 @@ class User extends \Eloquent implements UserInterface, RemindableInterface, Acti
 	public function touchLastLoginAt()
 	{
 		$this->timestamps = false;
-		$this->update([self::LAST_LOGIN_AT => $this->freshTimestamp()]);
+		$this->update([
+			self::LAST_LOGIN_AT => $this->freshTimestamp(),
+			self::LAST_ACTIVITY_AT => $this->freshTimestamp()
+		]);
 
 		return true;
 	}

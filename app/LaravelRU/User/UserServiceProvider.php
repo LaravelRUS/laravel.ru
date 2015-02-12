@@ -52,18 +52,17 @@ class UserServiceProvider extends ServiceProvider {
 	 */
 	private function registerUserListeners($user)
 	{
-		if ($user && $user instanceof ActivityInterface)
+		$this->app['events']->listen('auth.login', function ($user)
 		{
-			$this->app['events']->listen('auth.login', function () use ($user)
-			{
-				$user->touchLastLoginAt();
-			});
+			if ($user instanceof ActivityInterface) $user->touchLastLoginAt();
+		});
 
+		if ($user instanceof ActivityInterface)
+		{
 			$this->app->before(function () use ($user)
 			{
 				$user->touchLastActivityAt();
 			});
-
 		}
 	}
 
