@@ -15,6 +15,13 @@
 				</form>
 
 				<div class="text-center users-statuses">
+					<strong>Группа:</strong>
+					<a href="{{ route('users.group', 'administrators') }}">администраторы</a>
+					<a href="{{ route('users.group', 'librarians') }}">библиотекари</a>
+					<a href="{{ route('users.group', 'moderators') }}">модераторы</a>
+				</div>
+
+				<div class="text-center users-statuses">
 					<strong>Показать:</strong>
 					<a href="{{ route('users') }}">всех</a>
 					<a href="{{ route('users', 'online') }}">кто сейчас на сайте</a>
@@ -22,7 +29,7 @@
 				</div>
 
 				@if( ! $users->isEmpty())
-				<div class="text-center"  style="margin:20px 0 50px"><strong>Показано {{ $users->count() }} из {{ $users->getTotal() }}</strong></div>
+				<div class="text-center"  style="margin:40px 0"><strong>Показано {{ $users->count() }} из {{ $users->getTotal() }}</strong></div>
 
 				<table class="users-list">
 					<thead>
@@ -65,7 +72,7 @@
 				</table>
 				{{ $users->appends('query', $query)->links('paginator.slider') }}
 				@else
-				<div class="text-center" style="margin:20px 0 50px"><strong>Ничего не найдено</strong></div>
+				<div class="text-center" style="margin:40px 0"><strong>Ничего не найдено</strong></div>
 				@endif
 			</section>
 		</div>

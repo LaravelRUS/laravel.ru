@@ -36,4 +36,15 @@ class UserRepo extends AbstractRepository {
 		});
 	}
 
+	public function searchWithGroup($query, $group)
+	{
+		return $this->search($query, function ($q) use ($group)
+		{
+			$q->whereHas('roles', function ($query) use ($group)
+			{
+				$query->where('name', str_singular($group));
+			});
+		});
+	}
+
 }
