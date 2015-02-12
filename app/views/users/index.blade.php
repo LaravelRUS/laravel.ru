@@ -14,15 +14,15 @@
 			        <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
 				</form>
 
-				@if( ! $users->isEmpty())
-				<div class="text-center"><strong>Показано {{ $users->count() }} из {{ $users->getTotal() }}</strong></div>
-
 				<div class="text-center users-statuses">
 					<strong>Показать:</strong>
 					<a href="{{ route('users') }}">всех</a>
 					<a href="{{ route('users', 'online') }}">кто сейчас на сайте</a>
 					<a href="{{ route('users', 'offline') }}">кого нет</a>
 				</div>
+
+				@if( ! $users->isEmpty())
+				<div class="text-center"  style="margin:20px 0 50px"><strong>Показано {{ $users->count() }} из {{ $users->getTotal() }}</strong></div>
 
 				<table class="users-list">
 					<thead>
