@@ -19,6 +19,7 @@ class UserRepo extends AbstractRepository {
 	public function search($query, Closure $callback = null)
 	{
 		$q = $this->model->query();
+		$q->with('info');
 		$q->search($query);
 
 		if ( ! is_null($callback)) call_user_func($callback, $q);
@@ -30,6 +31,7 @@ class UserRepo extends AbstractRepository {
 	{
 		return $this->search($query, function ($q) use ($status)
 		{
+			// $status - online() or offline()
 			$status && $q->{$status}();
 		});
 	}

@@ -267,11 +267,14 @@ class User extends \Eloquent implements UserInterface, RemindableInterface, Acti
 
 		if ( ! $text = filter_var($text, FILTER_SANITIZE_STRING)) return $query;
 
-		$query->where('username', 'LIKE', "%{$text}%");
-		$query->orWhereHas('info', function ($query) use ($text)
+		$query->where(function ($q) use ($text)
 		{
-			$query->where('name', 'LIKE', "%{$text}%");
-			$query->orWhere('surname', 'LIKE', "%{$text}%");
+			$q->where('username', 'LIKE', "%{$text}%");
+			$q->orWhereHas('info', function ($query) use ($text)
+			{
+				$query->where('name', 'LIKE', "%{$text}%");
+				$query->orWhere('surname', 'LIKE', "%{$text}%");
+			});
 		});
 
 		return $query;
