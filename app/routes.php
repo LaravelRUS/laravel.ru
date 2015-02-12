@@ -135,6 +135,11 @@ Route::get('users/{status?}', [
     'uses' => 'UsersController@index',
 ])->where('status', 'online|offline');
 
+Route::get('users/{group}', [
+	'as' => 'users.group',
+    'uses' => 'UsersController@group',
+])->where('group', 'administrators|moderators|librarians');
+
 // ===== Новости
 Route::get('news', ['uses' => 'NewsController@all', 'as' => 'news']);
 
