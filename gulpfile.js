@@ -52,6 +52,7 @@ gulp.task('scripts', function () {
 	var gzipped = size({gzip: true});
 	gulp.src([
 		paths.bower + 'jquery/dist/jquery.js',
+		paths.bower + 'nprogress/nprogress.js',
 		paths.bower + 'sweetalert/lib/sweet-alert.js',
 		paths.bower + 'google-code-prettify/bin/prettify.min.js',
 		paths.bower + 'jquery.fileapi/FileAPI/FileAPI.min.js',
