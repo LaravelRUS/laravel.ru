@@ -34,7 +34,7 @@ class UsersController extends BaseController
 		return view('users.index', compact('users', 'query'));
 	}
 
-	public function group($group = null)
+	public function group($group)
 	{
 		$users = $this->users->searchWithGroup(
 			$query = $this->request->input('query'),

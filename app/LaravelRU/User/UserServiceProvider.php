@@ -37,6 +37,8 @@ class UserServiceProvider extends ServiceProvider {
 			return $app['auth']->user();
 		});
 
+		$this->app->bind('Illuminate\Auth\Reminders\PasswordBroker', 'auth.reminder');
+
 		$this->commands('LaravelRU\User\Commands\UserCommand');
 	}
 

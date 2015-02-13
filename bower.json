@@ -11,6 +11,8 @@
     "brand-colors": "~0.3.0",
     "google-code-prettify": "~1.0.3",
     "bootflat-color-picker-colors": "~1.0.1",
-    "sweetalert": "~0.4.1"
+    "sweetalert": "~0.4.1",
+    "nprogress": "~0.1.6",
+    "jquery.fileapi": "~0.4.7"
   }
 }
