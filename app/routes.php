@@ -38,11 +38,18 @@ Route::post('hook/push_to_develop', [
 Route::get('cheat-sheet', ['uses' => 'PagesController@cheatSheetPage', 'as' => 'cheat-sheet']);
 
 // ===== Дополнительная информация
-Route::get('help/rules', [
-	'as' => 'pages.rules',
-	'uses' => 'PagesController@rulesPage'
-]);
-Route::get('help/{page}', ['uses' => 'PagesController@page', 'as' => 'page']);
+Route::group(['prefix' => 'help'], function ()
+{
+	Route::get('rules', [
+		'as' => 'pages.rules',
+		'uses' => 'PagesController@rulesPage',
+	]);
+
+	Route::get('{page}', [
+		'as' => 'page',
+		'uses' => 'PagesController@page',
+	]);
+});
 
 // ===== Регистрация, авторизация
 Route::group(['before' => 'guest'], function ()
@@ -85,15 +92,18 @@ Route::get('logout', [
 ]);
 
 // ===== Документация
-Route::get('docs/status', [
-	'as' => 'documentation.status',
-	'uses' => 'DocsController@status'
-]);
+Route::group(['prefix' => 'docs'], function ()
+{
+	Route::get('status', [
+		'as' => 'documentation.status',
+		'uses' => 'DocsController@status'
+	]);
 
-Route::get('docs/{version?}/{string?}', [
-	'as' => 'documentation',
-	'uses' => 'DocsController@docs'
-]);
+	Route::get('{version?}/{string?}', [
+		'as' => 'documentation',
+		'uses' => 'DocsController@docs'
+	]);
+});
 
 // ===== Профайл пользователя
 Route::group(['before' => 'auth'], function ()
@@ -130,24 +140,37 @@ Route::group(['before' => 'auth'], function ()
 });
 
 // ===== Список пользователей
-Route::get('users/{status?}', [
-	'as' => 'users',
-    'uses' => 'UsersController@index',
-])->where('status', 'online|offline');
+Route::group(['prefix' => 'users'], function ()
+{
+	Route::get('{status?}', [
+		'as' => 'users',
+		'uses' => 'UsersController@index',
+	])->where('status', 'online|offline');
 
-Route::get('users/{group}', [
-	'as' => 'users.group',
-    'uses' => 'UsersController@group',
-])->where('group', 'administrators|moderators|librarians');
+	Route::get('{group}', [
+		'as' => 'users.group',
+		'uses' => 'UsersController@group',
+	])->where('group', 'administrators|moderators|librarians');
+});
+
+// ===== Сброс пароля
+Route::group(['prefix' => 'password'], function ()
+{
+	Route::get('remind', 'RemindersController@getRemind');
+	Route::post('remind', 'RemindersController@postRemind');
+
+	Route::get('reset', 'RemindersController@getReset');
+	Route::post('reset', 'RemindersController@postReset');
+});
 
 // ===== Новости
 Route::get('news', ['uses' => 'NewsController@all', 'as' => 'news']);
 
-Route::group(['before' => 'logged'], function ()
+Route::group(['prefix' => 'news', 'before' => 'logged'], function ()
 {
-	Route::get('news/create', ['uses' => 'NewsController@create', 'as' => 'news.create']);
-	Route::get('news/edit/{id}', ['uses' => 'NewsController@edit', 'as' => 'news.edit']);
-	Route::post('news/save', ['uses' => 'NewsController@store', 'as' => 'news.store']);
+	Route::get('create', ['uses' => 'NewsController@create', 'as' => 'news.create']);
+	Route::get('edit/{id}', ['uses' => 'NewsController@edit', 'as' => 'news.edit']);
+	Route::post('save', ['uses' => 'NewsController@store', 'as' => 'news.store']);
 });
 
 // ===== Articles
@@ -217,6 +240,9 @@ Route::group(['prefix' => 'admin', 'before' => 'admin', 'namespace' => 'Admin'],
 });
 
 // ===== Профайл пользователя
-Route::get('{username}', ['uses' => 'UserController@profile', 'as' => 'user.profile']);
-Route::get('{username}/articles', ['uses' => 'UserController@articles', 'as' => 'user.articles']);
-Route::get('{username}/tips', ['uses' => 'UserController@tips', 'as' => 'user.tips']);
+Route::group(['prefix' => '{username}'], function ()
+{
+	Route::get('/', ['uses' => 'UserController@profile', 'as' => 'user.profile']);
+	Route::get('articles', ['uses' => 'UserController@articles', 'as' => 'user.articles']);
+	Route::get('tips', ['uses' => 'UserController@tips', 'as' => 'user.tips']);
+});
