@@ -69,7 +69,7 @@ if ( ! function_exists('view'))
 	 * @param  string $view
 	 * @param  array $data
 	 * @param  array $mergeData
-	 * @return \Illuminate\View\View
+	 * @return \Illuminate\View\View|\Illuminate\View\Factory
 	 */
 	function view($view = null, $data = [], $mergeData = [])
 	{
