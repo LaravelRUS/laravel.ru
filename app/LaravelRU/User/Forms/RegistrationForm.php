@@ -5,7 +5,7 @@ use Laracasts\Validation\FormValidator;
 class RegistrationForm extends FormValidator {
 
 	protected $rules = [
-		'username' => 'required|username|min:4|max:23|unique:users|unique:restricted_words,title',
+		'username' => 'required|username|min:2|max:23|unique:users|unique:restricted_words,title',
 		'email' => 'required|email|unique:users,email',
 		'password' => 'required|min:6',
 		'jsToken' => 'required|js_token'
