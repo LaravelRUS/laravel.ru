@@ -22,7 +22,9 @@ class TipsController extends BaseController {
 	 */
 	private $updateTipForm;
 
-	public function __construct(Access $access, CreateTipForm $createTipForm, UpdateTipForm $updateTipForm)
+	public function __construct(Access $access,
+	                            CreateTipForm $createTipForm,
+	                            UpdateTipForm $updateTipForm)
 	{
 		$this->access = $access;
 		$this->createTipForm = $createTipForm;

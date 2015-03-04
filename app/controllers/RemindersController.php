@@ -38,7 +38,7 @@ class RemindersController extends BaseController
 	 */
 	public function getRemind()
 	{
-		return View::make('password.remind');
+		return view('password.remind');
 	}
 
 	/**

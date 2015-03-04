@@ -4,23 +4,21 @@ class PagesController extends BaseController {
 
 	public function cheatSheetPage()
 	{
-		return View::make('pages.cheat-sheet');
+		return view('pages.cheat-sheet');
 	}
 
 	public function rulesPage()
 	{
-		return View::make('pages.rules');
+		return view('pages.rules');
 	}
 
 	public function page($view)
 	{
-		if (preg_match('/[^a-z\-_]+/', $view)) App::abort(404);
-
 		$view = 'pages.' . $view;
 
-		if ( ! View::exists($view)) App::abort(404);
+		if ( ! view()->exists($view)) abort();
 
-		return View::make($view);
+		return view($view);
 	}
 
 }

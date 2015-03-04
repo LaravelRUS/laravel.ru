@@ -45,7 +45,7 @@ Route::group(['prefix' => 'help'], function ()
 		'uses' => 'PagesController@rulesPage',
 	]);
 
-	Route::get('{page}', [
+	Route::get('{slug}', [
 		'as' => 'page',
 		'uses' => 'PagesController@page',
 	]);
