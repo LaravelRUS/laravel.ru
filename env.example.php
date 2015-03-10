@@ -12,4 +12,6 @@ return array(
 	'recaptcha_secret' => "",
 
     'github_hook_secret' => "",
+
+    'github_authenticate_token' => "",
 );

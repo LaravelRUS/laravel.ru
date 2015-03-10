@@ -21,6 +21,6 @@ return [
 	],
 
 
-	'github_authenticate_token' => '3b738c9da9a24167bf6fb750a86ddfb64edbc1db'
+	'github_authenticate_token' => getenv("github_authenticate_token")
 
 ];
