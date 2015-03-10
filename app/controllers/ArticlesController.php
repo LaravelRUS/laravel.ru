@@ -64,26 +64,24 @@ class ArticlesController extends BaseController {
 
 	public function create()
 	{
-		$article = Auth::user()->articles()->draft()->first();
+		$this->access->checkCreateArticle();
+
 		$difficultyLevels = DifficultyLevel::lists('title', 'id');
+		$isCreate = true;
+		$article = new Article();
 
-		if ( ! $article)
-		{
-			$article = new Article();
-			$article->author_id = Auth::id();
-			$article->save();
-		}
-
-		return View::make('articles.create', compact('article', 'difficultyLevels'));
+		return View::make('articles.edit', compact('article', 'difficultyLevels', 'isCreate'));
 	}
 
 	public function edit($id)
 	{
-		$this->access->checkEditArticle($id);
+		$article = $this->articleRepo->findOrFail($id);
 
-		$post = $this->postRepo->findOrFail($id);
+		$this->access->checkEditArticle($article);
 
-		return View::make('posts.edit-post', compact('post'));
+		$isCreate = false;
+
+		return View::make('articles.edit', compact('article', 'isCreate'));
 	}
 
 	public function store()
@@ -107,7 +105,7 @@ class ArticlesController extends BaseController {
 
 		$article->save();
 
-		return Redirect::route('user.profile')->with('success', 'Статья сохранена сохранен');
+		return Redirect::route('user.profile')->with('success', 'Статья сохранена.');
 	}
 
 }

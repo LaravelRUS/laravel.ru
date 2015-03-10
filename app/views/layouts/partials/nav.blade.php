@@ -38,6 +38,9 @@
 							<li>
 								<a href="{{ route('user.profile', Auth::user()->username) }}">Профиль</a>
 							</li>
+							<li>
+								<a href="{{ route('articles.create') }}">Добавить статью</a>
+							</li>
 							@if(Auth::user()->isAdmin())
 								<li>
 									<a href="{{ route('admin.users') }}">Список пользователей</a>

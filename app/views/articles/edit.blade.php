@@ -13,7 +13,11 @@
 	<main>
 		<article class="bg-white p-35 border-rounded">
 			<header>
-				<h1>Новая статья</h1>
+				@if($isCreate)
+					<h1>Новая статья</h1>
+				@else
+					<h1>Редактирование статьи</h1>
+				@endif
 			</header>
 			<hr>
 			{{ Form::open(['route' => 'articles.store']) }}
@@ -39,6 +43,8 @@
 				<a id="fullScreen" href="#" class="btn fa fa-expand"><small data-text="[ESC]">[Ctrl+Enter]</small></a>
 				{{ Element::ace('text', 'Текст статьи') }}
 				<input type="checkbox" name="is_draft" checked>
+
+				{{ Element::checkbox("is_draft", "Черновик") }}
 				{{ Element::button('Сохранить') }}
 			{{ Form::close() }}
 		</article>
