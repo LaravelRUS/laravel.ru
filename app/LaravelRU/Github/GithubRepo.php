@@ -24,7 +24,7 @@ class GithubRepo {
 	{
 		$this->githubClient = new GithubClient;
 		$this->githubClient->authenticate(
-			Config::get('laravel.github_authenticate_token'), null, GithubClient::AUTH_URL_TOKEN
+			Config::get('laravel.github_client_id'), Config::get('laravel.github_client_secret'), GithubClient::AUTH_URL_CLIENT_ID
 		);
 
 		$this->guzzle = new GuzzleClient;

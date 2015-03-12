@@ -21,6 +21,7 @@ return [
 	],
 
 
-	'github_authenticate_token' => getenv("github_authenticate_token")
+	'github_client_id' => getenv("github_client_id"),
+	'github_client_secret' => getenv("github_client_secret")
 
 ];

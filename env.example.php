@@ -13,5 +13,6 @@ return array(
 
     'github_hook_secret' => "",
 
-    'github_authenticate_token' => "",
+    'github_client_id' => "",
+    'github_client_secret' => "",
 );
