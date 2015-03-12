@@ -20,31 +20,34 @@
 				@endif
 			</header>
 			<hr>
+			@if( isset($success) AND $success!="" )
+				<div class="alert alert-success">
+					{{ $success }}
+				</div>
+			@endif
+
 			{{ Form::open(['route' => 'articles.store']) }}
 				{{ Element::hidden('id', $article->id) }}
 				<div class="row">
 					<div class="col-xs-12 col-sm-7">
-						{{ Element::input('text', 'title', 'Название', null, null, true) }}
+						{{ Element::input('text', 'title', 'Название', null, $article->title, true) }}
 					</div>
 					<div class="col-xs-12 col-sm-5">
-						{{ Element::input('text', 'slug', 'URL', null, null, true) }}
+						{{ Element::input('text', 'slug', 'URL', null, $article->slug, true) }}
 					</div>
 				</div>
-				{{ Element::input('text', 'meta_description', 'Описание для поисковиков', null, null, true) }}
-				{{ Element::textarea('description', 'Краткое описание', 5, null, null) }}
+				{{ Element::textarea('description', 'Краткое описание', 5, null, $article->description) }}
 				<div class="row">
 					<div class="col-xs-12 col-sm-6">
-						{{ Element::select('version_id', 'Версия фреймворка', all_framework_versions(), null, true) }}
+						{{ Element::select('version_id', 'Версия фреймворка', all_framework_versions(), $article->version_id, true) }}
 					</div>
 					<div class="col-xs-12 col-sm-6">
-						{{ Element::select('difficulty_level_id', 'Уровень сложности', $difficultyLevels, null, true) }}
+						{{ Element::select('difficulty_level_id', 'Уровень сложности', $difficultyLevels, $article->difficulty_level_id, true) }}
 					</div>
 				</div>
 				<a id="fullScreen" href="#" class="btn fa fa-expand"><small data-text="[ESC]">[Ctrl+Enter]</small></a>
-				{{ Element::ace('text', 'Текст статьи') }}
-				<input type="checkbox" name="is_draft" checked>
-
-				{{ Element::checkbox("is_draft", "Черновик") }}
+				{{ Element::ace('text', 'Текст статьи', $article->text) }}
+				{{ Element::checkbox("is_draft", "Черновик", $article->is_draft) }}
 				{{ Element::button('Сохранить') }}
 			{{ Form::close() }}
 		</article>

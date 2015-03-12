@@ -5,8 +5,9 @@ use Laracasts\Validation\FormValidator;
 class UpdateArticleForm extends FormValidator {
 
 	protected $rules = [
-		'title' => 'required',
-		'slug' => 'required|regex:/^[A-Za-z0-9\-]+$/',
+		'title' => 'required|unique:articles',
+		'slug' => 'required|unique:articles|slug',
+		'difficulty_level_id' => "required",
 		'text' => 'required',
 	];
 

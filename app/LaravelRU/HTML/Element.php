@@ -87,8 +87,8 @@ class Element {
 		$checkedExpression = $this->checkForChecked($field, $value);
 
 		$element = '<div class="form-group' . $this->errorClass($field) . '">';
-
-		$element .= '<input type="checkbox" name="' . $field . '" class="form-control" id="' . $field . '"' . $checkedExpression . $this->requiredWord($required) . $this->disabledWord($disabled) . '>';
+		$element .= '<input type="hidden" name="' . $field . '" value="0" />';
+		$element .= '<input type="checkbox" name="' . $field . '" class="form-control" value="1" id="' . $field . '"' . $checkedExpression . $this->requiredWord($required) . $this->disabledWord($disabled) . '/>';
 		$element .= '<label for="' . $field . '">' . $label . '</label>';
 		$element .= $this->errorHelpBlock($field);
 		$element .= '</div>';

@@ -86,17 +86,24 @@ class ArticlesController extends BaseController {
 
 	public function store()
 	{
-		$data = Input::all();
+		$id = Input::get("id");
+		$input = Input::all();
+		if( $id )
+		{
+			// Редактируется существующая статья
+			$this->access->checkEditArticle($id);
+			$article = $this->articleRepo->find($id);
+			$this->updateArticleForm->validate($input);
+		}
+		else
+		{
+			// Создается новая статья
+			$article = $this->articleRepo->create();
+			$article->author_id = \Auth::id();
+			$this->createArticleForm->validate($input);
+		}
 
-		$this->createArticleForm->validate($data);
-
-		// TODO remove everything not needed in the text field
-
-		$article = Article::find($data['id'])->first();
-
-		$this->access->checkEditArticle($article);
-
-		$article->fill($data);
+		$article->fill($input);
 
 		if ($article->is_draft == 0 && is_null($article->published_at))
 		{
@@ -105,7 +112,7 @@ class ArticlesController extends BaseController {
 
 		$article->save();
 
-		return Redirect::route('user.profile')->with('success', 'Статья сохранена.');
+		return Redirect::route('articles.edit', [$article->id])->with('success', 'Статья сохранена.');
 	}
 
 }
