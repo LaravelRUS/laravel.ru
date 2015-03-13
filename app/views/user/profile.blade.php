@@ -52,12 +52,15 @@
 		<ul class="tab-contents">
 			<li class="visible" data-tab="articles">
 				<section>
+
+					<p><a href="{{route("articles.create")}}">Добавить статью</a></p>
+
 					@if($user->articles->count())
-						<ul class="unstyled">
 							@foreach($user->articles as $article)
-								<li>{{ $article->title }}</li>
+								<article style="padding:10px 0">
+									@include("articles/box", compact("article"))
+								</article>
 							@endforeach
-						</ul>
 					@else
 						<p>Пользователь пока не написал ни одной статьи</p>
 					@endif

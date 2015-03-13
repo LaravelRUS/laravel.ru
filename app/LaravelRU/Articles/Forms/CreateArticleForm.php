@@ -8,7 +8,7 @@ class CreateArticleForm extends FormValidator {
 		'title' => 'required|unique:articles',
 		'slug' => 'required|unique:articles|slug',
 		//'meta_description' => 'required|max:150',
-		'difficulty_level_id' => "required",
+		'difficulty_level_id' => "in:1,2,3",
 		'text' => 'required',
 	];
 

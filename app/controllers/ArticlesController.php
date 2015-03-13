@@ -79,9 +79,10 @@ class ArticlesController extends BaseController {
 
 		$this->access->checkEditArticle($article);
 
+		$difficultyLevels = DifficultyLevel::lists('title', 'id');
 		$isCreate = false;
 
-		return View::make('articles.edit', compact('article', 'isCreate'));
+		return View::make('articles.edit', compact('article', 'difficultyLevels', 'isCreate'));
 	}
 
 	public function store()
@@ -91,16 +92,22 @@ class ArticlesController extends BaseController {
 		if( $id )
 		{
 			// Редактируется существующая статья
-			$this->access->checkEditArticle($id);
-			$article = $this->articleRepo->find($id);
+			$article = $this->articleRepo->findOrFail($id);
+
+			$this->access->checkEditArticle($article);
+
 			$this->updateArticleForm->validate($input);
 		}
 		else
 		{
 			// Создается новая статья
+			$this->access->checkCreateArticle();
+
+			$this->createArticleForm->validate($input);
+
 			$article = $this->articleRepo->create();
 			$article->author_id = \Auth::id();
-			$this->createArticleForm->validate($input);
+
 		}
 
 		$article->fill($input);

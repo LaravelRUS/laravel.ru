@@ -47,13 +47,3 @@
 </section>
 
 
-@if(isOwner($profile->username))
-
-	<section class="widget dark profile">
-		<ul class="unstyled">
-			<li><a href="{{ route('articles.create') }}">Новая статья</a></li>
-			<li><a href="{{ route('articles.create') }}">Черновики</a></li>
-		</ul>
-	</section>
-
-@endif

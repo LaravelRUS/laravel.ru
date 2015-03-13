@@ -3,13 +3,11 @@
 @section('title', 'Новая статья')
 
 @section('sidebar')
-<div class="hidden-xs hidden-sm col-md-3 sidebar">
-	@include('partials.widgets.profile', ['profile' => Auth::user()])
-</div>
+
 @stop
 
 @section('contents')
-<div class="col-xs-12 col-md-9">
+<div class="col-xs-12 col-md-12">
 	<main>
 		<article class="bg-white p-35 border-rounded">
 			<header>
@@ -20,9 +18,9 @@
 				@endif
 			</header>
 			<hr>
-			@if( isset($success) AND $success!="" )
+			@if( Session::has("success") )
 				<div class="alert alert-success">
-					{{ $success }}
+					{{ Session::get("success") }}
 				</div>
 			@endif
 
