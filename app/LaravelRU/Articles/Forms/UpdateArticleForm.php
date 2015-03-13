@@ -6,7 +6,8 @@ class UpdateArticleForm extends FormValidator {
 
 	protected $rules = [
 		'title' => 'required',
-		'slug' => 'required|regex:/^[A-Za-z0-9\-]+$/',
+		'slug' => 'required|slug',
+		'difficulty_level_id' => "in:1,2,3",
 		'text' => 'required',
 	];
 

@@ -186,6 +186,10 @@ Route::group(['before' => 'auth'], function ()
 		'as' => 'articles.create',
 		'uses' => 'ArticlesController@create'
 	]);
+	Route::get('articles/edit/{id}', [
+		'as' => 'articles.edit',
+		'uses' => 'ArticlesController@edit'
+	]);
 	Route::post('articles/store', [
 		'as' => 'articles.store',
 		'uses' => 'ArticlesController@store'

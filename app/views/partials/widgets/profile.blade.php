@@ -33,15 +33,17 @@
 		@if($profile->isLibrarian())
 			<span class="badge badge-librarian" title="Библиотекарь"><i class="fa fa-institution"></i></span>
 		@endif
+
+		<div style="margin-top: 20px;">
+		@if( ! $profile->isCurrentlyActive())
+			<p class="m-b-5"><strong>Последний раз был на сайте</strong></p>
+			<p class="small" title="Активность">{{ $profile->present()->last_activity_at }}</p>
+		@else
+			<p class="small" title="Статус"><span class="user-online user-online_inline"></span> Сейчас на сайте</p>
+		@endif
+		</div>
 	</aside>
-		{{--@if(isOwner($profile->username))--}}
-		{{--<aside class="widget light">--}}
-		{{--<header>--}}
-		{{--<h2>Меню</h2>--}}
-		{{--</header>--}}
-		{{--<ul class="unstyled">--}}
-		{{--<li><a href="{{ route('articles.create') }}">Новая статья</a></li>--}}
-		{{--</ul>--}}
-		{{--</aside>--}}
-		{{--@endif--}}
+
 </section>
+
+

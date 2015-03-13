@@ -13,7 +13,7 @@
 <div class="article_credentials">
 	<span class="date">{{ $article->present()->publishedAt }}</span> <a href="{{ route('user.profile', $article->author->username) }}">{{ $article->author->username }}</a>
 	@if(allowEditArticle($article))
-		<span class="controls"><a class="btn btn-default btn-xs" href="{{ route('articles.edit', $article->slug) }}">Редактировать</a></span>
+		<span class="controls"><a class="btn btn-default btn-xs" href="{{ route('articles.edit', $article->id) }}">Редактировать</a></span>
 	@endif
 </div>
 

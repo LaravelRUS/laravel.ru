@@ -12,12 +12,7 @@
 @section('contents')
 <div class="col-xs-12 col-sm-8 col-md-9">
 	<section class="bg-white p-35 p-b-25 m-b-30 border-rounded">
-		@if( ! $user->isCurrentlyActive())
-			<p class="m-b-5"><strong>Последний раз был на сайте</strong></p>
-			<p class="small" title="Активность">{{ $user->present()->last_activity_at }}</p>
-		@else
-			<p class="small" title="Статус"><span class="user-online user-online_inline"></span> Сейчас на сайте</p>
-		@endif
+
 		@if($user->info->birthday && $user->info->birthday->year > 0)
 			<p class="m-b-5"><strong>Родился</strong></p>
 			<p class="small" title="Родился">{{ $user->present()->birthday }}</p>
@@ -57,12 +52,15 @@
 		<ul class="tab-contents">
 			<li class="visible" data-tab="articles">
 				<section>
+
+					<p><a href="{{route("articles.create")}}">Добавить статью</a></p>
+
 					@if($user->articles->count())
-						<ul class="unstyled">
 							@foreach($user->articles as $article)
-								<li>{{ $article->title }}</li>
+								<article style="padding:10px 0">
+									@include("articles/box", compact("article"))
+								</article>
 							@endforeach
-						</ul>
 					@else
 						<p>Пользователь пока не написал ни одной статьи</p>
 					@endif
