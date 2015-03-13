@@ -26,7 +26,7 @@
 	@endif
 
 	@if( ! $article->is_comments_disabled)
-		@include('comment.form')
+		{{--@include('comment.form')--}}
 	@endif
 </div>
 @stop
