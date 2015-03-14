@@ -77,7 +77,7 @@ class Access extends BaseAccess {
 	{
 		$this->disableGuests();
 
-		$this->onlyAdmins();
+		// $this->onlyAdmins();
 	}
 
 	public function checkEditArticle(Article $article)
@@ -86,7 +86,9 @@ class Access extends BaseAccess {
 
 		//$this->onlyAdmins();
 
-		return $article->author_id == Auth::user()->id || Auth::user()->isAdmin();
+		if($article->author_id == Auth::user()->id || Auth::user()->isAdmin()) return;
+
+		throw new AccessDeniedException;
 	}
 
 }
