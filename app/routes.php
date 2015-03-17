@@ -102,7 +102,7 @@ Route::group(['prefix' => 'docs'], function ()
 	Route::get('{version?}/{string?}', [
 		'as' => 'documentation',
 		'uses' => 'DocsController@docs'
-	]);
+	])->where('version', '\d\.\d');
 });
 
 // ===== Профайл пользователя
