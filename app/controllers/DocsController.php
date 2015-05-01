@@ -110,6 +110,7 @@ class DocsController extends BaseController {
 		}
 
 		$page = Documentation::version($versionNumber)->page($page)->firstOrFail();
+		$page = str_replace("{{version}}", $versionNumber, $page);
 
 		$menu = Documentation::version($versionNumber)->page('documentation')->first();
 
