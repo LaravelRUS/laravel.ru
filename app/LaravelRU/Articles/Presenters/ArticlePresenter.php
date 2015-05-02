@@ -11,7 +11,7 @@ class ArticlePresenter extends Presenter {
 		if($this->published_at){
 			return LocalizedCarbon::instance($this->published_at)->formatLocalized('%d %f');
 		}else{
-			return "не опубликовано";
+			return "РЅРµ РѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ";
 		}
 
 	}
