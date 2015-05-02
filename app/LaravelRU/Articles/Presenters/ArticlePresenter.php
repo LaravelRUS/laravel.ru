@@ -8,7 +8,12 @@ class ArticlePresenter extends Presenter {
 
 	public function publishedAt()
 	{
-		return LocalizedCarbon::instance($this->published_at)->formatLocalized('%d %f');
+		if($this->published_at){
+			return LocalizedCarbon::instance($this->published_at)->formatLocalized('%d %f');
+		}else{
+			return "не опубликовано";
+		}
+
 	}
 
 	public function textMD()
