@@ -8,6 +8,7 @@ class CoreServiceProvider extends ServiceProvider {
 	{
 		// Регистрация сервис-провайдеров приложения
 		$this->app->register('LaravelRU\Docs\DocsServiceProvider');
+		$this->app->register('LaravelRU\DocsSleepingowlAdmin\DocsSleepingowlAdminServiceProvider');
 		$this->app->register('LaravelRU\User\UserServiceProvider');
 		$this->app->register('LaravelRU\Articles\ArticleServiceProvider');
 		$this->app->register('LaravelRU\Common\CommonServiceProvider');

@@ -92,6 +92,15 @@ Route::get('logout', [
 ]);
 
 // ===== Документация
+
+Route::group(['prefix' => 'docs/sleepingowl_admin'], function ()
+{
+	Route::get('{name?}', [
+		'as' => 'documentation.sleepingowl_admin',
+		'uses' => 'DocsSleepingowlAdminController@docs'
+	]);
+});
+
 Route::group(['prefix' => 'docs'], function ()
 {
 	Route::get('status', [
@@ -104,6 +113,8 @@ Route::group(['prefix' => 'docs'], function ()
 		'uses' => 'DocsController@docs'
 	])->where('version', '\d\.\d');
 });
+
+
 
 // ===== Профайл пользователя
 Route::group(['before' => 'auth'], function ()

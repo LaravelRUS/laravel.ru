@@ -18,5 +18,5 @@ function activeClass($routes = null)
 
 function navMargin()
 {
-	return in_array(Route::currentRouteName(), ['home', 'documentation', 'documentation.status']) ? 'class="no-margin"' : null;
+	return in_array(Route::currentRouteName(), ['home', 'documentation', 'documentation.status', 'documentation.sleepingowl_admin']) ? 'class="no-margin"' : null;
 }
