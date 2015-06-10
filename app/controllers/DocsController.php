@@ -125,8 +125,8 @@ class DocsController extends BaseController {
 	 */
 	public function status()
 	{
-		$devVersion = Version::documented()->with("documentation")->with("documentation.frameworkVersion")->master()->first();
-		$allVersions = Version::documented()->with("documentation")->with("documentation.frameworkVersion")->notMaster()->orderBy('number', 'desc')->get();
+		$devVersion = Version::with("documentation")->with("documentation.frameworkVersion")->master()->first();
+		$allVersions = Version::with("documentation")->with("documentation.frameworkVersion")->notMaster()->orderBy('number', 'desc')->get();
 		$allVersions->prepend($devVersion);
 
 		return View::make('docs.status', ['versions'=>$allVersions]);
