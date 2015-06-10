@@ -44,7 +44,7 @@ class Version extends Model {
 
 	public function isDocumented()
 	{
-		return (bool) $this->is_documented AND $this->number!="5.1";
+		return (bool) $this->is_documented;
 	}
 
 	public function getNumberAliasAttribute()
