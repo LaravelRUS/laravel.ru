@@ -10,7 +10,7 @@
 				<h1>Пользователи</h1>
 
 				<form action="" method="get" class="search-users">
-					<input required name="query" type="text" class="form-control" placeholder="Поиск пользователя по имени" value="{{ $query }}">
+					<input required name="query" type="text" class="form-control" placeholder="Поиск пользователя по имени" value="{{{ $query }}}">
 			        <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
 				</form>
 
