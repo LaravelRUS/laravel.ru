@@ -10,10 +10,12 @@
 			<h2 class="c-white small m-b-25">Мы верим, что процесс разработки только тогда наиболее продуктивен, когда работа с фреймворком приносит радость и удовольствие. Счастливые разработчики пишут лучший код.</h2>
 			<ul class="inline">
 				<li>
-					<a class="button" href="{{ route('documentation', ["5.0"]) }}">Документация фреймворка</a>
+					<a class="button" href="/docs">Документация фреймворка</a>
+					{{--<a class="button" href="{{ route('documentation', ["5.0"]) }}">Документация фреймворка</a>--}}
 				</li>
 				<li>
-					<a class="button" href="{{ route('documentation.sleepingowl_admin') }}">Конструктор админки от SleepingOwl</a>
+					<a class="button" href="http://sleepingowl.laravel.su">Конструктор админки от SleepingOwl</a>
+					{{--<a class="button" href="{{ route('documentation.sleepingowl_admin') }}">Конструктор админки от SleepingOwl</a>--}}
 				</li>
 				{{--<li>--}}
 					{{--<a class="button" href="{{ route('cheat-sheet') }}">Cheat Sheet</a>--}}
