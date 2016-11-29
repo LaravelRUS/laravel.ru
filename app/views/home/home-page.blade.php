@@ -13,7 +13,7 @@
 					<a class="button" href="{{ route('documentation', ["5.2"]) }}">Документация фреймворка</a>
 				</li>
 				<li>
-					<a class="button" href="http://sleepingowl.laravel.su">Конструктор админки от SleepingOwl</a>
+					<a class="button" href="http://sleepingowladmin.ru">Конструктор админки от SleepingOwl</a>
 					{{--<a class="button" href="{{ route('documentation.sleepingowl_admin') }}">Конструктор админки от SleepingOwl</a>--}}
 				</li>
 				{{--<li>--}}
