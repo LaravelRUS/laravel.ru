@@ -21,8 +21,10 @@ class EmailConfirmationObserver
      */
     public function created(User $user)
     {
-        $confirmation = (new ConfirmEmailNotification());
+        if (!$user->is_confirmed) {
+            $confirmation = new ConfirmEmailNotification($user);
 
-        $user->notify($confirmation);
+            $user->notify($confirmation);
+        }
     }
 }

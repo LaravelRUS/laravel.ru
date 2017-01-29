@@ -29,6 +29,15 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', 'RegistrationController@register')->name('registration.action');
 });
 
+Route::get('/confirm', 'RegistrationController@confirmationIndex')
+    ->name('registration.confirm');
+
+Route::get('/confirm/{id}/{token}', 'RegistrationController@confirmation')
+    ->where('id', '[0-9]+')
+    ->where('token', '[a-zA-Z0-9=]+')
+    ->name('registration.confirmation');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/logout', 'AuthController@logout')->name('logout');
 });

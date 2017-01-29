@@ -5,8 +5,8 @@ export default class RegistrationViewModel {
     errors = [
         {id: 'name_required', message: 'Псевдоним пользователя не может быть пустым', visible: ko.observable(false)},
 
-        {id: 'email', message: 'Email не похож на настоящий', visible: ko.observable(false)},
-        {id: 'email_required', message: 'Email не может быть пустым', visible: ko.observable(false)},
+        {id: 'email', message: 'E-mail не похож на настоящий', visible: ko.observable(false)},
+        {id: 'email_required', message: 'E-mail не может быть пустым', visible: ko.observable(false)},
 
         {id: 'repeat', message: 'Пароли не совпадают', visible: ko.observable(false)},
         {id: 'password_required', message: 'Пароль не может быть пустым', visible: ko.observable(false)},

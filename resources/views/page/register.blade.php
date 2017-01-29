@@ -14,7 +14,7 @@
 
             <div class="form-item grid-6 prefix-3 suffix-3">
                 <input type="text" name="email"
-                       data-bind="value: email" placeholder="Email" />
+                       data-bind="value: email" placeholder="E-mail" />
             </div>
 
             <div class="form-item grid-6 prefix-3 suffix-3">

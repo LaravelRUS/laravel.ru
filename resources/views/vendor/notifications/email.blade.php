@@ -45,14 +45,14 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-С уважением,<br>{{ config('app.name') }}
+С уважением, {{ config('app.name') }}
 @endif
 
 <!-- Subcopy -->
 @if (isset($actionText))
 @component('mail::subcopy')
-If you’re having trouble clicking the "{{ $actionText }}" button, copy and paste the URL below
-into your web browser: [{{ $actionUrl }}]({{ $actionUrl }})
+Если вы не регистрировались на сайте &laquo;{{ config('app.name') }}&raquo; &mdash;
+пожалуйста, проигнорируйте это сообщение.
 @endcomponent
 @endif
 @endcomponent
