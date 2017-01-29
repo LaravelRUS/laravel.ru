@@ -7,9 +7,10 @@
  */
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\CurrentPageState;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 /**
  * Class AuthController
@@ -17,28 +18,27 @@ use Illuminate\Http\Request;
  */
 class AuthController extends Controller
 {
-    public function index(): View
+    use AuthenticatesUsers;
+
+    /**
+     * @var string
+     */
+    protected $redirectTo;
+
+    /**
+     * AuthController constructor.
+     * @param Session $session
+     */
+    public function __construct(Session $session)
     {
-        return view('page.login');
+        $this->redirectTo = $session->get(CurrentPageState::PAGE_NAME, '/');
     }
 
     /**
-     * @param Request $request
-     * @return RedirectResponse
+     * @return View
      */
-    public function login(Request $request): RedirectResponse
+    public function index(): View
     {
-
-
-        if ($request->has('from')) {
-            return redirect($request->get('from'));
-        }
-
-        return redirect()->route('home');
-    }
-
-    public function logout()
-    {
-
+        return view('page.login');
     }
 }

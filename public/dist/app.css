@@ -2794,6 +2794,7 @@ input[type=password] {
       -ms-user-select: none;
           user-select: none; }
   .checkbox input[type=checkbox] {
+    cursor: pointer;
     display: block;
     float: left;
     margin-right: 6px;

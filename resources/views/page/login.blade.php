@@ -8,7 +8,7 @@
             {!! csrf_field() !!}
 
             <div class="form-item grid-6 prefix-3 suffix-3">
-                <input type="text" name="login" placeholder="Логин"/>
+                <input type="text" name="email" placeholder="Email"/>
             </div>
 
             <div class="form-item grid-6 prefix-3 suffix-3">
