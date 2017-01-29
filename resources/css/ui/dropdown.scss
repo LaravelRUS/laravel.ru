@@ -1,6 +1,16 @@
 .dropdown {
   // Title
   & > span {
+    & > img {
+      $avatar-size: 38px;
+
+      width: $avatar-size;
+      height: $avatar-size;
+      display: inline-block;
+      border-radius: 50%;
+      margin: 0 0 -14px 0;
+    }
+
     &:after {
       margin-left: 5px;
       @include fa-icon;
@@ -61,6 +71,9 @@
       display: block;
       float: left;
       width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       &:hover {
         background: #f6f6f6;

@@ -32,10 +32,14 @@
                 <div data-id="user-handler"
                      data-bind="click: user.toggle" class="dropdown @{{ user.active }}">
 
-                    <span>Аккаунт</span>
+                    <span>
+                        <img src="{{ $auth->avatar }}" alt="{{ $auth->name }}" />
+                    </span>
 
                     <nav>
-                        <a href="#">Профиль</a>
+                        <a href="#" title="{{ $auth->name }}">
+                            {{ $auth->name }}
+                        </a>
                         <hr />
                         <a href="#">Публикации</a>
                         <a href="#">Комментарии</a>

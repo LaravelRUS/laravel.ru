@@ -6,7 +6,7 @@
 @if ($level == 'error')
 # Whoops!
 @else
-# Hello!
+# Привет!
 @endif
 @endif
 
@@ -21,7 +21,7 @@
 <?php
     switch ($level) {
         case 'success':
-            $color = 'green';
+            $color = 'main';
             break;
         case 'error':
             $color = 'red';
@@ -45,7 +45,7 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-Regards,<br>{{ config('app.name') }}
+С уважением,<br>{{ config('app.name') }}
 @endif
 
 <!-- Subcopy -->

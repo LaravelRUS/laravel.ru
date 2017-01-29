@@ -2645,6 +2645,13 @@ body {
 /**
  * Kerning and ligatures
  */
+.dropdown > span > img {
+  width: 38px;
+  height: 38px;
+  display: inline-block;
+  border-radius: 50%;
+  margin: 0 0 -14px 0; }
+
 .dropdown > span:after {
   margin-left: 5px;
   display: inline-block;
@@ -2695,7 +2702,10 @@ body {
     margin: 0;
     display: block;
     float: left;
-    width: 200px; }
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
     .dropdown nav a:hover {
       background: #f6f6f6;
       box-shadow: inset -1px 0 0 #ddd, inset 1px 0 0 #ddd;

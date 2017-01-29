@@ -31,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         User::observe(User\AvatarUploaderObserver::class);
+        User::observe(User\EmailConfirmationObserver::class);
 
         parent::boot();
     }

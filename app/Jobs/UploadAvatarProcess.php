@@ -26,10 +26,10 @@ use Psr\Log\LoggerInterface;
  */
 class UploadAvatarProcess implements ShouldQueue
 {
-    use Dispatchable;
-    use InteractsWithQueue;
     use Queueable;
+    use Dispatchable;
     use SerializesModels;
+    use InteractsWithQueue;
 
     private const GRAVATAR_URL = 'https://www.gravatar.com/avatar/%s?default=404';
 
