@@ -13,6 +13,7 @@
 <body>
     @section('header')
         @include('partials.header')
+        @stack('header')
     @show
 
     @yield('content')

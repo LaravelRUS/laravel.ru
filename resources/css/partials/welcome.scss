@@ -1,0 +1,22 @@
+.welcome {
+  margin: 90px auto;
+  height: 256px;
+
+  .welcome-description {
+    h2, h3 {
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 32px;
+      color: #525252;
+      font-weight: 300;
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 400;
+      color: $color-description;
+    }
+  }
+}

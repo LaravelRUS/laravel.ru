@@ -2813,4 +2813,18 @@ header {
       header nav .dropdown:hover {
         color: #f4645f; }
 
+.welcome {
+  margin: 90px auto;
+  height: 256px; }
+  .welcome .welcome-description h2, .welcome .welcome-description h3 {
+    text-align: center; }
+  .welcome .welcome-description h2 {
+    font-size: 32px;
+    color: #525252;
+    font-weight: 300; }
+  .welcome .welcome-description h3 {
+    font-size: 15px;
+    font-weight: 400;
+    color: #aaa; }
+
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY3NzIiwic291cmNlUm9vdCI6IiJ9*/
