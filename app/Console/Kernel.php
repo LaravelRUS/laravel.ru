@@ -5,6 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
@@ -22,7 +23,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\IdeHelperRun::class
     ];
 
     /**
