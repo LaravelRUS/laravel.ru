@@ -8,14 +8,8 @@
             {!! csrf_field() !!}
 
             <div class="form-item grid-6 prefix-3 suffix-3">
-                @{{#foreach errors}}
-                    @{{#if visible}}
-                        <div class="label error">@{{ message }}</div>
-                    @{{/if}}
-                @{{/foreach}}
-                @foreach($errors->all() as $error)
-                    <div class="label error">{{ $error }}</div>
-                @endforeach
+                <input type="text" name="name"
+                       data-bind="value: name" placeholder="Ваш псевдоним" />
             </div>
 
             <div class="form-item grid-6 prefix-3 suffix-3">
@@ -49,6 +43,17 @@
                 <div class="grid-3 suffix-3">
                     <input type="submit" value="Создать пользователя" data-bind="click: register" class="button main"/>
                 </div>
+            </div>
+
+            <div class="form-item grid-6 prefix-3 suffix-3">
+                @{{#foreach errors}}
+                    @{{#if visible}}
+                        <div class="label error">@{{ message }}</div>
+                    @{{/if}}
+                @{{/foreach}}
+                @foreach($errors->all() as $error)
+                    <div class="label error">{{ $error }}</div>
+                @endforeach
             </div>
         </form>
 

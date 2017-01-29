@@ -3,16 +3,24 @@ export default class RegistrationViewModel {
      * @type {[*]}
      */
     errors = [
-        {id: 'repeat', message: 'Пароли не совпадают', visible: ko.observable(false)},
-        {id: 'password_required', message: 'Пароль не может быть пустым', visible: ko.observable(false)},
+        {id: 'name_required', message: 'Псевдоним пользователя не может быть пустым', visible: ko.observable(false)},
+
         {id: 'email', message: 'Email не похож на настоящий', visible: ko.observable(false)},
         {id: 'email_required', message: 'Email не может быть пустым', visible: ko.observable(false)},
+
+        {id: 'repeat', message: 'Пароли не совпадают', visible: ko.observable(false)},
+        {id: 'password_required', message: 'Пароль не может быть пустым', visible: ko.observable(false)},
     ];
 
     /**
      * @type {KnockoutObservable<T>}
      */
     passwordVisible = ko.observable(false);
+
+    /**
+     * @type {KnockoutObservable<T>}
+     */
+    name = ko.observable('');
 
     /**
      * @type {KnockoutObservable<T>}
@@ -28,6 +36,10 @@ export default class RegistrationViewModel {
     };
 
     constructor() {
+        this.name.subscribe(e => {
+            this._validate('name_required', (this.name() || '').toString().length > 0);
+        });
+
         this.email.subscribe(e => {
             let email = (this.email() || '').toString();
 
@@ -42,14 +54,14 @@ export default class RegistrationViewModel {
             let password = (this.password.original() || '').toString();
 
             this._validate('password_required', password.length > 0);
-            this.passwordCompare();
+            this._passwordCompare();
         });
 
         this.password.repeat.subscribe(e => {
             let password = (this.password.repeat() || '').toString();
 
             this._validate('password_required', password.length > 0);
-            this.passwordCompare();
+            this._passwordCompare();
         });
     }
 
@@ -72,14 +84,18 @@ export default class RegistrationViewModel {
         }
     }
 
-    passwordCompare() {
+    /**
+     * @private
+     */
+    _passwordCompare() {
         if (this.password.original() && this.password.repeat()) {
             this._validate('repeat', this.password.original() === this.password.repeat());
         }
     }
 
+
     register() {
-        for (let field of [this.password.original, this.password.repeat, this.email]) {
+        for (let field of [this.password.original, this.password.repeat, this.email, this.name]) {
             field.notifySubscribers();
         }
 

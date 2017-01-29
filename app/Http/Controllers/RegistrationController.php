@@ -7,8 +7,9 @@
  */
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegistrationRequest;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
+use App\Http\Requests\RegistrationRequest;
 
 /**
  * Class RegistrationController
@@ -26,9 +27,15 @@ class RegistrationController extends Controller
 
     /**
      * @param RegistrationRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function register(RegistrationRequest $request)
     {
-        dd($request->all());
+        $user = User::create($request->only('name', 'email', 'password'));
+
+        // TODO: Remove this and change to DI
+        \Auth::login($user);
+
+        return redirect()->route('home');
     }
 }
