@@ -1,32 +1,40 @@
-## Сайт русскоязычного сообщества Laravel
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-Текущая стабильная версия сайта [http://laravel.su](http://laravel.su). 
-В будущех релизах возможен переезд на [http://laravel.ru](http://laravel.ru) после стабилизации кодовой базы.
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
-Обсуждение в чате: [![Чат](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/LaravelRUS/laravel.ru)
+## About Laravel
 
-Таск-лист и багтрекер: [Trello](https://trello.com/b/lDqJrw8x/-) (приватный, за доступом стучитесь в чат). 
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
-### Инсталляция
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-1. Установить переменную окружения `APP_ENV` равную `local` (`SetEnv` в `.htaccess` или `fastcgi_param` в конфиге nginx).
-2. Скопировать `env.example.php` в `.env.local.php` и указать в нем данные доступа для mysql, ключ к mailgun для отправки писем и, опционально, ключ к recaptcha.
-3. Сделать `composer update`
-4. Создать базу данных и выполнить команду `php artisan migrate` 
-5. Создать пользователя-админа `php artisan su:create_user admin admin_password admin@mail.ru --admin`
-6. Установить необходимые npm пакеты: `npm install`
-7. Установить необходимые bower пакеты: `bower install`
-8. Для сборки css и js используется gulp, все доступные команды в `.gulpfile.js`.
+Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
 
-### Описание
+## Learning Laravel
 
-Описание вынеcено в [wiki](https://github.com/LaravelRUS/laravel.ru/wiki).
+Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
 
-[Концепция сайта](https://github.com/LaravelRUS/laravel.ru/wiki/%D0%9A%D0%BE%D0%BD%D1%86%D0%B5%D0%BF%D1%86%D0%B8%D1%8F-%D1%81%D0%B0%D0%B9%D1%82%D0%B0).
+If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
-[Структура кода](https://github.com/LaravelRUS/laravel.ru/wiki/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0-%D0%BA%D0%BE%D0%B4%D0%B0).
-   
-### Помощь
-   
-1. Перевод документации. [Инструкция, как это делать правильно](http://sharedstation.net/articles/rus-documentation-contribution-guide).
-2. Работа над [кодом](https://trello.com/b/lDqJrw8x/-). В разработке используется модель [git-flow](https://www.atlassian.com/ja/git/workflows/pageSections/00/contentFullWidth/0/tabs/02/pageSections/010/contentFullWidth/0/content_files/file0/document/git-workflow-release-cycle-4maintenance.png).
+## Contributing
+
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).

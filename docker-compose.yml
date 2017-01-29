@@ -1,0 +1,77 @@
+version: '2'
+
+services:
+    workspace:
+        build:
+            context: ./docker/workspace
+            args:
+                - TZ=UTC
+        volumes:
+            - ".:/var/www/laravel.su"
+        extra_hosts:
+            - "dockerhost:172.17.0.1"
+        tty: true
+
+    php:
+        build:
+            context: ./docker/php
+        command: "/start.sh && php-fpm"
+        volumes:
+            - "./docker/logs/php-fpm:/var/log"
+        volumes_from:
+            - workspace
+        expose:
+            - "9000"
+        extra_hosts:
+            - "dockerhost:172.17.0.1"
+        links:
+            - workspace
+            - mysql
+            - redis
+        environment:
+            - PHP_IDE_CONFIG="serverName=laravel"
+        tty: true
+
+    nginx:
+        build:
+            context: ./docker/nginx
+            args:
+                - PHP_UPSTREAM=php
+        volumes_from:
+            - workspace
+        volumes:
+            - ./docker/logs/nginx/:/var/log/nginx
+            - ./docker/nginx/sites-available/:/etc/nginx/sites-available
+        ports:
+            - "80:80"
+            - "443:443"
+        links:
+            - php
+
+    mysql:
+        build: 
+            context: ./docker/mysql
+            args:
+                - DB_DATABASE=laravel.su
+                - DB_USERNAME=root
+                - DB_PASSWORD=root
+                - MYSQL_ROOT_PASSWORD=root
+        volumes:
+            - mysql:/var/lib/mysql
+        ports:
+            - "3308:3306"
+
+    redis:
+        build: ./docker/redis
+        volumes:
+            - redis:/data
+        ports:
+            - "6379:6379"
+
+volumes:
+    mysql:
+        driver: "local"
+    redis:
+        driver: "local"
+    sessions:    ## nothing is connected to this (- ./data/sessions:/sessions)
+        driver: "local"
