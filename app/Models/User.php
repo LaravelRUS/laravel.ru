@@ -18,7 +18,7 @@ class User extends Authenticatable
     use Notifiable;
 
     public const DEFAULT_AVATAR_PATH = '/static/avatars/';
-    private const DEFAULT_AVATAR_NAME = 'default.png';
+    public const DEFAULT_AVATAR_NAME = 'default.png';
 
     /**
      * The attributes that are mass assignable.
@@ -56,18 +56,10 @@ class User extends Authenticatable
     public function getAvatarAttribute(string $avatar = null)
     {
         if ($avatar === null) {
-            return static::getDefaultAvatar();
+            $avatar = self::DEFAULT_AVATAR_NAME;
         }
 
         return self::DEFAULT_AVATAR_PATH . $avatar;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getDefaultAvatar(): string
-    {
-        return self::DEFAULT_AVATAR_PATH . self::DEFAULT_AVATAR_NAME;
     }
 
     /**

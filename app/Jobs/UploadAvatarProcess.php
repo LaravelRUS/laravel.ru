@@ -9,6 +9,7 @@ namespace App\Jobs;
 
 use App\Models\User;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -17,6 +18,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class UploadAvatarProcess
@@ -62,33 +64,22 @@ class UploadAvatarProcess implements ShouldQueue
     {
         try {
             $client->head($this->gravatarUrl);
-            $gravatar = $this->gravatarUrl;
 
-        } catch (\Throwable $error) {
-            $gravatar = $this->getDefaultAvatar();
+            $avatarName = md5(random_int(0, 9999) . $this->user->email) . '.png';
+
+            $manager->make($this->gravatarUrl)
+                ->resize(64, null, function (Constraint $constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->crop(64, 64)
+                ->save(public_path(User::DEFAULT_AVATAR_PATH . $avatarName));
+
+        } catch (ClientException $exception) {
+            $avatarName = User::DEFAULT_AVATAR_NAME;
         }
-
-        $avatarName = md5(random_int(0, 9999) . $this->user->email) . '.png';
-
-
-        $manager->make($gravatar)
-            ->resize(64, null, function (Constraint $constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })
-            ->crop(64, 64)
-            ->save(public_path(User::DEFAULT_AVATAR_PATH . $avatarName));
-
 
         $this->user->avatar = $avatarName;
         $this->user->save();
-    }
-
-    /**
-     * @return string
-     */
-    private function getDefaultAvatar(): string
-    {
-        return public_path(User::getDefaultAvatar());
     }
 }
