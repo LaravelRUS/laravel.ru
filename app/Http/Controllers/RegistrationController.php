@@ -8,7 +8,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Auth\Guard;
 use App\Http\Requests\RegistrationRequest;
 
 /**
@@ -18,23 +21,24 @@ use App\Http\Requests\RegistrationRequest;
 class RegistrationController extends Controller
 {
     /**
+     * @param Factory $factory
      * @return View
      */
-    public function index(): View
+    public function index(Factory $factory): View
     {
-        return view('page.register');
+        return $factory->make('page.register');
     }
 
     /**
      * @param RegistrationRequest $request
+     * @param Guard|StatefulGuard $guard
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function register(RegistrationRequest $request)
+    public function register(RegistrationRequest $request, Guard $guard)
     {
         $user = User::create($request->only('name', 'email', 'password'));
 
-        // TODO: Remove this and change to DI
-        \Auth::login($user);
+        $guard->login($user, true);
 
         return redirect()->route('home');
     }
