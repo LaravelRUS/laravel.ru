@@ -6,4 +6,48 @@
   select {
     width: 100%;
   }
+
+  .form-item-hide-password,
+  .form-item-show-password {
+    position: relative;
+    display: block;
+    float: right;
+    width: 0;
+    height: 0;
+    color: $color-border;
+
+    &:before {
+      @include fa-icon;
+      display: block;
+      position: absolute;
+      right: 10px;
+      top: -33px;
+      z-index: 3;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    &:hover {
+      transition: color .3s $swift;
+      color: $color-main;
+    }
+
+    &:active:before {
+      transition: transform .2s $swift;
+      transform: scale(.8);
+    }
+  }
+
+
+  .form-item-show-password {
+    &:before {
+      content: $fa-var-eye;
+    }
+  }
+
+  .form-item-hide-password {
+    &:before {
+      content: $fa-var-eye-slash;
+    }
+  }
 }

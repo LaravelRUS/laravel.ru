@@ -7,6 +7,7 @@
  */
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegistrationRequest;
 use Illuminate\Contracts\View\View;
 
 /**
@@ -23,8 +24,11 @@ class RegistrationController extends Controller
         return view('page.register');
     }
 
-    public function register()
+    /**
+     * @param RegistrationRequest $request
+     */
+    public function register(RegistrationRequest $request)
     {
-
+        dd($request->all());
     }
 }

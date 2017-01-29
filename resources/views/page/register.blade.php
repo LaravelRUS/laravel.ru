@@ -8,15 +8,37 @@
             {!! csrf_field() !!}
 
             <div class="form-item grid-6 prefix-3 suffix-3">
-                <input type="text" name="login" placeholder="Логин"/>
+                @{{#foreach errors}}
+                    @{{#if visible}}
+                        <div class="label error">@{{ message }}</div>
+                    @{{/if}}
+                @{{/foreach}}
+                @foreach($errors->all() as $error)
+                    <div class="label error">{{ $error }}</div>
+                @endforeach
             </div>
 
             <div class="form-item grid-6 prefix-3 suffix-3">
-                <input type="password" name="password" placeholder="Пароль"/>
+                <input type="text" name="email"
+                       data-bind="value: email" placeholder="Email" />
             </div>
 
             <div class="form-item grid-6 prefix-3 suffix-3">
-                <input type="password" name="password_repeat" placeholder="Повторите пароль"/>
+                <input type="@{{ passwordVisible() ? 'text' : 'password' }}" name="password"
+                       data-bind="value: password.original" placeholder="Пароль" />
+
+                @{{#if passwordVisible}}
+                    <span class="form-item-hide-password" title="Скрыть пароль"
+                          data-bind="click: togglePasswordVisibility"></span>
+                <!-- else -->
+                    <span class="form-item-show-password" title="Показать пароль"
+                          data-bind="click: togglePasswordVisibility"></span>
+                @{{/if}}
+            </div>
+
+            <div class="form-item grid-6 prefix-3 suffix-3">
+                <input type="@{{ passwordVisible() ? 'text' : 'password' }}" name="password_confirmation"
+                       data-bind="value: password.repeat" placeholder="Повторите пароль" />
             </div>
 
             <div class="form-item">
@@ -25,7 +47,7 @@
                 </div>
 
                 <div class="grid-3 suffix-3">
-                    <input type="submit" value="Создать пользователя" class="button main"/>
+                    <input type="submit" value="Создать пользователя" data-bind="click: register" class="button main"/>
                 </div>
             </div>
         </form>

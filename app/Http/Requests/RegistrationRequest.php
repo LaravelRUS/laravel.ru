@@ -5,16 +5,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class LoginRequest
+ * Class RegistrationRequest
  * @package App\Http\Requests
  */
-class LoginRequest extends FormRequest
+class RegistrationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -34,8 +33,9 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'    => 'required',
-            'password' => 'required',
+            'email'                 => 'required|email|unique:users',
+            'password'              => 'required|min:3|confirmed',
+            'password_confirmation' => 'required',
         ];
     }
 }
