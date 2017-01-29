@@ -1,0 +1,48 @@
+@mixin selection
+{
+  &::selection      { @content; }
+  &::-moz-selection { @content; }
+}
+
+@mixin placeholder
+{
+  &::-webkit-input-placeholder  { @content; }
+  &:-moz-placeholder            { @content; }
+  &::-moz-placeholder           { @content; }
+  &:-ms-input-placeholder       { @content; }
+  .placeholder                  { @content; }
+}
+
+
+/**
+ * CLEARFIX
+ */
+
+@mixin clear($legacy: false) {
+  @if $legacy {
+    &:after {
+      content: "\0020";
+      display: block;
+      height: 0;
+      clear: both;
+      overflow: hidden;
+      visibility: hidden;
+    }
+    *zoom: 1;
+  } @else {
+    &:after {
+      display: table;
+      width: 100%;
+      content: '';
+      clear: both;
+    }
+  }
+}
+
+@mixin clearfix($legacy: false) {
+  @include clear($legacy);
+}
+
+.clear {
+  @include clear;
+}

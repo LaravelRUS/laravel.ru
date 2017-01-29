@@ -5,9 +5,15 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.6.4",
+        "php": ">=7.1",
         "laravel/framework": "5.4.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "barryvdh/laravel-debugbar": "~2.0",
+        "barryvdh/laravel-ide-helper": "~2.0",
+        "doctrine/dbal": "~2.2",
+        "lord/laroute": "~2.4",
+        "intervention/image": "~2.3",
+        "predis/predis": "~1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -35,16 +41,29 @@
             "php artisan key:generate"
         ],
         "post-install-cmd": [
+            "@clear",
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
+            "@build"
         ],
         "post-update-cmd": [
+            "@clear",
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "@build"
+        ],
+        "clear": [
+            "php artisan cache:clear",
+            "php artisan route:clear"
+        ],
+        "build": [
+            "php artisan laroute:generate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:models --nowrite",
             "php artisan optimize"
         ]
     },
     "config": {
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "cache-dir": "./storage/composer"
     }
 }

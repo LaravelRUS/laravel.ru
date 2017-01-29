@@ -52,7 +52,7 @@ services:
         build: 
             context: ./docker/mysql
             args:
-                - DB_DATABASE=laravel.su
+                - DB_DATABASE=laravel
                 - DB_USERNAME=root
                 - DB_PASSWORD=root
                 - MYSQL_ROOT_PASSWORD=root
