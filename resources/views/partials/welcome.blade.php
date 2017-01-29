@@ -1,6 +1,6 @@
 <section class="welcome container-12">
     <aside class="welcome-developer grid-4">
-        <img src="/img/welcome/developer.png" alt="Developer image" />
+        <img src="/img/welcome/developer.png" alt="Developer" />
     </aside>
 
     <article class="welcome-description grid-8">
