@@ -171,11 +171,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Laravel\Tinker\TinkerServiceProvider::class,
         Lord\Laroute\LarouteServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-
         /*
          * Application Service Providers...
          */
@@ -184,6 +180,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewsServiceProvider::class,
+    ],
+
+    'local_providers' => [
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*

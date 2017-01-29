@@ -5,11 +5,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace App\Providers;
 
 use App\Views\Composers\AuthComposer;
-use Barryvdh\Debugbar\ServiceProvider;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * Class ViewsServiceProvider
@@ -27,6 +28,11 @@ class ViewsServiceProvider extends ServiceProvider
         $this->views = $this->app->make(Factory::class);
 
         $this->compose('*', AuthComposer::class);
+    }
+
+    public function register(): void
+    {
+        //
     }
 
     /**

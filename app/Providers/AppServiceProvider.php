@@ -5,6 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -15,12 +16,15 @@ use Illuminate\Support\ServiceProvider;
  */
 class AppServiceProvider extends ServiceProvider
 {
+    /** @var \Illuminate\Foundation\Application */
+    protected $app;
+
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }
@@ -30,8 +34,13 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        //
+        if ($this->app->isLocal()) {
+            array_map(
+                [$this->app, 'register'],
+                config('app.local_providers', [])
+            );
+        }
     }
 }

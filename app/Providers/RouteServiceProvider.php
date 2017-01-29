@@ -5,10 +5,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace App\Providers;
 
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 /**
@@ -31,7 +31,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
 
@@ -44,7 +44,7 @@ class RouteServiceProvider extends ServiceProvider
      * @param Router $router
      * @return void
      */
-    public function map(Router $router)
+    public function map(Router $router): void
     {
         $this->mapApiRoutes($router);
 
@@ -59,12 +59,12 @@ class RouteServiceProvider extends ServiceProvider
      * @param Router $router
      * @return void
      */
-    protected function mapWebRoutes(Router $router)
+    protected function mapWebRoutes(Router $router): void
     {
-        $router
-            ->middleware('web')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/web.php'));
+        $router->group([
+            'middleware' => 'web',
+            'namespace'  => $this->namespace
+        ], base_path('routes/web.php'));
     }
 
     /**
@@ -75,12 +75,11 @@ class RouteServiceProvider extends ServiceProvider
      * @param Router $router
      * @return void
      */
-    protected function mapApiRoutes(Router $router)
+    protected function mapApiRoutes(Router $router): void
     {
-        $router
-            ->middleware('api')
-            ->prefix('api')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/api.php'));
+        $router->group([
+            'middleware' => 'api',
+            'namespace'  => $this->namespace
+        ], base_path('routes/api.php'));
     }
 }

@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "laravelrus/laravel.su",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": ["laravelrus", "laravel.su"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -56,8 +56,7 @@
         ],
         "build": [
             "php artisan laroute:generate",
-            "php artisan ide-helper:generate",
-            "php artisan ide-helper:models --nowrite",
+            "php artisan ide-helper:run",
             "php artisan optimize"
         ]
     },
