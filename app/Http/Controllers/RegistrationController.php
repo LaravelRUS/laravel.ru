@@ -74,7 +74,7 @@ class RegistrationController extends Controller
         }
 
         if ($user->is_confirmed) {
-            throw new \LogicException('User e-mail already confirmed');
+            throw new \LogicException('User\'s e-mail already confirmed');
         }
 
         $user->is_confirmed = true;
