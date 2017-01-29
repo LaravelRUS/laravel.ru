@@ -1,0 +1,22 @@
+input[type=text],
+input[type=password] {
+  line-height: $input-size;
+  height: $input-size;
+  box-shadow: 0 0 0 1px $color-border;
+  box-sizing: border-box;
+  padding: 0 25px;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+
+  @include placeholder {
+    color: $color-description;
+    font-size: 12px;
+  }
+
+  &:focus {
+    transition:
+      box-shadow .3s $swift;
+    box-shadow: 0 0 0 1px $color-main;
+  }
+}

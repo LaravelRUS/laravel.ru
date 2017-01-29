@@ -7,6 +7,7 @@
  */
 namespace App\Providers;
 
+use App\Views\Composers\AuthComposer;
 use Barryvdh\Debugbar\ServiceProvider;
 use Illuminate\Contracts\View\Factory;
 
@@ -21,10 +22,11 @@ class ViewsServiceProvider extends ServiceProvider
      */
     private $views;
 
-
     public function boot(): void
     {
         $this->views = $this->app->make(Factory::class);
+
+        $this->compose('*', AuthComposer::class);
     }
 
     /**

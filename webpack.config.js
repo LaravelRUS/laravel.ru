@@ -25,9 +25,14 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract("style", "css!sass")
+                loader: ExtractTextPlugin.extract("style", "css!postcss!sass")
             }
         ]
+    },
+    postcss: () => {
+        return [
+            require('autoprefixer')
+        ];
     },
     plugins: [
         new ExtractTextPlugin('app.css')

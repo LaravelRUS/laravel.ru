@@ -28,21 +28,26 @@
             </div>
 
 
-            <div data-id="user-handler"
-                 data-bind="click: user.toggle" class="dropdown @{{ user.active }}">
+            @if($auth !== null)
+                <div data-id="user-handler"
+                     data-bind="click: user.toggle" class="dropdown @{{ user.active }}">
 
-                <span>Аккаунт</span>
+                    <span>Аккаунт</span>
 
-                <nav>
-                    <a href="#">Профиль</a>
-                    <hr />
-                    <a href="#">Публикации</a>
-                    <a href="#">Комментарии</a>
-                    <hr />
-                    <a href="#">Настройки</a>
-                    <a href="#">Выход</a>
-                </nav>
-            </div>
+                    <nav>
+                        <a href="#">Профиль</a>
+                        <hr />
+                        <a href="#">Публикации</a>
+                        <a href="#">Комментарии</a>
+                        <hr />
+                        <a href="#">Настройки</a>
+                        <a href="#">Выход</a>
+                    </nav>
+                </div>
+            @else
+                <a href="{{ route('login', ['from' => Request::path()]) }}"
+                   title="Аутентификация" class="auth-button"></a>
+            @endif
         </nav>
     </section>
 </header>

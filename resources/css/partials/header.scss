@@ -32,6 +32,7 @@ header {
       color: #525252;
       margin: 0;
       padding: 0;
+      text-align: left;
     }
 
     h1 {
@@ -57,7 +58,7 @@ header {
     .dropdown {
       display: inline-block;
       user-select: none;
-      color: #525252;
+      color: $color-text;
       text-decoration: none;
       font-size: 15px;
       cursor: pointer;
@@ -67,6 +68,41 @@ header {
       &:hover {
         color: #f4645f;
       }
+    }
+  }
+
+
+  .auth-button {
+    display: inline-block;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin: (($height - 32px) / 2) 0;
+    margin-left: 25px;
+    box-shadow:
+      0 0 0 1px $color-border;
+    line-height: 32px;
+    font-size: 16px;
+    color: $color-text;
+    text-align: center;
+
+    &:after {
+      @include fa-icon;
+      content: $fa-var-sign-in;
+    }
+
+    &:hover {
+      color: $color-main;
+      box-shadow:
+        0 0 0 1px $color-main;
+
+      transition:
+        color .3s $swift,
+        box-shadow .3s $swift;
+    }
+
+    &:active {
+      background: #fcfcfc;
     }
   }
 }

@@ -17,4 +17,22 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
+
+
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', 'AuthController@index')->name('login');
+    Route::post('/login', 'AuthController@login')->name('login.action');
+
+    Route::get('/register', 'RegistrationController@index')->name('registration');
+    Route::post('/register', 'RegistrationController@register')->name('registration.action');
+});
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/logout', 'AuthController@logout')->name('logout');
+});
+
+

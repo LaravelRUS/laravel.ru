@@ -1,0 +1,9 @@
+.form-item {
+  margin: 10px 0;
+
+  input:not([type=checkbox]):not([type=radio]),
+  textarea,
+  select {
+    width: 100%;
+  }
+}

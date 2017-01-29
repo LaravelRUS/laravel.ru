@@ -9,8 +9,9 @@ $fa-css-prefix: fa;
 @import "vendor/font-awesome";
 
 $width:             960px;
-$height:            32px; // Ui size
-
+$input-size:        48px;
+$button-size:       32px;
+$checkbox-size:     18px;
 $swift:             cubic-bezier(.55, 0, .1, 1);
 
 $color-main:        #f4645f;
@@ -21,9 +22,14 @@ $color-ok:          #28bc00;
 $color-border:      #dee0df;
 $color-description: #aaa;
 $color-dark:        #27272b;
+$color-text:        #525252;
 
 @import "ui/fonts";
 @import "ui/dropdown";
+@import "ui/input";
+@import "ui/forms";
+@import "ui/buttons";
+@import "ui/checkbox";
 
 
 /**
@@ -35,7 +41,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   background: #fff;
-  color: #222;
+  color: $color-text;
   min-height: 100%;
   opacity: 0;
   transition: opacity .4s $swift;
@@ -62,8 +68,11 @@ body {
     font-family: $font-family;
   }
 
-  h3 {
+  h1, h2 {
     text-align: center;
+    font-size: 32px;
+    line-height: 32px;
+    font-weight: 300;
   }
 
   .hidden {
@@ -90,4 +99,9 @@ body {
 
 @import "partials/header";
 @import "partials/welcome";
+
+/**
+ * Pages
+ */
+@import "pages/login";
 

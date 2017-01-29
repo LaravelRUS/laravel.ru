@@ -1,0 +1,20 @@
+.button {
+  display: inline-block;
+  text-decoration: none;
+  line-height: $button-size;
+  height: $button-size;
+  box-shadow: 0 0 0 1px $color-border;
+  box-sizing: border-box;
+  padding: 0 25px;
+  outline: none;
+  border: none;
+  color: $color-text;
+  border-radius: 2px;
+  background: #fff;
+
+  &:hover {
+    transition:
+      box-shadow .3s $swift;
+    box-shadow: 0 0 0 1px $color-main;
+  }
+}

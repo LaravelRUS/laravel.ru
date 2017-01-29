@@ -1,0 +1,22 @@
+label {
+  position: relative;
+
+}
+
+input[type=checkbox] {
+  display: inline-block;
+  width: $checkbox-size;
+  height: $checkbox-size;
+  appearance: none;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px $color-border;
+
+  &:hover {
+    box-shadow: 0 0 0 1px $color-main;
+  }
+
+  &:checked {
+
+  }
+}
