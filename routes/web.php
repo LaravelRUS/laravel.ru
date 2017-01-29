@@ -29,8 +29,6 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', 'RegistrationController@register')->name('registration.action');
 });
 
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/logout', 'AuthController@logout')->name('logout');
 });

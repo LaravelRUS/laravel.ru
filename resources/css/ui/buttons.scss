@@ -13,8 +13,18 @@
   background: #fff;
 
   &:hover {
-    transition:
-      box-shadow .3s $swift;
+    transition: box-shadow .3s $swift;
     box-shadow: 0 0 0 1px $color-main;
+  }
+
+  &.main {
+    background: $color-main;
+    box-shadow: 0 0 0 1px $color-main;
+    color: #fff;
+
+    &:hover {
+      transition: background .3s $swift;
+      background: desaturate(darken($color-main, 5%), 15%);
+    }
   }
 }

@@ -7,15 +7,20 @@
  */
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
+
 /**
  * Class RegistrationController
  * @package App\Http\Controllers
  */
 class RegistrationController extends Controller
 {
-    public function index()
+    /**
+     * @return View
+     */
+    public function index(): View
     {
-
+        return view('page.register');
     }
 
     public function register()
