@@ -5,3 +5,4 @@
 /.idea
 .env
 _ide_helper*
+.phpstorm.meta.php
