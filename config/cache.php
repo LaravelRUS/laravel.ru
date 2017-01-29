@@ -1,4 +1,10 @@
-<?php
+<?php declare(strict_types=1);
+/**
+ * This file is part of laravel.ru package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 return [
 
@@ -39,37 +45,37 @@ return [
         ],
 
         'database' => [
-            'driver' => 'database',
-            'table' => 'cache',
+            'driver'     => 'database',
+            'table'      => 'cache',
             'connection' => null,
         ],
 
         'file' => [
             'driver' => 'file',
-            'path' => storage_path('framework/cache/data'),
+            'path'   => storage_path('framework/cache/data'),
         ],
 
         'memcached' => [
-            'driver' => 'memcached',
+            'driver'        => 'memcached',
             'persistent_id' => env('MEMCACHED_PERSISTENT_ID'),
-            'sasl' => [
+            'sasl'          => [
                 env('MEMCACHED_USERNAME'),
                 env('MEMCACHED_PASSWORD'),
             ],
-            'options' => [
+            'options'       => [
                 // Memcached::OPT_CONNECT_TIMEOUT  => 2000,
             ],
-            'servers' => [
+            'servers'       => [
                 [
-                    'host' => env('MEMCACHED_HOST', '127.0.0.1'),
-                    'port' => env('MEMCACHED_PORT', 11211),
+                    'host'   => env('MEMCACHED_HOST', '127.0.0.1'),
+                    'port'   => env('MEMCACHED_PORT', 11211),
                     'weight' => 100,
                 ],
             ],
         ],
 
         'redis' => [
-            'driver' => 'redis',
+            'driver'     => 'redis',
             'connection' => 'default',
         ],
 
