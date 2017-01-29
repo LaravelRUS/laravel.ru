@@ -1,6 +1,7 @@
 ## Сайт русскоязычного сообщества Laravel
 
-Будущий laravel.ru . Рабочие сборки выкладываются на [http://laravel.su](http://laravel.su)
+Текущая стабильная версия сайта [http://laravel.su](http://laravel.su). 
+В будущех релизах возможен переезд на [http://laravel.ru](http://laravel.ru) после стабилизации кодовой базы.
 
 Обсуждение в чате: [![Чат](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/LaravelRUS/laravel.ru)
 
