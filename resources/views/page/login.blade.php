@@ -7,6 +7,14 @@
         <form action="{{ route('login.action') }}" method="POST">
             {!! csrf_field() !!}
 
+            @if(count($errors))
+            <div class="form-item grid-6 prefix-3 suffix-3">
+                @foreach($errors->all() as $error)
+                    <div class="label error">{{ $error }}</div>
+                @endforeach
+            </div>
+            @endif
+
             <div class="form-item grid-6 prefix-3 suffix-3">
                 <input type="text" name="email" placeholder="Email"/>
             </div>

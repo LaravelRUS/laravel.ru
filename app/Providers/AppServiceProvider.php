@@ -8,6 +8,8 @@
 
 namespace App\Providers;
 
+use GuzzleHttp\Client as Guzzle;
+use GuzzleHttp\ClientInterface as GuzzleInterface;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -16,7 +18,9 @@ use Illuminate\Support\ServiceProvider;
  */
 class AppServiceProvider extends ServiceProvider
 {
-    /** @var \Illuminate\Foundation\Application */
+    /**
+     * @var \Illuminate\Foundation\Application
+     */
     protected $app;
 
     /**
@@ -35,6 +39,29 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function register(): void
+    {
+        $this->loadLocalProviders();
+        $this->registerGuzzleClient();
+    }
+
+    /**
+     * @return void
+     */
+    private function registerGuzzleClient(): void
+    {
+        $this->app->singleton(Guzzle::class, function () {
+            return new Guzzle([
+
+            ]);
+        });
+
+        $this->app->alias(Guzzle::class, GuzzleInterface::class);
+    }
+
+    /**
+     * @return void
+     */
+    private function loadLocalProviders(): void
     {
         if ($this->app->isLocal()) {
             array_map(

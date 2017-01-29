@@ -1,0 +1,21 @@
+.label {
+  color: $color-text;
+  padding: 10px 15px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px $color-border;
+
+  &:before {
+    @include fa-icon;
+    margin-right: 8px;
+  }
+
+  &.error {
+    box-shadow: 0 0 0 1px $color-alert;
+    background: #fff;
+    color: $color-alert;
+
+    &:before {
+      content: $fa-var-exclamation-triangle;
+    }
+  }
+}

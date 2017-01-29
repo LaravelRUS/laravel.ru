@@ -41,7 +41,7 @@
                         <a href="#">Комментарии</a>
                         <hr />
                         <a href="#">Настройки</a>
-                        <a href="#">Выход</a>
+                        <a href="{{ route('logout') }}">Выход</a>
                     </nav>
                 </div>
             @else

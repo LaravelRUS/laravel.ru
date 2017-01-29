@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
 
         DB::table('users')->truncate();
+
 
         User::create([
             'name'     => 'Admin',

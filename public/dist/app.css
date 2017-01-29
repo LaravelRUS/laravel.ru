@@ -2832,6 +2832,26 @@ input[type=password] {
     transition: transform 0.2s cubic-bezier(0.46, 0.01, 0.075, 1.515);
     transition: transform 0.2s cubic-bezier(0.46, 0.01, 0.075, 1.515), -webkit-transform 0.2s cubic-bezier(0.46, 0.01, 0.075, 1.515); }
 
+.label {
+  color: #525252;
+  padding: 10px 15px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px #dee0df; }
+  .label:before {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 8px; }
+  .label.error {
+    box-shadow: 0 0 0 1px #f4645f;
+    background: #fff;
+    color: #f4645f; }
+    .label.error:before {
+      content: "\F071"; }
+
 /**
  * Layout
  */
