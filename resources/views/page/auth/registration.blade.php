@@ -4,7 +4,7 @@
     <main class="registration container-12" data-vm="RegistrationViewModel">
         <h2>Регистрация</h2>
 
-        <form action="{{ route('registration.action') }}" method="POST">
+        <form action="{{ route('registration') }}" method="POST">
             {!! csrf_field() !!}
 
             <div class="form-item grid-6 prefix-3 suffix-3">
