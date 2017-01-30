@@ -62,14 +62,12 @@ RUN docker-php-ext-install \
 #
 RUN pecl install zip
 RUN pecl install ev
-RUN pecl install xdebug
 RUN pecl install -o -f redis
 
 #
 # Export configs
 #
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
-COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 #
 # Enable non standard extensions
@@ -78,7 +76,6 @@ RUN docker-php-ext-enable \
     opcache \
     zip \
     redis \
-    xdebug \
     ev
 
 #
