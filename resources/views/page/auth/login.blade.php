@@ -4,7 +4,7 @@
     <main class="login container-12" data-vm="LoginViewModel">
         <h2>Вход</h2>
 
-        <form action="{{ route('login.action') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             {!! csrf_field() !!}
 
             <div class="form-item grid-6 prefix-3 suffix-3">

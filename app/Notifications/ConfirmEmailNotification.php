@@ -21,14 +21,13 @@ class ConfirmEmailNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * @var User
-     */
+    /** @var User */
     private $user;
 
     /**
      * Create a new notification instance.
-     * @param User $user
+     *
+     * @param  User  $user
      */
     public function __construct(User $user)
     {
@@ -49,12 +48,13 @@ class ConfirmEmailNotification extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed $notifiable
+     * @param  mixed  $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        $action = route('registration.confirmation', [
+        $action = route('confirmation.confirm', [
             'id'    => $this->user->id,
             'token' => app('encrypter')->encrypt($this->user->email),
         ]);

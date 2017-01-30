@@ -6,40 +6,26 @@
  * file that was distributed with this source code.
  */
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Illuminate\Routing\Router;
 
-Route::get('/', 'HomeController@index')->name('home');
+/** @var Router $router */
 
+$router->get('/', 'HomeController@index')->name('home');
 
+$router->group(['namespace' => 'Auth'], function (Router $router) {
+    $router->get('login', 'LoginController@index')->name('login');
+    $router->post('login', 'LoginController@login');
 
-Route::middleware('guest')->group(function () {
-    Route::get('/login', 'AuthController@index')->name('login');
-    Route::post('/login', 'AuthController@login')->name('login.action');
+    // TODO: logout нынче принято делать методом post
+    $router->get('logout', 'LoginController@logout')->name('logout');
 
-    Route::get('/register', 'RegistrationController@index')->name('registration');
-    Route::post('/register', 'RegistrationController@register')->name('registration.action');
+    $router->get('register', 'RegistrationController@index')->name('registration');
+    $router->post('register', 'RegistrationController@register');
+
+    $router->get('confirmed', 'ConfirmationController@index')->name('confirmation.confirmed');
+
+    $router->get('confirm/{id}/{token}', 'ConfirmationController@confirm')
+        ->where('id', '[0-9]+')
+        ->where('token', '[a-zA-Z0-9=]+')
+        ->name('confirmation.confirm');
 });
-
-Route::get('/confirm', 'RegistrationController@confirmationIndex')
-    ->name('registration.confirm');
-
-Route::get('/confirm/{id}/{token}', 'RegistrationController@confirmation')
-    ->where('id', '[0-9]+')
-    ->where('token', '[a-zA-Z0-9=]+')
-    ->name('registration.confirmation');
-
-
-Route::middleware('auth')->group(function () {
-    Route::get('/logout', 'AuthController@logout')->name('logout');
-});
-
-
