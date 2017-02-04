@@ -24,6 +24,14 @@ use Illuminate\Contracts\View\View;
 class RegistrationController extends Controller
 {
     /**
+     * RegistrationController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    /**
      * @param  Factory  $factory
      *
      * @return View
