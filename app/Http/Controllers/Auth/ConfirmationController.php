@@ -10,11 +10,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
 /**
  * Class ConfirmationController
@@ -42,9 +43,8 @@ class ConfirmationController extends Controller
     /**
      * TODO: Change encryption algo to JWT
      *
-     * @param  string     $id
      * @param  string     $token
-     * @param  Encrypter  $crypt
+     * @param  JWTInterface  $crypt
      *
      * @return View
      *
@@ -52,16 +52,15 @@ class ConfirmationController extends Controller
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @throws \Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException
      */
-    public function confirm(string $id, string $token, Encrypter $crypt)
+    public function confirm(string $token, JWTInterface $crypt)
     {
-        $user = User::find($id);
+        $email = Arr::get($crypt->decode($token), 'email');
+
+        /** @var User $user */
+        $user = User::whereEmail($email)->first();
 
         if (!$user) {
             throw new NotFoundHttpException('User with target id not found');
-        }
-
-        if ((int)$user->email !== (int)$crypt->decrypt($token)) {
-            throw new UnprocessableEntityHttpException('Invalid confirmation token');
         }
 
         if ($user->is_confirmed) {
@@ -70,6 +69,8 @@ class ConfirmationController extends Controller
 
         $user->is_confirmed = true;
         $user->save();
+
+        \Auth::login($user, true);
 
         return redirect()
             ->route('confirmation.confirmed')

@@ -9,6 +9,7 @@ namespace App\Models\User;
 
 use App\Models\User;
 use App\Notifications\ConfirmEmailNotification;
+use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
 /**
  * Class EmailConfirmationObserver
@@ -17,12 +18,26 @@ use App\Notifications\ConfirmEmailNotification;
 class EmailConfirmationObserver
 {
     /**
+     * @var JWTInterface
+     */
+    private $jwt;
+
+    /**
+     * EmailConfirmationObserver constructor.
+     * @param JWTInterface $jwt
+     */
+    public function __construct(JWTInterface $jwt)
+    {
+        $this->jwt = $jwt;
+    }
+
+    /**
      * @param User $user
      */
     public function created(User $user)
     {
         if (!$user->is_confirmed) {
-            $confirmation = new ConfirmEmailNotification($user);
+            $confirmation = new ConfirmEmailNotification($user, $this->jwt);
 
             $user->notify($confirmation);
         }

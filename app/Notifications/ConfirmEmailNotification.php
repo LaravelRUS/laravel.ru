@@ -9,9 +9,11 @@
 namespace App\Notifications;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
 /**
  * Class ConfirmEmailNotification
@@ -25,13 +27,20 @@ class ConfirmEmailNotification extends Notification
     private $user;
 
     /**
+     * @var JWTInterface
+     */
+    private $jwt;
+
+    /**
      * Create a new notification instance.
      *
-     * @param  User  $user
+     * @param  User $user
+     * @param JWTInterface $jwt
      */
-    public function __construct(User $user)
+    public function __construct(User $user, JWTInterface $jwt)
     {
         $this->user = $user;
+        $this->jwt = $jwt;
     }
 
     /**
@@ -48,15 +57,16 @@ class ConfirmEmailNotification extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
+        $token = $this->jwt->encode($this->createToken());
+
         $action = route('confirmation.confirm', [
-            'id'    => $this->user->id,
-            'token' => app('encrypter')->encrypt($this->user->email),
+            'token' => $token,
         ]);
 
         return (new MailMessage)
@@ -64,6 +74,16 @@ class ConfirmEmailNotification extends Notification
             ->line('Подтвердите свой Email')
             ->action('Подтвердить', $action)
             ->line('Спасибо, что остаётесь с нами!');
+    }
+
+    /**
+     * @return array
+     */
+    private function createToken(): array
+    {
+        return [
+            'email' => $this->user->email,
+        ];
     }
 
     /**

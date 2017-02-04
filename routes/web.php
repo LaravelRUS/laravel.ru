@@ -24,8 +24,7 @@ $router->group(['namespace' => 'Auth'], function (Router $router) {
 
     $router->get('confirmed', 'ConfirmationController@index')->name('confirmation.confirmed');
 
-    $router->get('confirm/{id}/{token}', 'ConfirmationController@confirm')
-        ->where('id', '[0-9]+')
-        ->where('token', '[a-zA-Z0-9=]+')
+    $router->get('confirm/{token}', 'ConfirmationController@confirm')
+        ->where('token', '[a-zA-Z0-9\._]+')
         ->name('confirmation.confirm');
 });
