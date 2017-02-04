@@ -1,6 +1,6 @@
 # Сайт русскоязычного сообщества Laravel
 
-[![Build Status](https://travis-ci.org/LaravelRUS/laravel.ru.svg?branch=master)](https://travis-ci.org/LaravelRUS/laravel.ru)
+[![Build Status](https://travis-ci.org/LaravelRUS/laravel.ru.svg?branch=feature-laravel-5.4)](https://travis-ci.org/LaravelRUS/laravel.ru)
 [![Чат](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/LaravelRUS/laravel.ru)
 
 **ВНИМАНИЕ! Это нестабильная ветка, актуальная [находится тут](https://github.com/LaravelRUS/laravel.ru/tree/production)**
