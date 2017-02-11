@@ -11,7 +11,7 @@ return [
     /*
      * The destination path for the javascript file.
      */
-    'path'             => 'resources/js',
+    'path'             => 'resources/js/vendor',
 
     /*
      * The destination filename for the javascript file.

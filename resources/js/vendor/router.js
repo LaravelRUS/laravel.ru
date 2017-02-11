@@ -6,7 +6,7 @@
 
             absolute: false,
             rootUrl: 'http://laravel.dev',
-            routes : [{"host":null,"methods":["GET","HEAD"],"uri":"_debugbar\/open","name":"debugbar.openhandler","action":"Barryvdh\Debugbar\Controllers\OpenHandlerController@handle"},{"host":null,"methods":["GET","HEAD"],"uri":"_debugbar\/clockwork\/{id}","name":"debugbar.clockwork","action":"Barryvdh\Debugbar\Controllers\OpenHandlerController@clockwork"},{"host":null,"methods":["GET","HEAD"],"uri":"_debugbar\/assets\/stylesheets","name":"debugbar.assets.css","action":"Barryvdh\Debugbar\Controllers\AssetController@css"},{"host":null,"methods":["GET","HEAD"],"uri":"_debugbar\/assets\/javascript","name":"debugbar.assets.js","action":"Barryvdh\Debugbar\Controllers\AssetController@js"},{"host":null,"methods":["GET","HEAD"],"uri":"user","name":null,"action":"Closure"},{"host":null,"methods":["GET","HEAD"],"uri":"\/","name":"home","action":"App\Http\Controllers\HomeController@index"},{"host":null,"methods":["GET","HEAD"],"uri":"login","name":"login","action":"App\Http\Controllers\Auth\LoginController@index"},{"host":null,"methods":["POST"],"uri":"login","name":null,"action":"App\Http\Controllers\Auth\LoginController@login"},{"host":null,"methods":["GET","HEAD"],"uri":"logout","name":"logout","action":"App\Http\Controllers\Auth\LoginController@logout"},{"host":null,"methods":["GET","HEAD"],"uri":"register","name":"registration","action":"App\Http\Controllers\Auth\RegistrationController@index"},{"host":null,"methods":["POST"],"uri":"register","name":null,"action":"App\Http\Controllers\Auth\RegistrationController@register"},{"host":null,"methods":["GET","HEAD"],"uri":"confirmed","name":"confirmation.confirmed","action":"App\Http\Controllers\Auth\ConfirmationController@index"},{"host":null,"methods":["GET","HEAD"],"uri":"confirm\/{id}\/{token}","name":"confirmation.confirm","action":"App\Http\Controllers\Auth\ConfirmationController@confirm"}],
+            routes : [{"host":null,"methods":["GET","HEAD"],"uri":"_debugbar\/open","name":"debugbar.openhandler","action":"Barryvdh\Debugbar\Controllers\OpenHandlerController@handle"},{"host":null,"methods":["GET","HEAD"],"uri":"_debugbar\/clockwork\/{id}","name":"debugbar.clockwork","action":"Barryvdh\Debugbar\Controllers\OpenHandlerController@clockwork"},{"host":null,"methods":["GET","HEAD"],"uri":"_debugbar\/assets\/stylesheets","name":"debugbar.assets.css","action":"Barryvdh\Debugbar\Controllers\AssetController@css"},{"host":null,"methods":["GET","HEAD"],"uri":"_debugbar\/assets\/javascript","name":"debugbar.assets.js","action":"Barryvdh\Debugbar\Controllers\AssetController@js"},{"host":null,"methods":["GET","HEAD"],"uri":"user","name":null,"action":"Closure"},{"host":null,"methods":["GET","HEAD"],"uri":"\/","name":"home","action":"App\Http\Controllers\HomeController@index"},{"host":null,"methods":["GET","HEAD"],"uri":"login","name":"login","action":"App\Http\Controllers\Auth\LoginController@index"},{"host":null,"methods":["POST"],"uri":"login","name":null,"action":"App\Http\Controllers\Auth\LoginController@login"},{"host":null,"methods":["GET","HEAD"],"uri":"logout","name":"logout","action":"App\Http\Controllers\Auth\LoginController@logout"},{"host":null,"methods":["GET","HEAD"],"uri":"register","name":"registration","action":"App\Http\Controllers\Auth\RegistrationController@index"},{"host":null,"methods":["POST"],"uri":"register","name":null,"action":"App\Http\Controllers\Auth\RegistrationController@register"},{"host":null,"methods":["GET","HEAD"],"uri":"confirmed","name":"confirmation.confirmed","action":"App\Http\Controllers\Auth\ConfirmationController@index"},{"host":null,"methods":["GET","HEAD"],"uri":"confirm\/{token}","name":"confirmation.confirm","action":"App\Http\Controllers\Auth\ConfirmationController@confirm"}],
             prefix: '',
 
             route : function (name, parameters, route) {
@@ -31,7 +31,15 @@
                 var uri = this.replaceNamedParameters(route.uri, parameters);
                 var qs  = this.getRouteQueryString(parameters);
 
+                if (this.absolute && this.isOtherHost(route)){
+                    return "//" + route.host + "/" + uri + qs;
+                }
+
                 return this.getCorrectUrl(uri + qs);
+            },
+
+            isOtherHost: function (route){
+                return route.host && route.host != window.location.hostname;
             },
 
             replaceNamedParameters : function (uri, parameters) {
@@ -85,8 +93,9 @@
             getCorrectUrl: function (uri) {
                 var url = this.prefix + '/' + uri.replace(/^\/?/, '');
 
-                if(!this.absolute)
+                if ( ! this.absolute) {
                     return url;
+                }
 
                 return this.rootUrl.replace('/\/?$/', '') + url;
             }

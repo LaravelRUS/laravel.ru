@@ -28,7 +28,9 @@
         "postcss-loader": "^1.2.2",
         "sass-loader": "^4.1.1",
         "style-loader": "^0.13.1",
-        "tko": "^4.0.0-alpha1",
-        "webpack": "^1.14.0"
+        "webpack": "^1.14.0",
+        "knockout": "~3.4",
+        "knockout.punches": "~0.5",
+        "knockout.validation": "~2.0"
     }
 }

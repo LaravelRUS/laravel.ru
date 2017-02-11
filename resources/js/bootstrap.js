@@ -6,12 +6,18 @@ import 'babel-polyfill';
 /**
  * JS Router
  */
-import './router';
+import './vendor/router';
 
 /**
- * Technical Knockout library
+ * Knockout library
  */
-import ko from 'tko/dist/tko';
+import ko from 'knockout';
+window.ko = ko;
+
+import 'knockout.punches';
+ko.punches.enableAll();
+
+import 'knockout.validation/dist/knockout.validation';
 
 /**
  * Application styles
@@ -26,7 +32,6 @@ import Application from './Application';
 /**
  * BOOTSTRAP
  */
-window.ko = ko;
 
 (new Application())
     .ready(e => document.body.classList.add('loaded'));

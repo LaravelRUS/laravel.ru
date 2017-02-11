@@ -1818,9 +1818,17 @@ kind-of@^3.0.2:
   dependencies:
     is-buffer "^1.0.2"
 
-knockout.validation@^2.0.3:
+knockout.punches@~0.5:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/knockout.punches/-/knockout.punches-0.5.1.tgz#aeae447ed44d1efdc43e018d0b0d4481c6962790"
+
+knockout.validation@~2.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/knockout.validation/-/knockout.validation-2.0.3.tgz#899de5232364e1ecd5d946e080f6a26293046329"
+
+knockout@~3.4:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/knockout/-/knockout-3.4.1.tgz#8bd057bde8f7d0a02b93dda433c2a8d942d8a9a0"
 
 lazy-cache@^1.0.3:
   version "1.0.4"
@@ -3055,113 +3063,6 @@ timers-browserify@^2.0.2:
   resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.2.tgz#ab4883cf597dcd50af211349a00fbca56ac86b86"
   dependencies:
     setimmediate "^1.0.4"
-
-"tko.bind@github:knockout/tko.bind", tko.bind@knockout/tko.bind:
-  version "1.0.0"
-  resolved "https://codeload.github.com/knockout/tko.bind/tar.gz/65d1370485d19f9db804190cc53ca8a3f24694e1"
-  dependencies:
-    tko.computed knockout/tko.computed
-    tko.observable knockout/tko.observable
-    tko.provider "github:knockout/tko.provider"
-    tko.utils knockout/tko.utils
-
-"tko.binding.core@github:knockout/tko.binding.core":
-  version "0.2.0"
-  resolved "https://codeload.github.com/knockout/tko.binding.core/tar.gz/4dda10224798979a68b2d834ff2f188a254a8961"
-  dependencies:
-    tko.bind "github:knockout/tko.bind"
-    tko.computed "github:knockout/tko.computed"
-    tko.observable "github:knockout/tko.observable"
-    tko.utils "github:knockout/tko.utils"
-
-tko.binding.foreach@knockout/tko.binding.foreach:
-  version "4.0.0-alpha1"
-  resolved "https://codeload.github.com/knockout/tko.binding.foreach/tar.gz/24eb6d9978f1321baf5a3b6b3579626d406728b3"
-  dependencies:
-    tko.bind knockout/tko.bind
-    tko.observable knockout/tko.observable
-    tko.provider knockout/tko.provider
-    tko.utils knockout/tko.utils
-
-"tko.binding.if@github:knockout/tko.binding.if":
-  version "0.2.0"
-  resolved "https://codeload.github.com/knockout/tko.binding.if/tar.gz/5a92bd3705ffa40f4417b056c11e20c8953ee0ce"
-  dependencies:
-    tko.bind "github:knockout/tko.bind"
-    tko.computed "github:knockout/tko.computed"
-    tko.observable "github:knockout/tko.observable"
-    tko.utils "github:knockout/tko.utils"
-
-"tko.binding.template@github:knockout/tko.binding.template", tko.binding.template@knockout/tko.binding.template:
-  version "0.2.0"
-  resolved "https://codeload.github.com/knockout/tko.binding.template/tar.gz/5cfacc2e2656d42bc35225f1d3a5d6c253a96e87"
-  dependencies:
-    tko.bind "github:knockout/tko.bind"
-    tko.computed "github:knockout/tko.computed"
-    tko.observable "github:knockout/tko.observable"
-    tko.utils "github:knockout/tko.utils"
-
-tko.components@knockout/tko.components:
-  version "1.0.0"
-  resolved "https://codeload.github.com/knockout/tko.components/tar.gz/8780967140339338a74648d4462837b8897ac5f1"
-  dependencies:
-    tko.bind knockout/tko.bind
-    tko.computed knockout/tko.computed
-    tko.observable knockout/tko.observable
-    tko.provider knockout/tko.provider
-    tko.utils knockout/tko.utils
-
-"tko.computed@github:knockout/tko.computed", tko.computed@knockout/tko.computed:
-  version "1.0.0"
-  resolved "https://codeload.github.com/knockout/tko.computed/tar.gz/ff966af6de0884a55fa0d3cfdd9adbebcedae122"
-  dependencies:
-    tko.observable knockout/tko.observable
-    tko.utils knockout/tko.utils
-
-"tko.filter.punches@github:knockout/tko.filter.punches":
-  version "0.2.0"
-  resolved "https://codeload.github.com/knockout/tko.filter.punches/tar.gz/41c2f063491c1ab848ad571b0a988228b20af961"
-
-"tko.observable@github:knockout/tko.observable", tko.observable@knockout/tko.observable:
-  version "0.1.0"
-  resolved "https://codeload.github.com/knockout/tko.observable/tar.gz/3d3cd1bcd56aae8b5afa8b2c1c12664ed1090ca3"
-  dependencies:
-    tko.utils knockout/tko.utils
-
-tko.preprocessor.textInterpolation@knockout/tko.preprocessor.textInterpolation:
-  version "0.1.0"
-  resolved "https://codeload.github.com/knockout/tko.preprocessor.textInterpolation/tar.gz/7975992f189df7f1513612c2390a745e86ca3803"
-  dependencies:
-    tko.binding.template knockout/tko.binding.template
-    tko.utils knockout/tko.utils
-
-"tko.provider@github:knockout/tko.provider", tko.provider@knockout/tko.provider:
-  version "0.5.5"
-  resolved "https://codeload.github.com/knockout/tko.provider/tar.gz/5b39e12df9fd1caeb68aceec9e2eef80b9f5aada"
-  dependencies:
-    tko.observable "github:knockout/tko.observable"
-    tko.utils "github:knockout/tko.utils"
-
-"tko.utils@github:knockout/tko.utils", tko.utils@knockout/tko.utils:
-  version "0.1.0"
-  resolved "https://codeload.github.com/knockout/tko.utils/tar.gz/a1ec331e72edeffa3b6e405e788becf11232de9a"
-
-tko@^4.0.0-alpha1:
-  version "4.0.0-alpha1"
-  resolved "https://registry.yarnpkg.com/tko/-/tko-4.0.0-alpha1.tgz#3e055226910d6ccc4147489950207d82913b279f"
-  dependencies:
-    tko.bind knockout/tko.bind
-    tko.binding.core "github:knockout/tko.binding.core"
-    tko.binding.foreach knockout/tko.binding.foreach
-    tko.binding.if "github:knockout/tko.binding.if"
-    tko.binding.template "github:knockout/tko.binding.template"
-    tko.components knockout/tko.components
-    tko.computed knockout/tko.computed
-    tko.filter.punches "github:knockout/tko.filter.punches"
-    tko.observable knockout/tko.observable
-    tko.preprocessor.textInterpolation knockout/tko.preprocessor.textInterpolation
-    tko.provider "github:knockout/tko.provider"
-    tko.utils knockout/tko.utils
 
 to-arraybuffer@^1.0.0:
   version "1.0.1"
