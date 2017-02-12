@@ -32,6 +32,8 @@ $router->group(['namespace' => 'Auth'], function (Router $router) {
 });
 
 
+// ======== ARTICLES ===========
+
 
 $router->get('articles', 'ArticlesController@index')
     ->name('articles');

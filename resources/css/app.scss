@@ -96,10 +96,11 @@ body {
     font-family: $font-mono;
     font-size: 12px;
   }
-}
 
-@import "partials/header";
-@import "partials/welcome";
+  @import "partials/welcome";
+  @import "partials/header";
+  @import "partials/footer";
+}
 
 /**
  * Pages

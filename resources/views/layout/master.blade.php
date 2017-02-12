@@ -18,5 +18,9 @@
 
     @yield('content')
 
+    @section('footer')
+        @stack('footer')
+        @include('partials.footer')
+    @show
 </body>
 </html>

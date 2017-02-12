@@ -102,6 +102,19 @@ class Article extends Model
      * @param Builder $builder
      * @return Builder
      */
+    public static function scopeLatestPublished(Builder $builder): Builder
+    {
+        return $builder
+            ->with('user')
+            ->with('tags')
+            ->latest()
+            ->published();
+    }
+
+    /**
+     * @param Builder $builder
+     * @return Builder
+     */
     public static function scopeLatest(Builder $builder): Builder
     {
         return $builder->orderBy('published_at', 'desc');

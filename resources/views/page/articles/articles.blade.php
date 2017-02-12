@@ -12,5 +12,9 @@
                 ])
             </article>
         @endforeach
+
+        <footer>
+            <a href="#" class="button">Ещё</a>
+        </footer>
     </section>
 @stop

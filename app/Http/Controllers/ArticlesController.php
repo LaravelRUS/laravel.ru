@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * Class ArticlesController
@@ -21,13 +22,7 @@ class ArticlesController extends Controller
     public function index()
     {
         return view('page.articles.articles', [
-            'articles' => Article::query()
-                ->with('user')
-                ->with('tags')
-                ->latest()
-                ->published()
-                ->take(10)
-                ->get()
+            'articles' => Article::latestPublished()->paginate(10)
         ]);
     }
 

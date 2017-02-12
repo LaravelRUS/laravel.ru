@@ -19,13 +19,7 @@ class HomeController extends Controller
     public function index(): View
     {
         return view('page.home', [
-            'articles' => Article::query()
-                ->with('user')
-                ->with('tags')
-                ->latest()
-                ->published()
-                ->take(10)
-                ->get()
+            'articles' => Article::latestPublished()->take(10)->get()
         ]);
     }
 }

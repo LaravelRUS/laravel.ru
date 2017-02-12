@@ -1,4 +1,7 @@
 .articles-list {
+  padding: 30px 0 50px 0;
+  @include clear;
+
   .article {
     height: 150px;
     overflow: hidden;
@@ -160,4 +163,12 @@
     }
   }
 
+
+  footer {
+    display: block;
+    text-align: center;
+
+    .button {
+    }
+  }
 }
