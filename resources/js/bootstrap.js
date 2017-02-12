@@ -4,20 +4,27 @@
 import 'babel-polyfill';
 
 /**
- * JS Router
- */
-import './vendor/router';
-
-/**
  * Knockout library
  */
 import ko from 'knockout';
 window.ko = ko;
 
+/**
+ * Extended template engine
+ */
 import 'knockout.punches';
 ko.punches.enableAll();
 
+/**
+ * Validation support
+ */
 import 'knockout.validation/dist/knockout.validation';
+
+/**
+ * Vendor libraries
+ */
+import './vendor/helpers';
+import './vendor/router';
 
 /**
  * Application styles
