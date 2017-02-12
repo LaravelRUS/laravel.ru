@@ -8,17 +8,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use Illuminate\Contracts\View\View;
 
 /**
- * Class HomeController
+ * Class ArticlesController
  * @package App\Http\Controllers
  */
-class HomeController extends Controller
+class ArticlesController extends Controller
 {
-    public function index(): View
+    /**
+     * @return string
+     */
+    public function index()
     {
-        return view('page.home', [
+        return view('page.articles.articles', [
             'articles' => Article::query()
                 ->with('user')
                 ->with('tags')
@@ -27,5 +29,22 @@ class HomeController extends Controller
                 ->take(10)
                 ->get()
         ]);
+    }
+
+    /**
+     * @param $slug
+     */
+    public function show($slug)
+    {
+
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function indexForTag($id)
+    {
+        return $id;
     }
 }

@@ -5,12 +5,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 use Illuminate\Routing\Router;
 
 /** @var Router $router */
 
 $router->get('/', 'HomeController@index')->name('home');
+
+$router->pattern('id', '[0-9]+');
+
 
 $router->group(['namespace' => 'Auth'], function (Router $router) {
     $router->get('login', 'LoginController@index')->name('login');
@@ -28,3 +30,16 @@ $router->group(['namespace' => 'Auth'], function (Router $router) {
         ->where('token', '[a-zA-Z0-9\._]+')
         ->name('confirmation.confirm');
 });
+
+
+
+$router->get('articles', 'ArticlesController@index')
+    ->name('articles');
+
+// TODO
+$router->get('articles/{slug}', 'ArticlesController@show')
+    ->name('article');
+
+// TODO
+$router->get('articles/tag/{id}', 'ArticlesController@indexForTag')
+    ->name('tag');

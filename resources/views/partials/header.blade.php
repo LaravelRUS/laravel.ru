@@ -9,7 +9,7 @@
 
         <nav>
             <a href="#">Документация</a>
-            <a href="#">Статьи</a>
+            <a href="{{ route('articles') }}">Статьи</a>
             <a href="#">Пакеты</a>
 
 

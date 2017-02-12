@@ -183,6 +183,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewsServiceProvider::class,
+        App\Providers\MarkdownServiceProvider::class,
     ],
 
     'local_providers' => [

@@ -8,6 +8,7 @@
 
 namespace App\Providers;
 
+use App\Services\ColorGenerator;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\ClientInterface as GuzzleInterface;
 use Illuminate\Support\ServiceProvider;
@@ -42,6 +43,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->loadLocalProviders();
         $this->registerGuzzleClient();
+
+        $this->app->singleton(ColorGenerator::class);
     }
 
     /**
