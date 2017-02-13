@@ -13,7 +13,7 @@
   background: #fff;
 
   &:hover {
-    transition: box-shadow .3s $swift;
+    transition: color .3s $swift, box-shadow .3s $swift;
     box-shadow: 0 0 0 1px $color-main;
   }
 
@@ -23,7 +23,8 @@
     color: #fff;
 
     &:hover {
-      transition: background .3s $swift;
+      transition: box-shadow .3s $swift, color .3s $swift, background .3s $swift;
+      box-shadow: 0 0 0 1px darken($color-main, 20%);
       background: desaturate(darken($color-main, 5%), 15%);
     }
   }

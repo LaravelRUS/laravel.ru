@@ -36,5 +36,11 @@
 
             {!! $article->content_rendered !!}
         </div>
+
+        <footer>
+            <a class="button" href="{{ route('article', ['slug' => $article->slug]) }}">
+                Читать далее
+            </a>
+        </footer>
     @endif
 </div>

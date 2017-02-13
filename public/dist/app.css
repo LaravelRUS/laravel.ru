@@ -2821,16 +2821,17 @@ input[type=password] {
   border-radius: 2px;
   background: #fff; }
   .button:hover {
-    -webkit-transition: box-shadow 0.3s cubic-bezier(0.55, 0, 0.1, 1);
-    transition: box-shadow 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+    -webkit-transition: color 0.3s cubic-bezier(0.55, 0, 0.1, 1), box-shadow 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+    transition: color 0.3s cubic-bezier(0.55, 0, 0.1, 1), box-shadow 0.3s cubic-bezier(0.55, 0, 0.1, 1);
     box-shadow: 0 0 0 1px #f4645f; }
   .button.main {
     background: #f4645f;
     box-shadow: 0 0 0 1px #f4645f;
     color: #fff; }
     .button.main:hover {
-      -webkit-transition: background 0.3s cubic-bezier(0.55, 0, 0.1, 1);
-      transition: background 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+      -webkit-transition: box-shadow 0.3s cubic-bezier(0.55, 0, 0.1, 1), color 0.3s cubic-bezier(0.55, 0, 0.1, 1), background 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+      transition: box-shadow 0.3s cubic-bezier(0.55, 0, 0.1, 1), color 0.3s cubic-bezier(0.55, 0, 0.1, 1), background 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+      box-shadow: 0 0 0 1px #de160f;
       background: #e45b56; }
   .button.icon-show-more:after {
     display: inline-block;
@@ -3201,6 +3202,7 @@ body {
         .articles-list .article .article-description .article-time:before {
           content: "\F017"; }
     .articles-list .article .article-content {
+      margin-bottom: 20px;
       padding: 30px 0 10px 0;
       max-height: 500px;
       overflow: hidden;
@@ -3209,12 +3211,19 @@ body {
         content: '';
         position: absolute;
         bottom: 0;
-        height: 100px;
+        height: 150px;
         left: 0;
         pointer-events: none;
         display: block;
-        background: -webkit-linear-gradient(rgba(255, 255, 255, 0), white);
-        background: linear-gradient(rgba(255, 255, 255, 0), white); }
+        background: -webkit-linear-gradient(rgba(255, 255, 255, 0), white 80%);
+        background: linear-gradient(rgba(255, 255, 255, 0), white 80%); }
+    .articles-list .article footer {
+      position: relative;
+      z-index: 4;
+      text-align: center;
+      margin-top: -30px; }
+      .articles-list .article footer .button {
+        display: inline-block; }
     .articles-list .article.article-main {
       border-radius: 3px; }
       .articles-list .article.article-main .article-description {
