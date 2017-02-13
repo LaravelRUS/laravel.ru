@@ -22,7 +22,11 @@
 
             <footer>
                 <a href="{{ route('articles') }}" class="button main icon-show-more">
-                    Все новости
+                    @if ($articlesCount > 11)
+                        Ещё {{ $articlesCount }} {{ trans_choice('публикация|публикации|публикаций', $articlesCount) }}
+                    @else
+                        Все новости
+                    @endif
                 </a>
             </footer>
         </div>
