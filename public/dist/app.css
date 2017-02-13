@@ -3211,6 +3211,7 @@ body {
         bottom: 0;
         height: 100px;
         left: 0;
+        pointer-events: none;
         display: block;
         background: -webkit-linear-gradient(rgba(255, 255, 255, 0), white);
         background: linear-gradient(rgba(255, 255, 255, 0), white); }

@@ -148,6 +148,7 @@
         bottom: 0;
         height: 100px;
         left: 0;
+        pointer-events: none;
         display: block;
         background: linear-gradient(rgba(#fff, 0), rgba(#fff, 1));
       }
