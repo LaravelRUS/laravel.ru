@@ -3,20 +3,38 @@
   background: #f9f9f9;
 
   .article {
-    height: 150px;
-
     .article-image {
-      border-radius: 4px;
-      position: absolute;
+      border-radius: 4px 4px 0 0;
     }
 
     .article-description {
-      position: absolute;
       bottom: 0;
+      padding-bottom: 15px;
     }
 
     &.article-main {
-      height: 480px;
+      min-height: 480px;
+
+      .article-description {
+        background: rgba(#fff, .94);
+        padding-bottom: 25px;
+        height: 106px;
+        margin-top: -106px;
+        transition:
+          margin-top .1s $swift,
+          background .1s $swift;
+      }
+
+      &:hover {
+        .article-description {
+          margin-top: 0;
+          background: #fff;
+
+          transition:
+            margin-top .3s $swift,
+            background .3s $swift;
+        }
+      }
     }
   }
 }
