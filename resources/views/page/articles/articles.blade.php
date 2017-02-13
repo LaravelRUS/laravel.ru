@@ -2,19 +2,27 @@
 
 @section('content')
     <section class="articles-list container-12">
-        <h2>Последние новости</h2>
 
-        @foreach($articles as $i => $article)
-            <article class="article article-main grid-12">
-                @include('page.articles.partials.article-preview', [
-                    'article' => $article,
-                    'isMain'  => true
-                ])
-            </article>
-        @endforeach
+        <div class="grid-8">
+            <h2>Наши публикации</h2>
 
-        <footer>
-            <a href="#" class="button">Ещё</a>
-        </footer>
+            @foreach($articles as $i => $article)
+                <article class="article article-main">
+                    @include('page.articles.partials.article-preview', [
+                        'article'     => $article,
+                        'isMain'      => true,
+                        'withContent' => true
+                    ])
+                </article>
+            @endforeach
+
+            <footer>
+                <a href="#" class="button main">Ещё</a>
+            </footer>
+        </div>
+
+        <aside class="grid-4">
+            Правая колонка, доверстаю потом 🐵
+        </aside>
     </section>
 @stop

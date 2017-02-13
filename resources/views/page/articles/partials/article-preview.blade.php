@@ -7,13 +7,10 @@
 <div class="article-description">
     <div class="article-tags">
         @foreach($article->tags as $i => $tag)
-            @if ($i >= ($isMain ? 5 : 3)) @break @endif
+            @if ($i >= (isset($isMain) && $isMain ? 5 : 3)) @break @endif
 
             <a href="{{ route('tag', ['id' => $tag]) }}" class="article-tag"
-               style="background: {{ $tag->color }}">
-                {{ $tag->name }}
-            </a>
-
+               style="color: {{ $tag->color }}">{{ $tag->name }}</a>
         @endforeach
     </div>
 
@@ -31,4 +28,13 @@
     <time class="article-time" datetime="{{ $article->published_at->toRfc3339String() }}">
         {{ $article->nice_published_date }}
     </time>
+
+    @if (isset($withContent) && $withContent)
+        <div class="article-content">
+            <hr />
+            <br />
+
+            {!! $article->content_rendered !!}
+        </div>
+    @endif
 </div>

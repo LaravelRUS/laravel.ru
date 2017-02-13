@@ -9,8 +9,10 @@
 namespace App\Providers;
 
 use App\Services\ColorGenerator;
+use Carbon\Carbon;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\ClientInterface as GuzzleInterface;
+use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -41,10 +43,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->localizeCarbon();
         $this->loadLocalProviders();
         $this->registerGuzzleClient();
 
         $this->app->singleton(ColorGenerator::class);
+    }
+
+    /**
+     * @return void
+     */
+    private function localizeCarbon(): void
+    {
+        $locale = $this->app->make(Repository::class)->get('app.locale');
+
+        Carbon::setLocale($locale);
     }
 
     /**

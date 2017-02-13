@@ -2,47 +2,52 @@
   padding: 30px 0 50px 0;
   @include clear;
 
+  & > div > h2 {
+    padding-bottom: 35px;
+  }
+
   .article {
-    height: 150px;
+    width: 100%;
     overflow: hidden;
     position: relative;
     margin-bottom: 45px;
     border-radius: 2px;
     box-shadow:
-      0 1px 1px 0 rgba(#000, .15),
+      0 1px 1px 0 rgba(#000, .1),
       0 2px 5px rgba(#000, .08);
 
     a {
       display: block;
       width: inherit;
       height: inherit;
+      overflow: hidden;
 
       .article-image {
         width: inherit;
         height: inherit;
         display: block;
-        position: absolute;
+        position: relative;
         z-index: 1;
         left: 0;
         top: 0;
-        border-radius: 4px;
-        transform: scale(1);
+        transform: scale(1.05);
+        transform-origin: 50% 50%;
         transition: transform .1s ease;
       }
     }
 
     &:hover {
       .article-image {
-        transform: scale(1.08);
+        transform: scale(1);
         transition: transform .5s $swift;
       }
     }
 
     .article-description {
+      @include clear;
       background: rgba(#fff, .94);
       box-shadow: 0 -2px 5px rgba(#000, .1);
-      position: absolute;
-      bottom: 0;
+      position: relative;
       box-sizing: border-box;
       width: 100%;
       padding: 10px 30px;
@@ -62,22 +67,22 @@
           display: block;
           float: right;
           margin: 0 2px;
+          background: $color-border;
           box-sizing: border-box;
           padding: 0 7px;
           line-height: 16px;
           height: 16px;
           border-radius: 2px;
           text-decoration: none;
-          color: $color-border;
-          text-shadow: 0 1px 0 rgba(#000, .3);
+          color: $color-text;
+          font-weight: bold;
+          text-shadow: 0 1px 0 rgba(#fff, .3);
 
           &:hover {
-            color: #fff;
-            background: $color-main !important;
+            background: $color-main;
             text-shadow: none;
             transition:
-              background .2s $swift,
-              color .2s $swift;
+              background .2s $swift;
           }
         }
       }
@@ -131,9 +136,24 @@
       }
     }
 
+    .article-content {
+      padding: 30px 0 10px 0;
+      max-height: 500px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        height: 100px;
+        left: 0;
+        display: block;
+        background: linear-gradient(rgba(#fff, 0), rgba(#fff, 1));
+      }
+    }
 
     &.article-main {
-      height: 480px;
       border-radius: 3px;
 
       .article-description {
@@ -154,15 +174,8 @@
           font-size: 20px;
         }
       }
-
-      &:hover {
-        .article-image {
-          transform: scale(1.02);
-        }
-      }
     }
   }
-
 
   footer {
     display: block;

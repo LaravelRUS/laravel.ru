@@ -27,4 +27,12 @@
       background: desaturate(darken($color-main, 5%), 15%);
     }
   }
+
+  &.icon-show-more {
+    &:after {
+      @include fa-icon;
+      content: $fa-var-angle-right;
+      margin: 0 -6px 0 10px;
+    }
+  }
 }
