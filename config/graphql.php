@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 return [
 
@@ -64,21 +64,23 @@ return [
     // parameter.
     'schema'               => 'default',
 
-    'schemas'              => [
+    'schemas' => [
         'default' => [
             'query'    => [
-                'articles' => \App\GraphQL\Queries\ArticlesQuery::class
+                'articles' => \App\GraphQL\Queries\ArticlesQuery::class,
+                'users'    => \App\GraphQL\Queries\UsersQuery::class,
+                'tags'     => \App\GraphQL\Queries\TagsQuery::class,
             ],
             'mutation' => [
-
+                'article_update' => \App\GraphQL\Mutations\ArticleUpdate::class,
             ],
         ],
     ],
 
-    'types'                => [
-        \App\GraphQL\Types\ArticleType::class => \App\GraphQL\Types\ArticleType::class,
-        \App\GraphQL\Types\UserType::class => \App\GraphQL\Types\UserType::class,
-        \App\GraphQL\Types\TagType::class => \App\GraphQL\Types\TagType::class,
+    'types'           => [
+        \App\GraphQL\Types\ArticleType::getName() => \App\GraphQL\Types\ArticleType::class,
+        \App\GraphQL\Types\UserType::getName()    => \App\GraphQL\Types\UserType::class,
+        \App\GraphQL\Types\TagType::getName()     => \App\GraphQL\Types\TagType::class,
     ],
 
     // This callable will received every Error objects for each errors GraphQL catch.
@@ -90,12 +92,12 @@ return [
     //     'locations' => []
     // ]
     //
-    'error_formatter'      => [\Folklore\GraphQL\GraphQL::class, 'formatError'],
+    'error_formatter' => [\Folklore\GraphQL\GraphQL::class, 'formatError'],
 
     // Options to limit the query complexity and depth. See the doc
     // @ https://github.com/webonyx/graphql-php#security
     // for details. Disabled by default.
-    'security'             => [
+    'security'        => [
         'query_max_complexity' => null,
         'query_max_depth'      => null,
     ],

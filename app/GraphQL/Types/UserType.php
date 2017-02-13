@@ -9,20 +9,19 @@
 namespace App\GraphQL\Types;
 
 use GraphQL\Type\Definition\Type;
-use Folklore\GraphQL\Support\Type as GraphQLType;
 
 /**
  * Class UserType
  * @package App\GraphQL\Types
  */
-class UserType extends GraphQLType
+class UserType extends AbstractType
 {
     /**
      * @var array
      */
     protected $attributes = [
         'name'        => 'User',
-        'description' => 'An user item',
+        'description' => 'User object',
     ];
 
     /**
@@ -33,23 +32,23 @@ class UserType extends GraphQLType
         return [
             'id'           => [
                 'type'        => Type::nonNull(Type::id()),
-                'description' => '',
+                'description' => 'User identifier',
             ],
             'name'         => [
                 'type'        => Type::nonNull(Type::string()),
-                'description' => '',
+                'description' => 'User name',
             ],
             'email'        => [
                 'type'        => Type::nonNull(Type::string()),
-                'description' => '',
+                'description' => 'User email',
             ],
             'avatar'       => [
                 'type'        => Type::nonNull(Type::string()),
-                'description' => '',
+                'description' => 'User avatar url',
             ],
             'is_confirmed' => [
                 'type'        => Type::nonNull(Type::boolean()),
-                'description' => '',
+                'description' => 'User confirmation status',
             ],
         ];
     }

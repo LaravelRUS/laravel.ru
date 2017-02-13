@@ -8,9 +8,9 @@
 namespace App\GraphQL\Queries;
 
 use App\GraphQL\Queries\Support\QueryLimit;
-use App\GraphQL\Serializers\ArticleSerializer;
-use App\GraphQL\Types\ArticleType;
-use App\Models\Article;
+use App\GraphQL\Serializers\UserSerializer;
+use App\GraphQL\Types\UserType;
+use App\Models\User;
 use Folklore\GraphQL\Support\Query;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
@@ -20,7 +20,7 @@ use GraphQL\Type\Definition\Type;
  *
  * @package App\GraphQL
  */
-class ArticlesQuery extends Query
+class UsersQuery extends Query
 {
     use QueryLimit;
 
@@ -28,8 +28,8 @@ class ArticlesQuery extends Query
      * @var array
      */
     protected $attributes = [
-        'name'        => 'Article list query',
-        'description' => 'Returns a list of available articles',
+        'name'        => 'Users list query',
+        'description' => 'Returns a list of users',
     ];
 
     /**
@@ -37,7 +37,7 @@ class ArticlesQuery extends Query
      */
     public function type()
     {
-        return Type::listOf(GraphQL::type(ArticleType::getName()));
+        return Type::listOf(GraphQL::type(UserType::getName()));
     }
 
     /**
@@ -46,13 +46,9 @@ class ArticlesQuery extends Query
     public function args()
     {
         return $this->argumentsWithLimit([
-            'id'     => [
+            'id' => [
                 'type'        => Type::id(),
-                'description' => 'Article identifier',
-            ],
-            'status' => [
-                'type'        => Article\Status::toGraphQL(),
-                'description' => 'Article visibility status',
+                'description' => 'User identifier',
             ],
         ]);
     }
@@ -65,9 +61,7 @@ class ArticlesQuery extends Query
      */
     public function resolve($root, array $args = [])
     {
-        $query = Article::query()
-            ->with('user')
-            ->with('tags');
+        $query = User::query();
 
         $query = $this->paginate($query, $args);
 
@@ -75,6 +69,6 @@ class ArticlesQuery extends Query
             $query = $query->where($field, $value);
         }
 
-        return ArticleSerializer::collection($query->get());
+        return UserSerializer::collection($query->get());
     }
 }

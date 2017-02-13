@@ -43,7 +43,8 @@ services:
             - ./docker/logs/nginx/:/var/log/nginx
             - ./docker/nginx/sites-available/:/etc/nginx/sites-available
         ports:
-            - "81:80"
+            - "80:80"
+            - "443:443"
         links:
             - php
 

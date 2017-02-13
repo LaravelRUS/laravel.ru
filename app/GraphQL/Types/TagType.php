@@ -5,24 +5,22 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace App\GraphQL\Types;
 
 use GraphQL\Type\Definition\Type;
-use Folklore\GraphQL\Support\Type as GraphQLType;
 
 /**
  * Class TagType
  * @package App\GraphQL\Types
  */
-class TagType extends GraphQLType
+class TagType extends AbstractType
 {
     /**
      * @var array
      */
     protected $attributes = [
         'name'        => 'Tag',
-        'description' => 'An tag item',
+        'description' => 'Tag object',
     ];
 
     /**
@@ -33,15 +31,15 @@ class TagType extends GraphQLType
         return [
             'id'           => [
                 'type'        => Type::nonNull(Type::id()),
-                'description' => '',
+                'description' => 'Tag identifier',
             ],
             'name'         => [
                 'type'        => Type::nonNull(Type::string()),
-                'description' => '',
+                'description' => 'Tag name',
             ],
             'color'        => [
                 'type'        => Type::nonNull(Type::string()),
-                'description' => '',
+                'description' => 'Tag color',
             ],
         ];
     }

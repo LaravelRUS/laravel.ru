@@ -8,19 +8,19 @@
 namespace App\GraphQL\Queries;
 
 use App\GraphQL\Queries\Support\QueryLimit;
-use App\GraphQL\Serializers\ArticleSerializer;
-use App\GraphQL\Types\ArticleType;
-use App\Models\Article;
+use App\GraphQL\Serializers\TagSerializer;
+use App\GraphQL\Types\TagType;
+use App\Models\Tag;
 use Folklore\GraphQL\Support\Query;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 
 /**
- * Class ArticlesQuery
+ * Class TagsQuery
  *
  * @package App\GraphQL
  */
-class ArticlesQuery extends Query
+class TagsQuery extends Query
 {
     use QueryLimit;
 
@@ -28,8 +28,8 @@ class ArticlesQuery extends Query
      * @var array
      */
     protected $attributes = [
-        'name'        => 'Article list query',
-        'description' => 'Returns a list of available articles',
+        'name'        => 'Tags list query',
+        'description' => 'Returns a list of available tags',
     ];
 
     /**
@@ -37,7 +37,7 @@ class ArticlesQuery extends Query
      */
     public function type()
     {
-        return Type::listOf(GraphQL::type(ArticleType::getName()));
+        return Type::listOf(GraphQL::type(TagType::getName()));
     }
 
     /**
@@ -46,13 +46,9 @@ class ArticlesQuery extends Query
     public function args()
     {
         return $this->argumentsWithLimit([
-            'id'     => [
+            'id' => [
                 'type'        => Type::id(),
-                'description' => 'Article identifier',
-            ],
-            'status' => [
-                'type'        => Article\Status::toGraphQL(),
-                'description' => 'Article visibility status',
+                'description' => 'Tag identifier',
             ],
         ]);
     }
@@ -65,9 +61,7 @@ class ArticlesQuery extends Query
      */
     public function resolve($root, array $args = [])
     {
-        $query = Article::query()
-            ->with('user')
-            ->with('tags');
+        $query = Tag::query();
 
         $query = $this->paginate($query, $args);
 
@@ -75,6 +69,6 @@ class ArticlesQuery extends Query
             $query = $query->where($field, $value);
         }
 
-        return ArticleSerializer::collection($query->get());
+        return TagSerializer::collection($query->get());
     }
 }

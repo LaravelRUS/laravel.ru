@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 /**
  * This file is part of laravel.ru package.
  *
@@ -58,7 +58,7 @@ return [
     */
 
     'model_locations' => [
-        'app',
+        'app/Models',
     ],
 
 
@@ -72,8 +72,16 @@ return [
     */
 
     'extra' => [
-        'Eloquent' => ['Illuminate\Database\Eloquent\Builder', 'Illuminate\Database\Query\Builder'],
-        'Session'  => ['Illuminate\Session\Store'],
+        'Eloquent' => [
+            Illuminate\Database\Eloquent\Builder::class,
+            Illuminate\Database\Query\Builder::class,
+        ],
+        'Session'  => [
+            \Illuminate\Session\Store::class,
+        ],
+        'GraphQL'  => [
+            \Folklore\GraphQL\GraphQL::class,
+        ],
     ],
 
     'magic' => [
@@ -99,7 +107,7 @@ return [
     |
     */
 
-    'interfaces' => [
+    'interfaces'                  => [
 
     ],
 
@@ -129,7 +137,7 @@ return [
     |  ),
     |
     */
-    'custom_db_types' => [
+    'custom_db_types'             => [
 
     ],
 
@@ -167,7 +175,7 @@ return [
     | Cast the given "real type" to the given "type".
     |
     */
-    'type_overrides' => [
+    'type_overrides'              => [
         'integer' => 'int',
         'boolean' => 'bool',
     ],
