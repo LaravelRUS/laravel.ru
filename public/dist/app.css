@@ -2913,6 +2913,9 @@ input[type=password] {
     .label.error:before {
       content: "\F071"; }
 
+html {
+  height: 100%; }
+
 /**
  * Layout
  */
@@ -2929,8 +2932,14 @@ body {
   color: #525252;
   min-height: 100%;
   opacity: 0;
+  position: relative;
   -webkit-transition: opacity 0.4s cubic-bezier(0.55, 0, 0.1, 1);
   transition: opacity 0.4s cubic-bezier(0.55, 0, 0.1, 1); }
+  body:after {
+    display: table;
+    width: 100%;
+    content: '';
+    clear: both; }
   body.loaded {
     opacity: 1; }
   body > main {
@@ -3061,11 +3070,19 @@ body {
         transition: color 0.3s cubic-bezier(0.55, 0, 0.1, 1), box-shadow 0.3s cubic-bezier(0.55, 0, 0.1, 1); }
       body header .auth-button:active {
         background: #fcfcfc; }
+  body > .footer-padding {
+    height: 200px;
+    width: 100%; }
   body > footer {
+    width: 100%;
+    box-sizing: border-box;
     background: #27272b;
     color: #dee0df;
     box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.5);
-    padding: 50px 0; }
+    padding: 50px 0;
+    height: 200px;
+    position: absolute;
+    bottom: 0; }
     body > footer nav a {
       display: block;
       margin: 10px 0; }

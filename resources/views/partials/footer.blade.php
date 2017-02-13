@@ -1,3 +1,5 @@
+<div class="footer-padding"></div>
+
 <footer>
     <section class="container-12">
         <article class="grid-4">
