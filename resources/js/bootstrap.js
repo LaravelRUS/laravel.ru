@@ -23,7 +23,6 @@ import 'knockout.validation/dist/knockout.validation';
 /**
  * Vendor libraries
  */
-import './vendor/helpers';
 import './vendor/router';
 
 /**
