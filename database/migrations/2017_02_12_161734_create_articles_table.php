@@ -24,8 +24,7 @@ class CreateArticlesTable extends Migration
                 'Review',       // Ожидает подтверждения
                 'Published',    // Опубликован
             ])->default('Draft');
-            $t->timestamp('published_at')
-                ->default(DB::raw('NOW()'));
+            $t->timestamp('published_at');
             $t->timestamps();
         });
     }

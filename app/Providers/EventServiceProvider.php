@@ -37,6 +37,7 @@ class EventServiceProvider extends ServiceProvider
 
         Article::observe(Article\ContentObserver::class);
         Article::observe(Article\SlugObserver::class);
+        Article::observe(Article\PublishedDateObserver::class);
 
         Tag::observe(Tag\ColorObserver::class);
 
