@@ -2931,17 +2931,12 @@ body {
   background: #fff;
   color: #525252;
   min-height: 100%;
-  opacity: 0;
-  position: relative;
-  -webkit-transition: opacity 0.4s cubic-bezier(0.55, 0, 0.1, 1);
-  transition: opacity 0.4s cubic-bezier(0.55, 0, 0.1, 1); }
+  position: relative; }
   body:after {
     display: table;
     width: 100%;
     content: '';
     clear: both; }
-  body.loaded {
-    opacity: 1; }
   body > main {
     min-height: inherit;
     position: relative; }

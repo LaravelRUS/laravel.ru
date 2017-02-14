@@ -48,13 +48,7 @@ body {
   background: #fff;
   color: $color-text;
   min-height: 100%;
-  opacity: 0;
   position: relative;
-  transition: opacity .4s $swift;
-
-  &.loaded {
-    opacity: 1;
-  }
 
   & > main {
     min-height: inherit;
