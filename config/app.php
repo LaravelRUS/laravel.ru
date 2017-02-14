@@ -175,6 +175,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Folklore\GraphQL\ServiceProvider::class,
+        GrahamCampbell\GitHub\GitHubServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -239,6 +240,7 @@ return [
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         //'View'         => Illuminate\Support\Facades\View::class,
         'GraphQL'      => Folklore\GraphQL\Support\Facades\GraphQL::class,
+        'GitHub'       => GrahamCampbell\GitHub\Facades\GitHub::class,
     ],
 
 ];
