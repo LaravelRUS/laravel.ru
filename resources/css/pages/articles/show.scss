@@ -1,4 +1,6 @@
 .article {
+  box-sizing: border-box;
+
   .article-content {
     @include clear;
     box-sizing: border-box;

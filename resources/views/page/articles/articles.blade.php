@@ -21,8 +21,18 @@
             </footer>
         </div>
 
-        <aside class="grid-4">
-            Правая колонка, доверстаю потом 🐵
+        <aside class="grid-4" data-vm="StickyPanelViewModel" style="position: relative">
+            <div data-bind="attr: {
+                style: 'top: 0; width: 300px; position: ' + (fixed() ? 'fixed' : 'relative') + ';'
+            }">
+                <div style="padding: 30px 20px; box-sizing: border-box; width: 100%; box-shadow: inset 1px 0 0 #eee">
+                    <strong>Правая колонка</strong>
+                    <br />
+                    <br />
+                    <br />
+                    Доверстаю потом 🐵
+                </div>
+            </div>
         </aside>
     </section>
 @stop
