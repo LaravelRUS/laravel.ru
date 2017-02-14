@@ -32,9 +32,17 @@ class UsersSeeder extends Seeder
         User::truncate();
 
         User::create([
-            'name'     => 'Admin',
-            'email'    => 'admin@admin.com',
-            'password' => 'admin',
+            'name'         => 'Admin',
+            'email'        => 'admin@admin.com',
+            'password'     => 'admin',
+            'is_confirmed' => true,
+        ]);
+
+        User::create([
+            'name'         => 'Serafim',
+            'email'        => 'nesk@xakep.ru',
+            'password'     => 'password',
+            'is_confirmed' => true,
         ]);
 
 
