@@ -8,7 +8,7 @@
 namespace App\Models\Article;
 
 use App\Models\Article;
-use App\Services\ContentRenderInterface;
+use App\Services\ContentRenderer\ContentRenderInterface;
 
 /**
  * Class ContentObserver
