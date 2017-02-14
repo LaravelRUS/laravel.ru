@@ -5,14 +5,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace App\Services\ImageUploader;
 
 use App\Models\User;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Intervention\Image\Constraint;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
-use GuzzleHttp\Exception\ClientException;
 
 /**
  * Class AvatarUploader
@@ -20,6 +22,11 @@ use GuzzleHttp\Exception\ClientException;
  */
 class AvatarUploader
 {
+    /**
+     * @const string
+     */
+    private const TEMP_PATH = 'app/public';
+
     /**
      * @const string
      */
@@ -70,20 +77,30 @@ class AvatarUploader
 
     /**
      * @param User $user
+     * @param Filesystem $filesystem
      * @return User
      */
-    public function upload(User $user): User
+    public function upload(User $user, Filesystem $filesystem): User
     {
         try {
             $gravatarUrl = $this->getGravatarUrl($user);
             $avatarName  = $this->createImageName($user);
 
+            $temp        = storage_path(self::TEMP_PATH . '/' . $avatarName);
+            $public      = public_path(User::DEFAULT_AVATAR_PATH . $avatarName);
+
             // Check avatar if exists
             $this->http->head($gravatarUrl);
 
             // Resize and upload
-            $this->process($gravatarUrl)
-                ->save(public_path(User::DEFAULT_AVATAR_PATH . $avatarName));
+            $this->process($gravatarUrl)->save($temp);
+
+            // Publish to cloud storage
+            $filesystem->put($public, file_get_contents($temp));
+
+            if (!@unlink($temp) && is_file($temp)) {
+                // Can not remove temporary file
+            }
 
         } catch (ClientException $exception) {
             $avatarName = User::DEFAULT_AVATAR_NAME;
@@ -93,6 +110,26 @@ class AvatarUploader
         $user->save();
 
         return $user;
+    }
+
+    /**
+     * @param User $user
+     * @return string
+     */
+    private function getGravatarUrl(User $user): string
+    {
+        $hash = md5(strtolower(trim($user->email)));
+
+        return sprintf(self::GRAVATAR_URL, $hash);
+    }
+
+    /**
+     * @param User $user
+     * @return string
+     */
+    private function createImageName(User $user): string
+    {
+        return md5(random_int(0, 9999) . $user->email) . '.png';
     }
 
     /**
@@ -107,25 +144,5 @@ class AvatarUploader
                 $constraint->upsize();
             })
             ->crop($this->width, $this->height);
-    }
-
-    /**
-     * @param User $user
-     * @return string
-     */
-    private function createImageName(User $user): string
-    {
-        return md5(random_int(0, 9999) . $user->email) . '.png';
-    }
-
-    /**
-     * @param User $user
-     * @return string
-     */
-    private function getGravatarUrl(User $user): string
-    {
-        $hash = md5(strtolower(trim($user->email)));
-
-        return sprintf(self::GRAVATAR_URL, $hash);
     }
 }

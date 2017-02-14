@@ -5,6 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace App\Jobs;
 
 use App\Models\User;
@@ -12,10 +13,12 @@ use App\Services\ImageUploader\AvatarUploader;
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Intervention\Image\ImageManager;
+use Illuminate\Contracts\Filesystem\Factory as Storage;
 
 /**
  * Class UploadAvatarProcess
@@ -56,11 +59,12 @@ class UploadAvatarProcess implements ShouldQueue
     /**
      * @param ImageManager $manager
      * @param Client $client
+     * @param Storage $fs
      */
-    public function handle(ImageManager $manager, Client $client): void
+    public function handle(ImageManager $manager, Client $client, Storage $fs): void
     {
         (new AvatarUploader($manager, $client))
             ->size(64, 64)
-            ->upload($this->user);
+            ->upload($this->user, $fs->disk('avatars'));
     }
 }

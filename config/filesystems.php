@@ -19,7 +19,7 @@ return [
     |
     */
 
-    'default' => 'local',
+    'default' => 'storage',
 
     /*
     |--------------------------------------------------------------------------
@@ -48,27 +48,24 @@ return [
     */
 
     'disks' => [
-
-        'local' => [
+        'storage' => [
             'driver' => 'local',
             'root'   => storage_path('app'),
         ],
 
-        'public' => [
+        'avatars' => [
             'driver'     => 'local',
-            'root'       => storage_path('app/public'),
-            'url'        => env('APP_URL') . '/storage',
+            'root'       => '/',
+            'url'        => '/static/avatars',
             'visibility' => 'public',
         ],
 
-        's3' => [
-            'driver' => 's3',
-            'key'    => env('AWS_KEY'),
-            'secret' => env('AWS_SECRET'),
-            'region' => env('AWS_REGION'),
-            'bucket' => env('AWS_BUCKET'),
+        'articles' => [
+            'driver'     => 'local',
+            'root'       => '/',
+            'url'        => '/static/articles',
+            'visibility' => 'public',
         ],
-
     ],
 
 ];
