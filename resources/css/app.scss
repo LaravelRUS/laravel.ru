@@ -14,15 +14,29 @@ $button-size:       32px;
 $checkbox-size:     18px;
 $swift:             cubic-bezier(.55, 0, .1, 1);
 
-$color-main:        #f4645f;
-$color-alert:       #f4645f;
-$color-warning:     #d9a910;
-$color-info:        #64b5f6;
-$color-ok:          #28bc00;
-$color-border:      #dee0df;
-$color-description: #9e9999;
-$color-dark:        #27272b;
-$color-text:        #525252;
+$ui-box-shadow:
+  0 1px 1px 0 rgba(#000, .1),
+  0 2px 5px rgba(#000, .08);
+
+$color-red:         #f4645f;
+$color-green:       #28bc00;
+$color-yellow:      #d9a910;
+$color-blue:        #64b5f6;
+$color-pink:        #ba6380;
+$color-light-gray:  #dee0df;
+$color-gray:        #9e9999;
+$color-dark-gray:   #525252;
+$color-black:       #27272b;
+
+$color-main:        $color-red;
+$color-alert:       $color-red;
+$color-warning:     $color-yellow;
+$color-info:        $color-blue;
+$color-ok:          $color-green;
+$color-border:      $color-light-gray;
+$color-description: $color-gray;
+$color-dark:        $color-black;
+$color-text:        $color-dark-gray;
 
 @import "ui/fonts";
 @import "ui/dropdown";
@@ -96,7 +110,6 @@ body {
     font-size: 12px;
   }
 
-  @import "partials/welcome";
   @import "partials/header";
   @import "partials/footer";
 }
@@ -106,4 +119,5 @@ body {
  */
 @import "pages/login";
 @import "pages/articles";
+@import "pages/home";
 

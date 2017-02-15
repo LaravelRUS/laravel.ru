@@ -53,7 +53,14 @@ class ArticlesSeeder extends Seeder
             $article = Article::create([
                 'user_id'        => $this->faker->randomElement($users->toArray())['id'],
                 'title'          => $this->faker->words(random_int(1, 8), true),
-                'image'          => $this->faker->randomElement(['1.png', '2.png', '3.png']),
+                'image'          => $this->faker->randomElement([
+                    '1.png',
+                    '2.png',
+                    '3.png',
+                    '4.png',
+                    '5.png',
+                    '6.png',
+                ]),
                 'content_source' => $this->createContent(),
                 'status'         => $this->faker->randomElement(['Draft', 'Review', 'Published']),
                 'published_at'   => Carbon::now()

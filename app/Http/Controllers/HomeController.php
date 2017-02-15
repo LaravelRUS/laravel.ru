@@ -18,8 +18,8 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        return view('page.home', [
-            'articles' => Article::latestPublished()->take(10)->get(),
+        return view('page.home.home', [
+            'articles' => Article::latestPublished()->take(11)->get(),
             'articlesCount' => Article::latestPublished()->count()
         ]);
     }
