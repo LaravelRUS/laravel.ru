@@ -5,7 +5,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -23,7 +22,9 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    /**@var string */
+    /**
+     * @var string
+     */
     protected $redirectTo;
 
     /**
@@ -34,9 +35,6 @@ class LoginController extends Controller
     public function __construct(Session $session)
     {
         $this->redirectTo = $session->get(CurrentPageState::PAGE_NAME, '/');
-
-        $this->middleware('auth', ['only' => 'logout']);
-        $this->middleware('guest', ['except' => 'logout']);
     }
 
     /**

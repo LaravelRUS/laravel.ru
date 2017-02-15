@@ -15,20 +15,22 @@ $router->pattern('id', '[0-9]+');
 
 
 $router->group(['namespace' => 'Auth'], function (Router $router) {
-    $router->get('login', 'LoginController@index')->name('login');
-    $router->post('login', 'LoginController@login');
+    $router->group(['middleware' => ['guest']], function (Router $router) {
+        $router->get('login', 'LoginController@index')->name('login');
+        $router->post('login', 'LoginController@login');
 
-    // TODO: logout нынче принято делать методом post
-    $router->get('logout', 'LoginController@logout')->name('logout');
+        $router->get('register', 'RegistrationController@index')->name('registration');
+        $router->post('register', 'RegistrationController@register');
+    });
 
-    $router->get('register', 'RegistrationController@index')->name('registration');
-    $router->post('register', 'RegistrationController@register');
+    $router->group(['middleware' => ['auth']], function(Router $router) {
+        $router->match(['GET', 'POST'], 'logout', 'LoginController@logout')->name('logout');
+        $router->get('confirmed', 'ConfirmationController@index')->name('confirmation.confirmed');
 
-    $router->get('confirmed', 'ConfirmationController@index')->name('confirmation.confirmed');
-
-    $router->get('confirm/{token}', 'ConfirmationController@confirm')
-        ->where('token', '[a-zA-Z0-9\._]+')
-        ->name('confirmation.confirm');
+        $router->get('confirm/{token}', 'ConfirmationController@confirm')
+            ->where('token', '[a-zA-Z0-9\._]+')
+            ->name('confirmation.confirm');
+    });
 });
 
 

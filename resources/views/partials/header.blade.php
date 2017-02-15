@@ -45,7 +45,14 @@
                         <a href="#">Комментарии</a>
                         <hr />
                         <a href="#">Настройки</a>
-                        <a href="{{ route('logout') }}">Выход</a>
+
+                        <form action="{{ route('logout') }}" method="POST" id="_logout">
+                            {!! csrf_field() !!}
+                        </form>
+
+                        <a href="{{ route('logout') }}" rel="nofollow" onclick="_logout.submit();">
+                            Выход
+                        </a>
                     </nav>
                 </div>
             @else

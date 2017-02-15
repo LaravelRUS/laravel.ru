@@ -55,7 +55,7 @@ return [
 
         'avatars' => [
             'driver'     => 'local',
-            'root'       => '/',
+            'root'       => public_path('/static/avatars'),
             'url'        => '/static/avatars',
             'visibility' => 'public',
         ],

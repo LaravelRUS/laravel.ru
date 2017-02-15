@@ -5,8 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-namespace App\Services\ImageUploader;
+namespace App\Services\StaticServer;
 
 use App\Models\User;
 use GuzzleHttp\Client;
@@ -18,7 +17,7 @@ use Intervention\Image\ImageManager;
 
 /**
  * Class AvatarUploader
- * @package App\Services\ImageUploader
+ * @package App\Services\StaticServer
  */
 class AvatarUploader
 {
@@ -82,12 +81,11 @@ class AvatarUploader
      */
     public function upload(User $user, Filesystem $filesystem): User
     {
-        try {
-            $gravatarUrl = $this->getGravatarUrl($user);
-            $avatarName  = $this->createImageName($user);
+        $gravatarUrl = $this->getGravatarUrl($user);
+        $public      = $this->createImageName($user);
 
-            $temp        = storage_path(self::TEMP_PATH . '/' . $avatarName);
-            $public      = public_path(User::DEFAULT_AVATAR_PATH . $avatarName);
+        try {
+            $temp = storage_path(self::TEMP_PATH . '/' . md5($public));
 
             // Check avatar if exists
             $this->http->head($gravatarUrl);
@@ -103,10 +101,10 @@ class AvatarUploader
             }
 
         } catch (ClientException $exception) {
-            $avatarName = User::DEFAULT_AVATAR_NAME;
+            $public = User::DEFAULT_AVATAR_NAME;
         }
 
-        $user->avatar = $avatarName;
+        $user->avatar = $public;
         $user->save();
 
         return $user;
@@ -129,7 +127,11 @@ class AvatarUploader
      */
     private function createImageName(User $user): string
     {
-        return md5(random_int(0, 9999) . $user->email) . '.png';
+        $hash = md5(random_int(0, 9999) . $user->email);
+
+        return substr($hash, 0, 2) . '/' .
+            substr($hash, 2, 2) . '/' .
+            substr($hash, 4) . '.png';
     }
 
     /**

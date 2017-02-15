@@ -5,20 +5,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace App\Jobs;
 
 use App\Models\User;
-use App\Services\ImageUploader\AvatarUploader;
+use App\Services\StaticServer\AvatarUploader;
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Filesystem\Factory as Storage;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Intervention\Image\ImageManager;
-use Illuminate\Contracts\Filesystem\Factory as Storage;
 
 /**
  * Class UploadAvatarProcess

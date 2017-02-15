@@ -5,7 +5,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
@@ -23,14 +22,6 @@ use Illuminate\Contracts\View\View;
  */
 class RegistrationController extends Controller
 {
-    /**
-     * RegistrationController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
     /**
      * @param  Factory  $factory
      *
