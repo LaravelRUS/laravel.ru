@@ -1,0 +1,20 @@
+root = true
+
+[*]
+trim_trailing_whitespace = true
+insert_final_newline = true
+end_of_line = lf
+charset = utf-8
+indent_style = space
+
+[*.scss]
+indent_size = 2
+
+[*.php]
+indent_size = 4
+
+[composer.json]
+indent_size = 4
+
+[package.json]
+indent_size = 2
