@@ -37,12 +37,15 @@
     </section>
 @stop
 
+
 @push('head')
-@if($articles->previousPageUrl())
-    <link rel="prev" href="{{ $articles->previousPageUrl() }}">
-@endif
-@if($articles->hasMorePages())
-    <link rel="next" href="{{ $articles->nextPageUrl() }}">
-    <link rel="prerender" href="{{ $articles->nextPageUrl() }}">
-@endif
+    @if($articles->previousPageUrl())
+        <link rel="prev" href="{{ $articles->previousPageUrl() }}" />
+        <link rel="prerender" href="{{ $articles->previousPageUrl() }}" />
+    @endif
+
+    @if($articles->hasMorePages())
+        <link rel="next" href="{{ $articles->nextPageUrl() }}" />
+        <link rel="prerender" href="{{ $articles->nextPageUrl() }}" />
+    @endif
 @endpush
