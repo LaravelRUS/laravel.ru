@@ -19,6 +19,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
  */
 class HomePageTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * A basic test example.
      *
