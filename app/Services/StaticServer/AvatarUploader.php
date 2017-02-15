@@ -101,7 +101,7 @@ class AvatarUploader
             }
 
         } catch (ClientException $exception) {
-            $public = User::DEFAULT_AVATAR_NAME;
+            $public = 'default/' . random_int(1, 4) . '.png';
         }
 
         $user->avatar = $public;

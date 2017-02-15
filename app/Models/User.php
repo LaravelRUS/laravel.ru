@@ -18,7 +18,7 @@ class User extends Authenticatable
     use Notifiable;
 
     public const DEFAULT_AVATAR_PATH = '/static/avatars/';
-    public const DEFAULT_AVATAR_NAME = 'default.png';
+    public const DEFAULT_AVATAR_NAME = 'default/1.png';
 
     /**
      * The attributes that are mass assignable.

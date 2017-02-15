@@ -1,3 +1,6 @@
 *
 !.gitignore
-!default.png
+!default/1.png
+!default/2.png
+!default/3.png
+!default/4.png
