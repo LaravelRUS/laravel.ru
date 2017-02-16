@@ -54,12 +54,6 @@ export default class RegistrationViewModel {
         });
     }
 
-    togglePasswordVisibility() {
-        this.passwordVisible(!this.passwordVisible());
-
-        return false;
-    }
-
     /**
      * @param key
      * @param status

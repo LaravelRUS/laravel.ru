@@ -7,7 +7,8 @@ import 'babel-polyfill';
  * Knockout library
  */
 import ko from 'knockout';
-window.ko = ko;
+(global || window).ko = ko;
+
 
 /**
  * Extended template engine
@@ -43,7 +44,5 @@ import Application from './Application';
 /**
  * BOOTSTRAP
  */
-
-(new Application())
-    .ready(e => document.body.classList.add('loaded'));
+new Application();
 

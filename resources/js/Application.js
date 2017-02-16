@@ -1,10 +1,27 @@
+import Password from './Components/Password';
+
 export default class Application {
     /**
      * @constructor
      */
     constructor() {
         this.ready(status => {
+            this.registerComponent('password', Password);
+
             this.bindViewModels('ViewModels/');
+        });
+    }
+
+    /**
+     * @param name
+     * @param cls
+     */
+    registerComponent(name, cls) {
+        ko.components.register(name, {
+            viewModel: function(params = {}) {
+                return new cls(params);
+            },
+            template: cls.template
         });
     }
 

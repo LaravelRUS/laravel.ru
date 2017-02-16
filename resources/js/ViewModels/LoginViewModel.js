@@ -1,15 +1,10 @@
 export default class LoginViewModel {
-    /**
-     * @type {KnockoutObservable<T>}
-     */
-    passwordVisible = ko.observable(false);
-
-    /**
-     * @return {boolean}
-     */
-    togglePasswordVisibility() {
-        this.passwordVisible(!this.passwordVisible());
-
-        return false;
-    }
+    email = ko.observable('')
+        .extend({
+            required: true,
+            pattern: {
+                message: 'E-mail не похож на настоящий',
+                params: '^.+@.+\..{2,}$'
+            }
+        });
 }
