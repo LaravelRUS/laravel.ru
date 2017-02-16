@@ -2955,8 +2955,8 @@ body {
   min-height: 100%;
   position: relative;
   opacity: 0;
-  -webkit-transition: opacity .1s ease;
-  transition: opacity .1s ease; }
+  -webkit-transition: opacity .3s ease;
+  transition: opacity .3s ease; }
   body:after {
     display: table;
     width: 100%;
