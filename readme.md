@@ -3,6 +3,10 @@
 [![Build Status](https://travis-ci.org/LaravelRUS/laravel.ru.svg?branch=feature-laravel-5.4)](https://travis-ci.org/LaravelRUS/laravel.ru)
 [![Чат](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/LaravelRUS/laravel.ru)
 
+- Site: [https://new.laravel.su](https://new.laravel.su)
+- WebDav: [https://new.laravel.su/cdn](https://new.laravel.su/cdn)
+- GraphQL API: [https://new.laravel.su/graphiql](https://new.laravel.su/graphiql)
+
 **ВНИМАНИЕ! Это нестабильная ветка, актуальная [находится тут](https://github.com/LaravelRUS/laravel.ru/tree/production)**
 
 ## Установка
