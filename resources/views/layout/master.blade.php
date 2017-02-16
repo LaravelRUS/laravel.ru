@@ -20,7 +20,7 @@
 
     @stack('head')
 </head>
-<body>
+<body style="opacity: 0">
     @section('header')
         @include('partials.header')
         @stack('header')

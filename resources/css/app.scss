@@ -63,6 +63,12 @@ body {
   color: $color-text;
   min-height: 100%;
   position: relative;
+  opacity: 0;
+  transition: opacity .1s ease;
+
+  &.visible {
+    opacity: 1 !important;
+  }
 
   & > main {
     min-height: inherit;

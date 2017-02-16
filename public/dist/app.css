@@ -2953,12 +2953,17 @@ body {
   background: #fff;
   color: #525252;
   min-height: 100%;
-  position: relative; }
+  position: relative;
+  opacity: 0;
+  -webkit-transition: opacity .1s ease;
+  transition: opacity .1s ease; }
   body:after {
     display: table;
     width: 100%;
     content: '';
     clear: both; }
+  body.visible {
+    opacity: 1 !important; }
   body > main {
     min-height: inherit;
     position: relative; }

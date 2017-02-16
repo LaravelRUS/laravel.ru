@@ -44,5 +44,8 @@ import Application from './Application';
 /**
  * BOOTSTRAP
  */
-new Application();
+(new Application())
+    .ready(e => {
+        document.body.classList.add('visible');
+    });
 
