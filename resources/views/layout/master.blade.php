@@ -14,9 +14,9 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700,700i|Roboto+Mono:400,700&amp;subset=cyrillic" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('/dist/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset_ts('app.css') }}" />
 
-    <script async="async" src="{{ asset('/dist/app.js') }}"></script>
+    <script async="async" src="{{ asset_ts('app.js') }}"></script>
 
     @stack('head')
 </head>
