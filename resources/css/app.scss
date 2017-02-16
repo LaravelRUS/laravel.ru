@@ -64,7 +64,7 @@ body {
   min-height: 100%;
   position: relative;
   opacity: 0;
-  transition: opacity .1s ease;
+  transition: opacity .3s ease;
 
   &.visible {
     opacity: 1 !important;
