@@ -19,6 +19,8 @@ ko.punches.enableAll();
  * Validation support
  */
 import 'knockout.validation/dist/knockout.validation';
+ko.validation.configuration.errorMessageClass = "label error";
+
 
 /**
  * Vendor libraries

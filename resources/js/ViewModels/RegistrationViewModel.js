@@ -3,11 +3,6 @@ export default class RegistrationViewModel {
      * @type {[*]}
      */
     errors = [
-        {id: 'name_required', message: 'Псевдоним пользователя не может быть пустым', visible: ko.observable(false)},
-
-        {id: 'email', message: 'E-mail не похож на настоящий', visible: ko.observable(false)},
-        {id: 'email_required', message: 'E-mail не может быть пустым', visible: ko.observable(false)},
-
         {id: 'repeat', message: 'Пароли не совпадают', visible: ko.observable(false)},
         {id: 'password_required', message: 'Пароль не может быть пустым', visible: ko.observable(false)},
     ];
@@ -20,12 +15,20 @@ export default class RegistrationViewModel {
     /**
      * @type {KnockoutObservable<T>}
      */
-    name = ko.observable('');
+    name = ko.observable('')
+        .extend({required: true, minLength: 2});
 
     /**
      * @type {KnockoutObservable<T>}
      */
-    email = ko.observable('');
+    email = ko.observable('')
+        .extend({
+            required: true,
+            pattern: {
+                message: 'E-mail не похож на настоящий',
+                params: '^.+@.+\..{2,}$'
+            }
+        });
 
     /**
      * @type {{original: KnockoutObservable<T>, repeat: KnockoutObservable<T>, matched: KnockoutObservable<T>}}
@@ -36,20 +39,6 @@ export default class RegistrationViewModel {
     };
 
     constructor() {
-        this.name.subscribe(e => {
-            this._validate('name_required', (this.name() || '').toString().length > 0);
-        });
-
-        this.email.subscribe(e => {
-            let email = (this.email() || '').toString();
-
-            this._validate('email_required', email.length > 0);
-
-            if (email.length > 0) {
-                this._validate('email', email.match(/^.+@.+\..{2,}$/));
-            }
-        });
-
         this.password.original.subscribe(e => {
             let password = (this.password.original() || '').toString();
 

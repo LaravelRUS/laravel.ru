@@ -2894,6 +2894,8 @@ input[type=password] {
 
 .label {
   color: #525252;
+  display: block;
+  position: relative;
   padding: 10px 15px;
   margin-top: 5px;
   border-radius: 2px;
@@ -2912,6 +2914,26 @@ input[type=password] {
     color: #f4645f; }
     .label.error:before {
       content: "\F071"; }
+
+input + .label {
+  margin-top: 14px; }
+  input + .label:after {
+    content: '';
+    display: block;
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    box-shadow: -1px -1px 0 #9e9999;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    background: #fff;
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    top: -3px;
+    left: 50%;
+    margin-left: -4px; }
+  input + .label.error:after {
+    box-shadow: -1px -1px 0 #f4645f; }
 
 html {
   height: 100%; }
@@ -3072,11 +3094,16 @@ body {
 /**
  * Pages
  */
-.login .login-advanced-links {
-  padding-top: 20px;
-  text-align: right; }
-  .login .login-advanced-links a {
-    margin-left: 10px; }
+.login {
+  padding: 0 0 50px 0; }
+  .login .login-advanced-links {
+    padding-top: 20px;
+    text-align: right; }
+    .login .login-advanced-links a {
+      margin-left: 10px; }
+
+.registration {
+  padding: 0 0 50px 0; }
 
 .articles-list {
   padding: 30px 0 50px 0; }

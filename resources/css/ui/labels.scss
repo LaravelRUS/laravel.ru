@@ -1,5 +1,7 @@
 .label {
   color: $color-text;
+  display: block;
+  position: relative;
   padding: 10px 15px;
   margin-top: 5px;
   border-radius: 2px;
@@ -17,6 +19,32 @@
 
     &:before {
       content: $fa-var-exclamation-triangle;
+    }
+  }
+}
+
+input + .label {
+  margin-top: 14px;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    box-shadow: -1px -1px 0 $color-gray;
+    transform: rotate(45deg);
+    background: #fff;
+    transform-origin: 50% 50%;
+
+    top: -3px;
+    left: 50%;
+    margin-left: -4px;
+  }
+
+  &.error {
+    &:after {
+      box-shadow: -1px -1px 0 $color-main;
     }
   }
 }

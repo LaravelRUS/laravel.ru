@@ -8,31 +8,38 @@
             {!! csrf_field() !!}
 
             <div class="form-item grid-6 prefix-3 suffix-3">
-                <input type="text" name="name"
-                       data-bind="value: name" placeholder="Ваш псевдоним" />
+                <input type="text" name="name" data-bind="value: name"
+                       placeholder="Ваш псевдоним" />
             </div>
 
             <div class="form-item grid-6 prefix-3 suffix-3">
-                <input type="text" name="email"
-                       data-bind="value: email" placeholder="E-mail" />
+                <input type="text" name="email" data-bind="value: email"
+                       placeholder="E-mail" />
             </div>
 
             <div class="form-item grid-6 prefix-3 suffix-3">
                 <input type="@{{ passwordVisible() ? 'text' : 'password' }}" name="password"
-                       data-bind="value: password.original" placeholder="Пароль" />
+                       data-bind="value: password.original"
+                       placeholder="Пароль @{{ passwordVisible() ? '(видимый)' : '' }}" />
 
                 @{{#if passwordVisible}}
                     <span class="form-item-hide-password" title="Скрыть пароль"
                           data-bind="click: togglePasswordVisibility"></span>
-                <!-- else -->
+                @{{/if}}
+                @{{#ifnot passwordVisible}}
                     <span class="form-item-show-password" title="Показать пароль"
                           data-bind="click: togglePasswordVisibility"></span>
-                @{{/if}}
+                @{{/ifnot}}
             </div>
 
             <div class="form-item grid-6 prefix-3 suffix-3">
                 <input type="@{{ passwordVisible() ? 'text' : 'password' }}" name="password_confirmation"
                        data-bind="value: password.repeat" placeholder="Повторите пароль" />
+                @{{#foreach errors}}
+                    @{{#if visible}}
+                        <div class="label error">@{{ message }}</div>
+                    @{{/if}}
+                @{{/foreach}}
             </div>
 
             <div class="form-item">
@@ -46,11 +53,6 @@
             </div>
 
             <div class="form-item grid-6 prefix-3 suffix-3">
-                @{{#foreach errors}}
-                    @{{#if visible}}
-                        <div class="label error">@{{ message }}</div>
-                    @{{/if}}
-                @{{/foreach}}
                 @foreach($errors->all() as $error)
                     <div class="label error">{{ $error }}</div>
                 @endforeach
