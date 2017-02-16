@@ -19,7 +19,10 @@ ko.punches.enableAll();
  * Validation support
  */
 import 'knockout.validation/dist/knockout.validation';
+import 'knockout.validation/localization/ru-RU';
+
 ko.validation.configuration.errorMessageClass = "label error";
+ko.validation.locale('ru-RU');
 
 
 /**
