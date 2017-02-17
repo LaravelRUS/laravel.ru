@@ -5,10 +5,6 @@
 
 Обсуждение в чате: [![Чат](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/LaravelRUS/laravel.ru)
 
-Таск-лист и багтрекер: [Trello](https://trello.com/b/lDqJrw8x/-)
-
-> Trello приватный, за доступом стучитесь в чат 
-
 ### Инсталляция
 
 1. Установить переменную окружения `APP_ENV` равную `local` (`SetEnv` в `.htaccess` или `fastcgi_param` в конфиге nginx).
