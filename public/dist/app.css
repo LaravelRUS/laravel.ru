@@ -2680,10 +2680,8 @@ body {
   margin-top: 70px;
   opacity: 0;
   box-shadow: inset 0 0 0 1px #dee0df, 0 2px 6px rgba(0, 0, 0, 0.2);
-  -webkit-transform: scale(1.01);
-          transform: scale(1.01);
-  -webkit-filter: blur(2px);
-  transition: top 0s linear 0.3s, -webkit-filter 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), transform 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), margin 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), opacity 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+  -webkit-transition: top 0s linear 0.3s, margin 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), opacity 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+  transition: top 0s linear 0.3s, margin 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), opacity 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355);
   /* List link */ }
   .dropdown nav:after, .dropdown nav:before {
     content: '';
@@ -2728,10 +2726,8 @@ body {
     top: 29px;
     margin-top: 40px;
     opacity: 1;
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    -webkit-filter: blur(0);
-    transition: top 0s linear 0s, -webkit-filter 0.4s cubic-bezier(0.585, 0.22, 0.12, 1.355), transform 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), margin 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), opacity 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355); }
+    -webkit-transition: top 0s linear 0s, margin 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), opacity 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+    transition: top 0s linear 0s, margin 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), opacity 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355); }
 
 input[type=text],
 input[type=password] {
