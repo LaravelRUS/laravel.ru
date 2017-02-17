@@ -14,7 +14,9 @@
     float: right;
     width: 0;
     height: 0;
-    color: $color-border;
+    color: $color-gray;
+    transition: color .3s $swift;
+
 
     &:before {
       @include fa-icon;
@@ -25,16 +27,21 @@
       z-index: 3;
       font-size: 18px;
       cursor: pointer;
+      transform: scale(1);
+      transform-origin: 50% 50%;
+      transition: transform .3s $swift;
     }
 
     &:hover {
-      transition: color .3s $swift;
       color: $color-main;
+      &:before {
+        transform: scale(1.1);
+      }
     }
 
     &:active:before {
       transition: transform .2s $swift;
-      transform: scale(.8);
+      transform: scale(.9);
     }
   }
 

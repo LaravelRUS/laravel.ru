@@ -15,8 +15,7 @@ input[type=password] {
   }
 
   &:focus {
-    transition:
-      box-shadow .3s $swift;
+    transition: box-shadow .3s $swift;
     box-shadow: 0 0 0 1px $color-main;
   }
 }

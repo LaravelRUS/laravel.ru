@@ -53,6 +53,7 @@ header {
   nav {
     user-select: none;
     float: right;
+    padding-right: 20px;
 
     a,
     .dropdown {
@@ -79,30 +80,34 @@ header {
     height: 32px;
     margin: (($height - 32px) / 2) 0;
     margin-left: 25px;
-    box-shadow:
-      0 0 0 1px $color-border;
+    box-shadow: 0 0 0 1px $color-border;
     line-height: 32px;
     font-size: 16px;
     color: $color-text;
     text-align: center;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform .2s $swift;
 
     &:after {
       @include fa-icon;
-      content: $fa-var-sign-in;
+      content: $fa-var-lock;
     }
 
     &:hover {
       color: $color-main;
-      box-shadow:
-        0 0 0 1px $color-main;
+      box-shadow: 0 0 0 1px $color-main;
+      transform: scale(1.05);
 
-      transition:
-        color .3s $swift,
-        box-shadow .3s $swift;
+      &:after {
+        content: $fa-var-unlock-alt;
+      }
     }
 
     &:active {
-      background: #fcfcfc;
+      background: $color-main;
+      color: #fff;
+      transform: scale(.9);
     }
   }
 }

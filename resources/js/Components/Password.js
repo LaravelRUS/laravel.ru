@@ -33,8 +33,7 @@ export default class Password extends AbstractComponent {
     /**
      * @param params
      */
-    constructor(params, root) {
-        console.log(root);
+    constructor(params) {
         super();
         this.mergeParams(params);
     }
