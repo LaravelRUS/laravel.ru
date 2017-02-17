@@ -16,7 +16,10 @@ export default class RegistrationViewModel {
      * @type {KnockoutObservable<T>}
      */
     name = ko.observable('')
-        .extend({required: true, minLength: 2});
+        .extend({
+            required: true,
+            minLength: 2
+        });
 
     /**
      * @type {KnockoutObservable<T>}
@@ -35,7 +38,7 @@ export default class RegistrationViewModel {
      */
     password = {
         original: ko.observable(''),
-        repeat: ko.observable('')
+        repeat:   ko.observable('')
     };
 
     constructor() {
@@ -78,10 +81,6 @@ export default class RegistrationViewModel {
 
 
     register() {
-        for (let field of [this.password.original, this.password.repeat, this.email, this.name]) {
-            field.notifySubscribers();
-        }
-
         for (let error of this.errors) {
             if (error.visible()) {
                 document.location = '#';
