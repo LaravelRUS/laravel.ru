@@ -34,7 +34,7 @@
 
             <div class="form-item">
                 <div class="grid-3 prefix-3">
-                    <a href="{{ route('login') }}" rel="nofollow">У меня уже есть аккаунт</a>
+                    <a href="{{ route('login') }}" class="button">Есть аккаунт?</a>
                 </div>
 
                 <div class="grid-3 suffix-3">

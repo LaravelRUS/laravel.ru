@@ -1,5 +1,7 @@
 .form-item {
+  @include clear;
   margin-bottom: 20px;
+  display: block;
 
   input:not([type=checkbox]):not([type=radio]),
   textarea,
@@ -48,13 +50,13 @@
 
   .form-item-show-password {
     &:before {
-      content: $fa-var-eye;
+      content: $fa-var-eye-slash;
     }
   }
 
   .form-item-hide-password {
     &:before {
-      content: $fa-var-eye-slash;
+      content: $fa-var-eye;
     }
   }
 }

@@ -2761,7 +2761,13 @@ input[type=password] {
     box-shadow: 0 0 0 1px #f4645f; }
 
 .form-item {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  display: block; }
+  .form-item:after {
+    display: table;
+    width: 100%;
+    content: '';
+    clear: both; }
   .form-item input:not([type=checkbox]):not([type=radio]),
   .form-item textarea,
   .form-item select {
@@ -2815,9 +2821,9 @@ input[type=password] {
       -webkit-transform: scale(0.9);
               transform: scale(0.9); }
   .form-item .form-item-show-password:before {
-    content: "\F06E"; }
-  .form-item .form-item-hide-password:before {
     content: "\F070"; }
+  .form-item .form-item-hide-password:before {
+    content: "\F06E"; }
 
 .button {
   display: inline-block;
@@ -2858,18 +2864,19 @@ input[type=password] {
 .checkbox {
   width: auto;
   display: inline-block;
-  height: 18px;
-  line-height: 18px;
+  height: 19px;
+  line-height: 19px;
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none; }
   .checkbox input[type=checkbox] {
+    border: none;
     cursor: pointer;
     display: block;
     float: left;
-    margin-right: 6px;
+    margin-right: 10px;
     width: 18px;
     height: 18px;
     -webkit-appearance: none;
@@ -3127,11 +3134,8 @@ body {
  */
 .login {
   padding: 0 0 50px 0; }
-  .login .login-advanced-links {
-    padding-top: 20px;
+  .login .login-reestablish {
     text-align: right; }
-    .login .login-advanced-links a {
-      margin-left: 10px; }
 
 .registration {
   padding: 0 0 50px 0; }

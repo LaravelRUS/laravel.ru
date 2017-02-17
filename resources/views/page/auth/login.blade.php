@@ -26,6 +26,17 @@
                     </label>
                 </div>
 
+                <div class="grid-3 suffix-3 login-reestablish">
+                    <a href="#" rel="nofollow">Восстановление пароля</a>
+                </div>
+            </div>
+
+
+            <div class="form-item">
+                <div class="grid-3 prefix-3">
+                    <a href="{{ route('registration') }}" class="button">Нет аккаунта?</a>
+                </div>
+
                 <div class="grid-3 suffix-3">
                     <input type="submit" value="Вход" class="button main"/>
                 </div>
@@ -38,14 +49,6 @@
                     @endforeach
                 </div>
             @endif
-
-            <div class="login-advanced-links grid-6 prefix-3 suffix-3">
-                <a href="{{ route('registration') }}" rel="nofollow">Нет аккаунта?</a>
-
-                <a href="#" rel="nofollow">Восстановление пароля</a>
-            </div>
         </form>
-
-
     </main>
 @stop
