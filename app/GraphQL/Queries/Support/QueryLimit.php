@@ -1,26 +1,22 @@
-<?php declare(strict_types = 1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace App\GraphQL\Queries\Support;
 
 use GraphQL\Type\Definition\Type;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder as QBuilder;
+use Illuminate\Database\Eloquent\Builder as EBuilder;
 
-/**
- * Class QueryLimit
- *
- * @package App\GraphQL\Queries\Support
- */
 trait QueryLimit
 {
-    /**
-     * @param array $args
-     * @return array
-     */
     public function argumentsWithLimit(array $args): array
     {
         return array_merge($args, [
@@ -36,11 +32,12 @@ trait QueryLimit
     }
 
     /**
-     * @param Builder|\Illuminate\Database\Query\Builder $builder
-     * @param array $args
-     * @return Builder
+     * @param  EBuilder|QBuilder  $builder
+     * @param  array              $args
+     *
+     * @return EBuilder
      */
-    public function paginate(Builder $builder, array &$args = [])
+    public function paginate($builder, array &$args = [])
     {
         $limit = null;
 

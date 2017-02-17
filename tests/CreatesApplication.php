@@ -1,26 +1,22 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace Tests;
 
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Application;
 
-/**
- * Class CreatesApplication
- * @package Tests
- */
 trait CreatesApplication
 {
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
+    public function createApplication(): Application
     {
         $app = require __DIR__ . '/../bootstrap/app.php';
 

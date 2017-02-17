@@ -1,18 +1,21 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 use Illuminate\Routing\Router;
 
 /** @var Router $router */
 
-$router->get('/', 'HomeController@index')->name('home');
-
 $router->pattern('id', '[0-9]+');
 
+$router->get('/', 'HomeController@index')->name('home');
 
 $router->group(['namespace' => 'Auth'], function (Router $router) {
     $router->group(['middleware' => ['guest']], function (Router $router) {
@@ -23,7 +26,7 @@ $router->group(['namespace' => 'Auth'], function (Router $router) {
         $router->post('register', 'RegistrationController@register');
     });
 
-    $router->group(['middleware' => ['auth']], function(Router $router) {
+    $router->group(['middleware' => ['auth']], function (Router $router) {
         $router->match(['GET', 'POST'], 'logout', 'LoginController@logout')->name('logout');
         $router->get('confirmed', 'ConfirmationController@index')->name('confirmation.confirmed');
 

@@ -1,10 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace App\Services\StaticServer;
 
 use App\Models\User;
@@ -15,58 +19,30 @@ use Intervention\Image\Constraint;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 
-/**
- * Class AvatarUploader
- * @package App\Services\StaticServer
- */
 class AvatarUploader
 {
-    /**
-     * @const string
-     */
     private const TEMP_PATH = 'app/public';
 
-    /**
-     * @const string
-     */
     private const GRAVATAR_URL = 'https://www.gravatar.com/avatar/%s?default=404';
 
-    /**
-     * @var ImageManager
-     */
+    /** @var ImageManager */
     private $image;
 
-    /**
-     * @var Client
-     */
+    /** @var Client */
     private $http;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $width = 128;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $height = 128;
 
-    /**
-     * AvatarUploader constructor.
-     * @param ImageManager $manager
-     * @param Client $client
-     */
     public function __construct(ImageManager $manager, Client $client)
     {
         $this->image = $manager;
         $this->http = $client;
     }
 
-    /**
-     * @param int $width
-     * @param int $height
-     * @return AvatarUploader
-     */
     public function size(int $width, int $height): AvatarUploader
     {
         [$this->width, $this->height] = [$width, $height];
@@ -74,11 +50,6 @@ class AvatarUploader
         return $this;
     }
 
-    /**
-     * @param User $user
-     * @param Filesystem $filesystem
-     * @return User
-     */
     public function upload(User $user, Filesystem $filesystem): User
     {
         $gravatarUrl = $this->getGravatarUrl($user);
@@ -110,10 +81,6 @@ class AvatarUploader
         return $user;
     }
 
-    /**
-     * @param User $user
-     * @return string
-     */
     private function getGravatarUrl(User $user): string
     {
         $hash = md5(strtolower(trim($user->email)));
@@ -121,23 +88,15 @@ class AvatarUploader
         return sprintf(self::GRAVATAR_URL, $hash);
     }
 
-    /**
-     * @param User $user
-     * @return string
-     */
     private function createImageName(User $user): string
     {
         $hash = md5(random_int(0, 9999) . $user->email);
 
-        return substr($hash, 0, 2) . '/' .
-            substr($hash, 2, 2) . '/' .
-            substr($hash, 4) . '.png';
+        return vsprintf('%s/%s/%s.png', [
+            substr($hash, 0, 2), substr($hash, 2, 2), substr($hash, 4)
+        ]);
     }
 
-    /**
-     * @param string $gravatarUrl
-     * @return Image
-     */
     private function process(string $gravatarUrl): Image
     {
         return $this->image->make($gravatarUrl)

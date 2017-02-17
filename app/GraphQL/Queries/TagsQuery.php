@@ -1,10 +1,14 @@
-<?php declare(strict_types = 1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace App\GraphQL\Queries;
 
 use App\GraphQL\Queries\Support\QueryLimit;
@@ -12,8 +16,9 @@ use App\GraphQL\Serializers\TagSerializer;
 use App\GraphQL\Types\TagType;
 use App\Models\Tag;
 use Folklore\GraphQL\Support\Query;
-use GraphQL;
+use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\Type;
+use Illuminate\Support\Collection;
 
 /**
  * Class TagsQuery
@@ -24,26 +29,17 @@ class TagsQuery extends Query
 {
     use QueryLimit;
 
-    /**
-     * @var array
-     */
     protected $attributes = [
         'name'        => 'Tags list query',
         'description' => 'Returns a list of available tags',
     ];
 
-    /**
-     * @return GraphQL\Type\Definition\ListOfType
-     */
-    public function type()
+    public function type(): ListOfType
     {
-        return Type::listOf(GraphQL::type(TagType::getName()));
+        return Type::listOf(\GraphQL::type(TagType::getName()));
     }
 
-    /**
-     * @return array
-     */
-    public function args()
+    public function args(): array
     {
         return $this->argumentsWithLimit([
             'id' => [
@@ -53,13 +49,7 @@ class TagsQuery extends Query
         ]);
     }
 
-    /**
-     * @param $root
-     * @param array $args
-     * @return \Illuminate\Support\Collection
-     * @throws \InvalidArgumentException
-     */
-    public function resolve($root, array $args = [])
+    public function resolve($root, array $args = []): Collection
     {
         $query = Tag::query();
 

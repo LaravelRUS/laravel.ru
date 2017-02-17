@@ -1,10 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
 
 namespace App\Providers;
 
@@ -12,20 +15,14 @@ use App\Views\Composers\AuthComposer;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
-/**
- * Class ViewsServiceProvider
- * @package App\Providers
- */
 class ViewsServiceProvider extends ServiceProvider
 {
-    /**
-     * @var Factory
-     */
+    /** @var Factory */
     private $views;
 
-    public function boot(): void
+    public function boot(Factory $viewFactory): void
     {
-        $this->views = $this->app->make(Factory::class);
+        $this->views = $viewFactory;
 
         $this->compose('*', AuthComposer::class);
     }
@@ -36,8 +33,8 @@ class ViewsServiceProvider extends ServiceProvider
     }
 
     /**
-     * @param array|string $views
-     * @param string $viewComposer
+     * @param  array|string  $views
+     * @param  string        $viewComposer
      */
     private function compose($views, string $viewComposer): void
     {

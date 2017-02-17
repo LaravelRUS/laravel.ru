@@ -1,10 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use App\Models\Article;
@@ -12,24 +16,11 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-/**
- * Class EventServiceProvider
- * @package App\Providers
- */
 class EventServiceProvider extends ServiceProvider
 {
-    /**
-     * The event listener mappings for the application.
-     *
-     * @var array
-     */
+    /** @var array */
     protected $listen = [];
 
-    /**
-     * Register any events for your application.
-     *
-     * @return void
-     */
     public function boot(): void
     {
         User::observe(User\AvatarUploaderObserver::class);

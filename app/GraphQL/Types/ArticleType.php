@@ -1,34 +1,26 @@
-<?php declare(strict_types = 1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace App\GraphQL\Types;
 
-use App\Models\Article\Status;
 use GraphQL\Type\Definition\Type;
 
-/**
- * Class ArticleType
- *
- * @package App\GraphQL\Types
- */
 class ArticleType extends AbstractType
 {
-    /**
-     * @var array
-     */
     protected $attributes = [
         'name'        => 'Article',
         'description' => 'Article object',
     ];
 
-    /**
-     * @return array
-     */
-    public function fields()
+    public function fields(): array
     {
         return [
             'id'           => [

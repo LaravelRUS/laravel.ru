@@ -1,10 +1,14 @@
-<?php declare(strict_types = 1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace App\GraphQL\Queries;
 
 use App\GraphQL\Queries\Support\QueryLimit;
@@ -12,38 +16,25 @@ use App\GraphQL\Serializers\UserSerializer;
 use App\GraphQL\Types\UserType;
 use App\Models\User;
 use Folklore\GraphQL\Support\Query;
-use GraphQL;
+use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\Type;
+use Illuminate\Support\Collection;
 
-/**
- * Class ArticlesQuery
- *
- * @package App\GraphQL
- */
 class UsersQuery extends Query
 {
     use QueryLimit;
 
-    /**
-     * @var array
-     */
     protected $attributes = [
         'name'        => 'Users list query',
         'description' => 'Returns a list of users',
     ];
 
-    /**
-     * @return GraphQL\Type\Definition\ListOfType
-     */
-    public function type()
+    public function type(): ListOfType
     {
-        return Type::listOf(GraphQL::type(UserType::getName()));
+        return Type::listOf(\GraphQL::type(UserType::getName()));
     }
 
-    /**
-     * @return array
-     */
-    public function args()
+    public function args(): array
     {
         return $this->argumentsWithLimit([
             'id' => [
@@ -53,13 +44,7 @@ class UsersQuery extends Query
         ]);
     }
 
-    /**
-     * @param $root
-     * @param array $args
-     * @return \Illuminate\Support\Collection
-     * @throws \InvalidArgumentException
-     */
-    public function resolve($root, array $args = [])
+    public function resolve($root, array $args = []): Collection
     {
         $query = User::query();
 

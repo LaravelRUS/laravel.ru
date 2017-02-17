@@ -1,36 +1,30 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Contracts\Session\Session;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
-/**
- * Class ConfirmationController
- *
- * @package App\Http\Controllers\Auth
- */
 class ConfirmationController extends Controller
 {
-    /**
-     * @param  Session  $session
-     *
-     * @return View
-     */
     public function index(Session $session)
     {
-        if (!$session->has('user')) {
+        if (! $session->has('user')) {
             return redirect()->route('home');
         }
 
@@ -39,26 +33,15 @@ class ConfirmationController extends Controller
         ]);
     }
 
-    /**
-     * TODO: Change encryption algo to JWT
-     *
-     * @param  string     $token
-     * @param  JWTInterface  $crypt
-     *
-     * @return View
-     *
-     * @throws \LogicException
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @throws \Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException
-     */
-    public function confirm(string $token, JWTInterface $crypt)
+    //TODO: Change encryption algo to JWT
+    public function confirm(string $token, JWTInterface $crypt, Guard $guard)
     {
         $email = Arr::get($crypt->decode($token), 'email');
 
         /** @var User $user */
         $user = User::whereEmail($email)->first();
 
-        if (!$user) {
+        if (! $user) {
             throw new NotFoundHttpException('User with target id not found');
         }
 
@@ -69,7 +52,8 @@ class ConfirmationController extends Controller
         $user->is_confirmed = true;
         $user->save();
 
-        \Auth::login($user, true);
+        /** @var StatefulGuard $guard */
+        $guard->login($user, true);
 
         return redirect()
             ->route('confirmation.confirmed')

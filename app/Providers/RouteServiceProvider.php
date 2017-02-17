@@ -1,20 +1,19 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
 
 namespace App\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-/**
- * Class RouteServiceProvider
- * @package App\Providers
- */
 class RouteServiceProvider extends ServiceProvider
 {
     /**
@@ -38,12 +37,6 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
     }
 
-    /**
-     * Define the routes for the application.
-     *
-     * @param Router $router
-     * @return void
-     */
     public function map(Router $router): void
     {
         $this->mapApiRoutes($router);
@@ -51,14 +44,6 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes($router);
     }
 
-    /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @param Router $router
-     * @return void
-     */
     protected function mapWebRoutes(Router $router): void
     {
         $router->group([
@@ -67,14 +52,6 @@ class RouteServiceProvider extends ServiceProvider
         ], base_path('routes/web.php'));
     }
 
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @param Router $router
-     * @return void
-     */
     protected function mapApiRoutes(Router $router): void
     {
         $router->group([

@@ -1,10 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace App\Models\Article;
 
 use CommerceGuys\Enum\AbstractEnum;
@@ -20,9 +24,6 @@ final class Status extends AbstractEnum
     const REVIEW = 'Review';
     const PUBLISHED = 'Published';
 
-    /**
-     * @return EnumType
-     */
     public static function toGraphQL(): EnumType
     {
         return new EnumType([

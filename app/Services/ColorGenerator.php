@@ -1,22 +1,18 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace App\Services;
 
-/**
- * Class ColorGenerator
- * @package App\Services
- */
 class ColorGenerator
 {
-    /**
-     * @param bool $withPrefix
-     * @return string
-     */
     public function make(bool $withPrefix = true): string
     {
         return ($withPrefix ? '#' : '') .
@@ -25,10 +21,7 @@ class ColorGenerator
             strtolower(sprintf('%02X', $this->createDarkColor()));
     }
 
-    /**
-     * @return int
-     */
-    private function createDarkColor()
+    private function createDarkColor(): int
     {
         return random_int(50, 150);
     }
