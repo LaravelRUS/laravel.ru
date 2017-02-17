@@ -12,7 +12,12 @@ $width:             960px;
 $input-size:        48px;
 $button-size:       32px;
 $checkbox-size:     18px;
+
+/**
+ * Animations
+ */
 $swift:             cubic-bezier(.55, 0, .1, 1);
+$bounce:            cubic-bezier(.585, .22, .12, 1.355);
 
 $ui-box-shadow:
   0 1px 1px 0 rgba(#000, .1),

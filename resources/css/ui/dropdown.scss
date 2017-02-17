@@ -29,22 +29,22 @@
     position: absolute;
     width: 200px;
     padding: 15px 0;
-    border-radius: 3px;
+    border-radius: 0 0 2px 2px;
     right: -5px;
     top: -9999px;
     margin-top: 70px;
     opacity: 0;
     box-shadow:
         inset 0 0 0 1px $color-border,
-        $ui-box-shadow;
+        0 2px 6px rgba(#000, .2);
     transform: scale(1.01);
     -webkit-filter: blur(2px);
     transition:
         top 0s linear .3s,
-        -webkit-filter .3s $swift,
-        transform .3s $swift,
-        margin .3s $swift,
-        opacity .3s $swift;
+        -webkit-filter .3s $bounce,
+        transform .3s $bounce,
+        margin .3s $bounce,
+        opacity .3s $bounce;
 
     &:after,
     &:before {
@@ -102,17 +102,17 @@
 
     nav {
       pointer-events: all;
-      top: 25px;
+      top: 29px;
       margin-top: 40px;
       opacity: 1;
       transform: scale(1);
       -webkit-filter: blur(0);
       transition:
         top 0s linear 0s,
-        -webkit-filter .3s $swift,
-        transform .3s $swift,
-        margin .3s $swift,
-        opacity .3s $swift;
+        -webkit-filter .4s $bounce,
+        transform .3s $bounce,
+        margin .3s $bounce,
+        opacity .3s $bounce;
     }
   }
 }

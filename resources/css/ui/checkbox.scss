@@ -12,6 +12,7 @@
     display: block;
     float: left;
     margin-right: 10px;
+    background: #fff;
     width: $checkbox-size;
     height: $checkbox-size;
     appearance: none;
@@ -27,7 +28,7 @@
       box-shadow: 0 0 0 1px $color-main !important;
 
       & + .checkbox-bullet:after {
-        transform: scale(1);
+        transform: scale(.7);
       }
     }
   }
@@ -37,16 +38,17 @@
       display: block;
       content: '';
       position: absolute;
-      width: $checkbox-size / 2 + 1px;
-      height: $checkbox-size / 2 + 1px;
+      width: $checkbox-size;
+      height: $checkbox-size;
       pointer-events: none;
       border-radius: 50%;
       background: $color-main;
-      left: 4px;
-      top: 4px;
+      left: 0;
+      top: 0;
       z-index: 2;
       transform: scale(0);
-      transition: transform .2s cubic-bezier(0.460, 0.010, 0.075, 1.515);
+      transition: transform .3s $bounce;
+      transform-origin: 50% 50%;
     }
   }
 }

@@ -91,7 +91,7 @@ header {
     text-align: center;
     transform: scale(1);
     transform-origin: 50% 50%;
-    transition: transform .2s $swift;
+    transition: transform .2s $bounce;
 
     &:after {
       @include fa-icon;

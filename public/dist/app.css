@@ -2640,6 +2640,9 @@ body {
   content: "\F20C"; }
 
 /**
+ * Animations
+ */
+/**
  * Variables
  */
 /**
@@ -2671,16 +2674,16 @@ body {
   position: absolute;
   width: 200px;
   padding: 15px 0;
-  border-radius: 3px;
+  border-radius: 0 0 2px 2px;
   right: -5px;
   top: -9999px;
   margin-top: 70px;
   opacity: 0;
-  box-shadow: inset 0 0 0 1px #dee0df, 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 0 0 1px #dee0df, 0 2px 6px rgba(0, 0, 0, 0.2);
   -webkit-transform: scale(1.01);
           transform: scale(1.01);
   -webkit-filter: blur(2px);
-  transition: top 0s linear 0.3s, -webkit-filter 0.3s cubic-bezier(0.55, 0, 0.1, 1), transform 0.3s cubic-bezier(0.55, 0, 0.1, 1), margin 0.3s cubic-bezier(0.55, 0, 0.1, 1), opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: top 0s linear 0.3s, -webkit-filter 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), transform 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), margin 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), opacity 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355);
   /* List link */ }
   .dropdown nav:after, .dropdown nav:before {
     content: '';
@@ -2722,13 +2725,13 @@ body {
             transform: rotate(-180deg); }
   .dropdown.active nav {
     pointer-events: all;
-    top: 25px;
+    top: 29px;
     margin-top: 40px;
     opacity: 1;
     -webkit-transform: scale(1);
             transform: scale(1);
     -webkit-filter: blur(0);
-    transition: top 0s linear 0s, -webkit-filter 0.3s cubic-bezier(0.55, 0, 0.1, 1), transform 0.3s cubic-bezier(0.55, 0, 0.1, 1), margin 0.3s cubic-bezier(0.55, 0, 0.1, 1), opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1); }
+    transition: top 0s linear 0s, -webkit-filter 0.4s cubic-bezier(0.585, 0.22, 0.12, 1.355), transform 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), margin 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), opacity 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355); }
 
 input[type=text],
 input[type=password] {
@@ -2883,6 +2886,7 @@ input[type=password] {
     display: block;
     float: left;
     margin-right: 10px;
+    background: #fff;
     width: 18px;
     height: 18px;
     -webkit-appearance: none;
@@ -2896,26 +2900,28 @@ input[type=password] {
     .checkbox input[type=checkbox]:checked {
       box-shadow: 0 0 0 1px #f4645f !important; }
       .checkbox input[type=checkbox]:checked + .checkbox-bullet:after {
-        -webkit-transform: scale(1);
-                transform: scale(1); }
+        -webkit-transform: scale(0.7);
+                transform: scale(0.7); }
   .checkbox .checkbox-bullet:after {
     display: block;
     content: '';
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 18px;
+    height: 18px;
     pointer-events: none;
     border-radius: 50%;
     background: #f4645f;
-    left: 4px;
-    top: 4px;
+    left: 0;
+    top: 0;
     z-index: 2;
     -webkit-transform: scale(0);
             transform: scale(0);
-    -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.46, 0.01, 0.075, 1.515);
-    transition: -webkit-transform 0.2s cubic-bezier(0.46, 0.01, 0.075, 1.515);
-    transition: transform 0.2s cubic-bezier(0.46, 0.01, 0.075, 1.515);
-    transition: transform 0.2s cubic-bezier(0.46, 0.01, 0.075, 1.515), -webkit-transform 0.2s cubic-bezier(0.46, 0.01, 0.075, 1.515); }
+    -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+    transition: -webkit-transform 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+    transition: transform 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+    transition: transform 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), -webkit-transform 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%; }
 
 .label {
   color: #525252;
@@ -3096,10 +3102,10 @@ body {
               transform: scale(1);
       -webkit-transform-origin: 50% 50%;
               transform-origin: 50% 50%;
-      -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.55, 0, 0.1, 1);
-      transition: -webkit-transform 0.2s cubic-bezier(0.55, 0, 0.1, 1);
-      transition: transform 0.2s cubic-bezier(0.55, 0, 0.1, 1);
-      transition: transform 0.2s cubic-bezier(0.55, 0, 0.1, 1), -webkit-transform 0.2s cubic-bezier(0.55, 0, 0.1, 1); }
+      -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+      transition: -webkit-transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+      transition: transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+      transition: transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355), -webkit-transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355); }
       body header .auth-button:after {
         display: inline-block;
         font: normal normal normal 14px/1 FontAwesome;
