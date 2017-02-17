@@ -9,8 +9,8 @@
 			<h1 class="c-white letter-spacing-stiff">Laravel &mdash; php-фреймворк нового поколения</h1>
 			<h2 class="c-white small m-b-25">Мы верим, что процесс разработки только тогда наиболее продуктивен, когда работа с фреймворком приносит радость и удовольствие. Счастливые разработчики пишут лучший код.</h2>
 			<ul class="inline">
-				<li>				
-					<a class="button" href="{{ route('documentation', ["5.2"]) }}">Документация фреймворка</a>
+				<li>
+					<a class="button" href="{{ route('documentation') }}">Документация фреймворка</a>
 				</li>
 				<li>
 					<a class="button" href="http://sleepingowladmin.ru">Конструктор админки от SleepingOwl</a>
