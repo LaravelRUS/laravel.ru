@@ -3078,6 +3078,8 @@ body {
         body header nav a:hover,
         body header nav .dropdown:hover {
           color: #f4645f; }
+      body header nav a.active {
+        color: #f4645f; }
     body header .auth-button {
       display: inline-block;
       border-radius: 50%;
@@ -3109,8 +3111,8 @@ body {
       body header .auth-button:hover {
         color: #f4645f;
         box-shadow: 0 0 0 1px #f4645f;
-        -webkit-transform: scale(1.05);
-                transform: scale(1.05); }
+        -webkit-transform: scale(0.9);
+                transform: scale(0.9); }
         body header .auth-button:hover:after {
           content: "\F13E"; }
       body header .auth-button:active {

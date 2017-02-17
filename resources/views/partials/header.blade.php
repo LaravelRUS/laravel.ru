@@ -9,7 +9,8 @@
 
         <nav>
             <a href="#">Документация</a>
-            <a href="{{ route('articles') }}">Статьи</a>
+            <a href="{{ route('articles') }}"
+               class="{{ (url()->current() === route('articles')) ? 'active' : '' }}">Статьи</a>
             <a href="#">Пакеты</a>
 
 
