@@ -7,7 +7,7 @@
 - WebDav: [https://new.laravel.su/cdn](https://new.laravel.su/cdn)
 - GraphQL API: [https://new.laravel.su/graphiql](https://new.laravel.su/graphiql)
 
-**ВНИМАНИЕ! Это нестабильная ветка, актуальная [находится тут](https://github.com/LaravelRUS/laravel.ru/tree/production)**
+**ВНИМАНИЕ! Это нестабильная ветка, актуальная [находится тут](https://github.com/LaravelRUS/laravel.ru/tree/develop)**
 
 ## Установка
 
@@ -25,7 +25,7 @@
 
 - [Wiki](https://github.com/LaravelRUS/laravel.ru/wiki)
   - [Концепция](https://github.com/LaravelRUS/laravel.ru/wiki/%D0%9A%D0%BE%D0%BD%D1%86%D0%B5%D0%BF%D1%86%D0%B8%D1%8F-%D1%81%D0%B0%D0%B9%D1%82%D0%B0)
-  - [Структура кода](https://github.com/LaravelRUS/laravel.ru/wiki/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0-%D0%BA%D0%BE%D0%B4%D0%B0) _\*Только для ветки **production**_
+  - [Структура кода](https://github.com/LaravelRUS/laravel.ru/wiki/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0-%D0%BA%D0%BE%D0%B4%D0%B0) _\*Только для ветки **develop**_
    
 ## Помощь
    
@@ -33,4 +33,4 @@
   - [Инструкция, как это делать правильно](http://sharedstation.net/articles/rus-documentation-contribution-guide).
   - [Обсуждение: Чат](https://gitter.im/LaravelRUS/docs)
 - Работа над [кодом](https://trello.com/b/lDqJrw8x/-). 
-  - В разработке используется модель [git-flow](https://www.atlassian.com/ja/git/workflows/pageSections/00/contentFullWidth/0/tabs/02/pageSections/010/contentFullWidth/0/content_files/file0/document/git-workflow-release-cycle-4maintenance.png), за тем исключением, что 
+  - В разработке используется модель [git-flow](https://www.atlassian.com/ja/git/workflows/pageSections/00/contentFullWidth/0/tabs/02/pageSections/010/contentFullWidth/0/content_files/file0/document/git-workflow-release-cycle-4maintenance.png)
