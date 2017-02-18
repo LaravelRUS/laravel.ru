@@ -6,15 +6,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Services\ContentRenderer\ContentRenderInterface;
-use App\Services\ContentRenderer\MarkdownRenderer;
 use cebe\markdown\GithubMarkdown;
 use Illuminate\Support\ServiceProvider;
+use App\Services\ContentRenderer\MarkdownRenderer;
+use App\Services\ContentRenderer\ContentRenderInterface;
 
 class MarkdownServiceProvider extends ServiceProvider
 {
