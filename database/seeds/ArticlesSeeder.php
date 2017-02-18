@@ -1,14 +1,16 @@
-<?php declare(strict_types=1);
+<?php
 
-use App\Models\Article;
-use App\Models\User;
+declare(strict_types=1);
+
 use Carbon\Carbon;
 use Faker\Factory;
+use App\Models\User;
+use App\Models\Article;
 use Illuminate\Database\Seeder;
 use Symfony\Component\Finder\Finder;
 
 /**
- * Class ArticlesSeeder
+ * Class ArticlesSeeder.
  */
 class ArticlesSeeder extends Seeder
 {
@@ -68,7 +70,7 @@ class ArticlesSeeder extends Seeder
                     ->addDays(random_int(0, 300)),
             ]);
 
-            echo ' - ' . $i . ': ' . $article->title . "\n";
+            echo ' - '.$i.': '.$article->title."\n";
         }
     }
 
@@ -119,9 +121,9 @@ class ArticlesSeeder extends Seeder
     {
         $level = random_int(3, 6);
 
-        return "\n" .
-            str_repeat('#', $level) . ' ' .
-            $this->faker->words(random_int(1, 12), true) . "\n";
+        return "\n".
+            str_repeat('#', $level).' '.
+            $this->faker->words(random_int(1, 12), true)."\n";
     }
 
     /**
@@ -133,11 +135,11 @@ class ArticlesSeeder extends Seeder
 
         $result = [];
         for ($i = 0; $i < $listSize; $i++) {
-            $result[] = (random_int(0, 5) && $i !== 0 > 4 ? '  ' : '') .
-                '- ' . $this->faker->words(random_int(1, 12), true);
+            $result[] = (random_int(0, 5) && $i !== 0 > 4 ? '  ' : '').
+                '- '.$this->faker->words(random_int(1, 12), true);
         }
 
-        return implode("\n", $result) . "\n";
+        return implode("\n", $result)."\n";
     }
 
     /**
@@ -145,7 +147,7 @@ class ArticlesSeeder extends Seeder
      */
     private function createQuote(): string
     {
-        return '> ' . $this->faker->sentences(random_int(1, 4), true) . "\n";
+        return '> '.$this->faker->sentences(random_int(1, 4), true)."\n";
     }
 
     /**
@@ -157,8 +159,8 @@ class ArticlesSeeder extends Seeder
         $file = $this->faker->randomElement($this->files);
         $sources = $file->getContents();
 
-        return "\n" . '```' . "\n" .
-            $sources . "\n" .
+        return "\n".'```'."\n".
+            $sources."\n".
         '```';
     }
 }

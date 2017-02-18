@@ -6,19 +6,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Illuminate\Support\Arr;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Contracts\Session\Session;
-use Illuminate\Support\Arr;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ConfirmationController extends Controller
 {
@@ -52,7 +51,7 @@ class ConfirmationController extends Controller
         $user->is_confirmed = true;
         $user->save();
 
-        /** @var StatefulGuard $guard */
+        /* @var StatefulGuard $guard */
         $guard->login($user, true);
 
         return redirect()
