@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace Tests\Feature;
@@ -38,7 +37,7 @@ class RegistrationPageTest extends TestCase
     public function testRegistrationAction(): void
     {
         $email = Factory::create()->email;
-        $password = '111' . random_int(1, 999999999);
+        $password = '111'.random_int(1, 999999999);
 
         $response = $this->post(route('registration', [], false), [
             'name'                  => 'Unit test user',

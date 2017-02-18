@@ -6,13 +6,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Contracts\Session\Session;
@@ -24,7 +23,7 @@ class ConfirmationController extends Controller
 {
     public function index(Session $session)
     {
-        if (! $session->has('user')) {
+        if (!$session->has('user')) {
             return redirect()->route('home');
         }
 
@@ -41,7 +40,7 @@ class ConfirmationController extends Controller
         /** @var User $user */
         $user = User::whereEmail($email)->first();
 
-        if (! $user) {
+        if (!$user) {
             throw new NotFoundHttpException('User with target id not found');
         }
 
@@ -52,7 +51,7 @@ class ConfirmationController extends Controller
         $user->is_confirmed = true;
         $user->save();
 
-        /** @var StatefulGuard $guard */
+        /* @var StatefulGuard $guard */
         $guard->login($user, true);
 
         return redirect()

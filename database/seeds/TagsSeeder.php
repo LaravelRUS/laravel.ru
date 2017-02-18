@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 use App\Models\Article;
 use App\Models\Tag;
@@ -6,7 +8,7 @@ use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 /**
- * Class TagsSeeder
+ * Class TagsSeeder.
  */
 class TagsSeeder extends Seeder
 {
@@ -41,7 +43,7 @@ class TagsSeeder extends Seeder
                     'name' => $this->faker->words(random_int(0, 8) ? 1 : 2, true),
                 ]);
 
-                echo ' - ' . $i . ': ' . $tag->name . "\n";
+                echo ' - '.$i.': '.$tag->name."\n";
 
                 foreach (range(0, random_int(1, count($articleIds))) as $j) {
                     $articleId = $this->faker->randomElement($articleIds);
@@ -51,10 +53,10 @@ class TagsSeeder extends Seeder
                         'tag_id'     => $tag->id,
                     ]);
 
-                    echo '   - ' . $j . ': ' . $tag->id . ' <-> ' . $articleId . "\n";
+                    echo '   - '.$j.': '.$tag->id.' <-> '.$articleId."\n";
                 }
             } catch (Throwable $e) {
-                echo 'ERROR: ' . $e->getMessage() . "\n";
+                echo 'ERROR: '.$e->getMessage()."\n";
             }
         }
     }

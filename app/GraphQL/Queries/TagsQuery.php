@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
@@ -21,9 +20,7 @@ use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
 
 /**
- * Class TagsQuery
- *
- * @package App\GraphQL
+ * Class TagsQuery.
  */
 class TagsQuery extends Query
 {

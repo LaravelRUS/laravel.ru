@@ -6,12 +6,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 use Illuminate\Routing\Router;
 
-/** @var Router $router */
+/* @var Router $router */
 
 $router->pattern('id', '[0-9]+');
 
@@ -36,9 +35,7 @@ $router->group(['namespace' => 'Auth'], function (Router $router) {
     });
 });
 
-
 // ======== ARTICLES ===========
-
 
 $router->get('articles', 'ArticlesController@index')
     ->name('articles');

@@ -6,13 +6,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -48,7 +47,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $router->group([
             'middleware' => 'web',
-            'namespace'  => $this->namespace
+            'namespace'  => $this->namespace,
         ], base_path('routes/web.php'));
     }
 
@@ -56,7 +55,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $router->group([
             'middleware' => 'api',
-            'namespace'  => $this->namespace
+            'namespace'  => $this->namespace,
         ], base_path('routes/api.php'));
     }
 }
