@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\GraphQL\Types;
@@ -14,9 +13,7 @@ namespace App\GraphQL\Types;
 use GraphQL\Type\Definition\Type;
 
 /**
- * Class UserType
- *
- * @package App\GraphQL\Types
+ * Class UserType.
  */
 class UserType extends AbstractType
 {

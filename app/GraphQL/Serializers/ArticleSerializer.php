@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\GraphQL\Serializers;
@@ -15,9 +14,7 @@ use App\Models\Article;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ArticleSerializer
- *
- * @package App\GraphQL\Serializers
+ * Class ArticleSerializer.
  */
 class ArticleSerializer extends AbstractSerializer
 {

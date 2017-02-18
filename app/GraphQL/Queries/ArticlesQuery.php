@@ -6,24 +6,21 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
-use App\GraphQL\Queries\Support\QueryLimit;
-use App\GraphQL\Serializers\ArticleSerializer;
-use App\GraphQL\Types\ArticleType;
 use App\Models\Article;
+use GraphQL\Type\Definition\Type;
+use App\GraphQL\Types\ArticleType;
+use Illuminate\Support\Collection;
 use Folklore\GraphQL\Support\Query;
 use GraphQL\Type\Definition\ListOfType;
-use GraphQL\Type\Definition\Type;
-use Illuminate\Support\Collection;
+use App\GraphQL\Queries\Support\QueryLimit;
+use App\GraphQL\Serializers\ArticleSerializer;
 
 /**
- * Class ArticlesQuery
- *
- * @package App\GraphQL\Queries
+ * Class ArticlesQuery.
  */
 class ArticlesQuery extends Query
 {

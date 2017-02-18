@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Providers;
@@ -16,9 +15,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class ViewsServiceProvider
- *
- * @package App\Providers
+ * Class ViewsServiceProvider.
  */
 class ViewsServiceProvider extends ServiceProvider
 {

@@ -5,17 +5,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\GraphQL\Kernel;
 
-use CommerceGuys\Enum\AbstractEnum as BaseEnum;
 use GraphQL\Type\Definition\EnumType;
+use CommerceGuys\Enum\AbstractEnum as BaseEnum;
 
 /**
- * Class AbstractEnum
- * @package App\GraphQL\Kernel
+ * Class AbstractEnum.
  */
 abstract class AbstractEnum extends BaseEnum implements EnumInterface
 {
@@ -29,13 +27,13 @@ abstract class AbstractEnum extends BaseEnum implements EnumInterface
      */
     public static function toGraphQL(): EnumType
     {
-        if (!array_key_exists(static::class, self::$enums)) {
+        if (! array_key_exists(static::class, self::$enums)) {
             $shortName = (new \ReflectionClass(static::class))->getShortName();
 
             self::$enums[static::class] = new EnumType([
                 'name'        => $shortName,
-                'description' => $shortName . ' type',
-                'values'      => self::getGraphQLValues($shortName)
+                'description' => $shortName.' type',
+                'values'      => self::getGraphQLValues($shortName),
             ]);
         }
 

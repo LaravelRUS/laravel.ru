@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
@@ -15,9 +14,7 @@ use App\Models\Article;
 use Illuminate\Contracts\View\View;
 
 /**
- * Class HomeController
- *
- * @package App\Http\Controllers
+ * Class HomeController.
  */
 class HomeController extends Controller
 {
@@ -28,7 +25,7 @@ class HomeController extends Controller
     {
         return view('page.home.home', [
             'articles' => Article::latestPublished()->take(11)->get(),
-            'articlesCount' => Article::latestPublished()->count()
+            'articlesCount' => Article::latestPublished()->count(),
         ]);
     }
 }
