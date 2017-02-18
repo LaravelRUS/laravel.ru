@@ -40,8 +40,8 @@ trait QueryLimit
     }
 
     /**
-     * @param  EBuilder|QBuilder $builder
-     * @param  array $args
+     * @param EBuilder|QBuilder $builder
+     * @param array             $args
      *
      * @return EBuilder
      */

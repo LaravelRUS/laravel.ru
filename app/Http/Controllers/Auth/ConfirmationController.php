@@ -41,11 +41,12 @@ class ConfirmationController extends Controller
     }
 
     /**
-     * @param string $token
+     * @param string       $token
      * @param JWTInterface $crypt
-     * @param Guard $guard
+     * @param Guard        $guard
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \LogicException
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */

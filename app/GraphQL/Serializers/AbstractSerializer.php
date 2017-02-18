@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 abstract class AbstractSerializer
 {
     /**
-     * @param  Collection|Model[]  $collection
+     * @param Collection|Model[] $collection
      *
      * @return Collection
      */
