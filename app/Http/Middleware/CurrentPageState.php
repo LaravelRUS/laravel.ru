@@ -6,15 +6,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Symfony\Component\HttpFoundation\Response;
 
 class CurrentPageState
@@ -25,13 +24,13 @@ class CurrentPageState
     private $current;
 
     /**
-     * List of excluded route names
+     * List of excluded route names.
      *
      * @var array
      */
     private $exclude = [
         'login',
-        'registration'
+        'registration',
     ];
 
     /** @var Session */
@@ -49,7 +48,7 @@ class CurrentPageState
 
     public function handle(Request $request, \Closure $next): Response
     {
-        if (!$this->session->has(static::PAGE_NAME)) {
+        if (! $this->session->has(static::PAGE_NAME)) {
             $this->session->put(static::PAGE_NAME, '/');
         }
 
@@ -64,7 +63,7 @@ class CurrentPageState
 
     private function storeRoute(Request $request): void
     {
-        if (in_array($this->current->getName(), $this->exclude, true)){
+        if (in_array($this->current->getName(), $this->exclude, true)) {
             return;
         }
 
