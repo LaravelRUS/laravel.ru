@@ -20,9 +20,6 @@ use App\Services\ContentRenderer\ContentRenderInterface;
  */
 class MarkdownServiceProvider extends ServiceProvider
 {
-    /**
-     * @return void
-     */
     public function register(): void
     {
         $this->app->singleton(MarkdownRenderer::class, function () {

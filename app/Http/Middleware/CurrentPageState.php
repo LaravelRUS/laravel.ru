@@ -52,8 +52,8 @@ class CurrentPageState
     /**
      * CurrentPageState constructor.
      *
-     * @param Router $router
-     * @param Session $session
+     * @param Router               $router
+     * @param Session              $session
      * @param Authenticatable|null $user
      */
     public function __construct(Router $router, Session $session, Authenticatable $user = null)
@@ -64,7 +64,7 @@ class CurrentPageState
     }
 
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param \Closure $next
      *
      * @return Response

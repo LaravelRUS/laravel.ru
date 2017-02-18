@@ -28,8 +28,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -40,8 +38,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * @param Router $router
-     *
-     * @return void
      */
     public function map(Router $router): void
     {
@@ -52,8 +48,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * @param Router $router
-     *
-     * @return void
      */
     protected function mapApiRoutes(Router $router): void
     {
@@ -67,8 +61,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * @param Router $router
-     *
-     * @return void
      */
     protected function mapWebRoutes(Router $router): void
     {

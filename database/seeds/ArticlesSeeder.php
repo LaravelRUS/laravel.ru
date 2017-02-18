@@ -26,6 +26,7 @@ class ArticlesSeeder extends Seeder
 
     /**
      * ArticlesSeeder constructor.
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct()
@@ -42,8 +43,6 @@ class ArticlesSeeder extends Seeder
 
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
@@ -152,6 +151,7 @@ class ArticlesSeeder extends Seeder
 
     /**
      * @return string
+     *
      * @throws \InvalidArgumentException
      */
     private function createCode(): string

@@ -36,7 +36,7 @@ class RegistrationController extends Controller
 
     /**
      * @param RegistrationRequest $request
-     * @param Guard $guard
+     * @param Guard               $guard
      *
      * @return RedirectResponse
      */

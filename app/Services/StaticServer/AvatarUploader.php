@@ -51,7 +51,7 @@ class AvatarUploader
      * AvatarUploader constructor.
      *
      * @param ImageManager $manager
-     * @param Client $client
+     * @param Client       $client
      */
     public function __construct(ImageManager $manager, Client $client)
     {
@@ -73,7 +73,7 @@ class AvatarUploader
     }
 
     /**
-     * @param User $user
+     * @param User       $user
      * @param Filesystem $filesystem
      *
      * @return User

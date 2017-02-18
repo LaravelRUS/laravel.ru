@@ -33,9 +33,6 @@ class IdeHelperRun extends Command
      */
     protected $description = 'Generate a IDE Helper files if current environment is local.';
 
-    /**
-     * @return void
-     */
     public function handle(): void
     {
         if (! $this->laravel->getProvider(IdeHelperServiceProvider::class)) {

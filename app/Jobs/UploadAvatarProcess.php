@@ -48,8 +48,8 @@ class UploadAvatarProcess implements ShouldQueue
 
     /**
      * @param ImageManager $manager
-     * @param Client $client
-     * @param Storage $fs
+     * @param Client       $client
+     * @param Storage      $fs
      */
     public function handle(ImageManager $manager, Client $client, Storage $fs): void
     {

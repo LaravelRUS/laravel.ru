@@ -28,9 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     protected $app;
 
-    /**
-     * @return void
-     */
     public function register(): void
     {
         $this->localizeCarbon();
@@ -40,9 +37,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ColorGenerator::class);
     }
 
-    /**
-     * @return void
-     */
     private function localizeCarbon(): void
     {
         $locale = $this->app->make(Repository::class)->get('app.locale');
@@ -50,9 +44,6 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale($locale);
     }
 
-    /**
-     * @return void
-     */
     private function loadLocalProviders(): void
     {
         if ($this->app->isLocal()) {
@@ -63,9 +54,6 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * @return void
-     */
     private function registerGuzzleClient(): void
     {
         $this->app->singleton(Guzzle::class, function () {

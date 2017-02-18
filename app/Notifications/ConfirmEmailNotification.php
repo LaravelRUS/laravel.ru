@@ -36,7 +36,7 @@ class ConfirmEmailNotification extends Notification
     /**
      * ConfirmEmailNotification constructor.
      *
-     * @param User $user
+     * @param User         $user
      * @param JWTInterface $jwt
      */
     public function __construct(User $user, JWTInterface $jwt)

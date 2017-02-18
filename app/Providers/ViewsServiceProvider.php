@@ -26,8 +26,6 @@ class ViewsServiceProvider extends ServiceProvider
 
     /**
      * @param Factory $viewFactory
-     *
-     * @return void
      */
     public function boot(Factory $viewFactory): void
     {
@@ -37,8 +35,8 @@ class ViewsServiceProvider extends ServiceProvider
     }
 
     /**
-     * @param  array|string $views
-     * @param  string $viewComposer
+     * @param array|string $views
+     * @param string       $viewComposer
      */
     private function compose($views, string $viewComposer): void
     {
@@ -47,9 +45,6 @@ class ViewsServiceProvider extends ServiceProvider
         $this->views->composer($views, $viewComposer);
     }
 
-    /**
-     * @return void
-     */
     public function register(): void
     {
         //
