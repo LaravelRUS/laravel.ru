@@ -6,18 +6,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Views\Composers;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 /**
- * Class AuthComposer
- *
- * @package App\Views\Composers
+ * Class AuthComposer.
  */
 class AuthComposer
 {

@@ -5,19 +5,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Models\User;
 
 use App\Models\User;
-use App\Notifications\ConfirmEmailNotification;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
+use App\Notifications\ConfirmEmailNotification;
 
 /**
- * Class EmailConfirmationObserver
- *
- * @package App\Models\User
+ * Class EmailConfirmationObserver.
  */
 class EmailConfirmationObserver
 {

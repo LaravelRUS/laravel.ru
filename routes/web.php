@@ -6,12 +6,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 use Illuminate\Routing\Router;
 
-/** @var Router $router */
+/* @var Router $router */
 
 $router->pattern('id', '[0-9]+');
 
@@ -35,7 +34,6 @@ $router->group(['namespace' => 'Auth'], function (Router $router) {
         $router->post('register', 'RegistrationController@register');
     });
 
-
     $router->group(['middleware' => ['auth']], function (Router $router) {
         $router->match(['GET', 'POST'], 'logout', 'LoginController@logout')->name('logout');
         $router->get('confirmed', 'ConfirmationController@index')->name('confirmation.confirmed');
@@ -46,7 +44,6 @@ $router->group(['namespace' => 'Auth'], function (Router $router) {
     });
 });
 
-
 /*
 |--------------------------------------------------------------------------
 | Articles
@@ -55,7 +52,6 @@ $router->group(['namespace' => 'Auth'], function (Router $router) {
 | TODO
 |
 */
-
 
 $router->get('articles', 'ArticlesController@index')
     ->name('articles');

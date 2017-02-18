@@ -6,32 +6,29 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Str;
 
 /**
- * Class Article
- *
- * @package App\Models
+ * Class Article.
  */
 class Article extends Model
 {
     /**
-     * Published date and time field name
+     * Published date and time field name.
      */
     private const PUBLISHED_AT = 'published_at';
 
     /**
-     * Directory of article images
+     * Directory of article images.
      */
     public const DEFAULT_IMAGE_PATH = '/static/articles/';
 
@@ -96,7 +93,7 @@ class Article extends Model
      */
     public function getImageUrlAttribute(): string
     {
-        return static::DEFAULT_IMAGE_PATH . $this->image;
+        return static::DEFAULT_IMAGE_PATH.$this->image;
     }
 
     /**

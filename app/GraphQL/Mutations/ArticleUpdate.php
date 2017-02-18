@@ -6,20 +6,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\GraphQL\Mutations;
 
+use GraphQL\Type\Definition\Type;
 use App\GraphQL\Types\ArticleType;
 use Folklore\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\ObjectType;
-use GraphQL\Type\Definition\Type;
 
 /**
- * Class ArticleUpdate
- *
- * @package App\GraphQL\Mutations
+ * Class ArticleUpdate.
  */
 class ArticleUpdate extends Mutation
 {

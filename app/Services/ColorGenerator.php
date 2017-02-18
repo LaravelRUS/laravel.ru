@@ -6,15 +6,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Services;
 
 /**
- * Class ColorGenerator
- *
- * @package App\Services
+ * Class ColorGenerator.
  */
 class ColorGenerator
 {
@@ -25,9 +22,9 @@ class ColorGenerator
      */
     public function make(bool $withPrefix = true): string
     {
-        return ($withPrefix ? '#' : '') .
-            strtolower(sprintf('%02X', $this->createDarkColor())) .
-            strtolower(sprintf('%02X', $this->createDarkColor())) .
+        return ($withPrefix ? '#' : '').
+            strtolower(sprintf('%02X', $this->createDarkColor())).
+            strtolower(sprintf('%02X', $this->createDarkColor())).
             strtolower(sprintf('%02X', $this->createDarkColor()));
     }
 

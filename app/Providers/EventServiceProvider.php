@@ -6,20 +6,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Article;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 /**
- * Class EventServiceProvider
- *
- * @package App\Providers
+ * Class EventServiceProvider.
  */
 class EventServiceProvider extends ServiceProvider
 {
