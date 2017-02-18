@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Services\StaticServer;
@@ -53,10 +52,10 @@ class AvatarUploader
     public function upload(User $user, Filesystem $filesystem): User
     {
         $gravatarUrl = $this->getGravatarUrl($user);
-        $public      = $this->createImageName($user);
+        $public = $this->createImageName($user);
 
         try {
-            $temp = storage_path(self::TEMP_PATH . '/' . md5($public));
+            $temp = storage_path(self::TEMP_PATH.'/'.md5($public));
 
             // Check avatar if exists
             $this->http->head($gravatarUrl);
@@ -70,9 +69,8 @@ class AvatarUploader
             if (!@unlink($temp) && is_file($temp)) {
                 // Can not remove temporary file
             }
-
         } catch (ClientException $exception) {
-            $public = 'default/' . random_int(1, 4) . '.png';
+            $public = 'default/'.random_int(1, 4).'.png';
         }
 
         $user->avatar = $public;
@@ -90,10 +88,10 @@ class AvatarUploader
 
     private function createImageName(User $user): string
     {
-        $hash = md5(random_int(0, 9999) . $user->email);
+        $hash = md5(random_int(0, 9999).$user->email);
 
         return vsprintf('%s/%s/%s.png', [
-            substr($hash, 0, 2), substr($hash, 2, 2), substr($hash, 4)
+            substr($hash, 0, 2), substr($hash, 2, 2), substr($hash, 4),
         ]);
     }
 

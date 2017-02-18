@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Providers;
@@ -33,8 +32,8 @@ class ViewsServiceProvider extends ServiceProvider
     }
 
     /**
-     * @param  array|string  $views
-     * @param  string        $viewComposer
+     * @param array|string $views
+     * @param string       $viewComposer
      */
     private function compose($views, string $viewComposer): void
     {

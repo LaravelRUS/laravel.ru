@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Http\Middleware;
@@ -25,13 +24,13 @@ class CurrentPageState
     private $current;
 
     /**
-     * List of excluded route names
+     * List of excluded route names.
      *
      * @var array
      */
     private $exclude = [
         'login',
-        'registration'
+        'registration',
     ];
 
     /** @var Session */
@@ -64,7 +63,7 @@ class CurrentPageState
 
     private function storeRoute(Request $request): void
     {
-        if (in_array($this->current->getName(), $this->exclude, true)){
+        if (in_array($this->current->getName(), $this->exclude, true)) {
             return;
         }
 

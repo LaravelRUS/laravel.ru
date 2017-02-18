@@ -6,15 +6,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Notifications;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
 class ConfirmEmailNotification extends Notification
@@ -44,7 +43,7 @@ class ConfirmEmailNotification extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed $notifiable
+     * @param mixed $notifiable
      *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
@@ -56,7 +55,7 @@ class ConfirmEmailNotification extends Notification
             'token' => $token,
         ]);
 
-        return (new MailMessage)
+        return (new MailMessage())
             ->success()
             ->line('Подтвердите свой Email')
             ->action('Подтвердить', $action)
@@ -73,7 +72,8 @@ class ConfirmEmailNotification extends Notification
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)
