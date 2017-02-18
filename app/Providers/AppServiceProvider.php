@@ -6,17 +6,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Services\ColorGenerator;
 use Carbon\Carbon;
+use App\Services\ColorGenerator;
 use GuzzleHttp\Client as Guzzle;
-use GuzzleHttp\ClientInterface as GuzzleInterface;
 use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
+use GuzzleHttp\ClientInterface as GuzzleInterface;
 
 class AppServiceProvider extends ServiceProvider
 {

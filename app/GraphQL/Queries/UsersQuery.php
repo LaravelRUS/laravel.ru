@@ -6,19 +6,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
-use App\GraphQL\Queries\Support\QueryLimit;
-use App\GraphQL\Serializers\UserSerializer;
-use App\GraphQL\Types\UserType;
 use App\Models\User;
-use Folklore\GraphQL\Support\Query;
-use GraphQL\Type\Definition\ListOfType;
+use App\GraphQL\Types\UserType;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
+use Folklore\GraphQL\Support\Query;
+use GraphQL\Type\Definition\ListOfType;
+use App\GraphQL\Queries\Support\QueryLimit;
+use App\GraphQL\Serializers\UserSerializer;
 
 class UsersQuery extends Query
 {

@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Notifications;
@@ -14,8 +13,8 @@ namespace App\Notifications;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Messages\MailMessage;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class ConfirmEmailNotification extends Notification
 {

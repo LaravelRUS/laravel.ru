@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Models;
@@ -22,7 +21,7 @@ class User extends Authenticatable
     public const DEFAULT_AVATAR_NAME = 'default/1.png';
 
     protected $fillable = [
-        'name', 'email', 'password', 'avatar'
+        'name', 'email', 'password', 'avatar',
     ];
 
     protected $hidden = [
@@ -42,11 +41,11 @@ class User extends Authenticatable
             $avatar = self::DEFAULT_AVATAR_NAME;
         }
 
-        return self::DEFAULT_AVATAR_PATH . $avatar;
+        return self::DEFAULT_AVATAR_PATH.$avatar;
     }
 
     public function hasAvatar(): bool
     {
-        return (bool)($this->original['avatar'] ?? false);
+        return (bool) ($this->original['avatar'] ?? false);
     }
 }

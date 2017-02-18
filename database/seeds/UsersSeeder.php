@@ -1,11 +1,13 @@
-<?php declare(strict_types=1);
+<?php
 
-use App\Models\User;
+declare(strict_types=1);
+
 use Faker\Factory;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 /**
- * Class UsersSeeder
+ * Class UsersSeeder.
  */
 class UsersSeeder extends Seeder
 {
@@ -45,16 +47,15 @@ class UsersSeeder extends Seeder
             'is_confirmed' => true,
         ]);
 
-
         foreach (range(0, 9) as $i) {
             $user = User::create([
                 'name'         => $this->faker->name,
                 'email'        => $this->faker->email,
-                'password'     => md5((string)random_int(0, PHP_INT_MAX)),
+                'password'     => md5((string) random_int(0, PHP_INT_MAX)),
                 'avatar'       => User::DEFAULT_AVATAR_NAME,
                 'is_confirmed' => true,
             ]);
-            echo ' - ' . $i . ': ' . $user->name . "\n";
+            echo ' - '.$i.': '.$user->name."\n";
         }
     }
 }

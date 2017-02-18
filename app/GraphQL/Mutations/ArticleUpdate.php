@@ -6,20 +6,19 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\GraphQL\Mutations;
 
-use App\GraphQL\Types\ArticleType;
-use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
+use App\GraphQL\Types\ArticleType;
 use Folklore\GraphQL\Support\Mutation;
+use GraphQL\Type\Definition\ObjectType;
 
 class ArticleUpdate extends Mutation
 {
-    protected $attributes = [ 
-        'name' => 'article_update' 
+    protected $attributes = [
+        'name' => 'article_update',
     ];
 
     public function resolve($root, array $args = [])
@@ -37,19 +36,19 @@ class ArticleUpdate extends Mutation
         return [
             'id'       => [
                 'name' => 'id',
-                'type' => Type::nonNull(Type::string())
+                'type' => Type::nonNull(Type::string()),
             ],
             'title' => [
                 'name' => 'title',
-                'type' => Type::string()
+                'type' => Type::string(),
             ],
             'content' => [
                 'name' => 'content',
-                'type' => Type::string()
+                'type' => Type::string(),
             ],
             'published_at' => [
                 'name' => 'published_at',
-                'type' => Type::string()
+                'type' => Type::string(),
             ],
         ];
     }
