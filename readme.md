@@ -1,6 +1,7 @@
 # Сайт русскоязычного сообщества Laravel
 
 [![Build Status](https://travis-ci.org/LaravelRUS/laravel.ru.svg?branch=feature-laravel-5.4)](https://travis-ci.org/LaravelRUS/laravel.ru)
+[![StyleCI](https://styleci.io/repos/18944609/shield&branch=feature-laravel-5.4)](https://styleci.io/repos/18944609)
 [![Чат](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/LaravelRUS/laravel.ru)
 
 - Site: [https://new.laravel.su](https://new.laravel.su)
