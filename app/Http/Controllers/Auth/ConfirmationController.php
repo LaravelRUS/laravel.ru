@@ -20,8 +20,18 @@ use Illuminate\Support\Arr;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
+/**
+ * Class ConfirmationController
+ *
+ * @package App\Http\Controllers\Auth
+ */
 class ConfirmationController extends Controller
 {
+    /**
+     * @param Session $session
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function index(Session $session)
     {
         if (! $session->has('user')) {
@@ -33,7 +43,15 @@ class ConfirmationController extends Controller
         ]);
     }
 
-    //TODO: Change encryption algo to JWT
+    /**
+     * @param string $token
+     * @param JWTInterface $crypt
+     * @param Guard $guard
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \LogicException
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
     public function confirm(string $token, JWTInterface $crypt, Guard $guard)
     {
         $email = Arr::get($crypt->decode($token), 'email');

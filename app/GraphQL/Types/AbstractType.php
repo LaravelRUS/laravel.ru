@@ -14,10 +14,21 @@ namespace App\GraphQL\Types;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 use Illuminate\Support\Str;
 
+/**
+ * Class AbstractType
+ *
+ * @package App\GraphQL\Types
+ */
 abstract class AbstractType extends GraphQLType implements TypeInterface
 {
+    /**
+     * @var array
+     */
     private static $names = [];
 
+    /**
+     * @return string
+     */
     public static function getName(): string
     {
         if (! isset(self::$names[static::class])) {

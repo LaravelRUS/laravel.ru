@@ -11,7 +11,17 @@ declare(strict_types=1);
 
 namespace App\Services\ContentRenderer;
 
+/**
+ * Interface ContentRenderInterface
+ *
+ * @package App\Services\ContentRenderer
+ */
 interface ContentRenderInterface
 {
+    /**
+     * @param string $original
+     *
+     * @return string
+     */
     public function renderBody(string $original): string;
 }

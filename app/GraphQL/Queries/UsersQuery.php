@@ -20,20 +20,34 @@ use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
 
+/**
+ * Class UsersQuery
+ *
+ * @package App\GraphQL\Queries
+ */
 class UsersQuery extends Query
 {
     use QueryLimit;
 
+    /**
+     * @var array
+     */
     protected $attributes = [
         'name'        => 'Users list query',
         'description' => 'Returns a list of users',
     ];
 
+    /**
+     * @return ListOfType
+     */
     public function type(): ListOfType
     {
         return Type::listOf(\GraphQL::type(UserType::getName()));
     }
 
+    /**
+     * @return array
+     */
     public function args(): array
     {
         return $this->argumentsWithLimit([
@@ -44,6 +58,12 @@ class UsersQuery extends Query
         ]);
     }
 
+    /**
+     * @param $root
+     * @param array $args
+     *
+     * @return Collection
+     */
     public function resolve($root, array $args = []): Collection
     {
         $query = User::query();

@@ -14,10 +14,15 @@ namespace App\GraphQL\Serializers;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class UserSerializer
+ *
+ * @package App\GraphQL\Serializers
+ */
 class UserSerializer extends AbstractSerializer
 {
     /**
-     * @param  User|Model  $user
+     * @param User|Model $user
      *
      * @return array
      */

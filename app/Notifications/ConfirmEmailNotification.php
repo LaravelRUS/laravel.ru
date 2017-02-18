@@ -13,20 +13,35 @@ namespace App\Notifications;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
+/**
+ * Class ConfirmEmailNotification
+ *
+ * @package App\Notifications
+ */
 class ConfirmEmailNotification extends Notification
 {
     use Queueable;
 
-    /** @var User */
+    /**
+     * @var User
+     */
     private $user;
 
-    /** @var JWTInterface */
+    /**
+     * @var JWTInterface
+     */
     private $jwt;
 
+    /**
+     * ConfirmEmailNotification constructor.
+     *
+     * @param User $user
+     * @param JWTInterface $jwt
+     */
     public function __construct(User $user, JWTInterface $jwt)
     {
         $this->user = $user;
@@ -44,7 +59,7 @@ class ConfirmEmailNotification extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed $notifiable
+     * @param mixed $notifiable
      *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
@@ -63,6 +78,9 @@ class ConfirmEmailNotification extends Notification
             ->line('Спасибо, что остаётесь с нами!');
     }
 
+    /**
+     * @return array
+     */
     private function createToken(): array
     {
         return [
@@ -73,7 +91,8 @@ class ConfirmEmailNotification extends Notification
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)

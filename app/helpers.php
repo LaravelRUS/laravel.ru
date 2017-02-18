@@ -9,12 +9,13 @@
 
 declare(strict_types=1);
 
-if (!function_exists('asset_ts')) {
+if (! function_exists('asset_ts')) {
     /**
      * Asset path with timestamp
      *
      * @param string $path
      * @param string $directory
+     *
      * @return string
      */
     function asset_ts(string $path = '', string $directory = 'dist/'): string

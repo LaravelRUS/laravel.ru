@@ -16,15 +16,24 @@ use Carbon\Carbon;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\ClientInterface as GuzzleInterface;
 use Illuminate\Config\Repository;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class AppServiceProvider
+ *
+ * @package App\Providers
+ */
 class AppServiceProvider extends ServiceProvider
 {
     /**
-     * @var \Illuminate\Foundation\Application
+     * @var Application
      */
     protected $app;
 
+    /**
+     * @return void
+     */
     public function register(): void
     {
         $this->localizeCarbon();
@@ -34,6 +43,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ColorGenerator::class);
     }
 
+    /**
+     * @return void
+     */
     private function localizeCarbon(): void
     {
         $locale = $this->app->make(Repository::class)->get('app.locale');
@@ -41,17 +53,9 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale($locale);
     }
 
-    private function registerGuzzleClient(): void
-    {
-        $this->app->singleton(Guzzle::class, function () {
-            return new Guzzle([
-
-            ]);
-        });
-
-        $this->app->alias(Guzzle::class, GuzzleInterface::class);
-    }
-
+    /**
+     * @return void
+     */
     private function loadLocalProviders(): void
     {
         if ($this->app->isLocal()) {
@@ -60,5 +64,17 @@ class AppServiceProvider extends ServiceProvider
                 config('app.local_providers', [])
             );
         }
+    }
+
+    /**
+     * @return void
+     */
+    private function registerGuzzleClient(): void
+    {
+        $this->app->singleton(Guzzle::class, function () {
+            return new Guzzle();
+        });
+
+        $this->app->alias(Guzzle::class, GuzzleInterface::class);
     }
 }

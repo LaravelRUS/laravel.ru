@@ -16,8 +16,16 @@ use App\Services\ContentRenderer\MarkdownRenderer;
 use cebe\markdown\GithubMarkdown;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class MarkdownServiceProvider
+ *
+ * @package App\Providers
+ */
 class MarkdownServiceProvider extends ServiceProvider
 {
+    /**
+     * @return void
+     */
     public function register(): void
     {
         $this->app->singleton(MarkdownRenderer::class, function () {

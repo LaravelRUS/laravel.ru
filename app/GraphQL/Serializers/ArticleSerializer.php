@@ -14,10 +14,16 @@ namespace App\GraphQL\Serializers;
 use App\Models\Article;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class ArticleSerializer
+ *
+ * @package App\GraphQL\Serializers
+ */
 class ArticleSerializer extends AbstractSerializer
 {
     /**
      * @param Article|Model $article
+     *
      * @return array
      */
     public function toArray(Model $article): array

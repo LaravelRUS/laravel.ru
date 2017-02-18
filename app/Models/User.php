@@ -14,6 +14,11 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ *
+ * @package App\Models
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -21,14 +26,25 @@ class User extends Authenticatable
     public const DEFAULT_AVATAR_PATH = '/static/avatars/';
     public const DEFAULT_AVATAR_NAME = 'default/1.png';
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'name', 'email', 'password', 'avatar'
     ];
 
+    /**
+     * @var array
+     */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
+    /**
+     * @param string $password
+     *
+     * @return User
+     */
     public function setPasswordAttribute(string $password): User
     {
         $this->attributes['password'] = bcrypt($password);
@@ -36,6 +52,11 @@ class User extends Authenticatable
         return $this;
     }
 
+    /**
+     * @param string|null $avatar
+     *
+     * @return string
+     */
     public function getAvatarAttribute(string $avatar = null): string
     {
         if ($avatar === null) {
@@ -45,6 +66,9 @@ class User extends Authenticatable
         return self::DEFAULT_AVATAR_PATH . $avatar;
     }
 
+    /**
+     * @return bool
+     */
     public function hasAvatar(): bool
     {
         return (bool)($this->original['avatar'] ?? false);

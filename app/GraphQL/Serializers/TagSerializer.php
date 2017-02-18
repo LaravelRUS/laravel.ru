@@ -14,10 +14,15 @@ namespace App\GraphQL\Serializers;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class TagSerializer
+ *
+ * @package App\GraphQL\Serializers
+ */
 class TagSerializer extends AbstractSerializer
 {
     /**
-     * @param  Tag|Model  $tag
+     * @param Tag|Model $tag
      *
      * @return array
      */

@@ -13,15 +13,29 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class RegistrationRequest
+ *
+ * @package App\Http\Requests
+ */
 class RegistrationRequest extends FormRequest
 {
+    /**
+     * @var string
+     */
     protected $redirectRoute = 'registration';
 
+    /**
+     * @return bool
+     */
     public function authorize(): bool
     {
         return true;
     }
 
+    /**
+     * @return array
+     */
     public function rules(): array
     {
         return [

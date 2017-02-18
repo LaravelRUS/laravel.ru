@@ -12,28 +12,39 @@ declare(strict_types=1);
 namespace App\GraphQL\Queries\Support;
 
 use GraphQL\Type\Definition\Type;
-use Illuminate\Database\Query\Builder as QBuilder;
 use Illuminate\Database\Eloquent\Builder as EBuilder;
+use Illuminate\Database\Query\Builder as QBuilder;
 
+/**
+ * Class QueryLimit
+ *
+ * @package App\GraphQL\Queries\Support
+ */
 trait QueryLimit
 {
+    /**
+     * @param array $args
+     *
+     * @return array
+     */
     public function argumentsWithLimit(array $args): array
     {
         return array_merge($args, [
             '_limit' => [
                 'type'        => Type::int(),
-                'description' => 'Items per page: in 1...1000 range'
+                'description' => 'Items per page: in 1...1000 range',
             ],
-            '_page'  => [
+
+            '_page' => [
                 'type'        => Type::int(),
-                'description' => 'Current page number (Usage without "_limit" argument gives no effect)'
+                'description' => 'Current page number (Usage without "_limit" argument gives no effect)',
             ],
         ]);
     }
 
     /**
-     * @param  EBuilder|QBuilder  $builder
-     * @param  array              $args
+     * @param  EBuilder|QBuilder $builder
+     * @param  array $args
      *
      * @return EBuilder
      */

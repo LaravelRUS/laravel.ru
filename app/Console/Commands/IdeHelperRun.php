@@ -11,18 +11,19 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use Illuminate\Console\Command;
 
 /**
  * Class IdeHelperRun
+ *
  * @package App\Console\Commands
  */
 class IdeHelperRun extends Command
 {
     /**
      * @var \Illuminate\Foundation\Application
-     * */
+     */
     protected $laravel;
 
     /**

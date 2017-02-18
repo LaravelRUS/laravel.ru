@@ -29,16 +29,25 @@ class TagsQuery extends Query
 {
     use QueryLimit;
 
+    /**
+     * @var array
+     */
     protected $attributes = [
         'name'        => 'Tags list query',
         'description' => 'Returns a list of available tags',
     ];
 
+    /**
+     * @return ListOfType
+     */
     public function type(): ListOfType
     {
         return Type::listOf(\GraphQL::type(TagType::getName()));
     }
 
+    /**
+     * @return array
+     */
     public function args(): array
     {
         return $this->argumentsWithLimit([
@@ -49,6 +58,12 @@ class TagsQuery extends Query
         ]);
     }
 
+    /**
+     * @param $root
+     * @param array $args
+     *
+     * @return Collection
+     */
     public function resolve($root, array $args = []): Collection
     {
         $query = Tag::query();

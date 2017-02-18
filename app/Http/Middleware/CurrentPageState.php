@@ -14,14 +14,22 @@ namespace App\Http\Middleware;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class CurrentPageState
+ *
+ * @package App\Http\Middleware
+ */
 class CurrentPageState
 {
     public const PAGE_NAME = 'pageFrom';
 
-    /** @var \Illuminate\Routing\Route */
+    /**
+     * @var Route
+     */
     private $current;
 
     /**
@@ -31,15 +39,26 @@ class CurrentPageState
      */
     private $exclude = [
         'login',
-        'registration'
+        'registration',
     ];
 
-    /** @var Session */
+    /**
+     * @var Session
+     */
     private $session;
 
-    /** @var Authenticatable */
+    /**
+     * @var Authenticatable
+     */
     private $user;
 
+    /**
+     * CurrentPageState constructor.
+     *
+     * @param Router $router
+     * @param Session $session
+     * @param Authenticatable|null $user
+     */
     public function __construct(Router $router, Session $session, Authenticatable $user = null)
     {
         $this->current = $router->current();
@@ -47,9 +66,15 @@ class CurrentPageState
         $this->user = $user;
     }
 
+    /**
+     * @param Request $request
+     * @param \Closure $next
+     *
+     * @return Response
+     */
     public function handle(Request $request, \Closure $next): Response
     {
-        if (!$this->session->has(static::PAGE_NAME)) {
+        if (! $this->session->has(static::PAGE_NAME)) {
             $this->session->put(static::PAGE_NAME, '/');
         }
 
@@ -62,9 +87,12 @@ class CurrentPageState
         return $response;
     }
 
+    /**
+     * @param Request $request
+     */
     private function storeRoute(Request $request): void
     {
-        if (in_array($this->current->getName(), $this->exclude, true)){
+        if (in_array($this->current->getName(), $this->exclude, true)) {
             return;
         }
 

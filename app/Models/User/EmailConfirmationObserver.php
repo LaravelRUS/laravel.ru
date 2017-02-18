@@ -1,10 +1,13 @@
-<?php declare(strict_types=1);
+<?php
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace App\Models\User;
 
 use App\Models\User;
@@ -13,6 +16,7 @@ use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
 /**
  * Class EmailConfirmationObserver
+ *
  * @package App\Models\User
  */
 class EmailConfirmationObserver
@@ -24,6 +28,7 @@ class EmailConfirmationObserver
 
     /**
      * EmailConfirmationObserver constructor.
+     *
      * @param JWTInterface $jwt
      */
     public function __construct(JWTInterface $jwt)
@@ -36,7 +41,7 @@ class EmailConfirmationObserver
      */
     public function created(User $user)
     {
-        if (!$user->is_confirmed) {
+        if (! $user->is_confirmed) {
             $confirmation = new ConfirmEmailNotification($user, $this->jwt);
 
             $user->notify($confirmation);

@@ -13,13 +13,24 @@ namespace App\GraphQL\Types;
 
 use GraphQL\Type\Definition\Type;
 
+/**
+ * Class UserType
+ *
+ * @package App\GraphQL\Types
+ */
 class UserType extends AbstractType
 {
+    /**
+     * @var array
+     */
     protected $attributes = [
         'name'        => 'User',
         'description' => 'User object',
     ];
 
+    /**
+     * @return array
+     */
     public function fields(): array
     {
         return [

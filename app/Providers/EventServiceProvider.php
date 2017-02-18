@@ -16,11 +16,21 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+/**
+ * Class EventServiceProvider
+ *
+ * @package App\Providers
+ */
 class EventServiceProvider extends ServiceProvider
 {
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $listen = [];
 
+    /**
+     * @return void
+     */
     public function boot(): void
     {
         User::observe(User\AvatarUploaderObserver::class);

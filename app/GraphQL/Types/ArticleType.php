@@ -11,15 +11,27 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Types;
 
+use App\Models\Article;
 use GraphQL\Type\Definition\Type;
 
+/**
+ * Class ArticleType
+ *
+ * @package App\GraphQL\Types
+ */
 class ArticleType extends AbstractType
 {
+    /**
+     * @var array
+     */
     protected $attributes = [
         'name'        => 'Article',
         'description' => 'Article object',
     ];
 
+    /**
+     * @return array
+     */
     public function fields(): array
     {
         return [
@@ -48,7 +60,7 @@ class ArticleType extends AbstractType
                 'description' => 'Article content source (original)',
             ],
             'status'       => [
-                'type'        => Type::string(),
+                'type'        => Article\Status::toGraphQL(),
                 'description' => 'Article status',
             ],
             'published_at' => [

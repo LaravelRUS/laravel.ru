@@ -11,14 +11,18 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 
+/**
+ * Class RouteServiceProvider
+ *
+ * @package App\Providers
+ */
 class RouteServiceProvider extends ServiceProvider
 {
     /**
      * This namespace is applied to your controller routes.
-     *
      * In addition, it is set as the URL generator's root namespace.
      *
      * @var string
@@ -37,6 +41,11 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
     }
 
+    /**
+     * @param Router $router
+     *
+     * @return void
+     */
     public function map(Router $router): void
     {
         $this->mapApiRoutes($router);
@@ -44,19 +53,33 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes($router);
     }
 
-    protected function mapWebRoutes(Router $router): void
-    {
-        $router->group([
-            'middleware' => 'web',
-            'namespace'  => $this->namespace
-        ], base_path('routes/web.php'));
-    }
-
+    /**
+     * @param Router $router
+     *
+     * @return void
+     */
     protected function mapApiRoutes(Router $router): void
     {
-        $router->group([
+        $attributes = [
             'middleware' => 'api',
-            'namespace'  => $this->namespace
-        ], base_path('routes/api.php'));
+            'namespace'  => $this->namespace,
+        ];
+
+        $router->group($attributes, base_path('routes/api.php'));
+    }
+
+    /**
+     * @param Router $router
+     *
+     * @return void
+     */
+    protected function mapWebRoutes(Router $router): void
+    {
+        $attributes = [
+            'middleware' => 'web',
+            'namespace'  => $this->namespace,
+        ];
+
+        $router->group($attributes, base_path('routes/web.php'));
     }
 }

@@ -14,16 +14,34 @@ namespace App\Models;
 use App\Services\ColorGenerator;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Tag
+ * @package App\Models
+ */
 class Tag extends Model
 {
+    /**
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
+     * @var string
+     */
     protected $table = 'tags';
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'name', 'color',
     ];
 
-    public $timestamps = false;
-
+    /**
+     * @param ColorGenerator $generator
+     *
+     * @return Tag
+     */
     public function updateColor(ColorGenerator $generator): Tag
     {
         $this->color = $generator->make(true);

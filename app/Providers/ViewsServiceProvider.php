@@ -15,11 +15,23 @@ use App\Views\Composers\AuthComposer;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class ViewsServiceProvider
+ *
+ * @package App\Providers
+ */
 class ViewsServiceProvider extends ServiceProvider
 {
-    /** @var Factory */
+    /**
+     * @var Factory
+     */
     private $views;
 
+    /**
+     * @param Factory $viewFactory
+     *
+     * @return void
+     */
     public function boot(Factory $viewFactory): void
     {
         $this->views = $viewFactory;
@@ -27,19 +39,22 @@ class ViewsServiceProvider extends ServiceProvider
         $this->compose('*', AuthComposer::class);
     }
 
-    public function register(): void
-    {
-        //
-    }
-
     /**
-     * @param  array|string  $views
-     * @param  string        $viewComposer
+     * @param  array|string $views
+     * @param  string $viewComposer
      */
     private function compose($views, string $viewComposer): void
     {
         $this->app->singleton($viewComposer);
 
         $this->views->composer($views, $viewComposer);
+    }
+
+    /**
+     * @return void
+     */
+    public function register(): void
+    {
+        //
     }
 }

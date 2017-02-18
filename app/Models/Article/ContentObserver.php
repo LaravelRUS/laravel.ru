@@ -14,16 +14,30 @@ namespace App\Models\Article;
 use App\Models\Article;
 use App\Services\ContentRenderer\ContentRenderInterface;
 
+/**
+ * Class ContentObserver
+ * @package App\Models\Article
+ */
 class ContentObserver
 {
-    /** @var ContentRenderInterface */
+    /**
+     * @var ContentRenderInterface
+     */
     private $renderer;
 
+    /**
+     * ContentObserver constructor.
+     *
+     * @param ContentRenderInterface $renderer
+     */
     public function __construct(ContentRenderInterface $renderer)
     {
         $this->renderer = $renderer;
     }
 
+    /**
+     * @param Article $article
+     */
     public function saving(Article $article): void
     {
         if ($article->content_source) {

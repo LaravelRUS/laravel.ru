@@ -14,8 +14,16 @@ namespace App\Models\Article;
 use App\Models\Article;
 use Carbon\Carbon;
 
+/**
+ * Class PublishedDateObserver
+ *
+ * @package App\Models\Article
+ */
 class PublishedDateObserver
 {
+    /**
+     * @param Article $article
+     */
     public function saving(Article $article)
     {
         if (! $article->published_at) {

@@ -1,10 +1,13 @@
-<?php declare(strict_types=1);
+<?php
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace App\Models\User;
 
 use App\Jobs\UploadAvatarProcess;
@@ -13,6 +16,7 @@ use Illuminate\Contracts\Bus\Dispatcher;
 
 /**
  * Class AvatarUploaderObserver
+ *
  * @package App\Models\User
  */
 class AvatarUploaderObserver
@@ -24,6 +28,7 @@ class AvatarUploaderObserver
 
     /**
      * AvatarUploaderObserver constructor.
+     *
      * @param Dispatcher $dispatcher
      */
     public function __construct(Dispatcher $dispatcher)

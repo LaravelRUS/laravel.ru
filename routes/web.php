@@ -17,6 +17,15 @@ $router->pattern('id', '[0-9]+');
 
 $router->get('/', 'HomeController@index')->name('home');
 
+/*
+|--------------------------------------------------------------------------
+| Authentication
+|--------------------------------------------------------------------------
+|
+| TODO
+|
+*/
+
 $router->group(['namespace' => 'Auth'], function (Router $router) {
     $router->group(['middleware' => ['guest']], function (Router $router) {
         $router->get('login', 'LoginController@index')->name('login');
@@ -25,6 +34,7 @@ $router->group(['namespace' => 'Auth'], function (Router $router) {
         $router->get('register', 'RegistrationController@index')->name('registration');
         $router->post('register', 'RegistrationController@register');
     });
+
 
     $router->group(['middleware' => ['auth']], function (Router $router) {
         $router->match(['GET', 'POST'], 'logout', 'LoginController@logout')->name('logout');
@@ -37,7 +47,14 @@ $router->group(['namespace' => 'Auth'], function (Router $router) {
 });
 
 
-// ======== ARTICLES ===========
+/*
+|--------------------------------------------------------------------------
+| Articles
+|--------------------------------------------------------------------------
+|
+| TODO
+|
+*/
 
 
 $router->get('articles', 'ArticlesController@index')

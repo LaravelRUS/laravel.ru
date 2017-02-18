@@ -18,6 +18,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 
+/**
+ * Class Article
+ *
+ * @package App\Models
+ */
 class Article extends Model
 {
     /**
@@ -30,50 +35,31 @@ class Article extends Model
      */
     public const DEFAULT_IMAGE_PATH = '/static/articles/';
 
+    /**
+     * @var array
+     */
     protected $dates = [
-        self::PUBLISHED_AT
+        self::PUBLISHED_AT,
     ];
 
+    /**
+     * @var string
+     */
     protected $table = 'articles';
 
+    /**
+     * @var array
+     */
     protected $fillable = [
-        'user_id',
-        'title',
-        'image',
-        'content_source',
-        'status',
-        'published_at'
+        'user_id', 'title', 'image', 'content_source',
+        'status', 'published_at',
     ];
 
-    public function getImageUrlAttribute(): string
-    {
-        return static::DEFAULT_IMAGE_PATH . $this->image;
-    }
-
-    public function getCapitalizeTitleAttribute(): string
-    {
-        return Str::ucfirst($this->title);
-    }
-
-    public function getNicePublishedDateAttribute(): string
-    {
-        if ($this->published_at > Carbon::now()->subMonth()) {
-            return $this->published_at->diffForHumans();
-        }
-
-        return $this->published_at->toDateTimeString();
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function tags(): BelongsToMany
-    {
-        return $this->belongsToMany(Tag::class, 'article_tags');
-    }
-
+    /**
+     * @param Builder $builder
+     *
+     * @return Builder
+     */
     public static function scopeLatestPublished(Builder $builder): Builder
     {
         return $builder
@@ -83,15 +69,69 @@ class Article extends Model
             ->published();
     }
 
+    /**
+     * @param Builder $builder
+     *
+     * @return Builder
+     */
     public static function scopeLatest(Builder $builder): Builder
     {
         return $builder->orderBy('published_at', 'desc');
     }
 
+    /**
+     * @param Builder $builder
+     *
+     * @return Builder
+     */
     public static function scopePublished(Builder $builder): Builder
     {
         return $builder
             ->where('published_at', '<=', Carbon::now())
             ->where('status', Article\Status::PUBLISHED);
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageUrlAttribute(): string
+    {
+        return static::DEFAULT_IMAGE_PATH . $this->image;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCapitalizeTitleAttribute(): string
+    {
+        return Str::ucfirst($this->title);
+    }
+
+    /**
+     * @return string
+     */
+    public function getNicePublishedDateAttribute(): string
+    {
+        if ($this->published_at > Carbon::now()->subMonth()) {
+            return $this->published_at->diffForHumans();
+        }
+
+        return $this->published_at->toDateTimeString();
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class, 'article_tags');
     }
 }

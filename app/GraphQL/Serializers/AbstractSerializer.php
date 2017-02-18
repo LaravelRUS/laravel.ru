@@ -14,6 +14,11 @@ namespace App\GraphQL\Serializers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
+/**
+ * Class AbstractSerializer
+ *
+ * @package App\GraphQL\Serializers
+ */
 abstract class AbstractSerializer
 {
     /**
@@ -26,11 +31,19 @@ abstract class AbstractSerializer
         return $collection->map(static::map());
     }
 
+    /**
+     * @param Model $model
+     *
+     * @return array
+     */
     public static function serialize(Model $model): array
     {
         return app(static::class)->toArray($model);
     }
 
+    /**
+     * @return \Closure
+     */
     public static function map(): \Closure
     {
         return function (Model $model) {
@@ -38,6 +51,11 @@ abstract class AbstractSerializer
         };
     }
 
+    /**
+     * @param Model $model
+     *
+     * @return array
+     */
     public function toArray(Model $model): array
     {
         return $model->toArray();

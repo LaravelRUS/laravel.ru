@@ -20,20 +20,34 @@ use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
 
+/**
+ * Class ArticlesQuery
+ *
+ * @package App\GraphQL\Queries
+ */
 class ArticlesQuery extends Query
 {
     use QueryLimit;
 
+    /**
+     * @var array
+     */
     protected $attributes = [
         'name'        => 'Article list query',
         'description' => 'Returns a list of available articles',
     ];
 
+    /**
+     * @return ListOfType
+     */
     public function type(): ListOfType
     {
         return Type::listOf(\GraphQL::type(ArticleType::getName()));
     }
 
+    /**
+     * @return array
+     */
     public function args(): array
     {
         return $this->argumentsWithLimit([
@@ -48,6 +62,12 @@ class ArticlesQuery extends Query
         ]);
     }
 
+    /**
+     * @param $root
+     * @param array $args
+     *
+     * @return Collection
+     */
     public function resolve($root, array $args = []): Collection
     {
         $query = Article::query()

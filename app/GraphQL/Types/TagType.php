@@ -13,25 +13,36 @@ namespace App\GraphQL\Types;
 
 use GraphQL\Type\Definition\Type;
 
+/**
+ * Class TagType
+ *
+ * @package App\GraphQL\Types
+ */
 class TagType extends AbstractType
 {
+    /**
+     * @var array
+     */
     protected $attributes = [
         'name'        => 'Tag',
         'description' => 'Tag object',
     ];
 
+    /**
+     * @return array
+     */
     public function fields(): array
     {
         return [
-            'id'           => [
+            'id'    => [
                 'type'        => Type::nonNull(Type::id()),
                 'description' => 'Tag identifier',
             ],
-            'name'         => [
+            'name'  => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Tag name',
             ],
-            'color'        => [
+            'color' => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Tag color',
             ],

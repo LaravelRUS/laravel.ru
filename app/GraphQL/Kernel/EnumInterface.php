@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of laravel.su package.
  *
@@ -9,16 +8,19 @@
 
 declare(strict_types=1);
 
-namespace App\GraphQL\Types;
+namespace App\GraphQL\Kernel;
+
+use GraphQL\Type\Definition\EnumType;
 
 /**
- * Interface TypeInterface
- * @package App\GraphQL\Types
+ * Interface EnumInterface
+ *
+ * @package App\GraphQL\Kernel
  */
-interface TypeInterface
+interface EnumInterface
 {
     /**
-     * @return string
+     * @return EnumType
      */
-    public static function getName(): string;
+    public static function toGraphQL(): EnumType;
 }

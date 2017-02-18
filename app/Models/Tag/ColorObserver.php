@@ -14,16 +14,31 @@ namespace App\Models\Tag;
 use App\Models\Tag;
 use App\Services\ColorGenerator;
 
+/**
+ * Class ColorObserver
+ *
+ * @package App\Models\Tag
+ */
 class ColorObserver
 {
-    /** @var ColorGenerator */
+    /**
+     * @var ColorGenerator
+     */
     private $color;
 
+    /**
+     * ColorObserver constructor.
+     *
+     * @param ColorGenerator $color
+     */
     public function __construct(ColorGenerator $color)
     {
         $this->color = $color;
     }
 
+    /**
+     * @param Tag $tag
+     */
     public function creating(Tag $tag)
     {
         if ($tag->color === null) {

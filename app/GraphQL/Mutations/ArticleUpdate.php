@@ -12,44 +12,64 @@ declare(strict_types=1);
 namespace App\GraphQL\Mutations;
 
 use App\GraphQL\Types\ArticleType;
+use Folklore\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
-use Folklore\GraphQL\Support\Mutation;
 
+/**
+ * Class ArticleUpdate
+ *
+ * @package App\GraphQL\Mutations
+ */
 class ArticleUpdate extends Mutation
 {
-    protected $attributes = [ 
-        'name' => 'article_update' 
+    /**
+     * @var array
+     */
+    protected $attributes = [
+        'name' => 'article_update',
     ];
 
+    /**
+     * @param $root
+     * @param array $args
+     *
+     * @throws \InvalidArgumentException
+     */
     public function resolve($root, array $args = [])
     {
         throw new \InvalidArgumentException('This mutator has no effect');
     }
 
+    /**
+     * @return ObjectType|null
+     */
     public function type(): ?ObjectType
     {
         return \GraphQL::type(ArticleType::getName());
     }
 
+    /**
+     * @return array
+     */
     public function args(): array
     {
         return [
-            'id'       => [
+            'id'           => [
                 'name' => 'id',
-                'type' => Type::nonNull(Type::string())
+                'type' => Type::nonNull(Type::string()),
             ],
-            'title' => [
+            'title'        => [
                 'name' => 'title',
-                'type' => Type::string()
+                'type' => Type::string(),
             ],
-            'content' => [
+            'content'      => [
                 'name' => 'content',
-                'type' => Type::string()
+                'type' => Type::string(),
             ],
             'published_at' => [
                 'name' => 'published_at',
-                'type' => Type::string()
+                'type' => Type::string(),
             ],
         ];
     }
