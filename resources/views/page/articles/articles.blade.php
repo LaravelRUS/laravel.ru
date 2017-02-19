@@ -17,7 +17,6 @@
                 <div class="preloader"></div>
             @{{/if}}
 
-
             <footer>
                 <a href="#" data-bind="click: fetchNextPage" class="button main">Ещё</a>
             </footer>
