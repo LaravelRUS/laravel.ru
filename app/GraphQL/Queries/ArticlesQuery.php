@@ -67,9 +67,7 @@ class ArticlesQuery extends Query
      */
     public function resolve($root, array $args = []): Collection
     {
-        $query = Article::query()
-            ->with('user')
-            ->with('tags');
+        $query = Article::latestPublished();
 
         $query = $this->paginate($query, $args);
 

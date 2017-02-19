@@ -72,6 +72,14 @@ body {
   opacity: 0;
   transition: opacity .3s ease;
 
+  &.bg-gray {
+    background: #f9f9f9;
+  }
+
+  &.bg-dark {
+    background: $color-dark-gray;
+  }
+
   &.visible {
     opacity: 1 !important;
   }

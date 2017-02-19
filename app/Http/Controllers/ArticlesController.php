@@ -11,7 +11,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\View;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Class ArticlesController.
@@ -29,13 +31,25 @@ class ArticlesController extends Controller
     }
 
     /**
-     * @param $slug
+     * @param string $slug
+     * @param Guard $guard
      *
      * @return string
+     * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
+     * @throws
      */
-    public function show($slug)
+    public function show(string $slug, Guard $guard)
     {
-        return 'Article '.$slug;
+        /** @var Article $article */
+        $article = Article::where('slug', $slug)->firstOrFail();
+
+        if (!$article->isAllowedForUser($guard->user())) {
+            throw new AccessDeniedHttpException('Article [' . $article->slug . '] are not allowed for view');
+        }
+
+        return view('page.articles.show', [
+            'article' => $article
+        ]);
     }
 
     /**

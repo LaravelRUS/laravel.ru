@@ -1,195 +1,281 @@
 .article {
   box-sizing: border-box;
 
+  & > figure {
+    overflow: hidden;
+    border-radius: 3px 3px 0 0;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    img {
+      display: block;
+      width: inherit;
+    }
+  }
+
+  & > h2 {
+    text-align: left;
+    margin: 30px 0;
+  }
+
   .article-content {
     @include clear;
+    background: #fff;
     box-sizing: border-box;
-    width: 100%;
+    width: auto;
     position: relative;
     font-size: 15px;
     line-height: 25px;
     padding: 20px 5px;
+  }
+
+  p {
+    &:first-letter {
+      margin-left: 15px;
+    }
+  }
+
+  blockquote {
+    font-size: 13px;
+    line-height: 20px;
+    color: darken($color-description, 10%);
+    font-style: italic;
+    background: #f3f3f3;
+    display: block;
+    padding: 2px 25px;
+    margin: 5px 0;
+    p:first-letter {
+      margin-left: 0 !important;
+    }
+  }
+
+  ul {
+    list-style: none;
+    font-size: 13px;
+
+    li {
+      &:before {
+        content: '# ';
+        margin-right: .25em;
+        color: $color-main;
+        opacity: .3;
+      }
+    }
 
     p {
-      &:first-letter {
-        margin-left: 15px;
-      }
-    }
-
-    blockquote {
-      font-size: 13px;
-      line-height: 20px;
-      color: darken($color-description, 10%);
-      font-style: italic;
-      background: #f3f3f3;
-      display: block;
-      padding: 2px 25px;
-      margin: 5px 0;
-      p:first-letter {
-        margin-left: 0 !important;
-      }
-    }
-
-    ul {
-      list-style: none;
-      font-size: 13px;
-
-      li {
-        &:before {
-          content: '# ';
-          margin-right: .25em;
-          color: $color-main;
-          opacity: .3;
-        }
-      }
-
-      p {
-        margin: 0;
-        padding: 0;
-        display: inline;
-      }
-    }
-
-    hr {
-      border: none;
-      display: block;
-      height: 1px;
-      width: 100%;
-      background: $color-border;
-    }
-
-    /** ==================================== **
-                        CODE
-     ** ==================================== **/
-    code {
-      display: inline-block;
-      color: #445;
-      font-size: 12px;
-      border-radius: 2px;
-      background: lighten($color-border, 10%);
-      line-height: 16px;
-      text-shadow: 0 1px 0 #fff;
-      padding: 0 2px;
-    }
-
-    pre > code {
-      border-radius: 0;
-      color: $color-text;
-      display: block;
-      font-size: 12px;
-      padding: 15px 20px;
-      background: #fafbfc;
-      box-shadow: inset 4px 0 0 $color-main;
-      line-height: 20px;
-
-      &,
-      & * {
-        @include selection {
-          color: #fff;
-          background: $color-main;
-        }
-      }
-
-      .code-line {
-        height: 20px;
-        line-height: 20px;
-        display: inline-block;
-
-        .code-line-index {
-          color: #999;
-          width: 25px;
-          padding: 0 5px;
-          font-size: 11px;
-          text-align: right;
-          display: inline-block;
-          box-shadow: 1px 0 0 #ccc;
-          margin: 0 15px 0 -20px;
-          user-select: none;
-        }
-      }
-    }
-
-
-    /** ==================================== **
-                        HEADERS
-     ** ==================================== **/
-    h1, h2, h3, h4, h5, h6 {
-      text-align: left;
-      &:first-letter {
-        text-transform: uppercase;
-      }
-    }
-
-    h1,
-    h2 {
-      color: $color-text;
-      font-size: 42px;
-      font-weight: 400;
-      line-height: 42px;
+      margin: 0;
       padding: 0;
-      margin: 40px 0 10px 0;
+      display: inline;
+    }
+  }
+
+  hr {
+    border: none;
+    display: block;
+    float: none;
+    height: 1px;
+    width: auto;
+    background: $color-border;
+  }
+
+  /** ==================================== **
+                      CODE
+   ** ==================================== **/
+  code {
+    display: inline-block;
+    color: #445;
+    font-size: 12px;
+    border-radius: 2px;
+    background: lighten($color-border, 10%);
+    line-height: 16px;
+    text-shadow: 0 1px 0 #fff;
+    padding: 0 2px;
+  }
+
+  pre > code {
+    border-radius: 0;
+    color: $color-text;
+    display: block;
+    font-size: 12px;
+    padding: 15px 20px;
+    background: #fafbfc;
+    box-shadow: inset 4px 0 0 $color-main;
+    line-height: 20px;
+
+    &,
+    & * {
+      @include selection {
+        color: #fff;
+        background: $color-main;
+      }
     }
 
-    h3 {
-      font-size: 30px;
-      line-height: 30px;
-      font-weight: 400;
-      margin: 30px 0 0 0;
-    }
-
-    h4, h5, h6 {
-      font-weight: 400;
-      font-size: 20px;
+    .code-line {
+      height: 20px;
       line-height: 20px;
-      margin: 30px 0 5px 0;
+      display: inline-block;
+
+      .code-line-index {
+        color: #999;
+        width: 25px;
+        padding: 0 5px;
+        font-size: 11px;
+        text-align: right;
+        display: inline-block;
+        box-shadow: 1px 0 0 #ccc;
+        margin: 0 15px 0 -20px;
+        user-select: none;
+      }
     }
+  }
 
-    h5, h6 {
-      font-size: 14px;
-      font-weight: bold;
+
+  /** ==================================== **
+                      HEADERS
+   ** ==================================== **/
+  h1, h2, h3, h4, h5, h6 {
+    text-align: left;
+    &:first-letter {
+      text-transform: uppercase;
     }
+  }
 
-    h2, h3, h4, h5, h6 {
-      position: relative;
+  h1,
+  h2 {
+    color: $color-text;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 42px;
+    padding: 0;
+    margin: 40px 0 10px 0;
+  }
 
-      .anchor {
-        position: absolute;
-        top: -100px;
-        left: -20px;
-        width: 0;
-        height: 0;
+  h3 {
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: 400;
+    margin: 30px 0 0 0;
+  }
+
+  h4, h5, h6 {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    margin: 30px 0 5px 0;
+  }
+
+  h5, h6 {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  h2, h3, h4, h5, h6 {
+    position: relative;
+
+    .anchor {
+      position: absolute;
+      top: -100px;
+      left: -20px;
+      width: 0;
+      height: 0;
+      text-decoration: none;
+      font-size: .9em;
+      outline: none;
+
+      &:before {
+        position: relative;
+        top: 100px;
+        content: '#';
+        color: $color-main;
+        opacity: .3;
         text-decoration: none;
-        font-size: .9em;
-        outline: none;
+        margin-right: 8px;
+        font-weight: 200;
+      }
 
+      &:focus,
+      &:active {
         &:before {
-          position: relative;
-          top: 100px;
-          content: '#';
-          color: $color-main;
-          opacity: .3;
-          text-decoration: none;
-          margin-right: 8px;
-          font-weight: 200;
-        }
-
-        &:focus,
-        &:active {
-          &:before {
-            opacity: 1;
-          }
+          opacity: 1;
         }
       }
     }
+  }
 
-    h4, h5, h6 {
-      .anchor:before {
-        display: none;
+  h4, h5, h6 {
+    .anchor:before {
+      display: none;
+    }
+  }
+
+  h2 .anchor {
+    left: -25px;
+  }
+}
+
+
+.article-show {
+  $article-h-padding: 60px;
+  $article-v-padding: 10px;
+
+  background: #fff;
+  margin: 50px auto;
+  border-radius: 4px;
+  box-shadow:
+      0 1px 1px 0 rgba(#000, .1),
+      0 2px 5px rgba(#000, .08);
+
+  .article {
+    & > h2 {
+      margin: 50px 0 40px 0;
+    }
+
+    & > h2,
+    & > hr,
+    & > .article-content {
+      margin-left: $article-h-padding;
+      margin-right: $article-h-padding;
+    }
+  }
+
+  footer {
+    $height: 32px;
+
+    padding: 20px $article-h-padding;
+    box-shadow: inset 0 1px 0 $color-border;
+    display: block;
+    height: $height;
+    line-height: $height;
+    @include clear;
+
+    .article-author {
+      display: block;
+      float: left;
+      height: inherit;
+      line-height: inherit;
+
+      img {
+        display: block;
+        float: left;
+        width: $height;
+        height: $height;
+        border-radius: 50%;
+        margin-right: 15px;
       }
     }
 
-    h2 .anchor {
-      left: -25px;
+    .article-time {
+      float: right;
+      font-style: italic;
+
+      &:before {
+        @include fa-icon;
+        margin-right: 3px;
+        opacity: .3;
+        content: $fa-var-clock-o;
+      }
     }
   }
 }

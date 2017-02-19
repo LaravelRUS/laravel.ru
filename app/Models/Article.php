@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -86,6 +87,22 @@ class Article extends Model
         return $builder
             ->where('published_at', '<=', Carbon::now())
             ->where('status', Article\Status::PUBLISHED);
+    }
+
+    /**
+     * @param Authenticatable|User|null $user
+     *
+     * @return bool
+     */
+    public function isAllowedForUser(?Authenticatable $user): bool
+    {
+        $isAuthor = $user === null ? false : ($this->user->id === $user->getAuthIdentifier());
+
+        $isPublished = $this->status === Article\Status::PUBLISHED;
+
+        $isAllowPublishedTime = $this->published_at <= Carbon::now();
+
+        return $isAuthor || ($isPublished && $isAllowPublishedTime);
     }
 
     /**

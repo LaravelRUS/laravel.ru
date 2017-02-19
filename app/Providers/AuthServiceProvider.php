@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\Article;
+use App\Policies\ArticlePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 /**
@@ -21,8 +23,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        //
+        Article::class => ArticlePolicy::class
     ];
+
 
     public function boot(): void
     {
