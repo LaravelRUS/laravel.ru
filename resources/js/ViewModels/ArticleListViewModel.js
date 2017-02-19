@@ -23,6 +23,11 @@ export default class ArticleListViewModel {
     articles = ko.observableArray([]);
 
     /**
+     * @type {KnockoutObservable<T>}
+     */
+    loading = ko.observable(false);
+
+    /**
      * @param root
      */
     constructor(root) {
@@ -35,12 +40,20 @@ export default class ArticleListViewModel {
      * @return {ArticleListViewModel}
      */
     async fetchNextPage() {
+        this.loading(true);
+
         this.page(this.page() + 1);
 
-        let articles = await this.repo.get(this.articlesPerPage, this.page());
+        try {
+            let articles = await this.repo.get(this.articlesPerPage, this.page());
 
-        for (let article of articles) {
-            this.articles.push(article);
+            for (let article of articles) {
+                this.articles.push(article);
+            }
+        } catch (e) {
+            throw e;
+        } finally {
+            this.loading(false);
         }
 
         return this;
