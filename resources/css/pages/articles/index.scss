@@ -12,9 +12,19 @@
     position: relative;
     margin-bottom: 45px;
     border-radius: 2px;
+    opacity: 1;
+    transform: translateY(0px);
+    transition:
+      opacity .5s $swift,
+      transform .5s $bounce;
     box-shadow:
       0 1px 1px 0 rgba(#000, .1),
       0 2px 5px rgba(#000, .08);
+
+    &.article-hidden {
+      opacity: 0;
+      transform: translateY(200px);
+    }
 
     a {
       display: block;

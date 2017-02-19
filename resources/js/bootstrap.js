@@ -17,6 +17,12 @@ import 'knockout.punches';
 ko.punches.enableAll();
 
 /**
+ * Inview plugin
+ */
+import inview from "knockout-inview";
+ko.bindingHandlers.inview = inview(ko);
+
+/**
  * Validation support
  */
 import 'knockout.validation/dist/knockout.validation';
@@ -29,7 +35,8 @@ ko.validation.locale('ru-RU');
 /**
  * Vendor libraries
  */
-import './vendor/router';
+import router from './vendor/router';
+window.router = router;
 
 /**
  * Application styles

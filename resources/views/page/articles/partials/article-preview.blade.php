@@ -1,46 +1,41 @@
-<?php /** @var \App\Models\Article $article */ ?>
-
-<a href="{{ route('article', ['slug' => $article->slug]) }}" title="{{ $article->capitalize_title }}">
-    <img class="article-image" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
+<a href="@{{ url }}" title="@{{ title }}">
+    <img class="article-image" data-bind="attr: { src: (loaded() ? image : '#') }" alt="@{{ title }}" />
 </a>
+
 
 <div class="article-description">
     <div class="article-tags">
-        @foreach($article->tags as $i => $tag)
-            @if ($i >= (isset($isMain) && $isMain ? 5 : 3)) @break @endif
-
-            <a href="{{ route('tag', ['id' => $tag]) }}" class="article-tag"
-               style="color: {{ $tag->color }}">{{ $tag->name }}</a>
-        @endforeach
+        @{{#foreach tags.splice(0, 5)}}
+            <a href="#" class="article-tag" style="color: @{{ color }}">
+                @{{ name }}
+            </a>
+        @{{/foreach}}
     </div>
 
-
     <h3>
-        <a href="{{ route('article', ['slug' => $article->slug]) }}">
-            {{ $article->capitalize_title }}
+        <a href="@{{ url }}">
+            @{{ title }}
         </a>
     </h3>
 
     <span class="article-author">
-        {{ $article->user->name }}
+        @{{ user.name }}
     </span>
 
-    <time class="article-time" datetime="{{ $article->published_at->toRfc3339String() }}">
-        {{ $article->nice_published_date }}
+    <time class="article-time" datetime="#">
+        @{{ published_at }}
     </time>
 
-    @if (isset($withContent) && $withContent)
-        <div class="article-content">
-            <hr />
-            <br />
+    <div class="article-content">
+        <hr />
+        <br />
 
-            {!! $article->preview_rendered !!}
-        </div>
+        @{{{ preview }}}
+    </div>
 
-        <footer>
-            <a class="button" href="{{ route('article', ['slug' => $article->slug]) }}">
-                Читать далее
-            </a>
-        </footer>
-    @endif
+    <footer>
+        <a class="button" href="@{{ url }}">
+            Читать далее
+        </a>
+    </footer>
 </div>

@@ -1,27 +1,24 @@
 @extends('layout.master')
 
 @section('content')
-    <section class="articles-list container-12">
+    <section class="articles-list container-12" data-vm="ArticleListViewModel">
 
         <div class="grid-8">
             <h2>Наши публикации</h2>
 
-            @foreach($articles as $i => $article)
-                <article class="article article-main">
-                    @include('page.articles.partials.article-preview', [
-                        'article'     => $article,
-                        'isMain'      => true,
-                        'withContent' => true
-                    ])
+            @{{#foreach articles}}
+                <article class="article article-main @{{ loaded() ? '' : 'article-hidden' }}"
+                         data-bind="inview: visible">
+                    @include('page.articles.partials.article-preview')
                 </article>
-            @endforeach
+            @{{/foreach}}
 
             <footer>
-                <a href="#" class="button main">Ещё</a>
+                <a href="#" data-bind="click: fetchNextPage" class="button main">Ещё</a>
             </footer>
         </div>
 
-        <aside class="grid-4" data-vm="StickyPanelViewModel" style="position: relative">
+        <aside class="grid-4" data-bind="with: aside" style="position: relative">
             <div data-bind="attr: {
                 style: 'top: 0; width: 300px; position: ' + (fixed() ? 'fixed' : 'relative') + ';'
             }">

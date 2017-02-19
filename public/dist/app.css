@@ -3165,7 +3165,18 @@ body {
     position: relative;
     margin-bottom: 45px;
     border-radius: 2px;
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    -webkit-transition: opacity 0.5s cubic-bezier(0.55, 0, 0.1, 1), -webkit-transform 0.5s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+    transition: opacity 0.5s cubic-bezier(0.55, 0, 0.1, 1), -webkit-transform 0.5s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+    transition: opacity 0.5s cubic-bezier(0.55, 0, 0.1, 1), transform 0.5s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+    transition: opacity 0.5s cubic-bezier(0.55, 0, 0.1, 1), transform 0.5s cubic-bezier(0.585, 0.22, 0.12, 1.355), -webkit-transform 0.5s cubic-bezier(0.585, 0.22, 0.12, 1.355);
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.08); }
+    .articles-list .article.article-hidden {
+      opacity: 0;
+      -webkit-transform: translateY(200px);
+              transform: translateY(200px); }
     .articles-list .article a {
       display: block;
       width: inherit;
