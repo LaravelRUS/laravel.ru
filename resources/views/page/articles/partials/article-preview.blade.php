@@ -1,5 +1,5 @@
 <a href="@{{ url }}" title="@{{ title }}" style="display: @{{ loaded() ? 'block': 'none' }}">
-    <img class="article-image" data-bind="attr: { src: (loaded() ? image : '#') }" alt="@{{ title }}" />
+    <img class="article-image" data-bind="attr: { src: image }" alt="@{{ title }}" />
 </a>
 
 
