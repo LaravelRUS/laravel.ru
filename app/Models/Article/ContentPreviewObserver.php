@@ -13,6 +13,7 @@ namespace App\Models\Article;
 
 use App\Models\Article;
 use App\Services\ContentRenderer\ContentRenderInterface;
+use Illuminate\Support\Str;
 
 /**
  * Class ContentPreviewObserver
@@ -39,8 +40,10 @@ class ContentPreviewObserver
      */
     public function saving(Article $article): void
     {
-        if ($article->content_source) {
-            $article->content_rendered = $this->renderer->renderBody($article->content_source);
+        if (! $article->preview_source) {
+            $article->preview_source = Str::words($article->content_source, 100, '…');
         }
+
+        $article->preview_rendered = $this->renderer->renderBody($article->preview_source);
     }
 }

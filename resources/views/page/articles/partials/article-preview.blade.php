@@ -34,7 +34,7 @@
             <hr />
             <br />
 
-            {!! $article->content_rendered !!}
+            {!! $article->preview_rendered !!}
         </div>
 
         <footer>
