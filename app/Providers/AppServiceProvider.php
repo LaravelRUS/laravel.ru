@@ -6,23 +6,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Services\ColorGenerator;
 use Carbon\Carbon;
+use App\Services\ColorGenerator;
 use GuzzleHttp\Client as Guzzle;
-use GuzzleHttp\ClientInterface as GuzzleInterface;
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use GuzzleHttp\ClientInterface as GuzzleInterface;
 
 /**
- * Class AppServiceProvider
- *
- * @package App\Providers
+ * Class AppServiceProvider.
  */
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,9 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     protected $app;
 
-    /**
-     * @return void
-     */
     public function register(): void
     {
         $this->localizeCarbon();
@@ -43,9 +37,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ColorGenerator::class);
     }
 
-    /**
-     * @return void
-     */
     private function localizeCarbon(): void
     {
         $locale = $this->app->make(Repository::class)->get('app.locale');
@@ -53,9 +44,6 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale($locale);
     }
 
-    /**
-     * @return void
-     */
     private function loadLocalProviders(): void
     {
         if ($this->app->isLocal()) {
@@ -66,9 +54,6 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * @return void
-     */
     private function registerGuzzleClient(): void
     {
         $this->app->singleton(Guzzle::class, function () {

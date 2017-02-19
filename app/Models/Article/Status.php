@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Models\Article;
@@ -14,9 +13,7 @@ namespace App\Models\Article;
 use App\GraphQL\Kernel\AbstractEnum;
 
 /**
- * Class Status
- *
- * @package App\Models\Article
+ * Class Status.
  */
 final class Status extends AbstractEnum
 {

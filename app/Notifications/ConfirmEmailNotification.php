@@ -6,21 +6,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Notifications;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
+use Illuminate\Notifications\Messages\MailMessage;
 
 /**
- * Class ConfirmEmailNotification
- *
- * @package App\Notifications
+ * Class ConfirmEmailNotification.
  */
 class ConfirmEmailNotification extends Notification
 {
@@ -39,7 +36,7 @@ class ConfirmEmailNotification extends Notification
     /**
      * ConfirmEmailNotification constructor.
      *
-     * @param User $user
+     * @param User         $user
      * @param JWTInterface $jwt
      */
     public function __construct(User $user, JWTInterface $jwt)

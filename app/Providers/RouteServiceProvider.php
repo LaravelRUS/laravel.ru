@@ -6,18 +6,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 /**
- * Class RouteServiceProvider
- *
- * @package App\Providers
+ * Class RouteServiceProvider.
  */
 class RouteServiceProvider extends ServiceProvider
 {
@@ -31,8 +28,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -43,8 +38,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * @param Router $router
-     *
-     * @return void
      */
     public function map(Router $router): void
     {
@@ -55,8 +48,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * @param Router $router
-     *
-     * @return void
      */
     protected function mapApiRoutes(Router $router): void
     {
@@ -70,8 +61,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * @param Router $router
-     *
-     * @return void
      */
     protected function mapWebRoutes(Router $router): void
     {

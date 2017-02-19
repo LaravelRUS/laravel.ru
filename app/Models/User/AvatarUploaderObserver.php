@@ -5,19 +5,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Models\User;
 
-use App\Jobs\UploadAvatarProcess;
 use App\Models\User;
+use App\Jobs\UploadAvatarProcess;
 use Illuminate\Contracts\Bus\Dispatcher;
 
 /**
- * Class AvatarUploaderObserver
- *
- * @package App\Models\User
+ * Class AvatarUploaderObserver.
  */
 class AvatarUploaderObserver
 {

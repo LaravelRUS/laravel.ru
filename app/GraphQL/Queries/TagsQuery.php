@@ -6,24 +6,21 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
-use App\GraphQL\Queries\Support\QueryLimit;
-use App\GraphQL\Serializers\TagSerializer;
-use App\GraphQL\Types\TagType;
 use App\Models\Tag;
-use Folklore\GraphQL\Support\Query;
-use GraphQL\Type\Definition\ListOfType;
+use App\GraphQL\Types\TagType;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
+use Folklore\GraphQL\Support\Query;
+use GraphQL\Type\Definition\ListOfType;
+use App\GraphQL\Serializers\TagSerializer;
+use App\GraphQL\Queries\Support\QueryLimit;
 
 /**
- * Class TagsQuery
- *
- * @package App\GraphQL
+ * Class TagsQuery.
  */
 class TagsQuery extends Query
 {

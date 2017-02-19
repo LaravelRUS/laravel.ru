@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Services\ContentRenderer;
@@ -14,9 +13,7 @@ namespace App\Services\ContentRenderer;
 use cebe\markdown\Parser;
 
 /**
- * Class MarkdownRenderer
- *
- * @package App\Services\ContentRenderer
+ * Class MarkdownRenderer.
  */
 class MarkdownRenderer implements ContentRenderInterface
 {

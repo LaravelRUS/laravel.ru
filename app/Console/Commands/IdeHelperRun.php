@@ -6,18 +6,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Console\Command;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 
 /**
- * Class IdeHelperRun
- *
- * @package App\Console\Commands
+ * Class IdeHelperRun.
  */
 class IdeHelperRun extends Command
 {
@@ -36,12 +33,9 @@ class IdeHelperRun extends Command
      */
     protected $description = 'Generate a IDE Helper files if current environment is local.';
 
-    /**
-     * @return void
-     */
     public function handle(): void
     {
-        if (!$this->laravel->getProvider(IdeHelperServiceProvider::class)) {
+        if (! $this->laravel->getProvider(IdeHelperServiceProvider::class)) {
             $env = $this->laravel->environment();
             $this->info(sprintf('Skipped. IdeHelper not registered for %s environment.', $env));
 

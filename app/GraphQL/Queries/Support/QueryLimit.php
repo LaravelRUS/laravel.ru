@@ -6,19 +6,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\GraphQL\Queries\Support;
 
 use GraphQL\Type\Definition\Type;
-use Illuminate\Database\Eloquent\Builder as EBuilder;
 use Illuminate\Database\Query\Builder as QBuilder;
+use Illuminate\Database\Eloquent\Builder as EBuilder;
 
 /**
- * Class QueryLimit
- *
- * @package App\GraphQL\Queries\Support
+ * Class QueryLimit.
  */
 trait QueryLimit
 {
@@ -43,8 +40,8 @@ trait QueryLimit
     }
 
     /**
-     * @param  EBuilder|QBuilder $builder
-     * @param  array $args
+     * @param EBuilder|QBuilder $builder
+     * @param array             $args
      *
      * @return EBuilder
      */
@@ -53,19 +50,18 @@ trait QueryLimit
         $limit = null;
 
         if (isset($args['_limit'])) {
-            $limit = max(1, min(1000, (int)$args['_limit']));
+            $limit = max(1, min(1000, (int) $args['_limit']));
 
             $builder = $builder->take($limit);
 
             if (isset($args['_page'])) {
-                $page = max(1, (int)$args['_page']);
+                $page = max(1, (int) $args['_page']);
 
                 $builder = $builder->skip(($page - 1) * $limit);
             }
 
             unset($args['_limit']);
         }
-
 
         if (isset($args['_page'])) {
             unset($args['_page']);

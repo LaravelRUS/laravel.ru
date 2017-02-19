@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Http\Middleware;
@@ -15,18 +14,16 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class RedirectIfAuthenticated
- *
- * @package App\Http\Middleware
+ * Class RedirectIfAuthenticated.
  */
 class RedirectIfAuthenticated
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
-     * @param  string|null $guard
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     * @param string|null              $guard
      *
      * @return mixed
      */

@@ -6,24 +6,21 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
 use App\Http\Requests\RegistrationRequest;
 use Illuminate\Contracts\Auth\StatefulGuard;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 
 /**
- * Class RegistrationController
- *
- * @package App\Http\Controllers\Auth
+ * Class RegistrationController.
  */
 class RegistrationController extends Controller
 {
@@ -39,7 +36,7 @@ class RegistrationController extends Controller
 
     /**
      * @param RegistrationRequest $request
-     * @param Guard $guard
+     * @param Guard               $guard
      *
      * @return RedirectResponse
      */
@@ -47,7 +44,7 @@ class RegistrationController extends Controller
     {
         $user = User::create($request->only('name', 'email', 'password'));
 
-        /** @var StatefulGuard $guard */
+        /* @var StatefulGuard $guard */
         $guard->login($user, true);
 
         return redirect()->route('home');

@@ -6,22 +6,19 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class CurrentPageState
- *
- * @package App\Http\Middleware
+ * Class CurrentPageState.
  */
 class CurrentPageState
 {
@@ -33,7 +30,7 @@ class CurrentPageState
     private $current;
 
     /**
-     * List of excluded route names
+     * List of excluded route names.
      *
      * @var array
      */
@@ -55,8 +52,8 @@ class CurrentPageState
     /**
      * CurrentPageState constructor.
      *
-     * @param Router $router
-     * @param Session $session
+     * @param Router               $router
+     * @param Session              $session
      * @param Authenticatable|null $user
      */
     public function __construct(Router $router, Session $session, Authenticatable $user = null)
@@ -67,7 +64,7 @@ class CurrentPageState
     }
 
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param \Closure $next
      *
      * @return Response
