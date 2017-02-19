@@ -52,9 +52,17 @@ class ArticleType extends AbstractType
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Article rendered content',
             ],
-            'source'       => [
+            'content_source'       => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Article content source (original)',
+            ],
+            'preview'       => [
+                'type'        => Type::string(),
+                'description' => 'Article content preview',
+            ],
+            'preview_source'       => [
+                'type'        => Type::string(),
+                'description' => 'Article content preview (original)',
             ],
             'status'       => [
                 'type'        => Article\Status::toGraphQL(),

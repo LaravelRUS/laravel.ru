@@ -26,16 +26,18 @@ class ArticleSerializer extends AbstractSerializer
     public function toArray(Model $article): array
     {
         return [
-            'id'           => $article->id,
-            'title'        => $article->capitalize_title,
-            'url'          => route('article', ['slug' => $article->slug]),
-            'image'        => $article->image_url,
-            'content'      => $article->content_rendered,
-            'source'       => $article->content_source,
-            'status'       => $article->status,
-            'published_at' => $article->published_at->toRfc3339String(),
-            'user'         => UserSerializer::serialize($article->user),
-            'tags'         => TagSerializer::collection($article->tags),
+            'id'             => $article->id,
+            'title'          => $article->capitalize_title,
+            'url'            => route('article', ['slug' => $article->slug]),
+            'image'          => $article->image_url,
+            'content'        => $article->content_rendered,
+            'content_source' => $article->content_source,
+            'preview'        => $article->preview_rendered,
+            'preview_source' => $article->preview_source,
+            'status'         => $article->status,
+            'published_at'   => $article->published_at->toRfc3339String(),
+            'user'           => UserSerializer::serialize($article->user),
+            'tags'           => TagSerializer::collection($article->tags),
         ];
     }
 }
