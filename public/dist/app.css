@@ -3584,6 +3584,7 @@ body {
       line-height: 24px;
       display: inline-block; }
       .article pre > code .code-line .code-line-index {
+        cursor: default;
         color: #dee0df;
         width: 25px;
         padding: 0 5px;
