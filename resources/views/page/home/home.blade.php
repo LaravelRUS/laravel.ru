@@ -4,6 +4,8 @@
     @include('partials.welcome')
 @endpush
 
+@push('title', 'Добро пожаловать &mdash; ')
+
 @section('content')
     <main class="home-page">
         <section class="articles">
