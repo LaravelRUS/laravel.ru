@@ -3432,6 +3432,11 @@ body {
         display: block;
         background: -webkit-linear-gradient(rgba(255, 255, 255, 0), white 80%);
         background: linear-gradient(rgba(255, 255, 255, 0), white 80%); }
+      .articles-list .article .article-content h1, .articles-list .article .article-content h2, .articles-list .article .article-content h3, .articles-list .article .article-content h4, .articles-list .article .article-content h5, .articles-list .article .article-content h6 {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 26px;
+        margin: 5px 0; }
       .articles-list .article .article-content pre > code {
         font-size: 12px;
         line-height: 20px; }

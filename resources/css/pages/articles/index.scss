@@ -165,6 +165,13 @@
         background: linear-gradient(rgba(#fff, 0), rgba(#fff, 1) 80%);
       }
 
+      h1, h2, h3, h4, h5, h6 {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 26px;
+        margin: 5px 0;
+      }
+
       pre > code {
         font-size: 12px;
         line-height: 20px;
