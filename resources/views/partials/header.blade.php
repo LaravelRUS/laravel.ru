@@ -1,6 +1,6 @@
 <header data-vm="HeaderViewModel">
     <section class="container-12">
-        <a class="logo" href="{{ URL::to('/') }}">
+        <a class="logo" href="{{ route('home') }}">
             @include('partials.logo')
 
             <h1>Laravel</h1>
