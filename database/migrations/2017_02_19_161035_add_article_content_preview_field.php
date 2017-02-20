@@ -11,8 +11,8 @@ class AddArticleContentPreviewField extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $t) {
-            $t->text('preview_rendered')->after('slug');
-            $t->text('preview_source')->after('slug');
+            $t->text('preview_rendered')->nullable()->after('slug');
+            $t->text('preview_source')->nullable()->after('slug');
         });
     }
 
