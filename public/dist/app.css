@@ -3535,16 +3535,13 @@ body {
     line-height: 16px;
     text-shadow: 0 1px 0 #fff;
     padding: 0 2px; }
-  .article pre {
-    background: #fafbfc;
-    overflow: visible; }
   .article pre > code {
-    border-radius: 0;
+    border-radius: 4px;
     color: #525252;
     display: block;
     font-size: 14px;
     padding: 15px 20px;
-    background: #fafbfc;
+    background: #fff;
     line-height: 24px;
     max-height: 500px;
     overflow: auto;
@@ -3646,13 +3643,12 @@ body {
         opacity: .3;
         text-decoration: none;
         margin-right: 8px;
-        font-weight: 200; }
+        font-weight: 200;
+        font-size: 20px; }
       .article h2 .anchor:focus:before, .article h2 .anchor:active:before, .article h3 .anchor:focus:before, .article h3 .anchor:active:before, .article h4 .anchor:focus:before, .article h4 .anchor:active:before, .article h5 .anchor:focus:before, .article h5 .anchor:active:before, .article h6 .anchor:focus:before, .article h6 .anchor:active:before {
         opacity: 1; }
-  .article h4 .anchor:before, .article h5 .anchor:before, .article h6 .anchor:before {
+  .article h5 .anchor:before, .article h6 .anchor:before {
     display: none; }
-  .article h2 .anchor {
-    left: -25px; }
 
 .article-show {
   background: #fff;
