@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace App\Models\Article;
 
 use App\Models\Article;
+use App\Models\Article\ContentObserver\ContentHeadersRenderer;
 use App\Services\ContentRenderer\ContentRenderInterface;
 
 /**
@@ -39,7 +40,21 @@ class ContentObserver
     public function saving(Article $article): void
     {
         if ($article->content_source) {
-            $article->content_rendered = $this->renderer->renderBody($article->content_source);
+            $rendered = $this->renderer->renderBody($article->content_source);
+
+            $rendered = $this->parseHeaders($rendered);
+
+            $article->content_rendered = $rendered->getContent();
         }
+    }
+
+    /**
+     * @param string $content
+     *
+     * @return ContentHeadersRenderer
+     */
+    private function parseHeaders(string $content): ContentHeadersRenderer
+    {
+        return (new ContentHeadersRenderer($content))->parse();
     }
 }

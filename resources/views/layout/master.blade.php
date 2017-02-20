@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta http-equiv="X-DNS-Prefetch-Control" content="on" />
 
-    <base href="{{ config('app.url') }}" />
     <title>{{ config('app.name') }}</title>
 
     <link rel="dns-prefetch" href="{{ config('app.url') }}" />

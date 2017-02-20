@@ -83,7 +83,7 @@ class ArticlesSeeder extends Seeder
         $result = [];
 
         for ($j = 0; $j < $paragraphsCount; ++$j) {
-            if (random_int(0, 4) > 3) {
+            if (random_int(0, 4) > 2) {
                 $result[] = $this->createTitle();
             }
 
@@ -118,7 +118,7 @@ class ArticlesSeeder extends Seeder
      */
     private function createTitle(): string
     {
-        $level = random_int(3, 6);
+        $level = random_int(1, 6);
 
         return "\n".
             str_repeat('#', $level).' '.
