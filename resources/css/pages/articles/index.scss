@@ -164,6 +164,11 @@
         display: block;
         background: linear-gradient(rgba(#fff, 0), rgba(#fff, 1) 80%);
       }
+
+      pre > code {
+        font-size: 12px;
+        line-height: 20px;
+      }
     }
 
     footer {

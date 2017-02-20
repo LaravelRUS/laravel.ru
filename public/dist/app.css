@@ -3432,6 +3432,9 @@ body {
         display: block;
         background: -webkit-linear-gradient(rgba(255, 255, 255, 0), white 80%);
         background: linear-gradient(rgba(255, 255, 255, 0), white 80%); }
+      .articles-list .article .article-content pre > code {
+        font-size: 12px;
+        line-height: 20px; }
     .articles-list .article footer {
       position: relative;
       z-index: 4;

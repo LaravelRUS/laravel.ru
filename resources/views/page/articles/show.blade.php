@@ -17,7 +17,7 @@
 
                 <hr />
 
-                <div class="article-content">
+                <div class="article-content" data-punches="false">
                     {!! $article->content_rendered !!}
                 </div>
             </article>
