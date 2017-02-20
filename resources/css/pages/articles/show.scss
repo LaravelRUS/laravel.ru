@@ -94,15 +94,62 @@
     padding: 0 2px;
   }
 
+  pre {
+    background: #fafbfc;
+    overflow: visible;
+  }
+
   pre > code {
+    $code-line-height: 24px;
+
     border-radius: 0;
     color: $color-text;
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     padding: 15px 20px;
     background: #fafbfc;
-    box-shadow: inset 4px 0 0 $color-main;
-    line-height: 20px;
+    line-height: $code-line-height;
+    max-height: 500px;
+    overflow: auto;
+    text-shadow: 0 0 1px rgba(#000, .1);
+
+    &::-webkit-scrollbar {
+      $scrollbar-width: 4px;
+      $scrollbar-height: 4px;
+
+      width: $scrollbar-width;
+      height: $scrollbar-height;
+
+      &-button {
+        width: 0;
+        height: 0;
+      }
+
+      &-thumb {
+        background: $color-light-gray;
+        border: 0 none #fff;
+        border-radius: ($scrollbar-width + $scrollbar-height) / 4;
+        transition: background .4s $swift;
+
+        &:hover {
+          background: $color-gray;
+        }
+
+        &:active {
+          background: darken($color-main, 10%);
+        }
+      }
+
+      &-track {
+        background: #fafbfc;
+        border: 0 none #fff;
+        border-radius: 50px;
+      }
+
+      &-corner {
+        background: transparent;
+      }
+    }
 
     &,
     & * {
@@ -113,18 +160,19 @@
     }
 
     .code-line {
-      height: 20px;
-      line-height: 20px;
+      height: $code-line-height;
+      line-height: $code-line-height;
       display: inline-block;
 
       .code-line-index {
-        color: #999;
+        color: $color-border;
         width: 25px;
         padding: 0 5px;
-        font-size: 11px;
+        font-size: 10px !important;
         text-align: right;
         display: inline-block;
-        box-shadow: 1px 0 0 #ccc;
+        font-style: normal;
+        box-shadow: 1px 0 0 $color-border;
         margin: 0 15px 0 -20px;
         user-select: none;
       }
@@ -137,6 +185,7 @@
    ** ==================================== **/
   h1, h2, h3, h4, h5, h6 {
     text-align: left;
+
     &:first-letter {
       text-transform: uppercase;
     }
@@ -149,21 +198,21 @@
     font-weight: 400;
     line-height: 42px;
     padding: 0;
-    margin: 40px 0 10px 0;
+    margin: 40px 0;
   }
 
   h3 {
     font-size: 30px;
     line-height: 30px;
     font-weight: 400;
-    margin: 30px 0 0 0;
+    margin: 30px 0;
   }
 
   h4, h5, h6 {
     font-weight: 400;
     font-size: 20px;
     line-height: 20px;
-    margin: 30px 0 5px 0;
+    margin: 20px 0;
   }
 
   h5, h6 {

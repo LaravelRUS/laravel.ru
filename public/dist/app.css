@@ -3005,6 +3005,91 @@ input + .label {
     -webkit-animation: preloader-rotate .5s infinite linear;
             animation: preloader-rotate .5s infinite linear; }
 
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8; }
+
+.hljs-comment,
+.hljs-quote {
+  color: #bbbfb9;
+  font-weight: 100;
+  font-style: italic;
+  text-shadow: 0 0 1px #fff; }
+
+.hljs-keyword {
+  color: #07a; }
+
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333; }
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080; }
+
+.hljs-string,
+.hljs-doctag {
+  color: #f4645f; }
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #DA564A;
+  font-weight: bold; }
+
+.hljs-subst {
+  font-weight: normal; }
+
+.hljs-type {
+  color: #458; }
+
+.hljs-class .hljs-title {
+  color: #525252; }
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal; }
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926; }
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073; }
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3; }
+
+.hljs-meta {
+  color: #999; }
+
+.hljs-deletion {
+  background: #fdd; }
+
+.hljs-addition {
+  background: #dfd; }
+
+.hljs-emphasis {
+  font-style: italic; }
+
+.hljs-strong {
+  font-weight: bold; }
+
 html {
   height: 100%; }
 
@@ -3033,7 +3118,7 @@ body {
     content: '';
     clear: both; }
   body.bg-gray {
-    background: #f9f9f9; }
+    background: #f9f6f6; }
   body.bg-dark {
     background: #525252; }
   body.visible {
@@ -3446,15 +3531,42 @@ body {
     line-height: 16px;
     text-shadow: 0 1px 0 #fff;
     padding: 0 2px; }
+  .article pre {
+    background: #fafbfc;
+    overflow: visible; }
   .article pre > code {
     border-radius: 0;
     color: #525252;
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     padding: 15px 20px;
     background: #fafbfc;
-    box-shadow: inset 4px 0 0 #f4645f;
-    line-height: 20px; }
+    line-height: 24px;
+    max-height: 500px;
+    overflow: auto;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.1); }
+    .article pre > code::-webkit-scrollbar {
+      width: 4px;
+      height: 4px; }
+      .article pre > code::-webkit-scrollbar-button {
+        width: 0;
+        height: 0; }
+      .article pre > code::-webkit-scrollbar-thumb {
+        background: #dee0df;
+        border: 0 none #fff;
+        border-radius: 2px;
+        -webkit-transition: background 0.4s cubic-bezier(0.55, 0, 0.1, 1);
+        transition: background 0.4s cubic-bezier(0.55, 0, 0.1, 1); }
+        .article pre > code::-webkit-scrollbar-thumb:hover {
+          background: #9e9999; }
+        .article pre > code::-webkit-scrollbar-thumb:active {
+          background: #f1362f; }
+      .article pre > code::-webkit-scrollbar-track {
+        background: #fafbfc;
+        border: 0 none #fff;
+        border-radius: 50px; }
+      .article pre > code::-webkit-scrollbar-corner {
+        background: transparent; }
     .article pre > code::-moz-selection,
     .article pre > code *::-moz-selection {
       color: #fff;
@@ -3468,17 +3580,18 @@ body {
       color: #fff;
       background: #f4645f; }
     .article pre > code .code-line {
-      height: 20px;
-      line-height: 20px;
+      height: 24px;
+      line-height: 24px;
       display: inline-block; }
       .article pre > code .code-line .code-line-index {
-        color: #999;
+        color: #dee0df;
         width: 25px;
         padding: 0 5px;
-        font-size: 11px;
+        font-size: 10px !important;
         text-align: right;
         display: inline-block;
-        box-shadow: 1px 0 0 #ccc;
+        font-style: normal;
+        box-shadow: 1px 0 0 #dee0df;
         margin: 0 15px 0 -20px;
         -webkit-user-select: none;
            -moz-user-select: none;
@@ -3495,17 +3608,17 @@ body {
     font-weight: 400;
     line-height: 42px;
     padding: 0;
-    margin: 40px 0 10px 0; }
+    margin: 40px 0; }
   .article h3 {
     font-size: 30px;
     line-height: 30px;
     font-weight: 400;
-    margin: 30px 0 0 0; }
+    margin: 30px 0; }
   .article h4, .article h5, .article h6 {
     font-weight: 400;
     font-size: 20px;
     line-height: 20px;
-    margin: 30px 0 5px 0; }
+    margin: 20px 0; }
   .article h5, .article h6 {
     font-size: 14px;
     font-weight: bold; }

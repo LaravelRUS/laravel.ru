@@ -51,6 +51,7 @@ $color-text:        $color-dark-gray;
 @import "ui/checkbox";
 @import "ui/labels";
 @import "ui/preloader";
+@import "ui/hljs";
 
 html {
   height: 100%;
@@ -73,7 +74,7 @@ body {
   transition: opacity .3s ease;
 
   &.bg-gray {
-    background: #f9f9f9;
+    background: #f9f6f6;
   }
 
   &.bg-dark {

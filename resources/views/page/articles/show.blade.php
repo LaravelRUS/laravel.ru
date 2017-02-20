@@ -5,7 +5,7 @@
 @section('content')
     <?php /** @var \App\Models\Article $article */ ?>
 
-    <section class="container-12">
+    <section class="container-12" data-vm="ArticleShowViewModel">
         <div class="article-show grid-12">
 
             <article class="article">
