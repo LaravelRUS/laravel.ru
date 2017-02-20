@@ -42,10 +42,12 @@
     line-height: 20px;
     color: darken($color-description, 10%);
     font-style: italic;
-    background: #f3f3f3;
+    background: #faf9f9;
+    box-shadow: inset 2px 0 0 $color-border;
     display: block;
     padding: 2px 25px;
-    margin: 5px 0;
+    margin: 25px 0;
+
     p:first-letter {
       margin-left: 0 !important;
     }
@@ -199,25 +201,25 @@
     font-weight: 400;
     line-height: 42px;
     padding: 0;
-    margin: 40px 0;
+    margin: 50px 0;
   }
 
   h3 {
     font-size: 30px;
     line-height: 30px;
     font-weight: 400;
-    margin: 30px 0;
+    margin: 50px 0;
   }
 
   h4, h5, h6 {
     font-weight: 400;
     font-size: 20px;
     line-height: 20px;
-    margin: 20px 0;
+    margin: 40px 0;
   }
 
   h5, h6 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
   }
 
@@ -227,7 +229,7 @@
     .anchor {
       position: absolute;
       top: -100px;
-      left: -20px;
+      left: -40px;
       width: 0;
       height: 0;
       text-decoration: none;

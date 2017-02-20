@@ -3500,10 +3500,11 @@ body {
     line-height: 20px;
     color: #857f7f;
     font-style: italic;
-    background: #f3f3f3;
+    background: #faf9f9;
+    box-shadow: inset 2px 0 0 #dee0df;
     display: block;
     padding: 2px 25px;
-    margin: 5px 0; }
+    margin: 25px 0; }
     .article blockquote p:first-letter {
       margin-left: 0 !important; }
   .article ul {
@@ -3612,26 +3613,26 @@ body {
     font-weight: 400;
     line-height: 42px;
     padding: 0;
-    margin: 40px 0; }
+    margin: 50px 0; }
   .article h3 {
     font-size: 30px;
     line-height: 30px;
     font-weight: 400;
-    margin: 30px 0; }
+    margin: 50px 0; }
   .article h4, .article h5, .article h6 {
     font-weight: 400;
     font-size: 20px;
     line-height: 20px;
-    margin: 20px 0; }
+    margin: 40px 0; }
   .article h5, .article h6 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold; }
   .article h2, .article h3, .article h4, .article h5, .article h6 {
     position: relative; }
     .article h2 .anchor, .article h3 .anchor, .article h4 .anchor, .article h5 .anchor, .article h6 .anchor {
       position: absolute;
       top: -100px;
-      left: -20px;
+      left: -40px;
       width: 0;
       height: 0;
       text-decoration: none;
