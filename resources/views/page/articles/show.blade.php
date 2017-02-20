@@ -7,9 +7,14 @@
 
     <section class="container-12" data-vm="ArticleShowViewModel">
         <div class="article-show grid-12" itemscope itemtype="http://schema.org/Article">
+            <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage"
+                  itemid="{{ url()->current() }}"/>
+
             <article class="article">
                 <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <img itemprop="contentUrl" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
+                    <img itemprop="url" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
+                    <meta itemprop="width" content="1000" />
+                    <meta itemprop="height" content="500" />
                 </figure>
 
                 <h2 itemprop="headline">
@@ -42,7 +47,8 @@
 
                 <time class="article-time" datetime="{{ $article->published_at->toRfc3339String() }}">
                     {{ $article->nice_published_date }}
-                    <meta itemprop="dateModified" content="{{ $article->published_at->toRfc3339String() }}" />
+                    <meta itemprop="dateModified" content="{{ $article->updated_at->toRfc3339String() }}" />
+                    <meta itemprop="datePublished" content="{{ $article->published_at->toRfc3339String() }}" />
                 </time>
             </footer>
         </div>
