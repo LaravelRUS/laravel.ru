@@ -110,7 +110,7 @@ class Article extends Model
      */
     public function getImageUrlAttribute(): string
     {
-        return static::DEFAULT_IMAGE_PATH.$this->image;
+        return static::DEFAULT_IMAGE_PATH . $this->image;
     }
 
     /**

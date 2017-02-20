@@ -23,7 +23,7 @@ class SlugObserver
      */
     public function creating(Article $article)
     {
-        $article->slug = Str::slug($article->title).'-'.($this->getElementsLastId() + 1);
+        $article->slug = Str::slug($article->title) . '-' . ($this->getElementsLastId() + 1);
     }
 
     /**

@@ -32,7 +32,7 @@ abstract class AbstractEnum extends BaseEnum implements EnumInterface
 
             self::$enums[static::class] = new EnumType([
                 'name'        => $shortName,
-                'description' => $shortName.' type',
+                'description' => $shortName . ' type',
                 'values'      => self::getGraphQLValues($shortName),
             ]);
         }
