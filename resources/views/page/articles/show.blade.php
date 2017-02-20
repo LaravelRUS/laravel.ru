@@ -8,8 +8,8 @@
     <section class="container-12" data-vm="ArticleShowViewModel">
         <div class="article-show grid-12" itemscope itemtype="http://schema.org/Article">
             <article class="article">
-                <figure itemscope itemtype="https://schema.org/ImageObject">
-                    <img itemprop="image" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
+                <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                    <img itemprop="contentUrl" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
                 </figure>
 
                 <h2 itemprop="headline">
