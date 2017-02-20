@@ -60,7 +60,7 @@ class User extends Authenticatable
             $avatar = self::DEFAULT_AVATAR_NAME;
         }
 
-        return self::DEFAULT_AVATAR_PATH.$avatar;
+        return self::DEFAULT_AVATAR_PATH . $avatar;
     }
 
     /**

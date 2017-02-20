@@ -53,7 +53,7 @@ class UsersSeeder extends Seeder
                 'avatar'       => User::DEFAULT_AVATAR_NAME,
                 'is_confirmed' => true,
             ]);
-            echo ' - '.$i.': '.$user->name."\n";
+            echo ' - ' . $i . ': ' . $user->name . "\n";
         }
     }
 }

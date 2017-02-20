@@ -84,7 +84,7 @@ class AvatarUploader
         $public = $this->createImageName($user);
 
         try {
-            $temp = storage_path(self::TEMP_PATH.'/'.md5($public));
+            $temp = storage_path(self::TEMP_PATH . '/' . md5($public));
 
             // Check avatar if exists
             $this->http->head($gravatarUrl);
@@ -99,7 +99,7 @@ class AvatarUploader
                 // Can not remove temporary file
             }
         } catch (ClientException $exception) {
-            $public = 'default/'.random_int(1, 4).'.png';
+            $public = 'default/' . random_int(1, 4) . '.png';
         }
 
         $user->avatar = $public;
@@ -127,7 +127,7 @@ class AvatarUploader
      */
     private function createImageName(User $user): string
     {
-        $hash = md5(random_int(0, 9999).$user->email);
+        $hash = md5(random_int(0, 9999) . $user->email);
 
         return vsprintf('%s/%s/%s.png', [
             substr($hash, 0, 2), substr($hash, 2, 2), substr($hash, 4),

@@ -22,9 +22,9 @@ class ColorGenerator
      */
     public function make(bool $withPrefix = true): string
     {
-        return ($withPrefix ? '#' : '').
-            strtolower(sprintf('%02X', $this->createDarkColor())).
-            strtolower(sprintf('%02X', $this->createDarkColor())).
+        return ($withPrefix ? '#' : '') .
+            strtolower(sprintf('%02X', $this->createDarkColor())) .
+            strtolower(sprintf('%02X', $this->createDarkColor())) .
             strtolower(sprintf('%02X', $this->createDarkColor()));
     }
 

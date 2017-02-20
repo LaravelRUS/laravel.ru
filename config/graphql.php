@@ -42,7 +42,7 @@ return [
     //     'mutation' => '\Folklore\GraphQL\GraphQLController@mutation'
     // ]
     //
-    'controllers'          => \Folklore\GraphQL\GraphQLController::class.'@query',
+    'controllers'          => \Folklore\GraphQL\GraphQLController::class . '@query',
 
     // The name of the input that contain variables when you query the endpoint.
     // Some library use "variables", you can change it here. "params" will stay
