@@ -13,7 +13,8 @@
 
             <article class="article">
                 <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <meta itemprop="contentUrl" content="{{ $article->image_url }}" />
+                    <img class="hidden" itemprop="contentUrl" src="{{ $article->image_url }}"
+                         alt="{{ $article->title }}" />
                     <img itemprop="url" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
                     <meta itemprop="width" content="1000" />
                     <meta itemprop="height" content="500" />
@@ -48,6 +49,7 @@
 
                     <figure itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
                         <meta itemprop="contentUrl" content="/img/logo.png" />
+                        <img class="hidden" itemprop="contentUrl" src="/img/logo.png" alt="{{ config('app.name') }}" />
                         <img itemprop="url" src="/img/logo.png" alt="{{ config('app.name') }}" />
                         <meta itemprop="width" content="88" />
                         <meta itemprop="height" content="60" />
@@ -68,6 +70,7 @@
 
                 <time class="article-time" datetime="{{ $article->published_at->toRfc3339String() }}">
                     {{ $article->nice_published_date }}
+
                     <meta itemprop="dateModified" content="{{ $article->updated_at->toRfc3339String() }}" />
                     <meta itemprop="datePublished" content="{{ $article->published_at->toRfc3339String() }}" />
                 </time>
