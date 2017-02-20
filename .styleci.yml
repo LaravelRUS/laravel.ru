@@ -1,0 +1,13 @@
+preset: laravel
+
+enabled:
+    - phpdoc_align
+    - phpdoc_annotation_without_dot
+    - phpdoc_link_to_see
+    - phpdoc_no_empty_return
+    - phpdoc_separation
+    - concat_with_spaces
+
+disabled:
+    - phpdoc_to_comment
+    - concat_without_spaces
