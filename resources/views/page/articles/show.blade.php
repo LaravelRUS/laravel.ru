@@ -2,12 +2,6 @@
 
 @push('body-class') bg-gray @endpush
 
-@push('head')
-    <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage"
-        itemid="{{ url()->current() }}" />
-    <meta itemprop="dateModified" content="{{ $article->published_at->toRfc3339String() }}" />
-@endpush
-
 @section('content')
     <?php /** @var \App\Models\Article $article */ ?>
 
@@ -15,8 +9,7 @@
         <div class="article-show grid-12">
             <article class="article" itemscope itemtype="http://schema.org/Article">
                 <figure>
-                    <img src="{{ $article->image_url }}" alt="{{ $article->title }}" />
-                    <meta itemprop="thumbnailUrl" content="{{ $article->image_url }}" />
+                    <img itemprop="image" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
                 </figure>
 
                 <h2 itemprop="headline">
