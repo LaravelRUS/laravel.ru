@@ -45,7 +45,7 @@ class ArticlesController extends Controller
         $article = Article::where('slug', $slug)->firstOrFail();
 
         if (! $article->isAllowedForUser($guard->user())) {
-            throw new AccessDeniedHttpException('Article ['.$article->slug.'] are not allowed for view');
+            throw new AccessDeniedHttpException('Article [' . $article->slug . '] are not allowed for view');
         }
 
         return view('page.articles.show', [
