@@ -70,7 +70,7 @@ body {
   color: $color-text;
   min-height: 100%;
   position: relative;
-  opacity: 0;
+  opacity: .3;
   transition: opacity .3s ease;
 
   &.bg-gray {

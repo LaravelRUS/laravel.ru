@@ -22,7 +22,7 @@
 
     @stack('head')
 </head>
-<body style="opacity: 0" class="@stack('body-class')">
+<body class="@stack('body-class')">
     @section('header')
         @include('partials.header')
         @stack('header')

@@ -3109,7 +3109,7 @@ body {
   color: #525252;
   min-height: 100%;
   position: relative;
-  opacity: 0;
+  opacity: .3;
   -webkit-transition: opacity .3s ease;
   transition: opacity .3s ease; }
   body:after {
