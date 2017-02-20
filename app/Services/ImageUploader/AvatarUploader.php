@@ -5,22 +5,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Services\ImageUploader;
 
 use App\Models\User;
+use Http\Promise\Promise;
+use GuzzleHttp\ClientInterface;
+use Intervention\Image\ImageManager;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use App\Services\ImageUploader\Resolvers\GravatarResolver;
 use App\Services\ImageUploader\Resolvers\ImageResolverInterface;
-use GuzzleHttp\ClientInterface;
-use Http\Promise\Promise;
-use Illuminate\Contracts\Filesystem\Filesystem;
-use Intervention\Image\ImageManager;
 
 /**
- * Class AvatarUploader
- * @package App\Services\ImageUploader
+ * Class AvatarUploader.
  */
 final class AvatarUploader extends ImageUploader
 {
@@ -58,6 +56,7 @@ final class AvatarUploader extends ImageUploader
      * @param bool                   $removeTempFile
      *
      * @return Promise
+     *
      * @throws \RuntimeException
      */
     public function upload(ImageResolverInterface $resolver, Filesystem $fs, bool $removeTempFile = true): Promise

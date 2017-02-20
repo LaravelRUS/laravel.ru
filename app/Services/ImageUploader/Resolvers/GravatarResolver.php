@@ -5,7 +5,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace App\Services\ImageUploader\Resolvers;
@@ -15,12 +14,12 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
 
 /**
- * Class GravatarResolver
+ * Class GravatarResolver.
  */
 class GravatarResolver implements ImageResolverInterface
 {
     /**
-     * Gravatar url
+     * Gravatar url.
      */
     protected const GRAVATAR_URL = 'https://www.gravatar.com/avatar/%s?default=404';
 
@@ -59,6 +58,7 @@ class GravatarResolver implements ImageResolverInterface
 
     /**
      * @return string
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function resolve(): string
