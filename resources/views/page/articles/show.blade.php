@@ -29,11 +29,13 @@
             </article>
 
             <footer>
+                <meta itemprop="publisher" content="{{ $article->user->name }}" />
                 <div class="article-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
                     <img itemprop="image" src="{{ $article->user->avatar }}" alt="{{ $article->user->name }}" />
 
                     <span itemprop="name">{{ $article->user->name }}</span>
                 </div>
+
 
                 <div class="article-tags">
                     @foreach($article->tags as $i => $tag)
