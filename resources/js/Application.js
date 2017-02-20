@@ -15,9 +15,13 @@ export default class Application {
     }
 
     _bootEscaping() {
-        for (let node of document.body.querySelectorAll('[data-punches="false"]')) {
-            node.innerHTML = node.innerHTML
-                .replace(/\{\{([\s\S]*?)\}\}/g, (i, j) => `&#123;&#8203;&#123;${j}&#125;&#8203;&#125;`)
+        ko.bindingHandlers.interpolation = {
+            init: (node, enabled) => {
+                if (!ko.unwrap(enabled())) {
+                    node.innerHTML = node.innerHTML
+                        .replace(/{{([\s\S]*?)}}/g, (i, j) => `&#123;&#123;${j}&#125;&#8203;&#125;`)
+                }
+            }
         }
     }
 
@@ -27,7 +31,7 @@ export default class Application {
      */
     registerComponent(name, cls) {
         ko.components.register(name, {
-            viewModel: function(params = {}) {
+            viewModel: function (params = {}) {
                 return new cls(params);
             },
             template: cls.template
@@ -40,7 +44,7 @@ export default class Application {
      */
     bindViewModels(prefix) {
         for (let node of document.querySelectorAll('[data-vm]')) {
-            let cls  = require(`./${prefix}${node.getAttribute('data-vm')}`).default;
+            let cls = require(`./${prefix}${node.getAttribute('data-vm')}`).default;
 
             ko.applyBindings(new cls(node), node);
         }
