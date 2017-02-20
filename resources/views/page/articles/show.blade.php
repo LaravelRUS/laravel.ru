@@ -6,8 +6,8 @@
     <?php /** @var \App\Models\Article $article */ ?>
 
     <section class="container-12" data-vm="ArticleShowViewModel">
-        <div class="article-show grid-12">
-            <article class="article" itemscope itemtype="http://schema.org/Article">
+        <div class="article-show grid-12" itemscope itemtype="http://schema.org/Article">
+            <article class="article">
                 <figure>
                     <img itemprop="image" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
                 </figure>
