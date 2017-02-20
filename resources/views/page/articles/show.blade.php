@@ -48,7 +48,6 @@
                     --}}
 
                     <figure itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-                        <meta itemprop="contentUrl" content="/img/logo.png" />
                         <img class="hidden" itemprop="contentUrl" src="/img/logo.png" alt="{{ config('app.name') }}" />
                         <img itemprop="url" src="/img/logo.png" alt="{{ config('app.name') }}" />
                         <meta itemprop="width" content="88" />
