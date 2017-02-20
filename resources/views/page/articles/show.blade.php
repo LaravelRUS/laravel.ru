@@ -6,27 +6,43 @@
     <?php /** @var \App\Models\Article $article */ ?>
 
     <section class="container-12" data-vm="ArticleShowViewModel">
-        <div class="article-show grid-12">
+        <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage"
+              itemid="{{ url()->current() }}" />
 
-            <article class="article">
-                <figure>
-                    <img src="{{ $article->image_url }}" alt="{{ $article->title }}" />
+        <meta itemprop="dateModified" content="{{ $article->published_at->toRfc3339String() }}" />
+
+        <div class="article-show grid-12">
+            <article class="article" itemscope itemtype="http://schema.org/Article">
+                <figure itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                    <img itemprop="url" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
                 </figure>
 
-                <h2>{{ $article->capitalize_title }}</h2>
+                <h2 itemprop="headline">
+                    {{ $article->capitalize_title }}
+                </h2>
 
                 <hr />
 
-                <div class="article-content" data-bind="interpolation: false">
+                <div class="article-content" itemprop="articleBody" data-bind="interpolation: false">
                     {!! $article->content_rendered !!}
                 </div>
             </article>
 
             <footer>
-                <div class="article-author">
-                    <img src="{{ $article->user->avatar }}" alt="{{ $article->user->name }}" />
+                <div class="article-author" itemscope itemtype="http://schema.org/Person">
+                    <img itemprop="image" src="{{ $article->user->avatar }}" alt="{{ $article->user->name }}" />
 
-                    <span>{{ $article->user->name }}</span>
+                    <span itemprop="name">{{ $article->user->name }}</span>
+                </div>
+
+                <div class="article-tags">
+                    @foreach($article->tags as $i => $tag)
+                        @if ($i < 5)
+                            <a href="#" itemprop="articleSection" class="article-tag">{{ $tag }}</a>
+                        @else
+                            <meta itemprop="articleSection" content="{{ $tag }}" />
+                        @endif
+                    @endforeach
                 </div>
 
                 <time class="article-time" datetime="{{ $article->published_at->toRfc3339String() }}">
