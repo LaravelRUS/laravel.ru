@@ -35,10 +35,14 @@
                     <span itemprop="name">{{ $article->user->name }}</span>
                 </div>
 
-                <div class="hidden" itemprop="publisher" itemscope itemtype="http://schema.org/Person">
-                    <img itemprop="image" src="{{ $article->user->avatar }}" alt="{{ $article->user->name }}" />
+                <div class="hidden" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <span itemprop="name">{{ config('app.name') }}</span>
 
-                    <span itemprop="name">{{ $article->user->name }}</span>
+                    <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                        <img itemprop="url" src="/img/logo.png" alt="{{ config('app.name') }}" />
+                        <meta itemprop="width" content="88" />
+                        <meta itemprop="height" content="60" />
+                    </figure>
                 </div>
 
 
