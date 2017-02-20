@@ -23,9 +23,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Article::class => ArticlePolicy::class
+        Article::class => ArticlePolicy::class,
     ];
-
 
     public function boot(): void
     {

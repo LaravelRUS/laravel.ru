@@ -9,17 +9,16 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use App\Models\Article;
 use App\Models\User;
+use App\Models\Article;
 
 /**
- * Class ArticlePolicy
- * @package App\Policies
+ * Class ArticlePolicy.
  */
 class ArticlePolicy
 {
     /**
-     * @param User $user
+     * @param User    $user
      * @param Article $article
      *
      * @return bool
