@@ -14,8 +14,9 @@
     <section class="container-12" data-vm="ArticleShowViewModel">
         <div class="article-show grid-12">
             <article class="article" itemscope itemtype="http://schema.org/Article">
-                <figure itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-                    <img itemprop="url" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
+                <figure>
+                    <img src="{{ $article->image_url }}" alt="{{ $article->title }}" />
+                    <meta itemprop="thumbnailUrl" content="{{ $article->image_url }}" />
                 </figure>
 
                 <h2 itemprop="headline">
@@ -30,7 +31,7 @@
             </article>
 
             <footer>
-                <div class="article-author" itemscope itemtype="http://schema.org/Person">
+                <div class="article-author" itemprop="publisher" itemscope itemtype="http://schema.org/Person">
                     <img itemprop="image" src="{{ $article->user->avatar }}" alt="{{ $article->user->name }}" />
 
                     <span itemprop="name">{{ $article->user->name }}</span>
