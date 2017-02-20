@@ -1,5 +1,7 @@
 @extends('layout.master')
 
+@push('title', 'Регистрация &mdash; ')
+
 @section('content')
     <main class="registration container-12" data-vm="RegistrationViewModel">
         <h2>Регистрация</h2>

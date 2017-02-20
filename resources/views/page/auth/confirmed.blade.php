@@ -1,5 +1,7 @@
 @extends('layout.master')
 
+@push('title', 'Подтверждение почты &mdash; ')
+
 @section('content')
     <main class="container-12">
         <div class="grid-6 prefix-3 suffix-3">

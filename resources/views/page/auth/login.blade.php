@@ -1,5 +1,7 @@
 @extends('layout.master')
 
+@push('title', 'Аутентификация &mdash; ')
+
 @section('content')
     <main class="login container-12" data-vm="LoginViewModel">
         <h2>Вход</h2>

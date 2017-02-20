@@ -1,8 +1,8 @@
 @extends('layout.master')
 
-@push('body-class') bg-gray @endpush
+@push('body-class', 'bg-gray')
 
-@push('title') {{ $article->capitalize_title }} &mdash; @endpush
+@push('title', $article->capitalize_title . ' &mdash; ')
 
 @section('content')
     <?php /** @var \App\Models\Article $article */ ?>
@@ -68,10 +68,13 @@
 
                 <div class="article-tags">
                     @foreach($article->tags as $i => $tag)
-                        @push('keywords') {{ $tag->name }}, @endpush
+                        @push('keywords', $tag->name . ', ')
+
                         @if ($i < 5)
-                            <a href="#" itemprop="articleSection" style="background: {{ $tag->color }}"
-                               class="article-tag">{{ $tag->name }}</a>
+                            <a href="#" itemprop="articleSection" class="article-tag"
+                               style="background: {{ $tag->color }}">
+                                {{ $tag->name }}
+                            </a>
                         @else
                             <meta itemprop="articleSection" content="{{ $tag->name }}" />
                         @endif

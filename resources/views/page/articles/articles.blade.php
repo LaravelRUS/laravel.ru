@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@push('title') Наши публикации &mdash; @endpush
+@push('title', 'Наши публикации &mdash; ')
 
 @section('content')
     <section class="articles-list container-12" data-vm="ArticleListViewModel">
