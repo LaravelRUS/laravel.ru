@@ -2,6 +2,8 @@
 
 @push('body-class') bg-gray @endpush
 
+@push('title') {{ $article->capitalize_title }} &mdash; @endpush
+
 @section('content')
     <?php /** @var \App\Models\Article $article */ ?>
 
@@ -10,15 +12,23 @@
             <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage"
                   itemid="{{ url()->current() }}"/>
 
-
             <article class="article">
                 <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <img class="hidden" itemprop="contentUrl" src="{{ $article->image_url }}"
+                    <img style="display: none" class="hidden"
+                         itemprop="contentUrl" src="{{ $article->image_url }}"
                          alt="{{ $article->title }}" />
+
                     <img itemprop="url" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
                     <meta itemprop="width" content="1000" />
                     <meta itemprop="height" content="500" />
                 </figure>
+
+                <time class="article-time" datetime="{{ $article->published_at->toRfc3339String() }}">
+                    {{ $article->nice_published_date }}
+
+                    <meta itemprop="dateModified" content="{{ $article->updated_at->toRfc3339String() }}" />
+                    <meta itemprop="datePublished" content="{{ $article->published_at->toRfc3339String() }}" />
+                </time>
 
                 <h2 itemprop="headline">
                     {{ $article->capitalize_title }}
@@ -58,21 +68,15 @@
 
                 <div class="article-tags">
                     @foreach($article->tags as $i => $tag)
+                        @push('keywords') {{ $tag->name }}, @endpush
                         @if ($i < 5)
-                            <a href="#" itemprop="articleSection" class="article-tag">{{ $tag->name }}</a>
+                            <a href="#" itemprop="articleSection" style="background: {{ $tag->color }}"
+                               class="article-tag">{{ $tag->name }}</a>
                         @else
                             <meta itemprop="articleSection" content="{{ $tag->name }}" />
                         @endif
                     @endforeach
                 </div>
-
-
-                <time class="article-time" datetime="{{ $article->published_at->toRfc3339String() }}">
-                    {{ $article->nice_published_date }}
-
-                    <meta itemprop="dateModified" content="{{ $article->updated_at->toRfc3339String() }}" />
-                    <meta itemprop="datePublished" content="{{ $article->published_at->toRfc3339String() }}" />
-                </time>
             </footer>
         </div>
     </section>

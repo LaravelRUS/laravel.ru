@@ -3472,7 +3472,7 @@ body {
     border-radius: 3px 3px 0 0;
     display: block;
     width: 100%;
-    margin: 0;
+    margin: 0 0 30px 0;
     padding: 0; }
     .article > figure img {
       display: block;
@@ -3656,12 +3656,29 @@ body {
   border-radius: 4px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.08); }
   .article-show .article > h2 {
-    margin: 50px 0 40px 0; }
+    margin: 20px 0 40px 0; }
   .article-show .article > h2,
   .article-show .article > hr,
+  .article-show .article > .article-time,
   .article-show .article > .article-content {
     margin-left: 60px;
     margin-right: 60px; }
+  .article-show .article .article-time {
+    text-align: right;
+    display: block;
+    color: #9e9999;
+    font-size: 11px;
+    font-style: italic; }
+    .article-show .article .article-time:before {
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      margin-right: 3px;
+      opacity: .3;
+      content: "\F017"; }
   .article-show footer {
     padding: 20px 60px;
     box-shadow: inset 0 1px 0 #dee0df;
@@ -3685,19 +3702,18 @@ body {
         height: 32px;
         border-radius: 50%;
         margin-right: 15px; }
-    .article-show footer .article-time {
-      float: right;
-      font-style: italic; }
-      .article-show footer .article-time:before {
+    .article-show footer .article-tags {
+      float: right; }
+      .article-show footer .article-tags .article-tag {
         display: inline-block;
-        font: normal normal normal 14px/1 FontAwesome;
-        font-size: inherit;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        margin-right: 3px;
-        opacity: .3;
-        content: "\F017"; }
+        line-height: 24px;
+        height: 24px;
+        margin: 0 5px;
+        border-radius: 2px;
+        background: #f4645f;
+        padding: 0 10px;
+        color: #fff;
+        text-decoration: none; }
 
 .welcome {
   margin: 90px auto;

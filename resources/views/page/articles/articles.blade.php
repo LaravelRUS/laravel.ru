@@ -1,5 +1,7 @@
 @extends('layout.master')
 
+@push('title') Наши публикации &mdash; @endpush
+
 @section('content')
     <section class="articles-list container-12" data-vm="ArticleListViewModel">
 

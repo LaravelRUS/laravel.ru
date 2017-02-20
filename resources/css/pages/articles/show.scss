@@ -6,7 +6,7 @@
     border-radius: 3px 3px 0 0;
     display: block;
     width: 100%;
-    margin: 0;
+    margin: 0 0 30px 0;
     padding: 0;
 
     img {
@@ -273,14 +273,30 @@
 
   .article {
     & > h2 {
-      margin: 50px 0 40px 0;
+      margin: 20px 0 40px 0;
     }
 
     & > h2,
     & > hr,
+    & > .article-time,
     & > .article-content {
       margin-left: $article-h-padding;
       margin-right: $article-h-padding;
+    }
+
+    .article-time {
+      text-align: right;
+      display: block;
+      color: $color-gray;
+      font-size: 11px;
+      font-style: italic;
+
+      &:before {
+        @include fa-icon;
+        margin-right: 3px;
+        opacity: .3;
+        content: $fa-var-clock-o;
+      }
     }
   }
 
@@ -310,15 +326,19 @@
       }
     }
 
-    .article-time {
+    .article-tags {
       float: right;
-      font-style: italic;
 
-      &:before {
-        @include fa-icon;
-        margin-right: 3px;
-        opacity: .3;
-        content: $fa-var-clock-o;
+      .article-tag {
+        display: inline-block;
+        line-height: 24px;
+        height: 24px;
+        margin: 0 5px;
+        border-radius: 2px;
+        background: $color-main;
+        padding: 0 10px;
+        color: #fff;
+        text-decoration: none;
       }
     }
   }

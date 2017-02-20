@@ -33,6 +33,6 @@ class ColorGenerator
      */
     private function createDarkColor(): int
     {
-        return random_int(50, 150);
+        return random_int(100, 170);
     }
 }
