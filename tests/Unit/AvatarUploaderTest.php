@@ -10,11 +10,11 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use App\Services\ImageUploader\AvatarUploader;
 use Tests\TestCase;
+use App\Services\ImageUploader\AvatarUploader;
 
 /**
- * Class AvatarUploaderTest
+ * Class AvatarUploaderTest.
  *
  * TODO Implement tests for avatar uploader
  */

@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace App\Services\ImageUploader;
 
-use App\Services\ImageUploader\Resolvers\ImageResolverInterface;
 use Http\Promise\Promise;
 use Intervention\Image\Image;
 use Http\Promise\RejectedPromise;
@@ -19,20 +18,21 @@ use Intervention\Image\Constraint;
 use Intervention\Image\ImageManager;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use App\Services\ImageUploader\Support\ImageUploaderEvents;
+use App\Services\ImageUploader\Resolvers\ImageResolverInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /**
- * Class ImageUploader
+ * Class ImageUploader.
  */
 class ImageUploader implements ImageUploaderInterface
 {
     /**
-     * Image upload helper
+     * Image upload helper.
      */
     use ImageUploaderEvents;
 
     /**
-     * Temporary directory (location into storage)
+     * Temporary directory (location into storage).
      */
     protected const TEMP_PATH = 'app/public';
 
@@ -80,6 +80,7 @@ class ImageUploader implements ImageUploaderInterface
      * @param bool                   $removeTempFile
      *
      * @return Promise
+     *
      * @throws \RuntimeException
      * @throws \Symfony\Component\HttpFoundation\File\Exception\FileException
      */
@@ -100,10 +101,8 @@ class ImageUploader implements ImageUploaderInterface
             }
 
             return new FulfilledPromise($public);
-
         } catch (\Exception $exception) {
             return new RejectedPromise($exception);
-
         }
     }
 
@@ -167,6 +166,7 @@ class ImageUploader implements ImageUploaderInterface
      * @param string $temporaryFilename
      *
      * @return bool
+     *
      * @throws \Symfony\Component\HttpFoundation\File\Exception\FileException
      */
     private function removeTemporaryFileOrFail(string $temporaryFilename): bool
