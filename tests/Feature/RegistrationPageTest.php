@@ -37,7 +37,7 @@ class RegistrationPageTest extends TestCase
     public function testRegistrationAction(): void
     {
         $email = Factory::create()->email;
-        $password = '111'.random_int(1, 999999999);
+        $password = '111' . random_int(1, 999999999);
 
         $response = $this->post(route('registration', [], false), [
             'name'                  => 'Unit test user',

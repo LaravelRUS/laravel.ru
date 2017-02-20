@@ -11,8 +11,8 @@ declare(strict_types=1);
 namespace App\Models\Article;
 
 use App\Models\Article;
-use App\Models\Article\ContentObserver\ContentHeadersRenderer;
 use App\Services\ContentRenderer\ContentRenderInterface;
+use App\Models\Article\ContentObserver\ContentHeadersRenderer;
 
 /**
  * Class ContentObserver.
