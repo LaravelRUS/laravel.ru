@@ -10,8 +10,10 @@
             <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage"
                   itemid="{{ url()->current() }}"/>
 
+
             <article class="article">
                 <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                    <meta itemprop="contentUrl" content="{{ $article->image_url }}" />
                     <img itemprop="url" src="{{ $article->image_url }}" alt="{{ $article->title }}" />
                     <meta itemprop="width" content="1000" />
                     <meta itemprop="height" content="500" />
@@ -28,6 +30,7 @@
                 </div>
             </article>
 
+
             <footer>
                 <div class="article-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
                     <img itemprop="image" src="{{ $article->user->avatar }}" alt="{{ $article->user->name }}" />
@@ -35,10 +38,16 @@
                     <span itemprop="name">{{ $article->user->name }}</span>
                 </div>
 
+
                 <div class="hidden" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
                     <span itemprop="name">{{ config('app.name') }}</span>
+                    {{-- Поддержка Яндекс.Справочника
+                        <meta itemprop="address" content="#" />
+                        <meta itemprop="telephone" content="#" />
+                    --}}
 
                     <figure itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                        <meta itemprop="contentUrl" content="/img/logo.png" />
                         <img itemprop="url" src="/img/logo.png" alt="{{ config('app.name') }}" />
                         <meta itemprop="width" content="88" />
                         <meta itemprop="height" content="60" />
@@ -55,6 +64,7 @@
                         @endif
                     @endforeach
                 </div>
+
 
                 <time class="article-time" datetime="{{ $article->published_at->toRfc3339String() }}">
                     {{ $article->nice_published_date }}
