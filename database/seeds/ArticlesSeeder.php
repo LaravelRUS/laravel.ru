@@ -110,7 +110,7 @@ class ArticlesSeeder extends Seeder
      */
     private function createParagraph(): string
     {
-        return $this->faker->sentences(random_int(2, 15), true);
+        return $this->sentences(random_int(2, 15), true);
     }
 
     /**
