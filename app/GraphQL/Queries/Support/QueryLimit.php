@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Builder as EBuilder;
 trait QueryLimit
 {
     /**
-     * @param array $args
+     * @param  array $args
      * @return array
      */
     public function argumentsWithLimit(array $args): array
@@ -39,8 +39,8 @@ trait QueryLimit
     }
 
     /**
-     * @param EBuilder|QBuilder $builder
-     * @param array             $args
+     * @param  EBuilder|QBuilder $builder
+     * @param  array             $args
      * @return EBuilder
      */
     public function paginate($builder, array &$args = [])

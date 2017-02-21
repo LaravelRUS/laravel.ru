@@ -31,8 +31,8 @@ class ArticlesController extends Controller
     }
 
     /**
-     * @param string $slug
-     * @param Guard  $guard
+     * @param  string $slug
+     * @param  Guard  $guard
      * @return string
      *
      * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException

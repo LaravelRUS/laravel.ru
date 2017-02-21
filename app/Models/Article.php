@@ -54,7 +54,7 @@ class Article extends Model
     ];
 
     /**
-     * @param Builder $builder
+     * @param  Builder $builder
      * @return Builder
      */
     public static function scopeLatestPublished(Builder $builder): Builder
@@ -67,7 +67,7 @@ class Article extends Model
     }
 
     /**
-     * @param Builder $builder
+     * @param  Builder $builder
      * @return Builder
      */
     public static function scopeLatest(Builder $builder): Builder
@@ -76,7 +76,7 @@ class Article extends Model
     }
 
     /**
-     * @param Builder $builder
+     * @param  Builder $builder
      * @return Builder
      */
     public static function scopePublished(Builder $builder): Builder
@@ -87,7 +87,7 @@ class Article extends Model
     }
 
     /**
-     * @param Authenticatable|User|null $user
+     * @param  Authenticatable|User|null $user
      * @return bool
      */
     public function isAllowedForUser(?Authenticatable $user): bool

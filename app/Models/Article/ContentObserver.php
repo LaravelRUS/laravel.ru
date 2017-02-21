@@ -49,7 +49,7 @@ class ContentObserver
     }
 
     /**
-     * @param string $content
+     * @param  string                 $content
      * @return ContentHeadersRenderer
      */
     private function parseHeaders(string $content): ContentHeadersRenderer

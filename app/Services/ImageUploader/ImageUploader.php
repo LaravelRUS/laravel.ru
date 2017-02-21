@@ -62,8 +62,8 @@ class ImageUploader implements ImageUploaderInterface
     }
 
     /**
-     * @param int|null $width
-     * @param int|null $height
+     * @param  int|null                                    $width
+     * @param  int|null                                    $height
      * @return $this|AvatarUploader|ImageUploaderInterface
      */
     public function withSize(?int $width, ?int $height): ImageUploaderInterface
@@ -74,9 +74,9 @@ class ImageUploader implements ImageUploaderInterface
     }
 
     /**
-     * @param ImageResolverInterface $resolver
-     * @param Filesystem             $fs
-     * @param bool                   $removeTempFile
+     * @param  ImageResolverInterface $resolver
+     * @param  Filesystem             $fs
+     * @param  bool                   $removeTempFile
      * @return Promise
      *
      * @throws \RuntimeException
@@ -135,7 +135,7 @@ class ImageUploader implements ImageUploaderInterface
     }
 
     /**
-     * @param string $filenameOrUrl
+     * @param  string $filenameOrUrl
      * @return Image
      */
     private function process(string $filenameOrUrl): Image
@@ -160,7 +160,7 @@ class ImageUploader implements ImageUploaderInterface
     }
 
     /**
-     * @param string $temporaryFilename
+     * @param  string $temporaryFilename
      * @return bool
      *
      * @throws \Symfony\Component\HttpFoundation\File\Exception\FileException
@@ -175,7 +175,7 @@ class ImageUploader implements ImageUploaderInterface
     }
 
     /**
-     * @param string $temporaryFilename
+     * @param  string $temporaryFilename
      * @return bool
      */
     private function removeTemporaryFile(string $temporaryFilename): bool

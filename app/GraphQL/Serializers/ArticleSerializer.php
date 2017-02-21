@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArticleSerializer extends AbstractSerializer
 {
     /**
-     * @param Article|Model $article
+     * @param  Article|Model $article
      * @return array
      */
     public function toArray(Model $article): array

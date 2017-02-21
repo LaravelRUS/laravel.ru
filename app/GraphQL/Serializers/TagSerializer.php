@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class TagSerializer extends AbstractSerializer
 {
     /**
-     * @param Tag|Model $tag
+     * @param  Tag|Model $tag
      * @return array
      */
     public function toArray(Model $tag): array
