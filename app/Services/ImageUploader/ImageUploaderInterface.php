@@ -19,28 +19,28 @@ use App\Services\ImageUploader\Resolvers\ImageResolverInterface;
 interface ImageUploaderInterface
 {
     /**
-     * @param int|null $width
-     * @param int|null $height
+     * @param  int|null               $width
+     * @param  int|null               $height
      * @return ImageUploaderInterface
      */
     public function withSize(?int $width, ?int $height): ImageUploaderInterface;
 
     /**
-     * @param \Closure $callback
+     * @param  \Closure               $callback
      * @return ImageUploaderInterface
      */
     public function before(\Closure $callback): ImageUploaderInterface;
 
     /**
-     * @param \Closure $callback
+     * @param  \Closure               $callback
      * @return ImageUploaderInterface
      */
     public function after(\Closure $callback): ImageUploaderInterface;
 
     /**
-     * @param ImageResolverInterface $resolver
-     * @param Filesystem             $fs
-     * @param bool                   $removeTempFile
+     * @param  ImageResolverInterface $resolver
+     * @param  Filesystem             $fs
+     * @param  bool                   $removeTempFile
      * @return Promise
      */
     public function upload(ImageResolverInterface $resolver, Filesystem $fs, bool $removeTempFile = true): Promise;

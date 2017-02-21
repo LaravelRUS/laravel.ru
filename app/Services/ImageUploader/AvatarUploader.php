@@ -42,7 +42,7 @@ final class AvatarUploader extends ImageUploader
     }
 
     /**
-     * @param ClientInterface $client
+     * @param  ClientInterface  $client
      * @return GravatarResolver
      */
     public function getGravatarResolver(ClientInterface $client): GravatarResolver
@@ -51,9 +51,9 @@ final class AvatarUploader extends ImageUploader
     }
 
     /**
-     * @param ImageResolverInterface $resolver
-     * @param Filesystem             $fs
-     * @param bool                   $removeTempFile
+     * @param  ImageResolverInterface $resolver
+     * @param  Filesystem             $fs
+     * @param  bool                   $removeTempFile
      * @return Promise
      *
      * @throws \RuntimeException

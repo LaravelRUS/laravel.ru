@@ -16,7 +16,7 @@ namespace App\Services\ContentRenderer;
 interface ContentRenderInterface
 {
     /**
-     * @param string $original
+     * @param  string $original
      * @return string
      */
     public function renderBody(string $original): string;

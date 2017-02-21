@@ -57,7 +57,7 @@ class UsersQuery extends Query
 
     /**
      * @param $root
-     * @param array $args
+     * @param  array      $args
      * @return Collection
      */
     public function resolve($root, array $args = []): Collection

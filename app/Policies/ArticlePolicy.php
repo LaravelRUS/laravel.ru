@@ -18,8 +18,8 @@ use App\Models\Article;
 class ArticlePolicy
 {
     /**
-     * @param User    $user
-     * @param Article $article
+     * @param  User    $user
+     * @param  Article $article
      * @return bool
      */
     public function view(User $user, Article $article)

@@ -12,8 +12,8 @@ if (! function_exists('asset_ts')) {
     /**
      * Asset path with timestamp.
      *
-     * @param string $path
-     * @param string $directory
+     * @param  string $path
+     * @param  string $directory
      * @return string
      */
     function asset_ts(string $path = '', string $directory = 'dist/'): string
