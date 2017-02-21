@@ -16,7 +16,7 @@ namespace App\Services;
 class ColorGenerator
 {
     /**
-     * @param bool $withPrefix
+     * @param  bool   $withPrefix
      * @return string
      */
     public function make(bool $withPrefix = true): string
