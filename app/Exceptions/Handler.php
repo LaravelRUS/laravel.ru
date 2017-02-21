@@ -38,7 +38,6 @@ class Handler extends ExceptionHandler
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
      * @param \Exception $exception
-     *
      * @throws \Exception
      */
     public function report(\Exception $exception): void
@@ -51,7 +50,6 @@ class Handler extends ExceptionHandler
      *
      * @param \Illuminate\Http\Request $request
      * @param \Exception               $exception
-     *
      * @return Response|\Symfony\Component\HttpFoundation\Response
      */
     public function render($request, \Exception $exception)
@@ -64,7 +62,6 @@ class Handler extends ExceptionHandler
      *
      * @param \Illuminate\Http\Request                 $request
      * @param \Illuminate\Auth\AuthenticationException $exception
-     *
      * @return Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)

@@ -21,7 +21,6 @@ trait QueryLimit
 {
     /**
      * @param array $args
-     *
      * @return array
      */
     public function argumentsWithLimit(array $args): array

@@ -58,7 +58,6 @@ class TagsQuery extends Query
     /**
      * @param $root
      * @param array $args
-     *
      * @return Collection
      */
     public function resolve($root, array $args = []): Collection

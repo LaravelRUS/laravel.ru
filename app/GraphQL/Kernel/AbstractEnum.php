@@ -42,7 +42,6 @@ abstract class AbstractEnum extends BaseEnum implements EnumInterface
 
     /**
      * @param string $shortName
-     *
      * @return array
      */
     private static function getGraphQLValues(string $shortName)

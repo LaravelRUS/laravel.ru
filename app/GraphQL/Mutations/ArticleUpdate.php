@@ -30,7 +30,6 @@ class ArticleUpdate extends Mutation
     /**
      * @param $root
      * @param array $args
-     *
      * @throws \InvalidArgumentException
      */
     public function resolve($root, array $args = [])
