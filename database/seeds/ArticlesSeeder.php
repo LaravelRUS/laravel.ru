@@ -171,7 +171,7 @@ class ArticlesSeeder extends Seeder
      */
     private function sentences(int $count = 3, bool $asString = false)
     {
-        $pattern = '/\.\?!/u';
+        $pattern = '/[\.\?!]/u';
 
         $sentences = preg_split($pattern,
             'Родился на улице Герцена, в гастрономе № 22. Известный экономист, по призванию своему — библиотекарь. ' .
