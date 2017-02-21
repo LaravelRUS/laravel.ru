@@ -11,4 +11,3 @@ enabled:
 disabled:
     - phpdoc_to_comment
     - concat_without_spaces
-    - unalign_double_arrow
