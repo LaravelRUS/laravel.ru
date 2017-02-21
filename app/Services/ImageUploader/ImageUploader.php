@@ -137,13 +137,13 @@ class ImageUploader implements ImageUploaderInterface
     }
 
     /**
-     * @param string $gravatarUrl
+     * @param string $filenameOrUrl
      *
      * @return Image
      */
-    private function process(string $gravatarUrl): Image
+    private function process(string $filenameOrUrl): Image
     {
-        $image = $this->image->make($gravatarUrl);
+        $image = $this->image->make($filenameOrUrl);
 
         $this->fireBefore($image);
 
