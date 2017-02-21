@@ -33,7 +33,6 @@ class ArticlesController extends Controller
     /**
      * @param string $slug
      * @param Guard  $guard
-     *
      * @return string
      *
      * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
@@ -55,7 +54,6 @@ class ArticlesController extends Controller
 
     /**
      * @param $id
-     *
      * @return mixed
      */
     public function indexForTag($id)

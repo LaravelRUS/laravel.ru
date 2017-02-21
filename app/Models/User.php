@@ -39,7 +39,6 @@ class User extends Authenticatable
 
     /**
      * @param string $password
-     *
      * @return User
      */
     public function setPasswordAttribute(string $password): User
@@ -51,7 +50,6 @@ class User extends Authenticatable
 
     /**
      * @param string|null $avatar
-     *
      * @return string
      */
     public function getAvatarAttribute(string $avatar = null): string

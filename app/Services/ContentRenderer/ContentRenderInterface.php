@@ -17,7 +17,6 @@ interface ContentRenderInterface
 {
     /**
      * @param string $original
-     *
      * @return string
      */
     public function renderBody(string $original): string;

@@ -41,7 +41,6 @@ trait QueryLimit
     /**
      * @param EBuilder|QBuilder $builder
      * @param array             $args
-     *
      * @return EBuilder
      */
     public function paginate($builder, array &$args = [])

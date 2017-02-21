@@ -26,7 +26,6 @@ class ConfirmationController extends Controller
 {
     /**
      * @param Session $session
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function index(Session $session)
@@ -44,7 +43,6 @@ class ConfirmationController extends Controller
      * @param string       $token
      * @param JWTInterface $crypt
      * @param Guard        $guard
-     *
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \LogicException

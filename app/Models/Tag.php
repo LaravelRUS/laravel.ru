@@ -37,7 +37,6 @@ class Tag extends Model
 
     /**
      * @param ColorGenerator $generator
-     *
      * @return Tag
      */
     public function updateColor(ColorGenerator $generator): Tag

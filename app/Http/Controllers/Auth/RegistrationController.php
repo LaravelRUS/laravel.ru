@@ -26,7 +26,6 @@ class RegistrationController extends Controller
 {
     /**
      * @param Factory $factory
-     *
      * @return View
      */
     public function index(Factory $factory): View
@@ -37,7 +36,6 @@ class RegistrationController extends Controller
     /**
      * @param RegistrationRequest $request
      * @param Guard               $guard
-     *
      * @return RedirectResponse
      */
     public function register(RegistrationRequest $request, Guard $guard): RedirectResponse

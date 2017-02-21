@@ -48,7 +48,6 @@ class GravatarResolver implements ImageResolverInterface
     /**
      * @param User            $user
      * @param ClientInterface $client
-     *
      * @return GravatarResolver
      */
     public static function fromUser(User $user, ClientInterface $client): GravatarResolver
@@ -77,7 +76,6 @@ class GravatarResolver implements ImageResolverInterface
 
     /**
      * @param string $email
-     *
      * @return string
      */
     private function getGravatarUri(string $email): string

@@ -20,7 +20,6 @@ class UserSerializer extends AbstractSerializer
 {
     /**
      * @param User|Model $user
-     *
      * @return array
      */
     public function toArray(Model $user): array

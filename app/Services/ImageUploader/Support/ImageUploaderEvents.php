@@ -30,7 +30,6 @@ trait ImageUploaderEvents
 
     /**
      * @param \Closure $callback
-     *
      * @return ImageUploaderInterface
      */
     public function before(\Closure $callback): ImageUploaderInterface
@@ -42,7 +41,6 @@ trait ImageUploaderEvents
 
     /**
      * @param \Closure $callback
-     *
      * @return ImageUploaderInterface
      */
     public function after(\Closure $callback): ImageUploaderInterface

@@ -14,7 +14,6 @@ if (! function_exists('asset_ts')) {
      *
      * @param string $path
      * @param string $directory
-     *
      * @return string
      */
     function asset_ts(string $path = '', string $directory = 'dist/'): string

@@ -17,7 +17,6 @@ class ColorGenerator
 {
     /**
      * @param bool $withPrefix
-     *
      * @return string
      */
     public function make(bool $withPrefix = true): string

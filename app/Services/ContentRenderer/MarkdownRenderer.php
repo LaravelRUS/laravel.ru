@@ -34,7 +34,6 @@ class MarkdownRenderer implements ContentRenderInterface
 
     /**
      * @param string $original
-     *
      * @return string
      */
     public function renderBody(string $original): string

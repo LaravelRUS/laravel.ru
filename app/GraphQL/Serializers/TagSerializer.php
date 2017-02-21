@@ -20,7 +20,6 @@ class TagSerializer extends AbstractSerializer
 {
     /**
      * @param Tag|Model $tag
-     *
      * @return array
      */
     public function toArray(Model $tag): array
