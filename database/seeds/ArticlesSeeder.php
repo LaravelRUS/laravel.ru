@@ -122,7 +122,7 @@ class ArticlesSeeder extends Seeder
 
         return "\n" .
             str_repeat('#', $level) . ' ' .
-            $this->faker->words(random_int(1, 12), true) . "\n";
+            $this->sentences(1, true) . "\n";
     }
 
     /**
@@ -135,7 +135,7 @@ class ArticlesSeeder extends Seeder
         $result = [];
         for ($i = 0; $i < $listSize; $i++) {
             $result[] = (random_int(0, 5) && $i !== 0 > 4 ? '  ' : '') .
-                '- ' . $this->faker->words(random_int(1, 12), true);
+                '- ' . $this->sentences(1, true);
         }
 
         return implode("\n", $result) . "\n";
@@ -146,7 +146,7 @@ class ArticlesSeeder extends Seeder
      */
     private function createQuote(): string
     {
-        return '> ' . $this->faker->sentences(random_int(1, 4), true) . "\n";
+        return '> ' . $this->sentences(1, true) . "\n";
     }
 
     /**
