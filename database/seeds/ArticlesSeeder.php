@@ -53,7 +53,7 @@ class ArticlesSeeder extends Seeder
         foreach (range(0, 99) as $i) {
             $article = Article::create([
                 'user_id'        => $this->faker->randomElement($users->toArray())['id'],
-                'title'          => $this->faker->words(random_int(1, 8), true),
+                'title'          => $this->sentences(1, true),
                 'image'          => $this->faker->randomElement([
                     '1.png',
                     '2.png',
