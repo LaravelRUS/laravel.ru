@@ -165,8 +165,8 @@ class ArticlesSeeder extends Seeder
     }
 
     /**
-     * @param int  $count
-     * @param bool $asString
+     * @param  int          $count
+     * @param  bool         $asString
      * @return array|string
      */
     private function sentences(int $count = 3, bool $asString = false)
