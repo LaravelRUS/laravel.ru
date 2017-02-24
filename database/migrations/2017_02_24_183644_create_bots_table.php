@@ -12,7 +12,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateBotsTable
+ * Class CreateBotsTable.
  */
 class CreateBotsTable extends Migration
 {

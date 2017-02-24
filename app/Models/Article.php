@@ -11,12 +11,11 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -88,7 +87,7 @@ class Article extends Model
     }
 
     /**
-     * @param Builder $builder
+     * @param  Builder $builder
      * @return Builder
      */
     public static function scopePublishedByBot(Builder $builder): Builder

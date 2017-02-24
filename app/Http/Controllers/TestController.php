@@ -8,10 +8,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\DataProviders\LaravelNewsDataProvider;
 use App\Services\DataProviders\Manager;
-use Carbon\Carbon;
-use GuzzleHttp\Client;
 
 class TestController
 {

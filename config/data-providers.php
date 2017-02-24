@@ -8,6 +8,6 @@ declare(strict_types=1);
 
 return [
     'providers' => [
-        'laravel-news' => \App\Services\DataProviders\LaravelNewsDataProvider::class
-    ]
+        'laravel-news' => \App\Services\DataProviders\LaravelNewsDataProvider::class,
+    ],
 ];

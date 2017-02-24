@@ -36,7 +36,7 @@ class LaravelNewsDataProvider implements DataProviderInterface
     }
 
     /**
-     * @param \DateTime $latest
+     * @param  \DateTime                    $latest
      * @return Collection|ExternalArticle[]
      * @throws \RuntimeException
      */
@@ -55,7 +55,6 @@ class LaravelNewsDataProvider implements DataProviderInterface
         return $result;
     }
 
-
     /**
      * @return \Generator|ExternalArticle[]
      * @throws \RuntimeException
@@ -66,11 +65,11 @@ class LaravelNewsDataProvider implements DataProviderInterface
 
         $body = $response->getBody();
 
-        yield from $this->parseBody((string)$body);
+        yield from $this->parseBody((string) $body);
     }
 
     /**
-     * @param string $body
+     * @param  string            $body
      * @return \Generator
      * @throws \RuntimeException
      */
@@ -89,9 +88,9 @@ class LaravelNewsDataProvider implements DataProviderInterface
             ['images' => $images, 'body' => $content] = $parsed;
 
             $article = new ExternalArticle(
-                (string)$this->getContentOf($node, 'title'),
+                (string) $this->getContentOf($node, 'title'),
                 trim($content),
-                (string)$this->getContentOf($node, 'link')
+                (string) $this->getContentOf($node, 'link')
             );
 
             foreach ($images as $image) {
@@ -99,7 +98,7 @@ class LaravelNewsDataProvider implements DataProviderInterface
             }
 
             $article->setCreatedAt(Carbon::parse(
-                (string)$this->getContentOf($node, 'pubDate')
+                (string) $this->getContentOf($node, 'pubDate')
             ));
 
             yield $article;
@@ -107,7 +106,7 @@ class LaravelNewsDataProvider implements DataProviderInterface
     }
 
     /**
-     * @param string $body
+     * @param  string $body
      * @return array
      */
     private function parseContent(string $body): array
@@ -126,8 +125,8 @@ class LaravelNewsDataProvider implements DataProviderInterface
     }
 
     /**
-     * @param \DOMElement $root
-     * @param string      $tagName
+     * @param  \DOMElement $root
+     * @param  string      $tagName
      * @return null|string
      */
     private function getContentOf(\DOMElement $root, string $tagName): ?string
@@ -137,7 +136,5 @@ class LaravelNewsDataProvider implements DataProviderInterface
         if ($node->length >= 1) {
             return $node->item(0)->textContent;
         }
-
-        return null;
     }
 }
