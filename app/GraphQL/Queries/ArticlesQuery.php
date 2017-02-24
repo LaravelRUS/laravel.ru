@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
+use App\GraphQL\Kernel\EnumTransfer;
 use App\Models\Article;
 use GraphQL\Type\Definition\Type;
 use App\GraphQL\Types\ArticleType;
@@ -53,7 +54,8 @@ class ArticlesQuery extends Query
                 'description' => 'Article identifier',
             ],
             'status' => [
-                'type'        => Article\Status::toGraphQL(),
+                'type'        => app(EnumTransfer::class)
+                    ->toGraphQL(Article\Status::class),
                 'description' => 'Article visibility status',
             ],
         ]);

@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\GraphQL\Kernel\EnumTransfer;
 use Carbon\Carbon;
 use App\Services\ColorGenerator;
 use GuzzleHttp\Client as Guzzle;
@@ -35,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerGuzzleClient();
 
         $this->app->singleton(ColorGenerator::class);
+        $this->app->singleton(EnumTransfer::class);
     }
 
     private function localizeCarbon(): void

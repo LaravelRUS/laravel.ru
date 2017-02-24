@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of laravel.su package.
  *
@@ -8,16 +7,18 @@
  */
 declare(strict_types=1);
 
-namespace App\Models\Article;
+namespace App\Models;
 
-use CommerceGuys\Enum\AbstractEnum;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Status.
+ * Class Tip
+ * @package App\Models
  */
-final class Status extends AbstractEnum
+class Tip extends Model
 {
-    const DRAFT = 'Draft';
-    const REVIEW = 'Review';
-    const PUBLISHED = 'Published';
+    /**
+     * @var string
+     */
+    protected $table = 'tips';
 }
