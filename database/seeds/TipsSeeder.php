@@ -61,7 +61,6 @@ class TipsSeeder extends Seeder
 
                     echo '   - ' . $j . ($rating->type === Tip\RatingType::LIKE ? '+' : '-') .
                         ' ' . $rating->id . ' <-> ' . $tip->id . "\n";
-
                 } catch (Throwable $e) {
                     echo 'ERROR: ' . $e->getMessage() . "\n";
                 }

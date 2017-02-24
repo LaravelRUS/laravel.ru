@@ -10,11 +10,11 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\GraphQL\Kernel\EnumTransfer;
 use Carbon\Carbon;
 use App\Services\ColorGenerator;
 use GuzzleHttp\Client as Guzzle;
 use Illuminate\Config\Repository;
+use App\GraphQL\Kernel\EnumTransfer;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use GuzzleHttp\ClientInterface as GuzzleInterface;
