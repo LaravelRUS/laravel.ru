@@ -17,11 +17,15 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 /**
  * Class Handler.
+ *
+ * Класс обработки всех исключений в нашем приложении.
+ * Тут мы их будем обрабатывать и отображать ошибки, в случае проблем.
  */
 class Handler extends ExceptionHandler
 {
     /**
-     * A list of the exception types that should not be reported.
+     * Список исключений, которые являются частью нормальной работы приложения
+     * и которые не надо как-то обрабатывать. Например, "ошибка 404" и прочие.
      *
      * @var array
      */
@@ -35,8 +39,8 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * Report or log an exception.
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
+     * Метод, куда прилетают все наши исключения для обработки.
+     * Отличное место для отправки оных в Sentry, Bugsnag, и проч.
      *
      * @param  \Exception $exception
      * @throws \Exception
@@ -47,7 +51,7 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * Render an exception into an HTTP response.
+     * Отображение наших необработанных ошибок.
      *
      * @param  \Illuminate\Http\Request                            $request
      * @param  \Exception                                          $exception
@@ -59,7 +63,7 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * Convert an authentication exception into an unauthenticated response.
+     * Преобразовываем ошибки аутентификации в разлогинивающий ответ.
      *
      * @param  \Illuminate\Http\Request                 $request
      * @param  \Illuminate\Auth\AuthenticationException $exception
