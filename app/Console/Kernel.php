@@ -31,6 +31,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\IdeHelperRun::class,
+        Commands\DataProvidersImport::class,
     ];
 
     /**

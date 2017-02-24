@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -67,5 +68,13 @@ class User extends Authenticatable
     public function hasAvatar(): bool
     {
         return (bool) ($this->original['avatar'] ?? false);
+    }
+
+    /**
+     * @return MorphToMany
+     */
+    public function articles(): MorphToMany
+    {
+        return $this->morphToMany(Article::class, 'user');
     }
 }

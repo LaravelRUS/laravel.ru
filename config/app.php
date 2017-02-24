@@ -182,6 +182,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewsServiceProvider::class,
         App\Providers\MarkdownServiceProvider::class,
+        App\Providers\DataProviderServiceProvider::class,
     ],
 
     'local_providers' => [

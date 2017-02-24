@@ -20,7 +20,8 @@
         "commerceguys/enum": "~1.0",
         "folklore/graphql": "~1.0",
         "graham-campbell/github": "~5.1",
-        "php-http/guzzle6-adapter": "~1.1"
+        "php-http/guzzle6-adapter": "~1.1",
+        "symfony/dom-crawler": "~3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

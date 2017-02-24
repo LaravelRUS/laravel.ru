@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -62,7 +63,7 @@ class Article extends Model
         return $builder
             ->with('user')
             ->with('tags')
-            ->latest()
+            ->latest('published_at')
             ->published();
     }
 
@@ -87,6 +88,16 @@ class Article extends Model
     }
 
     /**
+     * @param Builder $builder
+     * @return Builder
+     */
+    public static function scopePublishedByBot(Builder $builder): Builder
+    {
+        return $builder
+            ->where('user_type', Bot::class);
+    }
+
+    /**
      * @param  Authenticatable|User|null $user
      * @return bool
      */
@@ -106,6 +117,10 @@ class Article extends Model
      */
     public function getImageUrlAttribute(): string
     {
+        if (Str::startsWith($this->image, ['http:', 'https:', '//'])) {
+            return $this->image;
+        }
+
         return static::DEFAULT_IMAGE_PATH . $this->image;
     }
 
@@ -130,11 +145,11 @@ class Article extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @return MorphTo
      */
-    public function user(): BelongsTo
+    public function user(): MorphTo
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo();
     }
 
     /**
