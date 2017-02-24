@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of laravel.su package.
  *
@@ -8,16 +7,15 @@
  */
 declare(strict_types=1);
 
-namespace App\Models\Article;
+namespace App\Models\Tip;
 
 use CommerceGuys\Enum\AbstractEnum;
 
 /**
- * Class Status.
+ * Class RatingType.
  */
-final class Status extends AbstractEnum
+final class RatingType extends AbstractEnum
 {
-    public const DRAFT = 'Draft';
-    public const REVIEW = 'Review';
-    public const PUBLISHED = 'Published';
+    public const LIKE = 'Like';
+    public const DISLIKE = 'Dislike';
 }
