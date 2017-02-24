@@ -33,9 +33,11 @@ class CreateTipsTable extends Migration
 
         Schema::create('tips_rating', function (Blueprint $t) {
             $t->increments('id');
-            $t->enum('type', ['Like', 'Dislike']);
-            $t->unsignedInteger('tip_id');
-            $t->unsignedInteger('user_id');
+            $t->enum('type', ['Like', 'Dislike'])->index();
+            $t->unsignedInteger('tip_id')->index();
+            $t->unsignedInteger('user_id')->index(); // Кто выставил (диз)лайк
+
+            $t->unique('tip_id', 'user_id');
         });
     }
 

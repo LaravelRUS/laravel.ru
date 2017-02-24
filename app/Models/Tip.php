@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of laravel.su package.
  *
@@ -12,10 +13,10 @@ namespace App\Models;
 use App\Models\Tip\RatingType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class Tip
- * @package App\Models
+ * Class Tip.
  */
 class Tip extends Model
 {
@@ -23,6 +24,14 @@ class Tip extends Model
      * @var string
      */
     protected $table = 'tips';
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * @return HasMany

@@ -171,8 +171,6 @@ class ArticlesSeeder extends Seeder
      */
     private function sentences(int $count = 3, bool $asString = false)
     {
-        $pattern = '/[\.\?!]/u';
-
         $sentences = require __DIR__ . '/resources/dictionary.php';
 
         $random = $this->faker->randomElements($sentences, $count);

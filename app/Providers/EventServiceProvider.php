@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Models\Tag;
+use App\Models\Tip;
 use App\Models\User;
 use App\Models\Article;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -36,6 +37,8 @@ class EventServiceProvider extends ServiceProvider
         Article::observe(Article\ContentPreviewObserver::class);
 
         Tag::observe(Tag\ColorObserver::class);
+
+        Tip::observe(Tip\ContentObserver::class);
 
         parent::boot();
     }
