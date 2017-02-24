@@ -15,12 +15,18 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 /**
  * Class Kernel.
+ *
+ * Это основной класс всех консольных команд.
+ * Зачем и для чего он можно найти в документации.
+ *
+ * @see https://laravel.com/docs/5.4/lifecycle#lifecycle-overview
  */
 class Kernel extends ConsoleKernel
 {
     /**
-     * The Artisan commands provided by your application.
+     * Все консольные команды регистрируются в этом поле.
      *
+     * @see https://laravel.com/docs/5.4/artisan
      * @var array
      */
     protected $commands = [
@@ -28,8 +34,9 @@ class Kernel extends ConsoleKernel
     ];
 
     /**
-     * Define the application's command schedule.
+     * Тут регистрируются команды, которые будут выполняться раз в определённый промежуток времени.
      *
+     * @see https://laravel.com/docs/5.4/scheduling
      * @param \Illuminate\Console\Scheduling\Schedule $schedule
      */
     protected function schedule(Schedule $schedule): void
@@ -37,7 +44,9 @@ class Kernel extends ConsoleKernel
     }
 
     /**
-     * Register the Closure based commands for the application.
+     * Регистрация команд, основанных на замыканиях.
+     *
+     * @see https://laravel.com/docs/5.4/artisan#closure-commands
      */
     protected function commands(): void
     {
