@@ -32,6 +32,7 @@
 
     @section('footer')
         @stack('footer')
+        @include('partials.tips')
         @include('partials.footer')
     @show
 </body>

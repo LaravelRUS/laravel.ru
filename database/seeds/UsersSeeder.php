@@ -45,7 +45,7 @@ class UsersSeeder extends Seeder
             'is_confirmed' => true,
         ]);
 
-        foreach (range(0, 9) as $i) {
+        foreach (range(0, 50) as $i) {
             $user = User::create([
                 'name'         => $this->faker->name,
                 'email'        => $this->faker->email,

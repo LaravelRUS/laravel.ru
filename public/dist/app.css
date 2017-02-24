@@ -3152,6 +3152,117 @@ body {
   body code {
     font-family: "Roboto Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
     font-size: 12px; }
+  body .tips {
+    box-sizing: border-box;
+    padding: 10px 15px;
+    width: 350px;
+    height: auto;
+    max-height: 250px;
+    background: #64b5f6;
+    color: #fff;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 3px;
+    z-index: 9999;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.08);
+    opacity: 1;
+    -webkit-transition: opacity 0.4s ease, bottom 0.4s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+    transition: opacity 0.4s ease, bottom 0.4s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+    /* ICONS */
+    /* HEADING */ }
+    body .tips.hidden {
+      display: block;
+      opacity: 0;
+      bottom: -300px; }
+    body .tips:after {
+      position: absolute;
+      right: 20px;
+      content: '';
+      border: transparent 6px solid;
+      border-top-color: #64b5f6;
+      bottom: -12px; }
+    body .tips .tip-show-next,
+    body .tips .tip-thumbs-up,
+    body .tips .tip-thumbs-down,
+    body .tips .tip-close {
+      height: 21px;
+      width: 21px;
+      line-height: 21px;
+      text-align: center;
+      border-radius: 3px;
+      display: block;
+      text-decoration: none;
+      margin: 3px 0 3px 6px;
+      color: #fff;
+      float: left; }
+      body .tips .tip-show-next:before,
+      body .tips .tip-thumbs-up:before,
+      body .tips .tip-thumbs-down:before,
+      body .tips .tip-close:before {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale; }
+      body .tips .tip-show-next:hover,
+      body .tips .tip-thumbs-up:hover,
+      body .tips .tip-thumbs-down:hover,
+      body .tips .tip-close:hover {
+        background: #fff;
+        color: #27272b; }
+    body .tips .tip-thumbs-up,
+    body .tips .tip-thumbs-down {
+      width: auto;
+      padding: 0 7px;
+      font-size: 11px; }
+      body .tips .tip-thumbs-up:before,
+      body .tips .tip-thumbs-down:before {
+        margin-right: 5px; }
+    body .tips .tip-thumbs-up:before {
+      content: "\F087"; }
+    body .tips .tip-thumbs-down:before {
+      content: "\F088"; }
+    body .tips .tip-show-next:before {
+      content: "\F061"; }
+    body .tips .tip-close {
+      border-radius: 50px;
+      font-size: 19px; }
+      body .tips .tip-close:before {
+        content: '\D7'; }
+    body .tips h3 {
+      margin: 0 0 5px 0;
+      padding: 0 0 10px 0;
+      font-weight: normal;
+      display: block;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3); }
+      body .tips h3:before {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        content: "\F0EB";
+        margin-right: 10px; }
+      body .tips h3 .tip-close {
+        float: right; }
+    body .tips .tip-content {
+      font-size: 12px; }
+    body .tips footer {
+      height: 27px;
+      line-height: 27px;
+      display: block; }
+      body .tips footer:after {
+        display: table;
+        width: 100%;
+        content: '';
+        clear: both; }
+      body .tips footer .tip-show-next,
+      body .tips footer .tips-count {
+        font-size: 11px;
+        float: right; }
   body header {
     height: 70px;
     line-height: 70px;

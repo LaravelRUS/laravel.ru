@@ -1,4 +1,4 @@
-import StickyPanelViewModel from "./StickyPanelViewModel";
+import StickyPanel from "./ArticleListViewModel/StickyPanel";
 import ArticlesRepository from "../Models/Repository/ArticlesRepository";
 
 export default class ArticleListViewModel {
@@ -31,7 +31,7 @@ export default class ArticleListViewModel {
      * @param root
      */
     constructor(root) {
-        this.aside = new StickyPanelViewModel(root);
+        this.aside = new StickyPanel(root);
 
         this.fetchNextPage();
     }

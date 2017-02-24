@@ -1,4 +1,4 @@
-export default class StickyPanelViewModel {
+export default class StickyPanel {
     /**
      * @type {number}
      * @private
@@ -15,6 +15,9 @@ export default class StickyPanelViewModel {
      */
     fixed = ko.observable(false);
 
+    /**
+     * @param root
+     */
     constructor(root) {
         this._initialTop = root.getBoundingClientRect().top + document.body.scrollTop;
 

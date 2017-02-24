@@ -37,7 +37,7 @@ class CreateTipsTable extends Migration
             $t->unsignedInteger('tip_id')->index();
             $t->unsignedInteger('user_id')->index(); // Кто выставил (диз)лайк
 
-            $t->unique('tip_id', 'user_id');
+            $t->unique(['tip_id', 'user_id']);
         });
     }
 

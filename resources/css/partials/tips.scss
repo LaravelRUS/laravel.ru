@@ -1,0 +1,130 @@
+.tips {
+  box-sizing: border-box;
+  padding: 10px 15px;
+  width: 350px;
+  height: auto;
+  max-height: 250px;
+  background: $color-info;
+  color: #fff;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 3px;
+  z-index: 9999;
+  box-shadow: $ui-box-shadow;
+  opacity: 1;
+  transition:
+    opacity .4s ease,
+    bottom .4s $bounce;
+
+  &.hidden {
+    display: block;
+    opacity: 0;
+    bottom: -300px;
+  }
+
+  &:after {
+    position: absolute;
+    right: 20px;
+    content: '';
+    border: transparent 6px solid;
+    border-top-color: $color-info;
+    bottom: -12px;
+  }
+
+  /* ICONS */
+  .tip-show-next,
+  .tip-thumbs-up,
+  .tip-thumbs-down,
+  .tip-close {
+    $size: 21px;
+
+    height: $size;
+    width: $size;
+    line-height: $size;
+    text-align: center;
+    border-radius: 3px;
+    display: block;
+    text-decoration: none;
+    margin: 3px 0 3px 6px;
+    color: #fff;
+    float: left;
+
+    &:before {
+      @include fa-icon;
+    }
+
+    &:hover {
+      background: #fff;
+      color: $color-black;
+    }
+  }
+
+  .tip-thumbs-up,
+  .tip-thumbs-down {
+    width: auto;
+    padding: 0 7px;
+    font-size: 11px;
+
+    &:before {
+      margin-right: 5px;
+    }
+  }
+
+  .tip-thumbs-up:before {
+    content: $fa-var-thumbs-o-up;
+  }
+
+  .tip-thumbs-down:before {
+    content: $fa-var-thumbs-o-down;
+  }
+
+  .tip-show-next:before {
+    content: $fa-var-arrow-right;
+  }
+
+  .tip-close {
+    border-radius: 50px;
+    font-size: 19px;
+
+    &:before {
+      content: '×';
+    }
+  }
+
+  /* HEADING */
+  h3 {
+    margin: 0 0 5px 0;
+    padding: 0 0 10px 0;
+    font-weight: normal;
+    display: block;
+    box-shadow: 0 1px 0 rgba(#fff, .3);
+
+    &:before {
+      @include fa-icon;
+      content: $fa-var-lightbulb-o;
+      margin-right: 10px;
+    }
+
+    .tip-close {
+      float: right;
+    }
+  }
+
+  .tip-content {
+    font-size: 12px;
+  }
+
+  footer {
+    @include clear;
+    height: 27px;
+    line-height: 27px;
+    display: block;
+
+    .tip-show-next,
+    .tips-count {
+      font-size: 11px;
+      float: right;
+    }
+  }
+}
