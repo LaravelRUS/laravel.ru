@@ -12,7 +12,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateTipsTable
+ * Class CreateTipsTable.
  */
 class CreateTipsTable extends Migration
 {
