@@ -10,13 +10,13 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Models\Article;
-use App\Models\Bot;
-use App\Services\DataProviders\DataProviderInterface;
-use App\Services\DataProviders\ExternalArticle;
-use App\Services\DataProviders\Manager;
 use Carbon\Carbon;
+use App\Models\Bot;
+use App\Models\Article;
 use Illuminate\Console\Command;
+use App\Services\DataProviders\Manager;
+use App\Services\DataProviders\ExternalArticle;
+use App\Services\DataProviders\DataProviderInterface;
 
 /**
  * Class DataProvidersImport.
@@ -43,7 +43,7 @@ class DataProvidersImport extends Command
     private $published = [];
 
     /**
-     * @param Manager $manager
+     * @param  Manager                   $manager
      * @throws \InvalidArgumentException
      */
     public function handle(Manager $manager)
@@ -53,7 +53,7 @@ class DataProvidersImport extends Command
             ->latest('published_at')
             ->first();
 
-        $articles = (array)($a ?? []);
+        $articles = (array) ($a ?? []);
 
         /** @var Article $article */
         foreach ($articles as $article) {

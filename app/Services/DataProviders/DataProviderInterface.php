@@ -16,7 +16,7 @@ use Illuminate\Support\Collection;
 interface DataProviderInterface
 {
     /**
-     * @param \DateTime $latest
+     * @param  \DateTime                    $latest
      * @return ExternalArticle[]|Collection
      */
     public function getLatest(\DateTime $latest): Collection;

@@ -11,8 +11,7 @@ namespace App\Services\DataProviders;
 use Illuminate\Contracts\Container\Container;
 
 /**
- * Class Manager
- * @package App\Services\DataProviders
+ * Class Manager.
  */
 class Manager implements \IteratorAggregate
 {
@@ -41,8 +40,8 @@ class Manager implements \IteratorAggregate
     }
 
     /**
-     * @param string                       $alias
-     * @param string|DataProviderInterface $provider
+     * @param  string                       $alias
+     * @param  string|DataProviderInterface $provider
      * @return $this|Manager
      */
     public function register(string $alias, string $provider): Manager
@@ -53,7 +52,7 @@ class Manager implements \IteratorAggregate
     }
 
     /**
-     * @param string $alias
+     * @param  string                    $alias
      * @return DataProviderInterface
      * @throws \InvalidArgumentException
      */

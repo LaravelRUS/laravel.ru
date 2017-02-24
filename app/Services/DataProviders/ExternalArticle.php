@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace App\Services\DataProviders;
 
-use App\Models\Article;
 use Carbon\Carbon;
+use App\Models\Article;
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
@@ -58,7 +58,7 @@ class ExternalArticle implements Arrayable
     }
 
     /**
-     * @param string $image
+     * @param  string $image
      * @return $this
      */
     public function addImageUrl(string $image)
@@ -109,7 +109,7 @@ class ExternalArticle implements Arrayable
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param  \DateTime             $createdAt
      * @return $this|ExternalArticle
      */
     public function setCreatedAt(\DateTime $createdAt)
@@ -134,7 +134,7 @@ class ExternalArticle implements Arrayable
     }
 
     /**
-     * @param Article $article
+     * @param  Article $article
      * @return Article
      */
     public function fill(Article $article): Article
@@ -143,7 +143,7 @@ class ExternalArticle implements Arrayable
         //$article-
         $article->image = reset($this->images);
 
-        $article->content_source   = '';
+        $article->content_source = '';
         $article->content_rendered = $this->body;
 
         $article->published_at = $this->createdAt;

@@ -16,7 +16,6 @@ $router->pattern('id', '[0-9]+');
 
 $router->get('/', 'HomeController@index')->name('home');
 
-
 // TODO REMOVE THIS
 $router->get('/test', 'TestController@test');
 

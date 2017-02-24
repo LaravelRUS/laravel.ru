@@ -7,8 +7,8 @@
  */
 declare(strict_types=1);
 
-use App\Models\Bot;
 use Faker\Factory;
+use App\Models\Bot;
 use Illuminate\Database\Seeder;
 
 /**
