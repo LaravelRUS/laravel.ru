@@ -26,7 +26,7 @@ class CreateTipsTable extends Migration
         Schema::create('tips', function (Blueprint $t) {
             $t->increments('id');
             $t->unsignedInteger('user_id')->index();
-            $t->text('content_original');
+            $t->text('content_source');
             $t->text('content_rendered');
             $t->timestamps();
         });
@@ -47,5 +47,6 @@ class CreateTipsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tips');
+        Schema::dropIfExists('tips_rating');
     }
 }
