@@ -10,12 +10,12 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
-use App\GraphQL\Kernel\EnumTransfer;
 use App\Models\Article;
 use GraphQL\Type\Definition\Type;
 use App\GraphQL\Types\ArticleType;
 use Illuminate\Support\Collection;
 use Folklore\GraphQL\Support\Query;
+use App\GraphQL\Kernel\EnumTransfer;
 use GraphQL\Type\Definition\ListOfType;
 use App\GraphQL\Queries\Support\QueryLimit;
 use App\GraphQL\Serializers\ArticleSerializer;

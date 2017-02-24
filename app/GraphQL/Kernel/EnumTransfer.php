@@ -13,8 +13,7 @@ use GraphQL\Type\Definition\EnumType;
 use CommerceGuys\Enum\AbstractEnum as BaseEnum;
 
 /**
- * Class EnumTransfer
- * @package App\GraphQL\Kernel
+ * Class EnumTransfer.
  */
 class EnumTransfer
 {
@@ -25,7 +24,7 @@ class EnumTransfer
 
     /**
      * @param BaseEnum|string $enum
-     * @param  string  $shortName
+     * @param string          $shortName
      *
      * @return array
      */
@@ -45,7 +44,7 @@ class EnumTransfer
 
     /**
      * @param BaseEnum|string $enum
-     * @param string $shortName
+     * @param string          $shortName
      *
      * @return EnumType
      */

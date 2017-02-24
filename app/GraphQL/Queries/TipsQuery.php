@@ -12,9 +12,9 @@ namespace App\GraphQL\Queries;
 use App\Models\Tip;
 use App\GraphQL\Types\TipType;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Folklore\GraphQL\Support\Query;
+use Illuminate\Database\Query\Builder;
 use GraphQL\Type\Definition\ListOfType;
 use App\GraphQL\Serializers\TipSerializer;
 use App\GraphQL\Queries\Support\QueryLimit;
@@ -56,8 +56,8 @@ class TipsQuery extends Query
     }
 
     /**
-     * @param        $root
-     * @param  array $args
+     * @param             $root
+     * @param  array      $args
      * @return Collection
      */
     public function resolve($root, array $args = []): Collection
