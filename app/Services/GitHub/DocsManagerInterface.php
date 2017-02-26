@@ -16,9 +16,9 @@ use Illuminate\Support\Collection;
 interface DocsManagerInterface
 {
     /**
-     * @param  string                        $org
-     * @param  string                        $repo
-     * @param  string                        $branch
+     * @param  string                  $org
+     * @param  string                  $repo
+     * @param  string                  $branch
      * @return Collection|DocsStatus[]
      */
     public function findFiles(string $org, string $repo, string $branch);

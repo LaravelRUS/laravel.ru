@@ -9,15 +9,14 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Models\Article;
 use App\Models\Docs;
-use App\Services\GitHub\DocsStatus;
-use App\Services\GitHub\ExternalDocsPage;
-use App\Services\GitHub\GitHubConfigRepository;
-use App\Services\GitHub\GitHubDocsManager;
+use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
+use App\Services\GitHub\DocsStatus;
+use App\Services\GitHub\ExternalDocsPage;
+use App\Services\GitHub\GitHubDocsManager;
+use App\Services\GitHub\GitHubConfigRepository;
 
 /**
  * Class GitHubDocsImport.
@@ -38,8 +37,8 @@ class GitHubDocsImport extends Command
 
     /**
      * Execute the console command.
-     * @param GitHubDocsManager      $manager
-     * @param GitHubConfigRepository $config
+     * @param  GitHubDocsManager                          $manager
+     * @param  GitHubConfigRepository                     $config
      * @return void
      * @throws \Github\Exception\ErrorException
      * @throws \Github\Exception\InvalidArgumentException
@@ -65,11 +64,11 @@ class GitHubDocsImport extends Command
                 $docs->content_source = $page->getContent();
                 $docs->github_hash = $status->getHash();
 
-                if (!$docs->category_id) {
+                if (! $docs->category_id) {
                     $docs->category_id = 0; // TODO
                 }
 
-                if (!$docs->title) {
+                if (! $docs->title) {
                     $docs->title = Str::ucfirst(str_replace(
                         ['-', '_'],
                         ' ',
@@ -82,9 +81,9 @@ class GitHubDocsImport extends Command
     }
 
     /**
-     * @param string $org
-     * @param string $repo
-     * @param string $branch
+     * @param  string     $org
+     * @param  string     $repo
+     * @param  string     $branch
      * @return Collection
      */
     private function getDocsCurrentState(string $org, string $repo, string $branch)
@@ -97,10 +96,10 @@ class GitHubDocsImport extends Command
     }
 
     /**
-     * @param string $org
-     * @param string $repo
-     * @param string $branch
-     * @param string $file
+     * @param  string                                   $org
+     * @param  string                                   $repo
+     * @param  string                                   $branch
+     * @param  string                                   $file
      * @return \Illuminate\Database\Eloquent\Model|Docs
      */
     private function getDocsModel(string $org, string $repo, string $branch, string $file)

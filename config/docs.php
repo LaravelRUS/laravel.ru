@@ -15,6 +15,6 @@ return [
             'org'    => 'translation-gang',
             'repo'   => 'ru.docs.laravel',
             'branch' => '5.4-ru',
-        ]
-    ]
+        ],
+    ],
 ];
