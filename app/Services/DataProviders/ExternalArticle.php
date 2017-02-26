@@ -71,7 +71,7 @@ class ExternalArticle implements Arrayable
     }
 
     /**
-     * @param string $preview
+     * @param  string                $preview
      * @return $this|ExternalArticle
      */
     public function setPreview(string $preview): ExternalArticle

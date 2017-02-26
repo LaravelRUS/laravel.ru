@@ -36,7 +36,7 @@ class LaravelNewsDataProvider implements DataProviderInterface
     }
 
     /**
-     * @param  \DateTime $latest
+     * @param  \DateTime                    $latest
      * @return Collection|ExternalArticle[]
      * @throws \RuntimeException
      */
@@ -65,11 +65,11 @@ class LaravelNewsDataProvider implements DataProviderInterface
 
         $body = $response->getBody();
 
-        yield from $this->parseBody((string)$body);
+        yield from $this->parseBody((string) $body);
     }
 
     /**
-     * @param  string $body
+     * @param  string            $body
      * @return \Generator
      * @throws \RuntimeException
      */
@@ -88,15 +88,14 @@ class LaravelNewsDataProvider implements DataProviderInterface
             );
 
             ['images' => $imagesPreview, 'body' => $preview] = $this->parseContent(
-                (string)$this->getContentOf($node, 'description')
+                (string) $this->getContentOf($node, 'description')
             );
 
+            $title = (string) $this->getContentOf($node, 'title');
+            $link = (string) $this->getContentOf($node, 'link');
+            $published = (string) $this->getContentOf($node, 'pubDate');
 
-            $title      = (string)$this->getContentOf($node, 'title');
-            $link       = (string)$this->getContentOf($node, 'link');
-            $published  = (string)$this->getContentOf($node, 'pubDate');
-
-            $article    = new ExternalArticle($title, trim($content), $link);
+            $article = new ExternalArticle($title, trim($content), $link);
 
             $article->setPreview($preview);
             $article->setCreatedAt(Carbon::parse($published));
