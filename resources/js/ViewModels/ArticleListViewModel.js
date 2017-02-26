@@ -28,9 +28,15 @@ export default class ArticleListViewModel {
     loading = ko.observable(false);
 
     /**
+     * @type {KnockoutObservable<T>}
+     */
+    ready = ko.observable(false);
+
+    /**
      * @param root
      */
     constructor(root) {
+        this.ready(true);
         this.aside = new StickyPanel(root);
 
         this.fetchNextPage();

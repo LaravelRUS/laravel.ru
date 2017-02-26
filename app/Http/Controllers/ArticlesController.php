@@ -25,7 +25,7 @@ class ArticlesController extends Controller
      */
     public function index(): View
     {
-        return view('page.articles.articles', [
+        return view('page.articles.index', [
             'articles' => Article::latestPublished()->paginate(10),
         ]);
     }

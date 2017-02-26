@@ -4,20 +4,26 @@
 
 @section('content')
     <section class="articles-list container-12" data-vm="ArticleListViewModel">
-
         <div class="grid-8">
             <h2>Наши публикации</h2>
 
-            @{{#foreach articles}}
-                <article class="article article-main @{{ loaded() ? '' : 'article-hidden' }}"
-                         data-bind="inview: visible">
-                    @include('page.articles.partials.article-preview')
-                </article>
-            @{{/foreach}}
-
-            @{{#if loading}}
+            <div data-bind="if: !ready()">
                 <div class="preloader"></div>
-            @{{/if}}
+            </div>
+
+            <div style="opacity: 0"
+                 data-bind="attr: { style: 'opacity: ' + (ready() ? '1' : '0') }">
+                @{{#foreach articles}}
+                    <article class="article article-main @{{ loaded() ? '' : 'article-hidden' }}"
+                             data-bind="inview: visible">
+                        @include('page.articles.partials.article-preview')
+                    </article>
+                @{{/foreach}}
+
+                @{{#if loading}}
+                    <div class="preloader"></div>
+                @{{/if}}
+            </div>
 
             <footer>
                 <a href="#" data-bind="click: fetchNextPage" class="button main">Ещё</a>
