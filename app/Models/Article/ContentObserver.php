@@ -39,13 +39,15 @@ class ContentObserver
      */
     public function saving(Article $article): void
     {
-        if ($article->content_source) {
-            $rendered = $this->renderer->renderBody($article->content_source);
-
-            $rendered = $this->parseHeaders($rendered);
-
-            $article->content_rendered = $rendered->getContent();
+        if ($article->content_rendered && !$article->content_source) {
+            return;
         }
+
+        $rendered = $this->renderer->renderBody((string)$article->content_source);
+
+        $rendered = $this->parseHeaders($rendered);
+
+        $article->content_rendered = (string)$rendered->getContent();
     }
 
     /**

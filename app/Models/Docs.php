@@ -22,6 +22,21 @@ class Docs extends Model
     protected $table = 'docs';
 
     /**
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'content_source',
+        'priority',
+        // Github
+        'github_org',
+        'github_repo',
+        'github_branch',
+        'github_file',
+        'github_hash',
+    ];
+
+    /**
      * @return BelongsTo
      */
     public function category(): BelongsTo

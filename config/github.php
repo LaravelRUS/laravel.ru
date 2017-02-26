@@ -39,14 +39,9 @@ return [
     */
 
     'connections' => [
-
         'main' => [
             'token'  => env('GITHUB_TOKEN', null),
             'method' => 'token',
-            // 'backoff'    => false,
-            // 'cache'      => false,
-            // 'version'    => 'v3',
-            // 'enterprise' => false,
         ],
     ],
 ];

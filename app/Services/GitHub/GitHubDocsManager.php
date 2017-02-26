@@ -12,9 +12,9 @@ use Illuminate\Support\Collection;
 use GrahamCampbell\GitHub\GitHubManager;
 
 /**
- * Class GitHubDocsImport.
+ * Class GitHubDocsManager.
  */
-class GitHubDocsImport implements DocsImportInterface
+class GitHubDocsManager implements DocsManagerInterface
 {
     /**
      * @var GitHubManager
@@ -34,14 +34,14 @@ class GitHubDocsImport implements DocsImportInterface
      * @param  string                                     $org
      * @param  string                                     $repo
      * @param  string                                     $branch
-     * @return Collection
+     * @return Collection|DocsCollection|DocsStatus[]
      * @throws \Github\Exception\ErrorException
      * @throws \Github\Exception\InvalidArgumentException
      * @throws \RuntimeException
      */
-    public function findFiles(string $org, string $repo, string $branch): Collection
+    public function findFiles(string $org, string $repo, string $branch): DocsCollection
     {
-        $result = new Collection();
+        $result = new DocsCollection();
 
         $info = $this->getRepoFilesInfo($org, $repo, $branch);
 
@@ -50,7 +50,7 @@ class GitHubDocsImport implements DocsImportInterface
                 throw new \RuntimeException('Import failed: "path" or "download_url" arguments required.');
             }
 
-            $result[] = $this->import($org, $repo, $branch, $page['path']);
+            $result[] = new DocsStatus($page['path'], $page['sha']);
         }
 
         return $result;

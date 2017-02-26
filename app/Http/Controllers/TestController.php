@@ -8,11 +8,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Services\GitHub\GitHubDocsImport;
+use App\Services\GitHub\GitHubDocsManager;
 
 class TestController
 {
-    public function test(GitHubDocsImport $manager)
+    public function test(GitHubDocsManager $manager)
     {
         return $manager->findFiles('translation-gang', 'ru.docs.laravel', '5.4-ru');
     }

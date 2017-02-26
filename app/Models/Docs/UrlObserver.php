@@ -15,11 +15,17 @@ use App\Models\Docs;
  */
 class UrlObserver
 {
+    private const DEFAULT_LATEST_VERSION = '5.4';
+
     /**
      * @param Docs $docs
      */
     public function saving(Docs $docs): void
     {
+        if (! $docs->version) {
+            $docs->version = self::DEFAULT_LATEST_VERSION;
+        }
+
         $docs->url = $docs->version . '/' . $docs->slug;
     }
 }

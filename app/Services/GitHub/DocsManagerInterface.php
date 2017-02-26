@@ -11,15 +11,15 @@ namespace App\Services\GitHub;
 use Illuminate\Support\Collection;
 
 /**
- * Interface DocsImportInterface.
+ * Interface DocsManagerInterface.
  */
-interface DocsImportInterface
+interface DocsManagerInterface
 {
     /**
      * @param  string                        $org
      * @param  string                        $repo
      * @param  string                        $branch
-     * @return Collection|ExternalDocsPage[]
+     * @return Collection|DocsStatus[]
      */
     public function findFiles(string $org, string $repo, string $branch);
 

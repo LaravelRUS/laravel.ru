@@ -41,6 +41,7 @@ class CreateDocsTable extends Migration
             $t->string('github_repo');
             $t->string('github_branch');
             $t->string('github_file');
+            $t->string('github_hash');
 
             // Category
             $t->unsignedInteger('category_id');
