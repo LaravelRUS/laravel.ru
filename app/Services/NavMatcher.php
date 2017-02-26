@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
+use Illuminate\Routing\Route;
 
 /**
  * Class NavMatcher.
@@ -38,7 +38,7 @@ class NavMatcher
     }
 
     /**
-     * @param string $route
+     * @param  string $route
      * @return string
      */
     public function match(string $route): string
@@ -49,7 +49,7 @@ class NavMatcher
     }
 
     /**
-     * @param string $needle
+     * @param  string $needle
      * @return bool
      */
     private function isCurrent(string $needle): bool
@@ -58,7 +58,7 @@ class NavMatcher
     }
 
     /**
-     * @param string $needle
+     * @param  string $needle
      * @return bool
      */
     private function isMatched(string $needle): bool

@@ -40,10 +40,10 @@ class ContentObserver
     public function saving(Docs $docs): void
     {
         // Parse markdown
-        $rendered  = $this->renderer->renderBody((string) $docs->content_source);
+        $rendered = $this->renderer->renderBody((string) $docs->content_source);
 
         // Parse content headers
-        $parsed    = $this->parseHeaders($rendered);
+        $parsed = $this->parseHeaders($rendered);
 
         // Update data
         $docs->nav = $parsed->getLinks();
