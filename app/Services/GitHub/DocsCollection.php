@@ -15,5 +15,4 @@ use Illuminate\Support\Collection;
  */
 class DocsCollection extends Collection
 {
-
 }

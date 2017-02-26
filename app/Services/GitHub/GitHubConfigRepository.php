@@ -37,7 +37,7 @@ class GitHubConfigRepository extends Repository
         return [
             $this->getOrg(),
             $this->getRepo(),
-            $this->getBranch()
+            $this->getBranch(),
         ];
     }
 

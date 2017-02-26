@@ -38,8 +38,8 @@ class ContentObserver
      */
     public function saving(Docs $docs): void
     {
-        $rendered = $this->renderer->renderBody((string)$docs->content_source);
+        $rendered = $this->renderer->renderBody((string) $docs->content_source);
 
-        $docs->content_rendered = (string)$rendered;
+        $docs->content_rendered = (string) $rendered;
     }
 }
