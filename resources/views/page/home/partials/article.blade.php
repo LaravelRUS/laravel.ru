@@ -1,13 +1,13 @@
 <?php /** @var \App\Models\Article $article */ ?>
 
 <article class="article">
-    <a class="image" href="{{ route('article', ['slug' => $article->slug]) }}"
+    <a class="image" href="{{ route('articles.show', ['slug' => $article->slug]) }}"
        title="{{ $article->capitalize_title }}">
         <img src="{{ $article->image_url }}" alt="{{ $article->title }}" />
     </a>
 
     <div class="description">
-        <a href="{{ route('article', ['slug' => $article->slug]) }}" class="title">
+        <a href="{{ route('articles.show', ['slug' => $article->slug]) }}" class="title">
             <h3>{{ $article->capitalize_title }}</h3>
         </a>
 

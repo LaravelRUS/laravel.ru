@@ -11,9 +11,9 @@ namespace App\Models\Docs;
 use App\Models\Docs;
 
 /**
- * Class UrlObserver.
+ * Class VersionObserver.
  */
-class UrlObserver
+class VersionObserver
 {
     private const DEFAULT_LATEST_VERSION = '5.4';
 
@@ -23,9 +23,15 @@ class UrlObserver
     public function saving(Docs $docs): void
     {
         if (! $docs->version) {
-            $docs->version = self::DEFAULT_LATEST_VERSION;
+            $docs->version = $this->getLatestAvailableVersion();
         }
+    }
 
-        $docs->url = $docs->version . '/' . $docs->slug;
+    /**
+     * @return string
+     */
+    private function getLatestAvailableVersion(): string
+    {
+        return self::DEFAULT_LATEST_VERSION;
     }
 }

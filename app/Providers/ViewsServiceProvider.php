@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Views\Composers\AuthComposer;
+use App\Views\Composers\NavComposer;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +33,7 @@ class ViewsServiceProvider extends ServiceProvider
         $this->views = $viewFactory;
 
         $this->compose('*', AuthComposer::class);
+        $this->compose('partials.header', NavComposer::class);
     }
 
     /**

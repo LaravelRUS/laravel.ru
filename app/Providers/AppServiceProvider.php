@@ -10,12 +10,15 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Services\NavMatcher;
 use Carbon\Carbon;
 use App\Services\ColorGenerator;
 use GuzzleHttp\Client as Guzzle;
 use Illuminate\Config\Repository;
 use App\GraphQL\Kernel\EnumTransfer;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use GuzzleHttp\ClientInterface as GuzzleInterface;
 
@@ -29,6 +32,9 @@ class AppServiceProvider extends ServiceProvider
      */
     protected $app;
 
+    /**
+     * @retrun void
+     */
     public function register(): void
     {
         $this->localizeCarbon();
@@ -37,6 +43,18 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(ColorGenerator::class);
         $this->app->singleton(EnumTransfer::class);
+    }
+
+    /**
+     * @return void
+     */
+    public function boot(): void
+    {
+        $this->app->singleton(NavMatcher::class, function (Container $app) {
+            $route = $app->make(Router::class)->current();
+
+            return new NavMatcher($route);
+        });
     }
 
     private function localizeCarbon(): void

@@ -2,7 +2,6 @@
 
 /**
  * This file is part of laravel.su package.
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -24,7 +23,7 @@ $router->get('/test', 'TestController@test');
 | Authentication
 |--------------------------------------------------------------------------
 |
-| TODO
+| TODO Add description
 |
 */
 
@@ -52,7 +51,7 @@ $router->group(['namespace' => 'Auth'], function (Router $router) {
 | Articles
 |--------------------------------------------------------------------------
 |
-| TODO
+| TODO Add description
 |
 */
 
@@ -61,8 +60,21 @@ $router->get('articles', 'ArticlesController@index')
 
 // TODO
 $router->get('articles/{slug}', 'ArticlesController@show')
-    ->name('article');
+    ->name('articles.show');
 
 // TODO
 $router->get('articles/tag/{id}', 'ArticlesController@indexForTag')
     ->name('tag');
+
+/*
+|--------------------------------------------------------------------------
+| Docs
+|--------------------------------------------------------------------------
+|
+| TODO Add description
+|
+*/
+
+$router->get('docs', 'DocsController@index')->name('docs');
+
+$router->get('docs/{version}/{slug}', 'DocsController@show')->name('docs.show');

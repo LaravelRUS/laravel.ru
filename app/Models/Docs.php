@@ -10,6 +10,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Collection;
 
 /**
  * Class Docs.
@@ -37,10 +38,29 @@ class Docs extends Model
     ];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'nav' => 'collection'
+    ];
+
+    /**
      * @return BelongsTo
      */
     public function category(): BelongsTo
     {
         return $this->belongsTo(DocsCategory::class);
+    }
+
+    /**
+     * @param array ...$level
+     * @return Collection
+     */
+    public function getNav(...$level): Collection
+    {
+        return $this->nav->whereIn('level', $level)
+            ->map(function (array $data) {
+                return (object) $data;
+            });
     }
 }

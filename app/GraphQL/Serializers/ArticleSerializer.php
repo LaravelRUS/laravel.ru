@@ -27,7 +27,7 @@ class ArticleSerializer extends AbstractSerializer
         return [
             'id'             => $article->id,
             'title'          => $article->capitalize_title,
-            'url'            => route('article', ['slug' => $article->slug]),
+            'url'            => route('articles.show', ['slug' => $article->slug]),
             'image'          => $article->image_url,
             'content'        => $article->content_rendered,
             'content_source' => $article->content_source,

@@ -12,7 +12,7 @@ namespace App\Models\Article;
 
 use App\Models\Article;
 use App\Services\ContentRenderer\ContentRenderInterface;
-use App\Models\Article\ContentObserver\ContentHeadersRenderer;
+use App\Services\ContentRenderer\ContentHeadersRenderer;
 
 /**
  * Class ContentObserver.

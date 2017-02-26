@@ -45,7 +45,7 @@ class EventServiceProvider extends ServiceProvider
         Tip::observe(Tip\ContentObserver::class);
 
         Docs::observe(Docs\SlugObserver::class);
-        Docs::observe(Docs\UrlObserver::class);
+        Docs::observe(Docs\VersionObserver::class);
         Docs::observe(Docs\GitHubConfigObserver::class);
         Docs::observe(Docs\ContentObserver::class);
 

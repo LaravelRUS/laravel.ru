@@ -29,12 +29,14 @@ class CreateDocsTable extends Migration
 
         Schema::create('docs', function (Blueprint $t) {
             $t->increments('id');
-            $t->string('url')->unique(); // {{version}}/{{slug}}
             $t->string('title');
             $t->string('version', 5);
             $t->string('slug');
             $t->longText('content_source');
             $t->longText('content_rendered');
+
+            // Navigation
+            $t->json('nav')->nullable();
 
             // Github
             $t->string('github_org');
@@ -48,6 +50,8 @@ class CreateDocsTable extends Migration
             $t->unsignedSmallInteger('priority')->default(0);
 
             $t->timestamps();
+
+            $t->index(['version', 'slug']);
         });
     }
 

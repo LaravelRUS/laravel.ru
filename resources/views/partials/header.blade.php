@@ -8,9 +8,8 @@
         </a>
 
         <nav>
-            <a href="#">Документация</a>
-            <a href="{{ route('articles') }}"
-               class="{{ (url()->current() === route('articles')) ? 'active' : '' }}">Статьи</a>
+            <a href="{{ route('docs') }}" class="{{ $nav->match('docs') }}">Документация</a>
+            <a href="{{ route('articles') }}" class="{{ $nav->match('articles') }}">Статьи</a>
             <a href="#">Пакеты</a>
 
 
