@@ -42,6 +42,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        $schedule->command('data-providers:import')
+            ->hourly();
     }
 
     /**
