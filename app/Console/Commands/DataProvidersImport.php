@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Models\Article;
-use App\Models\Bot;
-use App\Services\DataProviders\DataProviderInterface;
-use App\Services\DataProviders\ExternalArticle;
-use App\Services\DataProviders\Manager;
 use Carbon\Carbon;
+use App\Models\Bot;
+use App\Models\Article;
 use Illuminate\Console\Command;
+use App\Services\DataProviders\Manager;
+use App\Services\DataProviders\ExternalArticle;
+use App\Services\DataProviders\DataProviderInterface;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
@@ -53,42 +53,6 @@ class DataProvidersImport extends Command
 
     /**
      * @param Manager $manager
-     * @return void
-     */
-    private function importNotPublished(Manager $manager): void
-    {
-        foreach ($manager as $alias => $provider) {
-            if (in_array($alias, $this->published, true)) {
-                continue;
-            }
-
-            $this->import(Carbon::createFromTimestamp(0), $provider);
-        }
-    }
-
-    /**
-     * @param \DateTime             $time
-     * @param DataProviderInterface $provider
-     */
-    private function import(\DateTime $time, DataProviderInterface $provider)
-    {
-        /** @var ExternalArticle[] $latest */
-        $latest = $provider->getLatest($time);
-
-        foreach ($latest as $external) {
-            $article = new Article();
-
-            $article->user_id = 1;
-            $article->user_type = Bot::class;
-
-            $external->fill($article);
-
-            $article->save();
-        }
-    }
-
-    /**
-     * @param Manager $manager
      * @throws \InvalidArgumentException
      * @return void
      */
@@ -122,6 +86,42 @@ class DataProvidersImport extends Command
             if ($article) {
                 yield $article;
             }
+        }
+    }
+
+    /**
+     * @param \DateTime             $time
+     * @param DataProviderInterface $provider
+     */
+    private function import(\DateTime $time, DataProviderInterface $provider)
+    {
+        /** @var ExternalArticle[] $latest */
+        $latest = $provider->getLatest($time);
+
+        foreach ($latest as $external) {
+            $article = new Article();
+
+            $article->user_id = 1;
+            $article->user_type = Bot::class;
+
+            $external->fill($article);
+
+            $article->save();
+        }
+    }
+
+    /**
+     * @param Manager $manager
+     * @return void
+     */
+    private function importNotPublished(Manager $manager): void
+    {
+        foreach ($manager as $alias => $provider) {
+            if (in_array($alias, $this->published, true)) {
+                continue;
+            }
+
+            $this->import(Carbon::createFromTimestamp(0), $provider);
         }
     }
 }
