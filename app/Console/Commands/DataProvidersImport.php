@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Models\Article;
-use App\Models\Bot;
-use App\Services\DataProviders\DataProviderInterface;
-use App\Services\DataProviders\ExternalArticle;
-use App\Services\DataProviders\Manager;
 use Carbon\Carbon;
+use App\Models\Bot;
+use App\Models\Article;
 use Illuminate\Console\Command;
+use App\Services\DataProviders\Manager;
+use App\Services\DataProviders\ExternalArticle;
+use App\Services\DataProviders\DataProviderInterface;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
@@ -41,7 +41,7 @@ class DataProvidersImport extends Command
     private $published = [];
 
     /**
-     * @param  Manager $manager
+     * @param  Manager                   $manager
      * @throws \InvalidArgumentException
      */
     public function handle(Manager $manager)
@@ -52,7 +52,7 @@ class DataProvidersImport extends Command
     }
 
     /**
-     * @param Manager $manager
+     * @param  Manager $manager
      * @return void
      */
     private function importNotPublished(Manager $manager): void
@@ -88,7 +88,7 @@ class DataProvidersImport extends Command
     }
 
     /**
-     * @param Manager $manager
+     * @param  Manager                   $manager
      * @throws \InvalidArgumentException
      * @return void
      */
