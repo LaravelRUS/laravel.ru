@@ -8,12 +8,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Services\DataProviders\Manager;
+
+use GrahamCampbell\GitHub\GitHubManager;
 
 class TestController
 {
-    public function test(Manager $manager)
+    public function test(GitHubManager $manager)
     {
-        dd($manager);
+        dd($manager->organization()->show('translation-gang'));
     }
 }
