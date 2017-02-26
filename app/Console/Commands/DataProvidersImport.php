@@ -41,7 +41,7 @@ class DataProvidersImport extends Command
     private $published = [];
 
     /**
-     * @param  Manager $manager
+     * @param  Manager                   $manager
      * @throws \InvalidArgumentException
      */
     public function handle(Manager $manager)
@@ -52,7 +52,7 @@ class DataProvidersImport extends Command
     }
 
     /**
-     * @param Manager $manager
+     * @param  Manager                   $manager
      * @throws \InvalidArgumentException
      * @return void
      */
@@ -111,7 +111,7 @@ class DataProvidersImport extends Command
     }
 
     /**
-     * @param Manager $manager
+     * @param  Manager $manager
      * @return void
      */
     private function importNotPublished(Manager $manager): void
