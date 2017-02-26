@@ -46,7 +46,7 @@ class DataProvidersImport extends Command
      */
     public function handle(Manager $manager)
     {
-        //$this->importPublished($manager);
+        $this->importPublished($manager);
 
         $this->importNotPublished($manager);
     }
