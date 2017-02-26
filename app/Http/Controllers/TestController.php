@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-
 use GrahamCampbell\GitHub\GitHubManager;
 
 class TestController

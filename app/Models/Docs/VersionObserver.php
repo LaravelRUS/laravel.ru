@@ -11,8 +11,7 @@ namespace App\Models\Docs;
 use App\Models\Docs;
 
 /**
- * Class VersionObserver
- * @package App\Models\Docs
+ * Class VersionObserver.
  */
 class VersionObserver
 {
