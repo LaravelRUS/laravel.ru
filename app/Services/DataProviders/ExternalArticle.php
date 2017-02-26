@@ -30,6 +30,11 @@ class ExternalArticle implements Arrayable
     /**
      * @var string
      */
+    private $preview = '';
+
+    /**
+     * @var string
+     */
     private $url;
 
     /**
@@ -55,6 +60,25 @@ class ExternalArticle implements Arrayable
         $this->url = $url;
 
         $this->createdAt = Carbon::now();
+    }
+
+    /**
+     * @return string
+     */
+    public function getPreview(): string
+    {
+        return $this->preview;
+    }
+
+    /**
+     * @param string $preview
+     * @return $this|ExternalArticle
+     */
+    public function setPreview(string $preview): ExternalArticle
+    {
+        $this->preview = $preview;
+
+        return $this;
     }
 
     /**
@@ -142,6 +166,9 @@ class ExternalArticle implements Arrayable
         $article->title = $this->title;
         //$article-
         $article->image = reset($this->images);
+
+        $article->preview_source = '';
+        $article->preview_rendered = $this->preview;
 
         $article->content_source = '';
         $article->content_rendered = $this->body;

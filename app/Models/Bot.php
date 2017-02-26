@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * Class Bot.
@@ -38,10 +38,10 @@ class Bot extends Model
     }
 
     /**
-     * @return MorphToMany
+     * @return MorphMany
      */
-    public function articles(): MorphToMany
+    public function articles(): MorphMany
     {
-        return $this->morphToMany(Article::class, 'user');
+        return $this->morphMany(Article::class, 'user');
     }
 }

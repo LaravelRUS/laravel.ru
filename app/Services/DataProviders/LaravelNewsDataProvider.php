@@ -36,7 +36,7 @@ class LaravelNewsDataProvider implements DataProviderInterface
     }
 
     /**
-     * @param  \DateTime                    $latest
+     * @param  \DateTime $latest
      * @return Collection|ExternalArticle[]
      * @throws \RuntimeException
      */
@@ -65,11 +65,11 @@ class LaravelNewsDataProvider implements DataProviderInterface
 
         $body = $response->getBody();
 
-        yield from $this->parseBody((string) $body);
+        yield from $this->parseBody((string)$body);
     }
 
     /**
-     * @param  string            $body
+     * @param  string $body
      * @return \Generator
      * @throws \RuntimeException
      */
@@ -79,27 +79,31 @@ class LaravelNewsDataProvider implements DataProviderInterface
 
         /** @var \DOMElement $node */
         foreach ($parser->filter('rss > channel > item') as $node) {
-            $parsed = $this->parseContent(
-                $node->getElementsByTagNameNS(self::CONTENT_NAMESPACE, '*')
-                    ->item(0)
-                    ->textContent
+            $content = $node->getElementsByTagNameNS(self::CONTENT_NAMESPACE, '*')
+                ->item(0)
+                ->textContent;
+
+            ['images' => $images, 'body' => $content] = $this->parseContent(
+                $content
             );
 
-            ['images' => $images, 'body' => $content] = $parsed;
-
-            $article = new ExternalArticle(
-                (string) $this->getContentOf($node, 'title'),
-                trim($content),
-                (string) $this->getContentOf($node, 'link')
+            ['images' => $imagesPreview, 'body' => $preview] = $this->parseContent(
+                (string)$this->getContentOf($node, 'description')
             );
+
+
+            $title      = (string)$this->getContentOf($node, 'title');
+            $link       = (string)$this->getContentOf($node, 'link');
+            $published  = (string)$this->getContentOf($node, 'pubDate');
+
+            $article    = new ExternalArticle($title, trim($content), $link);
+
+            $article->setPreview($preview);
+            $article->setCreatedAt(Carbon::parse($published));
 
             foreach ($images as $image) {
                 $article->addImageUrl($image);
             }
-
-            $article->setCreatedAt(Carbon::parse(
-                (string) $this->getContentOf($node, 'pubDate')
-            ));
 
             yield $article;
         }

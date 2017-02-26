@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
@@ -71,10 +71,10 @@ class User extends Authenticatable
     }
 
     /**
-     * @return MorphToMany
+     * @return MorphMany
      */
-    public function articles(): MorphToMany
+    public function articles(): MorphMany
     {
-        return $this->morphToMany(Article::class, 'user');
+        return $this->morphMany(Article::class, 'user');
     }
 }
