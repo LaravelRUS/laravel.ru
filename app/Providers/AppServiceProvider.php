@@ -10,16 +10,16 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Services\NavMatcher;
 use Carbon\Carbon;
+use App\Services\NavMatcher;
+use Illuminate\Routing\Router;
 use App\Services\ColorGenerator;
 use GuzzleHttp\Client as Guzzle;
 use Illuminate\Config\Repository;
 use App\GraphQL\Kernel\EnumTransfer;
-use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application;
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Container\Container;
 use GuzzleHttp\ClientInterface as GuzzleInterface;
 
 /**

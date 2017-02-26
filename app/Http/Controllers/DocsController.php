@@ -22,13 +22,13 @@ class DocsController extends Controller
     public function index(): View
     {
         return view('page.docs.index', [
-            'latest' => Docs::latest('updated_at')->take(10)->get()
+            'latest' => Docs::latest('updated_at')->take(10)->get(),
         ]);
     }
 
     /**
-     * @param string $version
-     * @param string $slug
+     * @param  string                                                        $version
+     * @param  string                                                        $slug
      * @return View
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|View
      */
@@ -37,7 +37,7 @@ class DocsController extends Controller
         $docs = Docs::where('version', $version)->where('slug', $slug)->firstOrFail();
 
         return view('page.docs.show', [
-            'docs' => $docs
+            'docs' => $docs,
         ]);
     }
 }

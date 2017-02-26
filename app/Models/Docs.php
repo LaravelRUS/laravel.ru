@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Collection;
 
 /**
  * Class Docs.
@@ -41,7 +41,7 @@ class Docs extends Model
      * @var array
      */
     protected $casts = [
-        'nav' => 'collection'
+        'nav' => 'collection',
     ];
 
     /**
@@ -53,7 +53,7 @@ class Docs extends Model
     }
 
     /**
-     * @param array ...$level
+     * @param  array      ...$level
      * @return Collection
      */
     public function getNav(...$level): Collection
