@@ -27,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [];
 
+    /**
+     * @return void
+     */
     public function boot(): void
     {
         User::observe(User\AvatarUploaderObserver::class);

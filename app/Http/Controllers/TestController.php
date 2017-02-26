@@ -8,12 +8,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use GrahamCampbell\GitHub\GitHubManager;
+use App\Services\GitHub\GitHubDocsImport;
 
 class TestController
 {
-    public function test(GitHubManager $manager)
+    public function test(GitHubDocsImport $manager)
     {
-        dd($manager->organization()->show('translation-gang'));
+        return $manager->findFiles('translation-gang', 'ru.docs.laravel', '5.4-ru');
     }
 }
