@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace App\Services\GitHub;
 
-use GrahamCampbell\GitHub\GitHubManager;
 use Illuminate\Support\Collection;
+use GrahamCampbell\GitHub\GitHubManager;
 
 /**
  * Class GitHubDocsImport.
@@ -23,7 +23,7 @@ class GitHubDocsImport implements DocsImportInterface
 
     /**
      * GitHubDocsImport constructor.
-     * @param GitHubManager   $manager
+     * @param GitHubManager $manager
      */
     public function __construct(GitHubManager $manager)
     {
@@ -31,9 +31,9 @@ class GitHubDocsImport implements DocsImportInterface
     }
 
     /**
-     * @param string $org
-     * @param string $repo
-     * @param string $branch
+     * @param  string                                     $org
+     * @param  string                                     $repo
+     * @param  string                                     $branch
      * @return Collection
      * @throws \Github\Exception\ErrorException
      * @throws \Github\Exception\InvalidArgumentException
@@ -46,7 +46,7 @@ class GitHubDocsImport implements DocsImportInterface
         $info = $this->getRepoFilesInfo($org, $repo, $branch);
 
         foreach ($info as $page) {
-            if (!isset($page['path'], $page['download_url'])) {
+            if (! isset($page['path'], $page['download_url'])) {
                 throw new \RuntimeException('Import failed: "path" or "download_url" arguments required.');
             }
 
@@ -57,26 +57,26 @@ class GitHubDocsImport implements DocsImportInterface
     }
 
     /**
-     * @param string $org
-     * @param string $repo
-     * @param string $branch
-     * @param string $file
+     * @param  string                                     $org
+     * @param  string                                     $repo
+     * @param  string                                     $branch
+     * @param  string                                     $file
      * @return string
      * @throws \Github\Exception\ErrorException
      * @throws \Github\Exception\InvalidArgumentException
      */
     private function getBody(string $org, string $repo, string $branch, string $file): string
     {
-        return (string)$this->manager
+        return (string) $this->manager
             ->repo()
             ->contents()
             ->download($org, $repo, $file, $branch);
     }
 
     /**
-     * @param string $org
-     * @param string $repo
-     * @param string $branch
+     * @param  string $org
+     * @param  string $repo
+     * @param  string $branch
      * @return array
      */
     private function getRepoFilesInfo(string $org, string $repo, string $branch): array
@@ -88,10 +88,10 @@ class GitHubDocsImport implements DocsImportInterface
     }
 
     /**
-     * @param string $org
-     * @param string $repo
-     * @param string $branch
-     * @param string $file
+     * @param  string                                     $org
+     * @param  string                                     $repo
+     * @param  string                                     $branch
+     * @param  string                                     $file
      * @return ExternalDocsPage
      * @throws \Github\Exception\ErrorException
      * @throws \Github\Exception\InvalidArgumentException

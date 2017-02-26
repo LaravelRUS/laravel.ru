@@ -16,18 +16,18 @@ use Illuminate\Support\Collection;
 interface DocsImportInterface
 {
     /**
-     * @param string $org
-     * @param string $repo
-     * @param string $branch
+     * @param  string                        $org
+     * @param  string                        $repo
+     * @param  string                        $branch
      * @return Collection|ExternalDocsPage[]
      */
     public function findFiles(string $org, string $repo, string $branch);
 
     /**
-     * @param string $org
-     * @param string $repo
-     * @param string $branch
-     * @param string $file
+     * @param  string           $org
+     * @param  string           $repo
+     * @param  string           $branch
+     * @param  string           $file
      * @return ExternalDocsPage
      */
     public function import(string $org, string $repo, string $branch, string $file): ExternalDocsPage;
