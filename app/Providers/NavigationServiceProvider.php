@@ -5,14 +5,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Providers;
 
 use App\Services\NavMatcher;
-use Illuminate\Container\Container;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
+use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -33,12 +33,12 @@ class NavigationServiceProvider extends ServiceProvider
     }
 
     /**
-     * @param Router $router
+     * @param  Router $router
      * @return Route
      */
     private function route(Router $router): Route
     {
-        $route  = $router->current();
+        $route = $router->current();
 
         if ($route === null) {
             $route = $router->get('/');

@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Services\ContentRenderer;
 
@@ -40,7 +40,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
     }
 
     /**
-     * Исправляет ссылки в документации "/docs/{version}/..."
+     * Исправляет ссылки в документации "/docs/{version}/...".
      *
      * TODO Надо это не забыть реализовать =)
      *
@@ -54,7 +54,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
     }
 
     /**
-     * Удаляет из исходного текста все вхождения "> {tip}"
+     * Удаляет из исходного текста все вхождения "> {tip}".
      *
      * @return \Closure
      */
@@ -66,7 +66,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
     }
 
     /**
-     * Удаляет навигацию из начала документа
+     * Удаляет навигацию из начала документа.
      *
      * @return \Closure
      */
@@ -83,7 +83,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
     }
 
     /**
-     * Удаляет из исходного текста все вхождения "> {note}"
+     * Удаляет из исходного текста все вхождения "> {note}".
      *
      * @return \Closure
      */
@@ -110,7 +110,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
     }
 
     /**
-     * Удаляет из документа заголовки первого уровня, находящиеся в самом начале статьи
+     * Удаляет из документа заголовки первого уровня, находящиеся в самом начале статьи.
      *
      * @return \Closure
      */
