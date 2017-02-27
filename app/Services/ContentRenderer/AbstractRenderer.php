@@ -60,7 +60,11 @@ abstract class AbstractRenderer implements ContentRenderInterface
      */
     protected function fireBefore(string $body): string
     {
-        $this->events->fire(self::EVENT_PARSE_BEFORE, [$body]);
+        $result = (array)$this->events->fire(self::EVENT_PARSE_BEFORE, [$body]);
+
+        if (count($result) >= 1) {
+            return reset($result);
+        }
 
         return $body;
     }
@@ -71,7 +75,11 @@ abstract class AbstractRenderer implements ContentRenderInterface
      */
     protected function fireAfter(string $body): string
     {
-        $this->events->fire(self::EVENT_PARSE_AFTER, [$body]);
+        $result = (array)$this->events->fire(self::EVENT_PARSE_AFTER, [$body]);
+
+        if (count($result) >= 1) {
+            return reset($result);
+        }
 
         return $body;
     }
