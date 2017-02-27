@@ -32,7 +32,7 @@
 ## Помощь
    
 - Перевод документации. 
-  - [Инструкция, как это делать правильно](http://sharedstation.net/articles/rus-documentation-contribution-guide).
+  - [Инструкция, как это делать правильно](https://github.com/translation-gang/ru.docs.laravel/blob/5.4-ru/readme.md).
   - [Обсуждение: Чат](https://gitter.im/LaravelRUS/docs)
 - Работа над [кодом](https://trello.com/b/lDqJrw8x/-). 
   - В разработке используется модель [git-flow](https://www.atlassian.com/ja/git/workflows/pageSections/00/contentFullWidth/0/tabs/02/pageSections/010/contentFullWidth/0/content_files/file0/document/git-workflow-release-cycle-4maintenance.png)
