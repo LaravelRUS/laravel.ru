@@ -6,22 +6,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Providers;
 
-use Carbon\Carbon;
-use App\Services\NavMatcher;
-use Illuminate\Routing\Route;
-use Illuminate\Routing\Router;
-use App\Services\ColorGenerator;
-use GuzzleHttp\Client as Guzzle;
 use Illuminate\Config\Repository;
-use App\GraphQL\Kernel\EnumTransfer;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Contracts\Container\Container;
-use GuzzleHttp\ClientInterface as GuzzleInterface;
 
 /**
  * Class AppServiceProvider.
@@ -38,54 +29,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->localizeCarbon();
-        $this->loadLocalProviders();
-        $this->registerGuzzleClient();
-
-        $this->app->singleton(ColorGenerator::class);
-        $this->app->singleton(EnumTransfer::class);
+        $this->loadLocalProviders($this->app->make(Repository::class));
     }
 
     /**
+     * @param Repository $repository
      * @return void
      */
-    public function boot(): void
-    {
-        $this->app->singleton(NavMatcher::class, function (Container $app) {
-            $router = $app->make(Router::class);
-            $route  = $router->current();
-
-            if ($route === null) {
-                $route = $router->get('/');
-            }
-
-            return new NavMatcher($route);
-        });
-    }
-
-    private function localizeCarbon(): void
-    {
-        $locale = $this->app->make(Repository::class)->get('app.locale');
-
-        Carbon::setLocale($locale);
-    }
-
-    private function loadLocalProviders(): void
+    private function loadLocalProviders(Repository $repository): void
     {
         if ($this->app->isLocal()) {
-            array_map(
-                [$this->app, 'register'],
-                config('app.local_providers', [])
-            );
+            $providers = (array)$repository->get('app.local_providers', []);
+
+            foreach ($providers as $provider) {
+                $this->app->register($provider);
+            }
         }
-    }
-
-    private function registerGuzzleClient(): void
-    {
-        $this->app->singleton(Guzzle::class, function () {
-            return new Guzzle();
-        });
-
-        $this->app->alias(Guzzle::class, GuzzleInterface::class);
     }
 }

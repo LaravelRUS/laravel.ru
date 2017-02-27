@@ -183,6 +183,11 @@ return [
         App\Providers\ViewsServiceProvider::class,
         App\Providers\MarkdownServiceProvider::class,
         App\Providers\DataProviderServiceProvider::class,
+        App\Providers\DateTimeServiceProvider::class,
+        App\Providers\HttpClientServiceProvider::class,
+        App\Providers\ColorGeneratorServiceProvider::class,
+        App\Providers\EnumsServiceProvider::class,
+        App\Providers\NavigationServiceProvider::class,
     ],
 
     'local_providers' => [
