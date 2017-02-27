@@ -181,7 +181,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewsServiceProvider::class,
-        App\Providers\MarkdownServiceProvider::class,
+        App\Providers\ContentRendererServiceProvider::class,
         App\Providers\DataProviderServiceProvider::class,
         App\Providers\DateTimeServiceProvider::class,
         App\Providers\HttpClientServiceProvider::class,

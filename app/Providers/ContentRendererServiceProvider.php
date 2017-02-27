@@ -16,9 +16,9 @@ use App\Services\ContentRenderer\MarkdownRenderer;
 use App\Services\ContentRenderer\ContentRenderInterface;
 
 /**
- * Class MarkdownServiceProvider.
+ * Class ContentRendererServiceProvider.
  */
-class MarkdownServiceProvider extends ServiceProvider
+class ContentRendererServiceProvider extends ServiceProvider
 {
     /**
      * @return void
