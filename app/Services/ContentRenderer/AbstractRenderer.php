@@ -55,7 +55,9 @@ abstract class AbstractRenderer implements ContentRenderInterface
     protected function fireBefore(string $body): string
     {
         foreach ($this->before as $before) {
-            $body = $this->parseEventsOutput($body, $before($body));
+            if (is_string($parsed = $before($body))) {
+                $body = $parsed;
+            }
         }
 
         return $body;
@@ -68,23 +70,11 @@ abstract class AbstractRenderer implements ContentRenderInterface
     protected function fireAfter(string $body): string
     {
         foreach ($this->after as $after) {
-            $body = $this->parseEventsOutput($body, $after($body));
+            if (is_string($parsed = $after($body))) {
+                $body = $parsed;
+            }
         }
 
         return $body;
-    }
-
-    /**
-     * @param  string       $original
-     * @param  string|mixed $result
-     * @return string
-     */
-    private function parseEventsOutput(string $original, $result): string
-    {
-        if (is_string($result)) {
-            return $result;
-        }
-
-        return $original;
     }
 }
