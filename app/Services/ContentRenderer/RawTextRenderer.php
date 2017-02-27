@@ -12,11 +12,34 @@ namespace App\Services\ContentRenderer;
 
 /**
  * Class RawTextRenderer.
- *
- * TODO Add markdown render for only allowed types: [bold], [italic], [list], [link] and [code]
- *
  */
 class RawTextRenderer extends MarkdownRenderer
 {
+    /**
+     * @param string $body
+     * @return string
+     */
+    public function render(string $body): string
+    {
+        $result = parent::render($body);
 
+        $result = $this->removeDisallowedTags($result);
+
+        return $result;
+    }
+
+    /**
+     * @param string $body
+     * @return string
+     */
+    private function removeDisallowedTags(string $body): string
+    {
+        return strip_tags($body, [
+            'b', 'strong',      // bold
+            'i', 'em',          // italic
+            'ul', 'li', 'ol',   // list
+            'a',                // link
+            'code', 'pre'       // code
+        ]);
+    }
 }
