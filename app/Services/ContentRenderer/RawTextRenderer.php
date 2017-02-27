@@ -16,7 +16,7 @@ namespace App\Services\ContentRenderer;
 class RawTextRenderer extends MarkdownRenderer
 {
     /**
-     * @param string $body
+     * @param  string $body
      * @return string
      */
     public function render(string $body): string
@@ -29,7 +29,7 @@ class RawTextRenderer extends MarkdownRenderer
     }
 
     /**
-     * @param string $body
+     * @param  string $body
      * @return string
      */
     private function removeDisallowedTags(string $body): string
@@ -39,7 +39,7 @@ class RawTextRenderer extends MarkdownRenderer
             'i', 'em',          // italic
             'ul', 'li', 'ol',   // list
             'a',                // link
-            'code', 'pre'       // code
+            'code', 'pre',       // code
         ]);
     }
 }

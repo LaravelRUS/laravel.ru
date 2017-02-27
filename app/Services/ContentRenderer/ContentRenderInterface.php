@@ -16,7 +16,7 @@ namespace App\Services\ContentRenderer;
 interface ContentRenderInterface
 {
     /**
-     * @param \Closure $callback
+     * @param  \Closure                     $callback
      * @return $this|ContentRenderInterface
      */
     public function before(\Closure $callback): ContentRenderInterface;
@@ -28,7 +28,7 @@ interface ContentRenderInterface
     public function render(string $original): string;
 
     /**
-     * @param \Closure $callback
+     * @param  \Closure                     $callback
      * @return $this|ContentRenderInterface
      */
     public function after(\Closure $callback): ContentRenderInterface;
