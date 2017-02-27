@@ -26,13 +26,20 @@ class ContentObserver
     private $renderer;
 
     /**
+     * @var Parser
+     */
+    private $parser;
+
+    /**
      * ContentObserver constructor.
      *
+     * @param Parser                 $parser
      * @param ContentRenderInterface $renderer
      */
-    public function __construct(ContentRenderInterface $renderer)
+    public function __construct(Parser $parser, ContentRenderInterface $renderer)
     {
         $this->renderer = $renderer;
+        $this->parser = $parser;
     }
 
     /**
@@ -40,23 +47,23 @@ class ContentObserver
      */
     public function saving(Docs $docs): void
     {
-        // Parse markdown
-        $rendered = $this->renderer->render((string) $docs->content_source);
-
-        // Parse content headers
-        $parsed = $this->parseHeaders($rendered);
+        $body = $this->render((string) $docs->content_source);
 
         // Update data
-        $docs->nav = $parsed->getLinks();
-        $docs->content_rendered = (string) $parsed->getContent();
+        $docs->nav = $body->getLinks();
+        $docs->content_rendered = (string) $body->getContent();
     }
 
     /**
-     * @param  string $content
+     * @param string $body
      * @return ProcessedBody
      */
-    private function parseHeaders(string $content): ProcessedBody
+    private function render(string $body): ProcessedBody
     {
-        return (new Parser())->parse($content);
+        // Parse markdown
+        $rendered = $this->renderer->render($body);
+
+        // Parse content headers
+        return $this->parser->parse($rendered);
     }
 }
