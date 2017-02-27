@@ -40,7 +40,7 @@ class ContentRendererServiceProvider extends ServiceProvider
         // Tips content renderer
         $this->app->when(RawTextRenderer::class)
             ->needs(ContentRenderInterface::class)
-            ->give(function() {
+            ->give(function () {
                 return new RawTextRenderer(new GithubMarkdown());
             });
     }

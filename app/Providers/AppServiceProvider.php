@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Providers;
 
@@ -33,13 +33,13 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * @param Repository $repository
+     * @param  Repository $repository
      * @return void
      */
     private function loadLocalProviders(Repository $repository): void
     {
         if ($this->app->isLocal()) {
-            $providers = (array)$repository->get('app.local_providers', []);
+            $providers = (array) $repository->get('app.local_providers', []);
 
             foreach ($providers as $provider) {
                 $this->app->register($provider);

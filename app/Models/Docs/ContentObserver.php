@@ -55,7 +55,7 @@ class ContentObserver
     }
 
     /**
-     * @param string $body
+     * @param  string        $body
      * @return ProcessedBody
      */
     private function render(string $body): ProcessedBody

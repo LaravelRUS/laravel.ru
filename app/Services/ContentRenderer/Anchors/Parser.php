@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Services\ContentRenderer\Anchors;
 
@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
 class Parser
 {
     /**
-     * @param string $body
+     * @param  string        $body
      * @return ProcessedBody
      */
     public function parse(string $body): ProcessedBody
@@ -38,7 +38,7 @@ class Parser
     }
 
     /**
-     * @param string $title
+     * @param  string $title
      * @return string
      */
     private function createAnchorName(string $title): string
@@ -47,9 +47,9 @@ class Parser
     }
 
     /**
-     * @param string $tag
-     * @param string $id
-     * @param string $header
+     * @param  string $tag
+     * @param  string $id
+     * @param  string $header
      * @return string
      */
     private function render(string $tag, string $id, string $header): string

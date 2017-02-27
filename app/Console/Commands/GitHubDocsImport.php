@@ -5,16 +5,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Console\Commands;
 
 use App\Models\Docs;
-use App\Services\GitHub\DocsCollection;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use App\Services\GitHub\DocsStatus;
+use App\Services\GitHub\DocsCollection;
 use App\Services\GitHub\ExternalDocsPage;
 use App\Services\GitHub\GitHubDocsManager;
 use App\Services\GitHub\GitHubConfigRepository;
@@ -41,8 +41,8 @@ class GitHubDocsImport extends Command
     /**
      * Execute the console command.
      *
-     * @param  GitHubDocsManager      $manager
-     * @param  GitHubConfigRepository $config
+     * @param  GitHubDocsManager                          $manager
+     * @param  GitHubConfigRepository                     $config
      * @return void
      * @throws \Github\Exception\ErrorException
      * @throws \Github\Exception\InvalidArgumentException
@@ -72,9 +72,9 @@ class GitHubDocsImport extends Command
     }
 
     /**
-     * @param  string $org
-     * @param  string $repo
-     * @param  string $branch
+     * @param  string     $org
+     * @param  string     $repo
+     * @param  string     $branch
      * @return Collection
      */
     private function getDocsCurrentState(string $org, string $repo, string $branch)
@@ -87,9 +87,9 @@ class GitHubDocsImport extends Command
     }
 
     /**
-     * @param GitHubDocsManager      $manager
-     * @param GitHubConfigRepository $config
-     * @param Collection             $exists
+     * @param  GitHubDocsManager                          $manager
+     * @param  GitHubConfigRepository                     $config
+     * @param  Collection                                 $exists
      * @return Collection|DocsCollection
      * @throws \Github\Exception\ErrorException
      * @throws \Github\Exception\InvalidArgumentException
@@ -111,9 +111,9 @@ class GitHubDocsImport extends Command
     }
 
     /**
-     * @param DocsCollection         $files
-     * @param GitHubDocsManager      $manager
-     * @param GitHubConfigRepository $config
+     * @param  DocsCollection                             $files
+     * @param  GitHubDocsManager                          $manager
+     * @param  GitHubConfigRepository                     $config
      * @throws \Github\Exception\ErrorException
      * @throws \Github\Exception\InvalidArgumentException
      */
@@ -136,7 +136,6 @@ class GitHubDocsImport extends Command
                 $docs->category_id = 0; // TODO
             }
 
-
             if (! $docs->title) {
                 $docs->title = Str::ucfirst(str_replace(
                     ['-', '_'],
@@ -153,10 +152,10 @@ class GitHubDocsImport extends Command
     }
 
     /**
-     * @param  string $org
-     * @param  string $repo
-     * @param  string $branch
-     * @param  string $file
+     * @param  string                                   $org
+     * @param  string                                   $repo
+     * @param  string                                   $branch
+     * @param  string                                   $file
      * @return \Illuminate\Database\Eloquent\Model|Docs
      */
     private function getDocsModel(string $org, string $repo, string $branch, string $file)
