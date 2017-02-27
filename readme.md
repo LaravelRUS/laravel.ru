@@ -26,5 +26,5 @@
    
 ### Помощь
    
-1. Перевод документации. [Инструкция, как это делать правильно](http://sharedstation.net/articles/rus-documentation-contribution-guide).
+1. Перевод документации. [Инструкция, как это делать правильно](http://laravel.su/articles/rus-documentation-contribution-guide).
 2. Работа над [кодом](https://trello.com/b/lDqJrw8x/-). В разработке используется модель [git-flow](https://www.atlassian.com/ja/git/workflows/pageSections/00/contentFullWidth/0/tabs/02/pageSections/010/contentFullWidth/0/content_files/file0/document/git-workflow-release-cycle-4maintenance.png).
