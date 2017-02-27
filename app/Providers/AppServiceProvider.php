@@ -12,6 +12,7 @@ namespace App\Providers;
 
 use Carbon\Carbon;
 use App\Services\NavMatcher;
+use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use App\Services\ColorGenerator;
 use GuzzleHttp\Client as Guzzle;
@@ -51,7 +52,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->singleton(NavMatcher::class, function (Container $app) {
-            $route = $app->make(Router::class)->current();
+            $router = $app->make(Router::class);
+            $route  = $router->current();
+
+            if ($route === null) {
+                $route = $router->get('/');
+            }
 
             return new NavMatcher($route);
         });

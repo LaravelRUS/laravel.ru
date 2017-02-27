@@ -42,7 +42,7 @@ class ContentPreviewObserver
                 $article->preview_source = Str::words($article->content_source, 100, '…');
             }
 
-            $article->preview_rendered = $this->renderer->renderBody($article->preview_source);
+            $article->preview_rendered = $this->renderer->render($article->preview_source);
         }
     }
 }

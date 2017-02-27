@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace App\Models\Article;
 
 use App\Models\Article;
-use App\Services\ContentRenderer\ContentHeadersRenderer;
 use App\Services\ContentRenderer\ContentRenderInterface;
 
 /**
@@ -43,19 +42,8 @@ class ContentObserver
             return;
         }
 
-        $rendered = $this->renderer->renderBody((string) $article->content_source);
+        $rendered = $this->renderer->render((string) $article->content_source);
 
-        $rendered = $this->parseHeaders($rendered);
-
-        $article->content_rendered = (string) $rendered->getContent();
-    }
-
-    /**
-     * @param  string                 $content
-     * @return ContentHeadersRenderer
-     */
-    private function parseHeaders(string $content): ContentHeadersRenderer
-    {
-        return (new ContentHeadersRenderer($content))->parse();
+        $article->content_rendered = (string) $rendered;
     }
 }

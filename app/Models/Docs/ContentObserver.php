@@ -11,7 +11,8 @@ declare(strict_types=1);
 namespace App\Models\Docs;
 
 use App\Models\Docs;
-use App\Services\ContentRenderer\ContentHeadersRenderer;
+use App\Services\ContentRenderer\Anchors\Parser;
+use App\Services\ContentRenderer\Anchors\ProcessedBody;
 use App\Services\ContentRenderer\ContentRenderInterface;
 
 /**
@@ -40,7 +41,7 @@ class ContentObserver
     public function saving(Docs $docs): void
     {
         // Parse markdown
-        $rendered = $this->renderer->renderBody((string) $docs->content_source);
+        $rendered = $this->renderer->render((string) $docs->content_source);
 
         // Parse content headers
         $parsed = $this->parseHeaders($rendered);
@@ -51,11 +52,11 @@ class ContentObserver
     }
 
     /**
-     * @param  string                 $content
-     * @return ContentHeadersRenderer
+     * @param  string $content
+     * @return ProcessedBody
      */
-    private function parseHeaders(string $content): ContentHeadersRenderer
+    private function parseHeaders(string $content): ProcessedBody
     {
-        return (new ContentHeadersRenderer($content))->parse();
+        return (new Parser())->parse($content);
     }
 }

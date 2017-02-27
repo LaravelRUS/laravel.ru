@@ -39,7 +39,7 @@ class ContentObserver
     public function saving(Tip $tip): void
     {
         if ($tip->content_source) {
-            $rendered = $this->renderer->renderBody($tip->content_source);
+            $rendered = $this->renderer->render($tip->content_source);
 
             $tip->content_rendered = $rendered;
         }

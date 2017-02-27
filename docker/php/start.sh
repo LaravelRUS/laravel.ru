@@ -18,6 +18,6 @@ composer install
 php ./artisan key:generate
 php ./artisan migrate --force
 
-/usr/bin/nohup php ./artisan queue:work --queue=high,default > ./docker/logs/queue.log 2>&1 &
+/usr/bin/nohup php ./artisan queue:work --queue=high,default > ./storage/logs/queue.log 2>&1 &
 
 php-fpm

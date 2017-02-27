@@ -15,7 +15,7 @@ use cebe\markdown\Parser;
 /**
  * Class MarkdownRenderer.
  */
-class MarkdownRenderer implements ContentRenderInterface
+class MarkdownRenderer extends AbstractRenderer
 {
     /**
      * @var Parser
@@ -29,15 +29,21 @@ class MarkdownRenderer implements ContentRenderInterface
      */
     public function __construct(Parser $parser)
     {
+        parent::__construct();
+
         $this->parser = $parser;
     }
 
     /**
-     * @param  string $original
+     * @param  string $body
      * @return string
      */
-    public function renderBody(string $original): string
+    public function render(string $body): string
     {
-        return $this->parser->parse($original);
+        $body = $this->fireBefore($body);
+
+        $body = $this->parser->parse($body);
+
+        return $this->fireAfter($body);
     }
 }
