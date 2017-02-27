@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of laravel.su package.
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -20,17 +19,14 @@ abstract class AbstractRenderer implements ContentRenderInterface
     private const EVENT_PARSE_AFTER  = 'parse.after';
 
     /**
-     * @var Dispatcher
+     * @var array|\Closure[]
      */
-    private $events;
+    private $before = [];
 
     /**
-     * AbstractRenderer constructor.
+     * @var array|\Closure[]
      */
-    public function __construct()
-    {
-        $this->events = new Dispatcher();
-    }
+    private $after  = [];
 
     /**
      * @param \Closure $callback
@@ -38,7 +34,7 @@ abstract class AbstractRenderer implements ContentRenderInterface
      */
     public function before(\Closure $callback): ContentRenderInterface
     {
-        $this->events->listen(self::EVENT_PARSE_BEFORE, $callback);
+        $this->before[] = $callback;
 
         return $this;
     }
@@ -49,7 +45,7 @@ abstract class AbstractRenderer implements ContentRenderInterface
      */
     public function after(\Closure $callback): ContentRenderInterface
     {
-        $this->events->listen(self::EVENT_PARSE_AFTER, $callback);
+        $this->after[] = $callback;
 
         return $this;
     }
@@ -60,10 +56,8 @@ abstract class AbstractRenderer implements ContentRenderInterface
      */
     protected function fireBefore(string $body): string
     {
-        $result = (array)$this->events->fire(self::EVENT_PARSE_BEFORE, [$body]);
-
-        if (count($result) >= 1) {
-            return reset($result);
+        foreach ($this->before as $before) {
+            $body = $this->parseEventsOutput($body, $before($body));
         }
 
         return $body;
@@ -75,12 +69,24 @@ abstract class AbstractRenderer implements ContentRenderInterface
      */
     protected function fireAfter(string $body): string
     {
-        $result = (array)$this->events->fire(self::EVENT_PARSE_AFTER, [$body]);
-
-        if (count($result) >= 1) {
-            return reset($result);
+        foreach ($this->after as $after) {
+            $body = $this->parseEventsOutput($body, $after($body));
         }
 
         return $body;
+    }
+
+    /**
+     * @param string $original
+     * @param string|mixed $result
+     * @return string
+     */
+    private function parseEventsOutput(string $original, $result): string
+    {
+        if (is_string($result)) {
+            return $result;
+        }
+
+        return $original;
     }
 }

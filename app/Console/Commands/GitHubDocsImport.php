@@ -5,11 +5,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Console\Commands;
 
 use App\Models\Docs;
+use App\Services\GitHub\DocsCollection;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
@@ -25,20 +26,23 @@ class GitHubDocsImport extends Command
 {
     /**
      * The name and signature of the console command.
+     *
      * @var string
      */
-    protected $signature = 'docs:import';
+    protected $signature = 'docs:import {?--force}';
 
     /**
      * The console command description.
+     *
      * @var string
      */
     protected $description = 'Import documentation from GitHub.';
 
     /**
      * Execute the console command.
-     * @param  GitHubDocsManager                          $manager
-     * @param  GitHubConfigRepository                     $config
+     *
+     * @param  GitHubDocsManager      $manager
+     * @param  GitHubConfigRepository $config
      * @return void
      * @throws \Github\Exception\ErrorException
      * @throws \Github\Exception\InvalidArgumentException
@@ -48,42 +52,29 @@ class GitHubDocsImport extends Command
     {
         $exists = $this->getDocsCurrentState(...$config->values());
 
-        $files = $manager->findFiles(...$config->values())
-            ->reject(function (DocsStatus $status) use ($exists) {
-                return $exists->where('github_hash', $status->getHash())->first();
-            })
-            ->each(function (DocsStatus $status) use ($config, $manager) {
-                $args = $config->values();
-                $args[] = $status->getPath();
+        $files = $this->getFilesForSync($manager, $config, $exists);
 
-                /** @var ExternalDocsPage $page */
-                $page = $manager->import(...$args);
+        if (count($files) === 0) {
+            $this->info('Skipping: Documentation are actual.');
+        } else {
+            $this->info('Found ' . count($files) . ' new pages.');
+            $this->info('Start sync progress...');
 
-                $docs = $this->getDocsModel(...$args);
+            $this->output->progressStart(count($files));
 
-                $docs->content_source = $page->getContent();
-                $docs->github_hash = $status->getHash();
+            $this->sync($files, $manager, $config);
 
-                if (! $docs->category_id) {
-                    $docs->category_id = 0; // TODO
-                }
+            $this->output->progressFinish();
+        }
 
-                if (! $docs->title) {
-                    $docs->title = Str::ucfirst(str_replace(
-                        ['-', '_'],
-                        ' ',
-                        $page->getUrl()
-                    ));
-                }
-
-                $docs->save();
-            });
+        $this->info('Completed');
+        $this->output->newLine();
     }
 
     /**
-     * @param  string     $org
-     * @param  string     $repo
-     * @param  string     $branch
+     * @param  string $org
+     * @param  string $repo
+     * @param  string $branch
      * @return Collection
      */
     private function getDocsCurrentState(string $org, string $repo, string $branch)
@@ -96,10 +87,76 @@ class GitHubDocsImport extends Command
     }
 
     /**
-     * @param  string                                   $org
-     * @param  string                                   $repo
-     * @param  string                                   $branch
-     * @param  string                                   $file
+     * @param GitHubDocsManager      $manager
+     * @param GitHubConfigRepository $config
+     * @param Collection             $exists
+     * @return Collection|DocsCollection
+     * @throws \Github\Exception\ErrorException
+     * @throws \Github\Exception\InvalidArgumentException
+     * @throws \RuntimeException
+     */
+    private function getFilesForSync(GitHubDocsManager $manager, GitHubConfigRepository $config, Collection $exists)
+    {
+        $isForce = $this->option('force');
+
+        return $manager->findFiles(...$config->values())
+            // Remove not updated docs
+            ->reject(function (DocsStatus $status) use ($exists, $isForce) {
+                if ($isForce) {
+                    return false;
+                }
+
+                return $exists->where('github_hash', $status->getHash())->first();
+            });
+    }
+
+    /**
+     * @param DocsCollection         $files
+     * @param GitHubDocsManager      $manager
+     * @param GitHubConfigRepository $config
+     * @throws \Github\Exception\ErrorException
+     * @throws \Github\Exception\InvalidArgumentException
+     */
+    private function sync(DocsCollection $files, GitHubDocsManager $manager, GitHubConfigRepository $config): void
+    {
+        /** @var DocsStatus $status */
+        foreach ($files as $status) {
+            $args = $config->values();
+            $args[] = $status->getPath();
+
+            /** @var ExternalDocsPage $page */
+            $page = $manager->import(...$args);
+
+            $docs = $this->getDocsModel(...$args);
+
+            $docs->content_source = $page->getContent();
+            $docs->github_hash = $status->getHash();
+
+            if (! $docs->category_id) {
+                $docs->category_id = 0; // TODO
+            }
+
+
+            if (! $docs->title) {
+                $docs->title = Str::ucfirst(str_replace(
+                    ['-', '_'],
+                    ' ',
+                    $page->getUrl()
+                ));
+            }
+
+            $docs->save();
+
+            $this->output->progressAdvance();
+            $this->output->write(sprintf(' <info>Synchronizing "%s" page</info>', $docs->title));
+        }
+    }
+
+    /**
+     * @param  string $org
+     * @param  string $repo
+     * @param  string $branch
+     * @param  string $file
      * @return \Illuminate\Database\Eloquent\Model|Docs
      */
     private function getDocsModel(string $org, string $repo, string $branch, string $file)

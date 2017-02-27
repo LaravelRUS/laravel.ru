@@ -29,8 +29,6 @@ class MarkdownRenderer extends AbstractRenderer
      */
     public function __construct(Parser $parser)
     {
-        parent::__construct();
-
         $this->parser = $parser;
     }
 
