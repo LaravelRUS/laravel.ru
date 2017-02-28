@@ -26,7 +26,6 @@ class LaravelDocsRenderer extends MarkdownRenderer
         $this->before($this->removeDocumentTitle());
         $this->before($this->removeLeadingNavigation());
 
-
         // Force hide anchors
         $this->before($this->hideExternalAnchors());
 
