@@ -15,7 +15,7 @@
                         @foreach($docs->getNav('h1', 'h2', 'h3', 'h4') as $link)
                             <li class="level-{{ $link->level }}">
                                 <a href="#{{ $link->anchor or '' }}">
-                                    {{ $link->title or 'undefined' }}
+                                    {!! $link->title or 'undefined' !!}
                                 </a>
                             </li>
                         @endforeach

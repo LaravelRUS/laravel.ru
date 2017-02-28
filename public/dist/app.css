@@ -4253,6 +4253,9 @@ body {
     .docs-show .docs-content .quote-note a:hover {
       color: #de160f; }
   .docs-show .docs-content blockquote code {
-    padding: 0 6px 0 3px; }
+    font-style: normal;
+    padding: 0 4px;
+    background: rgba(255, 255, 255, 0.7);
+    color: rgba(0, 0, 0, 0.8); }
 
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY3NzIiwic291cmNlUm9vdCI6IiJ9*/

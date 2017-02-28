@@ -101,7 +101,10 @@
 
     blockquote {
       code {
-        padding: 0 6px 0 3px;
+        font-style: normal;
+        padding: 0 4px;
+        background: rgba(#fff, .7);
+        color: rgba(#000, .8);
       }
     }
   }
