@@ -17,7 +17,6 @@ class LaravelDocsRenderer extends MarkdownRenderer
 {
     /**
      * LaravelDocsRenderer constructor.
-     *
      * @param Parser $parser
      */
     public function __construct(Parser $parser)
@@ -40,36 +39,18 @@ class LaravelDocsRenderer extends MarkdownRenderer
     }
 
     /**
-     * Исправляет ссылки в документации "/docs/{version}/...".
-     *
-     * TODO Надо это не забыть реализовать =)
-     *
+     * Удаляет из документа заголовки первого уровня, находящиеся в самом начале статьи.
      * @return \Closure
      */
-    private function fixDocsNavigationLinks(): \Closure
+    private function removeDocumentTitle(): \Closure
     {
         return function (string $body) {
-            return $body;
-        };
-    }
-
-    /**
-     * Заменяет все вхождения вида "> {tip}" на "<blockquote class="quote-tip">".
-     *
-     * @return \Closure
-     */
-    private function parseQuotes(): \Closure
-    {
-        $pattern = '/<blockquote>\s*<p>\s*{([a-z]+)}\s*(.*?)<\/p>\s*<\/blockquote>/isu';
-
-        return function (string $body) use ($pattern) {
-            return preg_replace($pattern, '<blockquote class="quote-$1">$2</blockquote>', $body);
+            return preg_replace('/^[\s\n]*?#\s+?.*?\n/isu', '', $body);
         };
     }
 
     /**
      * Удаляет навигацию из начала документа.
-     *
      * @return \Closure
      */
     private function removeLeadingNavigation(): \Closure
@@ -77,7 +58,6 @@ class LaravelDocsRenderer extends MarkdownRenderer
         return function (string $body) {
             /**
              * TODO This expression are vulnerable: ReDoS-based exploit. Probably we can improve and fix it?
-             *
              * @see https://en.wikipedia.org/wiki/ReDoS
              */
             return preg_replace('/^(?:[\n\s]*\-.*?\n)+/isu', '', $body);
@@ -87,7 +67,6 @@ class LaravelDocsRenderer extends MarkdownRenderer
     /**
      * Скрывает из исходного текста все вхождения "<a .... name="some">...</a>".
      * Требуется для избежания конфликтов с вёрсткой.
-     *
      * @return \Closure
      */
     private function hideExternalAnchors(): \Closure
@@ -100,14 +79,31 @@ class LaravelDocsRenderer extends MarkdownRenderer
     }
 
     /**
-     * Удаляет из документа заголовки первого уровня, находящиеся в самом начале статьи.
-     *
+     * Исправляет ссылки в документации "/docs/{version}/...".
+     * TODO Надо это не забыть реализовать =)
      * @return \Closure
      */
-    private function removeDocumentTitle(): \Closure
+    private function fixDocsNavigationLinks(): \Closure
     {
         return function (string $body) {
-            return preg_replace('/^[\s\n]*?#\s+?.*?\n/isu', '', $body);
+            return $body;
+        };
+    }
+
+    /**
+     * Заменяет все вхождения вида "> {tip}" на "<blockquote class="quote-tip">".
+     * @return \Closure
+     */
+    private function parseQuotes(): \Closure
+    {
+        $pattern = '/<blockquote>\s*<p>\s*{([a-z]+)}\s*(.*?)<\/p>\s*<\/blockquote>/isu';
+
+        return function (string $body) use ($pattern) {
+            return preg_replace(
+                $pattern,
+                '<blockquote class="quote-$1"><p>$2</p></blockquote>',
+                $body
+            );
         };
     }
 }

@@ -31,7 +31,7 @@
         </div>
 
         <aside class="grid-4" data-bind="with: aside" style="position: relative">
-            <div data-bind="attr: {
+            <div data-id="nav" data-bind="attr: {
                 style: 'top: 0; width: 300px; position: ' + (fixed() ? 'fixed' : 'relative') + ';'
             }">
                 <div style="padding: 30px 20px; box-sizing: border-box; width: 100%; box-shadow: inset 1px 0 0 #eee">

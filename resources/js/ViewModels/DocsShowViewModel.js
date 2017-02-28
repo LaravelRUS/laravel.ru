@@ -1,4 +1,5 @@
 import Highlight from "../Support/Highlight";
+import StickyPanel from "./ArticleListViewModel/StickyPanel";
 
 export default class DocsShowViewModel {
     /**
@@ -12,6 +13,8 @@ export default class DocsShowViewModel {
      */
     constructor(root) {
         this._highlight.init(root, '_render');
+
+        this.aside = new StickyPanel(root.querySelector('[data-id="nav"]'));
     }
 
     /**

@@ -8,7 +8,7 @@ export default class StickyPanel {
     /**
      * @type {KnockoutObservable<T>}
      */
-    top = ko.observable(0);
+    top = ko.observable(true);
 
     /**
      * @type {KnockoutObservable<T>}
@@ -21,9 +21,8 @@ export default class StickyPanel {
     constructor(root) {
         this._initialTop = root.getBoundingClientRect().top + document.body.scrollTop;
 
-        document.addEventListener('scroll', e => {
-            this._touch(root);
-        });
+        document.addEventListener('scroll', e => this._touch(root));
+        window.addEventListener('resize', e => this._touch(root));
 
         this._touch(root);
     }
@@ -43,7 +42,10 @@ export default class StickyPanel {
      * @private
      */
     _onScroll(rect, scrollTop) {
-        this.top(this._initialTop > scrollTop ? 0 : scrollTop - this._initialTop);
-        this.fixed(this.top() !== 0);
+        this.top(rect.height < window.innerHeight);
+
+        let delta = this.top() ? 0 : rect.height - window.innerHeight;
+
+        this.fixed(this._initialTop < scrollTop - delta);
     }
 }

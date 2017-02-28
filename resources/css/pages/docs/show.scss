@@ -1,0 +1,109 @@
+.docs-show {
+  .docs-nav {
+    padding-top: 10px;
+    position: relative;
+
+    & > h3 {
+      font-weight: normal;
+      font-size: 16px;
+      text-align: left;
+      margin: 20px 0 0 0;
+      padding: 0;
+    }
+
+    .docs-navigation {
+      bottom: 0;
+      box-sizing: border-box;
+      width: 250px;
+      position: relative;
+      padding: 5px 25px 20px 0;
+      margin-right: 25px;
+      box-shadow: 1px 0 0 $color-border;
+
+      &.bind-top {
+        bottom: auto;
+        top: 0;
+      }
+
+      &.fixed {
+        position: fixed;
+      }
+
+      ul, li {
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        font-size: 10px;
+        list-style: none;
+
+        &.level-h1,
+        &.level-h2,
+        &.level-h3 {
+          margin: 15px 0;
+          font-size: 13px;
+          line-height: 13px;
+          font-weight: 600;
+        }
+
+        &.level-h4,
+        &.level-h5,
+        &.level-h6 {
+          list-style: none;
+          font-size: 11px;
+          margin: 5px 0 5px 40px;
+        }
+
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .docs-content {
+    padding-bottom: 100px;
+    @include content-typographic;
+
+    p {
+      line-height: 24px;
+    }
+
+    .quote-tip,
+    .quote-note {
+      border-radius: 3px;
+      box-shadow: none;
+
+      a {
+        color: #fff;
+      }
+    }
+
+    .quote-tip {
+      background: $color-info;
+      box-shadow: inset 0 0 0 1px darken($color-info, 20%);
+      color: #fff;
+
+      a:hover {
+        color: darken($color-info, 20%);
+      }
+    }
+
+    .quote-note {
+      background: lighten($color-main, 5%);
+      box-shadow: inset 0 0 0 1px $color-main;
+      color: #fff;
+
+      a:hover {
+        color: darken($color-main, 20%);
+      }
+    }
+
+    blockquote {
+      code {
+        padding: 0 6px 0 3px;
+      }
+    }
+  }
+}

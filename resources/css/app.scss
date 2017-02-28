@@ -52,6 +52,7 @@ $color-text:        $color-dark-gray;
 @import "ui/labels";
 @import "ui/preloader";
 @import "ui/hljs";
+@import "ui/content-typographic";
 
 html {
   height: 100%;
@@ -139,7 +140,8 @@ body {
 /**
  * Pages
  */
+@import "pages/home";
 @import "pages/auth";
 @import "pages/articles";
-@import "pages/home";
+@import "pages/docs";
 

@@ -37,7 +37,7 @@ export default class ArticleListViewModel {
      */
     constructor(root) {
         this.ready(true);
-        this.aside = new StickyPanel(root);
+        this.aside = new StickyPanel(root.querySelector('[data-id="nav"]'));
 
         this.fetchNextPage();
     }
