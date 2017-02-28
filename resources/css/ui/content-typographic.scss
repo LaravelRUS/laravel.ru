@@ -65,17 +65,22 @@
   }
 
   pre > code {
-    $code-line-height: 24px;
+    $code-line-height: 20px;
+    $code-font-size: 12px;
 
     border-radius: 4px;
     color: $color-text;
     display: block;
-    font-size: 14px;
+    font-size: $code-font-size;
     padding: 15px 20px;
-    background: #fff;
+    background: #fcfcfc;
+    box-shadow:
+      0 2px 0 0 #f0f0f3,
+      inset 0 0 0 1px #fcfcfc;
     line-height: $code-line-height;
     max-height: 500px;
     overflow: auto;
+    margin-bottom: 3px;
     text-shadow: 0 0 1px rgba(#000, .1);
 
     &::-webkit-scrollbar {
@@ -161,7 +166,7 @@
     font-size: 50px;
     line-height: 52px;
     padding: 40px 0 30px 0;
-    box-shadow: 0 1px 0 $color-border;
+    box-shadow: 0 1px 0 lighten($color-border, 5%);
   }
 
   h2 {

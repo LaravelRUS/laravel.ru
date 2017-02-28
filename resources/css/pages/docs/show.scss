@@ -70,22 +70,54 @@
     }
 
     .quote-tip,
+    .quote-video,
     .quote-note {
+      padding-left: 60px;
       border-radius: 3px;
       box-shadow: none;
+      position: relative;
 
       a {
         color: #fff;
+      }
+
+      &:before {
+        @include fa-icon;
+        display: block;
+        width: 50px;
+        text-align: center;
+        position: absolute;
+        left: 5px;
+        font-size: 28px;
+        top: 20px;
       }
     }
 
     .quote-tip {
       background: $color-info;
-      box-shadow: inset 0 0 0 1px darken($color-info, 20%);
+      box-shadow: inset 0 0 0 1px darken($color-info, 10%);
       color: #fff;
+
+      &:before {
+        content: $fa-var-lightbulb-o;
+      }
 
       a:hover {
         color: darken($color-info, 20%);
+      }
+    }
+
+    .quote-video {
+      background: $color-purple;
+      box-shadow: inset 0 0 0 1px darken($color-purple, 10%);
+      color: #fff;
+
+      &:before {
+        content: $fa-var-file-video-o;
+      }
+
+      a:hover {
+        color: darken($color-purple, 20%);
       }
     }
 
@@ -94,17 +126,29 @@
       box-shadow: inset 0 0 0 1px $color-main;
       color: #fff;
 
+      &:before {
+        content: $fa-var-warning;
+      }
+
       a:hover {
         color: darken($color-main, 20%);
       }
     }
 
     blockquote {
+      p {
+        line-height: 20px;
+      }
+
       code {
         font-style: normal;
         padding: 0 4px;
         background: rgba(#fff, .7);
         color: rgba(#000, .8);
+      }
+
+      &.quote-tip code {
+        color: $color-main;
       }
     }
   }
