@@ -10,8 +10,12 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Services\ContentRenderer\RenderersRepository;
 use cebe\markdown\GithubMarkdown;
 use App\Models\Docs\ContentObserver;
+use cebe\markdown\Parser;
+use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
 use App\Services\ContentRenderer\RawTextRenderer;
 use App\Services\ContentRenderer\MarkdownRenderer;
@@ -25,36 +29,39 @@ class ContentRendererServiceProvider extends ServiceProvider
 {
     /**
      * @return void
+     * @throws \InvalidArgumentException
      */
     public function register(): void
     {
-        $this->registerDefaultBehaviour();
+        $this->app->singleton(RenderersRepository::class, function (Container $app) {
+            $config = $app->make(Repository::class)->get('renderers');
+
+            return new RenderersRepository($app, $config);
+        });
+
+        // Register default
+        $this->app->singleton(ContentRenderInterface::class, function (Container $app) {
+            return $app->make(RenderersRepository::class)->getDefaultRenderer();
+        });
+
+        // Register parser
+        $this->app->bind(Parser::class, GithubMarkdown::class);
 
         // Documentation renderer
         $this->app->when(ContentObserver::class)
             ->needs(ContentRenderInterface::class)
             ->give(function () {
-                return new LaravelDocsRenderer(new GithubMarkdown());
+                return $this->app->make(RenderersRepository::class)
+                    ->getRenderer('Laravel');
             });
+
 
         // Tips content renderer
         $this->app->when(RawTextRenderer::class)
             ->needs(ContentRenderInterface::class)
             ->give(function () {
-                return new RawTextRenderer(new GithubMarkdown());
+                return $this->app->make(RenderersRepository::class)
+                    ->getRenderer('Raw');
             });
-    }
-
-    /**
-     * @return void
-     */
-    private function registerDefaultBehaviour()
-    {
-        $this->app->singleton(MarkdownRenderer::class, function () {
-            return new MarkdownRenderer(new GithubMarkdown());
-        });
-
-        $this->app->alias(MarkdownRenderer::class, ContentRenderInterface::class);
-        $this->app->alias(MarkdownRenderer::class, 'md');
     }
 }
