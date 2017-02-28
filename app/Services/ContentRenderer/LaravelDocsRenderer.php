@@ -28,15 +28,15 @@ class LaravelDocsRenderer extends MarkdownRenderer
         $this->before($this->removeDocumentTitle());
         $this->before($this->removeLeadingNavigation());
 
-        // Remove custom quotes
-        $this->before($this->removeTipQuotes());
-        $this->before($this->removeNoteQuotes());
 
         // Force hide anchors
         $this->before($this->hideExternalAnchors());
 
         // Cross-page navigation
         $this->before($this->fixDocsNavigationLinks());
+
+        // Move "{tip}" and "{note}" to class
+        $this->after($this->parseQuotes());
     }
 
     /**
@@ -54,14 +54,16 @@ class LaravelDocsRenderer extends MarkdownRenderer
     }
 
     /**
-     * Удаляет из исходного текста все вхождения "> {tip}".
+     * Заменяет все вхождения вида "> {tip}" на "<blockquote class="quote-tip">".
      *
      * @return \Closure
      */
-    private function removeTipQuotes(): \Closure
+    private function parseQuotes(): \Closure
     {
-        return function (string $body) {
-            return preg_replace('/>\s+{\s*tip\s*}\s+/iu', '> ', $body);
+        $pattern = '/<blockquote>\s*<p>\s*{([a-z]+)}\s*(.*?)<\/p>\s*<\/blockquote>/isu';
+
+        return function (string $body) use ($pattern) {
+            return preg_replace($pattern, '<blockquote class="quote-$1">$2</blockquote>', $body);
         };
     }
 
@@ -79,18 +81,6 @@ class LaravelDocsRenderer extends MarkdownRenderer
              * @see https://en.wikipedia.org/wiki/ReDoS
              */
             return preg_replace('/^(?:[\n\s]*\-.*?\n)+/isu', '', $body);
-        };
-    }
-
-    /**
-     * Удаляет из исходного текста все вхождения "> {note}".
-     *
-     * @return \Closure
-     */
-    private function removeNoteQuotes(): \Closure
-    {
-        return function (string $body) {
-            return preg_replace('/>\s+{\s*note\s*}\s+/iu', '> ', $body);
         };
     }
 
@@ -117,7 +107,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
     private function removeDocumentTitle(): \Closure
     {
         return function (string $body) {
-            return preg_replace('/^[\s\n]+?#\s+?.*?\n/isu', '', $body);
+            return preg_replace('/^[\s\n]*?#\s+?.*?\n/isu', '', $body);
         };
     }
 }
