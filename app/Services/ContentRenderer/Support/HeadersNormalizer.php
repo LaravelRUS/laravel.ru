@@ -14,16 +14,19 @@ namespace App\Services\ContentRenderer\Support;
 trait HeadersNormalizer
 {
     /**
-     * @var array
+     * @var int
      */
-    private $tags = [
-        6 => 6,
-        5 => 6,
-        4 => 5,
-        3 => 4,
-        2 => 3,
-        1 => 2,
-    ];
+    private $maxHeaderLevel = 2;
+
+    /**
+     * @var int
+     */
+    private $minHeaderLevel = 6;
+
+    /**
+     * @var string
+     */
+    private $pattern = '/^(#+)\s+(.*?)\s*$/mius';
 
     /**
      * @return \Closure
@@ -31,15 +34,45 @@ trait HeadersNormalizer
     protected function normalizeHeaders(): \Closure
     {
         return function (string $body) {
-            return preg_replace_callback('/^(#+)\s+(.*?)\s*$/mius', function (array $matches) {
-                [$body, $level, $title] = $matches;
+            $delta = $this->getMaxHeaderLevel($body) - $this->maxHeaderLevel;
 
-                $size = $this->tags[
-                    max(1, min(6, strlen($level)))
-                ];
+            return preg_replace_callback('/^(#+)\s+(.*?)\s*$/mius', function (array $matches) use ($delta) {
+                [$body, $tag, $title] = $matches;
 
-                return str_repeat('#', $size) . ' ' . $title;
+                $level = $this->mdTagToLevel($tag);
+                $level += $delta;
+                $level = min($this->minHeaderLevel, max($this->maxHeaderLevel, $level));
+
+                return str_repeat('#', $level) . ' ' . $title;
             }, $body);
         };
+    }
+
+    /**
+     * @param string $body
+     * @return int|mixed
+     */
+    private function getMaxHeaderLevel(string $body)
+    {
+        $max = $this->minHeaderLevel;
+
+        preg_match_all($this->pattern, $body, $matches);
+
+        for ($i = 0, $len = count($matches[0]); $i < $len; $i++) {
+            $max = min($max, $this->mdTagToLevel($matches[1][$i]));
+        }
+
+        return $max;
+    }
+
+    /**
+     * @param string $tag
+     * @return int
+     */
+    private function mdTagToLevel(string $tag): int
+    {
+        $level = strlen(trim($tag));
+
+        return max(1, min($this->minHeaderLevel, $level));
     }
 }
