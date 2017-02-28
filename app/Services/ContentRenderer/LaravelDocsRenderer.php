@@ -22,8 +22,6 @@ class LaravelDocsRenderer extends MarkdownRenderer
      */
     public function __construct(Parser $parser)
     {
-        parent::__construct($parser);
-
         // Remove unused content (headers and nav)
         $this->before($this->removeDocumentTitle());
         $this->before($this->removeLeadingNavigation());
@@ -37,6 +35,8 @@ class LaravelDocsRenderer extends MarkdownRenderer
 
         // Move "{tip}" and "{note}" to class
         $this->after($this->parseQuotes());
+
+        parent::__construct($parser);
     }
 
     /**
