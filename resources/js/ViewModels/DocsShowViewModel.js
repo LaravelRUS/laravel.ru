@@ -1,5 +1,5 @@
 import Highlight from "../Support/Highlight";
-import StickyPanel from "./ArticleListViewModel/StickyPanel";
+import StickyPanel from "./Support/StickyPanel";
 
 export default class DocsShowViewModel {
     /**

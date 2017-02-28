@@ -1,4 +1,4 @@
-import StickyPanel from "./ArticleListViewModel/StickyPanel";
+import StickyPanel from "./Support/StickyPanel";
 import ArticlesRepository from "../Models/Repository/ArticlesRepository";
 
 export default class ArticleListViewModel {
