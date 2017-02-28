@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace App\Services\ContentRenderer;
 
+use App\Services\ContentRenderer\Support\HeadersNormalizer;
 use cebe\markdown\Parser;
 
 /**
@@ -17,6 +18,8 @@ use cebe\markdown\Parser;
  */
 class MarkdownRenderer extends AbstractRenderer
 {
+    use HeadersNormalizer;
+
     /**
      * @var Parser
      */
@@ -30,6 +33,8 @@ class MarkdownRenderer extends AbstractRenderer
     public function __construct(Parser $parser)
     {
         $this->parser = $parser;
+
+        $this->before($this->normalizeHeaders());
     }
 
     /**
