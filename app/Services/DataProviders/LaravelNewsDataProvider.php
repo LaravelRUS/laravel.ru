@@ -45,7 +45,7 @@ class LaravelNewsDataProvider implements DataProviderInterface
         $result = new Collection();
 
         foreach ($this->getArticles() as $article) {
-            if ($article->getCreatedAt() < $latest) {
+            if (Carbon::instance($article->getCreatedAt())->addHour(1) < $latest) {
                 break;
             }
 
