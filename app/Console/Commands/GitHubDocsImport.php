@@ -137,11 +137,8 @@ class GitHubDocsImport extends Command
             }
 
             if (! $docs->title) {
-                $docs->title = Str::ucfirst(str_replace(
-                    ['-', '_'],
-                    ' ',
-                    $page->getUrl()
-                ));
+                $docs->title = $this->getTopLevelHeader($page->getUrl(), $page->getContent());
+                $docs->slug  = $page->getUrl();
             }
 
             $docs->save();
@@ -149,6 +146,22 @@ class GitHubDocsImport extends Command
             $this->output->progressAdvance();
             $this->output->write(sprintf(' <info>Synchronizing "%s" page</info>', $docs->title));
         }
+    }
+
+    /**
+     * @param string $url
+     * @param string $markdown
+     * @return string
+     */
+    private function getTopLevelHeader(string $url, string $markdown)
+    {
+        preg_match_all('/^\s*#\s+(.*?)$/mius', $markdown, $matches);
+
+        if (count($matches[1])) {
+            return Str::ucfirst($matches[1][0]);
+        }
+
+        return Str::ucfirst(str_replace(['-', '_', '+'], ' ', urldecode($url)));
     }
 
     /**

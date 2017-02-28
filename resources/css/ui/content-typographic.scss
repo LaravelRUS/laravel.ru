@@ -157,19 +157,24 @@
     }
   }
 
-  h1,
-  h2 {
-    color: $color-text;
-    font-size: 42px;
-    font-weight: 400;
+  h1 {
+    font-size: 50px;
     line-height: 52px;
+    padding: 40px 0 30px 0;
+    box-shadow: 0 1px 0 $color-border;
+  }
+
+  h2 {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 400;
     padding: 0;
     margin: 50px 0 30px 0;
   }
 
   h3 {
-    font-size: 30px;
-    line-height: 36px;
+    font-size: 24px;
+    line-height: 32px;
     font-weight: 400;
     margin: 50px 0 20px 0;
   }
@@ -186,7 +191,7 @@
     font-weight: bold;
   }
 
-  h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6 {
     position: relative;
 
     .anchor {

@@ -3916,17 +3916,20 @@ body {
     text-align: left; }
     .article h1:first-letter, .article h2:first-letter, .article h3:first-letter, .article h4:first-letter, .article h5:first-letter, .article h6:first-letter {
       text-transform: uppercase; }
-  .article h1,
-  .article h2 {
-    color: #525252;
-    font-size: 42px;
-    font-weight: 400;
+  .article h1 {
+    font-size: 50px;
     line-height: 52px;
+    padding: 40px 0 30px 0;
+    box-shadow: 0 1px 0 #dee0df; }
+  .article h2 {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 400;
     padding: 0;
     margin: 50px 0 30px 0; }
   .article h3 {
-    font-size: 30px;
-    line-height: 36px;
+    font-size: 24px;
+    line-height: 32px;
     font-weight: 400;
     margin: 50px 0 20px 0; }
   .article h4, .article h5, .article h6 {
@@ -3937,9 +3940,9 @@ body {
   .article h5, .article h6 {
     font-size: 16px;
     font-weight: bold; }
-  .article h2, .article h3, .article h4, .article h5, .article h6 {
+  .article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
     position: relative; }
-    .article h2 .anchor, .article h3 .anchor, .article h4 .anchor, .article h5 .anchor, .article h6 .anchor {
+    .article h1 .anchor, .article h2 .anchor, .article h3 .anchor, .article h4 .anchor, .article h5 .anchor, .article h6 .anchor {
       position: absolute;
       top: -100px;
       left: -40px;
@@ -3948,7 +3951,7 @@ body {
       text-decoration: none;
       font-size: .9em;
       outline: none; }
-      .article h2 .anchor:before, .article h3 .anchor:before, .article h4 .anchor:before, .article h5 .anchor:before, .article h6 .anchor:before {
+      .article h1 .anchor:before, .article h2 .anchor:before, .article h3 .anchor:before, .article h4 .anchor:before, .article h5 .anchor:before, .article h6 .anchor:before {
         position: relative;
         top: 100px;
         content: '#';
@@ -3957,7 +3960,7 @@ body {
         text-decoration: none;
         margin-right: 8px;
         font-weight: 200; }
-      .article h2 .anchor:focus:before, .article h2 .anchor:active:before, .article h3 .anchor:focus:before, .article h3 .anchor:active:before, .article h4 .anchor:focus:before, .article h4 .anchor:active:before, .article h5 .anchor:focus:before, .article h5 .anchor:active:before, .article h6 .anchor:focus:before, .article h6 .anchor:active:before {
+      .article h1 .anchor:focus:before, .article h1 .anchor:active:before, .article h2 .anchor:focus:before, .article h2 .anchor:active:before, .article h3 .anchor:focus:before, .article h3 .anchor:active:before, .article h4 .anchor:focus:before, .article h4 .anchor:active:before, .article h5 .anchor:focus:before, .article h5 .anchor:active:before, .article h6 .anchor:focus:before, .article h6 .anchor:active:before {
         opacity: 1; }
 
 .article-show {
@@ -4040,8 +4043,7 @@ body {
     width: 250px;
     position: relative;
     padding: 5px 25px 20px 0;
-    margin-right: 25px;
-    box-shadow: 1px 0 0 #dee0df; }
+    margin-right: 25px; }
     .docs-show .docs-nav .docs-navigation.bind-top {
       bottom: auto;
       top: 0; }
@@ -4183,17 +4185,20 @@ body {
     text-align: left; }
     .docs-show .docs-content h1:first-letter, .docs-show .docs-content h2:first-letter, .docs-show .docs-content h3:first-letter, .docs-show .docs-content h4:first-letter, .docs-show .docs-content h5:first-letter, .docs-show .docs-content h6:first-letter {
       text-transform: uppercase; }
-  .docs-show .docs-content h1,
-  .docs-show .docs-content h2 {
-    color: #525252;
-    font-size: 42px;
-    font-weight: 400;
+  .docs-show .docs-content h1 {
+    font-size: 50px;
     line-height: 52px;
+    padding: 40px 0 30px 0;
+    box-shadow: 0 1px 0 #dee0df; }
+  .docs-show .docs-content h2 {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 400;
     padding: 0;
     margin: 50px 0 30px 0; }
   .docs-show .docs-content h3 {
-    font-size: 30px;
-    line-height: 36px;
+    font-size: 24px;
+    line-height: 32px;
     font-weight: 400;
     margin: 50px 0 20px 0; }
   .docs-show .docs-content h4, .docs-show .docs-content h5, .docs-show .docs-content h6 {
@@ -4204,9 +4209,9 @@ body {
   .docs-show .docs-content h5, .docs-show .docs-content h6 {
     font-size: 16px;
     font-weight: bold; }
-  .docs-show .docs-content h2, .docs-show .docs-content h3, .docs-show .docs-content h4, .docs-show .docs-content h5, .docs-show .docs-content h6 {
+  .docs-show .docs-content h1, .docs-show .docs-content h2, .docs-show .docs-content h3, .docs-show .docs-content h4, .docs-show .docs-content h5, .docs-show .docs-content h6 {
     position: relative; }
-    .docs-show .docs-content h2 .anchor, .docs-show .docs-content h3 .anchor, .docs-show .docs-content h4 .anchor, .docs-show .docs-content h5 .anchor, .docs-show .docs-content h6 .anchor {
+    .docs-show .docs-content h1 .anchor, .docs-show .docs-content h2 .anchor, .docs-show .docs-content h3 .anchor, .docs-show .docs-content h4 .anchor, .docs-show .docs-content h5 .anchor, .docs-show .docs-content h6 .anchor {
       position: absolute;
       top: -100px;
       left: -40px;
@@ -4215,7 +4220,7 @@ body {
       text-decoration: none;
       font-size: .9em;
       outline: none; }
-      .docs-show .docs-content h2 .anchor:before, .docs-show .docs-content h3 .anchor:before, .docs-show .docs-content h4 .anchor:before, .docs-show .docs-content h5 .anchor:before, .docs-show .docs-content h6 .anchor:before {
+      .docs-show .docs-content h1 .anchor:before, .docs-show .docs-content h2 .anchor:before, .docs-show .docs-content h3 .anchor:before, .docs-show .docs-content h4 .anchor:before, .docs-show .docs-content h5 .anchor:before, .docs-show .docs-content h6 .anchor:before {
         position: relative;
         top: 100px;
         content: '#';
@@ -4224,7 +4229,7 @@ body {
         text-decoration: none;
         margin-right: 8px;
         font-weight: 200; }
-      .docs-show .docs-content h2 .anchor:focus:before, .docs-show .docs-content h2 .anchor:active:before, .docs-show .docs-content h3 .anchor:focus:before, .docs-show .docs-content h3 .anchor:active:before, .docs-show .docs-content h4 .anchor:focus:before, .docs-show .docs-content h4 .anchor:active:before, .docs-show .docs-content h5 .anchor:focus:before, .docs-show .docs-content h5 .anchor:active:before, .docs-show .docs-content h6 .anchor:focus:before, .docs-show .docs-content h6 .anchor:active:before {
+      .docs-show .docs-content h1 .anchor:focus:before, .docs-show .docs-content h1 .anchor:active:before, .docs-show .docs-content h2 .anchor:focus:before, .docs-show .docs-content h2 .anchor:active:before, .docs-show .docs-content h3 .anchor:focus:before, .docs-show .docs-content h3 .anchor:active:before, .docs-show .docs-content h4 .anchor:focus:before, .docs-show .docs-content h4 .anchor:active:before, .docs-show .docs-content h5 .anchor:focus:before, .docs-show .docs-content h5 .anchor:active:before, .docs-show .docs-content h6 .anchor:focus:before, .docs-show .docs-content h6 .anchor:active:before {
         opacity: 1; }
   .docs-show .docs-content p {
     line-height: 24px; }

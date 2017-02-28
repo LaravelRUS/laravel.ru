@@ -1,8 +1,10 @@
 @extends('layout.master')
 
-@section('content')
-    <?php /** @var \App\Models\Docs $docs */ ?>
+<?php /** @var \App\Models\Docs $docs */ ?>
 
+@push('title', sprintf('%s (%s) &mdash;', $docs->title, $docs->version))
+
+@section('content')
     <section class="container-12 docs-show" data-vm="DocsShowViewModel">
         <aside class="grid-4 docs-nav" data-bind="with: aside">
             <h3>Содержание</h3>
