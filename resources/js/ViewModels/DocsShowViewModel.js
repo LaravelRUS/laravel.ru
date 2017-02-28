@@ -1,6 +1,6 @@
 import Highlight from "../Support/Highlight";
 
-export default class ArticleShowViewModel {
+export default class DocsShowViewModel {
     /**
      * @type {Highlight}
      * @private

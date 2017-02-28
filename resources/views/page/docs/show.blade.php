@@ -10,7 +10,7 @@
                 <ul>
                     @foreach($docs->getNav('h1', 'h2', 'h3', 'h4') as $link)
                         <li>
-                            <a href="#{{ $link->anchor or '' }}"># {{ $link->title or 'undefined' }}</a>
+                            <a href="#{{ $link->anchor or '' }}">{{ $link->title or 'undefined' }}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -18,10 +18,10 @@
 
         </aside>
 
-        <section class="grid-8">
-            <div class="article">
-                <h2>{{ $docs->title }}</h2>
+        <section class="grid-8" data-vm="DocsShowViewModel">
+            <h2>{{ $docs->title }}</h2>
 
+            <div class="article" data-bind="interpolation: false">
                 {!! $docs->content_rendered !!}
             </div>
         </section>
