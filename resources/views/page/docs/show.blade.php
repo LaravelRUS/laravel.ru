@@ -19,9 +19,10 @@
         </aside>
 
         <section class="grid-8" data-vm="DocsShowViewModel">
-            <h2>{{ $docs->title }}</h2>
 
             <div class="article" data-bind="interpolation: false">
+                <h1>{{ $docs->title }}</h1>
+
                 {!! $docs->content_rendered !!}
             </div>
         </section>
