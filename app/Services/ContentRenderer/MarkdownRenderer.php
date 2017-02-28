@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace App\Services\ContentRenderer;
 
-use App\Services\ContentRenderer\Support\HeadersNormalizer;
 use cebe\markdown\Parser;
+use App\Services\ContentRenderer\Support\HeadersNormalizer;
 
 /**
  * Class MarkdownRenderer.
