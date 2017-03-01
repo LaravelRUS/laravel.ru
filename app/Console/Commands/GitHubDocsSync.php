@@ -25,7 +25,7 @@ class GitHubDocsSync extends Command
      *
      * @var string
      */
-    protected $signature = 'docs:sync {?--force}';
+    protected $signature = 'docs:sync';
 
     /**
      * The console command description.
@@ -103,6 +103,7 @@ class GitHubDocsSync extends Command
             $page->category_id = 0;
         }
 
+        $page->slug = $file->getRoute();
         $page->hash = $file->getHash();
         $page->title = $file->getTitle();
         $page->content_source = $file->getContent();

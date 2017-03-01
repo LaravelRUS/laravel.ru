@@ -32,7 +32,6 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\IdeHelperRun::class,
         Commands\DataProvidersImport::class,
-        Commands\GitHubDocsImport::class,
         Commands\GitHubDocsSync::class,
     ];
 
@@ -47,7 +46,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('data-providers:import')
             ->hourly();
 
-        $schedule->command('docs:import')
+        $schedule->command('docs:sync')
             ->dailyAt('01:01');
     }
 
