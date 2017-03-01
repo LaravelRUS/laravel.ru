@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\IdeHelperRun::class,
-        Commands\DataProvidersImport::class,
+        Commands\ArticlesImport::class,
         Commands\GitHubDocsSync::class,
     ];
 

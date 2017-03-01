@@ -19,15 +19,15 @@ use App\Services\DataProviders\DataProviderInterface;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
- * Class DataProvidersImport.
+ * Class ArticlesImport.
  */
-class DataProvidersImport extends Command
+class ArticlesImport extends Command
 {
     /**
      * The name and signature of the console command.
      * @var string
      */
-    protected $signature = 'data-providers:import';
+    protected $signature = 'articles:import';
 
     /**
      * The console command description.
