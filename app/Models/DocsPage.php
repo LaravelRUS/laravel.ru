@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -72,8 +72,8 @@ class DocsPage extends Model
     }
 
     /**
-     * @param Builder $builder
-     * @param string  $version
+     * @param  Builder $builder
+     * @param  string  $version
      * @return Builder
      */
     public static function scopeWhereVersion(Builder $builder, string $version): Builder

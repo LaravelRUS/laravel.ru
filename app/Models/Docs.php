@@ -40,7 +40,7 @@ class Docs extends Model
     }
 
     /**
-     * @param string $title
+     * @param  string $title
      * @return string
      */
     public function getTitleAttribute(string $title): string
@@ -59,7 +59,7 @@ class Docs extends Model
     }
 
     /**
-     * @param string $data
+     * @param  string $data
      * @return array
      */
     public function getImporterConfigAttribute(string $data): array

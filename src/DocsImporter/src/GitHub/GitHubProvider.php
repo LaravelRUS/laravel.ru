@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Service\DocsImporter\GitHub;
 
 use Illuminate\Support\Arr;
+use GrahamCampbell\GitHub\GitHubManager;
 use Service\DocsImporter\DocsFileInterface;
 use Service\DocsImporter\DocsImporterInterface;
-use GrahamCampbell\GitHub\GitHubManager;
 use Service\DocsImporter\DocsConnectionConfigInterface;
 
 /**
@@ -34,8 +34,8 @@ class GitHubProvider implements DocsImporterInterface
     }
 
     /**
-     * @param DocsConnectionConfigInterface|GitHubConfig $config
-     * @param string                                     $path
+     * @param  DocsConnectionConfigInterface|GitHubConfig $config
+     * @param  string                                     $path
      * @return DocsFileInterface[]|\Traversable
      */
     public function files(DocsConnectionConfigInterface $config, string $path = null): \Traversable
@@ -49,7 +49,7 @@ class GitHubProvider implements DocsImporterInterface
     }
 
     /**
-     * @param array $config
+     * @param  array                         $config
      * @return DocsConnectionConfigInterface
      */
     public function config(array $config): DocsConnectionConfigInterface
@@ -58,8 +58,8 @@ class GitHubProvider implements DocsImporterInterface
     }
 
     /**
-     * @param GitHubConfig $config
-     * @param string       $path
+     * @param  GitHubConfig $config
+     * @param  string       $path
      * @return array
      */
     private function getFilesArray(GitHubConfig $config, string $path = null): array

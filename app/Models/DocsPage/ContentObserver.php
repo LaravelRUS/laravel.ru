@@ -42,20 +42,20 @@ class ContentObserver
     }
 
     /**
-     * @param DocsPage $page
+     * @param  DocsPage                  $page
      * @throws \InvalidArgumentException
      */
     public function saving(DocsPage $page): void
     {
-        $body = $this->render($this->getRenderer($page), (string)$page->content_source);
+        $body = $this->render($this->getRenderer($page), (string) $page->content_source);
 
         // Update data
         $page->nav = $body->getLinks();
-        $page->content_rendered = (string)$body->getContent();
+        $page->content_rendered = (string) $body->getContent();
     }
 
     /**
-     * @param DocsPage $page
+     * @param  DocsPage                  $page
      * @return ContentRenderInterface
      * @throws \InvalidArgumentException
      */
@@ -65,8 +65,8 @@ class ContentObserver
     }
 
     /**
-     * @param ContentRenderInterface $renderer
-     * @param  string                $body
+     * @param  ContentRenderInterface $renderer
+     * @param  string                 $body
      * @return ProcessedBody
      */
     private function render(ContentRenderInterface $renderer, string $body): ProcessedBody

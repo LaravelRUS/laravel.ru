@@ -14,14 +14,14 @@ namespace Service\DocsImporter;
 interface DocsImporterInterface
 {
     /**
-     * @param DocsConnectionConfigInterface $config
-     * @param string                        $path
+     * @param  DocsConnectionConfigInterface    $config
+     * @param  string                           $path
      * @return DocsFileInterface[]|\Traversable
      */
     public function files(DocsConnectionConfigInterface $config, string $path = null): \Traversable;
 
     /**
-     * @param array $config
+     * @param  array                         $config
      * @return DocsConnectionConfigInterface
      */
     public function config(array $config): DocsConnectionConfigInterface;

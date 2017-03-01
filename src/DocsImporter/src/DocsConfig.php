@@ -39,7 +39,7 @@ abstract class DocsConfig implements DocsConnectionConfigInterface, Jsonable, \J
     }
 
     /**
-     * @param string $key
+     * @param  string      $key
      * @return string|null
      */
     public function get(string $key): ?string
@@ -48,7 +48,7 @@ abstract class DocsConfig implements DocsConnectionConfigInterface, Jsonable, \J
     }
 
     /**
-     * @param int $options
+     * @param  int    $options
      * @return string
      */
     public function toJson($options = 0): string

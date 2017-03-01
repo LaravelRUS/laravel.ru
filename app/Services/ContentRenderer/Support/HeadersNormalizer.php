@@ -49,7 +49,7 @@ trait HeadersNormalizer
     }
 
     /**
-     * @param string $body
+     * @param  string    $body
      * @return int|mixed
      */
     private function getMaxHeaderLevel(string $body)
@@ -66,7 +66,7 @@ trait HeadersNormalizer
     }
 
     /**
-     * @param string $tag
+     * @param  string $tag
      * @return int
      */
     private function mdTagToLevel(string $tag): int

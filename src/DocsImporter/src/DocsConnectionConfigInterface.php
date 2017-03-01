@@ -22,7 +22,7 @@ interface DocsConnectionConfigInterface extends Arrayable
     public function __construct(array $config);
 
     /**
-     * @param string $key
+     * @param  string $key
      * @return mixed
      */
     public function get(string $key);
