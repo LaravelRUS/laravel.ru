@@ -86,7 +86,10 @@ class GitHubFile implements DocsFileInterface
     public function getTitle(): string
     {
         if ($this->title === null) {
-            $this->title = $this->getTopLevelHeader($this->getContent(), $this->pathName);
+            $defaultTitle = explode('.', basename($this->pathName));
+            $defaultTitle = str_replace(['-', '_', '+'], ' ', $defaultTitle);
+
+            $this->title = $this->getTopLevelHeader($this->getContent(), reset($defaultTitle));
         }
 
         return $this->title;
@@ -94,17 +97,18 @@ class GitHubFile implements DocsFileInterface
 
     /**
      * @param string $markdown
-     * @param string $url
+     * @param string $default
      * @return string
      */
-    private function getTopLevelHeader(string $markdown, string $url)
+    private function getTopLevelHeader(string $markdown, string $default)
     {
         preg_match_all('/^\s*#\s+(.*?)$/musi', $markdown, $matches);
 
         if (count($matches[1])) {
-            return Str::ucfirst($matches[1][0]);
+            $default = $matches[1][0];
         }
-        return Str::ucfirst(str_replace(['-', '_', '+'], ' ', basename(urldecode($url))));
+
+        return Str::ucfirst($default);
     }
 
     /**

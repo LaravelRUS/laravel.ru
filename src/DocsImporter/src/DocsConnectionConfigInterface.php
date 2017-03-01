@@ -17,11 +17,9 @@ interface DocsConnectionConfigInterface extends Arrayable
 {
     /**
      * DocsConnectionConfigInterface constructor.
-     * @param string $organisation
-     * @param string $repository
-     * @param string $branch
+     * @param array $config
      */
-    public function __construct(string $organisation, string $repository, string $branch);
+    public function __construct(array $config);
 
     /**
      * @param string $key

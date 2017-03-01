@@ -49,14 +49,12 @@ class GitHubProvider implements DocsImporterInterface
     }
 
     /**
-     * @param string $organisation
-     * @param string $repository
-     * @param string $branch
+     * @param array $config
      * @return DocsConnectionConfigInterface
      */
-    public function config(string $organisation, string $repository, string $branch): DocsConnectionConfigInterface
+    public function config(array $config): DocsConnectionConfigInterface
     {
-        return new GitHubConfig($organisation, $repository, $branch);
+        return new GitHubConfig($config);
     }
 
     /**

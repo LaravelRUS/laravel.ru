@@ -21,10 +21,8 @@ interface DocsImporterInterface
     public function files(DocsConnectionConfigInterface $config, string $path = null): \Traversable;
 
     /**
-     * @param string $organisation
-     * @param string $repository
-     * @param string $branch
+     * @param array $config
      * @return DocsConnectionConfigInterface
      */
-    public function config(string $organisation, string $repository, string $branch): DocsConnectionConfigInterface;
+    public function config(array $config): DocsConnectionConfigInterface;
 }

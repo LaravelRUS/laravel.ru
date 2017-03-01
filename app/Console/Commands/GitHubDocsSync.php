@@ -51,7 +51,7 @@ class GitHubDocsSync extends Command
         /** @var Docs $repo */
         foreach ($docs as $repo) {
             $importer = $manager->get($repo->importer);
-            $config   = $importer->config($repo->organisation, $repo->repository, $repo->branch);
+            $config   = $importer->config($repo->importer_config);
 
 
             foreach ($importer->files($config) as $file) {

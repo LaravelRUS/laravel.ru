@@ -9,53 +9,17 @@ declare(strict_types=1);
 namespace Service\DocsImporter\GitHub;
 
 use Illuminate\Support\Arr;
+use Service\DocsImporter\DocsConfig;
 use Service\DocsImporter\DocsConnectionConfigInterface;
 
 /**
  * Class GitHubConfig.
  */
-class GitHubConfig implements DocsConnectionConfigInterface
+class GitHubConfig extends DocsConfig
 {
     public const CONFIG_BRANCH = 'branch';
     public const CONFIG_REPOSITORY = 'repository';
     public const CONFIG_ORGANISATION = 'organisation';
-
-    /**
-     * @var array
-     */
-    private $config = [];
-
-    /**
-     * GitHubConfig constructor.
-     * @param string $organisation
-     * @param string $repository
-     * @param string $branch
-     */
-    public function __construct(string $organisation, string $repository, string $branch)
-    {
-        $this->config = [
-            static::CONFIG_ORGANISATION => $organisation,
-            static::CONFIG_REPOSITORY   => $repository,
-            static::CONFIG_BRANCH       => $branch,
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return $this->config;
-    }
-
-    /**
-     * @param string $key
-     * @return string|null
-     */
-    public function get(string $key): ?string
-    {
-        return Arr::get($this->config, $key);
-    }
 
     /**
      * @param string|null  $path

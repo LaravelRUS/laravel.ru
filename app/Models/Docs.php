@@ -10,8 +10,9 @@ namespace App\Models;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Service\DocsImporter\DocsConnectionConfigInterface;
 
 /**
  * Class Docs.
@@ -22,6 +23,13 @@ class Docs extends Model
      * @var string
      */
     protected $table = 'docs';
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'importer_config' => 'collection',
+    ];
 
     /**
      * @return HasMany
@@ -38,5 +46,28 @@ class Docs extends Model
     public function getTitleAttribute(string $title): string
     {
         return Str::ucfirst($title) . ' (' . $this->version . ')';
+    }
+
+    /**
+     * @param DocsConnectionConfigInterface|array $config
+     */
+    public function setImporterConfigAttribute($config)
+    {
+        $this->attributes['importer_config'] = $config instanceof Arrayable
+            ? $config->toArray()
+            : json_encode($config);
+    }
+
+    /**
+     * @param string $data
+     * @return array
+     */
+    public function getImporterConfigAttribute(string $data): array
+    {
+        if ($data) {
+            return json_decode($data, true);
+        }
+
+        return [];
     }
 }
