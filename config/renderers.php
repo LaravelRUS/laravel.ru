@@ -16,7 +16,7 @@ return [
     | рендеров содержатся в массиве "renderers" этого файла конфигурации.
     |
     */
-    'default' => 'Markdown',
+    'default' => 'markdown',
 
     'renderers' => [
         /*
@@ -28,7 +28,7 @@ return [
         | разметки в html.
         |
         */
-        'Markdown' => \App\Services\ContentRenderer\MarkdownRenderer::class,
+        'markdown' => \App\Services\ContentRenderer\MarkdownRenderer::class,
 
         /*
         |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
         | Выберите его, если требуется Laravel-совместимый html-редер.
         |
         */
-        'Laravel'  => \App\Services\ContentRenderer\LaravelDocsRenderer::class,
+        'laravel'  => \App\Services\ContentRenderer\LaravelDocsRenderer::class,
 
         /*
         |--------------------------------------------------------------------------
@@ -52,6 +52,6 @@ return [
         | Например при отображении "Tip of the day".
         |
         */
-        'Raw'      => \App\Services\ContentRenderer\RawTextRenderer::class,
+        'text'     => \App\Services\ContentRenderer\RawTextRenderer::class,
     ],
 ];

@@ -8,9 +8,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Docs.
@@ -23,44 +24,19 @@ class Docs extends Model
     protected $table = 'docs';
 
     /**
-     * @var array
+     * @return HasMany
      */
-    protected $fillable = [
-        'title',
-        'content_source',
-        'priority',
-        // Github
-        'github_org',
-        'github_repo',
-        'github_branch',
-        'github_file',
-        'github_hash',
-    ];
-
-    /**
-     * @var array
-     */
-    protected $casts = [
-        'nav' => 'collection',
-    ];
-
-    /**
-     * @return BelongsTo
-     */
-    public function category(): BelongsTo
+    public function pages(): HasMany
     {
-        return $this->belongsTo(DocsCategory::class);
+        return $this->hasMany(DocsPage::class);
     }
 
     /**
-     * @param  array      ...$level
-     * @return Collection
+     * @param string $title
+     * @return string
      */
-    public function getNav(...$level): Collection
+    public function getTitleAttribute(string $title): string
     {
-        return $this->nav->whereIn('level', $level)
-            ->map(function (array $data) {
-                return (object) $data;
-            });
+        return Str::ucfirst($title) . ' (' . $this->version . ')';
     }
 }

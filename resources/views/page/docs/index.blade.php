@@ -1,27 +1,26 @@
 @extends('layout.master')
 
+<?php
+    /** @var \App\Models\Docs[] $docs */
+    /** @var \App\Models\DocsPage $page */
+?>
+
 @section('content')
-    <section class="container-12">
-        <section class="grid-8">
-            <h2>Docs</h2>
+    <section class="container-12" style="padding: 100px 0">
+        @foreach($docs as $repo)
+            <article class="grid-4">
+                <h3>{{ $repo->title }}</h3>
 
-            <p>Тут будут красивые плашки с разными версиями и типами доки 🐵</p>
-        </section>
-
-        <aside class="grid-4">
-            <h3>Последние обновления</h3>
-
-            <nav>
                 <ul>
-                    @foreach($latest as $docs)
+                    @foreach($repo->pages as $page)
                         <li>
-                            <a href="{{ route('docs.show', ['version' => $docs->version, 'slug' => $docs->slug]) }}">
-                                {{ $docs->title }}
+                            <a href="{{ route('docs.show', ['slug' => $page->slug, 'version' => $repo->version]) }}">
+                                {{ $page->title }}
                             </a>
                         </li>
                     @endforeach
                 </ul>
-            </nav>
-        </aside>
+            </article>
+        @endforeach
     </section>
 @stop

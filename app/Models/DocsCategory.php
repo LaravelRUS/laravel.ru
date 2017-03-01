@@ -19,7 +19,7 @@ class DocsCategory extends Model
     /**
      * @var string
      */
-    protected $table = 'docs_categories';
+    protected $table = 'docs_page_categories';
 
     /**
      * @var bool
@@ -31,6 +31,6 @@ class DocsCategory extends Model
      */
     public function docs(): HasMany
     {
-        return $this->hasMany(Docs::class);
+        return $this->hasMany(DocsPage::class);
     }
 }

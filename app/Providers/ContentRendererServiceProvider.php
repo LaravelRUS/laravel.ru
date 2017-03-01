@@ -2,7 +2,6 @@
 
 /**
  * This file is part of laravel.su package.
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -10,16 +9,13 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Services\ContentRenderer\RenderersRepository;
-use cebe\markdown\GithubMarkdown;
-use App\Models\Docs\ContentObserver;
 use cebe\markdown\Parser;
+use cebe\markdown\GithubMarkdown;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Container\Container;
-use Illuminate\Support\ServiceProvider;
 use App\Services\ContentRenderer\RawTextRenderer;
-use App\Services\ContentRenderer\MarkdownRenderer;
-use App\Services\ContentRenderer\LaravelDocsRenderer;
+use App\Services\ContentRenderer\RenderersRepository;
 use App\Services\ContentRenderer\ContentRenderInterface;
 
 /**
@@ -33,27 +29,22 @@ class ContentRendererServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Support
+        $this->app->bind(Parser::class, GithubMarkdown::class);
+
+
+        // Repository with all renderers
         $this->app->singleton(RenderersRepository::class, function (Container $app) {
             $config = $app->make(Repository::class)->get('renderers');
 
             return new RenderersRepository($app, $config);
         });
 
+
         // Register default
         $this->app->singleton(ContentRenderInterface::class, function (Container $app) {
             return $app->make(RenderersRepository::class)->getDefaultRenderer();
         });
-
-        // Register parser
-        $this->app->bind(Parser::class, GithubMarkdown::class);
-
-        // Documentation renderer
-        $this->app->when(ContentObserver::class)
-            ->needs(ContentRenderInterface::class)
-            ->give(function () {
-                return $this->app->make(RenderersRepository::class)
-                    ->getRenderer('Laravel');
-            });
 
 
         // Tips content renderer
@@ -61,7 +52,7 @@ class ContentRendererServiceProvider extends ServiceProvider
             ->needs(ContentRenderInterface::class)
             ->give(function () {
                 return $this->app->make(RenderersRepository::class)
-                    ->getRenderer('Raw');
+                    ->getRenderer('raw');
             });
     }
 }

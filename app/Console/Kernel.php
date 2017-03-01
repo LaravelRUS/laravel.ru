@@ -33,6 +33,7 @@ class Kernel extends ConsoleKernel
         Commands\IdeHelperRun::class,
         Commands\DataProvidersImport::class,
         Commands\GitHubDocsImport::class,
+        Commands\GitHubDocsSync::class,
     ];
 
     /**

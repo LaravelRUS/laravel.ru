@@ -171,7 +171,6 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Folklore\GraphQL\ServiceProvider::class,
-        GrahamCampbell\GitHub\GitHubServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -188,6 +187,8 @@ return [
         App\Providers\ColorGeneratorServiceProvider::class,
         App\Providers\EnumsServiceProvider::class,
         App\Providers\NavigationServiceProvider::class,
+
+        Service\DocsImporter\DocsImporterServiceProvider::class,
     ],
 
     'local_providers' => [

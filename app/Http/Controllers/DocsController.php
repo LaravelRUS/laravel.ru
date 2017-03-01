@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Docs;
+use App\Models\DocsPage;
 use Illuminate\Contracts\View\View;
 
 /**
@@ -22,7 +23,9 @@ class DocsController extends Controller
     public function index(): View
     {
         return view('page.docs.index', [
-            'latest' => Docs::latest('updated_at')->take(10)->get(),
+            'docs' => Docs::with('pages')
+                ->latest('updated_at')
+                ->get(),
         ]);
     }
 
@@ -34,10 +37,10 @@ class DocsController extends Controller
      */
     public function show(string $version, string $slug): View
     {
-        $docs = Docs::where('version', $version)->where('slug', $slug)->firstOrFail();
+        $page = DocsPage::whereVersion($version)->whereSlug($slug)->firstOrFail();
 
         return view('page.docs.show', [
-            'docs' => $docs,
+            'docs' => $page,
         ]);
     }
 }

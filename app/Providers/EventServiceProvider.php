@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\DocsPage;
 use App\Models\Tag;
 use App\Models\Tip;
 use App\Models\Docs;
@@ -44,10 +45,8 @@ class EventServiceProvider extends ServiceProvider
 
         Tip::observe(Tip\ContentObserver::class);
 
-        Docs::observe(Docs\SlugObserver::class);
-        Docs::observe(Docs\VersionObserver::class);
-        Docs::observe(Docs\GitHubConfigObserver::class);
-        Docs::observe(Docs\ContentObserver::class);
+        DocsPage::observe(DocsPage\SlugObserver::class);
+        DocsPage::observe(DocsPage\ContentObserver::class);
 
         parent::boot();
     }

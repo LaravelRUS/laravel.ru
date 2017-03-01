@@ -4,11 +4,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
-namespace App\Models\Docs;
+namespace App\Models\DocsPage;
 
-use App\Models\Docs;
+use App\Models\DocsPage;
 use Illuminate\Support\Str;
 
 /**
@@ -17,12 +17,12 @@ use Illuminate\Support\Str;
 class SlugObserver
 {
     /**
-     * @param Docs $docs
+     * @param DocsPage $page
      */
-    public function saving(Docs $docs): void
+    public function saving(DocsPage $page): void
     {
-        if (! $docs->slug) {
-            $docs->slug = Str::slug($docs->title);
+        if (! $page->slug) {
+            $page->slug = Str::slug($page->title);
         }
     }
 }
