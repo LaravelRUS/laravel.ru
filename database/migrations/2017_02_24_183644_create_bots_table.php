@@ -30,6 +30,12 @@ class CreateBotsTable extends Migration
             $t->boolean('is_active')->default(true);
             $t->string('provider');
         });
+
+        \DB::table('bots')->insert([
+            'name'     => 'Laravel News',
+            'avatar'   => 'laravel-news.png',
+            'provider' => 'laravel-news',
+        ]);
     }
 
     /**
