@@ -36,7 +36,7 @@ class GitHubDocsSync extends Command
 
     /**
      * Execute the console command.
-     * @param DocsImporterManager $manager
+     * @param  DocsImporterManager $manager
      * @return void
      */
     public function handle(DocsImporterManager $manager): void
@@ -45,14 +45,14 @@ class GitHubDocsSync extends Command
 
         if ($docs->isEmpty()) {
             $this->info('Skipping: No docs provided.');
+
             return;
         }
 
         /** @var Docs $repo */
         foreach ($docs as $repo) {
             $importer = $manager->get($repo->importer);
-            $config   = $importer->config($repo->importer_config);
-
+            $config = $importer->config($repo->importer_config);
 
             foreach ($importer->files($config) as $file) {
                 $prefix = '[' . $repo->title . ']::' . $file->getRoute();
@@ -64,7 +64,7 @@ class GitHubDocsSync extends Command
                 */
                 $updateRequired = $repo->pages->where('hash', $file->getHash())->isEmpty();
 
-                if (!$updateRequired) {
+                if (! $updateRequired) {
                     $this->comment($prefix . ' has no available updates.');
                     continue;
                 }
@@ -76,12 +76,11 @@ class GitHubDocsSync extends Command
                 */
                 $page = $repo->pages->where('identify', $file->getId())->first();
 
-
                 $message = $prefix . ' found. Updating sources...';
 
                 if ($page === null) {
                     $message = $prefix . ' not exists. Uploading new...';
-                    $page    = new DocsPage(['identify' => $file->getId()]);
+                    $page = new DocsPage(['identify' => $file->getId()]);
                 }
 
                 $this->comment($message);

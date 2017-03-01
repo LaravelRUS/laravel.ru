@@ -25,7 +25,6 @@ class LaravelDocsRenderer extends MarkdownRenderer
         $this->before($this->removeDocumentTitle());
         $this->before($this->removeLeadingNavigation());
 
-
         // Force hide anchors
         $this->before($this->hideExternalAnchors());
 
@@ -80,7 +79,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
 
     /**
      * Исправляет ссылки в документации "/docs/{version}/...".
-     * TODO Надо это не забыть реализовать =)
+     * TODO Надо это не забыть реализовать =).
      * @return \Closure
      */
     private function fixDocsNavigationLinks(): \Closure

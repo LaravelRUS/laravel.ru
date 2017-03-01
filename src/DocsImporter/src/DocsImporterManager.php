@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Service\DocsImporter;
 
-use Service\DocsImporter\GitHub\GitHubProvider;
 use Illuminate\Contracts\Container\Container;
+use Service\DocsImporter\GitHub\GitHubProvider;
 
 /**
  * Class DocsImporterManager.
@@ -57,8 +57,8 @@ class DocsImporterManager
     }
 
     /**
-     * @param string                $alias
-     * @param DocsImporterInterface $importer
+     * @param  string                    $alias
+     * @param  DocsImporterInterface     $importer
      * @return $this|DocsImporterManager
      */
     public function add(string $alias, DocsImporterInterface $importer): DocsImporterManager
@@ -69,7 +69,7 @@ class DocsImporterManager
     }
 
     /**
-     * @param string $alias
+     * @param  string                     $alias
      * @return DocsImporterInterface|null
      */
     public function get(string $alias): ?DocsImporterInterface

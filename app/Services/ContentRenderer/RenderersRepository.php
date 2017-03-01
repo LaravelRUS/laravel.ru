@@ -28,8 +28,8 @@ class RenderersRepository extends Repository
 
     /**
      * RenderersRepository constructor.
-     * @param Container $container
-     * @param array     $items
+     * @param  Container                 $container
+     * @param  array                     $items
      * @throws \InvalidArgumentException
      */
     public function __construct(Container $container, array $items = [])
@@ -41,7 +41,7 @@ class RenderersRepository extends Repository
     }
 
     /**
-     * @param string $name
+     * @param  string                    $name
      * @return string
      * @throws \InvalidArgumentException
      */
@@ -57,7 +57,7 @@ class RenderersRepository extends Repository
     }
 
     /**
-     * @param string|null $name
+     * @param  string|null               $name
      * @return ContentRenderInterface
      * @throws \InvalidArgumentException
      */

@@ -9,8 +9,8 @@ declare(strict_types=1);
 namespace Service\DocsImporter\GitHub;
 
 use Illuminate\Support\Str;
-use Service\DocsImporter\DocsFileInterface;
 use GrahamCampbell\GitHub\GitHubManager;
+use Service\DocsImporter\DocsFileInterface;
 
 /**
  * Class GitHubFile.
@@ -96,8 +96,8 @@ class GitHubFile implements DocsFileInterface
     }
 
     /**
-     * @param string $markdown
-     * @param string $default
+     * @param  string $markdown
+     * @param  string $default
      * @return string
      */
     private function getTopLevelHeader(string $markdown, string $default)

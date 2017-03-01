@@ -10,12 +10,11 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Models\DocsPage;
 use App\Models\Tag;
 use App\Models\Tip;
-use App\Models\Docs;
 use App\Models\User;
 use App\Models\Article;
+use App\Models\DocsPage;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 /**

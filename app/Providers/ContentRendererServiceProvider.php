@@ -32,7 +32,6 @@ class ContentRendererServiceProvider extends ServiceProvider
         // Support
         $this->app->bind(Parser::class, GithubMarkdown::class);
 
-
         // Repository with all renderers
         $this->app->singleton(RenderersRepository::class, function (Container $app) {
             $config = $app->make(Repository::class)->get('renderers');
@@ -40,12 +39,10 @@ class ContentRendererServiceProvider extends ServiceProvider
             return new RenderersRepository($app, $config);
         });
 
-
         // Register default
         $this->app->singleton(ContentRenderInterface::class, function (Container $app) {
             return $app->make(RenderersRepository::class)->getDefaultRenderer();
         });
-
 
         // Tips content renderer
         $this->app->when(RawTextRenderer::class)

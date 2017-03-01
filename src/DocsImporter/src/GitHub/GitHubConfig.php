@@ -8,9 +8,7 @@ declare(strict_types=1);
 
 namespace Service\DocsImporter\GitHub;
 
-use Illuminate\Support\Arr;
 use Service\DocsImporter\DocsConfig;
-use Service\DocsImporter\DocsConnectionConfigInterface;
 
 /**
  * Class GitHubConfig.
@@ -22,7 +20,7 @@ class GitHubConfig extends DocsConfig
     public const CONFIG_ORGANISATION = 'organisation';
 
     /**
-     * @param string|null  $path
+     * @param  string|null $path
      * @return array
      */
     public function toArrayWithPath(string $path = null): array
@@ -31,7 +29,7 @@ class GitHubConfig extends DocsConfig
             $this->get(static::CONFIG_ORGANISATION),
             $this->get(static::CONFIG_REPOSITORY),
             $path,
-            $this->get(static::CONFIG_BRANCH)
+            $this->get(static::CONFIG_BRANCH),
         ];
     }
 }

@@ -7,8 +7,8 @@
  */
 declare(strict_types=1);
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 use Service\DocsImporter\GitHub\GitHubConfig;
 
 /**
@@ -32,13 +32,13 @@ class CreateDocsTable extends Migration
             $t->text('description');
 
             /**
-             * Content renderer for all pages
+             * Content renderer for all pages.
              * @see ~/config/renderers.php
              */
             $t->string('renderer');
 
             /**
-             * Docs content provider (importer)
+             * Docs content provider (importer).
              * @see ~/src/DocsImporter/*
              */
             $t->string('importer');
@@ -47,18 +47,17 @@ class CreateDocsTable extends Migration
             $t->timestamps();
         });
 
-
         Schema::dropIfExists('docs_pages');
         Schema::create('docs_pages', function (Blueprint $t) {
             $t->increments('id');
 
             /**
-             * Related to "docs_pages_categories" table
+             * Related to "docs_pages_categories" table.
              */
             $t->unsignedInteger('category_id')->index()->nullable();
 
             /**
-             * Related to "docs"
+             * Related to "docs".
              */
             $t->unsignedInteger('docs_id')->index(); // ID
             $t->string('identify');                  // Importer file identifier
@@ -68,19 +67,18 @@ class CreateDocsTable extends Migration
             $t->string('slug')->index();
 
             /**
-             * Page body
+             * Page body.
              */
             $t->longText('content_source');
             $t->longText('content_rendered');
 
             /**
-             * Page navigation
+             * Page navigation.
              */
             $t->json('nav')->nullable();
             $t->unsignedSmallInteger('priority')->default(0);
             $t->timestamps();
         });
-
 
         Schema::dropIfExists('docs_page_categories');
         Schema::create('docs_page_categories', function (Blueprint $t) {
