@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 return [
 
@@ -171,6 +171,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Folklore\GraphQL\ServiceProvider::class,
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -244,6 +245,7 @@ return [
         //'View'         => Illuminate\Support\Facades\View::class,
         'GraphQL'      => Folklore\GraphQL\Support\Facades\GraphQL::class,
         'GitHub'       => GrahamCampbell\GitHub\Facades\GitHub::class,
+        'Sentry'       => Sentry\SentryLaravel\SentryFacade::class,
     ],
 
 ];

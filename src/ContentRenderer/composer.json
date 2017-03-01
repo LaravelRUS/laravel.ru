@@ -10,9 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
-        "illuminate/container": "5.*",
-        "cebe/markdown": "~1.1",
+        "php": ">=7.1"
     },
     "autoload": {
         "psr-4": {
