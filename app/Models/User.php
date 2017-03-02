@@ -12,7 +12,6 @@ namespace App\Models;
 
 use App\Models\User\GravatarSupport;
 use Illuminate\Notifications\Notifiable;
-use Service\ImageUploader\UpdatableAvatar;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Service\ImageUploader\Resolvers\GravatarSupports;
 use Illuminate\Foundation\Auth\User as Authenticatable;
