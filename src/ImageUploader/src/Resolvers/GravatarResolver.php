@@ -26,7 +26,7 @@ class GravatarResolver implements ImageResolverInterface
     /**
      * GravatarResolver constructor.
      *
-     * @param string          $email
+     * @param string $email
      */
     public function __construct(string $email)
     {
@@ -50,14 +50,7 @@ class GravatarResolver implements ImageResolverInterface
     {
         $uri = $this->getGravatarUri($this->email);
 
-        try {
-            // Check avatar if exists
-            $this->isAvailable($uri);
-
-            return $uri;
-        } catch (\Throwable $exception) {
-            return $this->getDefaultAvatar();
-        }
+        return $this->isAvailable($uri) ? $uri : $this->getDefaultAvatar();
     }
 
     /**
@@ -70,33 +63,23 @@ class GravatarResolver implements ImageResolverInterface
     }
 
     /**
-     * @return string
-     */
-    protected function getDefaultAvatar(): string
-    {
-        $path = sprintf('images/avatars/%s.png', random_int(1, 4));
-
-        return resource_path($path);
-    }
-
-    /**
      * @param string $uri
      * @return bool
      */
     private function isAvailable(string $uri): bool
     {
-        $context = $this->createHttpContext(['method' => 'HEAD']);
-
-        $descriptor = fopen($uri, 'rb', false, $context);
+        $context = $this->createHttpContext([
+            'method'        => 'HEAD',
+            'max_redirects' => 2,
+            'timeout'       => 10,
+            'ignore_errors' => false,
+        ]);
 
         try {
-            $meta = stream_get_meta_data($descriptor);
-
-            dd($meta);
+            $descriptor = fopen($uri, 'rb', false, $context);
+            fclose($descriptor);
         } catch (\Throwable $e) {
             return false;
-        } finally {
-            fclose($descriptor);
         }
 
         return true;
@@ -106,8 +89,18 @@ class GravatarResolver implements ImageResolverInterface
      * @param array $options
      * @return resource
      */
-    private function createHttpContext(array $options = []): resource
+    private function createHttpContext(array $options = [])
     {
         return stream_context_create(['http' => $options]);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getDefaultAvatar(): string
+    {
+        $path = sprintf('images/avatars/%s.png', random_int(1, 4));
+
+        return resource_path($path);
     }
 }
