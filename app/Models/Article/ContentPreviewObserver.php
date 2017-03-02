@@ -11,7 +11,7 @@ namespace App\Models\Article;
 
 use App\Models\Article;
 use Illuminate\Support\Str;
-use App\Services\ContentRenderer\ContentRenderInterface;
+use Service\ContentRenderer\ContentRendererInterface;
 
 /**
  * Class ContentPreviewObserver.
@@ -19,15 +19,15 @@ use App\Services\ContentRenderer\ContentRenderInterface;
 class ContentPreviewObserver
 {
     /**
-     * @var ContentRenderInterface
+     * @var ContentRendererInterface
      */
     private $renderer;
 
     /**
      * ContentObserver constructor.
-     * @param ContentRenderInterface $renderer
+     * @param ContentRendererInterface $renderer
      */
-    public function __construct(ContentRenderInterface $renderer)
+    public function __construct(ContentRendererInterface $renderer)
     {
         $this->renderer = $renderer;
     }
