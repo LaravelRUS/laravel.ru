@@ -56,8 +56,11 @@ class UploadAvatarProcess implements ShouldQueue
      */
     public function handle(ImageManager $manager, Storage $fs, LoggerInterface $logger): void
     {
-        $fulfilled = function (User $user) use ($logger) {
-            $logger->info('Queue: Update avatar for user ' . $user->name);
+        $fulfilled = function (string $path) use ($logger) {
+            $this->user->avatar = $path;
+            $this->user->save();
+
+            $logger->info('Queue: Update avatar for user ' . $this->user->name);
         };
 
         $rejected = function (\Throwable $error) use ($logger) {

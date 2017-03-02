@@ -10,9 +10,7 @@ declare(strict_types=1);
 
 namespace Service\ImageUploader;
 
-use Http\Promise\Promise;
 use Intervention\Image\ImageManager;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Service\ImageUploader\Resolvers\GravatarResolver;
 use Service\ImageUploader\Resolvers\GravatarSupports;
 use Service\ImageUploader\Resolvers\ImageResolverInterface;
@@ -23,17 +21,17 @@ use Service\ImageUploader\Resolvers\ImageResolverInterface;
 final class AvatarUploader extends ImageUploader
 {
     /**
-     * @var GravatarSupports|UpdatableAvatar
+     * @var GravatarSupports
      */
     private $user;
 
     /**
      * AvatarUploader constructor.
      *
-     * @param GravatarSupports|UpdatableAvatar         $user
+     * @param GravatarSupports $user
      * @param ImageManager $manager
      */
-    public function __construct(UpdatableAvatar $user, ImageManager $manager)
+    public function __construct(GravatarSupports $user, ImageManager $manager)
     {
         parent::__construct($manager);
 
@@ -53,21 +51,5 @@ final class AvatarUploader extends ImageUploader
 
         $message = 'User instance of %s must implement %s interface';
         throw new \InvalidArgumentException(sprintf($message, static::class, GravatarSupports::class));
-    }
-
-    /**
-     * @param  ImageResolverInterface|null $resolver
-     * @param  Filesystem                  $fs
-     * @param  bool                        $removeTemp
-     * @return Promise
-     *
-     * @throws \RuntimeException
-     */
-    public function upload(Filesystem $fs, ImageResolverInterface $resolver = null, bool $removeTemp = true): Promise
-    {
-        return parent::upload($fs, $resolver, $removeTemp)
-            ->then(function (string $path) {
-                return $this->user->updateAvatar($path);
-            });
     }
 }

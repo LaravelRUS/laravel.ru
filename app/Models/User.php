@@ -20,9 +20,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 /**
  * Class User.
  */
-class User extends Authenticatable implements
-    UpdatableAvatar,
-    GravatarSupports
+class User extends Authenticatable implements GravatarSupports
 {
     use Notifiable;
     use GravatarSupport;
