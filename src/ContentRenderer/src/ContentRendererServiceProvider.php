@@ -29,6 +29,8 @@ class ContentRendererServiceProvider extends ServiceProvider
         $this->resolveConfig();
 
         $this->bindRelations();
+
+        $this->bindContextualRelations($this->app->make(RenderersRepository::class));
     }
 
     /**
@@ -65,5 +67,19 @@ class ContentRendererServiceProvider extends ServiceProvider
         $this->app->singleton(ContentRendererInterface::class, function (Container $app) {
             return $app->make(RenderersRepository::class)->getDefaultRenderer();
         });
+    }
+
+    /**
+     * @param RenderersRepository $repository
+     * @throws \InvalidArgumentException
+     */
+    private function bindContextualRelations(RenderersRepository $repository): void
+    {
+        foreach ($repository->getContextualBindings() as $context => $relation) {
+            $this->app->when($context)->needs(ContentRendererInterface::class)
+                ->give(function (Container $app) use ($relation) {
+                    return $relation;
+                });
+        }
     }
 }

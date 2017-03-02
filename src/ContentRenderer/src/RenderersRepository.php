@@ -75,4 +75,15 @@ class RenderersRepository extends Repository
     {
         return $this->container->make($this->default);
     }
+
+    /**
+     * @return \Generator
+     * @throws \InvalidArgumentException
+     */
+    public function getContextualBindings(): \Generator
+    {
+        foreach ((array)$this->get('mapping', []) as $context => $alias) {
+            yield $context => $this->getRenderer($alias);
+        }
+    }
 }

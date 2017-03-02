@@ -29,20 +29,12 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * @retrun void
-     * @throws \InvalidArgumentException
+     * @throws \InvalidArgumentException?query=is%3Aresolved
      */
     public function register(): void
     {
         $this->loadLocalProviders($this->app->make(Repository::class));
         $this->loadProductionProviders($this->app->make(Repository::class));
-
-        // Tips content renderer
-        $this->app->when(ContentObserver::class)
-              ->needs(ContentRendererInterface::class)
-              ->give(function () {
-                  return $this->app->make(RenderersRepository::class)
-                       ->getRenderer('raw');
-              });
     }
 
     /**
