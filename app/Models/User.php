@@ -48,7 +48,6 @@ class User extends Authenticatable implements
         'remember_token',
     ];
 
-
     /**
      * @param  string $password
      * @return User

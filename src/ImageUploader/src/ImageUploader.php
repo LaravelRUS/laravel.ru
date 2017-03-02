@@ -17,6 +17,8 @@ use Http\Promise\FulfilledPromise;
 use Intervention\Image\Constraint;
 use Intervention\Image\ImageManager;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Service\ImageUploader\Gates\AccessDeniedGateException;
+use Service\ImageUploader\Gates\GateInterface;
 use Service\ImageUploader\Support\ImageUploaderEvents;
 use Service\ImageUploader\Resolvers\ImageResolverInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -52,6 +54,11 @@ class ImageUploader implements ImageUploaderInterface
     private $height = 128;
 
     /**
+     * @var array|GateInterface[]
+     */
+    private $gates = [];
+
+    /**
      * AvatarUploader constructor.
      *
      * @param ImageManager $manager
@@ -59,6 +66,17 @@ class ImageUploader implements ImageUploaderInterface
     public function __construct(ImageManager $manager)
     {
         $this->image = $manager;
+    }
+
+    /**
+     * @param GateInterface $gate
+     * @return ImageUploaderInterface
+     */
+    public function satisfy(GateInterface $gate): ImageUploaderInterface
+    {
+        $this->gates[] = $gate;
+
+        return $this;
     }
 
     /**
@@ -74,27 +92,38 @@ class ImageUploader implements ImageUploaderInterface
     }
 
     /**
-     * @param  ImageResolverInterface $resolver
-     * @param  Filesystem             $fs
-     * @param  bool                   $removeTempFile
+     * @param  ImageResolverInterface|null $resolver
+     * @param  Filesystem                  $fs
+     * @param  bool                        $removeTemp
      * @return Promise
      *
      * @throws \RuntimeException
      * @throws \Symfony\Component\HttpFoundation\File\Exception\FileException
      */
-    public function upload(ImageResolverInterface $resolver, Filesystem $fs, bool $removeTempFile = true): Promise
+    public function upload(Filesystem $fs, ImageResolverInterface $resolver = null, bool $removeTemp = true): Promise
     {
-        $temp = $this->getStorageFilename();
+        $temp   = $this->getStorageFilename();
         $public = $this->createRelativeFilename();
 
         try {
-            $this->process($resolver->resolve())
-                ->save($temp);
+            $imagePath = ($resolver ?? $this->getDefaultResolver())->resolve();
+
+            foreach ($this->gates as $gate) {
+                try {
+                    if ($gate->check($imagePath)) {
+                        throw new AccessDeniedGateException($gate, $imagePath);
+                    }
+                } catch (\Exception $e) {
+                    throw new AccessDeniedGateException($gate, $imagePath, $e->getCode(), $e);
+                }
+            }
+
+            $this->process($imagePath)->save($temp);
 
             // Publish to cloud storage
             $fs->put($public, file_get_contents($temp));
 
-            if ($removeTempFile) {
+            if ($removeTemp) {
                 $this->removeTemporaryFileOrFail($temp);
             }
 

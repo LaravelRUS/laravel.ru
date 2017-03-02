@@ -11,6 +11,7 @@ namespace Service\ImageUploader;
 
 use Http\Promise\Promise;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Service\ImageUploader\Gates\GateInterface;
 use Service\ImageUploader\Resolvers\ImageResolverInterface;
 
 /**
@@ -26,6 +27,12 @@ interface ImageUploaderInterface
     public function withSize(?int $width, ?int $height): ImageUploaderInterface;
 
     /**
+     * @param GateInterface $gate
+     * @return ImageUploaderInterface
+     */
+    public function satisfy(GateInterface $gate): ImageUploaderInterface;
+
+    /**
      * @param  \Closure               $callback
      * @return ImageUploaderInterface
      */
@@ -38,12 +45,12 @@ interface ImageUploaderInterface
     public function after(\Closure $callback): ImageUploaderInterface;
 
     /**
-     * @param  ImageResolverInterface $resolver
-     * @param  Filesystem             $fs
-     * @param  bool                   $removeTempFile
+     * @param  Filesystem                  $fs
+     * @param  ImageResolverInterface|null $path
+     * @param  bool                        $removeTemp
      * @return Promise
      */
-    public function upload(ImageResolverInterface $resolver, Filesystem $fs, bool $removeTempFile = true): Promise;
+    public function upload(Filesystem $fs, ImageResolverInterface $path = null, bool $removeTemp = true): Promise;
 
     /**
      * @param array ...$options

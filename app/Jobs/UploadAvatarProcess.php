@@ -11,15 +11,16 @@ declare(strict_types=1);
 namespace App\Jobs;
 
 use App\Models\User;
-use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
 use Intervention\Image\ImageManager;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
+use Psr\Log\LoggerInterface;
+use Service\ImageUploader\AvatarUploader;
+use Service\ImageUploader\Gates\FileSize;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Filesystem\Factory as Storage;
-use Service\ImageUploader\AvatarUploader;
 
 /**
  * Class UploadAvatarProcess.
@@ -30,6 +31,8 @@ class UploadAvatarProcess implements ShouldQueue
     use Dispatchable;
     use SerializesModels;
     use InteractsWithQueue;
+
+    private const MAX_AVATAR_FILE_SIZE = 1000 * 1000 * 20;
 
     /**
      * @var User
@@ -47,17 +50,32 @@ class UploadAvatarProcess implements ShouldQueue
     }
 
     /**
-     * @param ImageManager $manager
-     * @param Storage      $fs
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
+     * @param ImageManager    $manager
+     * @param Storage         $fs
+     * @param LoggerInterface $logger
      */
-    public function handle(ImageManager $manager, Storage $fs): void
+    public function handle(ImageManager $manager, Storage $fs, LoggerInterface $logger): void
     {
-        $uploader = new AvatarUploader($this->user, $manager);
+        $fulfilled = function (User $user) use ($logger) {
+            $logger->info('Queue: Update avatar for user ' . $user->name);
+        };
 
-        $uploader->withSize(64, 64);
+        $rejected = function (\Throwable $error) use ($logger) {
+            $logger->error($error);
+        };
 
-        $uploader->upload($uploader->getDefaultResolver(), $fs->disk('avatars'));
+        (new AvatarUploader($this->user, $manager))
+            ->satisfy(new FileSize(self::MAX_AVATAR_FILE_SIZE))
+            ->withSize(64, 64)
+            ->upload($fs->disk('avatars'))
+            ->then($fulfilled, $rejected);
+    }
+
+    /**
+     * @return string
+     */
+    public static function avatarPathname(): string
+    {
+        return resource_path('images/avatars/' . random_int(1, 4));
     }
 }

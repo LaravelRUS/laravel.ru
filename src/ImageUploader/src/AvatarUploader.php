@@ -56,16 +56,16 @@ final class AvatarUploader extends ImageUploader
     }
 
     /**
-     * @param  ImageResolverInterface $resolver
-     * @param  Filesystem             $fs
-     * @param  bool                   $removeTempFile
+     * @param  ImageResolverInterface|null $resolver
+     * @param  Filesystem                  $fs
+     * @param  bool                        $removeTemp
      * @return Promise
      *
      * @throws \RuntimeException
      */
-    public function upload(ImageResolverInterface $resolver, Filesystem $fs, bool $removeTempFile = true): Promise
+    public function upload(Filesystem $fs, ImageResolverInterface $resolver = null, bool $removeTemp = true): Promise
     {
-        return parent::upload($resolver, $fs, $removeTempFile)
+        return parent::upload($fs, $resolver, $removeTemp)
             ->then(function (string $path) {
                 return $this->user->updateAvatar($path);
             });
