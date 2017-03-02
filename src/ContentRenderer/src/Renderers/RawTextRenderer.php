@@ -34,12 +34,18 @@ class RawTextRenderer extends MarkdownRenderer
      */
     private function removeDisallowedTags(string $body): string
     {
-        return strip_tags($body, [
+        $tags = [
             'b', 'strong',      // bold
             'i', 'em',          // italic
             'ul', 'li', 'ol',   // list
             'a',                // link
             'code', 'pre',       // code
-        ]);
+        ];
+
+        $tags = array_map(function (string $tag) {
+            return "<${tag}>";
+        }, $tags);
+
+        return strip_tags($body, implode('', $tags));
     }
 }
