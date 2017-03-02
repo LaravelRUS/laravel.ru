@@ -5,18 +5,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types=1);
+declare(strict_types = 1);
 
-namespace App\Providers;
+namespace Service\ContentRenderer;
 
 use cebe\markdown\Parser;
 use cebe\markdown\GithubMarkdown;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Container\Container;
-use App\Services\ContentRenderer\RawTextRenderer;
-use App\Services\ContentRenderer\RenderersRepository;
-use App\Services\ContentRenderer\ContentRenderInterface;
 
 /**
  * Class ContentRendererServiceProvider.
@@ -29,6 +26,31 @@ class ContentRendererServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->resolveConfig();
+
+        $this->bindRelations();
+    }
+
+    /**
+     * @return void
+     */
+    private function resolveConfig(): void
+    {
+        $config = __DIR__ . '/../config/renderers.php';
+
+        // Publish config
+        $this->publishes([$config => config_path('renderers.php')]);
+
+        // Merge default config
+        $this->mergeConfigFrom($config, 'renderers');
+    }
+
+    /**
+     * @return void
+     * @throws \InvalidArgumentException
+     */
+    private function bindRelations(): void
+    {
         // Support
         $this->app->bind(Parser::class, GithubMarkdown::class);
 
@@ -40,16 +62,8 @@ class ContentRendererServiceProvider extends ServiceProvider
         });
 
         // Register default
-        $this->app->singleton(ContentRenderInterface::class, function (Container $app) {
+        $this->app->singleton(ContentRendererInterface::class, function (Container $app) {
             return $app->make(RenderersRepository::class)->getDefaultRenderer();
         });
-
-        // Tips content renderer
-        $this->app->when(RawTextRenderer::class)
-            ->needs(ContentRenderInterface::class)
-            ->give(function () {
-                return $this->app->make(RenderersRepository::class)
-                    ->getRenderer('raw');
-            });
     }
 }

@@ -6,12 +6,14 @@
  */
 declare(strict_types=1);
 
-namespace App\Services\ContentRenderer;
+namespace Service\ContentRenderer\Renderers;
+
+use Service\ContentRenderer\ContentRendererInterface;
 
 /**
  * Class Renderer.
  */
-abstract class AbstractRenderer implements ContentRenderInterface
+abstract class AbstractRenderer implements ContentRendererInterface
 {
     private const EVENT_PARSE_BEFORE = 'parse.before';
     private const EVENT_PARSE_AFTER = 'parse.after';
@@ -28,9 +30,9 @@ abstract class AbstractRenderer implements ContentRenderInterface
 
     /**
      * @param  \Closure                     $callback
-     * @return $this|ContentRenderInterface
+     * @return $this|ContentRendererInterface
      */
-    public function before(\Closure $callback): ContentRenderInterface
+    public function before(\Closure $callback): ContentRendererInterface
     {
         $this->before[] = $callback;
 
@@ -39,9 +41,9 @@ abstract class AbstractRenderer implements ContentRenderInterface
 
     /**
      * @param  \Closure                     $callback
-     * @return $this|ContentRenderInterface
+     * @return $this|ContentRendererInterface
      */
-    public function after(\Closure $callback): ContentRenderInterface
+    public function after(\Closure $callback): ContentRendererInterface
     {
         $this->after[] = $callback;
 

@@ -10,9 +10,12 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\Tip\ContentObserver;
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use Service\ContentRenderer\ContentRendererInterface;
+use Service\ContentRenderer\RenderersRepository;
 
 /**
  * Class AppServiceProvider.
@@ -26,10 +29,19 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * @retrun void
+     * @throws \InvalidArgumentException
      */
     public function register(): void
     {
         $this->loadLocalProviders($this->app->make(Repository::class));
+
+        // Tips content renderer
+        $this->app->when(ContentObserver::class)
+              ->needs(ContentRendererInterface::class)
+              ->give(function () {
+                  return $this->app->make(RenderersRepository::class)
+                       ->getRenderer('raw');
+              });
     }
 
     /**

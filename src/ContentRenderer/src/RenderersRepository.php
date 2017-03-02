@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace App\Services\ContentRenderer;
+namespace Service\ContentRenderer;
 
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Container\Container;
@@ -58,10 +58,10 @@ class RenderersRepository extends Repository
 
     /**
      * @param  string|null               $name
-     * @return ContentRenderInterface
+     * @return ContentRendererInterface
      * @throws \InvalidArgumentException
      */
-    public function getRenderer(string $name = null): ContentRenderInterface
+    public function getRenderer(string $name = null): ContentRendererInterface
     {
         $class = $name === null ? $this->default : $this->getRendererClass($name);
 
@@ -69,9 +69,9 @@ class RenderersRepository extends Repository
     }
 
     /**
-     * @return ContentRenderInterface
+     * @return ContentRendererInterface
      */
-    public function getDefaultRenderer(): ContentRenderInterface
+    public function getDefaultRenderer(): ContentRendererInterface
     {
         return $this->container->make($this->default);
     }

@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace App\Models\Article;
 
 use App\Models\Article;
-use App\Services\ContentRenderer\ContentRenderInterface;
+use Service\ContentRenderer\ContentRendererInterface;
 
 /**
  * Class ContentObserver.
@@ -19,16 +19,16 @@ use App\Services\ContentRenderer\ContentRenderInterface;
 class ContentObserver
 {
     /**
-     * @var ContentRenderInterface
+     * @var ContentRendererInterface
      */
     private $renderer;
 
     /**
      * ContentObserver constructor.
      *
-     * @param ContentRenderInterface $renderer
+     * @param ContentRendererInterface $renderer
      */
-    public function __construct(ContentRenderInterface $renderer)
+    public function __construct(ContentRendererInterface $renderer)
     {
         $this->renderer = $renderer;
     }

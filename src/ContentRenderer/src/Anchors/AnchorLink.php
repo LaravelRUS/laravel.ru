@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace App\Services\ContentRenderer\Anchors;
+namespace Service\ContentRenderer\Anchors;
 
 use Illuminate\Contracts\Support\Arrayable;
 

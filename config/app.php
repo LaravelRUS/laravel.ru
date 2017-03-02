@@ -181,7 +181,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewsServiceProvider::class,
-        App\Providers\ContentRendererServiceProvider::class,
         App\Providers\DataProviderServiceProvider::class,
         App\Providers\DateTimeServiceProvider::class,
         App\Providers\HttpClientServiceProvider::class,
@@ -189,6 +188,7 @@ return [
         App\Providers\EnumsServiceProvider::class,
         App\Providers\NavigationServiceProvider::class,
 
+        Service\ContentRenderer\ContentRendererServiceProvider::class,
         Service\DocsImporter\DocsImporterServiceProvider::class,
     ],
 

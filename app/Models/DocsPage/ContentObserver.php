@@ -10,10 +10,11 @@ declare(strict_types=1);
 namespace App\Models\DocsPage;
 
 use App\Models\DocsPage;
-use App\Services\ContentRenderer\Anchors\Parser;
-use App\Services\ContentRenderer\RenderersRepository;
-use App\Services\ContentRenderer\Anchors\ProcessedBody;
-use App\Services\ContentRenderer\ContentRenderInterface;
+
+use Service\ContentRenderer\Anchors\Parser;
+use Service\ContentRenderer\RenderersRepository;
+use Service\ContentRenderer\Anchors\ProcessedBody;
+use Service\ContentRenderer\ContentRendererInterface;
 
 /**
  * Class ContentObserver.
@@ -56,20 +57,20 @@ class ContentObserver
 
     /**
      * @param  DocsPage                  $page
-     * @return ContentRenderInterface
+     * @return ContentRendererInterface
      * @throws \InvalidArgumentException
      */
-    private function getRenderer(DocsPage $page): ContentRenderInterface
+    private function getRenderer(DocsPage $page): ContentRendererInterface
     {
         return $this->repository->getRenderer($page->docs->renderer);
     }
 
     /**
-     * @param  ContentRenderInterface $renderer
+     * @param  ContentRendererInterface $renderer
      * @param  string                 $body
      * @return ProcessedBody
      */
-    private function render(ContentRenderInterface $renderer, string $body): ProcessedBody
+    private function render(ContentRendererInterface $renderer, string $body): ProcessedBody
     {
         // Parse markdown
         $rendered = $renderer->render($body);

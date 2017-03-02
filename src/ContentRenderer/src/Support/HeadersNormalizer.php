@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace App\Services\ContentRenderer\Support;
+namespace Service\ContentRenderer\Support;
 
 /**
  * Class HeadersNormalizer.

@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace App\Services\ContentRenderer;
+namespace Service\ContentRenderer\Renderers;
 
 /**
  * Class RawTextRenderer.
