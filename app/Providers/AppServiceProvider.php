@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->loadLocalProviders($this->app->make(Repository::class));
+        $this->loadProductionProviders($this->app->make(Repository::class));
 
         // Tips content renderer
         $this->app->when(ContentObserver::class)
@@ -42,6 +43,21 @@ class AppServiceProvider extends ServiceProvider
                   return $this->app->make(RenderersRepository::class)
                        ->getRenderer('raw');
               });
+    }
+
+    /**
+     * @param Repository $repository
+     * @return void
+     */
+    private function loadProductionProviders(Repository $repository): void
+    {
+        if (!$this->app->isLocal()) {
+            $providers = (array) $repository->get('app.production_providers', []);
+
+            foreach ($providers as $provider) {
+                $this->app->register($provider);
+            }
+        }
     }
 
     /**

@@ -171,7 +171,6 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Folklore\GraphQL\ServiceProvider::class,
-        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -196,6 +195,10 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+    ],
+
+    'production_providers' => [
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
     ],
 
     /*
@@ -245,7 +248,6 @@ return [
         //'View'         => Illuminate\Support\Facades\View::class,
         'GraphQL'      => Folklore\GraphQL\Support\Facades\GraphQL::class,
         'GitHub'       => GrahamCampbell\GitHub\Facades\GitHub::class,
-        'Sentry'       => Sentry\SentryLaravel\SentryFacade::class,
     ],
 
 ];
