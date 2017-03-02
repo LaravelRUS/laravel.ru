@@ -1,0 +1,23 @@
+{
+    "name": "laravelrus/image-uploader",
+    "license": "MIT",
+    "type": "library",
+    "description": "Image uploader abstraction layer",
+    "authors": [
+        {
+            "name": "Serafim",
+            "email": "nesk@xakep.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "illuminate/filesystem": "5.*",
+        "guzzlehttp/guzzle": "~6.2",
+        "intervention/image": "~2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Service\\ImageUploader\\": "src/"
+        }
+    }
+}

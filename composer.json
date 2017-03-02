@@ -12,7 +12,6 @@
         "barryvdh/laravel-ide-helper": "~2.0",
         "doctrine/dbal": "~2.2",
         "lord/laroute": "~2.4",
-        "intervention/image": "~2.3",
         "predis/predis": "~1.1",
         "guzzlehttp/guzzle": "~6.2",
         "tymon/jwt-auth": "~0.5",
@@ -79,7 +78,8 @@
         "merge-plugin": {
             "require": [
                 "src/DocsImporter/composer.json",
-                "src/ContentRenderer/composer.json"
+                "src/ContentRenderer/composer.json",
+                "src/ImageUploader/composer.json"
             ]
         }
     }

@@ -7,11 +7,11 @@
  */
 declare(strict_types=1);
 
-namespace App\Services\ImageUploader;
+namespace Service\ImageUploader;
 
 use Http\Promise\Promise;
 use Illuminate\Contracts\Filesystem\Filesystem;
-use App\Services\ImageUploader\Resolvers\ImageResolverInterface;
+use Service\ImageUploader\Resolvers\ImageResolverInterface;
 
 /**
  * Interface ImageUploaderInterface.
@@ -44,4 +44,10 @@ interface ImageUploaderInterface
      * @return Promise
      */
     public function upload(ImageResolverInterface $resolver, Filesystem $fs, bool $removeTempFile = true): Promise;
+
+    /**
+     * @param array ...$options
+     * @return ImageResolverInterface
+     */
+    public function getDefaultResolver(...$options): ImageResolverInterface;
 }

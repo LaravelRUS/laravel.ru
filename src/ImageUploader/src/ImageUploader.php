@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace App\Services\ImageUploader;
+namespace Service\ImageUploader;
 
 use Http\Promise\Promise;
 use Intervention\Image\Image;
@@ -17,8 +17,8 @@ use Http\Promise\FulfilledPromise;
 use Intervention\Image\Constraint;
 use Intervention\Image\ImageManager;
 use Illuminate\Contracts\Filesystem\Filesystem;
-use App\Services\ImageUploader\Support\ImageUploaderEvents;
-use App\Services\ImageUploader\Resolvers\ImageResolverInterface;
+use Service\ImageUploader\Support\ImageUploaderEvents;
+use Service\ImageUploader\Resolvers\ImageResolverInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /**
@@ -181,5 +181,15 @@ class ImageUploader implements ImageUploaderInterface
     private function removeTemporaryFile(string $temporaryFilename): bool
     {
         return @unlink($temporaryFilename) || ! is_file($temporaryFilename);
+    }
+
+    /**
+     * @param array ...$options
+     * @return ImageResolverInterface
+     * @throws \BadMethodCallException
+     */
+    public function getDefaultResolver(...$options): ImageResolverInterface
+    {
+        throw new \BadMethodCallException(static::class . ' has no available image resolvers.');
     }
 }

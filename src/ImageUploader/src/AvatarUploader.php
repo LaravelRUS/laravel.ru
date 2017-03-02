@@ -8,15 +8,14 @@
  */
 declare(strict_types=1);
 
-namespace App\Services\ImageUploader;
+namespace Service\ImageUploader;
 
-use App\Models\User;
 use Http\Promise\Promise;
-use GuzzleHttp\ClientInterface;
 use Intervention\Image\ImageManager;
 use Illuminate\Contracts\Filesystem\Filesystem;
-use App\Services\ImageUploader\Resolvers\GravatarResolver;
-use App\Services\ImageUploader\Resolvers\ImageResolverInterface;
+use Service\ImageUploader\Resolvers\GravatarResolver;
+use Service\ImageUploader\Resolvers\GravatarSupports;
+use Service\ImageUploader\Resolvers\ImageResolverInterface;
 
 /**
  * Class AvatarUploader.
@@ -24,17 +23,17 @@ use App\Services\ImageUploader\Resolvers\ImageResolverInterface;
 final class AvatarUploader extends ImageUploader
 {
     /**
-     * @var User
+     * @var GravatarSupports|UpdatableAvatar
      */
     private $user;
 
     /**
      * AvatarUploader constructor.
      *
-     * @param User         $user
+     * @param GravatarSupports|UpdatableAvatar         $user
      * @param ImageManager $manager
      */
-    public function __construct(User $user, ImageManager $manager)
+    public function __construct(UpdatableAvatar $user, ImageManager $manager)
     {
         parent::__construct($manager);
 
@@ -42,12 +41,18 @@ final class AvatarUploader extends ImageUploader
     }
 
     /**
-     * @param  ClientInterface  $client
-     * @return GravatarResolver
+     * @param array $options
+     * @return GravatarResolver|ImageResolverInterface
+     * @throws \InvalidArgumentException
      */
-    public function getGravatarResolver(ClientInterface $client): GravatarResolver
+    public function getDefaultResolver(...$options): ImageResolverInterface
     {
-        return GravatarResolver::fromUser($this->user, $client);
+        if ($this->user instanceof GravatarSupports) {
+            return GravatarResolver::fromUser($this->user);
+        }
+
+        $message = 'User instance of %s must implement %s interface';
+        throw new \InvalidArgumentException(sprintf($message, static::class, GravatarSupports::class));
     }
 
     /**
@@ -62,10 +67,7 @@ final class AvatarUploader extends ImageUploader
     {
         return parent::upload($resolver, $fs, $removeTempFile)
             ->then(function (string $path) {
-                $this->user->avatar = $path;
-                $this->user->save();
-
-                return $this->user;
+                return $this->user->updateAvatar($path);
             });
     }
 }

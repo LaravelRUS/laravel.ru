@@ -18,8 +18,8 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Services\ImageUploader\AvatarUploader;
 use Illuminate\Contracts\Filesystem\Factory as Storage;
+use Service\ImageUploader\AvatarUploader;
 
 /**
  * Class UploadAvatarProcess.
@@ -48,17 +48,16 @@ class UploadAvatarProcess implements ShouldQueue
 
     /**
      * @param ImageManager $manager
-     * @param Client       $client
      * @param Storage      $fs
-     *
      * @throws \RuntimeException
+     * @throws \InvalidArgumentException
      */
-    public function handle(ImageManager $manager, Client $client, Storage $fs): void
+    public function handle(ImageManager $manager, Storage $fs): void
     {
         $uploader = new AvatarUploader($this->user, $manager);
 
         $uploader->withSize(64, 64);
 
-        $uploader->upload($uploader->getGravatarResolver($client), $fs->disk('avatars'));
+        $uploader->upload($uploader->getDefaultResolver(), $fs->disk('avatars'));
     }
 }

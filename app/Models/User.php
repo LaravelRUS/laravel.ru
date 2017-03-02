@@ -10,16 +10,22 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\User\GravatarSupport;
 use Illuminate\Notifications\Notifiable;
+use Service\ImageUploader\UpdatableAvatar;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Service\ImageUploader\Resolvers\GravatarSupports;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User.
  */
-class User extends Authenticatable
+class User extends Authenticatable implements
+    UpdatableAvatar,
+    GravatarSupports
 {
     use Notifiable;
+    use GravatarSupport;
 
     public const DEFAULT_AVATAR_PATH = '/static/avatars/';
     public const DEFAULT_AVATAR_NAME = 'default/1.png';
@@ -28,15 +34,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar',
+        'name',
+        'email',
+        'password',
+        'avatar',
     ];
 
     /**
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
+
 
     /**
      * @param  string $password

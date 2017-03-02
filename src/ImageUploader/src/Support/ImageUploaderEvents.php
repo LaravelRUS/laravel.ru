@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace App\Services\ImageUploader\Support;
+namespace Service\ImageUploader\Support;
 
-use App\Services\ImageUploader\ImageUploaderInterface;
+use Service\ImageUploader\ImageUploaderInterface;
 
 /**
  * Class ImageUploaderEvents.
