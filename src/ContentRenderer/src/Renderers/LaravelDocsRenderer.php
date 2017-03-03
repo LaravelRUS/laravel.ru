@@ -31,6 +31,10 @@ class LaravelDocsRenderer extends MarkdownRenderer
         // Cross-page navigation
         $this->before($this->fixDocsNavigationLinks());
 
+        // Internal code
+        $this->before($this->removeInternalStyles());
+        $this->before($this->updateInternalNavigation());
+
         // Move "{tip}" and "{note}" to class
         $this->after($this->parseQuotes());
 
@@ -60,6 +64,26 @@ class LaravelDocsRenderer extends MarkdownRenderer
              * @see https://en.wikipedia.org/wiki/ReDoS
              */
             return preg_replace('/^(?:[\n\s]*\-.*?\n)+/isu', '', $body);
+        };
+    }
+
+    /**
+     * @return \Closure
+     */
+    private function removeInternalStyles(): \Closure
+    {
+        return function (string $body) {
+            return preg_replace('/<style>.*?<\/style>/isu', '', $body);
+        };
+    }
+
+    /**
+     * @return \Closure
+     */
+    private function updateInternalNavigation(): \Closure
+    {
+        return function (string $body) {
+            return preg_replace('/<div.*?markdown="1".*?>.*?<\/div>/isu', '', $body);
         };
     }
 
