@@ -25,7 +25,7 @@ class GitHubDocsSync extends Command
      *
      * @var string
      */
-    protected $signature = 'docs:sync';
+    protected $signature = 'docs:sync {?--force}';
 
     /**
      * The console command description.
@@ -41,7 +41,8 @@ class GitHubDocsSync extends Command
      */
     public function handle(DocsImporterManager $manager): void
     {
-        $docs = Docs::with('pages')->get();
+        $isForce = $this->option('force');
+        $docs    = Docs::with('pages')->get();
 
         if ($docs->isEmpty()) {
             $this->info('Skipping: No docs provided.');
@@ -66,7 +67,12 @@ class GitHubDocsSync extends Command
 
                 if (! $updateRequired) {
                     $this->comment($prefix . ' has no available updates.');
-                    continue;
+
+                    if (! $isForce) {
+                        continue;
+                    } else {
+                        $this->comment($prefix . ' will force update.');
+                    }
                 }
 
                 /*
