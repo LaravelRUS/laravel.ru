@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Models\Docs;
 use App\Models\DocsPage;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class DocsController.
@@ -37,9 +38,9 @@ class DocsController extends Controller
      */
     public function show(string $version, string $slug): View
     {
-        $page = DocsPage::with('docs')
-            ->whereVersion($version)
+        $page = DocsPage::query()
             ->whereSlug($slug)
+            ->whereVersion($version)
             ->firstOrFail();
 
         return view('page.docs.show', [

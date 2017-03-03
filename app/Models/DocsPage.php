@@ -78,8 +78,8 @@ class DocsPage extends Model
      */
     public static function scopeWhereVersion(Builder $builder, string $version): Builder
     {
-        return $builder->with(['docs' => function (BelongsTo $relation) use ($version) {
-            return $relation->where('version', $version);
-        }]);
+        return $builder->whereHas('docs', function (Builder $query) use ($version) {
+            return $query->where('version', $version);
+        });
     }
 }
