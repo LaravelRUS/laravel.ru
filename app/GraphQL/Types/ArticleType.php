@@ -66,8 +66,7 @@ class ArticleType extends AbstractType
                 'description' => 'Article content preview (original)',
             ],
             'status'       => [
-                'type'        => app(EnumTransfer::class)
-                    ->toGraphQL(Article\Status::class),
+                'type'        => app(EnumTransfer::class)->toGraphQL(Article\Status::class),
                 'description' => 'Article status',
             ],
             'published_at' => [

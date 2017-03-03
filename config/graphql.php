@@ -61,7 +61,9 @@ return [
     /*
     | Any middleware for the graphql route group
     */
-    'middleware'           => [],
+    'middleware'           => [
+        \App\Http\Middleware\CorsMiddleware::class,
+    ],
 
     /*
     | Config for GraphiQL (https://github.com/graphql/graphiql).
