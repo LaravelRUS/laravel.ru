@@ -11,7 +11,6 @@ namespace App\Http\Controllers;
 use App\Models\Docs;
 use App\Models\DocsPage;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class DocsController.
