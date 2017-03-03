@@ -9,6 +9,8 @@ declare(strict_types=1);
 namespace Service\ContentRenderer\Renderers;
 
 use cebe\markdown\Parser;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 /**
  * Class LaravelDocsRenderer.
@@ -68,26 +70,6 @@ class LaravelDocsRenderer extends MarkdownRenderer
     }
 
     /**
-     * @return \Closure
-     */
-    private function removeInternalStyles(): \Closure
-    {
-        return function (string $body) {
-            return preg_replace('/<style>.*?<\/style>/isu', '', $body);
-        };
-    }
-
-    /**
-     * @return \Closure
-     */
-    private function updateInternalNavigation(): \Closure
-    {
-        return function (string $body) {
-            return preg_replace('/<div.*?markdown="1".*?>.*?<\/div>/isu', '', $body);
-        };
-    }
-
-    /**
      * Скрывает из исходного текста все вхождения "<a .... name="some">...</a>".
      * Требуется для избежания конфликтов с вёрсткой.
      * @return \Closure
@@ -110,6 +92,36 @@ class LaravelDocsRenderer extends MarkdownRenderer
     {
         return function (string $body) {
             return $body;
+        };
+    }
+
+    /**
+     * @return \Closure
+     */
+    private function removeInternalStyles(): \Closure
+    {
+        return function (string $body) {
+            return preg_replace('/<style>.*?<\/style>/isu', '', $body);
+        };
+    }
+
+    /**
+     * @return \Closure
+     */
+    private function updateInternalNavigation(): \Closure
+    {
+        return function (string $body) {
+            return preg_replace_callback('/<div.*?markdown="1".*?>\n*(.*?)\n*<\/div>/isu', function ($args) {
+                return (new Collection(explode("\n", $args[1] ?? '')))
+                    ->filter(function (string $line) {
+                        return trim($line);
+                    })
+                    ->map(function (string $line) {
+                        $line = trim($line);
+                        return Str::startsWith($line, '- ') ? $line : '- ' . $line;
+                    })
+                    ->implode("\n");
+            }, $body);
         };
     }
 
