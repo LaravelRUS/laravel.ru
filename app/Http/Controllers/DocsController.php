@@ -37,10 +37,13 @@ class DocsController extends Controller
      */
     public function show(string $version, string $slug): View
     {
-        $page = DocsPage::whereVersion($version)->whereSlug($slug)->firstOrFail();
+        $page = DocsPage::with('docs')
+            ->whereVersion($version)
+            ->whereSlug($slug)
+            ->firstOrFail();
 
         return view('page.docs.show', [
-            'docs' => $page,
+            'page' => $page,
         ]);
     }
 }

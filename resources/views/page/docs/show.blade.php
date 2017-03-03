@@ -1,8 +1,8 @@
 @extends('layout.master')
 
-<?php /** @var \App\Models\Docs $docs */ ?>
+<?php /** @var \App\Models\DocsPage $page */ ?>
 
-@push('title', sprintf('%s (%s) &mdash;', $docs->title, $docs->version))
+@push('title', sprintf('%s (%s) &mdash;', $page->title, $page->docs->version))
 
 @section('content')
     <section class="container-12 docs-show" data-vm="DocsShowViewModel">
@@ -12,7 +12,7 @@
             <div data-id="nav" class="docs-navigation" data-bind="css: { fixed: fixed, 'bind-top': top }">
                 <nav>
                     <ul>
-                        @foreach($docs->getNav('h1', 'h2', 'h3', 'h4') as $link)
+                        @foreach($page->getNav('h1', 'h2', 'h3', 'h4') as $link)
                             <li class="level-{{ $link->level }}">
                                 <a href="#{{ $link->anchor or '' }}">
                                     {!! $link->title or 'undefined' !!}
@@ -27,9 +27,9 @@
 
         <section class="grid-8 docs-content">
             <div data-bind="interpolation: false">
-                <h1>{{ $docs->title }}</h1>
+                <h1>{{ $page->title }}</h1>
 
-                {!! $docs->content_rendered !!}
+                {!! $page->content_rendered !!}
             </div>
         </section>
     </section>
