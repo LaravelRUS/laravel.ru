@@ -115,7 +115,7 @@ class CreateDocsTable extends Migration
                 'slug'            => 'laravel',
                 'version'         => '5.3',
                 'description'     => 'Русский перевод документации Laravel Framework',
-                'renderer'        => 'laravel',
+                'renderer'        => 'laravel-rus',
                 'importer'        => 'github',
                 'importer_config' => new GitHubConfig([
                     GitHubConfig::CONFIG_ORGANISATION => 'LaravelRUS',
@@ -128,7 +128,7 @@ class CreateDocsTable extends Migration
                 'slug'            => 'laravel',
                 'version'         => '5.2',
                 'description'     => 'Русский перевод документации Laravel Framework',
-                'renderer'        => 'laravel',
+                'renderer'        => 'laravel-rus',
                 'importer'        => 'github',
                 'importer_config' => new GitHubConfig([
                     GitHubConfig::CONFIG_ORGANISATION => 'LaravelRUS',
@@ -141,7 +141,7 @@ class CreateDocsTable extends Migration
                 'slug'            => 'laravel',
                 'version'         => '5.1',
                 'description'     => 'Русский перевод документации Laravel Framework',
-                'renderer'        => 'laravel',
+                'renderer'        => 'laravel-rus',
                 'importer'        => 'github',
                 'importer_config' => new GitHubConfig([
                     GitHubConfig::CONFIG_ORGANISATION => 'LaravelRUS',
@@ -154,7 +154,7 @@ class CreateDocsTable extends Migration
                 'slug'            => 'laravel',
                 'version'         => '5.0',
                 'description'     => 'Русский перевод документации Laravel Framework',
-                'renderer'        => 'laravel',
+                'renderer'        => 'laravel-rus',
                 'importer'        => 'github',
                 'importer_config' => new GitHubConfig([
                     GitHubConfig::CONFIG_ORGANISATION => 'LaravelRUS',
@@ -167,7 +167,7 @@ class CreateDocsTable extends Migration
                 'slug'            => 'laravel',
                 'version'         => '4.2',
                 'description'     => 'Русский перевод документации Laravel Framework',
-                'renderer'        => 'laravel',
+                'renderer'        => 'laravel-rus',
                 'importer'        => 'github',
                 'importer_config' => new GitHubConfig([
                     GitHubConfig::CONFIG_ORGANISATION => 'LaravelRUS',
@@ -180,7 +180,7 @@ class CreateDocsTable extends Migration
                 'slug'            => 'laravel',
                 'version'         => '4.1',
                 'description'     => 'Русский перевод документации Laravel Framework',
-                'renderer'        => 'laravel',
+                'renderer'        => 'laravel-rus',
                 'importer'        => 'github',
                 'importer_config' => new GitHubConfig([
                     GitHubConfig::CONFIG_ORGANISATION => 'LaravelRUS',
