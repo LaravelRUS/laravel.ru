@@ -50,7 +50,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
     private function removeDocumentTitle(): \Closure
     {
         return function (string $body) {
-            return preg_replace('/^[\s\n]*?#\s+?.*?\n/isu', '', $body);
+            return preg_replace_callback('/^[\s\n]*?#\s+?.*?\n/isu', '', $body);
         };
     }
 
@@ -110,9 +110,11 @@ class LaravelDocsRenderer extends MarkdownRenderer
      */
     private function updateInternalNavigation(): \Closure
     {
-        return function (string $body) {
-            return preg_replace_callback('/<div.*?markdown="1".*?>\n*(.*?)\n*<\/div>/isu', function ($args) {
-                return (new Collection(explode("\n", $args[1] ?? '')))
+        $pattern = '/<div\s+class="[\w\-\s0-9]+"\s+markdown="1"\s*>\n*(.*?)\n*<\/div>/isu';
+
+        return function (string $body) use ($pattern) {
+            return preg_replace_callback($pattern, function ($args) {
+                $result = (new Collection(explode("\n", $args[1] ?? '')))
                     ->filter(function (string $line) {
                         return trim($line);
                     })
@@ -121,6 +123,8 @@ class LaravelDocsRenderer extends MarkdownRenderer
                         return Str::startsWith($line, '- ') ? $line : '- ' . $line;
                     })
                     ->implode("\n");
+
+                return "\n${result}\n";
             }, $body);
         };
     }
