@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: './app',
@@ -44,6 +45,11 @@ module.exports = {
       'node_modules'
     ]
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"development"'
+    })
+  ],
   devServer: {
     contentBase: path.join(__dirname, 'app'),
     historyApiFallback: true,
