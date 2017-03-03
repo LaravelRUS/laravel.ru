@@ -42,7 +42,6 @@ class CorsMiddleware
         'X-Api-Token',
         'X-Access-Token',
         'X-Requested-With',
-        'X-Requested-With',
 
         'DNT',
         'Host',
