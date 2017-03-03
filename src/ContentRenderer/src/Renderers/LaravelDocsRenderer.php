@@ -50,7 +50,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
     private function removeDocumentTitle(): \Closure
     {
         return function (string $body) {
-            return preg_replace_callback('/^[\s\n]*?#\s+?.*?\n/isu', '', $body);
+            return preg_replace('/^[\s\n]*?#\s+?.*?\n/isu', '', $body);
         };
     }
 
