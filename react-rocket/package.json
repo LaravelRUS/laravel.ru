@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --hot",
     "lint:js": "eslint app",
     "lint:scss": "sass-lint app/**/*.scss -v -q",
-    "lint": "yarn run lint:js && yarn run lint:scss"
+    "lint": "yarn run lint:js && yarn run lint:scss",
+    "dev": "cross-env BABEL_ENV=es webpack-dev-server --config webpack/webpack.dev.config --hot",
+    "build:prod": "cross-env BABEL_ENV=es webpack --config webpack/webpack.prod.config"
   },
   "dependencies": {
     "react": "^15.4.2",

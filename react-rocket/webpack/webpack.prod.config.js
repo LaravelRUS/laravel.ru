@@ -2,10 +2,11 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
+  devtool: 'hidden-source-map',
   entry: './app',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'app')
+    path: path.resolve(__dirname, '../../public/dist'),
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -41,24 +42,29 @@ module.exports = {
   },
   resolve: {
     modules: [
-      path.resolve(__dirname, 'app'),
+      path.resolve(__dirname, '../app'),
       'node_modules'
+    ],
+    mainFields: [
+      'browser',
+      'module',
+      'jsnext:main',
+      'main'
     ]
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"development"'
+      'process.env.NODE_ENV': '"production"'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        screw_ie8: true,
+        warnings: false
+      },
+      output: {
+        comments: false
+      },
+      sourceMap: false
     })
-  ],
-  devServer: {
-    contentBase: path.join(__dirname, 'app'),
-    historyApiFallback: true,
-    host: '0.0.0.0',
-    noInfo: true,
-    stats: 'errors-only',
-    overlay: {
-      warnings: true,
-      errors: true
-    }
-  }
+  ]
 }
