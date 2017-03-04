@@ -1,0 +1,27 @@
+@keyframes fadeLeft {
+  0% {
+    opacity: .15;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: .15;
+  }
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .15;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,27 @@
+.spinner {
+  position: relative;
+  width: $spinner-width;
+  height: $spinner-height;
+  margin: 0 auto;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    width: $spinner-object-size;
+    height: $spinner-object-size;
+    border-radius: 50%;
+    background-color: $spinner-color;
+    content: '';
+  }
+
+  &::before {
+    left: 0;
+    animation: fadeLeft 1s ease infinite;
+  }
+
+  &::after {
+    left: $spinner-object-distance;
+    animation: fadeRight 1s ease infinite;
+  }
+}
