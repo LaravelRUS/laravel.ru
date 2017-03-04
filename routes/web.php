@@ -17,6 +17,7 @@ $router->get('/', 'HomeController@index')->name('home');
 
 // TODO REMOVE THIS
 $router->get('/test', 'TestController@test');
+$router->get('/test-react', 'TestController@testReact');
 
 /*
 |--------------------------------------------------------------------------

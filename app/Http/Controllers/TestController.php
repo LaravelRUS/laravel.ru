@@ -16,4 +16,8 @@ class TestController
     {
         return $manager->findFiles('translation-gang', 'ru.docs.laravel', '5.4-ru');
     }
+
+    public function testReact() {
+      return view('layout.master-react');
+    }
 }
