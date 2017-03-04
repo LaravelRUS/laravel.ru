@@ -1,0 +1,35 @@
+.laravel-header {
+  height: 80px;
+  border-top: 8px solid transparent;
+  background-color: white;
+  border-image: linear-gradient(to right, $colors-red 0%, #E57373 30%, #EF5350 100%);
+  border-image-slice: 1;
+
+  .contents {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .navigation {
+    > ul {
+      display: flex;
+      flex-direction: row;
+
+      > li {
+        &:not(:first-of-type) {
+          margin-left: 30px;
+        }
+      }
+
+      ul {
+        display: none;
+      }
+    }
+  }
+}
