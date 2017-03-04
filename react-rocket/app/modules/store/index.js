@@ -9,7 +9,7 @@ const devTools = (process.env.NODE_ENV === 'development' && window.devToolsExten
  ? window.devToolsExtension()
  : f => f
 
-export function configureStore(reducers, initialState) {
+export function configureStore({ reducers, middleware, initialState }) {
   store = createStore(
     combineReducers({
       form: formReducer,
@@ -17,7 +17,7 @@ export function configureStore(reducers, initialState) {
     }),
     initialState,
     compose(
-      applyMiddleware(thunk),
+      applyMiddleware(...[thunk, ...middleware]),
       devTools
     )
   )
