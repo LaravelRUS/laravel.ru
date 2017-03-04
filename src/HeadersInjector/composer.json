@@ -1,0 +1,21 @@
+{
+    "name": "laravelrus/headers-injector",
+    "license": "MIT",
+    "type": "library",
+    "description": "Headers injector",
+    "authors": [
+        {
+            "name": "Serafim",
+            "email": "nesk@xakep.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "cebe/markdown": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Service\\HeadersInjector\\": "src/"
+        }
+    }
+}

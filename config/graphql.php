@@ -62,7 +62,7 @@ return [
     | Any middleware for the graphql route group
     */
     'middleware'           => [
-        \App\Http\Middleware\CorsMiddleware::class,
+        'headers:cors'
     ],
 
     /*
