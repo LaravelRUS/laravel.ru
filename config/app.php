@@ -189,6 +189,7 @@ return [
 
         Service\ContentRenderer\ContentRendererServiceProvider::class,
         Service\DocsImporter\DocsImporterServiceProvider::class,
+        Service\HeadersInjector\HeadersInjectorServiceProvider::class,
     ],
 
     'local_providers' => [
