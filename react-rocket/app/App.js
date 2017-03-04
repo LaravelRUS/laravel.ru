@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Articles, Docs, Home, Layout, Login, NotFound, Register } from 'scenes'
 
-const routerBaseName = process.env.NODE_ENV === 'production' ? '/test-react' : ''
+const routerBaseName = process.env.NODE_ENV === 'production' ? '/react' : ''
 
 const App = () => (
   <BrowserRouter basename={routerBaseName}>
