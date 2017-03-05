@@ -40,15 +40,6 @@ class Docs extends Model
     }
 
     /**
-     * @param  string $title
-     * @return string
-     */
-    public function getTitleAttribute(string $title): string
-    {
-        return Str::ucfirst($title) . ' (' . $this->version . ')';
-    }
-
-    /**
      * @param DocsConnectionConfigInterface|array $config
      */
     public function setImporterConfigAttribute($config)

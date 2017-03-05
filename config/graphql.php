@@ -62,7 +62,7 @@ return [
     | Any middleware for the graphql route group
     */
     'middleware'           => [
-        'api'
+        'api',
     ],
 
     /*
@@ -92,6 +92,7 @@ return [
                 'users'    => \App\GraphQL\Queries\UsersQuery::class,
                 'tags'     => \App\GraphQL\Queries\TagsQuery::class,
                 'tips'     => \App\GraphQL\Queries\TipsQuery::class,
+                'docs'     => \App\GraphQL\Queries\DocsQuery::class,
             ],
             'mutation' => [
                 'article_update' => \App\GraphQL\Mutations\ArticleUpdate::class,
@@ -100,10 +101,12 @@ return [
     ],
 
     'types'           => [
-        \App\GraphQL\Types\ArticleType::getName() => \App\GraphQL\Types\ArticleType::class,
-        \App\GraphQL\Types\UserType::getName()    => \App\GraphQL\Types\UserType::class,
-        \App\GraphQL\Types\TagType::getName()     => \App\GraphQL\Types\TagType::class,
-        \App\GraphQL\Types\TipType::getName()     => \App\GraphQL\Types\TipType::class,
+        \App\GraphQL\Types\ArticleType::getName()  => \App\GraphQL\Types\ArticleType::class,
+        \App\GraphQL\Types\UserType::getName()     => \App\GraphQL\Types\UserType::class,
+        \App\GraphQL\Types\TagType::getName()      => \App\GraphQL\Types\TagType::class,
+        \App\GraphQL\Types\TipType::getName()      => \App\GraphQL\Types\TipType::class,
+        \App\GraphQL\Types\DocsType::getName()     => \App\GraphQL\Types\DocsType::class,
+        \App\GraphQL\Types\DocsPageType::getName() => \App\GraphQL\Types\DocsPageType::class,
     ],
 
     /*

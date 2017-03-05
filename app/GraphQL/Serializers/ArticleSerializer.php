@@ -34,7 +34,7 @@ class ArticleSerializer extends AbstractSerializer
             'preview'        => $article->preview_rendered,
             'preview_source' => $article->preview_source,
             'status'         => $article->status,
-            'published_at'   => $article->published_at->toRfc3339String(),
+            'published_at'   => $this->formatDateTime($article->published_at),
             'user'           => UserSerializer::serialize($article->user),
             'tags'           => TagSerializer::collection($article->tags),
         ];
