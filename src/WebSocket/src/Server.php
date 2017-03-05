@@ -87,7 +87,7 @@ class Server implements MessageComponentInterface
      */
     public function onMessage(ConnectionInterface $from, $message): void
     {
-        $this->logs->info("Input message {$message} from {$conn->resourceId}");
+        $this->logs->info("Input message {$message} from {$from->resourceId}");
 
         try {
             $request = json_decode($message, true);

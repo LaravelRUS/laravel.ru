@@ -22,6 +22,9 @@ services:
             - workspace
         expose:
             - "9000"
+            - "8080"
+        ports:
+            - "8080:8080"
         extra_hosts:
             - "dockerhost:172.17.0.1"
         links:

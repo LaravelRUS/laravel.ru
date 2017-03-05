@@ -114,5 +114,5 @@ WORKDIR /var/www/laravel.su
 RUN usermod -u 1000 www-data
 USER www-data
 
-EXPOSE 9000
+EXPOSE 9000 8080
 
