@@ -80,7 +80,8 @@
                 "src/DocsImporter/composer.json",
                 "src/ContentRenderer/composer.json",
                 "src/ImageUploader/composer.json",
-                "src/HeadersInjector/composer.json"
+                "src/HeadersInjector/composer.json",
+                "src/WebSocket/composer.json"
             ]
         }
     }
