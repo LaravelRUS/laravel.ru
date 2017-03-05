@@ -46,6 +46,14 @@ class User extends Authenticatable implements GravatarSupports
     ];
 
     /**
+     * @return User
+     */
+    public static function guest(): User
+    {
+        return new User(['id' => 0, 'name' => 'Guest']);
+    }
+
+    /**
      * @param  string $password
      * @return User
      */
