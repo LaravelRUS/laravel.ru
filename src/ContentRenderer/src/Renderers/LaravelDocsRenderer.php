@@ -9,8 +9,8 @@ declare(strict_types=1);
 namespace Service\ContentRenderer\Renderers;
 
 use cebe\markdown\Parser;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 
 /**
  * Class LaravelDocsRenderer.
@@ -120,6 +120,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
                     })
                     ->map(function (string $line) {
                         $line = trim($line);
+
                         return Str::startsWith($line, '- ') ? $line : '- ' . $line;
                     })
                     ->implode("\n");

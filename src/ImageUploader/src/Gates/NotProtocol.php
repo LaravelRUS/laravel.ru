@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Service\ImageUploader\Gates;
 
@@ -31,7 +31,7 @@ class NotProtocol implements GateInterface
     }
 
     /**
-     * @param string[] ...$protocols
+     * @param  string[]    ...$protocols
      * @return NotProtocol
      */
     public function disallow(string ...$protocols): NotProtocol
@@ -44,7 +44,7 @@ class NotProtocol implements GateInterface
     }
 
     /**
-     * @param string $imagePath
+     * @param  string                    $imagePath
      * @return bool
      * @throws \InvalidArgumentException
      */

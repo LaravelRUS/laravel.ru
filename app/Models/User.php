@@ -50,7 +50,7 @@ class User extends Authenticatable implements GravatarSupports
      */
     public static function guest(): User
     {
-        return new User(['id' => 0, 'name' => 'Guest']);
+        return new self(['id' => 0, 'name' => 'Guest']);
     }
 
     /**

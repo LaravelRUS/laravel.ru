@@ -42,7 +42,7 @@ class GitHubDocsSync extends Command
     public function handle(DocsImporterManager $manager): void
     {
         $isForce = $this->option('force');
-        $docs    = Docs::with('pages')->get();
+        $docs = Docs::with('pages')->get();
 
         if ($docs->isEmpty()) {
             $this->info('Skipping: No docs provided.');

@@ -10,12 +10,9 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Models\Tip\ContentObserver;
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use Service\ContentRenderer\ContentRendererInterface;
-use Service\ContentRenderer\RenderersRepository;
 
 /**
  * Class AppServiceProvider.
@@ -38,12 +35,12 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * @param Repository $repository
+     * @param  Repository $repository
      * @return void
      */
     private function loadProductionProviders(Repository $repository): void
     {
-        if (!$this->app->isLocal()) {
+        if (! $this->app->isLocal()) {
             $providers = (array) $repository->get('app.production_providers', []);
 
             foreach ($providers as $provider) {

@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
 use App\Models\User;
-use Illuminate\Contracts\Auth\Guard;
+use App\Models\Article;
 use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Auth\Guard;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
 /**
@@ -32,8 +32,8 @@ class HomeController extends Controller
     }
 
     /**
-     * @param JWTInterface $jwt
-     * @param Guard        $guard
+     * @param  JWTInterface                                                  $jwt
+     * @param  Guard                                                         $guard
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
     public function react(JWTInterface $jwt, Guard $guard): View

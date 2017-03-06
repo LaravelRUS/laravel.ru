@@ -9,19 +9,17 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use App\Models\User;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Container\Container;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
-use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+use Illuminate\Contracts\Auth\Guard;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Illuminate\Contracts\Container\Container;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
  * Class ApiAuthenticate.
@@ -57,8 +55,8 @@ class ApiAuthenticate
     }
 
     /**
-     * @param Request  $request
-     * @param \Closure $next
+     * @param  Request                          $request
+     * @param  \Closure                         $next
      * @return mixed
      * @throws BadRequestHttpException
      * @throws UnprocessableEntityHttpException
@@ -74,7 +72,7 @@ class ApiAuthenticate
     }
 
     /**
-     * @param Request $request
+     * @param  Request                          $request
      * @return Authenticatable|User
      * @throws BadRequestHttpException
      * @throws UnprocessableEntityHttpException
@@ -96,7 +94,7 @@ class ApiAuthenticate
     }
 
     /**
-     * @param string $token
+     * @param  string                           $token
      * @return Authenticatable
      * @throws BadRequestHttpException
      * @throws UnprocessableEntityHttpException
@@ -113,7 +111,7 @@ class ApiAuthenticate
 
         [$id, $password] = [
             Arr::get($userInfo, 'user.id'),
-            Arr::get($userInfo, 'user.password')
+            Arr::get($userInfo, 'user.password'),
         ];
 
         if (User::guest()->id === $id) {

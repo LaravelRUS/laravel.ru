@@ -16,7 +16,7 @@ use Illuminate\Contracts\Support\Arrayable;
 trait OptionsSerializer
 {
     /**
-     * @param mixed $options
+     * @param  mixed                     $options
      * @return string
      * @throws \InvalidArgumentException
      */
@@ -33,7 +33,7 @@ trait OptionsSerializer
                 return $options ? 'true' : 'false';
 
             case is_int($options):
-                return (string)$options;
+                return (string) $options;
 
             case is_object($options) && $options instanceof Arrayable:
                 return $this->serializeArray($options->toArray());
@@ -42,7 +42,7 @@ trait OptionsSerializer
                 return $this->serializeArray(iterator_to_array($options));
 
             case is_object($options) && method_exists($options, '__toString'):
-                return (string)$options;
+                return (string) $options;
         }
 
         $message = sprintf('Options type %s are not supported', gettype($options));
@@ -50,8 +50,8 @@ trait OptionsSerializer
     }
 
     /**
-     * @param array  $options
-     * @param string $glue
+     * @param  array  $options
+     * @param  string $glue
      * @return string
      */
     private function serializeArray(array $options, string $glue = ','): string
