@@ -1,7 +1,13 @@
 language: php
 
+services:
+  - mysql
+
 php:
   - 7.1
+
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
 
 before_script:
   - composer self-update
