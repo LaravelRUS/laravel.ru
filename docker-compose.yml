@@ -16,8 +16,6 @@ services:
         build:
             context: ./docker/php
         command: "/start.sh && php-fpm"
-        volumes:
-            - "./docker/logs/php-fpm:/var/log"
         volumes_from:
             - workspace
         expose:
@@ -41,7 +39,6 @@ services:
         volumes_from:
             - workspace
         volumes:
-            - ./docker/logs/nginx/:/var/log/nginx
             - ./docker/nginx/sites-available/:/etc/nginx/sites-available
         ports:
             - "80:80"
