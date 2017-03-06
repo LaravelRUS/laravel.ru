@@ -66,6 +66,7 @@ class Server implements MessageComponentInterface
     {
         $ws = new WsServer($app->make(static::class));
 
+        // TODO add proxy "server" class with laravel api middleware
         $http = new HttpServer($ws);
 
         return IoServer::factory($http, $port, $host);
