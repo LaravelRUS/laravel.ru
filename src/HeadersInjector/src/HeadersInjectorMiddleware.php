@@ -31,9 +31,9 @@ class HeadersInjectorMiddleware
     }
 
     /**
-     * @param Request     $request
-     * @param \Closure    $next
-     * @param string|null $config
+     * @param  Request     $request
+     * @param  \Closure    $next
+     * @param  string|null $config
      * @return Response
      */
     public function handle(Request $request, \Closure $next, string $config = null)

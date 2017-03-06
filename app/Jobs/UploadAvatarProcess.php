@@ -11,11 +11,11 @@ declare(strict_types=1);
 namespace App\Jobs;
 
 use App\Models\User;
+use Psr\Log\LoggerInterface;
 use Illuminate\Bus\Queueable;
 use Intervention\Image\ImageManager;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use Psr\Log\LoggerInterface;
 use Service\ImageUploader\AvatarUploader;
 use Service\ImageUploader\Gates\FileSize;
 use Illuminate\Contracts\Queue\ShouldQueue;

@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Service\WebSocket;
 
 use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
  * Class Request.
@@ -18,7 +17,7 @@ class WebSocketRequest
 {
     /**
      * Request constructor.
-     * @param array $data
+     * @param  array                                                                    $data
      * @throws \Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException
      */
     public function __construct(array $data)
@@ -31,7 +30,7 @@ class WebSocketRequest
      */
     public function getRequestId(): int
     {
-        return (int)($this->data['id'] ?? 0);
+        return (int) ($this->data['id'] ?? 0);
     }
 
     /**

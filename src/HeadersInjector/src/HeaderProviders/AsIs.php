@@ -19,7 +19,7 @@ class AsIs implements HeaderProviderInterface
     use OptionsSerializer;
 
     /**
-     * @param string $headerName
+     * @param  string                  $headerName
      * @return bool
      * @throws \BadMethodCallException
      */
@@ -29,10 +29,10 @@ class AsIs implements HeaderProviderInterface
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
-     * @param string   $headerName
-     * @param mixed    $options
+     * @param  Request                   $request
+     * @param  Response                  $response
+     * @param  string                    $headerName
+     * @param  mixed                     $options
      * @return \Generator
      * @throws \InvalidArgumentException
      */

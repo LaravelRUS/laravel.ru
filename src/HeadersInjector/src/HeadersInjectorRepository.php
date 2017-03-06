@@ -8,18 +8,14 @@ declare(strict_types=1);
 
 namespace Service\HeadersInjector;
 
-use Illuminate\Contracts\Container\Container;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Config\Repository;
-use Service\HeadersInjector\HeaderProviders\AccessControlAllowOrigin;
+use Illuminate\Contracts\Container\Container;
 use Service\HeadersInjector\HeaderProviders\AsIs;
-use Service\HeadersInjector\HeaderProviders\HeaderProviderInterface;
 use Service\HeadersInjector\HeaderProviders\OptionsSerializer;
+use Service\HeadersInjector\HeaderProviders\HeaderProviderInterface;
 
 /**
- * Class HeadersInjectorRepository
- * @package Service\HeadersInjector
+ * Class HeadersInjectorRepository.
  */
 class HeadersInjectorRepository extends Repository
 {
@@ -50,8 +46,8 @@ class HeadersInjectorRepository extends Repository
     }
 
     /**
-     * @param Container $app
-     * @param array     $providers
+     * @param  Container                 $app
+     * @param  array                     $providers
      * @return HeadersInjectorRepository
      */
     private function bootProviders(Container $app, array $providers = []): HeadersInjectorRepository
@@ -64,7 +60,7 @@ class HeadersInjectorRepository extends Repository
     }
 
     /**
-     * @param HeaderProviderInterface $provider
+     * @param  HeaderProviderInterface   $provider
      * @return HeadersInjectorRepository
      */
     public function addHeaderProvider(HeaderProviderInterface $provider): HeadersInjectorRepository
@@ -75,7 +71,7 @@ class HeadersInjectorRepository extends Repository
     }
 
     /**
-     * @param string|null $configName
+     * @param  string|null $configName
      * @return array
      */
     public function getHeaders(string $configName = null): array
@@ -84,7 +80,7 @@ class HeadersInjectorRepository extends Repository
     }
 
     /**
-     * @param string $headerName
+     * @param  string                  $headerName
      * @return HeaderProviderInterface
      */
     public function getHeaderValueResolver(string $headerName): HeaderProviderInterface
@@ -93,7 +89,7 @@ class HeadersInjectorRepository extends Repository
     }
 
     /**
-     * @param string $headerName
+     * @param  string                  $headerName
      * @return HeaderProviderInterface
      */
     private function match(string $headerName): HeaderProviderInterface

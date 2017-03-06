@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace App\Models\DocsPage;
 
 use App\Models\DocsPage;
-
 use Service\ContentRenderer\Anchors\Parser;
 use Service\ContentRenderer\RenderersRepository;
 use Service\ContentRenderer\Anchors\ProcessedBody;
@@ -67,7 +66,7 @@ class ContentObserver
 
     /**
      * @param  ContentRendererInterface $renderer
-     * @param  string                 $body
+     * @param  string                   $body
      * @return ProcessedBody
      */
     private function render(ContentRendererInterface $renderer, string $body): ProcessedBody

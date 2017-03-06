@@ -8,13 +8,13 @@ declare(strict_types=1);
 
 namespace Service\WebSocket;
 
-use Illuminate\Foundation\Application;
-use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
-use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
+use Ratchet\Server\IoServer;
 use Ratchet\WebSocket\WsServer;
 use Ratchet\ConnectionInterface;
+use Monolog\Handler\StreamHandler;
+use Illuminate\Foundation\Application;
 use Ratchet\MessageComponentInterface;
 use Folklore\GraphQL\GraphQLController;
 use Illuminate\Contracts\Container\Container;
@@ -41,7 +41,7 @@ class Server implements MessageComponentInterface
 
     /**
      * Server constructor.
-     * @param Application $app
+     * @param  Application $app
      * @throws \Exception
      */
     public function __construct(Application $app)
@@ -57,9 +57,9 @@ class Server implements MessageComponentInterface
     }
 
     /**
-     * @param Container $app
-     * @param int       $port
-     * @param string    $host
+     * @param  Container $app
+     * @param  int       $port
+     * @param  string    $host
      * @return IoServer
      */
     public static function new(Container $app, int $port = 8080, string $host = '0.0.0.0'): IoServer
@@ -105,10 +105,8 @@ class Server implements MessageComponentInterface
                 'data'   => $response['data'] ?? [],
                 'errors' => $response['errors'] ?? [],
             ]));
-
         } catch (\Exception $e) {
             $this->onError($from, $e);
-
         } catch (\Throwable $e) {
             $this->onError($from, new \ErrorException($e->getMessage(), $e->getCode()));
         }

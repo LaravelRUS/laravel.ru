@@ -12,13 +12,12 @@ use App\Models\Docs;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class DocsSerializer
- * @package App\GraphQL\Serializers
+ * Class DocsSerializer.
  */
 class DocsSerializer extends AbstractSerializer
 {
     /**
-     * @param Model|Docs $docs
+     * @param  Model|Docs $docs
      * @return array
      */
     public function toArray(Model $docs): array
@@ -31,7 +30,7 @@ class DocsSerializer extends AbstractSerializer
             'description' => $docs->description,
             'created_at'  => $this->formatDateTime($docs->created_at),
             'updated_at'  => $this->formatDateTime($docs->updated_at),
-            'pages'       => DocsPageSerializer::collection($docs->pages)
+            'pages'       => DocsPageSerializer::collection($docs->pages),
         ];
     }
 }

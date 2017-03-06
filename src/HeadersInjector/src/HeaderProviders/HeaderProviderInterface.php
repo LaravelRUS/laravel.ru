@@ -17,16 +17,16 @@ use Illuminate\Http\Response;
 interface HeaderProviderInterface
 {
     /**
-     * @param string $headerName
+     * @param  string $headerName
      * @return bool
      */
     public function match(string $headerName): bool;
 
     /**
-     * @param Request  $request
-     * @param Response $response
-     * @param string   $headerName
-     * @param mixed    $options
+     * @param  Request    $request
+     * @param  Response   $response
+     * @param  string     $headerName
+     * @param  mixed      $options
      * @return \Generator
      */
     public function inject(Request $request, Response $response, string $headerName, $options): \Generator;

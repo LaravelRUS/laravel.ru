@@ -18,9 +18,6 @@ return [
     */
     'default' => 'markdown',
 
-
-
-
     'renderers' => [
         /*
         |--------------------------------------------------------------------------
@@ -86,6 +83,6 @@ return [
     |
     */
     'mapping' => [
-         \App\Models\Tip\ContentObserver::class => 'text'
-    ]
+         \App\Models\Tip\ContentObserver::class => 'text',
+    ],
 ];

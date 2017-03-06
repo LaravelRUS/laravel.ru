@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Service\ImageUploader\Gates;
 
@@ -14,7 +14,7 @@ namespace Service\ImageUploader\Gates;
 interface GateInterface
 {
     /**
-     * @param string $imagePath
+     * @param  string $imagePath
      * @return bool
      */
     public function check(string $imagePath): bool;

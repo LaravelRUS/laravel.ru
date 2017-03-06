@@ -8,19 +8,17 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Serializers;
 
-use App\GraphQL\Types\DocsPageType;
 use App\Models\Docs;
 use App\Models\DocsPage;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class DocsSerializer
- * @package App\GraphQL\Serializers
+ * Class DocsSerializer.
  */
 class DocsPageSerializer extends AbstractSerializer
 {
     /**
-     * @param Model|DocsPage $page
+     * @param  Model|DocsPage $page
      * @return array
      */
     public function toArray(Model $page): array

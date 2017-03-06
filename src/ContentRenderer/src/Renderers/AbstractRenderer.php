@@ -29,7 +29,7 @@ abstract class AbstractRenderer implements ContentRendererInterface
     private $after = [];
 
     /**
-     * @param  \Closure                     $callback
+     * @param  \Closure                       $callback
      * @return $this|ContentRendererInterface
      */
     public function before(\Closure $callback): ContentRendererInterface
@@ -40,7 +40,7 @@ abstract class AbstractRenderer implements ContentRendererInterface
     }
 
     /**
-     * @param  \Closure                     $callback
+     * @param  \Closure                       $callback
      * @return $this|ContentRendererInterface
      */
     public function after(\Closure $callback): ContentRendererInterface

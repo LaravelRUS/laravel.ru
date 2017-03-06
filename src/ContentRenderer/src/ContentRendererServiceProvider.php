@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Service\ContentRenderer;
 
@@ -70,7 +70,7 @@ class ContentRendererServiceProvider extends ServiceProvider
     }
 
     /**
-     * @param RenderersRepository $repository
+     * @param  RenderersRepository       $repository
      * @throws \InvalidArgumentException
      */
     private function bindContextualRelations(RenderersRepository $repository): void

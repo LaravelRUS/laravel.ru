@@ -65,7 +65,7 @@ abstract class AbstractSerializer
     }
 
     /**
-     * @param \DateTime|null $date
+     * @param  \DateTime|null $date
      * @return string
      */
     protected function formatDateTime(?\DateTime $date): string

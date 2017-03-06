@@ -8,8 +8,6 @@ declare(strict_types=1);
 
 namespace Service\HeadersInjector\HeaderProviders;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 
 /**

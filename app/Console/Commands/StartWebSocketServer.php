@@ -9,16 +9,9 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use Carbon\Carbon;
-use App\Models\Bot;
-use App\Models\Article;
-use Illuminate\Console\Command;
-use App\Services\DataProviders\Manager;
-use App\Services\DataProviders\ExternalArticle;
-use App\Services\DataProviders\DataProviderInterface;
-use Illuminate\Contracts\Container\Container;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Service\WebSocket\Server;
+use Illuminate\Console\Command;
+use Illuminate\Contracts\Container\Container;
 
 /**
  * Class StartWebSocketServer.
@@ -38,14 +31,14 @@ class StartWebSocketServer extends Command
     protected $description = 'Start a web socket server';
 
     /**
-     * @param Container $app
+     * @param  Container         $app
      * @throws \RuntimeException
      */
     public function handle(Container $app)
     {
         $this->info('Starting a WebSocket server');
 
-        $server = Server::new($app, (int)env('WEBSOCKET_PORT', 8080), env('WEBSOCKET_HOST', '127.0.0.1'));
+        $server = Server::new($app, (int) env('WEBSOCKET_PORT', 8080), env('WEBSOCKET_HOST', '127.0.0.1'));
         $server->run();
     }
 }

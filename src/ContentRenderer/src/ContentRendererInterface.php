@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Service\ContentRenderer;
 
@@ -14,7 +14,7 @@ namespace Service\ContentRenderer;
 interface ContentRendererInterface
 {
     /**
-     * @param  \Closure                     $callback
+     * @param  \Closure                       $callback
      * @return $this|ContentRendererInterface
      */
     public function before(\Closure $callback): ContentRendererInterface;
@@ -26,7 +26,7 @@ interface ContentRendererInterface
     public function render(string $original): string;
 
     /**
-     * @param  \Closure                     $callback
+     * @param  \Closure                       $callback
      * @return $this|ContentRendererInterface
      */
     public function after(\Closure $callback): ContentRendererInterface;

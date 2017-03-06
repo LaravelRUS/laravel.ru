@@ -82,7 +82,7 @@ class RenderersRepository extends Repository
      */
     public function getContextualBindings(): \Generator
     {
-        foreach ((array)$this->get('mapping', []) as $context => $alias) {
+        foreach ((array) $this->get('mapping', []) as $context => $alias) {
             yield $context => $this->getRenderer($alias);
         }
     }

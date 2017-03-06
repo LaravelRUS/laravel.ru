@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Service\ImageUploader\Gates;
 
@@ -14,12 +14,12 @@ namespace Service\ImageUploader\Gates;
 class FileSize implements GateInterface
 {
     /**
-     * max = 1000 -> (b) -> 1000 -> (kb) -> 20 (mb)
+     * max = 1000 -> (b) -> 1000 -> (kb) -> 20 (mb).
      */
     private const SIZE_MAX = 1000 * 1000 * 20;
 
     /**
-     * 2 bytes min? Why not? %)
+     * 2 bytes min? Why not? %).
      */
     private const SIZE_MIN = 2;
 
@@ -46,7 +46,7 @@ class FileSize implements GateInterface
     }
 
     /**
-     * @param string $imagePath
+     * @param  string               $imagePath
      * @return bool
      * @throws \OutOfRangeException
      */
