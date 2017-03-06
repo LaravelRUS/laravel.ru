@@ -45,7 +45,7 @@ class StartWebSocketServer extends Command
     {
         $this->info('Starting a WebSocket server');
 
-        $server = Server::new($app);
+        $server = Server::new($app, (int)env('WEBSOCKET_PORT', 8080), env('WEBSOCKET_HOST', '127.0.0.1'));
         $server->run();
     }
 }
