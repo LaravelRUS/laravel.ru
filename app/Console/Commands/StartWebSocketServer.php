@@ -9,14 +9,13 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use Service\WebSocket\Server;
-use Illuminate\Console\Command;
-use Illuminate\Contracts\Container\Container;
+use Service\WebSocket\FrontController;
+use Illuminate\Foundation\Application;
 
 /**
  * Class StartWebSocketServer.
  */
-class StartWebSocketServer extends Command
+class StartWebSocketServer extends AbstractCommand
 {
     /**
      * The name and signature of the console command.
@@ -31,14 +30,21 @@ class StartWebSocketServer extends Command
     protected $description = 'Start a web socket server';
 
     /**
-     * @param  Container         $app
+     * @param  Application $app
      * @throws \RuntimeException
+     * @throws \Exception
      */
-    public function handle(Container $app)
+    public function handle(Application $app)
     {
-        $this->info('Starting a WebSocket server');
+        $this->bootLogger($app);
 
-        $server = Server::new($app, (int) env('WEBSOCKET_PORT', 8080), env('WEBSOCKET_HOST', '127.0.0.1'));
+        [$host, $port] = [
+            env('WEBSOCKET_HOST', '127.0.0.1'),
+            (int) env('WEBSOCKET_PORT', 8080)
+        ];
+
+        $server = FrontController::server($app, $port, $host);
+
         $server->run();
     }
 }
