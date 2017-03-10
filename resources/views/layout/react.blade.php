@@ -10,5 +10,6 @@
 </head>
 <body>
     <main id="app"></main>
+    <script src="{{ asset_ts('app.js') }}"></script>
 </body>
 </html>

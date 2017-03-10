@@ -2,6 +2,7 @@
   "name": "laravel",
   "version": "1.0.0",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "lint:js": "eslint app",
     "lint:scss": "sass-lint app/**/*.scss -v -q",

@@ -17,6 +17,15 @@ services:
             - PHP_IDE_CONFIG="serverName=laravel"
         tty: true
 
+    node:
+        build:
+            context: ./docker/node
+            args:
+                - NODE_VERSION=7.7.2
+                - YARN_VERSION=latest
+        volumes_from:
+            - php
+
     nginx:
         build:
             context: ./docker/nginx

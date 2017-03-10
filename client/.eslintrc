@@ -16,7 +16,7 @@
     }],
     "class-methods-use-this": 0,
     "react/jsx-filename-extension": [2, {
-      "extensions": ['.js']
+      "extensions": [".js"]
     }],
     "react/forbid-prop-types": 0,
     "react/require-default-props": 0,
