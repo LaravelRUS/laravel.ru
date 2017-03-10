@@ -16,10 +16,10 @@ use Http\Promise\RejectedPromise;
 use Http\Promise\FulfilledPromise;
 use Intervention\Image\Constraint;
 use Intervention\Image\ImageManager;
-use Illuminate\Contracts\Filesystem\Filesystem;
-use Service\ImageUploader\Gates\AccessDeniedGateException;
 use Service\ImageUploader\Gates\GateInterface;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Service\ImageUploader\Support\ImageUploaderEvents;
+use Service\ImageUploader\Gates\AccessDeniedGateException;
 use Service\ImageUploader\Resolvers\ImageResolverInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
@@ -69,7 +69,7 @@ class ImageUploader implements ImageUploaderInterface
     }
 
     /**
-     * @param GateInterface $gate
+     * @param  GateInterface          $gate
      * @return ImageUploaderInterface
      */
     public function satisfy(GateInterface $gate): ImageUploaderInterface
@@ -102,7 +102,7 @@ class ImageUploader implements ImageUploaderInterface
      */
     public function upload(Filesystem $fs, ImageResolverInterface $resolver = null, bool $removeTemp = true): Promise
     {
-        $temp   = $this->getStorageFilename();
+        $temp = $this->getStorageFilename();
         $public = $this->createRelativeFilename();
 
         try {
@@ -213,7 +213,7 @@ class ImageUploader implements ImageUploaderInterface
     }
 
     /**
-     * @param array ...$options
+     * @param  array                   ...$options
      * @return ImageResolverInterface
      * @throws \BadMethodCallException
      */

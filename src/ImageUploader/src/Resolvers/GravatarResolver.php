@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Service\ImageUploader\Resolvers;
 
@@ -63,7 +63,7 @@ class GravatarResolver implements ImageResolverInterface
     }
 
     /**
-     * @param string $uri
+     * @param  string $uri
      * @return bool
      */
     private function isAvailable(string $uri): bool
@@ -86,7 +86,7 @@ class GravatarResolver implements ImageResolverInterface
     }
 
     /**
-     * @param array $options
+     * @param  array    $options
      * @return resource
      */
     private function createHttpContext(array $options = [])

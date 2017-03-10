@@ -14,19 +14,14 @@ use App\Models\Article;
 use GraphQL\Type\Definition\Type;
 use App\GraphQL\Types\ArticleType;
 use Illuminate\Support\Collection;
-use Folklore\GraphQL\Support\Query;
-use App\GraphQL\Kernel\EnumTransfer;
 use GraphQL\Type\Definition\ListOfType;
-use App\GraphQL\Queries\Support\QueryLimit;
 use App\GraphQL\Serializers\ArticleSerializer;
 
 /**
  * Class ArticlesQuery.
  */
-class ArticlesQuery extends Query
+class ArticlesQuery extends AbstractQuery
 {
-    use QueryLimit;
-
     /**
      * @var array
      */
@@ -46,19 +41,14 @@ class ArticlesQuery extends Query
     /**
      * @return array
      */
-    public function args(): array
+    protected function queryArguments(): array
     {
-        return $this->argumentsWithLimit([
+        return [
             'id'     => [
                 'type'        => Type::id(),
                 'description' => 'Article identifier',
             ],
-            'status' => [
-                'type'        => app(EnumTransfer::class)
-                    ->toGraphQL(Article\Status::class),
-                'description' => 'Article visibility status',
-            ],
-        ]);
+        ];
     }
 
     /**
@@ -68,13 +58,8 @@ class ArticlesQuery extends Query
      */
     public function resolve($root, array $args = []): Collection
     {
-        $query = Article::latestPublished();
-
-        $query = $this->paginate($query, $args);
-
-        foreach ($args as $field => $value) {
-            $query = $query->where($field, $value);
-        }
+        $query = $this->queryFor(Article::class, $args)
+            ->latestPublished();
 
         return ArticleSerializer::collection($query->get());
     }

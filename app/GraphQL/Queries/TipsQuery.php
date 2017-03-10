@@ -13,19 +13,15 @@ use App\Models\Tip;
 use App\GraphQL\Types\TipType;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
-use Folklore\GraphQL\Support\Query;
 use Illuminate\Database\Query\Builder;
 use GraphQL\Type\Definition\ListOfType;
 use App\GraphQL\Serializers\TipSerializer;
-use App\GraphQL\Queries\Support\QueryLimit;
 
 /**
  * Class TipsQuery.
  */
-class TipsQuery extends Query
+class TipsQuery extends AbstractQuery
 {
-    use QueryLimit;
-
     /**
      * @var array
      */
@@ -45,14 +41,9 @@ class TipsQuery extends Query
     /**
      * @return array
      */
-    public function args(): array
+    protected function queryArguments(): array
     {
-        return $this->argumentsWithLimit([
-            'id' => [
-                'type'        => Type::id(),
-                'description' => 'Tip identifier',
-            ],
-        ]);
+        return [];
     }
 
     /**
@@ -63,13 +54,8 @@ class TipsQuery extends Query
     public function resolve($root, array $args = []): Collection
     {
         /** @var Builder $query */
-        $query = Tip::with('likes', 'dislikes', 'user');
-
-        $query = $this->paginate($query, $args);
-
-        foreach ($args as $field => $value) {
-            $query = $query->where($field, $value);
-        }
+        $query = $this->queryFor(Tip::class, $args)
+            ->with('likes', 'dislikes', 'user');
 
         return TipSerializer::collection($query->get());
     }

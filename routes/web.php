@@ -15,9 +15,8 @@ $router->pattern('id', '[0-9]+');
 
 $router->get('/', 'HomeController@index')->name('home');
 
-// TODO REMOVE THIS
-$router->get('/test', 'TestController@test');
-$router->get('/react/{route?}', 'TestController@testReact');
+// TODO
+$router->get('/react/{path?}', 'HomeController@react');
 
 /*
 |--------------------------------------------------------------------------

@@ -11,13 +11,11 @@ use Service\HeadersInjector\HeaderProviders as Header;
 return [
     'default' => 'cors',
 
-
     'providers' => [
         Header\AccessControlAllowOrigin::class,
         Header\AccessControlAllowMethods::class,
         Header\AccessControlAllowHeaders::class,
     ],
-
 
     'rules' => [
         'cors' => [

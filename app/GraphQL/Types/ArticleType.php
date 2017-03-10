@@ -2,7 +2,6 @@
 
 /**
  * This file is part of laravel.su package.
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -10,9 +9,9 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Types;
 
+use App\GraphQL\Kernel\EnumTransfer;
 use App\Models\Article;
 use GraphQL\Type\Definition\Type;
-use App\GraphQL\Kernel\EnumTransfer;
 
 /**
  * Class ArticleType.
@@ -33,51 +32,55 @@ class ArticleType extends AbstractType
     public function fields(): array
     {
         return [
-            'id'           => [
+            'id'             => [
                 'type'        => Type::nonNull(Type::id()),
                 'description' => 'Article identifier',
             ],
-            'title'        => [
+            'title'          => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Article title',
             ],
-            'url'          => [
+            'slug'           => [
+                'type'        => Type::string(),
+                'description' => 'Article slug (part of url)',
+            ],
+            'url'            => [
                 'type'        => Type::string(),
                 'description' => 'Article url',
             ],
-            'image'        => [
+            'image'          => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Article preview image',
             ],
-            'content'      => [
+            'content'        => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Article rendered content',
             ],
-            'content_source'       => [
+            'content_source' => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Article content source (original)',
             ],
-            'preview'       => [
+            'preview'        => [
                 'type'        => Type::string(),
                 'description' => 'Article content preview',
             ],
-            'preview_source'       => [
+            'preview_source' => [
                 'type'        => Type::string(),
                 'description' => 'Article content preview (original)',
             ],
-            'status'       => [
+            'status'         => [
                 'type'        => app(EnumTransfer::class)->toGraphQL(Article\Status::class),
                 'description' => 'Article status',
             ],
-            'published_at' => [
+            'published_at'   => [
                 'type'        => Type::string(),
                 'description' => 'Article publishing date and time in RFC3339 format',
             ],
-            'user'         => [
+            'user'           => [
                 'type'        => \GraphQL::type(UserType::getName()),
                 'description' => 'Article author relation',
             ],
-            'tags'         => [
+            'tags'           => [
                 'type'        => Type::listOf(\GraphQL::type(TagType::getName())),
                 'description' => 'Article tags',
             ],

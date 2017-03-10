@@ -23,7 +23,7 @@ trait QueryLimit
      * @param  array $args
      * @return array
      */
-    public function argumentsWithLimit(array $args): array
+    protected function argumentsWithLimit(array $args): array
     {
         return array_merge($args, [
             '_limit' => [
@@ -43,7 +43,17 @@ trait QueryLimit
      * @param  array             $args
      * @return EBuilder
      */
-    public function paginate($builder, array &$args = [])
+    protected function queryWithLimit($builder, array &$args = [])
+    {
+        return $this->paginate($builder, $args);
+    }
+
+    /**
+     * @param  EBuilder|QBuilder $builder
+     * @param  array             $args
+     * @return EBuilder
+     */
+    protected function paginate($builder, array &$args = [])
     {
         $limit = null;
 

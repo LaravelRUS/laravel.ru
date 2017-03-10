@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Serializers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,20 +20,28 @@ use Illuminate\Database\Eloquent\Model;
 abstract class AbstractSerializer
 {
     /**
-     * @param  Collection|Model[] $collection
+     * @param  Collection|Model[]|null $collection
      * @return Collection
      */
-    public static function collection(Collection $collection): Collection
+    public static function collection(?Collection $collection): Collection
     {
+        if ($collection === null) {
+            return new Collection();
+        }
+
         return $collection->map(static::map());
     }
 
     /**
-     * @param  Model $model
+     * @param  Model|null $model
      * @return array
      */
-    public static function serialize(Model $model): array
+    public static function serialize(?Model $model): array
     {
+        if ($model === null) {
+            return [];
+        }
+
         return app(static::class)->toArray($model);
     }
 
@@ -53,5 +62,18 @@ abstract class AbstractSerializer
     public function toArray(Model $model): array
     {
         return $model->toArray();
+    }
+
+    /**
+     * @param  \DateTime|null $date
+     * @return string
+     */
+    protected function formatDateTime(?\DateTime $date): string
+    {
+        if ($date === null) {
+            $date = Carbon::now();
+        }
+
+        return $date->format(Carbon::RFC3339);
     }
 }

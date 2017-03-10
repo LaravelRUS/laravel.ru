@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -37,15 +36,6 @@ class Docs extends Model
     public function pages(): HasMany
     {
         return $this->hasMany(DocsPage::class);
-    }
-
-    /**
-     * @param  string $title
-     * @return string
-     */
-    public function getTitleAttribute(string $title): string
-    {
-        return Str::ucfirst($title) . ' (' . $this->version . ')';
     }
 
     /**

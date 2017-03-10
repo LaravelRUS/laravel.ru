@@ -18,15 +18,15 @@ class AccessControlAllowOrigin implements HeaderProviderInterface
 {
     use OptionsSerializer;
 
-    public const ORIGIN_ECHO      = 1;
-    public const ORIGIN_ALL       = '*';
-    public const ORIGIN_NONE      = '';
-    public const ORIGIN_LOCALHOST = [ '*.localhost', 'localhost', 'localhost:*',];
+    public const ORIGIN_ECHO = 1;
+    public const ORIGIN_ALL = '*';
+    public const ORIGIN_NONE = '';
+    public const ORIGIN_LOCALHOST = ['*.localhost', 'localhost', 'localhost:*'];
 
-    private const HEADER_NAME     = 'Access-Control-Allow-Origin';
+    private const HEADER_NAME = 'Access-Control-Allow-Origin';
 
     /**
-     * @param string $headerName
+     * @param  string $headerName
      * @return bool
      */
     public function match(string $headerName): bool
@@ -35,10 +35,10 @@ class AccessControlAllowOrigin implements HeaderProviderInterface
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
-     * @param string   $headerName
-     * @param mixed    $options
+     * @param  Request                   $request
+     * @param  Response                  $response
+     * @param  string                    $headerName
+     * @param  mixed                     $options
      * @return \Generator
      * @throws \InvalidArgumentException
      */
@@ -53,9 +53,10 @@ class AccessControlAllowOrigin implements HeaderProviderInterface
      * @return string
      * @throws \InvalidArgumentException
      */
+
     /**
-     * @param Request $request
-     * @param         $options
+     * @param  Request                   $request
+     * @param                            $options
      * @return string
      * @throws \InvalidArgumentException
      */
@@ -72,7 +73,7 @@ class AccessControlAllowOrigin implements HeaderProviderInterface
     }
 
     /**
-     * @param string $url
+     * @param  string $url
      * @return string
      */
     private function parseUrl(string $url): string
@@ -82,8 +83,8 @@ class AccessControlAllowOrigin implements HeaderProviderInterface
         }
 
         $scheme = parse_url($url, PHP_URL_SCHEME) ?: 'http';
-        $host   = parse_url($url, PHP_URL_HOST);
-        $port   = parse_url($url, PHP_URL_PORT) ?: 80;
+        $host = parse_url($url, PHP_URL_HOST);
+        $port = parse_url($url, PHP_URL_PORT) ?: 80;
 
         return $scheme . '://' . $host . ($port !== 80 ? ':' . $port : '');
     }

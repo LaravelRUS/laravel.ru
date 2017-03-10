@@ -29,7 +29,7 @@ final class AvatarUploader extends ImageUploader
      * AvatarUploader constructor.
      *
      * @param GravatarSupports $user
-     * @param ImageManager $manager
+     * @param ImageManager     $manager
      */
     public function __construct(GravatarSupports $user, ImageManager $manager)
     {
@@ -39,7 +39,7 @@ final class AvatarUploader extends ImageUploader
     }
 
     /**
-     * @param array $options
+     * @param  array                                   $options
      * @return GravatarResolver|ImageResolverInterface
      * @throws \InvalidArgumentException
      */
