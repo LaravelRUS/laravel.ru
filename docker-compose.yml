@@ -1,30 +1,16 @@
 version: '2'
 
 services:
-    workspace:
-        build:
-            context: ./docker/workspace
-            args:
-                - TZ=UTC
-        volumes:
-            - ".:/var/www/laravel.su"
-        extra_hosts:
-            - "dockerhost:172.17.0.1"
-        tty: true
-
     php:
         build:
             context: ./docker/php
         command: "/start.sh && php-fpm"
-        volumes_from:
-            - workspace
+        volumes:
+            - ".:/var/www/laravel.su"
         expose:
             - "9000"
             - "8081"
-        extra_hosts:
-            - "dockerhost:172.17.0.1"
         links:
-            - workspace
             - mysql
             - redis
         environment:
@@ -37,7 +23,7 @@ services:
             args:
                 - PHP_UPSTREAM=php
         volumes_from:
-            - workspace
+            - php
         volumes:
             - ./docker/nginx/sites-available/:/etc/nginx/sites-available
         ports:
@@ -57,6 +43,8 @@ services:
                 - MYSQL_ROOT_PASSWORD=root
         volumes:
             - mysql:/var/lib/mysql
+        expose:
+            - "3306"
         ports:
             - "3308:3306"
 
