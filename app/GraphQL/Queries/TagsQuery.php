@@ -14,18 +14,14 @@ use App\Models\Tag;
 use App\GraphQL\Types\TagType;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
-use Folklore\GraphQL\Support\Query;
 use GraphQL\Type\Definition\ListOfType;
 use App\GraphQL\Serializers\TagSerializer;
-use App\GraphQL\Queries\Support\QueryLimit;
 
 /**
  * Class TagsQuery.
  */
-class TagsQuery extends Query
+class TagsQuery extends AbstractQuery
 {
-    use QueryLimit;
-
     /**
      * @var array
      */
@@ -45,14 +41,9 @@ class TagsQuery extends Query
     /**
      * @return array
      */
-    public function args(): array
+    protected function queryArguments(): array
     {
-        return $this->argumentsWithLimit([
-            'id' => [
-                'type'        => Type::id(),
-                'description' => 'Tag identifier',
-            ],
-        ]);
+        return [];
     }
 
     /**
@@ -62,13 +53,7 @@ class TagsQuery extends Query
      */
     public function resolve($root, array $args = []): Collection
     {
-        $query = Tag::query();
-
-        $query = $this->paginate($query, $args);
-
-        foreach ($args as $field => $value) {
-            $query = $query->where($field, $value);
-        }
+        $query = $this->queryFor(Tag::class, $args);
 
         return TagSerializer::collection($query->get());
     }

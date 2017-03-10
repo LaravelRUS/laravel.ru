@@ -12,18 +12,14 @@ use App\Models\Docs;
 use App\GraphQL\Types\DocsType;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
-use Folklore\GraphQL\Support\Query;
 use GraphQL\Type\Definition\ListOfType;
-use App\GraphQL\Queries\Support\QueryLimit;
 use App\GraphQL\Serializers\DocsSerializer;
 
 /**
  * Class DocsQuery.
  */
-class DocsQuery extends Query
+class DocsQuery extends AbstractQuery
 {
-    use QueryLimit;
-
     /**
      * @var array
      */
@@ -43,9 +39,9 @@ class DocsQuery extends Query
     /**
      * @return array
      */
-    public function args(): array
+    protected function queryArguments(): array
     {
-        return $this->argumentsWithLimit([]);
+        return [];
     }
 
     /**
@@ -55,13 +51,8 @@ class DocsQuery extends Query
      */
     public function resolve($root, array $args = []): Collection
     {
-        $query = Docs::with('pages');
-
-        $query = $this->paginate($query, $args);
-
-        foreach ($args as $field => $value) {
-            $query = $query->where($field, $value);
-        }
+        $query = $this->queryFor(Docs::class, $args)
+            ->with('pages');
 
         return DocsSerializer::collection($query->get());
     }
