@@ -66,11 +66,11 @@ trait QueryLimit
 
         switch (true) {
             case isset($args['_after']):
-                $builder = $builder->where('id', '>', (int)$args['_after']);
+                $builder = $builder->where('id', '>', (int) $args['_after']);
                 break;
 
             case isset($args['_before']):
-                $builder = $builder->where('id', '<', (int)$args['_before']);
+                $builder = $builder->where('id', '<', (int) $args['_before']);
                 break;
 
             case isset($args['_limit']):
@@ -96,7 +96,7 @@ trait QueryLimit
      */
     private function limit(array $args = []): int
     {
-        return max(1, min(1000, (int)$args['_limit']));
+        return max(1, min(1000, (int) $args['_limit']));
     }
 
     /**
@@ -106,7 +106,7 @@ trait QueryLimit
      */
     private function checkPageAndLimit($builder, array $args = [])
     {
-        $page = max(1, (int)$args['_page']);
+        $page = max(1, (int) $args['_page']);
 
         $builder = $builder->skip(($page - 1) * $this->limit($args));
 
