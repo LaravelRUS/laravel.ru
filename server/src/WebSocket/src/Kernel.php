@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Service\WebSocket;
 
-use Illuminate\Routing\Route;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Pipeline\Pipeline;
 use App\Http\Kernel as HttpKernel;
@@ -56,7 +56,7 @@ class Kernel extends HttpKernel
          *              :         if (isset($this->binders[$key])) {
          *        }
          *    }
-         * </code>
+         * </code>.
          */
 
         return true;

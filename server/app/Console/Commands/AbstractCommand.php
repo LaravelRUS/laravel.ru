@@ -8,10 +8,10 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Foundation\Application;
-use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
+use Illuminate\Console\Command;
+use Monolog\Handler\StreamHandler;
+use Illuminate\Foundation\Application;
 
 /**
  * Class AbstractCommand.

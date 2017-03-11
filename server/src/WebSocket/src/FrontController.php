@@ -12,8 +12,8 @@ use Psr\Log\LoggerInterface;
 use Ratchet\Http\HttpServer;
 use Ratchet\Server\IoServer;
 use Ratchet\ConnectionInterface;
-use Ratchet\MessageComponentInterface;
 use Illuminate\Foundation\Application;
+use Ratchet\MessageComponentInterface;
 use Folklore\GraphQL\GraphQLController;
 use Service\WebSocket\Io\WebSocketRequest;
 use Service\WebSocket\Io\WebSocketResponse;
@@ -82,7 +82,6 @@ class FrontController implements MessageComponentInterface
             : 'undefined';
     }
 
-
     /**
      * @param ConnectionInterface $conn
      */
@@ -107,11 +106,10 @@ class FrontController implements MessageComponentInterface
             try {
                 $data = $this->gql->query($request);
 
-                $response = (string)WebSocketResponse::fromArrayResponse($request, $data);
+                $response = (string) WebSocketResponse::fromArrayResponse($request, $data);
 
                 $this->info($from, ' <- output: ' . $response);
                 $from->send($response);
-
             } catch (HttpException $e) {
                 $this->error($from, $e);
 
@@ -119,10 +117,8 @@ class FrontController implements MessageComponentInterface
                     'errors' => [$e->getMessage()],
                 ]);
             }
-
         } catch (\Exception $e) {
             $this->onError($from, $e);
-
         } catch (\Throwable $e) {
             $this->onThrowable($from, $e);
         }

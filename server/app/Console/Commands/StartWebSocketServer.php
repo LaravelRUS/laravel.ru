@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use Service\WebSocket\FrontController;
 use Illuminate\Foundation\Application;
+use Service\WebSocket\FrontController;
 
 /**
  * Class StartWebSocketServer.
@@ -40,7 +40,7 @@ class StartWebSocketServer extends AbstractCommand
 
         [$host, $port] = [
             env('WEBSOCKET_HOST', '127.0.0.1'),
-            (int) env('WEBSOCKET_PORT', 8080)
+            (int) env('WEBSOCKET_PORT', 8080),
         ];
 
         $server = FrontController::server($app, $port, $host);

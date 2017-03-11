@@ -36,7 +36,6 @@ class LaravelWsServer extends WsServer
             $http = WebSocketRequest::make($request->getPath(), $request->getParams()->toArray());
 
             $this->check($http);
-
         } catch (\Throwable $e) {
             parent::close($conn);
         }

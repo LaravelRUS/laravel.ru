@@ -32,6 +32,6 @@ class WebSocketResponse extends JsonResponse
      */
     public function __toString(): string
     {
-        return (string)$this->getContent();
+        return (string) $this->getContent();
     }
 }

@@ -27,7 +27,7 @@ class WebSocketRequest extends Request
      */
     public static function make(string $uri, $params = []): Request
     {
-        $data = is_string($params) ? Json::decodeArray($params): (array)$params;
+        $data = is_string($params) ? Json::decodeArray($params) : (array) $params;
 
         return parent::create($uri, self::METHOD_WS, $data);
     }
