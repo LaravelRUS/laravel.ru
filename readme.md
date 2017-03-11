@@ -24,6 +24,11 @@
 - MySql 5.7 или выше
 - Apache или Nginx
 
+#### Сборка JS вне докера
+
+- Текущий вариант: `cd server && npm run build`
+- React: `cs client && npm run build:prod`
+
 ## Описание
 
 - [Wiki](https://github.com/LaravelRUS/laravel.ru/wiki)
