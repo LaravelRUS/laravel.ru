@@ -10,8 +10,7 @@ before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
 
 before_script:
-  - cd server
   - composer self-update
-  - composer install --prefer-source --no-interaction --dev
+  - composer install -d server --prefer-source --no-interaction --dev
 
 script: phpunit
