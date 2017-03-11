@@ -27,7 +27,7 @@
 #### Сборка JS вне докера
 
 - Текущий вариант: `cd server && npm run build`
-- React: `cs client && npm run build:prod`
+- React версия: `cs client && npm run build:prod`
 
 ## Описание
 
