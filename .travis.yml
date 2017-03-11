@@ -12,6 +12,7 @@ php:
   - 7.1
 
 before_install:
+  - mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('')"
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
 
 before_script:
