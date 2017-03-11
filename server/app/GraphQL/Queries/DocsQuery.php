@@ -37,16 +37,8 @@ class DocsQuery extends AbstractQuery
     }
 
     /**
-     * @return array
-     */
-    protected function queryArguments(): array
-    {
-        return [];
-    }
-
-    /**
-     * @param $root
-     * @param  array      $args
+     * @param        $root
+     * @param  array $args
      * @return Collection
      */
     public function resolve($root, array $args = []): Collection
@@ -55,5 +47,13 @@ class DocsQuery extends AbstractQuery
             ->with('pages');
 
         return DocsSerializer::collection($query->get());
+    }
+
+    /**
+     * @return array
+     */
+    protected function queryArguments(): array
+    {
+        return [];
     }
 }

@@ -24,6 +24,7 @@ class DocsSerializer extends AbstractSerializer
     {
         return [
             'id'          => $docs->id,
+            'project'     => $docs->slug,
             'title'       => $docs->title,
             'image'       => $docs->image,
             'version'     => $docs->version,

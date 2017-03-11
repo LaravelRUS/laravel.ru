@@ -33,6 +33,10 @@ class DocsType extends AbstractType
                 'type'        => Type::nonNull(Type::id()),
                 'description' => 'Docs identifier',
             ],
+            'project'     => [
+                'type'        => Type::nonNull(Type::string()),
+                'description' => 'Docs project name',
+            ],
             'pages'       => [
                 'type'        => Type::listOf(\GraphQL::type(DocsPageType::getName())),
                 'description' => '',
