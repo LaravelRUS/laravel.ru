@@ -1,8 +1,8 @@
 # Сайт русскоязычного сообщества Laravel
 
-[![Build Status](https://travis-ci.org/LaravelRUS/laravel.ru.svg?branch=feature-laravel-5.4)](https://travis-ci.org/LaravelRUS/laravel.ru)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LaravelRUS/laravel.ru/badges/quality-score.png?b=feature-laravel-5.4)](https://scrutinizer-ci.com/g/LaravelRUS/laravel.ru/?branch=feature-laravel-5.4)
-[![StyleCI](https://styleci.io/repos/18944609/shield?branch=feature-laravel-5.4)](https://styleci.io/repos/18944609)
+[![Build Status](https://travis-ci.org/LaravelRUS/laravel.ru.svg?branch=2.0)](https://travis-ci.org/LaravelRUS/laravel.ru)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LaravelRUS/laravel.ru/badges/quality-score.png?b=2.0)](https://scrutinizer-ci.com/g/LaravelRUS/laravel.ru/?branch=2.0)
+[![StyleCI](https://styleci.io/repos/18944609/shield?branch=2.0)](https://styleci.io/repos/18944609)
 [![Чат](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/LaravelRUS/laravel.ru)
 
 - Site: [https://new.laravel.su](https://new.laravel.su)
