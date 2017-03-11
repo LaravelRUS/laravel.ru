@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="server/bootstrap/autoload.php"
+         bootstrap="bootstrap/autoload.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -10,20 +10,20 @@
          stopOnFailure="false">
     <testsuites>
         <testsuite name="Services Tests">
-            <directory>./server/src/*/tests</directory>
+            <directory>./src/*/tests</directory>
         </testsuite>
 
         <testsuite name="Feature Tests">
-            <directory suffix="Test.php">./server/tests/Feature</directory>
+            <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
 
         <testsuite name="Unit Tests">
-            <directory suffix="Test.php">./server/tests/Unit</directory>
+            <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./server/app</directory>
+            <directory suffix=".php">./app</directory>
         </whitelist>
     </filter>
     <php>
