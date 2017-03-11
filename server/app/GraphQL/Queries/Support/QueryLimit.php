@@ -2,7 +2,6 @@
 
 /**
  * This file is part of laravel.su package.
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -31,16 +30,24 @@ trait QueryLimit
                 'description' => 'Items per page: in 1...1000 range',
             ],
 
-            '_page' => [
+            '_page'   => [
                 'type'        => Type::int(),
                 'description' => 'Current page number (Usage without "_limit" argument gives no effect)',
+            ],
+            '_after'  => [
+                'type'        => Type::int(),
+                'description' => 'Items after target ID',
+            ],
+            '_before' => [
+                'type'        => Type::int(),
+                'description' => 'Items before target ID',
             ],
         ]);
     }
 
     /**
      * @param  EBuilder|QBuilder $builder
-     * @param  array             $args
+     * @param  array $args
      * @return EBuilder
      */
     protected function queryWithLimit($builder, array &$args = [])
@@ -50,30 +57,58 @@ trait QueryLimit
 
     /**
      * @param  EBuilder|QBuilder $builder
-     * @param  array             $args
+     * @param  array $args
      * @return EBuilder
      */
     protected function paginate($builder, array &$args = [])
     {
-        $limit = null;
+        $queryArgs = ['_after', '_before', '_limit', '_page'];
 
-        if (isset($args['_limit'])) {
-            $limit = max(1, min(1000, (int) $args['_limit']));
+        switch (true) {
+            case isset($args['_after']):
+                $builder = $builder->where('id', '>', (int)$args['_after']);
+                break;
 
-            $builder = $builder->take($limit);
+            case isset($args['_before']):
+                $builder = $builder->where('id', '<', (int)$args['_before']);
+                break;
 
-            if (isset($args['_page'])) {
-                $page = max(1, (int) $args['_page']);
+            case isset($args['_limit']):
+                $builder = $builder->take($this->limit($args));
+                if (isset($args['_page'])) {
+                    $builder = $this->checkPageAndLimit($builder, $args);
+                }
+                break;
+        }
 
-                $builder = $builder->skip(($page - 1) * $limit);
+        foreach ($queryArgs as $arg) {
+            if (isset($args[$arg])) {
+                unset($args[$arg]);
             }
-
-            unset($args['_limit']);
         }
 
-        if (isset($args['_page'])) {
-            unset($args['_page']);
-        }
+        return $builder;
+    }
+
+    /**
+     * @param array $args
+     * @return int
+     */
+    private function limit(array $args = []): int
+    {
+        return max(1, min(1000, (int)$args['_limit']));
+    }
+
+    /**
+     * @param $builder
+     * @param array $args
+     * @return mixed
+     */
+    private function checkPageAndLimit($builder, array $args = [])
+    {
+        $page = max(1, (int)$args['_page']);
+
+        $builder = $builder->skip(($page - 1) * $this->limit($args));
 
         return $builder;
     }
