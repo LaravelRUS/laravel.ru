@@ -5,6 +5,9 @@ build:
     environment:
         php:
             version: 7.1
+    tests:
+        override:
+            command: "php -v"
 checks:
     php:
         fix_php_opening_tag: true
