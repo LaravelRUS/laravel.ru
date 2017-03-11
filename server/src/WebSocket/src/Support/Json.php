@@ -37,13 +37,13 @@ class Json
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      */
-    public static function decodeArray(string $json,int $options = 0, int $depth = 512): array
+    public static function decodeArray(string $json, int $options = 0, int $depth = 512): array
     {
         $result = json_decode($json, true, $depth, $options);
 
         self::checkJsonErrors();
 
-        if (!is_array($result)) {
+        if (! is_array($result)) {
             throw new \RuntimeException('Undefined json parsing error.');
         }
 
@@ -58,19 +58,18 @@ class Json
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      */
-    public static function decodeObject(string $json,int $options = 0, int $depth = 512): array
+    public static function decodeObject(string $json, int $options = 0, int $depth = 512): array
     {
         $result = json_decode($json, false, $depth, $options);
 
         self::checkJsonErrors();
 
-        if (!is_object($result)) {
+        if (! is_object($result)) {
             throw new \RuntimeException('Undefined json parsing error.');
         }
 
         return $result;
     }
-
 
     /**
      * @return bool

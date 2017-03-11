@@ -9,12 +9,12 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
-use App\GraphQL\Serializers\UserSerializer;
-use App\GraphQL\Types\UserType;
 use App\Models\User;
-use GraphQL\Type\Definition\ListOfType;
+use App\GraphQL\Types\UserType;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
+use GraphQL\Type\Definition\ListOfType;
+use App\GraphQL\Serializers\UserSerializer;
 
 /**
  * Class UsersQuery.

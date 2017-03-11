@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Types;
 
-use App\GraphQL\Kernel\EnumTransfer;
 use App\Models\Article;
 use GraphQL\Type\Definition\Type;
+use App\GraphQL\Kernel\EnumTransfer;
 
 /**
  * Class ArticleType.
