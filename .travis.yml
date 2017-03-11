@@ -1,21 +1,15 @@
 dist: trusty
 sudo: required
-addons:
-  apt:
-    packages:
-    - mysql-server-5.7
-    - mysql-client-core-5.7
 
 language: php
 
 php:
   - 7.1
 
-before_install:
+before_script:
+  - bash .travis.install-mysql-5.7.sh
   - mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('')"
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
-
-before_script:
   - composer self-update
   - composer install -d server --prefer-source --no-interaction --dev
 
