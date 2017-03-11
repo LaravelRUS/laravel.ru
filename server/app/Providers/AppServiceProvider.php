@@ -63,4 +63,15 @@ class AppServiceProvider extends ServiceProvider
             }
         }
     }
+
+    /**
+     * @return void
+     */
+    public function boot(): void
+    {
+        /**
+         * @see https://laravel-news.com/laravel-5-4-key-too-long-error
+         */
+        \Schema::defaultStringLength(191);
+    }
 }

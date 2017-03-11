@@ -1,6 +1,6 @@
 filter:
   paths:
-    - "app/*"
+    - "server/app/*"
 build:
     environment:
         php:

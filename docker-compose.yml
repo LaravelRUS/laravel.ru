@@ -6,7 +6,7 @@ services:
             context: ./docker/php
         command: "/start.sh && php-fpm"
         volumes:
-            - ".:/var/www/laravel.su"
+            - "./server/:/var/www/laravel.su"
         expose:
             - "9000"
             - "8081"

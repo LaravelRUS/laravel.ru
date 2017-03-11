@@ -1,7 +1,7 @@
 node_modules
-/public/storage
-/storage/*.key
-/vendor
+/server/public/storage
+/server/storage/*.key
+/server/vendor
 /.idea
 .env
 _ide_helper*
