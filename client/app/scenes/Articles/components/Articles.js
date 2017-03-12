@@ -1,49 +1,21 @@
-import React from 'react'
-import { Loading } from 'components/Loading'
+import React, { PropTypes } from 'react'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import { ArticlesPagePaginatedQuery } from 'api/graphQl/articles'
+import ArticlesList from './ArticlesList'
 
-const Articles = (props) => {
-  if (props.data.loading) {
-    return <Loading />
-  }
-
-  return (
-    <div>
-      {props.data.articles && (
-        <ul>
-          {props.data.articles.map(article => (
-            <li key={article.id}>{article.title}</li>
-          ))}
-        </ul>
-      )}
+const Articles = ({ data }) => (
+  <section className="articles-page">
+    <div className="articles-list">
+      <ArticlesList data={data} />
     </div>
-  )
+    <div className="articles-sidebar">
+      <p>yolo</p>
+    </div>
+  </section>
+)
+
+Articles.propTypes = {
+  data: PropTypes.object.isRequired
 }
 
-
-const CurrentUserForLayout = gql`
-  query CurrentUserForLayout {
-    articles {
-      id
-      title
-      url
-      image
-      content
-      content_source
-      preview
-      preview_source
-      status
-      user {
-        name
-        avatar
-      }
-      tags {
-        name
-        color
-      }
-    }
-  }
-`
-
-export default graphql(CurrentUserForLayout)(Articles)
+export default graphql(ArticlesPagePaginatedQuery)(Articles)
