@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const ArticlesPagePaginatedQuery = gql`
   query articles {
-    articles(status: Published, _page: 1, _limit: 15) {
+    articles(_page: 1, _limit: 15) {
       id
       title
       url
