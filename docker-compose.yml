@@ -23,8 +23,9 @@ services:
             args:
                 - NODE_VERSION=7.7.2
                 - YARN_VERSION=latest
-        volumes_from:
-            - php
+        volumes:
+            - "./server/:/var/www/server"
+            - "./client/:/var/www/client"
 
     nginx:
         build:
