@@ -190,6 +190,7 @@ return [
         Service\ContentRenderer\ContentRendererServiceProvider::class,
         Service\DocsImporter\DocsImporterServiceProvider::class,
         Service\HeadersInjector\HeadersInjectorServiceProvider::class,
+        Service\SearchService\SearchServiceProvider::class,
     ],
 
     'local_providers' => [

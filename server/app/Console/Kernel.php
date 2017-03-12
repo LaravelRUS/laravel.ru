@@ -34,6 +34,9 @@ class Kernel extends ConsoleKernel
         Commands\ArticlesImport::class,
         Commands\GitHubDocsSync::class,
         Commands\StartWebSocketServer::class,
+
+        Commands\SphinxIndex::class,
+        Commands\SphinxDaemon::class,
     ];
 
     /**

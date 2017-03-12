@@ -13,7 +13,6 @@ use Service\ImageUploader\Resolvers\GravatarSupports;
 
 /**
  * Class GravatarSupport.
- * @mixin User
  * @mixin GravatarSupports
  */
 trait GravatarSupport

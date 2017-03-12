@@ -75,6 +75,7 @@ class ArticlesSeeder extends Seeder
 
     /**
      * @return string
+     * @throws InvalidArgumentException
      */
     private function createContent(): string
     {

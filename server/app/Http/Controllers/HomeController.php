@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         return view('page.home.home', [
             'articles'      => Article::latestPublished()->take(11)->get(),
-            'articlesCount' => Article::latestPublished()->count(),
+            'articlesCount' => Article::published()->count(),
         ]);
     }
 

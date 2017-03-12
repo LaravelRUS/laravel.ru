@@ -11,7 +11,7 @@ services:
             - "9000"
             - "8081"
         links:
-            - mysql
+            - postgres
             - redis
         environment:
             - PHP_IDE_CONFIG="serverName=laravel"
@@ -43,20 +43,17 @@ services:
         links:
             - php
 
-    mysql:
-        build: 
-            context: ./docker/mysql
-            args:
-                - DB_DATABASE=laravel
-                - DB_USERNAME=root
-                - DB_PASSWORD=root
-                - MYSQL_ROOT_PASSWORD=root
+    postgres:
+        build:
+            context: ./docker/postgres
         volumes:
-            - mysql:/var/lib/mysql
-        expose:
-            - "3306"
+            - postgres:/var/lib/postgresql/data
         ports:
-            - "3308:3306"
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: laravel
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
 
     redis:
         build: ./docker/redis
@@ -66,7 +63,7 @@ services:
             - "6379:6379"
 
 volumes:
-    mysql:
+    postgres:
         driver: "local"
     redis:
         driver: "local"
