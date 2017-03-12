@@ -45,7 +45,7 @@ RUN echo "" >> ~/.bashrc && \
 USER root
 
 RUN echo "" >> ~/.bashrc && \
-    echo 'export NVM_DIR="/home/laradock/.nvm"' >> ~/.bashrc && \
+    echo 'export NVM_DIR="/home/node/.nvm"' >> ~/.bashrc && \
     echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.bashrc
 
 
@@ -71,7 +71,7 @@ RUN [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && \
 USER root
 
 RUN echo "" >> ~/.bashrc && \
-    echo 'export YARN_DIR="/home/laradock/.yarn"' >> ~/.bashrc && \
+    echo 'export YARN_DIR="/home/node/.yarn"' >> ~/.bashrc && \
     echo 'export PATH="$YARN_DIR/bin:$PATH"' >> ~/.bashrc
 
 ADD ./start.sh /start.sh
