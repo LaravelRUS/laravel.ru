@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /var/www/laravel.su/client
+cd /var/www/client
 
 yarn
 yarn run build:prod
