@@ -5,8 +5,8 @@ module.exports = {
   devtool: 'hidden-source-map',
   entry: './app',
   output: {
-    path: path.resolve(__dirname, '../../public/dist'),
-    filename: 'app.js'
+    path: path.resolve(__dirname, '../../server/public/dist'),
+    filename: 'bundle.js'
   },
   module: {
     rules: [

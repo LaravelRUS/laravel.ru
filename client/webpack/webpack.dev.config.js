@@ -4,7 +4,7 @@ const webpack = require('webpack')
 module.exports = {
   entry: path.resolve(__dirname, '../app'),
   output: {
-    filename: 'app.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, '../app')
   },
   module: {
@@ -54,6 +54,7 @@ module.exports = {
     contentBase: __dirname,
     historyApiFallback: true,
     host: '0.0.0.0',
+    port: 3000,
     noInfo: true,
     stats: 'errors-only',
     overlay: {
