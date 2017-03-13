@@ -67,7 +67,7 @@ class Handler extends ExceptionHandler
 
         $htmlAccepted = ! $request->ajax() && $request->acceptsHtml();
 
-        if ($htmlAccepted && ! config('app.debug')) {
+        if ($htmlAccepted && config('app.debug')) {
             $whoops = new Run();
             $whoops->pushHandler(new PrettyPageHandler());
 
