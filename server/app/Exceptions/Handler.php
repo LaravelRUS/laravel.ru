@@ -2,7 +2,6 @@
 
 /**
  * This file is part of laravel.su package.
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -14,12 +13,12 @@ use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
 /**
  * Class Handler.
- *
  * Класс обработки всех исключений в нашем приложении.
  * Тут мы их будем обрабатывать и отображать ошибки, в случае проблем.
  */
@@ -28,7 +27,6 @@ class Handler extends ExceptionHandler
     /**
      * Список исключений, которые являются частью нормальной работы приложения
      * и которые не надо как-то обрабатывать. Например, "ошибка 404" и прочие.
-     *
      * @var array
      */
     protected $dontReport = [
@@ -43,7 +41,6 @@ class Handler extends ExceptionHandler
     /**
      * Метод, куда прилетают все наши исключения для обработки.
      * Отличное место для отправки оных в Sentry, Bugsnag, и проч.
-     *
      * @param  \Exception $exception
      * @throws \Exception
      */
@@ -58,30 +55,48 @@ class Handler extends ExceptionHandler
 
     /**
      * Отображение наших необработанных ошибок.
-     *
      * @param \Illuminate\Http\Request $request
      * @param \Exception $exception
      * @return string|\Symfony\Component\HttpFoundation\Response
+     * @throws \Throwable
      * @throws \InvalidArgumentException
      */
     public function render($request, \Exception $exception)
     {
-        $htmlAccepted = !$request->ajax() && !$request->acceptsJson();
+        $exception = $this->prepareException($exception);
 
-        if ($htmlAccepted && config('app.debug')) {
+        $htmlAccepted = ! $request->ajax() && $request->acceptsHtml();
+
+        if ($htmlAccepted && ! config('app.debug')) {
             $whoops = new Run();
             $whoops->pushHandler(new PrettyPageHandler());
 
             return $whoops->handleException($exception);
         }
 
-        return parent::render($request, $exception);
+        if (!$this->isHttpException($exception)) {
+            $exception = new HttpException(500, 'Be right back.', $exception);
+        }
+
+        return response($this->getErrorView($exception)->render(), $exception->getStatusCode());
+    }
+
+    /**
+     * @param HttpException $exception
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    private function getErrorView(HttpException $exception)
+    {
+        return view('layout.error', [
+            'message' => Response::$statusTexts[$exception->getStatusCode()],
+            'code'    => $exception->getStatusCode(),
+            'error'   => $exception,
+        ]);
     }
 
     /**
      * Преобразовываем ошибки аутентификации в разлогинивающий ответ.
-     *
-     * @param  \Illuminate\Http\Request                 $request
+     * @param  \Illuminate\Http\Request $request
      * @param  \Illuminate\Auth\AuthenticationException $exception
      * @return Response|RedirectResponse
      */
