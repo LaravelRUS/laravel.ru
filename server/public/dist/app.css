@@ -2702,6 +2702,8 @@ body {
     line-height: 14px;
     height: 34px;
     padding: 10px 15px;
+    text-decoration: none;
+    color: #525252;
     margin: 0;
     display: block;
     float: left;
@@ -2724,46 +2726,98 @@ body {
   .dropdown.active nav {
     pointer-events: all;
     top: 29px;
-    margin-top: 40px;
+    margin-top: 15px;
     opacity: 1;
     -webkit-transition: top 0s linear 0s, margin 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), opacity 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355);
     transition: top 0s linear 0s, margin 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355), opacity 0.3s cubic-bezier(0.585, 0.22, 0.12, 1.355); }
 
+select,
 input[type=text],
 input[type=password] {
-  line-height: 48px;
-  height: 48px;
+  line-height: 40px;
+  height: 40px;
   box-shadow: 0 0 0 1px #dee0df;
   box-sizing: border-box;
   padding: 0 25px;
   outline: none;
   border: none;
-  border-radius: 2px; }
+  border-radius: 2px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: inline-block;
+  position: relative;
+  z-index: 1; }
+  select::-webkit-input-placeholder,
   input[type=text]::-webkit-input-placeholder,
   input[type=password]::-webkit-input-placeholder {
     color: #9e9999;
     font-size: 12px; }
+  select:-moz-placeholder,
   input[type=text]:-moz-placeholder,
   input[type=password]:-moz-placeholder {
     color: #9e9999;
     font-size: 12px; }
+  select::-moz-placeholder,
   input[type=text]::-moz-placeholder,
   input[type=password]::-moz-placeholder {
     color: #9e9999;
     font-size: 12px; }
+  select:-ms-input-placeholder,
   input[type=text]:-ms-input-placeholder,
   input[type=password]:-ms-input-placeholder {
     color: #9e9999;
     font-size: 12px; }
+  select .placeholder,
   input[type=text] .placeholder,
   input[type=password] .placeholder {
     color: #9e9999;
     font-size: 12px; }
+  select:focus,
   input[type=text]:focus,
   input[type=password]:focus {
     -webkit-transition: box-shadow 0.3s cubic-bezier(0.55, 0, 0.1, 1);
     transition: box-shadow 0.3s cubic-bezier(0.55, 0, 0.1, 1);
-    box-shadow: 0 0 0 1px #f4645f; }
+    box-shadow: 0 0 0 1px #f4645f;
+    z-index: 3; }
+
+.select {
+  position: relative;
+  height: 40px;
+  line-height: 40px; }
+  .select select {
+    position: relative;
+    top: -1px; }
+  .select select,
+  .select select option {
+    width: 100%;
+    line-height: inherit;
+    height: inherit;
+    padding: 0 35px 0 15px;
+    font-size: 12px;
+    color: #525252; }
+  .select select + .select-arrow {
+    z-index: 3;
+    position: absolute;
+    right: 15px;
+    top: 0; }
+    .select select + .select-arrow:after {
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      content: "\F107";
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+      -webkit-transition: -webkit-transform .3s ease;
+      transition: -webkit-transform .3s ease;
+      transition: transform .3s ease;
+      transition: transform .3s ease, -webkit-transform .3s ease; }
+  .select select:focus + .select-arrow:after {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg); }
 
 .form-item {
   margin-bottom: 20px;
@@ -2797,10 +2851,10 @@ input[type=password] {
       -moz-osx-font-smoothing: grayscale;
       display: block;
       position: absolute;
-      right: 10px;
-      top: -33px;
+      right: 15px;
+      top: -27px;
       z-index: 3;
-      font-size: 18px;
+      font-size: 14px;
       cursor: pointer;
       -webkit-transform: scale(1);
               transform: scale(1);
@@ -2832,6 +2886,7 @@ input[type=password] {
 
 .button {
   display: inline-block;
+  text-align: center;
   text-decoration: none;
   line-height: 32px;
   height: 32px;
@@ -3267,7 +3322,6 @@ body {
     height: 70px;
     line-height: 70px;
     background: #fff url(/img/cloud-bar.png) center top repeat-x;
-    box-shadow: inset 0 -1px 0 #dee0df;
     padding: 10px 50px 0 50px; }
     body header .logo {
       float: left;
@@ -3275,10 +3329,9 @@ body {
       height: 70px;
       line-height: 70px;
       text-decoration: none;
-      box-shadow: 1px 0 0 #dee0df;
       box-sizing: border-box;
       color: #525252;
-      width: 230px; }
+      width: 100%; }
       body header .logo svg {
         float: left;
         height: 36px;
@@ -3300,71 +3353,114 @@ body {
         font-size: 11px;
         line-height: 11px;
         font-weight: 300; }
-    body header nav {
+    body header .search {
+      padding: 15px 0; }
+      body header .search input,
+      body header .search .button,
+      body header .search .select {
+        display: block;
+        float: left;
+        border-radius: 0; }
+      body header .search input,
+      body header .search .button,
+      body header .search .select {
+        height: 40px;
+        line-height: 40px; }
+      body header .search .select {
+        width: 140px; }
+        body header .search .select select {
+          background: #f9f9f9;
+          border-radius: 2px 0 0 2px; }
+      body header .search input {
+        width: 460px; }
+      body header .search .button {
+        width: 100px;
+        border-radius: 0 2px 2px 0; }
+  body .sub-header {
+    top: 10px;
+    width: 100%;
+    height: 44px;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    z-index: 999;
+    position: -webkit-sticky;
+    position: sticky;
+    background: #fff;
+    line-height: 44px;
+    padding-bottom: 10px;
+    box-shadow: 0 -10px 0 #fff, 0 1px 0 #dee0df; }
+    body .sub-header .nav {
       -webkit-user-select: none;
          -moz-user-select: none;
           -ms-user-select: none;
               user-select: none;
+      position: relative;
       float: right;
-      padding-right: 20px; }
-      body header nav a,
-      body header nav .dropdown {
-        display: inline-block;
+      padding-right: 15px; }
+      body .sub-header .nav:after {
+        display: table;
+        width: 100%;
+        content: '';
+        clear: both; }
+      body .sub-header .nav > a,
+      body .sub-header .nav > .dropdown {
+        float: left;
+        display: block;
         -webkit-user-select: none;
            -moz-user-select: none;
             -ms-user-select: none;
                 user-select: none;
         color: #525252;
         text-decoration: none;
-        font-size: 15px;
+        font-size: 13px;
         cursor: pointer;
         position: relative;
         margin: 0 0 0 25px; }
-        body header nav a:hover,
-        body header nav .dropdown:hover {
+        body .sub-header .nav > a:hover,
+        body .sub-header .nav > .dropdown:hover {
           color: #f4645f; }
-      body header nav a.active {
+      body .sub-header .nav a.active {
         color: #f4645f; }
-    body header .auth-button {
-      display: inline-block;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      margin: 19px 0;
-      margin-left: 25px;
-      box-shadow: 0 0 0 1px #dee0df;
-      line-height: 32px;
-      font-size: 16px;
-      color: #525252;
-      text-align: center;
-      -webkit-transform: scale(1);
-              transform: scale(1);
-      -webkit-transform-origin: 50% 50%;
-              transform-origin: 50% 50%;
-      -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355);
-      transition: -webkit-transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355);
-      transition: transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355);
-      transition: transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355), -webkit-transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355); }
-      body header .auth-button:after {
-        display: inline-block;
-        font: normal normal normal 14px/1 FontAwesome;
-        font-size: inherit;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        content: "\F023"; }
-      body header .auth-button:hover {
-        color: #f4645f;
-        box-shadow: 0 0 0 1px #f4645f;
-        -webkit-transform: scale(0.9);
-                transform: scale(0.9); }
-        body header .auth-button:hover:after {
-          content: "\F13E"; }
-      body header .auth-button:active {
-        background: #f4645f;
-        color: #fff;
-        -webkit-transform: scale(0.9);
-                transform: scale(0.9); }
+      body .sub-header .nav .auth-button {
+        display: block;
+        float: left;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        margin: 6px 0 6px 25px;
+        box-shadow: 0 0 0 1px #dee0df;
+        line-height: 32px;
+        font-size: 16px;
+        color: #525252;
+        text-align: center;
+        -webkit-transform: scale(1);
+                transform: scale(1);
+        -webkit-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+        -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+        transition: -webkit-transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+        transition: transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355);
+        transition: transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355), -webkit-transform 0.2s cubic-bezier(0.585, 0.22, 0.12, 1.355); }
+        body .sub-header .nav .auth-button:after {
+          display: inline-block;
+          font: normal normal normal 14px/1 FontAwesome;
+          font-size: inherit;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          content: "\F023"; }
+        body .sub-header .nav .auth-button:hover {
+          color: #f4645f;
+          box-shadow: 0 0 0 1px #f4645f;
+          -webkit-transform: scale(0.9);
+                  transform: scale(0.9); }
+          body .sub-header .nav .auth-button:hover:after {
+            content: "\F13E"; }
+        body .sub-header .nav .auth-button:active {
+          background: #f4645f;
+          color: #fff;
+          -webkit-transform: scale(0.9);
+                  transform: scale(0.9); }
   body > .footer-padding {
     height: 200px;
     width: 100%; }

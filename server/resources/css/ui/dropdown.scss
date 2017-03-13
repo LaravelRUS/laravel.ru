@@ -68,6 +68,8 @@
       line-height: 14px;
       height: 34px;
       padding: 10px 15px;
+      text-decoration: none;
+      color: $color-text;
       margin: 0;
       display: block;
       float: left;
@@ -99,7 +101,7 @@
     nav {
       pointer-events: all;
       top: 29px;
-      margin-top: 40px;
+      margin-top: 15px;
       opacity: 1;
       transition:
         top 0s linear 0s,

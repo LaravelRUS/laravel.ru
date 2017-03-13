@@ -1,32 +1,40 @@
-<header data-vm="HeaderViewModel">
+<header>
     <section class="container-12">
-        <a class="logo" href="{{ route('home') }}">
-            @include('partials.logo')
+        <aside class="grid-3">
+            <a class="logo" href="{{ route('home') }}">
+                @include('partials.logo')
 
-            <h1>Laravel</h1>
-            <span>Русское сообщество</span>
-        </a>
+                <h1>Laravel</h1>
+                <span>Русское сообщество</span>
+            </a>
+        </aside>
 
-        <nav>
+        <section class="grid-9 search">
+            <div class="select">
+                <select>
+                    <option>Документация</option>
+                    <option>Статьи</option>
+                    <option>Пакеты</option>
+                </select>
+                <span class="select-arrow"></span>
+            </div>
+
+            <input type="text" placeholder="Поиск по сайту" />
+            <a href="#" class="button main">Найти</a>
+        </section>
+    </section>
+</header>
+
+<section class="sub-header" data-vm="HeaderViewModel">
+    <article class="container-12 sub-header-fixed">
+        <nav class="nav">
             <a href="{{ route('docs') }}" class="{{ $nav->match('docs') }}">Документация</a>
             <a href="{{ route('articles') }}" class="{{ $nav->match('articles') }}">Статьи</a>
             <a href="#">Пакеты</a>
-
-
-            <div data-id="resources-handler"
-                 data-bind="click: resources.toggle" class="dropdown @{{ resources.active }}">
-
-                <span>Ресурсы</span>
-
-                <nav>
-                    <a target="_blank" href="https://gitter.im/LaravelRUS/GitterBot">Чат</a>
-                    <a target="_blank" href="https://github.com/LaravelRUS/Laravel-Karma">GitHub</a>
-                    <hr />
-                    <a target="_blank" href="http://laravel.su/docs">Документация</a>
-                    <a target="_blank" href="http://vk.com/laravel_rus">Сообщество</a>
-                </nav>
-            </div>
-
+            <a target="_blank" href="http://vk.com/laravel_rus">Сообщество</a>
+            <a target="_blank" href="https://gitter.im/LaravelRUS/chat">Чат</a>
+            <a target="_blank" href="https://github.com/LaravelRUS/laravel.ru">GitHub</a>
+            <a href="{{ route('graphql.graphiql') }}">API</a>
 
             @if($auth !== null)
                 <div data-id="user-handler"
@@ -60,5 +68,5 @@
                    title="Аутентификация" class="auth-button"></a>
             @endif
         </nav>
-    </section>
-</header>
+    </article>
+</section>
