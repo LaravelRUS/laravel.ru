@@ -14,6 +14,8 @@ use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
 
 /**
  * Class Handler.
@@ -57,12 +59,22 @@ class Handler extends ExceptionHandler
     /**
      * Отображение наших необработанных ошибок.
      *
-     * @param  \Illuminate\Http\Request                            $request
-     * @param  \Exception                                          $exception
-     * @return Response|\Symfony\Component\HttpFoundation\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception $exception
+     * @return string|\Symfony\Component\HttpFoundation\Response
+     * @throws \InvalidArgumentException
      */
     public function render($request, \Exception $exception)
     {
+        $htmlAccepted = !$request->ajax() && !$request->acceptsJson();
+
+        if ($htmlAccepted && config('app.debug')) {
+            $whoops = new Run();
+            $whoops->pushHandler(new PrettyPageHandler());
+
+            return $whoops->handleException($exception);
+        }
+
         return parent::render($request, $exception);
     }
 
