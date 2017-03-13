@@ -20,7 +20,7 @@ class DocsSerializer extends AbstractSerializer
      * @param  Model|Docs $docs
      * @return array
      */
-    public function toArray(Model $docs): array
+    public function toArray($docs): array
     {
         return [
             'id'          => $docs->id,

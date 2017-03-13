@@ -21,7 +21,7 @@ class TipSerializer extends AbstractSerializer
      * @param  Tip|Model $tip
      * @return array
      */
-    public function toArray(Model $tip): array
+    public function toArray($tip): array
     {
         return [
             'id'             => $tip->id,

@@ -8,17 +8,19 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
-use App\GraphQL\Types\SearchResultType;
-use GraphQL\Type\Definition\ListOfType;
+use App\GraphQL\Serializers\SearchResultsSerializer;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
-use Service\SearchService\SearchRepositoryInterface;
+use Folklore\GraphQL\Support\Query;
+use App\GraphQL\Types\SearchResultType;
+use GraphQL\Type\Definition\ListOfType;
+use Service\SearchService\SearchService;
 
 /**
  * Class SearchQuery
  * @package App\GraphQL\Queries
  */
-class SearchQuery extends AbstractQuery
+class SearchQuery extends Query
 {
     /**
      * @var array
@@ -40,27 +42,55 @@ class SearchQuery extends AbstractQuery
      * @param $root
      * @param  array $args
      * @return Collection
+     * @throws \InvalidArgumentException
      */
     public function resolve($root, array $args = []): Collection
     {
-        // TODO Query can be empty
-        return app(SearchRepositoryInterface::class)
-            ->getItems($args['query'], $args['type'] ?? null);
+        $search = app(SearchService::class);
+
+        $repo = $search->findByName($args['type']);
+
+        if ($repo === null) {
+            $message = 'Invalid type %s. Available types: %s';
+            $types   = implode(', ', $search->getCategories());
+
+            throw new \InvalidArgumentException(sprintf($message, $args['type'], $types));
+        }
+
+
+        $result = $repo->getSearchResults($args['query'], $this->formatLimit($args));
+
+        return SearchResultsSerializer::collection($result);
+    }
+
+    /**
+     * @param array $args
+     * @return int
+     */
+    private function formatLimit(array $args = []): int
+    {
+        $limit = $args['_limit'] ?? 10;
+
+        return max(10, min(100, $limit));
     }
 
     /**
      * @return array
      */
-    protected function queryArguments(): array
+    public function args(): array
     {
         return [
+            '_limit' => [
+                'type'        => Type::int(),
+                'description' => 'Search results limit',
+            ],
             'type'  => [
-                'type'        => Type::string(),
-                'description' => 'Can be one of docs, articles',
+                'type'        => Type::nonNull(Type::string()),
+                'description' => 'Search category',
             ],
             'query' => [
                 'type'        => Type::nonNull(Type::string()),
-                'description' => '',
+                'description' => 'Search query',
             ],
         ];
     }

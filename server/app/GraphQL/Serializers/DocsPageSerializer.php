@@ -21,7 +21,7 @@ class DocsPageSerializer extends AbstractSerializer
      * @param  Model|DocsPage $page
      * @return array
      */
-    public function toArray(Model $page): array
+    public function toArray($page): array
     {
         return [
             'id'             => $page->id,

@@ -22,7 +22,7 @@ class ArticleSerializer extends AbstractSerializer
      * @param  Article|Model $article
      * @return array
      */
-    public function toArray(Model $article): array
+    public function toArray($article): array
     {
         return [
             'id'             => $article->id,

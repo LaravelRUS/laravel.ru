@@ -33,10 +33,10 @@ abstract class AbstractSerializer
     }
 
     /**
-     * @param  Model|null $model
+     * @param object $model
      * @return array
      */
-    public static function serialize(?Model $model): array
+    public static function serialize($model): array
     {
         if ($model === null) {
             return [];
@@ -50,16 +50,16 @@ abstract class AbstractSerializer
      */
     public static function map(): \Closure
     {
-        return function (Model $model) {
+        return function ($model) {
             return static::serialize($model);
         };
     }
 
     /**
-     * @param  Model $model
+     * @param object $model
      * @return array
      */
-    public function toArray(Model $model): array
+    public function toArray($model): array
     {
         return $model->toArray();
     }

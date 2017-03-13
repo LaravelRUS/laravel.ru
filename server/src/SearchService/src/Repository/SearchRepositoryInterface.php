@@ -1,12 +1,12 @@
 <?php
 /**
- * This file is part of laravel.ru package.
+ * This file is part of laravel.su package.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace Service\SearchService;
+namespace Service\SearchService\Repository;
 
 use Illuminate\Support\Collection;
 
@@ -17,10 +17,14 @@ use Illuminate\Support\Collection;
 interface SearchRepositoryInterface
 {
     /**
-     * @param string $query
-     * @param string|null $type
-     * @param int $limit
-     * @return Collection|SearchResult[]
+     * @return string
      */
-    public function getItems(string $query, string $type = null, int $limit = 10): Collection;
+    public function getName(): string;
+
+    /**
+     * @param string|null $query
+     * @param int $limit
+     * @return Collection
+     */
+    public function getSearchResults(string $query, int $limit = 10): Collection;
 }
