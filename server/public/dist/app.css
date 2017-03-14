@@ -3377,16 +3377,14 @@ body {
         width: 100px;
         border-radius: 0 2px 2px 0; }
   body .sub-header {
-    top: 10px;
+    top: 0;
     width: 100%;
     height: 44px;
     z-index: 999;
     position: -webkit-sticky;
     position: sticky;
     background: #fff;
-    line-height: 44px;
-    padding-bottom: 10px;
-    box-shadow: 0 -10px 0 #fff, 0 1px 0 #dee0df; }
+    line-height: 44px; }
     body .sub-header .nav {
       -webkit-user-select: none;
          -moz-user-select: none;
