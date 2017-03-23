@@ -20,12 +20,9 @@ services:
     node:
         build:
             context: ./docker/node
-            args:
-                - NODE_VERSION=7.7.2
-                - YARN_VERSION=latest
+        command: "yarn update && yarn build:prod"
         volumes:
-            - "./server/:/var/www/server"
-            - "./client/:/var/www/client"
+            - "./:/var/www"
 
     nginx:
         build:

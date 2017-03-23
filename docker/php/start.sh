@@ -1,7 +1,5 @@
 #!/bin/bash
 
-touch /var/log/php-fpm.log
-
 cd /var/www
 
 chown www-data:www-data ./laravel.su -R
