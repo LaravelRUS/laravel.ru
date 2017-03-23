@@ -1,12 +1,13 @@
 const path = require('path')
 const webpack = require('webpack')
+const config = require('./config.json')
 
 module.exports = {
   devtool: 'hidden-source-map',
   entry: './app',
   output: {
-    path: path.resolve(__dirname, '../../server/public/dist'),
-    filename: 'bundle.js'
+    path: config.build.path,
+    filename: config.build.file
   },
   module: {
     rules: [

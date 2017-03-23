@@ -1,10 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
+const config = require('./config.json')
 
 module.exports = {
   entry: path.resolve(__dirname, '../app'),
   output: {
-    filename: 'bundle.js',
+    filename: config.build.file,
     path: path.resolve(__dirname, '../app')
   },
   module: {
