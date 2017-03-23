@@ -1,6 +1,6 @@
 {
     "build": {
         "file": "bundle.js",
-        "path": "../../server/public/dist"
+        "path": "../server/public/dist"
     }
 }

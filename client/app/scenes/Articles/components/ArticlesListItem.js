@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const ArticlesListItem = ({ article }) => (
   <li>
     <article>
-      <img src={`https://unsplash.it/1340/800/?random&y=${article.id}`} alt={article.title} />
+      <img src={article.image} alt={article.title} />
       <div className="contents">
         <header>
           <h3>{article.title}</h3>
