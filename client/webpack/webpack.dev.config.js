@@ -62,7 +62,7 @@ module.exports = {
       ca: fs.readFileSync('../docker/nginx/ssl/ssl-cert-snakeoil.pem')
     },
     proxy: {
-      '/graphql': 'https://localhost:443'
+      '/graphql': { target: 'https://localhost:443', secure: false }
     },
     historyApiFallback: true,
     noInfo: true,
