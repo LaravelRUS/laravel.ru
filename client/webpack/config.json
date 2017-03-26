@@ -1,6 +1,0 @@
-{
-    "build": {
-        "file": "bundle.js",
-        "path": "../server/public/dist"
-    }
-}
