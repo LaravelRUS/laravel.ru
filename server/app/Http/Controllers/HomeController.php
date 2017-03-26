@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Article;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Auth\Guard;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
@@ -23,7 +24,7 @@ class HomeController extends Controller
     /**
      * @return View
      */
-    public function index(): View
+    public function index(Dispatcher $dispatcher): View
     {
         return view('page.home.home', [
             'articles'      => Article::latestPublished()->take(11)->get(),

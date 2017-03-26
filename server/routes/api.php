@@ -15,6 +15,4 @@ use Service\WebSocket\Io\WebSocketRequest as Request;
 $router->options('graphql', function () {
     return new \Illuminate\Http\Response();
 });
-
-$router->match(Request::METHOD_WS, '/', '\Folklore\GraphQL\GraphQLController@query');
 //
