@@ -1,12 +1,13 @@
-const path = require('path')
+const fs = require('fs')
 const webpack = require('webpack')
-const config = require('./config.json')
+const config = require('./config')
 
 module.exports = {
-  entry: path.resolve(__dirname, '../app'),
+  entry: config.common.appDir,
   output: {
-    filename: config.build.file,
-    path: path.resolve(__dirname, '../app')
+    path: config.common.appDir,
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -42,7 +43,7 @@ module.exports = {
   },
   resolve: {
     modules: [
-      path.resolve(__dirname, '../app'),
+      config.common.appDir,
       'node_modules'
     ]
   },
@@ -53,9 +54,17 @@ module.exports = {
   ],
   devServer: {
     contentBase: __dirname,
-    historyApiFallback: true,
     host: '0.0.0.0',
     port: 3000,
+    https: {
+      key: fs.readFileSync('../docker/nginx/ssl/ssl-cert-snakeoil.key'),
+      cert: fs.readFileSync('../docker/nginx/ssl/ssl-cert-snakeoil.pem'),
+      ca: fs.readFileSync('../docker/nginx/ssl/ssl-cert-snakeoil.pem')
+    },
+    proxy: {
+      '/graphql': 'https://localhost:443'
+    },
+    historyApiFallback: true,
     noInfo: true,
     stats: 'errors-only',
     overlay: {

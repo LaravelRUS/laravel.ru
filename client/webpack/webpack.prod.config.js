@@ -1,71 +1,73 @@
-const path = require('path')
 const webpack = require('webpack')
-const config = require('./config.json')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const config = require('./config')
 
 module.exports = {
-    devtool: 'hidden-source-map',
-    entry: path.resolve(__dirname, '../app'),
-    output: {
-        path: config.build.path,
-        filename: config.build.file
-    },
-    module: {
-        rules: [
+  devtool: 'hidden-source-map',
+  entry: config.common.appDir,
+  output: {
+    path: config.prod.output.js.path,
+    filename: config.prod.output.js.filename
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            'css-loader',
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: 'babel-loader'
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: () => [
-                                require('autoprefixer')({
-                                    browsers: ['last 2 versions']
-                                })
-                            ]
-                        }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            precision: 10
-                        }
-                    }
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [
+                  require('autoprefixer')({
+                    browsers: ['last 2 versions']
+                  })
                 ]
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                precision: 10
+              }
             }
-        ]
-    },
-    resolve: {
-        modules: [
-            path.resolve(__dirname, '../app'),
-            'node_modules'
-        ],
-        mainFields: [
-            'browser',
-            'module',
-            'jsnext:main',
-            'main'
-        ]
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"production"'
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                screw_ie8: true,
-                warnings: false
-            },
-            output: {
-                comments: false
-            },
-            sourceMap: false
+          ]
         })
+      }
     ]
+  },
+  resolve: {
+    modules: [
+      config.common.appDir,
+      'node_modules'
+    ],
+    mainFields: [
+      'browser',
+      'module',
+      'jsnext:main',
+      'main'
+    ]
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"'
+    }),
+    new ExtractTextPlugin(config.prod.output.css.filename),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        screw_ie8: true,
+        warnings: false
+      },
+      output: {
+        comments: false
+      },
+      sourceMap: false
+    })
+  ]
 }
