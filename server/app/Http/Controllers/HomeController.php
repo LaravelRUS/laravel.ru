@@ -24,7 +24,7 @@ class HomeController extends Controller
     /**
      * @return View
      */
-    public function index(Dispatcher $dispatcher): View
+    public function index(): View
     {
         return view('page.home.home', [
             'articles'      => Article::latestPublished()->take(11)->get(),
