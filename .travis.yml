@@ -1,14 +1,13 @@
-dist: trusty
-sudo: required
-
 language: php
 
 php:
   - 7.1
 
+services:
+  - postgresql
+
 before_script:
-  - mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('')"
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - psql -c 'create database travis_ci_test;' -U postgres
   - composer self-update
   - composer install -d server --prefer-source --no-interaction --dev
 
