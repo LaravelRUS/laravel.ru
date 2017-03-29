@@ -97,6 +97,7 @@ return [
             ],
             'mutation' => [
                 'article_update' => \App\GraphQL\Mutations\ArticleUpdate::class,
+                'authorization' => \App\GraphQL\Mutations\AuthorisationMutation::class,
             ],
         ],
     ],
@@ -109,6 +110,7 @@ return [
         \App\GraphQL\Types\DocsType::getName()         => \App\GraphQL\Types\DocsType::class,
         \App\GraphQL\Types\DocsPageType::getName()     => \App\GraphQL\Types\DocsPageType::class,
         \App\GraphQL\Types\SearchResultType::getName() => \App\GraphQL\Types\SearchResultType::class,
+        \App\GraphQL\Types\AuthType::getName()         => \App\GraphQL\Types\AuthType::class,
     ],
 
     /*
