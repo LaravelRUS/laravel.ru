@@ -105,6 +105,7 @@ return [
     'types'           => [
         \App\GraphQL\Types\ArticleType::getName()      => \App\GraphQL\Types\ArticleType::class,
         \App\GraphQL\Types\UserType::getName()         => \App\GraphQL\Types\UserType::class,
+        \App\GraphQL\Types\AuthUserType::getName()     => \App\GraphQL\Types\AuthUserType::class,
         \App\GraphQL\Types\TagType::getName()          => \App\GraphQL\Types\TagType::class,
         \App\GraphQL\Types\TipType::getName()          => \App\GraphQL\Types\TipType::class,
         \App\GraphQL\Types\DocsType::getName()         => \App\GraphQL\Types\DocsType::class,

@@ -8,15 +8,13 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutations;
 
-use App\Models\User;
+use App\GraphQL\Serializers\AuthUserSerializer;
 use App\Services\TokenAuth;
 use Illuminate\Support\Arr;
-use App\GraphQL\Types\UserType;
 use GraphQL\Type\Definition\Type;
+use App\GraphQL\Types\AuthUserType;
 use GraphQL\Type\Definition\ObjectType;
 use App\GraphQL\Serializers\UserSerializer;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Validation\Validator;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
@@ -54,7 +52,7 @@ class AuthMutation extends AbstractMutation
      */
     public function type(): ObjectType
     {
-        return \GraphQL::type(UserType::getName());
+        return \GraphQL::type(AuthUserType::getName());
     }
 
     /**
@@ -107,9 +105,7 @@ class AuthMutation extends AbstractMutation
             throw new AccessDeniedHttpException('User password are not correct');
         }
 
-        $user->token = $this->tokenAuth->fromUser($user);
-
-        return UserSerializer::serialize($user);
+        return AuthUserSerializer::serialize($user);
     }
 
     /**
@@ -123,6 +119,4 @@ class AuthMutation extends AbstractMutation
             Arr::get($args, 'password', ''),
         ];
     }
-
-
 }

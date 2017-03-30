@@ -28,11 +28,6 @@ class User extends Authenticatable implements GravatarSupports
     public const DEFAULT_AVATAR_NAME = 'default/1.png';
 
     /**
-     * @var string|null
-     */
-    public $token;
-
-    /**
      * @var array
      */
     protected $fillable = [

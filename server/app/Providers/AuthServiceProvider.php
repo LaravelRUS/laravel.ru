@@ -12,6 +12,7 @@ namespace App\Providers;
 
 use App\Models\Article;
 use App\Policies\ArticlePolicy;
+use App\Services\TokenAuth;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 /**
@@ -26,6 +27,17 @@ class AuthServiceProvider extends ServiceProvider
         Article::class => ArticlePolicy::class,
     ];
 
+    /**
+     * @return void
+     */
+    public function register(): void
+    {
+        $this->app->singleton(TokenAuth::class);
+    }
+
+    /**
+     * @return void
+     */
     public function boot(): void
     {
         $this->registerPolicies();
