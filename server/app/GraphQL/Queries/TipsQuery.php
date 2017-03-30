@@ -20,7 +20,7 @@ use App\GraphQL\Serializers\TipSerializer;
 /**
  * Class TipsQuery.
  */
-class TipsQuery extends AbstractQuery
+class TipsQuery extends AbstractCollectionQuery
 {
     /**
      * @var array

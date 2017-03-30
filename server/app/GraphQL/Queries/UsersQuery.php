@@ -19,7 +19,7 @@ use App\GraphQL\Serializers\UserSerializer;
 /**
  * Class UsersQuery.
  */
-class UsersQuery extends AbstractQuery
+class UsersQuery extends AbstractCollectionQuery
 {
     /**
      * @var array

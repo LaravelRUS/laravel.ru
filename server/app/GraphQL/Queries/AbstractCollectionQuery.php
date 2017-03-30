@@ -8,30 +8,32 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
-use Folklore\GraphQL\Support\Query;
-use App\GraphQL\Kernel\HasValidation;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\GraphQL\Queries\Support\QueryLimit;
+use App\GraphQL\Queries\Support\WhereInSelection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class AbstractQuery.
+ * Class AbstractCollectionQuery
+ * @package App\GraphQL\Queries
  */
-abstract class AbstractQuery extends Query
+abstract class AbstractCollectionQuery extends AbstractQuery
 {
-    use HasValidation;
+    use QueryLimit;
+    use WhereInSelection;
 
     /**
      * @return array
      */
     public function args(): array
     {
-        return $this->queryArguments();
-    }
+        $args = $this->queryArguments();
 
-    /**
-     * @return array
-     */
-    abstract protected function queryArguments(): array;
+        $args = $this->argumentsWithLimit($args);
+        $args = $this->argumentsWithWhereIn($args);
+
+        return $args;
+    }
 
     /**
      * @param string $model
@@ -42,6 +44,9 @@ abstract class AbstractQuery extends Query
     protected function queryFor(string $model, array $args = []): Builder
     {
         $query = $model::query();
+
+        $query = $this->queryWithLimit($query, $args);
+        $query = $this->queryWithWhereIn($query, $args);
 
         foreach ($args as $field => $value) {
             $query = $query->where($field, $value);

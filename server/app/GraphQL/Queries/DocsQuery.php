@@ -18,7 +18,7 @@ use App\GraphQL\Serializers\DocsSerializer;
 /**
  * Class DocsQuery.
  */
-class DocsQuery extends AbstractQuery
+class DocsQuery extends AbstractCollectionQuery
 {
     /**
      * @var array

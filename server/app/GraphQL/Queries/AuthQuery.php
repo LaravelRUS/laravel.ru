@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace App\GraphQL\Mutations;
+namespace App\GraphQL\Queries;
 
 use App\GraphQL\Serializers\AuthUserSerializer;
 use App\Services\TokenAuth;
@@ -23,7 +23,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  * Class AuthMutation
  * @package App\GraphQL\Mutations
  */
-class AuthMutation extends AbstractMutation
+class AuthQuery extends AbstractQuery
 {
     /**
      * @var array
@@ -38,17 +38,17 @@ class AuthMutation extends AbstractMutation
     private $tokenAuth;
 
     /**
-     * @var StatefulGuard
+     * @var StatefulGuard|Guard
      */
     private $guard;
 
     /**
      * AuthMutation constructor.
      * @param array $attributes
-     * @param StatefulGuard $guard
+     * @param Guard $guard
      * @param TokenAuth $tokenAuth
      */
-    public function __construct(array $attributes = [], StatefulGuard $guard, TokenAuth $tokenAuth)
+    public function __construct(array $attributes = [], Guard $guard, TokenAuth $tokenAuth)
     {
         parent::__construct($attributes);
 
@@ -67,7 +67,7 @@ class AuthMutation extends AbstractMutation
     /**
      * @return array
      */
-    public function args(): array
+    public function queryArguments(): array
     {
         return [
             'email'    => [
@@ -114,7 +114,7 @@ class AuthMutation extends AbstractMutation
             throw new AccessDeniedHttpException('User password are not correct');
         }
 
-        if (isset($args['remember'])) {
+        if (isset($args['remember']) && $this->guard instanceof StatefulGuard) {
             $this->guard->login($user, (bool)$args['remember']);
         }
 

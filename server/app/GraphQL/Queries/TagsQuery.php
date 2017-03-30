@@ -20,7 +20,7 @@ use App\GraphQL\Serializers\TagSerializer;
 /**
  * Class TagsQuery.
  */
-class TagsQuery extends AbstractQuery
+class TagsQuery extends AbstractCollectionQuery
 {
     /**
      * @var array

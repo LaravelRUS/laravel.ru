@@ -20,7 +20,7 @@ use App\GraphQL\Serializers\ArticleSerializer;
 /**
  * Class ArticlesQuery.
  */
-class ArticlesQuery extends AbstractQuery
+class ArticlesQuery extends AbstractCollectionQuery
 {
     /**
      * @var array
