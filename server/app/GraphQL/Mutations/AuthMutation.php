@@ -19,16 +19,16 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Validation\Validator;
 
 /**
- * Class LoginMutation
+ * Class AuthMutation
  * @package App\GraphQL\Mutations
  */
-class LoginMutation extends AbstractMutation
+class AuthMutation extends AbstractMutation
 {
     /**
      * @var array
      */
     protected $attributes = [
-        'name' => 'login',
+        'name' => 'auth',
     ];
 
     /**
@@ -59,7 +59,7 @@ class LoginMutation extends AbstractMutation
     /**
      * @return array
      */
-    public function queryArguments(): array
+    public function args(): array
     {
         return [
             'email'    => [
@@ -79,10 +79,10 @@ class LoginMutation extends AbstractMutation
     public function rules(): array
     {
         return [
-            'email'    => [
+            'email' => [
                 'email',
                 'exists:users,email',
-            ]
+            ],
         ];
     }
 
@@ -123,7 +123,7 @@ class LoginMutation extends AbstractMutation
     {
         return [
             Arr::get($args, 'email'),
-            Arr::get($args, 'password')
+            Arr::get($args, 'password'),
         ];
     }
 
