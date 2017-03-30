@@ -10,6 +10,8 @@ namespace App\GraphQL\Mutations;
 
 use App\GraphQL\Serializers\AuthUserSerializer;
 use App\Services\TokenAuth;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Arr;
 use GraphQL\Type\Definition\Type;
 use App\GraphQL\Types\AuthUserType;
@@ -36,15 +38,22 @@ class AuthMutation extends AbstractMutation
     private $tokenAuth;
 
     /**
-     * AuthorisationQuery constructor.
+     * @var StatefulGuard
+     */
+    private $guard;
+
+    /**
+     * AuthMutation constructor.
      * @param array $attributes
+     * @param StatefulGuard $guard
      * @param TokenAuth $tokenAuth
      */
-    public function __construct(array $attributes = [], TokenAuth $tokenAuth)
+    public function __construct(array $attributes = [], StatefulGuard $guard, TokenAuth $tokenAuth)
     {
         parent::__construct($attributes);
 
         $this->tokenAuth = $tokenAuth;
+        $this->guard = $guard;
     }
 
     /**
@@ -103,6 +112,10 @@ class AuthMutation extends AbstractMutation
 
         if (! $user) {
             throw new AccessDeniedHttpException('User password are not correct');
+        }
+
+        if (isset($args['remember'])) {
+            $this->guard->login($user, (bool)$args['remember']);
         }
 
         return AuthUserSerializer::serialize($user);
