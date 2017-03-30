@@ -12,7 +12,6 @@ use App\GraphQL\Serializers\UserSerializer;
 use App\GraphQL\Types\AuthUserType;
 use App\Models\User;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Arr;
 
 /**
