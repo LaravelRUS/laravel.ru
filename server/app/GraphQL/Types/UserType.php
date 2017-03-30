@@ -38,10 +38,6 @@ class UserType extends AbstractType
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'User name',
             ],
-            'email'        => [
-                'type'        => Type::nonNull(Type::string()),
-                'description' => 'User email',
-            ],
             'avatar'       => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'User avatar url',

@@ -97,6 +97,7 @@ return [
                 'auth'     => \App\GraphQL\Queries\AuthQuery::class,
             ],
             'mutation' => [
+                'registration' => \App\GraphQL\Mutations\RegistrationMutation::class,
                 'article_update' => \App\GraphQL\Mutations\ArticleUpdate::class,
             ],
         ],

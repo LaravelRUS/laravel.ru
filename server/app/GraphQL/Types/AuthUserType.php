@@ -30,6 +30,10 @@ class AuthUserType extends UserType
     public function fields(): array
     {
         return array_merge(parent::fields(), [
+            'email'        => [
+                'type'        => Type::nonNull(Type::string()),
+                'description' => 'User email',
+            ],
             'token' => [
                 'type'        => Type::string(),
                 'description' => 'Authenticated user token',
