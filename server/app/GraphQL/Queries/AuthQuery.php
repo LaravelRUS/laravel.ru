@@ -78,10 +78,6 @@ class AuthQuery extends AbstractQuery
                 'name' => 'password',
                 'type' => Type::nonNull(Type::string()),
             ],
-            'remember' => [
-                'name' => 'remember',
-                'type' => Type::boolean(),
-            ],
         ];
     }
 
@@ -112,10 +108,6 @@ class AuthQuery extends AbstractQuery
 
         if (! $user) {
             throw new AccessDeniedHttpException('User password are not correct');
-        }
-
-        if (isset($args['remember']) && $this->guard instanceof StatefulGuard) {
-            $this->guard->login($user, (bool)$args['remember']);
         }
 
         return AuthUserSerializer::serialize($user);

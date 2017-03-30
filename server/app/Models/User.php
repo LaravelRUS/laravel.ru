@@ -84,4 +84,12 @@ class User extends Authenticatable implements GravatarSupports
     {
         return $this->morphMany(Article::class, 'user');
     }
+
+    /**
+     * @return bool
+     */
+    public function isGuest(): bool
+    {
+        return 0 === (int)$this->getAuthIdentifier();
+    }
 }

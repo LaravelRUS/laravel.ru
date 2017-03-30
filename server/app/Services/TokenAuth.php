@@ -9,14 +9,15 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\User;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Guard;
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
+use Illuminate\Contracts\Auth\Guard;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Providers\JWT\JWTInterface;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
-use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
 /**
  * Class TokenAuth
@@ -89,12 +90,13 @@ class TokenAuth
     public function fromUser(Authenticatable $user): string
     {
         return $this->encode([
-            'user'  => [
+            'user'    => [
                 'id'       => $user->getAuthIdentifier(),
                 'password' => $user->getAuthPassword(),
             ],
-            'guest' => 0 === (int)$user->getAuthIdentifier(),
-            'token' => $user->getRememberToken(),
+            'created' => Carbon::now()->toRfc3339String(),
+            'guest'   => 0 === (int)$user->getAuthIdentifier(),
+            'token'   => $user->getRememberToken(),
         ]);
     }
 
@@ -125,8 +127,11 @@ class TokenAuth
     {
         try {
             $userInfo = $this->decode($token);
+            $this->verifyTokenCreated($userInfo);
+
         } catch (TokenExpiredException $e) {
             throw new BadRequestHttpException('Token lifetime is timed out.');
+
         } catch (JWTException $invalidException) {
             throw new BadRequestHttpException('Broken api token.');
         }
@@ -136,6 +141,19 @@ class TokenAuth
         }
 
         return $this->guest();
+    }
+
+    /**
+     * @param array $userInfo
+     * @throws TokenExpiredException
+     */
+    private function verifyTokenCreated(array $userInfo): void
+    {
+        $created = Carbon::parse($userInfo['created'] ?? '0001-00-00 00:00');
+
+        if (Carbon::now()->subMinutes(config('jwt.ttl')) > $created) {
+            throw new TokenExpiredException();
+        }
     }
 
     /**
