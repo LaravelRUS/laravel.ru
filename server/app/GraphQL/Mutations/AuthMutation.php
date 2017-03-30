@@ -17,6 +17,7 @@ use GraphQL\Type\Definition\ObjectType;
 use App\GraphQL\Serializers\UserSerializer;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Validation\Validator;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Class AuthMutation
@@ -64,11 +65,15 @@ class AuthMutation extends AbstractMutation
         return [
             'email'    => [
                 'name' => 'email',
-                'type' => Type::string(),
+                'type' => Type::nonNull(Type::string()),
             ],
             'password' => [
                 'name' => 'password',
-                'type' => Type::string(),
+                'type' => Type::nonNull(Type::string()),
+            ],
+            'remember' => [
+                'name' => 'remember',
+                'type' => Type::boolean(),
             ],
         ];
     }
@@ -87,32 +92,24 @@ class AuthMutation extends AbstractMutation
     }
 
     /**
-     * @return array
-     */
-    public function messages(): array
-    {
-        return [
-            'email.required'    => 'Укажите email',
-            'password.required' => 'Укажите пароль',
-        ];
-    }
-
-    /**
-     * @param Validator $validator
+     * @param $root
      * @param array $args
-     * @return \Generator|null
+     * @return array
+     * @throws AccessDeniedHttpException
      */
-    public function validate(Validator $validator, array $args = []): ?\Generator
+    public function resolve($root, $args)
     {
         [$email, $password] = $this->getEmailAndPassword($args);
 
-        if ($email && $password) {
-            $user = $this->tokenAuth->attemptFromEmailAndPassword($email, $password);
+        $user = $this->tokenAuth->attemptFromEmailAndPassword($email, $password);
 
-            if ($user === null) {
-                yield 'password' => 'Invalid user password';
-            }
+        if (! $user) {
+            throw new AccessDeniedHttpException('User password are not correct');
         }
+
+        $user->token = $this->tokenAuth->fromUser($user);
+
+        return UserSerializer::serialize($user);
     }
 
     /**
@@ -122,38 +119,10 @@ class AuthMutation extends AbstractMutation
     private function getEmailAndPassword(array $args = []): array
     {
         return [
-            Arr::get($args, 'email'),
-            Arr::get($args, 'password'),
+            Arr::get($args, 'email', ''),
+            Arr::get($args, 'password', ''),
         ];
     }
 
-    /**
-     * @param $root
-     * @param $args
-     * @return array
-     * @throws \Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException
-     */
-    public function resolve($root, $args)
-    {
-        $user = $this->getUser($args);
-        $user->token = $this->tokenAuth->fromUser($user);
-
-        return UserSerializer::serialize($user);
-    }
-
-    /**
-     * @param array $args
-     * @return User|Authenticatable
-     */
-    private function getUser(array $args): User
-    {
-        [$email, $password] = $this->getEmailAndPassword($args);
-
-        if ($email && $password) {
-            return $this->tokenAuth->attemptFromEmailAndPassword($email, $password);
-        }
-
-        return $this->tokenAuth->guest();
-    }
 
 }
