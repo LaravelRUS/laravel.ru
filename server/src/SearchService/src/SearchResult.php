@@ -9,8 +9,7 @@ declare(strict_types=1);
 namespace Service\SearchService;
 
 /**
- * Class SearchResult
- * @package Service\SearchService
+ * Class SearchResult.
  */
 final class SearchResult
 {
@@ -35,7 +34,7 @@ final class SearchResult
     public $type = null;
 
     /**
-     * @var null|String
+     * @var null|string
      */
     public $title = null;
 }

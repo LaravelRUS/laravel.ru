@@ -11,8 +11,7 @@ namespace Service\SearchService\Repository;
 use Illuminate\Support\Collection;
 
 /**
- * Interface SearchRepositoryInterface
- * @package Service\SearchService
+ * Interface SearchRepositoryInterface.
  */
 interface SearchRepositoryInterface
 {

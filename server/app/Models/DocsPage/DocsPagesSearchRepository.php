@@ -10,12 +10,11 @@ namespace App\Models\DocsPage;
 
 use App\Models\DocsPage;
 use Illuminate\Support\Collection;
-use Service\SearchService\Repository\SearchRepositoryInterface;
 use Service\SearchService\SearchResult;
+use Service\SearchService\Repository\SearchRepositoryInterface;
 
 /**
- * Class DocsPagesSearchRepository
- * @package App\Models\DocsPage
+ * Class DocsPagesSearchRepository.
  */
 class DocsPagesSearchRepository implements SearchRepositoryInterface
 {
@@ -53,11 +52,11 @@ class DocsPagesSearchRepository implements SearchRepositoryInterface
         $dto = new SearchResult();
 
         $dto->title = $page->title;
-        $dto->type  = DocsPage::class;
+        $dto->type = DocsPage::class;
         $dto->slug = $page->slug;
         $dto->body = $page->content_rendered;
 
-        $dto->url   = route('docs.show', [
+        $dto->url = route('docs.show', [
             'version' => $page->docs->version,
             'slug'    => $page->slug,
         ]);

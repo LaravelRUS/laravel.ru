@@ -10,15 +10,11 @@ namespace App\Http\Middleware;
 
 use App\Models\User;
 use App\Services\TokenAuth;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Auth\Guard;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Contracts\Container\Container;
-use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 

@@ -13,5 +13,5 @@ return [
 
         // Docs pages search
         App\Models\DocsPage\DocsPagesSearchRepository::class,
-    ]
+    ],
 ];

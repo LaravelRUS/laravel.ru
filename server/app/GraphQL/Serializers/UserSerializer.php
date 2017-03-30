@@ -25,7 +25,7 @@ class UserSerializer extends AbstractSerializer
     public function toArray($user): array
     {
         return [
-            'id'           => (int)$user->id,
+            'id'           => (int) $user->id,
             'name'         => $user->name,
             'email'        => $user->email,
             'avatar'       => $user->avatar,

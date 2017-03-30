@@ -8,14 +8,13 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\GraphQL\Queries\Support\QueryLimit;
 use App\GraphQL\Queries\Support\WhereInSelection;
-use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class AbstractCollectionQuery
- * @package App\GraphQL\Queries
+ * Class AbstractCollectionQuery.
  */
 abstract class AbstractCollectionQuery extends AbstractQuery
 {

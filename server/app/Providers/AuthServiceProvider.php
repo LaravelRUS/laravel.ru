@@ -11,8 +11,8 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Models\Article;
-use App\Policies\ArticlePolicy;
 use App\Services\TokenAuth;
+use App\Policies\ArticlePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 /**

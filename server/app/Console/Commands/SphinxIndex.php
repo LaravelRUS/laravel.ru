@@ -9,15 +9,8 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use Carbon\Carbon;
-use App\Models\Bot;
-use App\Models\Article;
-use Illuminate\Config\Repository;
 use Illuminate\Console\Command;
-use App\Services\DataProviders\Manager;
-use App\Services\DataProviders\ExternalArticle;
-use App\Services\DataProviders\DataProviderInterface;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Config\Repository;
 
 /**
  * Class SphinxIndex.

@@ -11,8 +11,7 @@ namespace App\GraphQL\Types;
 use GraphQL\Type\Definition\Type;
 
 /**
- * Class AuthUserType
- * @package App\GraphQL\Types
+ * Class AuthUserType.
  */
 class AuthUserType extends UserType
 {

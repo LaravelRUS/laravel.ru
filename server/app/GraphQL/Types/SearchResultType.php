@@ -11,8 +11,7 @@ namespace App\GraphQL\Types;
 use GraphQL\Type\Definition\Type;
 
 /**
- * Class SearchResultType
- * @package App\GraphQL\Types
+ * Class SearchResultType.
  */
 class SearchResultType extends AbstractType
 {

@@ -9,13 +9,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Article;
 use App\Services\TokenAuth;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Auth\Guard;
-use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
 /**
  * Class HomeController.
@@ -41,7 +38,7 @@ class HomeController extends Controller
     public function react(TokenAuth $tokenAuth, Guard $guard): View
     {
         return view('layout.react', [
-            'token' => $tokenAuth->fromGuard($guard)
+            'token' => $tokenAuth->fromGuard($guard),
         ]);
     }
 }
