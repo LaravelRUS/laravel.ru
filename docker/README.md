@@ -7,6 +7,12 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 $ sudo usermod -aG docker $USER
 ```
 
+###### Error: Couldn't connect to Docker daemon
+
+```bash
+$ suod service docker start
+````
+
 #### Docker for Windows
 
 - Скачайте [Docker](https://download.docker.com/win/stable/InstallDocker.msi) или [Docker Toolbox](https://github.com/docker/toolbox/releases/tag/v1.12.5):
