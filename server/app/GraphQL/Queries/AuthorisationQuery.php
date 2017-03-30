@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace App\GraphQL\Mutations;
+namespace App\GraphQL\Queries;
 
 use App\Models\User;
 use App\Services\TokenAuth;
@@ -19,10 +19,10 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Validation\Validator;
 
 /**
- * Class AuthorisationMutation
+ * Class AuthorisationQuery
  * @package App\GraphQL\Mutations
  */
-class AuthorisationMutation extends AbstractMutation
+class AuthorisationQuery extends AbstractQuery
 {
     /**
      * @var array
@@ -37,7 +37,7 @@ class AuthorisationMutation extends AbstractMutation
     private $tokenAuth;
 
     /**
-     * AuthorisationMutation constructor.
+     * AuthorisationQuery constructor.
      * @param array $attributes
      * @param TokenAuth $tokenAuth
      */
@@ -59,7 +59,7 @@ class AuthorisationMutation extends AbstractMutation
     /**
      * @return array
      */
-    public function args(): array
+    public function queryArguments(): array
     {
         return [
             'email'    => [

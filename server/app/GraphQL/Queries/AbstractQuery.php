@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Queries;
 
 use Folklore\GraphQL\Support\Query;
+use App\GraphQL\Kernel\HasValidation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\GraphQL\Queries\Support\QueryLimit;
@@ -20,6 +21,7 @@ use App\GraphQL\Queries\Support\WhereInSelection;
 abstract class AbstractQuery extends Query
 {
     use QueryLimit;
+    use HasValidation;
     use WhereInSelection;
 
     /**

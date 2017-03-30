@@ -88,16 +88,16 @@ return [
     'schemas'              => [
         'default' => [
             'query'    => [
-                'articles' => \App\GraphQL\Queries\ArticlesQuery::class,
-                'users'    => \App\GraphQL\Queries\UsersQuery::class,
-                'tags'     => \App\GraphQL\Queries\TagsQuery::class,
-                'tips'     => \App\GraphQL\Queries\TipsQuery::class,
-                'docs'     => \App\GraphQL\Queries\DocsQuery::class,
-                'search'   => \App\GraphQL\Queries\SearchQuery::class,
+                'articles'      => \App\GraphQL\Queries\ArticlesQuery::class,
+                'users'         => \App\GraphQL\Queries\UsersQuery::class,
+                'tags'          => \App\GraphQL\Queries\TagsQuery::class,
+                'tips'          => \App\GraphQL\Queries\TipsQuery::class,
+                'docs'          => \App\GraphQL\Queries\DocsQuery::class,
+                'search'        => \App\GraphQL\Queries\SearchQuery::class,
+                'authorization' => \App\GraphQL\Queries\AuthorisationQuery::class,
             ],
             'mutation' => [
                 'article_update' => \App\GraphQL\Mutations\ArticleUpdate::class,
-                'authorization' => \App\GraphQL\Mutations\AuthorisationMutation::class,
             ],
         ],
     ],
