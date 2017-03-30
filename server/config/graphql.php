@@ -94,9 +94,9 @@ return [
                 'tips'          => \App\GraphQL\Queries\TipsQuery::class,
                 'docs'          => \App\GraphQL\Queries\DocsQuery::class,
                 'search'        => \App\GraphQL\Queries\SearchQuery::class,
-                'authorization' => \App\GraphQL\Queries\AuthorisationQuery::class,
             ],
             'mutation' => [
+                'login'         => \App\GraphQL\Mutations\LoginMutation::class,
                 'article_update' => \App\GraphQL\Mutations\ArticleUpdate::class,
             ],
         ],

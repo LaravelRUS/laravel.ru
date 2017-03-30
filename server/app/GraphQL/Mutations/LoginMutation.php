@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace App\GraphQL\Queries;
+namespace App\GraphQL\Mutations;
 
 use App\Models\User;
 use App\Services\TokenAuth;
@@ -19,16 +19,16 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Validation\Validator;
 
 /**
- * Class AuthorisationQuery
+ * Class LoginMutation
  * @package App\GraphQL\Mutations
  */
-class AuthorisationQuery extends AbstractQuery
+class LoginMutation extends AbstractMutation
 {
     /**
      * @var array
      */
     protected $attributes = [
-        'name' => 'authorization',
+        'name' => 'login',
     ];
 
     /**
