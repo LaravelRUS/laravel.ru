@@ -78,23 +78,6 @@ class TokenAuth
     }
 
     /**
-     * @return Authenticatable
-     */
-    public function guest(): Authenticatable
-    {
-        return new User(['id' => 0, 'name' => 'Guest']);
-    }
-
-    /**
-     * @param string $token
-     * @return array
-     */
-    public function decode(string $token): array
-    {
-        return $this->jwt->decode($token);
-    }
-
-    /**
      * @param Guard $guard
      * @return string
      */
@@ -114,8 +97,26 @@ class TokenAuth
                 'id'       => $user->getAuthIdentifier(),
                 'password' => $user->getAuthPassword(),
             ],
+            'guest' => 0 === (int)$user->getAuthIdentifier(),
             'token' => $user->getRememberToken(),
         ]);
+    }
+
+    /**
+     * @param array $payload
+     * @return string
+     */
+    public function encode(array $payload): string
+    {
+        return $this->jwt->encode($payload);
+    }
+
+    /**
+     * @return Authenticatable
+     */
+    public function guest(): Authenticatable
+    {
+        return new User(['id' => 0, 'name' => 'Guest']);
     }
 
     /**
@@ -134,30 +135,45 @@ class TokenAuth
             throw new BadRequestHttpException('Broken api token.');
         }
 
-        [$id, $password] = [
-            (int)Arr::get($userInfo, 'user.id'),
-            Arr::get($userInfo, 'user.password'),
-        ];
-
-        if ($id !== 0) {
-            $user = User::where('id', $id)->where('password', $password)->first();
-
-            if (! $user) {
-                throw new UnprocessableEntityHttpException('Invalid user credentials.');
-            }
-
-            return $user;
+        if (false !== Arr::get($userInfo, 'guest', true)) {
+            return $this->resolveExistingUser($userInfo);
         }
 
         return $this->guest();
     }
 
     /**
-     * @param array $payload
-     * @return string
+     * @param string $token
+     * @return array
      */
-    public function encode(array $payload): string
+    public function decode(string $token): array
     {
-        return $this->jwt->encode($payload);
+        return $this->jwt->decode($token);
+    }
+
+    /**
+     * @param array $userInfo
+     * @return mixed
+     * @throws UnprocessableEntityHttpException
+     */
+    private function resolveExistingUser(array $userInfo)
+    {
+        [$id, $password, $token] = [
+            (int)Arr::get($userInfo, 'user.id'),
+            (string)Arr::get($userInfo, 'user.password'),
+            (string)Arr::get($userInfo, 'token'),
+        ];
+
+        $user = User::where('id', $id)->where('password', $password)->first();
+
+        if ($user->remember_token !== $token) {
+            throw new UnprocessableEntityHttpException('Invalid remember token');
+        }
+
+        if (! $user) {
+            throw new UnprocessableEntityHttpException('Invalid user credentials.');
+        }
+
+        return $user;
     }
 }
