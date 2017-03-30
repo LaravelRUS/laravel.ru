@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use App\Models\User;
+use App\Services\TokenAuth;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -32,9 +33,9 @@ class ApiAuthenticate
     private $auth;
 
     /**
-     * @var JWTInterface
+     * @var TokenAuth
      */
-    private $jwt;
+    private $tokenAuth;
 
     /**
      * @var Container
@@ -43,20 +44,20 @@ class ApiAuthenticate
 
     /**
      * ApiAuthenticate constructor.
-     * @param Guard        $auth
-     * @param JWTInterface $jwt
-     * @param Container    $app
+     * @param Guard $auth
+     * @param TokenAuth $tokenAuth
+     * @param Container $app
      */
-    public function __construct(Guard $auth, JWTInterface $jwt, Container $app)
+    public function __construct(Guard $auth, TokenAuth $tokenAuth, Container $app)
     {
         $this->auth = $auth;
-        $this->jwt = $jwt;
         $this->app = $app;
+        $this->tokenAuth = $tokenAuth;
     }
 
     /**
-     * @param  Request                          $request
-     * @param  \Closure                         $next
+     * @param  Request $request
+     * @param  \Closure $next
      * @return mixed
      * @throws BadRequestHttpException
      * @throws UnprocessableEntityHttpException
@@ -72,7 +73,7 @@ class ApiAuthenticate
     }
 
     /**
-     * @param  Request                          $request
+     * @param  Request $request
      * @return Authenticatable|User
      * @throws BadRequestHttpException
      * @throws UnprocessableEntityHttpException
@@ -90,40 +91,17 @@ class ApiAuthenticate
                 return $this->auth->user();
         }
 
-        return User::guest();
+        return $this->tokenAuth->guest();
     }
 
     /**
-     * @param  string                           $token
+     * @param  string $token
      * @return Authenticatable
      * @throws BadRequestHttpException
      * @throws UnprocessableEntityHttpException
      */
     private function authByToken(string $token): Authenticatable
     {
-        try {
-            $userInfo = $this->jwt->decode($token);
-        } catch (TokenExpiredException $e) {
-            throw new BadRequestHttpException('Token lifetime is timed out.');
-        } catch (JWTException $invalidException) {
-            throw new BadRequestHttpException('Broken api token.');
-        }
-
-        [$id, $password] = [
-            Arr::get($userInfo, 'user.id'),
-            Arr::get($userInfo, 'user.password'),
-        ];
-
-        if (User::guest()->id === $id) {
-            return User::guest();
-        }
-
-        $user = User::where('id', $id)->where('password', $password)->first();
-
-        if (! $user) {
-            throw new UnprocessableEntityHttpException('Invalid user credentials.');
-        }
-
-        return $user;
+        return $this->tokenAuth->fromToken($token);
     }
 }

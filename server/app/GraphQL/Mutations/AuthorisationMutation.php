@@ -1,49 +1,51 @@
 <?php
 /**
  * This file is part of laravel.su package.
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\GraphQL\Mutations;
 
-
-use App\GraphQL\Types\AuthType;
 use App\Models\User;
 use App\Services\TokenAuth;
-use GraphQL\Type\Definition\ObjectType;
+use Illuminate\Support\Arr;
+use App\GraphQL\Types\UserType;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Encryption\Encrypter;
-use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\JWTAuth;
+use GraphQL\Type\Definition\ObjectType;
+use App\GraphQL\Serializers\UserSerializer;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Validation\Validator;
 
+/**
+ * Class AuthorisationMutation
+ * @package App\GraphQL\Mutations
+ */
 class AuthorisationMutation extends AbstractMutation
 {
-
+    /**
+     * @var array
+     */
     protected $attributes = [
-        'name' => 'authorization'
+        'name' => 'authorization',
     ];
-    /**
-     * @var Guard
-     */
-    private $jwt;
 
-    /**
-     * @var Encrypter
-     */
-    private $encrypter;
     /**
      * @var TokenAuth
      */
-    private $guard;
+    private $tokenAuth;
 
-    public function __construct($attributes = [], TokenAuth $guard)
+    /**
+     * AuthorisationMutation constructor.
+     * @param array $attributes
+     * @param TokenAuth $tokenAuth
+     */
+    public function __construct(array $attributes = [], TokenAuth $tokenAuth)
     {
         parent::__construct($attributes);
-        $this->guard = $guard;
+
+        $this->tokenAuth = $tokenAuth;
     }
 
     /**
@@ -51,75 +53,107 @@ class AuthorisationMutation extends AbstractMutation
      */
     public function type(): ObjectType
     {
-        return \GraphQL::type(AuthType::getName());
+        return \GraphQL::type(UserType::getName());
     }
 
     /**
      * @return array
      */
-    public function args():array
+    public function args(): array
     {
         return [
-            'login' => ['name' => 'login',
-                'type' => Type::string()],
-            'password' => ['name' => 'password',
-                'type' => Type::string()]
+            'email'    => [
+                'name' => 'email',
+                'type' => Type::string(),
+            ],
+            'password' => [
+                'name' => 'password',
+                'type' => Type::string(),
+            ],
         ];
     }
 
     /**
      * @return array
      */
-    public function rules():array
+    public function rules(): array
     {
         return [
-            'login' => ['required'],
-            'password' => ['required']
+            'email'    => [
+                'email',
+                'exists:users,email',
+            ]
         ];
     }
 
     /**
      * @return array
      */
-    public function messages():array
+    public function messages(): array
     {
         return [
-            'login.required' => 'Укажите логин',
-            'password.required' => 'Укажите пароль'
+            'email.required'    => 'Укажите email',
+            'password.required' => 'Укажите пароль',
         ];
     }
 
     /**
-     * @param \Illuminate\Validation\Validator $validator
-     * @param $args
+     * @param Validator $validator
+     * @param array $args
+     * @return \Generator|null
      */
-    public function afterValidation($validator, $args)
+    public function validate(Validator $validator, array $args = []): ?\Generator
     {
-        if (!empty($args['login'])) {
-            $user = User::whereName($args['login'])->orWhere('email', $args['login'])->first();
-            /**@var $user User */
-            if (empty($user)) {
-                $validator->errors()->add('login', 'Пользователя с таким логином не существует');
-            } else {
-                if (!empty($args['password'])) {
-                    if (!Hash::check($args['password'], $user->password)) {
-                        $validator->errors()->add('login', 'Связка логин и пароль не совпадают');
-                    }
-                }
+        [$email, $password] = $this->getEmailAndPassword($args);
+
+        if ($email && $password) {
+            $user = $this->tokenAuth->attemptFromEmailAndPassword($email, $password);
+
+            if ($user === null) {
+                yield 'password' => 'Invalid user password';
             }
         }
     }
 
     /**
+     * @param array $args
+     * @return array
+     */
+    private function getEmailAndPassword(array $args = []): array
+    {
+        return [
+            Arr::get($args, 'email'),
+            Arr::get($args, 'password')
+        ];
+    }
+
+    /**
      * @param $root
      * @param $args
-     * @return User|mixed
+     * @return array
+     * @throws \Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException
      */
     public function resolve($root, $args)
     {
-        $user = User::whereName($args['login'])->orWhere('email', $args['login'])->first();
-        $user->token = $this->guard->fromUser($user);
-        return $user;
+        $user = $this->getUser($args);
+        $user->token = $this->tokenAuth->fromUser($user);
+
+        return UserSerializer::serialize($user);
+    }
+
+    /**
+     * @param array $args
+     * @return User|Authenticatable
+     */
+    private function getUser(array $args): User
+    {
+        [$email, $password] = $this->getEmailAndPassword($args);
+
+        if ($email && $password) {
+            return $this->tokenAuth->attemptFromEmailAndPassword($email, $password);
+        }
+
+        return $this->tokenAuth->guest();
     }
 
 }

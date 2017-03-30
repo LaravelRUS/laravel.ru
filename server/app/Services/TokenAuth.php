@@ -1,133 +1,163 @@
 <?php
 /**
  * This file is part of laravel.su package.
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Services;
 
-
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Encryption\Encrypter;
+use Illuminate\Support\Arr;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
+/**
+ * Class TokenAuth
+ * @package App\Services
+ */
 class TokenAuth
 {
     /**
      * @var JWTInterface
      */
     private $jwt;
-    /**
-     * @var Encrypter
-     */
-    private $encrypter;
+
     /**
      * @var Guard
      */
     private $guard;
 
-    public function __construct(JWTInterface $jwt, Encrypter $encrypter, Guard $guard)
+    /**
+     * TokenAuth constructor.
+     * @param JWTInterface $jwt
+     * @param Guard $guard
+     */
+    public function __construct(JWTInterface $jwt, Guard $guard)
     {
-
         $this->jwt = $jwt;
-        $this->encrypter = $encrypter;
         $this->guard = $guard;
     }
 
     /**
-     * @param string $token
-     * @return bool
+     * @param string $email
+     * @param string $password
+     * @return Authenticatable
      */
-    public function attempt(string $token) : bool
+    public function attemptFromEmailAndPassword(string $email, string $password): ?Authenticatable
     {
-        $credentials = $this->decode($token);
-        if (!isset($credentials['id']) || !isset($credentials['password'])) {
-            return false;
+        if (! $this->guard->validate(['email' => $email, 'password' => $password])) {
+            return null;
         }
-        $exists = User::whereId($credentials['id'])->wherePassword($credentials['password'])->exists();
-        if (!$exists) {
-            return false;
+
+        return User::whereEmail($email)->first();
+    }
+
+    /**
+     * @param int $id
+     * @param string $password
+     * @return Authenticatable
+     */
+    public function resolveFromIdAndPassword(int $id, string $password): ?Authenticatable
+    {
+        if (! $this->guard->validate(['id' => $id, 'password' => $password])) {
+            return null;
         }
-        $this->guard->onceUsingId($credentials['id']);
-        return true;
+
+        return User::find($id);
+    }
+
+    /**
+     * @return Authenticatable
+     */
+    public function guest(): Authenticatable
+    {
+        return new User(['id' => 0, 'name' => 'Guest']);
     }
 
     /**
      * @param string $token
-     * @throws TokenInvalidException
-     * @throws DecryptException
      * @return array
      */
-    public function decode(string $token) : array
+    public function decode(string $token): array
     {
-        $massive = $this->jwt->decode($token);
-        foreach ($massive as &$item) {
-            $item = $this->encrypter->decrypt($item);
-        }
-        return $massive;
+        return $this->jwt->decode($token);
     }
 
     /**
-     * @return bool
-     */
-    public function check(): bool
-    {
-        return $this->guard->check();
-    }
-
-    /**
-     * @return User
-     */
-    public function user() : User
-    {
-        return $this->guard->user();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function logout()
-    {
-        return $this->guard->logout();
-    }
-
-    /**
-     * @param array $credentials
-     * @return mixed
-     */
-    public function once(array $credentials)
-    {
-        return $this->guard->once($credentials);
-    }
-
-    /**
-     * @param User $user
+     * @param Guard $guard
      * @return string
      */
-    public function fromUser(User $user) : string
+    public function fromGuard(Guard $guard): string
     {
-        $credentials = ['id' => $user->id,
-            'password' => $user->password,
-            'create' => Carbon::now()->toRfc3339String()];
-        return $this->encode($credentials);
+        return $this->fromUser($guard->check() ? $guard->user() : $this->guest());
     }
 
     /**
-     * @param array $inputs
+     * @param Authenticatable $user
      * @return string
      */
-    public function encode(array $inputs) : string
+    public function fromUser(Authenticatable $user): string
     {
-        foreach ($inputs as &$item) {
-            $item = $this->encrypter->encrypt($item);
+        return $this->encode([
+            'user'  => [
+                'id'       => $user->getAuthIdentifier(),
+                'password' => $user->getAuthPassword(),
+            ],
+            'token' => $user->getRememberToken(),
+        ]);
+    }
+
+    /**
+     * @param string $token
+     * @return Authenticatable
+     * @throws BadRequestHttpException
+     * @throws UnprocessableEntityHttpException
+     */
+    public function fromToken(string $token): Authenticatable
+    {
+        try {
+            $userInfo = $this->decode($token);
+        } catch (TokenExpiredException $e) {
+            throw new BadRequestHttpException('Token lifetime is timed out.');
+        } catch (JWTException $invalidException) {
+            throw new BadRequestHttpException('Broken api token.');
         }
-        return $this->jwt->encode($inputs);
+
+        [$id, $password] = [
+            (int)Arr::get($userInfo, 'user.id'),
+            Arr::get($userInfo, 'user.password'),
+        ];
+
+        if ($id !== 0) {
+            $user = User::where('id', $id)->where('password', $password)->first();
+
+            if (! $user) {
+                throw new UnprocessableEntityHttpException('Invalid user credentials.');
+            }
+
+            return $user;
+        }
+
+        return $this->guest();
+    }
+
+    /**
+     * @param array $payload
+     * @return string
+     */
+    public function encode(array $payload): string
+    {
+        return $this->jwt->encode($payload);
     }
 }

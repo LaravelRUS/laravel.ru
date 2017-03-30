@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Service\HeadersInjector\HeaderProviders;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -35,14 +36,14 @@ class AccessControlAllowOrigin implements HeaderProviderInterface
     }
 
     /**
-     * @param  Request                   $request
-     * @param  Response                  $response
-     * @param  string                    $headerName
-     * @param  mixed                     $options
+     * @param  Request $request
+     * @param  Response|JsonResponse $response
+     * @param  string $headerName
+     * @param  mixed $options
      * @return \Generator
      * @throws \InvalidArgumentException
      */
-    public function inject(Request $request, Response $response, string $headerName, $options): \Generator
+    public function inject(Request $request, $response, string $headerName, $options): \Generator
     {
         yield $headerName => $this->getAccessControlAllowOrigin($request, $options);
     }
@@ -55,7 +56,7 @@ class AccessControlAllowOrigin implements HeaderProviderInterface
      */
 
     /**
-     * @param  Request                   $request
+     * @param  Request $request
      * @param                            $options
      * @return string
      * @throws \InvalidArgumentException

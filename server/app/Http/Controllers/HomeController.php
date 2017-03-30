@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Article;
+use App\Services\TokenAuth;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Auth\Guard;
@@ -33,26 +34,14 @@ class HomeController extends Controller
     }
 
     /**
-     * @param  JWTInterface                                                  $jwt
-     * @param  Guard                                                         $guard
-     * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
+     * @param TokenAuth $tokenAuth
+     * @param Guard $guard
+     * @return View
      */
-    public function react(JWTInterface $jwt, Guard $guard): View
+    public function react(TokenAuth $tokenAuth, Guard $guard): View
     {
-        $user = User::guest();
-
-        if ($guard->check()) {
-            $user = $guard->user();
-        }
-
         return view('layout.react', [
-            'token' => $jwt->encode([
-                'user'  => [
-                    'id'       => $user->getAuthIdentifier(),
-                    'password' => $user->getAuthPassword(),
-                ],
-                'token' => $user->getRememberToken(),
-            ]),
+            'token' => $tokenAuth->fromGuard($guard)
         ]);
     }
 }

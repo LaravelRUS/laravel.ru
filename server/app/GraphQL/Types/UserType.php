@@ -2,7 +2,6 @@
 
 /**
  * This file is part of laravel.su package.
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -46,6 +45,10 @@ class UserType extends AbstractType
             'avatar'       => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'User avatar url',
+            ],
+            'token'        => [
+                'type'        => Type::string(),
+                'description' => 'User secret auth token',
             ],
             'is_confirmed' => [
                 'type'        => Type::nonNull(Type::boolean()),

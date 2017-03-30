@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Service\HeadersInjector\HeaderProviders;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -23,11 +24,11 @@ interface HeaderProviderInterface
     public function match(string $headerName): bool;
 
     /**
-     * @param  Request    $request
-     * @param  Response   $response
-     * @param  string     $headerName
-     * @param  mixed      $options
+     * @param  Request $request
+     * @param  Response|JsonResponse $response
+     * @param  string $headerName
+     * @param  mixed $options
      * @return \Generator
      */
-    public function inject(Request $request, Response $response, string $headerName, $options): \Generator;
+    public function inject(Request $request, $response, string $headerName, $options): \Generator;
 }

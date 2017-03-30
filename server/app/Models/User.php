@@ -28,6 +28,11 @@ class User extends Authenticatable implements GravatarSupports
     public const DEFAULT_AVATAR_NAME = 'default/1.png';
 
     /**
+     * @var string|null
+     */
+    public $token;
+
+    /**
      * @var array
      */
     protected $fillable = [
@@ -44,14 +49,6 @@ class User extends Authenticatable implements GravatarSupports
         'password',
         'remember_token',
     ];
-
-    /**
-     * @return User
-     */
-    public static function guest(): User
-    {
-        return new self(['id' => 0, 'name' => 'Guest']);
-    }
 
     /**
      * @param  string $password

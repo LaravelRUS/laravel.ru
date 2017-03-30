@@ -25,10 +25,11 @@ class UserSerializer extends AbstractSerializer
     public function toArray($user): array
     {
         return [
-            'id'           => $user->id,
+            'id'           => (int)$user->id,
             'name'         => $user->name,
             'email'        => $user->email,
             'avatar'       => $user->avatar,
+            'token'        => $user->token,
             'is_confirmed' => $user->is_confirmed,
         ];
     }

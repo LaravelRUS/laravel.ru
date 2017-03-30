@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\AuthenticationException;
@@ -74,11 +75,31 @@ class Handler extends ExceptionHandler
             return $whoops->handleException($exception);
         }
 
-        if (!$this->isHttpException($exception)) {
-            $exception = new HttpException(500, 'Be right back.', $exception);
+        if (! $this->isHttpException($exception)) {
+            $exception = new HttpException(500, $exception->getMessage(), $exception);
+        }
+
+        if ($request->ajax() || $request->acceptsJson()) {
+            return new JsonResponse($this->getError($exception), $exception->getStatusCode());
         }
 
         return response($this->getErrorView($exception)->render(), $exception->getStatusCode());
+    }
+
+    /**
+     * @param HttpException $exception
+     * @return array
+     */
+    private function getError(HttpException $exception): array
+    {
+        if (config('app.debug')) {
+            return $this->getDebugError($exception);
+        }
+
+        return [
+            'message' => Response::$statusTexts[$exception->getStatusCode()],
+            'code'    => $exception->getStatusCode(),
+        ];
     }
 
     /**
@@ -87,11 +108,9 @@ class Handler extends ExceptionHandler
      */
     private function getErrorView(HttpException $exception)
     {
-        return view('layout.error', [
-            'message' => Response::$statusTexts[$exception->getStatusCode()],
-            'code'    => $exception->getStatusCode(),
-            'error'   => $exception,
-        ]);
+        return view('layout.error', array_merge($this->getError($exception), [
+            'error' => $exception,
+        ]));
     }
 
     /**
@@ -108,5 +127,18 @@ class Handler extends ExceptionHandler
 
         return redirect()->guest('login')
             ->withException($exception);
+    }
+
+    /**
+     * @param HttpException $exception
+     * @return array
+     */
+    private function getDebugError(HttpException $exception): array
+    {
+        return [
+            'message' => $exception->getMessage(),
+            'code'    => $exception->getStatusCode(),
+            'trace'   => explode("\n", $exception->getTraceAsString()),
+        ];
     }
 }
