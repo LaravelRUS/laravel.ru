@@ -9,14 +9,14 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Whoops\Handler\PrettyPageHandler;
+use Illuminate\Auth\AuthenticationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 /**
  * Class Handler.

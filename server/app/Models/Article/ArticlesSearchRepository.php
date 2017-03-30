@@ -14,8 +14,7 @@ use Service\SearchService\SearchResult;
 use Service\SearchService\Repository\SearchRepositoryInterface;
 
 /**
- * Class ArticlesSearchRepository
- * @package App\Models\Article
+ * Class ArticlesSearchRepository.
  */
 class ArticlesSearchRepository implements SearchRepositoryInterface
 {

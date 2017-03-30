@@ -11,8 +11,7 @@ namespace App\GraphQL\Serializers;
 use Service\SearchService\SearchResult;
 
 /**
- * Class SearchResultsSerializer
- * @package App\GraphQL\Serializers
+ * Class SearchResultsSerializer.
  */
 class SearchResultsSerializer extends AbstractSerializer
 {

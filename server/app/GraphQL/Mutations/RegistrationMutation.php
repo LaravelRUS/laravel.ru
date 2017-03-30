@@ -8,15 +8,14 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutations;
 
-use App\GraphQL\Serializers\UserSerializer;
-use App\GraphQL\Types\AuthUserType;
 use App\Models\User;
-use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Arr;
+use GraphQL\Type\Definition\Type;
+use App\GraphQL\Types\AuthUserType;
+use App\GraphQL\Serializers\UserSerializer;
 
 /**
- * Class RegistrationMutation
- * @package App\GraphQL\Mutations
+ * Class RegistrationMutation.
  */
 class RegistrationMutation extends AbstractMutation
 {
@@ -68,17 +67,17 @@ class RegistrationMutation extends AbstractMutation
         return [
             'name' => [
                 'min:2',
-                'unique:users,name'
+                'unique:users,name',
             ],
             'email' => [
                 'email',
-                'unique:users,email'
+                'unique:users,email',
             ],
             'password' => [
                 'min:2',
                 'max:100',
-                'confirmed'
-            ]
+                'confirmed',
+            ],
         ];
     }
 

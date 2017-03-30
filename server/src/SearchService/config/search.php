@@ -10,5 +10,5 @@ return [
     'repositories' => [
         // Instance of:
         // Service\SearchService\Repository\SearchRepositoryInterface::class
-    ]
+    ],
 ];

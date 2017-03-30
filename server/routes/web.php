@@ -20,4 +20,3 @@ $router->get('/react/{path?}', 'HomeController@react');
 require __DIR__ . '/web.auth.php';
 require __DIR__ . '/web.articles.php';
 require __DIR__ . '/web.docs.php';
-

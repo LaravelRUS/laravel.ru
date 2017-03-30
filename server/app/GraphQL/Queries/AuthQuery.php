@@ -8,20 +8,18 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
-use App\GraphQL\Serializers\AuthUserSerializer;
 use App\Services\TokenAuth;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Arr;
 use GraphQL\Type\Definition\Type;
 use App\GraphQL\Types\AuthUserType;
+use Illuminate\Contracts\Auth\Guard;
 use GraphQL\Type\Definition\ObjectType;
-use App\GraphQL\Serializers\UserSerializer;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use App\GraphQL\Serializers\AuthUserSerializer;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
- * Class AuthMutation
- * @package App\GraphQL\Mutations
+ * Class AuthMutation.
  */
 class AuthQuery extends AbstractQuery
 {
@@ -48,7 +46,7 @@ class AuthQuery extends AbstractQuery
      * @param Guard $guard
      * @param TokenAuth $tokenAuth
      */
-    public function __construct(array $attributes = [], Guard $guard, TokenAuth $tokenAuth)
+    public function __construct(array $attributes, Guard $guard, TokenAuth $tokenAuth)
     {
         parent::__construct($attributes);
 

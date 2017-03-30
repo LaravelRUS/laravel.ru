@@ -12,8 +12,7 @@ use App\GraphQL\Kernel\HasValidation;
 use Folklore\GraphQL\Support\Mutation;
 
 /**
- * Class AbstractMutation
- * @package App\GraphQL\Mutations
+ * Class AbstractMutation.
  */
 abstract class AbstractMutation extends Mutation
 {

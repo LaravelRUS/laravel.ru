@@ -11,8 +11,7 @@ namespace Service\SearchService;
 use Service\SearchService\Repository\SearchRepositoryInterface;
 
 /**
- * Class SearchService
- * @package Service\SearchService
+ * Class SearchService.
  */
 class SearchService
 {
@@ -41,8 +40,6 @@ class SearchService
         if (isset($this->repositories[$name])) {
             return $this->repositories[$name];
         }
-
-        return null;
     }
 
     /**

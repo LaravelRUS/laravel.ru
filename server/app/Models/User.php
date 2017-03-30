@@ -90,6 +90,6 @@ class User extends Authenticatable implements GravatarSupports
      */
     public function isGuest(): bool
     {
-        return 0 === (int)$this->getAuthIdentifier();
+        return 0 === (int) $this->getAuthIdentifier();
     }
 }

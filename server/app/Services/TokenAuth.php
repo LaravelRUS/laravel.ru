@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Contracts\Auth\Guard;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -20,8 +20,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
- * Class TokenAuth
- * @package App\Services
+ * Class TokenAuth.
  */
 class TokenAuth
 {
@@ -54,7 +53,7 @@ class TokenAuth
     public function attemptFromEmailAndPassword(string $email, string $password): ?Authenticatable
     {
         if (! $this->guard->validate(['email' => $email, 'password' => $password])) {
-            return null;
+            return;
         }
 
         return User::whereEmail($email)->first();
@@ -68,7 +67,7 @@ class TokenAuth
     public function resolveFromIdAndPassword(int $id, string $password): ?Authenticatable
     {
         if (! $this->guard->validate(['id' => $id, 'password' => $password])) {
-            return null;
+            return;
         }
 
         return User::find($id);
@@ -95,7 +94,7 @@ class TokenAuth
                 'password' => $user->getAuthPassword(),
             ],
             'created' => Carbon::now()->toRfc3339String(),
-            'guest'   => 0 === (int)$user->getAuthIdentifier(),
+            'guest'   => 0 === (int) $user->getAuthIdentifier(),
             'token'   => $user->getRememberToken(),
         ]);
     }
@@ -128,10 +127,8 @@ class TokenAuth
         try {
             $userInfo = $this->decode($token);
             $this->verifyTokenCreated($userInfo);
-
         } catch (TokenExpiredException $e) {
             throw new BadRequestHttpException('Token lifetime is timed out.');
-
         } catch (JWTException $invalidException) {
             throw new BadRequestHttpException('Broken api token.');
         }
@@ -173,9 +170,9 @@ class TokenAuth
     private function resolveExistingUser(array $userInfo)
     {
         [$id, $password, $token] = [
-            (int)Arr::get($userInfo, 'user.id'),
-            (string)Arr::get($userInfo, 'user.password'),
-            (string)Arr::get($userInfo, 'token'),
+            (int) Arr::get($userInfo, 'user.id'),
+            (string) Arr::get($userInfo, 'user.password'),
+            (string) Arr::get($userInfo, 'token'),
         ];
 
         $user = User::where('id', $id)->where('password', $password)->first();

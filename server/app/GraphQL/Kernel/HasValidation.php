@@ -13,8 +13,7 @@ use Folklore\GraphQL\Support\Field;
 use Illuminate\Contracts\Validation\Validator;
 
 /**
- * Class HasValidation
- * @package App\GraphQL\Kernel
+ * Class HasValidation.
  * @mixin Field
  */
 trait HasValidation
@@ -31,7 +30,7 @@ trait HasValidation
 
         $validator = $factory->make($args, $rules, $this->messages());
 
-        $validator->after(function($validator) use($args) {
+        $validator->after(function ($validator) use ($args) {
             $this->afterValidation($validator, $args);
         });
 
@@ -60,7 +59,6 @@ trait HasValidation
      */
     public function validate(Validator $validator, array $args = []): ?\Generator
     {
-        return null;
     }
 
     /**

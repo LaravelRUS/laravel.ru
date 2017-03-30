@@ -8,17 +8,16 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
-use App\GraphQL\Serializers\SearchResultsSerializer;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
 use Folklore\GraphQL\Support\Query;
 use App\GraphQL\Types\SearchResultType;
 use GraphQL\Type\Definition\ListOfType;
 use Service\SearchService\SearchService;
+use App\GraphQL\Serializers\SearchResultsSerializer;
 
 /**
- * Class SearchQuery
- * @package App\GraphQL\Queries
+ * Class SearchQuery.
  */
 class SearchQuery extends Query
 {
@@ -52,11 +51,10 @@ class SearchQuery extends Query
 
         if ($repo === null) {
             $message = 'Invalid type %s. Available types: %s';
-            $types   = implode(', ', $search->getCategories());
+            $types = implode(', ', $search->getCategories());
 
             throw new \InvalidArgumentException(sprintf($message, $args['type'], $types));
         }
-
 
         $result = $repo->getSearchResults($args['query'], $this->formatLimit($args));
 

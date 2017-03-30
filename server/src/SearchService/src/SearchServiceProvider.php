@@ -13,8 +13,7 @@ use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Container\Container;
 
 /**
- * Class SearchServiceProvider
- * @package Service\SearchService
+ * Class SearchServiceProvider.
  */
 class SearchServiceProvider extends ServiceProvider
 {
@@ -28,7 +27,7 @@ class SearchServiceProvider extends ServiceProvider
         $this->app->singleton(SearchService::class, function (Container $app) {
             $service = new SearchService();
 
-            $repositories  = (array)$app->make(Repository::class)
+            $repositories = (array) $app->make(Repository::class)
                 ->get('search.repositories', []);
 
             foreach ($repositories as $repo) {

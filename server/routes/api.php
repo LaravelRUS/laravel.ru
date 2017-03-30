@@ -9,7 +9,6 @@
 declare(strict_types=1);
 
 use Illuminate\Routing\Router;
-use Service\WebSocket\Io\WebSocketRequest as Request;
 
 /* @var Router $router */
 $router->options('graphql', function () {
