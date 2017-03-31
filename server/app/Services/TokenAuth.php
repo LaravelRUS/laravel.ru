@@ -53,7 +53,7 @@ class TokenAuth
     public function attemptFromEmailAndPassword(string $email, string $password): ?Authenticatable
     {
         if (! $this->guard->validate(['email' => $email, 'password' => $password])) {
-            return;
+            return null;
         }
 
         return User::whereEmail($email)->first();
@@ -67,7 +67,7 @@ class TokenAuth
     public function resolveFromIdAndPassword(int $id, string $password): ?Authenticatable
     {
         if (! $this->guard->validate(['id' => $id, 'password' => $password])) {
-            return;
+            return null;
         }
 
         return User::find($id);
