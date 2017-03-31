@@ -42,13 +42,12 @@ class AuthQuery extends AbstractQuery
 
     /**
      * AuthMutation constructor.
-     * @param array $attributes
      * @param Guard $guard
      * @param TokenAuth $tokenAuth
      */
-    public function __construct(array $attributes, Guard $guard, TokenAuth $tokenAuth)
+    public function __construct(Guard $guard, TokenAuth $tokenAuth)
     {
-        parent::__construct($attributes);
+        parent::__construct([]);
 
         $this->tokenAuth = $tokenAuth;
         $this->guard = $guard;
