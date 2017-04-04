@@ -56,13 +56,8 @@ module.exports = {
     contentBase: __dirname,
     host: '0.0.0.0',
     port: 3000,
-    https: {
-      key: fs.readFileSync('../docker/nginx/ssl/ssl-cert-snakeoil.key'),
-      cert: fs.readFileSync('../docker/nginx/ssl/ssl-cert-snakeoil.pem'),
-      ca: fs.readFileSync('../docker/nginx/ssl/ssl-cert-snakeoil.pem')
-    },
     proxy: {
-      '/graphql': { target: 'https://localhost:443', secure: false }
+      '/graphql': 'http://0.0.0.0:80'
     },
     historyApiFallback: true,
     noInfo: true,
