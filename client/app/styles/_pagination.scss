@@ -1,0 +1,31 @@
+$pagination-item-bg-color: #eee;
+$pagination-item-width: 36px;
+$pagination-item-height: 36px;
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 15px;
+
+  li {
+    &:not(:last-of-type) {
+      margin-right: 15px;
+    }
+  }
+
+  a {
+    display: block;
+    background-color: $pagination-item-bg-color;
+    width: $pagination-item-width;
+    height: $pagination-item-height;
+    line-height: $pagination-item-height;
+    text-align: center;
+
+    &.active,
+    &:hover,
+    &:focus {
+      background-color: $colors-red-laravel;
+      color: white;
+    }
+  }
+}

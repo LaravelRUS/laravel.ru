@@ -1,0 +1,29 @@
+// Grid
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+$screen-xs-max: ($screen-sm-min - 1);
+$screen-sm-max: ($screen-md-min - 1);
+$screen-md-max: ($screen-lg-min - 1);
+$grid-gutter-width: 30px;
+$container-sm: (720px + $grid-gutter-width);
+$container-md: (940px + $grid-gutter-width);
+$container-lg: (1140px + $grid-gutter-width);
+
+// Fonts
+$font-size-base: 1.5;
+$line-height-base: 2.4;
+
+// Colors
+$colors-red-laravel: #fb503b;
+$colors-grey: #767676;
+
+$main-header-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+$main-header-navigation-bg-color: #fff;
+
+// Loading
+$loading-object-size: 6px;
+$loading-object-distance-between: 4px;
+$loading-object-color: #000;
+$loading-indicator-width: ($loading-object-size * 2) + $loading-object-distance-between;
+$loading-indicator-height: $loading-object-size;

@@ -1,0 +1,150 @@
+.laravel-header {
+  height: 70px;
+  margin-bottom: 20px;
+  box-shadow: $main-header-shadow;
+
+  .contents {
+    display: flex;
+    position: relative;
+    flex: 0 1 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  a {
+    &.active,
+    &:hover,
+    &:focus {
+      color: $colors-red-laravel;
+    }
+  }
+
+  .logo {
+    flex-shrink: 0;
+
+    a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    svg {
+      height: 30px;
+      margin-right: 10px;
+      fill: $colors-red-laravel;
+    }
+  }
+
+  .logo-subtext {
+    p {
+      line-height: 1;
+
+      &:first-of-type {
+        margin-bottom: 2px;
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      &:last-of-type {
+        color: $colors-grey;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .menu {
+    button {
+      display: flex;
+      color: $colors-grey;
+    }
+
+    svg {
+      width: 20px;
+    }
+  }
+
+  .navigation {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    transition: max-height .3s;
+    overflow: hidden;
+    z-index: 10;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      padding: 5px 15px;
+      background-color: $main-header-navigation-bg-color;
+    }
+
+    li {
+      line-height: 40px;
+    }
+
+    a {
+      display: block;
+    }
+
+    &.opened {
+      max-height: 500px;
+    }
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .contents {
+      max-width: $container-sm;
+    }
+
+    .menu {
+      display: none;
+    }
+
+    .navigation {
+      position: relative;
+      top: 0;
+      width: auto;
+      max-height: initial;
+
+      ul {
+        flex-direction: row;
+        background-color: transparent;
+      }
+
+      li {
+        &:not(:last-of-type) {
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: $screen-md-min) {
+    height: 80px;
+
+    .contents {
+      max-width: $container-md;
+    }
+
+    .navigation {
+      li {
+        &:not(:last-of-type) {
+          margin-right: 30px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: $screen-lg-min) {
+    .contents {
+      max-width: $container-lg;
+    }
+  }
+}

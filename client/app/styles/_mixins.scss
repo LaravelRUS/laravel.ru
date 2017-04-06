@@ -1,0 +1,10 @@
+@mixin font-size($value) {
+  $line-height: $line-height-base / $value;
+
+  @if ($line-height < 1) {
+    $line-height: $line-height-base * (ceil($value / $line-height-base)) / $value;
+  }
+
+  font-size: $value + rem;
+  line-height: $line-height;
+}
