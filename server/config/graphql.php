@@ -88,13 +88,14 @@ return [
     'schemas'              => [
         'default' => [
             'query'    => [
-                'articles' => \App\GraphQL\Queries\ArticlesQuery::class,
-                'users'    => \App\GraphQL\Queries\UsersQuery::class,
-                'tags'     => \App\GraphQL\Queries\TagsQuery::class,
-                'tips'     => \App\GraphQL\Queries\TipsQuery::class,
-                'docs'     => \App\GraphQL\Queries\DocsQuery::class,
-                'search'   => \App\GraphQL\Queries\SearchQuery::class,
-                'auth'     => \App\GraphQL\Queries\AuthQuery::class,
+                'articles'   => \App\GraphQL\Queries\ArticlesQuery::class,
+                'users'      => \App\GraphQL\Queries\UsersQuery::class,
+                'tags'       => \App\GraphQL\Queries\TagsQuery::class,
+                'tips'       => \App\GraphQL\Queries\TipsQuery::class,
+                'docs'       => \App\GraphQL\Queries\DocsQuery::class,
+                'search'     => \App\GraphQL\Queries\SearchQuery::class,
+                'auth'       => \App\GraphQL\Queries\AuthQuery::class,
+                'docs_pages' => \App\GraphQL\Queries\DocsPagesQuery::class,
             ],
             'mutation' => [
                 'registration'   => \App\GraphQL\Mutations\RegistrationMutation::class,
