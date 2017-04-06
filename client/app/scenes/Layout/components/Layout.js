@@ -3,7 +3,7 @@ import Header from './Header'
 import Footer from './Footer'
 
 const Layout = ({ children }) => (
-  <section className="laravel-root">
+  <section className="laravel">
     <Header />
     <main className="laravel-main">
       {children}
