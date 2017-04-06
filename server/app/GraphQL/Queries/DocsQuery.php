@@ -45,7 +45,7 @@ class DocsQuery extends AbstractCollectionQuery
     public function resolve($root, array $args = []): Collection
     {
         $query = $this->queryFor(Docs::class, $args)
-            ->with('pages');
+            ->with('pages.docs');
 
         $this->checkVersion($query, $args);
         $this->checkProject($query, $args);

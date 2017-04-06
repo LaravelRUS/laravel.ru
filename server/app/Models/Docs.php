@@ -35,7 +35,7 @@ class Docs extends Model
      */
     public function pages(): HasMany
     {
-        return $this->hasMany(DocsPage::class);
+        return $this->hasMany(DocsPage::class, 'docs_id', 'id');
     }
 
     /**

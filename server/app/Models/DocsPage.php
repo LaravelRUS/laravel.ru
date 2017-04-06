@@ -56,7 +56,7 @@ class DocsPage extends Model
      */
     public function docs(): BelongsTo
     {
-        return $this->belongsTo(Docs::class);
+        return $this->belongsTo(Docs::class, 'docs_id', 'id', 'pages');
     }
 
     /**

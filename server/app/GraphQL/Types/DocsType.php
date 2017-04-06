@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Types;
 
+use App\GraphQL\Queries\DocsPagesQuery;
 use GraphQL\Type\Definition\Type;
 
 /**
