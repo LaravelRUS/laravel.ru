@@ -1,2 +1,2 @@
 // components
-export Loading from './components/Dots'
+export Loading from './components/Loading'
