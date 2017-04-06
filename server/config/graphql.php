@@ -95,7 +95,6 @@ return [
                 'docs'       => \App\GraphQL\Queries\DocsQuery::class,
                 'search'     => \App\GraphQL\Queries\SearchQuery::class,
                 'auth'       => \App\GraphQL\Queries\AuthQuery::class,
-                'docs_pages' => \App\GraphQL\Queries\DocsPagesQuery::class,
             ],
             'mutation' => [
                 'registration'   => \App\GraphQL\Mutations\RegistrationMutation::class,

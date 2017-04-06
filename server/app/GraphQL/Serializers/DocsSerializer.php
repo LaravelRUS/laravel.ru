@@ -24,14 +24,13 @@ class DocsSerializer extends AbstractSerializer
     {
         return [
             'id'          => $docs->id,
-            'project'     => $docs->slug,
-            'title'       => $docs->title,
+            'project'     => trim($docs->slug),
+            'title'       => trim($docs->title),
             'image'       => $docs->image,
             'version'     => $docs->version,
             'description' => $docs->description,
             'created_at'  => $this->formatDateTime($docs->created_at),
             'updated_at'  => $this->formatDateTime($docs->updated_at),
-            'pages'       => DocsPageSerializer::collection($docs->pages),
         ];
     }
 }

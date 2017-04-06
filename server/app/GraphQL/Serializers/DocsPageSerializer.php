@@ -25,11 +25,8 @@ class DocsPageSerializer extends AbstractSerializer
     {
         return [
             'id'             => $page->id,
-            'title'          => $page->title,
-            'url'            => route('docs.show', [
-                'version' => $page->docs->version,
-                'slug'    => $page->slug,
-            ]),
+            'title'          => trim($page->title),
+            'slug'           => trim($page->slug),
             'content'        => $page->content_rendered,
             'content_source' => $page->content_source,
             'created_at'     => $this->formatDateTime($page->created_at),

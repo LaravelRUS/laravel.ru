@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Types;
 
 use Illuminate\Support\Str;
+use App\GraphQL\Kernel\AttributeExists;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
 /**
@@ -18,6 +19,8 @@ use Folklore\GraphQL\Support\Type as GraphQLType;
  */
 abstract class AbstractType extends GraphQLType implements TypeInterface
 {
+    use AttributeExists;
+
     /**
      * @var array
      */

@@ -11,6 +11,7 @@ namespace App\GraphQL\Queries;
 use Folklore\GraphQL\Support\Query;
 use App\GraphQL\Kernel\HasValidation;
 use Illuminate\Database\Eloquent\Model;
+use App\GraphQL\Kernel\AttributeExists;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 abstract class AbstractQuery extends Query
 {
+    use AttributeExists;
     use HasValidation;
 
     /**
@@ -48,20 +50,5 @@ abstract class AbstractQuery extends Query
         }
 
         return $query;
-    }
-
-    /**
-     * @param array $args
-     * @param string $name
-     * @param \Closure $then
-     * @return mixed
-     */
-    protected function whenExists(array $args, string $name, \Closure $then)
-    {
-        if (isset($args[$name])) {
-            return $then($args[$name]);
-        }
-
-        return null;
     }
 }

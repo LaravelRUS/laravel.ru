@@ -46,16 +46,14 @@ trait WhereInSelection
      * @param  array             $args
      * @return EBuilder
      */
-    protected function queryWithWhereIn($builder, array &$args = [])
+    protected function queryWithWhereIn($builder, array $args = [])
     {
         if (isset($args['id'])) {
             if (count($args['id']) === 1) {
-                $builder->where('id', reset($args['id']));
-            } else {
-                $builder->whereIn('id', $args['id']);
+                return $builder->where('id', reset($args['id']));
             }
 
-            unset($args['id']);
+            return $builder->whereIn('id', $args['id']);
         }
 
         return $builder;

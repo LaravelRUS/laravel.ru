@@ -29,31 +29,31 @@ class DocsPageType extends AbstractType
     public function fields(): array
     {
         return [
-            'id'          => [
+            'id'             => [
                 'type'        => Type::nonNull(Type::id()),
                 'description' => 'Docs identifier',
             ],
-            'title'       => [
+            'title'          => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => '',
             ],
-            'url'       => [
+            'slug'           => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => '',
             ],
-            'content'      => [
+            'content'        => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Page rendered content',
             ],
-            'content_source'       => [
+            'content_source' => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Page content source (original)',
             ],
-            'created_at'  => [
+            'created_at'     => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => '',
             ],
-            'updated_at'  => [
+            'updated_at'     => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => '',
             ],

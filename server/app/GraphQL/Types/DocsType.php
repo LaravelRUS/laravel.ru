@@ -8,14 +8,19 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Types;
 
-use App\GraphQL\Queries\DocsPagesQuery;
+use App\Models\DocsPage;
+use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+use App\GraphQL\Serializers\DocsPageSerializer;
+use App\GraphQL\Queries\Support\WhereInSelection;
 
 /**
  * Class DocsType.
  */
 class DocsType extends AbstractType
 {
+    use WhereInSelection;
+
     /**
      * @var array
      */
@@ -39,6 +44,12 @@ class DocsType extends AbstractType
                 'description' => 'Docs project name',
             ],
             'pages'       => [
+                'args'        => $this->argumentsWithWhereIn([
+                    'slug' => [
+                        'type'        => Type::string(),
+                        'description' => 'Docs page slug',
+                    ],
+                ]),
                 'type'        => Type::listOf(\GraphQL::type(DocsPageType::getName())),
                 'description' => '',
             ],
@@ -67,5 +78,23 @@ class DocsType extends AbstractType
                 'description' => '',
             ],
         ];
+    }
+
+    /**
+     * @param $root
+     * @param array $args
+     * @return \Illuminate\Support\Collection
+     */
+    public function resolvePagesField(array $root, array $args)
+    {
+        $query = DocsPage::whereDocsId($root['id']);
+
+        $query = $this->queryWithWhereIn($query, $args);
+
+        $this->whenExists($args, 'slug', function (string $slug) use ($query) {
+            return $query->where('slug', $slug);
+        });
+
+        return DocsPageSerializer::collection($query->get());
     }
 }
