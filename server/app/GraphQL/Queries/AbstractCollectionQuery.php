@@ -47,10 +47,6 @@ abstract class AbstractCollectionQuery extends AbstractQuery
         $query = $this->queryWithLimit($query, $args);
         $query = $this->queryWithWhereIn($query, $args);
 
-        foreach ($args as $field => $value) {
-            $query = $query->where($field, $value);
-        }
-
         return $query;
     }
 }

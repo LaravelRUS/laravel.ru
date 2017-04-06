@@ -6,3 +6,5 @@ RUN apt-get update && apt-get install -y curl apt-transport-https && \
     apt-get update && apt-get install -y yarn
 
 WORKDIR /var/www/client
+
+CMD ["yarn install", "yarn run build"]

@@ -20,7 +20,6 @@ services:
     node:
         build:
             context: ./docker/node
-        command: "yarn update && yarn build:prod"
         volumes:
             - "./:/var/www"
 

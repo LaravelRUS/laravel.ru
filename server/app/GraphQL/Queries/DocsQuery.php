@@ -11,6 +11,7 @@ namespace App\GraphQL\Queries;
 use App\Models\Docs;
 use App\GraphQL\Types\DocsType;
 use GraphQL\Type\Definition\Type;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use GraphQL\Type\Definition\ListOfType;
 use App\GraphQL\Serializers\DocsSerializer;
@@ -46,7 +47,39 @@ class DocsQuery extends AbstractCollectionQuery
         $query = $this->queryFor(Docs::class, $args)
             ->with('pages');
 
+        $this->checkVersion($query, $args);
+        $this->checkProject($query, $args);
+
         return DocsSerializer::collection($query->get());
+    }
+
+    /**
+     * @param Builder $query
+     * @param array $args
+     * @return Builder|null
+     */
+    private function checkProject(Builder $query, array $args): ?Builder
+    {
+        return $this->whenExists($args, 'project', function(string $project) use ($query) {
+            return $query->where('slug', $project);
+        });
+    }
+
+    /**
+     * @param Builder $query
+     * @param array $args
+     * @return Builder
+     */
+    private function checkVersion(Builder $query, array $args): ?Builder
+    {
+        return $this->whenExists($args, 'version', function (string $version) use ($query) {
+            if ($version === 'latest') {
+                return $query->orderBy('version', 'desc')
+                    ->take(1);
+            }
+
+            return $query->where('version', $version);
+        });
     }
 
     /**
@@ -54,6 +87,15 @@ class DocsQuery extends AbstractCollectionQuery
      */
     protected function queryArguments(): array
     {
-        return [];
+        return [
+            'version' => [
+                'name'        => 'version',
+                'type'        => Type::string(),
+            ],
+            'project' => [
+                'name'        => 'project',
+                'type'        => Type::string(),
+            ],
+        ];
     }
 }

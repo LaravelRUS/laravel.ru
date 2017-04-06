@@ -43,12 +43,7 @@ class ArticlesQuery extends AbstractCollectionQuery
      */
     protected function queryArguments(): array
     {
-        return [
-            'id'     => [
-                'type'        => Type::id(),
-                'description' => 'Article identifier',
-            ],
-        ];
+        return [];
     }
 
     /**

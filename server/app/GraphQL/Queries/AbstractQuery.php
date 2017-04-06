@@ -49,4 +49,19 @@ abstract class AbstractQuery extends Query
 
         return $query;
     }
+
+    /**
+     * @param array $args
+     * @param string $name
+     * @param \Closure $then
+     * @return mixed
+     */
+    protected function whenExists(array $args, string $name, \Closure $then)
+    {
+        if (isset($args[$name])) {
+            return $then($args[$name]);
+        }
+
+        return null;
+    }
 }
