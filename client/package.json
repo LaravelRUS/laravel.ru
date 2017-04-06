@@ -8,7 +8,7 @@
     "lint:scss": "sass-lint app/**/*.scss -v -q",
     "lint": "yarn run lint:js && yarn run lint:scss",
     "dev": "cross-env BABEL_ENV=es webpack-dev-server --config webpack/webpack.dev.config --hot",
-    "build:prod": "cross-env BABEL_ENV=es webpack --config webpack/webpack.prod.config"
+    "build": "cross-env BABEL_ENV=es webpack --config webpack/webpack.prod.config"
   },
   "dependencies": {
     "apollo-client": "^1.0.2",
