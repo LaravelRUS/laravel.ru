@@ -4,14 +4,11 @@ import { Link } from 'react-router-dom'
 const ArticlesListItem = ({ article }) => (
   <li>
     <article>
-      <img src={article.image} alt={article.title} />
+      {/* <img src={article.image} alt={article.title} /> */}
+      <img src={`https://unsplash.it/1340/840/?random&y=${article.id}`} alt={article.title} />
       <div className="contents">
         <header>
           <h3>{article.title}</h3>
-          <div className="info">
-            <span className="author">{article.user.name}</span>
-            <time>{article.published_at}</time>
-          </div>
         </header>
         <div className="preview">{article.preview_source}</div>
         <footer>

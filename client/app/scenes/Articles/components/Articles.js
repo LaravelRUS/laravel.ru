@@ -1,21 +1,39 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { graphql } from 'react-apollo'
-import { ArticlesPagePaginatedQuery } from 'api/graphQl/articles'
+import { articlesPaginated } from 'api/graphQl/articles'
 import ArticlesList from './ArticlesList'
 
-const Articles = ({ data }) => (
-  <section className="articles-page">
-    <div className="articles-list">
-      <ArticlesList data={data} />
-    </div>
-    <div className="articles-sidebar">
-      <p>yolo</p>
-    </div>
-  </section>
-)
+class Articles extends Component {
+  render() {
+    const { data, match } = this.props
 
-Articles.propTypes = {
-  data: PropTypes.object.isRequired
+    return (
+      <section className="articles-page">
+        <section className="main">
+          <ArticlesList match={match} data={data} />
+        </section>
+        <div className="sidebar">
+          <p>yolo</p>
+        </div>
+      </section>
+    )
+  }
 }
 
-export default graphql(ArticlesPagePaginatedQuery)(Articles)
+Articles.propTypes = {
+  data: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
+}
+
+export default graphql(articlesPaginated, {
+  options(props) {
+    const page = props.match.params.id || 1
+
+    return {
+      variables: {
+        page,
+        limit: 10
+      }
+    }
+  }
+})(Articles)
