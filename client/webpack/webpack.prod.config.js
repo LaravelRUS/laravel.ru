@@ -60,7 +60,10 @@ module.exports = {
       'process.env.NODE_ENV': '"production"'
     }),
     new ExtractTextPlugin(config.prod.output.css.filename),
-    new CopyWebpackPlugin([{ from: `${__dirname}/assets` }]),
+    new CopyWebpackPlugin([{
+      from: `${__dirname}/public/fonts`,
+      to: 'fonts'
+    }]),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         screw_ie8: true,
