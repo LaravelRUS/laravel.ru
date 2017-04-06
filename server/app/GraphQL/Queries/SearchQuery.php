@@ -19,7 +19,7 @@ use App\GraphQL\Serializers\SearchResultsSerializer;
 /**
  * Class SearchQuery.
  */
-class SearchQuery extends Query
+class SearchQuery extends AbstractQuery
 {
     /**
      * @var array
@@ -34,7 +34,7 @@ class SearchQuery extends Query
      */
     public function type(): ListOfType
     {
-        return Type::listOf(\GraphQL::type(SearchResultType::getName()));
+        return Type::listOf(\GraphQL::type('SearchResult'));
     }
 
     /**
@@ -75,7 +75,7 @@ class SearchQuery extends Query
     /**
      * @return array
      */
-    public function args(): array
+    public function queryArguments(): array
     {
         return [
             '_limit' => [

@@ -135,10 +135,14 @@ class Handler extends ExceptionHandler
      */
     private function getDebugError(HttpException $exception): array
     {
+        $trace = $exception->getPrevious()
+            ? $exception->getPrevious()->getTraceAsString()
+            : $exception->getTraceAsString();
+
         return [
             'message' => $exception->getMessage(),
             'code'    => $exception->getStatusCode(),
-            'trace'   => explode("\n", $exception->getTraceAsString()),
+            'trace'   => explode("\n", $trace),
         ];
     }
 }

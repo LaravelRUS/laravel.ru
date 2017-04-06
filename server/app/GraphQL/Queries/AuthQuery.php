@@ -58,7 +58,7 @@ class AuthQuery extends AbstractQuery
      */
     public function type(): ObjectType
     {
-        return \GraphQL::type(AuthUserType::getName());
+        return \GraphQL::type('AuthUser');
     }
 
     /**

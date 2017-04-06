@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     /*
     | The prefix for routes
      */
@@ -88,30 +87,29 @@ return [
     'schemas'              => [
         'default' => [
             'query'    => [
-                'articles'   => \App\GraphQL\Queries\ArticlesQuery::class,
-                'users'      => \App\GraphQL\Queries\UsersQuery::class,
-                'tags'       => \App\GraphQL\Queries\TagsQuery::class,
-                'tips'       => \App\GraphQL\Queries\TipsQuery::class,
-                'docs'       => \App\GraphQL\Queries\DocsQuery::class,
-                'search'     => \App\GraphQL\Queries\SearchQuery::class,
-                'auth'       => \App\GraphQL\Queries\AuthQuery::class,
+                'articles' => \App\GraphQL\Queries\ArticlesQuery::class,
+                'users'    => \App\GraphQL\Queries\UsersQuery::class,
+                'tags'     => \App\GraphQL\Queries\TagsQuery::class,
+                'tips'     => \App\GraphQL\Queries\TipsQuery::class,
+                'docs'     => \App\GraphQL\Queries\DocsQuery::class,
+                'search'   => \App\GraphQL\Queries\SearchQuery::class,
+                'auth'     => \App\GraphQL\Queries\AuthQuery::class,
             ],
             'mutation' => [
                 'registration'   => \App\GraphQL\Mutations\RegistrationMutation::class,
-                'article_update' => \App\GraphQL\Mutations\ArticleUpdate::class,
             ],
         ],
     ],
 
     'types'           => [
-        \App\GraphQL\Types\ArticleType::getName()      => \App\GraphQL\Types\ArticleType::class,
-        \App\GraphQL\Types\UserType::getName()         => \App\GraphQL\Types\UserType::class,
-        \App\GraphQL\Types\AuthUserType::getName()     => \App\GraphQL\Types\AuthUserType::class,
-        \App\GraphQL\Types\TagType::getName()          => \App\GraphQL\Types\TagType::class,
-        \App\GraphQL\Types\TipType::getName()          => \App\GraphQL\Types\TipType::class,
-        \App\GraphQL\Types\DocsType::getName()         => \App\GraphQL\Types\DocsType::class,
-        \App\GraphQL\Types\DocsPageType::getName()     => \App\GraphQL\Types\DocsPageType::class,
-        \App\GraphQL\Types\SearchResultType::getName() => \App\GraphQL\Types\SearchResultType::class,
+        'Article'      => \App\GraphQL\Types\ArticleType::class,
+        'User'         => \App\GraphQL\Types\UserType::class,
+        'AuthUser'     => \App\GraphQL\Types\AuthUserType::class,
+        'Tag'          => \App\GraphQL\Types\TagType::class,
+        'Tip'          => \App\GraphQL\Types\TipType::class,
+        'Docs'         => \App\GraphQL\Types\DocsType::class,
+        'DocsPage'     => \App\GraphQL\Types\DocsPageType::class,
+        'SearchResult' => \App\GraphQL\Types\SearchResultType::class,
     ],
 
     /*

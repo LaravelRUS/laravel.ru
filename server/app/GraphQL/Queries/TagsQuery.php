@@ -20,7 +20,7 @@ use App\GraphQL\Serializers\TagSerializer;
 /**
  * Class TagsQuery.
  */
-class TagsQuery extends AbstractCollectionQuery
+class TagsQuery extends AbstractQuery
 {
     /**
      * @var array
@@ -35,7 +35,7 @@ class TagsQuery extends AbstractCollectionQuery
      */
     public function type(): ListOfType
     {
-        return Type::listOf(\GraphQL::type(TagType::getName()));
+        return Type::listOf(\GraphQL::type('Tag'));
     }
 
     /**

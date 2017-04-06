@@ -43,12 +43,6 @@ abstract class AbstractQuery extends Query
      */
     protected function queryFor(string $model, array $args = []): Builder
     {
-        $query = $model::query();
-
-        foreach ($args as $field => $value) {
-            $query = $query->where($field, $value);
-        }
-
-        return $query;
+        return $model::query();
     }
 }

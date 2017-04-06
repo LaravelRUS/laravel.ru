@@ -12,6 +12,7 @@ namespace App\GraphQL\Types;
 use App\Models\Article;
 use GraphQL\Type\Definition\Type;
 use App\GraphQL\Kernel\EnumTransfer;
+use App\GraphQL\Serializers\ArticleSerializer;
 
 /**
  * Class ArticleType.
@@ -77,11 +78,11 @@ class ArticleType extends AbstractType
                 'description' => 'Article publishing date and time in RFC3339 format',
             ],
             'user'           => [
-                'type'        => \GraphQL::type(UserType::getName()),
+                'type'        => \GraphQL::type('User'),
                 'description' => 'Article author relation',
             ],
             'tags'           => [
-                'type'        => Type::listOf(\GraphQL::type(TagType::getName())),
+                'type'        => Type::listOf(\GraphQL::type('Tag')),
                 'description' => 'Article tags',
             ],
         ];

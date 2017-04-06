@@ -42,7 +42,7 @@ class TipType extends AbstractType
                 'description' => 'Tip content source (original)',
             ],
             'user'           => [
-                'type'        => \GraphQL::type(UserType::getName()),
+                'type'        => \GraphQL::type('User'),
                 'description' => 'Tip author',
             ],
             'likes'          => [

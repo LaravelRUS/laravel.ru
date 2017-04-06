@@ -6,14 +6,15 @@
  */
 declare(strict_types=1);
 
-namespace App\GraphQL\Queries\Support;
+namespace App\GraphQL\Kernel;
 
 use GraphQL\Type\Definition\Type;
 use Illuminate\Database\Query\Builder as QBuilder;
 use Illuminate\Database\Eloquent\Builder as EBuilder;
 
 /**
- * Class WhereInSelection.
+ * Class WhereInSelection
+ * @package App\GraphQL\Kernel
  */
 trait WhereInSelection
 {

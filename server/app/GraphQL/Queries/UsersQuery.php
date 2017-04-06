@@ -19,7 +19,7 @@ use App\GraphQL\Serializers\UserSerializer;
 /**
  * Class UsersQuery.
  */
-class UsersQuery extends AbstractCollectionQuery
+class UsersQuery extends AbstractQuery
 {
     /**
      * @var array
@@ -34,7 +34,7 @@ class UsersQuery extends AbstractCollectionQuery
      */
     public function type(): ListOfType
     {
-        return Type::listOf(\GraphQL::type(UserType::getName()));
+        return Type::listOf(\GraphQL::type('User'));
     }
 
     /**

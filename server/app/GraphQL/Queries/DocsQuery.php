@@ -19,7 +19,7 @@ use App\GraphQL\Serializers\DocsSerializer;
 /**
  * Class DocsQuery.
  */
-class DocsQuery extends AbstractCollectionQuery
+class DocsQuery extends AbstractQuery
 {
     /**
      * @var array
@@ -34,7 +34,7 @@ class DocsQuery extends AbstractCollectionQuery
      */
     public function type(): ListOfType
     {
-        return Type::listOf(\GraphQL::type(DocsType::getName()));
+        return Type::listOf(\GraphQL::type('Docs'));
     }
 
     /**

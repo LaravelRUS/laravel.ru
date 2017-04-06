@@ -56,7 +56,7 @@ class RegistrationMutation extends AbstractMutation
      */
     public function type()
     {
-        return \GraphQL::type(AuthUserType::getName());
+        return \GraphQL::type('AuthUser');
     }
 
     /**

@@ -12,7 +12,6 @@ namespace App\GraphQL\Queries;
 
 use App\Models\Article;
 use GraphQL\Type\Definition\Type;
-use App\GraphQL\Types\ArticleType;
 use Illuminate\Support\Collection;
 use GraphQL\Type\Definition\ListOfType;
 use App\GraphQL\Serializers\ArticleSerializer;
@@ -20,7 +19,7 @@ use App\GraphQL\Serializers\ArticleSerializer;
 /**
  * Class ArticlesQuery.
  */
-class ArticlesQuery extends AbstractCollectionQuery
+class ArticlesQuery extends AbstractQuery
 {
     /**
      * @var array
@@ -35,7 +34,7 @@ class ArticlesQuery extends AbstractCollectionQuery
      */
     public function type(): ListOfType
     {
-        return Type::listOf(\GraphQL::type(ArticleType::getName()));
+        return Type::listOf(\GraphQL::type('Article'));
     }
 
     /**

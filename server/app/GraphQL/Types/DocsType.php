@@ -9,10 +9,9 @@ declare(strict_types=1);
 namespace App\GraphQL\Types;
 
 use App\Models\DocsPage;
-use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+use App\GraphQL\Kernel\WhereInSelection;
 use App\GraphQL\Serializers\DocsPageSerializer;
-use App\GraphQL\Queries\Support\WhereInSelection;
 
 /**
  * Class DocsType.
@@ -50,7 +49,7 @@ class DocsType extends AbstractType
                         'description' => 'Docs page slug',
                     ],
                 ]),
-                'type'        => Type::listOf(\GraphQL::type(DocsPageType::getName())),
+                'type'        => Type::listOf(\GraphQL::type('DocsPage')),
                 'description' => '',
             ],
             'title'       => [

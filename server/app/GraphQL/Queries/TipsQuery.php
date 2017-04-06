@@ -20,7 +20,7 @@ use App\GraphQL\Serializers\TipSerializer;
 /**
  * Class TipsQuery.
  */
-class TipsQuery extends AbstractCollectionQuery
+class TipsQuery extends AbstractQuery
 {
     /**
      * @var array
@@ -35,7 +35,7 @@ class TipsQuery extends AbstractCollectionQuery
      */
     public function type(): ListOfType
     {
-        return Type::listOf(\GraphQL::type(TipType::getName()));
+        return Type::listOf(\GraphQL::type('Tip'));
     }
 
     /**
