@@ -53,7 +53,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: __dirname,
+    contentBase: `${__dirname}/public`,
     host: '0.0.0.0',
     port: 3000,
     proxy: {
