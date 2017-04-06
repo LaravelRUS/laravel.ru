@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
-export const ArticlesPagePaginatedQuery = gql`
-  query articles {
-    articles(_page: 1, _limit: 15) {
+export const articlesPaginated = gql`
+  query articlesPaginated($page: Int, $limit: Int) {
+    articles(_page: $page, _limit: $limit) {
       id
       title
       image
