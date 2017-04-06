@@ -7,11 +7,11 @@ module.exports = {
   prod: {
     output: {
       js: {
-        path: path.resolve(__dirname, '../../server/public/dist'),
-        filename: 'react.js'
+        path: path.resolve(__dirname, '../../server/public'),
+        filename: 'js/react.js'
       },
       css: {
-        filename: 'react.css'
+        filename: 'css/react.css'
       }
     }
   }

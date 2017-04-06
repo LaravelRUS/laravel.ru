@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const config = require('./config')
 
 module.exports = {
@@ -59,6 +60,7 @@ module.exports = {
       'process.env.NODE_ENV': '"production"'
     }),
     new ExtractTextPlugin(config.prod.output.css.filename),
+    new CopyWebpackPlugin([{ from: `${__dirname}/assets` }]),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         screw_ie8: true,
