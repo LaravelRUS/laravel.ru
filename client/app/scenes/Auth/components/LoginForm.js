@@ -5,7 +5,7 @@ import { Button } from 'components/Buttons'
 
 const LoginForm = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
-    <Input label="Имя пользователя или электронная почта" name="username" />
+    <Input label="Электронная почта" name="email" />
     <Input type="password" label="Пароль" name="password" />
     <Button type="submit">Войти</Button>
   </form>
