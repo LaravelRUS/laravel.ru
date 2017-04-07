@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Queries;
 
 use App\Models\User;
-use App\GraphQL\Types\UserType;
+use App\GraphQL\Kernel\Paginator;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
 use GraphQL\Type\Definition\ListOfType;
@@ -21,6 +21,8 @@ use App\GraphQL\Serializers\UserSerializer;
  */
 class UsersQuery extends AbstractQuery
 {
+    use Paginator;
+
     /**
      * @var array
      */
@@ -42,18 +44,23 @@ class UsersQuery extends AbstractQuery
      */
     protected function queryArguments(): array
     {
-        return [];
+        return Paginator\PaginatorConfiguration::withPaginatorArguments([
+
+        ]);
     }
 
     /**
      * @param        $root
      * @param  array $args
-     * @return Collection
+     * @return \Traversable
      */
-    public function resolve($root, array $args = []): Collection
+    public function resolve($root, array $args = []): \Traversable
     {
         $query = $this->queryFor(User::class, $args);
 
-        return UserSerializer::collection($query->get());
+        return $this->paginate($query, $query->count())
+            ->withArgs($args)
+            ->use(UserSerializer::class)
+            ->as('users');
     }
 }

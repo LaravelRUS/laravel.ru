@@ -14,7 +14,6 @@ use App\Models\Article;
 use App\GraphQL\Kernel\Paginator;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ListOfType;
-use Illuminate\Contracts\Support\Arrayable;
 use App\GraphQL\Serializers\ArticleSerializer;
 
 /**
