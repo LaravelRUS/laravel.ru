@@ -10,7 +10,7 @@ namespace App\GraphQL\Types;
 
 use App\Models\DocsPage;
 use GraphQL\Type\Definition\Type;
-use App\GraphQL\Kernel\WhereInSelection;
+use App\GraphQL\Feature\SelectById;
 use App\GraphQL\Serializers\DocsPageSerializer;
 
 /**
@@ -18,7 +18,7 @@ use App\GraphQL\Serializers\DocsPageSerializer;
  */
 class DocsType extends AbstractType
 {
-    use WhereInSelection;
+    use SelectById;
 
     /**
      * @var array
@@ -31,7 +31,7 @@ class DocsType extends AbstractType
     /**
      * @return array
      */
-    public function fields(): array
+    public function typeFields(): array
     {
         return [
             'id'          => [
@@ -43,7 +43,7 @@ class DocsType extends AbstractType
                 'description' => 'Docs project name',
             ],
             'pages'       => [
-                'args'        => $this->argumentsWithWhereIn([
+                'args'        => $this->extendArguments([
                     'slug' => [
                         'type'        => Type::string(),
                         'description' => 'Docs page slug',
@@ -88,7 +88,7 @@ class DocsType extends AbstractType
     {
         $query = DocsPage::whereDocsId($root['id']);
 
-        $query = $this->queryWithWhereIn($query, $args);
+        $query = $this->extendQuery($query, $args);
 
         $this->whenExists($args, 'slug', function (string $slug) use ($query) {
             return $query->where('slug', $slug);

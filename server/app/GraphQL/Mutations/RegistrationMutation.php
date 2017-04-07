@@ -29,7 +29,7 @@ class RegistrationMutation extends AbstractMutation
     /**
      * @return array
      */
-    public function args()
+    public function queryArguments(): array
     {
         return [
             'name'                  => [

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace App\GraphQL\Kernel;
+namespace App\GraphQL\Queries\Support;
 
 use Illuminate\Validation\Factory;
 use Folklore\GraphQL\Support\Field;

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace App\GraphQL\Kernel\Paginator;
+namespace App\GraphQL\Feature\Paginator;
 
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Collection;
@@ -171,24 +171,6 @@ class PaginatorConfiguration implements \IteratorAggregate
     public function getAlias()
     {
         return $this->alias;
-    }
-
-    /**
-     * @param array $original
-     * @return array
-     */
-    public static function withPaginatorArguments(array $original): array
-    {
-        return array_merge($original, [
-            static::QUERY_LIMIT => [
-                'type'        => Type::int(),
-                'description' => 'Items per page: in 1...1000 range',
-            ],
-            static::QUERY_PAGE   => [
-                'type'        => Type::int(),
-                'description' => 'Current page number (Usage without "_limit" argument gives no effect)',
-            ],
-        ]);
     }
 
     /**

@@ -7,13 +7,14 @@
  */
 declare(strict_types=1);
 
-namespace App\GraphQL\Kernel;
+namespace App\GraphQL\Feature\Enum;
 
 use GraphQL\Type\Definition\EnumType;
 use CommerceGuys\Enum\AbstractEnum as BaseEnum;
 
 /**
- * Class EnumTransfer.
+ * Class EnumTransfer
+ * @package App\GraphQL\Feature\Enum
  */
 class EnumTransfer
 {
@@ -59,8 +60,8 @@ class EnumTransfer
 
     /**
      * @param string $enum
-     *
-     * @return mixed
+     * @return EnumType
+     * @throws \ReflectionException
      */
     public function toGraphQL(string $enum): EnumType
     {

@@ -10,7 +10,7 @@ namespace App\GraphQL\Queries;
 
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ObjectType;
-use App\GraphQL\Kernel\Paginator\PaginatorConfiguration;
+use App\GraphQL\Feature\Paginator\PaginatorConfiguration;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**

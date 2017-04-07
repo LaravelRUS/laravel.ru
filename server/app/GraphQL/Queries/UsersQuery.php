@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace App\GraphQL\Queries;
 
 use App\Models\User;
-use App\GraphQL\Kernel\Paginator;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Support\Collection;
+use App\GraphQL\Feature\Paginator;
+use App\GraphQL\Feature\SelectById;
 use GraphQL\Type\Definition\ListOfType;
 use App\GraphQL\Serializers\UserSerializer;
 
@@ -22,6 +22,7 @@ use App\GraphQL\Serializers\UserSerializer;
 class UsersQuery extends AbstractQuery
 {
     use Paginator;
+    use SelectById;
 
     /**
      * @var array
@@ -44,9 +45,7 @@ class UsersQuery extends AbstractQuery
      */
     protected function queryArguments(): array
     {
-        return Paginator\PaginatorConfiguration::withPaginatorArguments([
-
-        ]);
+        return [];
     }
 
     /**

@@ -29,7 +29,7 @@ class ArticleType extends AbstractType
     /**
      * @return array
      */
-    public function fields(): array
+    public function typeFields(): array
     {
         return [
             'id'             => [
@@ -69,7 +69,7 @@ class ArticleType extends AbstractType
                 'description' => 'Article content preview (original)',
             ],
             'status'         => [
-                'type'        => app(EnumTransfer::class)->toGraphQL(Article\Status::class),
+                'type'        => Article\Status::class,
                 'description' => 'Article status',
             ],
             'published_at'   => [

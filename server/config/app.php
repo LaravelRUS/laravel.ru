@@ -184,7 +184,6 @@ return [
         App\Providers\DateTimeServiceProvider::class,
         App\Providers\HttpClientServiceProvider::class,
         App\Providers\ColorGeneratorServiceProvider::class,
-        App\Providers\EnumsServiceProvider::class,
         App\Providers\NavigationServiceProvider::class,
 
         Service\ContentRenderer\ContentRendererServiceProvider::class,

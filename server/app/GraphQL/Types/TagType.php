@@ -28,7 +28,7 @@ class TagType extends AbstractType
     /**
      * @return array
      */
-    public function fields(): array
+    public function typeFields(): array
     {
         return [
             'id'    => [

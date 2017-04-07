@@ -26,7 +26,7 @@ class SearchResultType extends AbstractType
     /**
      * @return array
      */
-    public function fields(): array
+    public function typeFields(): array
     {
         return [
             'slug'   => [

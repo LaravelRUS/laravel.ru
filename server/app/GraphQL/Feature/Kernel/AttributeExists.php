@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace App\GraphQL\Kernel;
+namespace App\GraphQL\Feature\Kernel;
 
 /**
  * Class AttributeExists
- * @package App\GraphQL\Kernel
+ * @package App\GraphQL\Feature\Kernel
  */
 trait AttributeExists
 {

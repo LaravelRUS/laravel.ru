@@ -9,25 +9,35 @@ declare(strict_types=1);
 namespace App\GraphQL\Queries;
 
 use Folklore\GraphQL\Support\Query;
-use App\GraphQL\Kernel\HasValidation;
 use Illuminate\Database\Eloquent\Model;
-use App\GraphQL\Kernel\AttributeExists;
 use Illuminate\Database\Eloquent\Builder;
+use App\GraphQL\Queries\Support\HasValidation;
+use App\GraphQL\Feature\Kernel\FeaturesSupport;
 
 /**
  * Class AbstractQuery.
  */
 abstract class AbstractQuery extends Query
 {
-    use AttributeExists;
     use HasValidation;
+    use FeaturesSupport;
+
+    /**
+     * AbstractQuery constructor.
+     * @param array $attributes
+     */
+    public function __construct($attributes = [])
+    {
+        $this->boot();
+        parent::__construct($attributes);
+    }
 
     /**
      * @return array
      */
     public function args(): array
     {
-        return $this->queryArguments();
+        return $this->extendArguments($this->queryArguments());
     }
 
     /**
@@ -36,13 +46,12 @@ abstract class AbstractQuery extends Query
     abstract protected function queryArguments(): array;
 
     /**
-     * @param string $model
+     * @param string|Model $model
      * @param array  $args
      * @return Builder|Model <T>
-     * @internal param $ string|Model|Model<T> $model
      */
     protected function queryFor(string $model, array $args = []): Builder
     {
-        return $model::query();
+        return $this->extendQuery($model::query(), $args);
     }
 }
