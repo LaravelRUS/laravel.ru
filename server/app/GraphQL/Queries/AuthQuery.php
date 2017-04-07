@@ -104,7 +104,7 @@ class AuthQuery extends AbstractQuery
         $user = $this->tokenAuth->attemptFromEmailAndPassword($email, $password);
 
         if (! $user) {
-            throw new AccessDeniedHttpException('User password are not correct');
+            throw new AccessDeniedHttpException('User password is not correct');
         }
 
         return AuthUserSerializer::serialize($user);
