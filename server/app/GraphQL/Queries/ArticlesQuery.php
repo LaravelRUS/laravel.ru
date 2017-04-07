@@ -12,6 +12,7 @@ namespace App\GraphQL\Queries;
 use App\Models\Article;
 use App\GraphQL\Kernel\Paginator;
 use GraphQL\Type\Definition\Type;
+use App\GraphQL\Kernel\WhereInSelection;
 use GraphQL\Type\Definition\ListOfType;
 use App\GraphQL\Serializers\ArticleSerializer;
 
@@ -21,6 +22,7 @@ use App\GraphQL\Serializers\ArticleSerializer;
 class ArticlesQuery extends AbstractQuery
 {
     use Paginator;
+    use WhereInSelection;
 
     /**
      * @var array
@@ -47,13 +49,14 @@ class ArticlesQuery extends AbstractQuery
     {
         $query = $this->queryFor(Article::class, $args);
 
-        $this->whenExists($args, 'slug', function (string $slug) use ($query) {
-            return $query->where('slug', $slug);
+        $query = $this->queryWithWhereIn($query, $args);
+
+        $this->whenExists($args, 'slug', function (array $slug) use ($query) {
+            return $query->whereIn('slug', $slug);
         });
 
         $count = $query->published()->count();
         $query = $query->latestPublished();
-
 
         return $this->paginate($query, $count)
             ->withArgs($args)
@@ -66,11 +69,16 @@ class ArticlesQuery extends AbstractQuery
      */
     protected function queryArguments(): array
     {
-        return Paginator\PaginatorConfiguration::withPaginatorArguments([
+        $args = [
             'slug' => [
-                'type'        => Type::string(),
+                'type'        => Type::listOf(Type::string()),
                 'description' => 'Article slug',
             ],
-        ]);
+        ];
+
+        $args = $this->argumentsWithWhereIn($args);
+        $args = Paginator\PaginatorConfiguration::withPaginatorArguments($args);
+
+        return $args;
     }
 }
