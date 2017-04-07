@@ -1,0 +1,36 @@
+.docs-page {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+
+  .menu,
+  .contents {
+    padding: 0 15px;
+  }
+
+  .menu {
+    flex-basis: 30%;
+    max-width: 30%;
+  }
+
+  .contents {
+    flex-basis: 70%;
+    max-width: 70%;
+
+    p, h1, h2, h3, h4, h5, h6 {
+      margin-bottom: 24px;
+    }
+  }
+
+  @media (min-width: $screen-sm-min) {
+    max-width: $container-sm;
+  }
+
+  @media (min-width: $screen-md-min) {
+    max-width: $container-md;
+  }
+
+  @media (min-width: $screen-lg-min) {
+    max-width: $container-lg;
+  }
+}
