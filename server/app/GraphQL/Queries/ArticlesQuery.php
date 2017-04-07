@@ -2,7 +2,6 @@
 
 /**
  * This file is part of laravel.su package.
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -40,16 +39,6 @@ class ArticlesQuery extends AbstractQuery
     }
 
     /**
-     * @return array
-     */
-    protected function queryArguments(): array
-    {
-        return Paginator\PaginatorConfiguration::withPaginatorArguments([
-
-        ]);
-    }
-
-    /**
      * @param $root
      * @param array $args
      * @return \Traversable
@@ -58,12 +47,30 @@ class ArticlesQuery extends AbstractQuery
     {
         $query = $this->queryFor(Article::class, $args);
 
+        $this->whenExists($args, 'slug', function (string $slug) use ($query) {
+            return $query->where('slug', $slug);
+        });
+
         $count = $query->published()->count();
         $query = $query->latestPublished();
+
 
         return $this->paginate($query, $count)
             ->withArgs($args)
             ->use(ArticleSerializer::class)
             ->as('articles');
+    }
+
+    /**
+     * @return array
+     */
+    protected function queryArguments(): array
+    {
+        return Paginator\PaginatorConfiguration::withPaginatorArguments([
+            'slug' => [
+                'type'        => Type::string(),
+                'description' => 'Article slug',
+            ],
+        ]);
     }
 }
