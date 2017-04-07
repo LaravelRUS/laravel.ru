@@ -12,7 +12,6 @@ namespace App\GraphQL\Types;
 use App\Models\Article;
 use GraphQL\Type\Definition\Type;
 use App\GraphQL\Kernel\EnumTransfer;
-use App\GraphQL\Serializers\ArticleSerializer;
 
 /**
  * Class ArticleType.

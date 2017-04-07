@@ -11,9 +11,10 @@ declare(strict_types=1);
 namespace App\GraphQL\Queries;
 
 use App\Models\Article;
+use App\GraphQL\Kernel\Paginator;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Support\Collection;
 use GraphQL\Type\Definition\ListOfType;
+use Illuminate\Contracts\Support\Arrayable;
 use App\GraphQL\Serializers\ArticleSerializer;
 
 /**
@@ -21,6 +22,8 @@ use App\GraphQL\Serializers\ArticleSerializer;
  */
 class ArticlesQuery extends AbstractQuery
 {
+    use Paginator;
+
     /**
      * @var array
      */
@@ -42,19 +45,26 @@ class ArticlesQuery extends AbstractQuery
      */
     protected function queryArguments(): array
     {
-        return [];
+        return Paginator\PaginatorConfiguration::withPaginatorArguments([
+
+        ]);
     }
 
     /**
      * @param $root
-     * @param  array      $args
-     * @return Collection
+     * @param array $args
+     * @return \Traversable
      */
-    public function resolve($root, array $args = []): Collection
+    public function resolve($root, array $args = []): \Traversable
     {
-        $query = $this->queryFor(Article::class, $args)
-            ->latestPublished();
+        $query = $this->queryFor(Article::class, $args);
 
-        return ArticleSerializer::collection($query->get());
+        $count = $query->published()->count();
+        $query = $query->latestPublished();
+
+        return $this->paginate($query, $count)
+            ->withArgs($args)
+            ->use(ArticleSerializer::class)
+            ->as('articles');
     }
 }

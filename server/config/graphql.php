@@ -87,16 +87,17 @@ return [
     'schemas'              => [
         'default' => [
             'query'    => [
-                'articles' => \App\GraphQL\Queries\ArticlesQuery::class,
-                'users'    => \App\GraphQL\Queries\UsersQuery::class,
-                'tags'     => \App\GraphQL\Queries\TagsQuery::class,
-                'tips'     => \App\GraphQL\Queries\TipsQuery::class,
-                'docs'     => \App\GraphQL\Queries\DocsQuery::class,
-                'search'   => \App\GraphQL\Queries\SearchQuery::class,
-                'auth'     => \App\GraphQL\Queries\AuthQuery::class,
+                'articles'  => \App\GraphQL\Queries\ArticlesQuery::class,
+                'users'     => \App\GraphQL\Queries\UsersQuery::class,
+                'tags'      => \App\GraphQL\Queries\TagsQuery::class,
+                'tips'      => \App\GraphQL\Queries\TipsQuery::class,
+                'docs'      => \App\GraphQL\Queries\DocsQuery::class,
+                'search'    => \App\GraphQL\Queries\SearchQuery::class,
+                'auth'      => \App\GraphQL\Queries\AuthQuery::class,
+                'paginator' => \App\GraphQL\Queries\PaginatorQuery::class,
             ],
             'mutation' => [
-                'registration'   => \App\GraphQL\Mutations\RegistrationMutation::class,
+                'registration' => \App\GraphQL\Mutations\RegistrationMutation::class,
             ],
         ],
     ],
@@ -110,6 +111,7 @@ return [
         'Docs'         => \App\GraphQL\Types\DocsType::class,
         'DocsPage'     => \App\GraphQL\Types\DocsPageType::class,
         'SearchResult' => \App\GraphQL\Types\SearchResultType::class,
+        'Paginator'    => \App\GraphQL\Types\PaginatorType::class,
     ],
 
     /*
