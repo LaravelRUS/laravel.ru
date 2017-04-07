@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Feature;
 
-use CommerceGuys\Enum\AbstractEnum;
 use GraphQL\Type\Definition\Type;
+use CommerceGuys\Enum\AbstractEnum;
 use App\GraphQL\Feature\Enum\EnumTransfer;
 use App\GraphQL\Feature\Kernel\FeaturesSupport;
 
@@ -27,6 +27,7 @@ trait EnumsSupport
 
     /**
      * @return void
+     * @throws \ReflectionException
      */
     protected function bootEnumsSupport(): void
     {
@@ -42,16 +43,33 @@ trait EnumsSupport
     /**
      * @param array $config
      * @return array
+     * @throws \ReflectionException
      */
     private function configs(array $config): array
     {
-        if ($config['type'] instanceof Type) {
-            return $config;
+        if (! $this->isGraphQLType($config)) {
+            $config['type'] = $this->wrapType($config['type']);
         }
 
-        $config['type'] = $this->wrapType($config['type']);
-
         return $config;
+    }
+
+    /**
+     * @param array $config
+     * @return bool
+     */
+    private function isGraphQLType(array $config): bool
+    {
+        return $config['type'] instanceof Type;
+    }
+
+    /**
+     * @param AbstractEnum|string|mixed $type
+     * @return bool
+     */
+    private function isEnumType($type): bool
+    {
+        return is_string($type) && is_subclass_of($type, AbstractEnum::class);
     }
 
     /**
@@ -61,7 +79,7 @@ trait EnumsSupport
      */
     private function wrapType($type)
     {
-        if (is_string($type) && is_subclass_of($type, AbstractEnum::class)) {
+        if ($this->isEnumType($type)) {
             return $this->transfer->toGraphQL($type);
         }
 
