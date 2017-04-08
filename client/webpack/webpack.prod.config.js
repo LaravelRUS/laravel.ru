@@ -5,7 +5,10 @@ const config = require('./config')
 
 module.exports = {
   devtool: 'hidden-source-map',
-  entry: config.common.appDir,
+  entry: [
+    'babel-regenerator-runtime',
+    config.common.appDir
+  ],
   output: {
     path: config.prod.output.js.path,
     filename: config.prod.output.js.filename
