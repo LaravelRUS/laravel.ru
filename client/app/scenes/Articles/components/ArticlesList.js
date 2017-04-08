@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Loading } from 'components/Loading'
 import { Pagination } from 'components/Pagination'
 import ArticlesListItem from './ArticlesListItem'

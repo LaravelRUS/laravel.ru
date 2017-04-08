@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { articlesPaginated } from 'api/graphQl/articles'
 import ArticlesList from './ArticlesList'
