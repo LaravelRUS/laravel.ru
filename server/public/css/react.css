@@ -120,6 +120,19 @@ svg {
   font-weight: 700;
   src: url("/fonts/Raleway-Bold.woff2") format("woff2"), url("/fonts/Raleway-Bold.woff") format("woff"); }
 
+.form-field {
+  margin-bottom: 20px; }
+  .form-field label {
+    display: block;
+    font-size: 1.4rem;
+    line-height: 24px; }
+  .form-field input {
+    width: 100%;
+    border: 1px solid #dadada;
+    padding: 7px 10px;
+    line-height: 1;
+    border-radius: 3px; }
+
 #app {
   height: 100%; }
 
@@ -344,4 +357,37 @@ body {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .articles-page {
+      max-width: 1170px; } }
+
+.login {
+  max-width: 400px;
+  margin: 60px auto; }
+
+.docs-page {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  margin: 0 auto; }
+  .docs-page .menu,
+  .docs-page .contents {
+    padding: 0 15px; }
+  .docs-page .menu {
+    -ms-flex-preferred-size: 30%;
+        flex-basis: 30%;
+    max-width: 30%; }
+  .docs-page .contents {
+    -ms-flex-preferred-size: 70%;
+        flex-basis: 70%;
+    max-width: 70%; }
+    .docs-page .contents p, .docs-page .contents h1, .docs-page .contents h2, .docs-page .contents h3, .docs-page .contents h4, .docs-page .contents h5, .docs-page .contents h6 {
+      margin-bottom: 24px; }
+  @media (min-width: 768px) {
+    .docs-page {
+      max-width: 750px; } }
+  @media (min-width: 992px) {
+    .docs-page {
+      max-width: 970px; } }
+  @media (min-width: 1200px) {
+    .docs-page {
       max-width: 1170px; } }
