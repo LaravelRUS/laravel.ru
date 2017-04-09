@@ -9,7 +9,6 @@ services:
             - "./server/:/var/www/laravel.su"
         expose:
             - "9000"
-            - "8081"
         links:
             - postgres
             - redis
@@ -35,7 +34,6 @@ services:
         ports:
             - "80:80"
             - "443:443"
-            - "8080:8080"
         links:
             - php
 
