@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $t) {
             $t->increments('id');
-            $t->unsignedInteger('user_id')->index();
+            $t->unsignedInteger('user_id')->index('articles_user_id_index');
             $t->string('title');
             $t->string('image');
             $t->string('slug')->unique()->index();
