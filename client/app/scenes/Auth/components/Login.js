@@ -34,13 +34,13 @@ class Login extends PureComponent {
   render() {
     // console.log(m)
     return (
-      <section className="login">
+      <section className="login-page">
         <header>
           <h1>Вход</h1>
         </header>
-        <p>{this.state.loading ? 1 : 2}</p>
+        {/* <p>{this.state.loading ? 1 : 2}</p> */}
         <LoginForm onSubmit={this.handleSubmit} />
-        <Link to="/register">Регистрация</Link>
+        <p>Нет аккаунта? <Link to="/register">Регистрация</Link></p>
       </section>
     )
   }
