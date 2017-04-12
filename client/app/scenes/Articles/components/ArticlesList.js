@@ -4,7 +4,7 @@ import { Loading } from 'components/Loading'
 import { Pagination } from 'components/Pagination'
 import ArticlesListItem from './ArticlesListItem'
 
-const ArticlesList = ({ data: { articles, error, loading }, match }) => {
+const ArticlesList = ({ data: { articles, error, loading, paginator }, match }) => {
   if (loading) {
     return <Loading />
   }
@@ -24,7 +24,11 @@ const ArticlesList = ({ data: { articles, error, loading }, match }) => {
           <ArticlesListItem key={article.id} article={article} />
         ))}
       </ul>
-      <Pagination currentPage={match.params.id} />
+      <Pagination
+        url="/articles"
+        totalPages={paginator.pages_count}
+        currentPage={Number(match.params.id) || 1}
+      />
     </section>
   )
 }
