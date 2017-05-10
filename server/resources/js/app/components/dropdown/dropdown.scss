@@ -14,6 +14,7 @@ ui-dropdown {
     @include height(inherit);
     width: 100%;
     box-sizing: border-box;
+    box-shadow: 0 0 0 1px $color-border !important;
 
     .dropdown-value {
       left: 0;
@@ -59,7 +60,7 @@ ui-dropdown {
       border-radius: 0 0 3px 3px;
       position: absolute;
       box-shadow:
-        0 -1px 0 $color-main,
+        0 -1px 0 #fff,
         $ui-box-shadow;
       background: #fff;
       min-width: 100%;

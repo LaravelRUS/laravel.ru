@@ -3158,7 +3158,7 @@ header .search .search-section ui-dropdown {
   border-radius: 0 !important;
   width: 140px;
   display: block;
-  margin: 0 1px;
+  margin: 0 2px 0 1px;
 }
 
 header .search .search-section .button {
@@ -3368,6 +3368,7 @@ ui-dropdown .dropdown {
   line-height: inherit;
   width: 100%;
   box-sizing: border-box;
+  box-shadow: 0 0 0 1px #dee0df !important;
 }
 
 ui-dropdown .dropdown .dropdown-value {
@@ -3420,7 +3421,7 @@ ui-dropdown .dropdown .dropdown-options {
   top: 43px;
   border-radius: 0 0 3px 3px;
   position: absolute;
-  box-shadow: 0 -1px 0 #f4645f, 0 0 0 1px #dee0df, 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -1px 0 #fff, 0 0 0 1px #dee0df, 0 2px 5px rgba(0, 0, 0, 0.1);
   background: #fff;
   min-width: 100%;
   line-height: inherit;
