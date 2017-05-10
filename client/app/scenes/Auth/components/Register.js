@@ -9,12 +9,12 @@ class Register extends PureComponent {
 
   render() {
     return (
-      <section className="widget">
+      <section className="register-page">
         <header>
           <h1>Регистрация</h1>
         </header>
         <RegisterForm onSubmit={this.handleSubmit} />
-        <Link to="/login">Войти</Link>
+        <p>Есть аккаунт? <Link to="/login">Войти</Link></p>
       </section>
     )
   }

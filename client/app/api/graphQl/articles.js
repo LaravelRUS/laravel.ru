@@ -7,7 +7,6 @@ export const articlesPaginated = gql`
       title
       image
       slug
-      url
       preview_source
       published_at
       user {
@@ -17,6 +16,9 @@ export const articlesPaginated = gql`
         id
         name
       }
+    }
+    paginator(query: "articles") {
+      pages_count
     }
   }
 `

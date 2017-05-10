@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form'
 import { Input } from 'components/Forms'
 import { Button } from 'components/Buttons'
 
 const LoginForm = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
-    <Input label="Имя пользователя или электронная почта" name="username" />
+    <Input label="Электронная почта" name="email" />
     <Input type="password" label="Пароль" name="password" />
     <Button type="submit">Войти</Button>
   </form>

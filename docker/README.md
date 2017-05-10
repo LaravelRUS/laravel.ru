@@ -10,7 +10,7 @@ $ sudo usermod -aG docker $USER
 ###### Error: Couldn't connect to Docker daemon
 
 ```bash
-$ suod service docker start
+$ sudo service docker start
 ````
 
 #### Docker for Windows

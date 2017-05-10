@@ -3,7 +3,10 @@ const webpack = require('webpack')
 const config = require('./config')
 
 module.exports = {
-  entry: config.common.appDir,
+  entry: [
+    'babel-regenerator-runtime',
+    config.common.appDir
+  ],
   output: {
     path: config.common.appDir,
     publicPath: '/',
@@ -59,7 +62,9 @@ module.exports = {
     proxy: {
       '/graphql': 'http://0.0.0.0:80'
     },
-    historyApiFallback: true,
+    historyApiFallback: {
+      disableDotRule: true
+    },
     noInfo: true,
     stats: 'errors-only',
     overlay: {

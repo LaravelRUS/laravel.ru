@@ -15,7 +15,7 @@ $router->pattern('id', '[0-9]+');
 $router->get('/', 'HomeController@index')->name('home');
 
 // TODO
-$router->get('/react/{path?}', 'HomeController@react');
+$router->get('/react/{path?}', 'HomeController@react')->where('path', '.+');
 
 require __DIR__ . '/web.auth.php';
 require __DIR__ . '/web.articles.php';

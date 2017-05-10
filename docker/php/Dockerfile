@@ -1,3 +1,4 @@
+
 FROM php:7.1-fpm
 
 RUN DEBIAN_FRONTEND=noninteractive
@@ -104,5 +105,5 @@ WORKDIR /var/www/laravel.su
 RUN usermod -u 1000 www-data
 USER www-data
 
-EXPOSE 9000 8081
+EXPOSE 9000
 

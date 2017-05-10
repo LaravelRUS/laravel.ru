@@ -21,12 +21,15 @@ class AddArticlesUserTypeField extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $t) {
+            $t->dropIndex('articles_user_id_index');
+        });
+
+        Schema::table('articles', function (Blueprint $t) {
             $t->string('user_type')
-                ->default(str_replace('\\', '\\\\', App\Models\User::class))
+                ->default(App\Models\User::class)
                 ->after('user_id');
 
-            $t->index(['user_id', 'user_type']);
-            $t->dropIndex('articles_user_id_index');
+            $t->index(['user_id', 'user_type'], 'articles_user_id_user_type_index');
         });
     }
 
@@ -38,10 +41,13 @@ class AddArticlesUserTypeField extends Migration
     public function down()
     {
         Schema::table('articles', function (Blueprint $t) {
+            $t->dropIndex('articles_user_id_user_type_index');
+        });
+
+        Schema::table('articles', function (Blueprint $t) {
             $t->dropColumn('user_type');
 
-            $t->index('user_id');
-            $t->dropIndex('articles_user_id_user_type_index');
+            $t->index('user_id', 'articles_user_id_index');
         });
     }
 }
