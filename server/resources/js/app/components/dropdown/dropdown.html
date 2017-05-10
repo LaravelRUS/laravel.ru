@@ -1,0 +1,29 @@
+<div class="input dropdown" data-bind="
+    event: {
+        mouseover: function() { hover(true); },
+        mouseout: function() { hover(false); }
+    },
+    css: { active: visible }
+">
+    <button class="dropdown-value"
+            data-bind="click: function() { toggle(); }">
+        <!--ko if: value-->
+            <span data-bind="text: value().title"></span>
+        <!--/ko-->
+        <!--ko ifnot: value-->
+            <span class="dropdown-placeholder" data-bind="text: placeholder"></span>
+        <!--/ko-->
+    </button>
+
+    <nav class="dropdown-options" data-bind="foreach: options, css: { visible: visible }">
+        <!--ko ifnot: current()-->
+        <button class="dropdown-option"
+            data-bind="
+                text: title,
+                css: { active: current },
+                attr: { 'data-value': value },
+                click: function(ctx) { $parent.select(ctx); }
+            "></button>
+        <!--/ko-->
+    </nav>
+</div>

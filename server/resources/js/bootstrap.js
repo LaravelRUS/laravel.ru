@@ -1,20 +1,18 @@
-/**
- * Babel kernel polyfill for full ES6 support
- */
 import 'babel-polyfill';
-
-/**
- * Knockout library
- */
 import ko from 'knockout';
-(global || window).ko = ko;
+import router from './vendor/router';
+import 'knockout.validation/dist/knockout.validation';
+import 'knockout.validation/localization/ru-RU';
 
+import './../css/app.scss';
+
+import Application from './app/Application';
 
 /**
- * Extended template engine
+ * Kernel
  */
-import 'knockout.punches';
-ko.punches.enableAll();
+window.ko = ko;
+window.router = router;
 
 /**
  * Inview plugin
@@ -25,34 +23,8 @@ ko.bindingHandlers.inview = inview(ko);
 /**
  * Validation support
  */
-import 'knockout.validation/dist/knockout.validation';
-import 'knockout.validation/localization/ru-RU';
 
-ko.validation.configuration.errorMessageClass = "label error";
+ko.validation.configuration.insertMessages = false;
 ko.validation.locale('ru-RU');
 
-
-/**
- * Vendor libraries
- */
-import router from './vendor/router';
-window.router = router;
-
-/**
- * Application styles
- */
-import './../css/app.scss';
-
-/**
- * Application kernel
- */
-import Application from './Application';
-
-/**
- * BOOTSTRAP
- */
-(new Application())
-    .ready(e => {
-        document.body.classList.add('visible');
-    });
-
+window.app = new Application();

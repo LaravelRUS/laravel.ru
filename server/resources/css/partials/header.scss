@@ -1,165 +1,19 @@
 header {
-  $height: 70px;
-
-  height: $height;
-  line-height: $height;
-  background: #fff url(/img/cloud-bar.png) center top repeat-x;
-  padding: 10px 50px 0 50px;
-
-  .logo {
-    float: left;
-    display: block;
-    height: $height;
-    line-height: $height;
+  a {
+    color: $color-text;
     text-decoration: none;
-    box-sizing: border-box;
-    color: #525252;
-    width: 100%;
-
-    svg {
-      $size: 36px;
-      float: left;
-      height: $size;
-      line-height: $size;
-      margin: (($height - $size) / 2) 0;
-    }
-
-    h1,
-    span {
-      display: block;
-      color: #525252;
-      margin: 0;
-      padding: 0;
-      text-align: left;
-    }
-
-    h1 {
-      font-weight: 400;
-      font-size: 24px;
-      line-height: 24px;
-      margin-top: 15px;
-    }
-
-    span {
-      font-size: 11px;
-      line-height: 11px;
-      font-weight: 300;
-    }
-  }
-
-  .search {
-    padding: 15px 0;
-
-    input,
-    .button,
-    .select {
-      display: block;
-      float: left;
-      border-radius: 0;
-    }
-
-    input,
-    .button,
-    .select {
-      height: $input-size;
-      line-height: $input-size;
-    }
-
-    .select {
-      width: 140px;
-
-      select {
-        background: #f9f9f9;
-        border-radius: 2px 0 0 2px;
-      }
-    }
-
-    input {
-      width: 460px;
-    }
-
-    .button {
-      width: 100px;
-      border-radius: 0 2px 2px 0;
-    }
-  }
-}
-
-.sub-header {
-  $height: 44px;
-
-  top: 0;
-  width: 100%;
-  height: $height;
-  z-index: 999;
-  position: sticky;
-  background: #fff;
-  line-height: $height;
-
-  .nav {
-    user-select: none;
-    position: relative;
-    float: right;
-    padding-right: 15px;
-    @include clear;
-
-    & > a,
-    & > .dropdown {
-      float: left;
-      display: block;
-      user-select: none;
-      color: $color-text;
-      text-decoration: none;
-      font-size: 13px;
-      cursor: pointer;
-      position: relative;
-      margin: 0 0 0 25px;
-
-      &:hover {
-        color: $color-main;
-      }
-    }
-
-    a.active {
+    &:hover,
+    &:active,
+    &.active {
       color: $color-main;
     }
+  }
 
-    .auth-button {
-      display: block;
-      float: left;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      margin: 6px 0 6px 25px;
-      box-shadow: 0 0 0 1px $color-border;
-      line-height: 32px;
-      font-size: 16px;
-      color: $color-text;
-      text-align: center;
-      transform: scale(1);
-      transform-origin: 50% 50%;
-      transition: transform .2s $bounce;
+  @import "header/topline";
+  @import "header/search";
+  @import "header/nav";
 
-      &:after {
-        @include fa-icon;
-        content: $fa-var-lock;
-      }
-
-      &:hover {
-        color: $color-main;
-        box-shadow: 0 0 0 1px $color-main;
-        transform: scale(.9);
-
-        &:after {
-          content: $fa-var-unlock-alt;
-        }
-      }
-
-      &:active {
-        background: $color-main;
-        color: #fff;
-        transform: scale(.9);
-      }
-    }
+  .user-login {
+    float: right;
   }
 }

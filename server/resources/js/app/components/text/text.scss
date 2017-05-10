@@ -1,0 +1,64 @@
+@import "kernel";
+
+ui-text {
+  border-radius: 3px;
+  position: relative;
+
+  input {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    @include height(inherit);
+    border-radius: inherit !important;
+  }
+
+  .errors {
+    top: 0;
+    right: 0;
+    z-index: 3;
+    font-size: 18px;
+    position: absolute;
+    color: $color-alert;
+
+    &:after {
+      top: 12px;
+      right: 10px;
+      @include fa-icon;
+      position: absolute;
+      content: $fa-var-exclamation-circle;
+    }
+
+    .error {
+      right: 2px;
+      top: ($input-height - 5px);
+      position: absolute;
+      color: #fff;
+      display: block;
+      font-size: 12px;
+      line-height: 12px;
+      border-radius: 2px;
+      background: $color-alert;
+      padding: 7px $input-padding;
+      box-shadow: $ui-alter-box-shadow;
+      pointer-events: none;
+      opacity: 1;
+
+      &:before {
+        content: '';
+        border: transparent 4px solid;
+        border-bottom-color: $color-alert;
+        position: absolute;
+        top: -8px;
+        right: 12px;
+      }
+
+      span {
+        overflow: hidden;
+        max-width: 300px;
+        display: block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

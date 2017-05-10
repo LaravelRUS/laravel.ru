@@ -12,11 +12,13 @@ namespace App\Providers;
 
 use App\Views\Composers\NavComposer;
 use App\Views\Composers\AuthComposer;
+use App\Views\Composers\TokenExporterComposer;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class ViewsServiceProvider.
+ * Class ViewsServiceProvider
+ * @package App\Providers
  */
 class ViewsServiceProvider extends ServiceProvider
 {
@@ -34,21 +36,17 @@ class ViewsServiceProvider extends ServiceProvider
 
         $this->compose('*', AuthComposer::class);
         $this->compose('partials.header', NavComposer::class);
+        $this->compose('layout.master', TokenExporterComposer::class);
     }
 
     /**
      * @param array|string $views
-     * @param string       $viewComposer
+     * @param string $viewComposer
      */
     private function compose($views, string $viewComposer): void
     {
         $this->app->singleton($viewComposer);
 
         $this->views->composer($views, $viewComposer);
-    }
-
-    public function register(): void
-    {
-        //
     }
 }

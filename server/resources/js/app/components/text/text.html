@@ -1,0 +1,11 @@
+<input type="text" data-bind="value: value, valueUpdate: 'input', attr: {
+    placeholder: placeholder(),
+}" />
+
+<!--ko if: (value.isValid) && !value.isValid-->
+<span class="errors">
+    <span class="error">
+        <span data-bind="text: value.error"></span>
+    </span>
+</span>
+<!--/ko-->

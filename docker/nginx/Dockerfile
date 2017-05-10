@@ -28,10 +28,6 @@ ADD .htpasswd /etc/nginx/.htpasswd
 ADD sites-available/default.conf /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
-# WebSocket
-ADD sites-available/websocket.conf /etc/nginx/sites-available/
-RUN ln -s /etc/nginx/sites-available/websocket.conf /etc/nginx/sites-enabled/websocket.conf
-
 RUN echo "upstream php-upstream { server ${PHP_UPSTREAM}:9000; }" > /etc/nginx/conf.d/upstream.conf
 
 # SSL Certs
@@ -40,4 +36,4 @@ ADD ssl/ssl-cert-snakeoil.key /etc/ssl/private/
 
 CMD ["nginx"]
 
-EXPOSE 80 443 8080
+EXPOSE 80 443

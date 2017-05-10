@@ -7,4 +7,4 @@ RUN apt-get update && apt-get install -y curl apt-transport-https && \
 
 WORKDIR /var/www/client
 
-CMD ["yarn install", "yarn run build"]
+CMD ["yarn"]
