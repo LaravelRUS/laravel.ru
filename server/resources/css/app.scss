@@ -1,148 +1,44 @@
 @charset "utf-8";
 
-$fa-font-path: "/fonts/font-awesome";
-$fa-css-prefix: fa;
+@import "ui";
 
-@import "vendor/normalize";
-@import "vendor/utils";
-@import "vendor/960gs";
-@import "vendor/font-awesome";
-
-$width:             960px;
-$input-size:        40px;
-$button-size:       32px;
-$checkbox-size:     18px;
-
-/**
- * Animations
- */
-$swift:             cubic-bezier(.55, 0, .1, 1);
-$bounce:            cubic-bezier(.585, .22, .12, 1.355);
-
-$ui-box-shadow:
-  0 1px 1px 0 rgba(#000, .1),
-  0 2px 5px rgba(#000, .08);
-
-$color-red:         #f4645f;
-$color-green:       #28bc00;
-$color-yellow:      #d9a910;
-$color-blue:        #64b5f6;
-$color-purple:      #a184d5;
-$color-pink:        #ba6380;
-$color-light-gray:  #dee0df;
-$color-gray:        #9e9999;
-$color-dark-gray:   #525252;
-$color-black:       #27272b;
-
-$color-main:        $color-red;
-$color-alert:       $color-red;
-$color-warning:     $color-yellow;
-$color-info:        $color-blue;
-$color-ok:          $color-green;
-$color-border:      $color-light-gray;
-$color-description: $color-gray;
-$color-dark:        $color-black;
-$color-text:        $color-dark-gray;
-
-@import "ui/fonts";
-@import "ui/dropdown";
-@import "ui/input";
-@import "ui/forms";
-@import "ui/buttons";
-@import "ui/checkbox";
-@import "ui/labels";
-@import "ui/preloader";
-@import "ui/hljs";
-@import "ui/content-typographic";
-
-html {
-  height: 100%;
-}
-
-/**
- * Layout
- */
+html,
 body {
-  @include clear;
   @include font-optimize;
-  font-family: $font-family;
-  font-size: 14px;
-  font-weight: 400;
-  background: #fff;
-  color: $color-text;
   min-height: 100%;
-  position: relative;
-  opacity: .3;
-  transition: opacity .3s ease;
+  min-width: 320px;
+  width: 100%;
+  background: #fff;
+  font: {
+    size: 12px;
+    family: $font-family;
+  }
+  color: #52525c;
 
-  &.bg-gray {
-    background: #f9f6f6;
+  .container {
+    @include container;
   }
 
-  &.bg-dark {
-    background: $color-dark-gray;
-  }
-
-  &.visible {
-    opacity: 1 !important;
-  }
-
-  & > main {
-    min-height: inherit;
-    position: relative;
-  }
-
-  a {
-    color: $color-main;
-
-    &.active,
-    &:hover {
-      color: darken($color-main, 20%);
-    }
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: $font-family;
-  }
-
-  h1, h2 {
-    text-align: center;
-    font-size: 32px;
-    line-height: 32px;
-    font-weight: 300;
-  }
-
-  .hidden {
+  .new-line-sm {
     display: none;
   }
 
-  hr {
-    display: block;
-    float: left;
-    clear: both;
-    border: none;
-    width: 100%;
-    height: 1px;
-    margin: 6px 0;
-    background: $color-border;
+  @include media-breakpoint-down(sm) {
+    .new-line-sm {
+      display: block;
+      width: 100%;
+      height: 15px;
+    }
   }
-
-  pre,
-  code {
-    font-family: $font-mono;
-    font-size: 12px;
-  }
-
-  @import "partials/tips";
-  @import "partials/header";
-  @import "partials/footer";
 }
 
 /**
- * Pages
+ * Partials
  */
-@import "pages/home";
-@import "pages/auth";
-@import "pages/articles";
-@import "pages/docs";
+@import "partials/header";
+
+/**
+ * Home page
+ */
+@import "pages/home/welcome";
 

@@ -1,0 +1,21 @@
+.button {
+  display: inline-block;
+  height: $input-height;
+  border-radius: 2px;
+  text-align: center;
+  padding: 0 $input-padding;
+  position: relative;
+  z-index: 1;
+  background: $color-main;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  box-shadow: 0 0 0 1px #d55d59;
+
+  &:hover {
+    transition: background .3s $swift;
+    background: $color-main-hover;
+    color: #fff;
+  }
+}

@@ -1,38 +1,90 @@
-const path              = require('path');
-const webpack           = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const ident = require('css-loader/lib/getLocalIdent');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Config
 module.exports = {
-    entry: [
-        './resources/js/bootstrap'
-    ],
+    entry: './resources/js/bootstrap',
+    devtool: 'source-map',
     output: {
         path: `${__dirname}/public/dist/`,
         filename: 'app.js'
     },
     resolve: {
-        modulesDirectories: ['node_modules', 'resources'],
-        extensions: ['', '.js', '.ts', '.scss']
+        modules: [
+            'resources/js',
+            'resources/css',
+            'node_modules'
+        ]
     },
-    devtool: '#inline-source-map',
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.js?$/,
-                loaders: ['babel'],
-                exclude: /node_modules/
+                test: /\.js$/,
+                include: [
+                    path.resolve(__dirname, './resources/'),
+                    path.resolve(__dirname, './node_modules/dioma'),
+                ],
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                ]
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract("style", "css!postcss!sass")
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'resolve-url-loader',
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: () => [
+                                    require('autoprefixer')({
+                                        browsers: ['last 2 versions']
+                                    })
+                                ],
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                includePaths: [
+                                    `${__dirname}/resources/css`
+                                ],
+                                precision: 10,
+                                sourceMap: true
+                            }
+                        }
+                    ]
+                })
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            minimize: true,
+                            removeComments: false,
+                        }
+                    }
+                ]
             }
         ]
-    },
-    postcss: () => {
-        return [
-            require('autoprefixer')
-        ];
     },
     plugins: [
         new ExtractTextPlugin('app.css')

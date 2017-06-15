@@ -55,9 +55,7 @@ RUN docker-php-ext-install \
 #
 # Install non standard extensions
 #
-RUN pecl install zip
 RUN pecl install ev
-RUN pecl install -o -f redis
 
 #
 # Export configs
@@ -69,8 +67,6 @@ COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 #
 RUN docker-php-ext-enable \
     opcache \
-    zip \
-    redis \
     ev
 
 #

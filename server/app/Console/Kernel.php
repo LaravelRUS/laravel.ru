@@ -33,10 +33,6 @@ class Kernel extends ConsoleKernel
         Commands\IdeHelperRun::class,
         Commands\ArticlesImport::class,
         Commands\GitHubDocsSync::class,
-        Commands\StartWebSocketServer::class,
-
-        Commands\SphinxIndex::class,
-        Commands\SphinxDaemon::class,
     ];
 
     /**

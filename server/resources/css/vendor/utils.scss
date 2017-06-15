@@ -1,16 +1,23 @@
-@mixin selection
-{
+@mixin selection {
   &::selection      { @content; }
   &::-moz-selection { @content; }
 }
 
-@mixin placeholder
-{
+@mixin placeholder {
   &::-webkit-input-placeholder  { @content; }
   &:-moz-placeholder            { @content; }
   &::-moz-placeholder           { @content; }
   &:-ms-input-placeholder       { @content; }
   .placeholder                  { @content; }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: $width;
+  min-width: 320px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 15px;
 }
 
 @mixin text-overflow {
@@ -19,11 +26,14 @@
   text-overflow: ellipsis;
 }
 
+@mixin height($height) {
+  height: $height;
+  line-height: $height;
+}
 
 /**
  * CLEARFIX
  */
-
 @mixin clear($legacy: false) {
   @if $legacy {
     &:after {
@@ -47,8 +57,4 @@
 
 @mixin clearfix($legacy: false) {
   @include clear($legacy);
-}
-
-.clear {
-  @include clear;
 }
