@@ -1,16 +1,21 @@
 .form-field {
   margin-bottom: 20px;
 
+  &:last-of-type {
+    margin-bottom: 30px;
+  }
+
   label {
+    @include font-size(1.4);
+
     display: block;
-    font-size: 1.4rem;
-    line-height: 24px;
+    color: #b4b4b4;
   }
 
   input {
     width: 100%;
     border: 1px solid #dadada;
-    padding: 7px 10px;
+    padding: 10px 12px;
     line-height: 1;
     border-radius: 3px;
   }

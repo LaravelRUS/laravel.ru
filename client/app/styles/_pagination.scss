@@ -11,13 +11,17 @@ $pagination-item-height: 36px;
     &:not(:last-of-type) {
       margin-right: 15px;
     }
+
+    &.pagination-label {
+      display: none;
+    }
   }
 
   a {
     display: block;
-    background-color: $pagination-item-bg-color;
     width: $pagination-item-width;
     height: $pagination-item-height;
+    background-color: $pagination-item-bg-color;
     line-height: $pagination-item-height;
     text-align: center;
 
