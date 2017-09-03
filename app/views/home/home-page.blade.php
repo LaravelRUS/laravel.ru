@@ -16,6 +16,9 @@
 					<a class="button" href="http://sleepingowladmin.ru">Конструктор админки от SleepingOwl</a>
 					{{--<a class="button" href="{{ route('documentation.sleepingowl_admin') }}">Конструктор админки от SleepingOwl</a>--}}
 				</li>
+				<li>
+					<a class="button" href="https://orchid.software">Система управления ORCHID</a>
+				</li>
 				{{--<li>--}}
 					{{--<a class="button" href="{{ route('cheat-sheet') }}">Cheat Sheet</a>--}}
 				{{--</li>--}}
