@@ -39,16 +39,16 @@ type Version {
         """
         # Return the version string to the desired format.
         """
-        format: VersionPart
+        format: VersionFormat
     ): String!
 
     """
     # Time of version creation.
     """
-    createdAt(format: DateTimeFormat = RFC3339): String!
+    createdAt(format: String = RFC3339): String!
 
     """
     # Time of the last version update.
     """
-    updatedAt(format: DateTimeFormat = RFC3339): String!
+    updatedAt(format: String = RFC3339): String!
 }

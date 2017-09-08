@@ -57,6 +57,7 @@ return [
             'autoload'   => [
                 resource_path('graphql'),
                 resource_path('graphql/models'),
+                resource_path('graphql/common'),
             ],
 
             /**

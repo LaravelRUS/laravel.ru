@@ -38,10 +38,10 @@ type Project {
     """
     # Time of project creation.
     """
-    createdAt(format: DateTimeFormat = RFC3339): String!
+    createdAt(format: String = RFC3339): String!
 
     """
     # Time of the last project update.
     """
-    updatedAt(format: DateTimeFormat = RFC3339): String!
+    updatedAt(format: String = RFC3339): String!
 }
