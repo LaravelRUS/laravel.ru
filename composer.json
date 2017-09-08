@@ -1,0 +1,81 @@
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "type": "project",
+    "repositories": [
+        {"type": "path", "url": "src/ContentRenderer"},
+        {"type": "path", "url": "src/DocsImporter"},
+        {"type": "path", "url": "src/ImageUploader"}
+    ],
+    "require": {
+        "php": ">=7.1",
+        "fideloper/proxy": "~3.3",
+        "laravel/framework": "5.5.*",
+        "laravel/tinker": "~1.0",
+        "barryvdh/laravel-debugbar": "~2.0",
+        "barryvdh/laravel-ide-helper": "~2.0",
+        "doctrine/dbal": "~2.2",
+        "predis/predis": "~1.1",
+        "guzzlehttp/guzzle": "~6.2",
+        "namshi/jose": "~7.2",
+        "commerceguys/enum": "~1.0",
+        "sentry/sentry-laravel": "~0.8",
+        "railt/laravel-adapter": "dev-master@dev",
+        "railt/webonyx-adapter": "dev-master@dev",
+        "laravelrus/content-renderer": "*",
+        "laravelrus/docs-importer": "*",
+        "laravelrus/image-uploader": "*"
+    },
+    "require-dev": {
+        "filp/whoops": "~2.0",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+            ]
+        }
+    },
+    "scripts": {
+        "cache-clear": [
+            "@php artisan cache:clear",
+            "@php artisan route:clear"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models --nowrite"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

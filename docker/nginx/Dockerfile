@@ -22,7 +22,6 @@ RUN apt-get -y --no-install-recommends install -y \
 
 # Global configs
 ADD nginx.conf /etc/nginx/nginx.conf
-ADD .htpasswd /etc/nginx/.htpasswd
 
 # Laravel.Dev
 ADD sites-available/default.conf /etc/nginx/sites-available/
@@ -36,4 +35,4 @@ ADD ssl/ssl-cert-snakeoil.key /etc/ssl/private/
 
 CMD ["nginx"]
 
-EXPOSE 80 443
+EXPOSE 80 443 9000

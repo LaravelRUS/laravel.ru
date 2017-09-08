@@ -1,0 +1,37 @@
+
+"""
+# The root object of the laravel.su website API.
+"""
+type Laravel {
+    """
+    # Returns a list of projects with documentation.
+    """
+    projects(
+        """
+        # Returns a list of projects that have been
+        # updated after the specified date.
+        """
+        newer: String
+    ): [Project]!
+
+    """
+    # Returns one Documentation Project.
+    """
+    project(
+        """
+        # Select one Project by primary ID.
+        """
+        id: ID,
+
+        """
+        # Select one Project by slug.
+        """
+        slug: String
+    ): Project
+}
+
+
+schema {
+    query: Laravel
+}
+

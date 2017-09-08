@@ -1,0 +1,47 @@
+
+
+"""
+# An object that is a Project of documentation.
+"""
+type Project {
+    """
+    # Project Identifier.
+    """
+    id: ID!
+
+    """
+    # Name of the Project.
+    """
+    title: String!
+
+    """
+    # The name of the project in latin, serves as an identifier
+    # in the address bar in browsers that don't support UTF-8.
+    """
+    slug: String!
+
+    """
+    # The Project icon.
+    """
+    image: String
+
+    """
+    # A small summary of the Project.
+    """
+    description: String!
+
+    """
+    # Project versions relation list.
+    """
+    versions: [Version]!
+
+    """
+    # Time of project creation.
+    """
+    createdAt(format: DateTimeFormat = RFC3339): String!
+
+    """
+    # Time of the last project update.
+    """
+    updatedAt(format: DateTimeFormat = RFC3339): String!
+}

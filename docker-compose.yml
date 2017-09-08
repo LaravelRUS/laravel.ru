@@ -1,34 +1,30 @@
-version: '2'
+version: "2"
 
 services:
     php:
+        image: "laravel_su"
+        container_name: "laravel_su"
+        command: "/laravel.sh"
         build:
             context: ./docker/php
-        command: "/start.sh && php-fpm"
         volumes:
-            - "./server/:/var/www/laravel.su"
-        expose:
-            - "9000"
+            - "./:/var/www/laravel.su"
         links:
             - postgres
             - redis
         environment:
             - PHP_IDE_CONFIG="serverName=laravel"
-        tty: true
-
-    node:
-        build:
-            context: ./docker/node
-        volumes:
-            - "./:/var/www"
+        depends_on:
+            - redis
+            - postgres
 
     nginx:
+        container_name: "laravel_su_nginx"
         build:
             context: ./docker/nginx
             args:
                 - PHP_UPSTREAM=php
-        volumes_from:
-            - php
+        volumes_from: [php]
         volumes:
             - ./docker/nginx/sites-available/:/etc/nginx/sites-available
         ports:
@@ -38,8 +34,8 @@ services:
             - php
 
     postgres:
-        build:
-            context: ./docker/postgres
+        container_name: "laravel_su_database"
+        build: ./docker/postgres
         volumes:
             - postgres:/var/lib/postgresql/data
         ports:
@@ -50,14 +46,27 @@ services:
             POSTGRES_PASSWORD: root
 
     redis:
+        container_name: "laravel_su_redis"
         build: ./docker/redis
         volumes:
             - redis:/data
         ports:
             - "6379:6379"
 
+    supervisord:
+        container_name: "laravel_su_supervisor"
+        build: ./docker/supervisord
+        volumes:
+            - "./docker/.mount/supervisor/:/var/log/supervisor"
+        volumes_from:
+            - php
+        depends_on:
+            - php
+
 volumes:
     postgres:
+        driver: "local"
+    sentry:
         driver: "local"
     redis:
         driver: "local"

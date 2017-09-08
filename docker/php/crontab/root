@@ -1,1 +1,1 @@
-* * * * * php /var/www/laravel.su/artisan schedule:run >> /dev/null 2>&1
+* * * * * php /var/www/laravel.su/artisan schedule:run > ./storage/logs/schedule.log 2>&1 &

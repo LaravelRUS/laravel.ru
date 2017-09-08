@@ -13,6 +13,7 @@ RUN apt-get update && \
     apt-get install -y \
         sudo \
         git \
+        unzip \
         libcurl4-openssl-dev \
         libedit-dev \
         libssl-dev \
@@ -50,24 +51,22 @@ RUN docker-php-ext-install \
         sockets \
         bcmath \
         opcache \
+        zip \
+        exif \
+        tokenizer \
         gd
 
 #
 # Install non standard extensions
 #
 RUN pecl install ev
+RUN docker-php-ext-enable ev
 
 #
 # Export configs
 #
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
-
-#
-# Enable non standard extensions
-#
-RUN docker-php-ext-enable \
-    opcache \
-    ev
+RUN docker-php-ext-enable opcache
 
 #
 #--------------------------------------------------------------------------
@@ -76,7 +75,7 @@ RUN docker-php-ext-enable \
 #
 
 ADD ./laravel.ini /usr/local/etc/php/conf.d
-ADD ./laravel.pool.conf /usr/local/etc/php-fpm.d/
+ADD ./php-fpm.conf /usr/local/etc/php-fpm.d
 
 RUN rm -r /var/lib/apt/lists/*
 RUN rm -rf /tmp/pear
@@ -97,13 +96,16 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN echo "" >> ~/.bashrc && \
     echo 'export PATH="/var/www/laravel.su/vendor/bin:$PATH"' >> ~/.bashrc
 
-ADD ./start.sh /start.sh
-RUN chmod 0755 /start.sh
+ADD ./laravel.sh /laravel.sh
+RUN chmod 0755 /laravel.sh
 
 WORKDIR /var/www/laravel.su
+
+RUN chmod -R 0777 /var/www
 
 RUN usermod -u 1000 www-data
 USER www-data
 
 EXPOSE 9000
 
+CMD ["/laravel.sh"]

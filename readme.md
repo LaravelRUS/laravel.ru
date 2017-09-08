@@ -1,14 +1,18 @@
+<p align="center"><img src="https://avatars1.githubusercontent.com/u/5966874?v=4&s=100"></p>
+
+<p align="center">
+    <a href="https://scrutinizer-ci.com/g/LaravelRUS/laravel.ru/?branch=2.0"><img src="https://scrutinizer-ci.com/g/LaravelRUS/laravel.ru/badges/quality-score.png?b=master" alt="Scrutinizer CI" /></a>
+    <a href="https://styleci.io/repos/18944609"><img src="https://styleci.io/repos/18944609/shield?branch=2.0" alt="StyleCI" /></a>
+    <a href="https://github.com/laravel"><img src="https://img.shields.io/badge/laravel-~5.5-green.svg?style=flat-square" alt="Laravel Support"></a>
+    <a href="https://github.com/php"><img src="https://img.shields.io/badge/php-7.1+-green.svg?style=flat-square" alt="Laravel Support"></a>
+    <a href="https://travis-ci.org/LaravelRUS/laravel.ru"><img src="https://travis-ci.org/LaravelRUS/laravel.ru.svg?branch=2.0&style=flat-square" alt="Travis CI Build Status" /></a>
+    <a href="https://github.com/auchenberg/volkswagen"><img src="https://auchenberg.github.io/volkswagen/volkswargen_ci.svg?v=1" alt="Volkswagen Tests Status" /></a>
+    <a href="https://gitter.im/LaravelRUS/laravel.ru"><img src="https://badges.gitter.im/gitterHQ/gitter.png" alt="Чат"></a>
+</p>
+
 # Сайт русскоязычного сообщества Laravel
 
-[![Build Status](https://travis-ci.org/LaravelRUS/laravel.ru.svg?branch=2.0)](https://travis-ci.org/LaravelRUS/laravel.ru)
-[![Volkswagen Tests Status](https://auchenberg.github.io/volkswagen/volkswargen_ci.svg?v=1)](https://github.com/auchenberg/volkswagen)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LaravelRUS/laravel.ru/badges/quality-score.png?b=2.0)](https://scrutinizer-ci.com/g/LaravelRUS/laravel.ru/?branch=2.0)
-[![StyleCI](https://styleci.io/repos/18944609/shield?branch=2.0)](https://styleci.io/repos/18944609)
-[![Чат](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/LaravelRUS/laravel.ru)
-
 - Site: [https://new.laravel.su](https://new.laravel.su)
-- WebDav: [https://new.laravel.su/cdn](https://new.laravel.su/cdn)
-- GraphQL API: [https://new.laravel.su/graphiql](https://new.laravel.su/graphiql)
 
 **ВНИМАНИЕ! Это нестабильная ветка, актуальная [находится тут](https://github.com/LaravelRUS/laravel.ru/tree/develop)**
 
@@ -16,18 +20,7 @@
 
 1. Скачайте и установите Docker и Docker Compose ([подробнее тут](./docker/README.md))
 2. Откройте консоль и выполните `docker-compose up`
-3. Откройте в браузере `http://127.0.0.1`
-
-#### Требования для работы вне Docker окружения
-
-- PHP 7.1 или выше
-- MySql 5.7 или выше
-- Apache или Nginx
-
-#### Сборка JS вне докера
-
-- Текущий вариант: `cd server && npm run build`
-- React версия: `cd client && npm run build`
+3. Откройте в браузере `https://127.0.0.1`
 
 ## Описание
 
@@ -40,3 +33,49 @@
 - Перевод документации.
   - [Инструкция, как это делать правильно](https://github.com/translation-gang/ru.docs.laravel/blob/5.4-ru/readme.md).
   - [Обсуждение: Чат](https://gitter.im/LaravelRUS/docs)
+
+## Docker
+   
+Список и краткая информация по сервисам, использующихся в сборке.
+   
+### PHP 7.1
+
+- **Имя**: `laravel_su`
+- **Доступ**: `docker exec -it --user=www-data laravel_su bash`
+- **Root доступ**: `docker exec -it laravel bash`
+
+### Nginx
+
+- **Имя**: `laravel_su_nginx`
+- **Доступ**: `docker exec -it laravel_su_nginx bash`
+- **Внешние порты** 
+   - `80`: http протокол, переводит на https
+   - `443`: https протокол (внимание, сертификаты самподписные)
+   
+### Postgres
+
+- **Имя**: `laravel_su_database`
+- **Доступ**: `docker exec -it laravel_su_database bash`
+- **Внешние порты** 
+   - `5432`: Порт postgres сервера
+   
+### Sentry
+
+- **Имя**: `sentry`
+- **Доступ**: `docker exec -it sentry bash`
+- **Внешние порты** 
+   - `9000`: ...
+   
+### Redis
+
+- **Имя**: `laravel_su_redis`
+- **Доступ**: `docker exec -it laravel_su_redis bash`
+- **Внешние порты** 
+   - `6379`: Демон Redis сервера
+   
+### Supervisor
+
+- **Имя**: `laravel_su_supervisor`
+- **Доступ**: `docker exec -it laravel_su_supervisor bash`
+
+

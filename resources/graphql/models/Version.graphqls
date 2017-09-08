@@ -1,0 +1,54 @@
+"""
+# List of available project version parts.
+"""
+enum VersionFormat {
+    """
+    # Release major version part.
+    """
+    MAJOR
+
+    """
+    # Release minor version part.
+    """
+    MINOR
+
+    """
+    # Release patch version part.
+    """
+    PATCH
+}
+
+"""
+# An object that is a Version of Project.
+"""
+type Version {
+    """
+    # Verion Identifier.
+    """
+    id: ID!
+
+    """
+    # Project relation.
+    """
+    project: Project!
+
+    """
+    # Project version string value.
+    """
+    version(
+        """
+        # Return the version string to the desired format.
+        """
+        format: VersionPart
+    ): String!
+
+    """
+    # Time of version creation.
+    """
+    createdAt(format: DateTimeFormat = RFC3339): String!
+
+    """
+    # Time of the last version update.
+    """
+    updatedAt(format: DateTimeFormat = RFC3339): String!
+}

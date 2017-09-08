@@ -1,0 +1,28 @@
+{
+    "name": "laravelrus/content-renderer",
+    "license": "MIT",
+    "type": "library",
+    "description": "Content polymorphic renderer",
+    "authors": [
+        {
+            "name": "Serafim",
+            "email": "nesk@xakep.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "cebe/markdown": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Service\\ContentRenderer\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Service\\ContentRenderer\\ContentRendererServiceProvider"
+            ]
+        }
+    }
+}
