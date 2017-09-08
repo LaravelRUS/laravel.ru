@@ -10,9 +10,9 @@ namespace App\Models\DocsPage;
 
 use App\Models\DocsPage;
 use Service\ContentRenderer\Anchors\Parser;
-use Service\ContentRenderer\RenderersRepository;
 use Service\ContentRenderer\Anchors\ProcessedBody;
 use Service\ContentRenderer\ContentRendererInterface;
+use Service\ContentRenderer\RenderersRepository;
 
 /**
  * Class ContentObserver.
@@ -31,7 +31,8 @@ class ContentObserver
 
     /**
      * ContentObserver constructor.
-     * @param Parser              $parser
+     *
+     * @param Parser $parser
      * @param RenderersRepository $repository
      */
     public function __construct(Parser $parser, RenderersRepository $repository)
@@ -41,31 +42,21 @@ class ContentObserver
     }
 
     /**
-     * @param  DocsPage                  $page
+     * @param  DocsPage $page
      * @throws \InvalidArgumentException
      */
     public function saving(DocsPage $page): void
     {
-        $body = $this->render($this->getRenderer($page), (string) $page->content_source);
+        $body = $this->render($this->getRenderer($page), (string)$page->content_source);
 
         // Update data
         $page->nav = $body->getLinks();
-        $page->content_rendered = (string) $body->getContent();
-    }
-
-    /**
-     * @param  DocsPage                  $page
-     * @return ContentRendererInterface
-     * @throws \InvalidArgumentException
-     */
-    private function getRenderer(DocsPage $page): ContentRendererInterface
-    {
-        return $this->repository->getRenderer($page->docs->renderer);
+        $page->content_rendered = (string)$body->getContent();
     }
 
     /**
      * @param  ContentRendererInterface $renderer
-     * @param  string                   $body
+     * @param  string $body
      * @return ProcessedBody
      */
     private function render(ContentRendererInterface $renderer, string $body): ProcessedBody
@@ -75,5 +66,15 @@ class ContentObserver
 
         // Parse content headers
         return $this->parser->parse($rendered);
+    }
+
+    /**
+     * @param  DocsPage $page
+     * @return ContentRendererInterface
+     * @throws \InvalidArgumentException
+     */
+    private function getRenderer(DocsPage $page): ContentRendererInterface
+    {
+        return $this->repository->getRenderer($page->version->renderer);
     }
 }

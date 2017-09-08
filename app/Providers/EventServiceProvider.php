@@ -1,10 +1,22 @@
 <?php
+/**
+ * This file is part of laravel.su package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
+use App\Models\DocsPage;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+/**
+ * Class EventServiceProvider
+ *
+ * @package App\Providers
+ */
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -13,9 +25,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
-        ],
+        //
     ];
 
     /**
@@ -25,8 +35,9 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        parent::boot();
+        DocsPage::observe(DocsPage\SlugObserver::class);
+        DocsPage::observe(DocsPage\ContentObserver::class);
 
-        //
+        parent::boot();
     }
 }

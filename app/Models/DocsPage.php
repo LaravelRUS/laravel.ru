@@ -54,7 +54,7 @@ class DocsPage extends Model
     /**
      * @return BelongsTo
      */
-    public function versions(): BelongsTo
+    public function version(): BelongsTo
     {
         return $this->belongsTo(DocsVersions::class, 'version_id', 'id', 'pages');
     }

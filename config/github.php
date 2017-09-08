@@ -1,7 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
 /*
  * This file is part of Laravel GitHub.
  *
@@ -10,6 +7,8 @@ declare(strict_types=1);
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
 
 return [
 
@@ -34,50 +33,14 @@ return [
     | Here are each of the connections setup for your application. Example
     | configuration has been included, but you may add as many connections as
     | you would like. Note that the 3 supported authentication methods are:
-    | "application", "jwt", "password", and "token".
+    | "application", "password", and "token".
     |
     */
 
     'connections' => [
-
         'main' => [
-            'token'      => 'your-token',
-            'method'     => 'token',
-            // 'backoff'    => false,
-            // 'cache'      => false,
-            // 'version'    => 'v3',
-            // 'enterprise' => false,
+            'token'  => env('GITHUB_TOKEN', null),
+            'method' => 'token',
         ],
-
-        'app' => [
-            'clientId'     => 'your-client-id',
-            'clientSecret' => 'your-client-secret',
-            'method'       => 'application',
-            // 'backoff'      => false,
-            // 'cache'        => false,
-            // 'version'      => 'v3',
-            // 'enterprise'   => false,
-        ],
-
-        'jwt' => [
-            'token'        => 'your-jwt-token',
-            'method'       => 'jwt',
-            // 'backoff'      => false,
-            // 'cache'        => false,
-            // 'version'      => 'v3',
-            // 'enterprise'   => false,
-        ],
-
-        'other' => [
-            'username'   => 'your-username',
-            'password'   => 'your-password',
-            'method'     => 'password',
-            // 'backoff'    => false,
-            // 'cache'      => false,
-            // 'version'    => 'v3',
-            // 'enterprise' => false,
-        ],
-
     ],
-
 ];

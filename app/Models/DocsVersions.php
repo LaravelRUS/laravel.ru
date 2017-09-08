@@ -32,6 +32,13 @@ class DocsVersions extends Model
     ];
 
     /**
+     * @var array
+     */
+    protected $with = [
+        'project'
+    ];
+
+    /**
      * @return BelongsTo
      */
     public function project(): BelongsTo
@@ -44,13 +51,13 @@ class DocsVersions extends Model
      */
     public function pages(): HasMany
     {
-        return $this->hasMany(DocsPage::class, 'docs_id', 'id');
+        return $this->hasMany(DocsPage::class, 'version_id', 'id');
     }
 
     /**
      * @param DocsConnectionConfigInterface|array $config
      */
-    public function setImporterConfigAttribute($config)
+    public function setImporterConfigAttribute($config): void
     {
         $this->attributes['importer_config'] = $config instanceof Arrayable
             ? $config->toArray()
