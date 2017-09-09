@@ -9,24 +9,31 @@
  */
 declare(strict_types=1);
 
-use App\GraphQL\Controllers\DocsProjectsController;
-use App\GraphQL\Decorators\DateTimeDecorator;
-use App\Http\Controllers\DocsVersionsController;
+use App\GraphQL\Decorators\VersionDecorator;
 use Railt\Routing\Router;
+use App\GraphQL\Decorators\DateTimeDecorator;
+use App\GraphQL\Controllers\DocsVersionsController;
+use App\GraphQL\Controllers\DocsProjectsController;
 
 
 /**
  * Controllers
  */
-$router->on('project', DocsProjectsController::class . '@show');
-$router->on('projects', DocsProjectsController::class . '@index');
+//$router->group('.', function(Router $router) {
+    $router->on('project', DocsProjectsController::class . '@show');
+    $router->on('projects', DocsProjectsController::class . '@index');
 
-$router->group('project|projects', function (Router $router) {
-    $router->on('versions', DocsVersionsController::class . '@index');
-});
+    $router->group('project|projects', function (Router $router) {
+        $router->on('versions', DocsVersionsController::class . '@index');
+
+    });
+//});
+
 
 /**
  * Decorators
  */
 $router->on('*{timestamps}', DateTimeDecorator::class . '@parseFormatArgument')
     ->where('timestamps', 'createdAt|updatedAt');
+
+$router->on('*.versions.version', VersionDecorator::class . '@formatVersion');

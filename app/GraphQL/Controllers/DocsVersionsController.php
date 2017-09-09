@@ -7,27 +7,27 @@
  */
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\GraphQL\Controllers;
 
+use App\GraphQL\Transformers\VersionsTransformer;
 use App\Models\DocsVersions;
 use Railt\Adapters\InputInterface;
 
 /**
  * Class DocsVersionsController
- * @package App\Http\Controllers
+ * @package App\GraphQL\Controllers
  */
 class DocsVersionsController
 {
     /**
      * @param InputInterface $input
-     * @return \Illuminate\Support\Collection|static
+     * @return iterable|null
+     * @throws \LogicException
      */
     public function index(InputInterface $input)
     {
-        return DocsVersions::all()->map(function (DocsVersions $version) {
-            return [
-                'version' => $version->version,
-            ];
-        })->toArray();
+        $query = DocsVersions::query();
+
+        return VersionsTransformer::apply($query->get());
     }
 }
