@@ -51,16 +51,46 @@ RUN docker-php-ext-install \
         sockets \
         bcmath \
         opcache \
-        zip \
         exif \
         tokenizer \
         gd
 
-#
-# Install non standard extensions
-#
-RUN pecl install ev
-RUN docker-php-ext-enable ev
+#####################################
+# PCNTL EXTENSION:
+#####################################
+
+ARG ENABLE_PCNTL=false
+RUN if [ ${ENABLE_PCNTL} = true ]; then \
+    docker-php-ext-install pcntl \
+;fi
+
+#####################################
+# EV EXTENSION:
+#####################################
+
+ARG ENABLE_EV=false
+RUN if [ ${ENABLE_EV} = true ]; then \
+    # Install the ev extension
+    pecl install ev && \
+    docker-php-ext-enable ev \
+;fi
+
+#####################################
+# XDEBUG EXTENSION:
+#####################################
+
+ARG ENABLE_XDEBUG=false
+RUN if [ ${ENABLE_XDEBUG} = true ]; then \
+    # Install the xdebug extension
+    pecl install xdebug && \
+    docker-php-ext-enable xdebug \
+;fi
+
+
+# Copy xdebug configration for remote debugging
+ENV XDEBUGINI_PATH=/usr/local/etc/php/conf.d/xdebug.ini
+COPY ./xdebug.ini $XDEBUGINI_PATH
+RUN echo "xdebug.remote_host="`/sbin/ip route|awk '/default/ { print $3 }'` >> $XDEBUGINI_PATH
 
 #
 # Export configs

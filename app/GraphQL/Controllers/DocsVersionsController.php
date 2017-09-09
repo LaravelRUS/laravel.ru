@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\DocsVersions;
 use Railt\Adapters\InputInterface;
 
 /**
@@ -17,8 +18,16 @@ use Railt\Adapters\InputInterface;
  */
 class DocsVersionsController
 {
+    /**
+     * @param InputInterface $input
+     * @return \Illuminate\Support\Collection|static
+     */
     public function index(InputInterface $input)
     {
-        dd($input->all());
+        return DocsVersions::all()->map(function (DocsVersions $version) {
+            return [
+                'version' => $version->version,
+            ];
+        })->toArray();
     }
 }

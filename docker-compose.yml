@@ -7,13 +7,16 @@ services:
         command: "/laravel.sh"
         build:
             context: ./docker/php
+            args:
+                - ENABLE_XDEBUG=true
+                - ENABLE_EV=true
+                - ENABLE_PCNTL=true
         volumes:
             - "./:/var/www/laravel.su"
+            - "./docker/.mount/profiler:/var/log/profiler"
         links:
             - postgres
             - redis
-        environment:
-            - PHP_IDE_CONFIG="serverName=laravel"
         depends_on:
             - redis
             - postgres
