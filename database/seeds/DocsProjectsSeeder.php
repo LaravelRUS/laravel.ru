@@ -42,6 +42,16 @@ class DocsProjectsSeeder extends Seeder
                 'slug'            => 'laravel',
                 'description'     => 'Русский перевод документации Laravel Framework',
             ],
+            [
+                'title'           => 'Документация Lumen',
+                'slug'            => 'lumen',
+                'description'     => 'Русский перевод документации Lumen Framework',
+            ],
+            [
+                'title'           => 'Документация Vue',
+                'slug'            => 'vue',
+                'description'     => 'Русский перевод документации Vue.js',
+            ],
         ];
     }
 }
