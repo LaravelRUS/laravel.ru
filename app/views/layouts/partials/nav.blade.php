@@ -26,7 +26,18 @@
 					{{--<a href="{{ route("documentation") }}">Cheat Sheet</a>--}}
 				{{--</li>--}}
 				<li class="hidden-sm">
-					<a href="https://gitter.im/LaravelRUS/chat" rel="nofollow" target="_blank">Чат</a>
+					<span data-toggle="dropdown">Обсуждение и поддержка</span>
+					<ul class="dropdown">
+						<li>
+							<a href="https://gitter.im/LaravelRUS/chat" rel="nofollow" target="_blank">Gitter</a>
+						</li>
+						<li>
+							<a href="https://discordapp.com/invite/mrkXUzV" rel="nofollow" target="_blank">Discord</a>
+						</li>
+						<li>
+							<a href="https://t.me/laravelrus" rel="nofollow" target="_blank">Telegram</a>
+						</li>
+					</ul>
 				</li>
 				<li {{ activeClass('users') }}>
 					<a href="{{ route('users') }}">Пользователи</a>
